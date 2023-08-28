@@ -1,5 +1,4 @@
 const {Router} = require("express");
-const { _router } = require("../app");
 
 const router = Router()
 
