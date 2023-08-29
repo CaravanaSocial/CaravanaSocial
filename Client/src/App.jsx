@@ -1,14 +1,13 @@
 import "./App.css";
 import { Route, Routes, useLocation } from "react-router-dom";
+import Login from "./Views/Login";
 
 function App() {
-  const { pathname } = useLocation();
 
   return (
     <div>
-      {pathname}
       <Routes>
-        <Route path="/landing" element="" />
+        <Route path="/login" element={<Login />}/>
       </Routes>
     </div>
   );
