@@ -21,10 +21,6 @@ module.exports = (sequelize) => {
             type: DataTypes.INTEGER,
             allowNull: false,
         },
-        country:{
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
         CUD:{
             type: DataTypes.STRING,
             allowNull: true,
@@ -54,10 +50,6 @@ module.exports = (sequelize) => {
         description:{
             type: DataTypes.STRING,
             allowNull: true,
-        },
-        trainings: {
-            type: DataTypes.STRING,
-            allowNull: false,
         },
         activate:{
             type: DataTypes.BOOLEAN

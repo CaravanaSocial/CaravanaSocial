@@ -45,8 +45,8 @@ user.belongsToMany(training, {through: 'user_training'});
 training.belongsToMany(user, {through: 'user_training'});
 
 //Relacion de empresas a rubros
-companies.belongsToMany(areaTraining, {through: 'companies_areaTraining'})
-areaTraining.belongsToMany(areaTraining, {through: 'companies_areaTraining'})
+companies.belongsToMany(areaTraining, {through: 'companies_areaTraining', as:'rubro'})
+areaTraining.belongsToMany(areaTraining, {through: 'companies_areaTraining', as:'rubro'})
 
 //Relacion de empresas con avisos
 companies.hasMany(offer);
