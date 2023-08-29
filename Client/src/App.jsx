@@ -1,4 +1,4 @@
-import './App.css';
+import "./App.css";
 import { Route, Routes, useLocation } from "react-router-dom";
 
 function App() {
@@ -8,10 +8,10 @@ function App() {
     <div>
       {pathname}
       <Routes>
-        <Route path='/landing' element=""/>
+        <Route path="/landing" element="" />
       </Routes>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
