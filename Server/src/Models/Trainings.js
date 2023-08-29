@@ -20,10 +20,6 @@ module.exports = (sequelize) => {
         video:{
             type: DataTypes.STRING,
             allowNull: false,
-        },
-        areaTraining:{
-            type: DataTypes.STRING,
-            allowNull: false,
         }
     },{timestamps : false})
 }
