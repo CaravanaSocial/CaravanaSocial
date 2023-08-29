@@ -1,8 +1,7 @@
-const { DataTypes, Sequelize } = require('sequelize');
+const { DataTypes } = require(sequelize)
 
-
-module.exports = (sequelize) => {
-    sequelize.define('training', {
+module.exports = (sequelize) =>{
+    sequelize.define('admin',{
         id:{
             type:DataTypes.UUID,
             defaultValue: DataTypes.UUIDV4,
@@ -13,13 +12,15 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        description: {
+        email:{
             type: DataTypes.STRING,
             allowNull: false,
+            unique: true,
         },
-        video:{
+        password:{
             type: DataTypes.STRING,
             allowNull: false,
+            unique: true
         }
-    },{timestamps : false})
+    })
 }

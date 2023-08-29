@@ -22,10 +22,6 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        areaTraining:{
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
         email:{
             type: DataTypes.STRING,
             allowNull: false,
@@ -39,14 +35,6 @@ module.exports = (sequelize) => {
         phone:{
             type: DataTypes.INTEGER,
             allowNull: false,
-        },
-        trainings:{
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        country:{
-            type: DataTypes.STRING,
-            allowNull: false
         }
 
     },{
