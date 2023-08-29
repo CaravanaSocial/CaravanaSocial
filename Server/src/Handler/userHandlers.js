@@ -1,12 +1,15 @@
 const {user} = require('../db')
+const {getUserController} = require('../Controller/userController')
 
-const postUser = async(req, res) => {
-    const response = req.body;
+const getUser = async(req, res) => {
     try{
-        await user.findOrCreate({where:{email:response.mail}})
-        res.status(200).send('The user has been created')
+        res.status(200).send('Response')
     }catch(error){
-        res.status(500).send('Not found')
+        res.status(500).send('Request error')
 
     }
+}
+
+module.exports = {
+    getUser
 }

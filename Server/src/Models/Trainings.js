@@ -1,5 +1,5 @@
 const { DataTypes, Sequelize } = require('sequelize');
-const { v4: uuidv4 } = require('uuid');
+
 
 module.exports = (sequelize) => {
     sequelize.define('training', {
@@ -25,5 +25,5 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: false,
         }
-    })
+    },{timestamps : false})
 }
