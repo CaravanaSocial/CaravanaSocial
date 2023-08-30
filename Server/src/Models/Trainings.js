@@ -1,15 +1,14 @@
-const { DataTypes, Sequelize } = require('sequelize');
-
+const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
     sequelize.define('training', {
-        id:{
-            type:DataTypes.UUID,
+        id: {
+            type: DataTypes.UUID,
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true,
             allowNull: false
         },
-        name:{
+        name: {
             type: DataTypes.STRING,
             allowNull: false,
         },
@@ -17,9 +16,9 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        video:{
-            type: DataTypes.STRING,
+        video: {
+            type: DataTypes.STRING, 
             allowNull: false,
         }
-    },{timestamps : false})
-}
+    }, { timestamps: false });
+};
