@@ -6,7 +6,7 @@ const adminSignUpHandler = async (req, res)=>{
         if(adminToken === "used") return res.status(400).json({error: "Used account"})
         if(adminToken === "wrongKey") return res.status(400).json({error: "Wrong create key"})
 
-        res.status(200).json(adminToken)
+        res.status(200).json({...adminToken, type:"admin"})
     } catch (error) {
         res.status(500).json(error.message)
     }

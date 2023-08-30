@@ -22,7 +22,8 @@ const createUserAccController = async (props) =>{
     if(created){
         const userId = newUser.id
         const token = jwt.sign({userId},SIGNATURE)
-        return {newUser, token}
+        newUser.password=0
+        return {acc:newUser, token}
     }
     return "used"
 }

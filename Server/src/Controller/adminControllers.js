@@ -11,7 +11,7 @@ const getAdminAccController = async (email) =>{
 }
 
 const createAdminAccController = async (props) =>{
-    const {password, email, createKey} = props
+    const {password, email, createKey, name} = props
     const saltRounds = 10
     const hashedPassword = await bcrypt.hash(password, saltRounds)
 
@@ -20,13 +20,14 @@ const createAdminAccController = async (props) =>{
     if(createKey === CREATE_KEY){
         const [newAdmin, created] = await admin.findOrCreate({
             where: {email},
-            defaults: {email:email, password: hashedPassword}
+            defaults: {...props, password: hashedPassword}
         })
     
         if(created){
             const adminId = newAdmin.id
             const token = jwt.sign({adminId},SIGNATURE)
-            return {newAdmin, token}
+            newAdmin.password=0
+            return {acc:newAdmin, token}
         }
         return "used"
     }

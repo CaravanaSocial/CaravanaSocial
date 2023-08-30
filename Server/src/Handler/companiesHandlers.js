@@ -1,6 +1,6 @@
-const {getUserAccController, createCompanyAccController} = require("../Controller/companiesControllers")
-
-const userCompaniesUpHandler = async (req, res)=>{
+const {createCompanyAccController} = require("../Controller/companiesControllers")
+const {getUserAccController} = require("../Controller/userController")
+const companiesSignUpHandler = async (req, res)=>{
     try {
         const findAcc = await getUserAccController(req.body.email)
         if(findAcc) res.status(400).json({error: "Email in use"})
@@ -14,5 +14,5 @@ const userCompaniesUpHandler = async (req, res)=>{
 }
 
 module.exports={
-    userCompaniesUpHandler
+    companiesSignUpHandler
 }
