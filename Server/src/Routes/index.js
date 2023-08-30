@@ -2,11 +2,7 @@ const { Router } = require("express");
 const { trainingHandler } = require("../Handler/createTrainingHandler");
 const { getTrainingByName } = require("../Handler/getTrainingHandler");
 const { getAlltraining } = require("../Handler/getAllTraining");
-const {
-  postOfferHandler,
-  deleteOfferHandler,
-  getOfferHandler,
-} = require("../Handler/offersHandler");
+const {postOfferHandler,deleteOfferHandler,getOfferHandler,updateOfferHandler} = require("../Handler/offersHandler");
 const { loginHandler } = require("../Handler/loginHandler");
 const { companiesSignUpHandler } = require("../Handler/companiesHandlers");
 const { userSignUpHandler } = require("../Handler/userHandlers");
@@ -17,8 +13,9 @@ const router = Router();
 router.post("/offer", postOfferHandler);
 router.delete("/offer", deleteOfferHandler);
 router.get("/offer", getOfferHandler);
+router.patch('/offer', updateOfferHandler)
 
-//-----------------------------------------------
+//--------------------------------------------
 
 router.post("/login", loginHandler);
 router.post("/signup/company", companiesSignUpHandler);
