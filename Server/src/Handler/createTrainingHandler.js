@@ -6,7 +6,7 @@ const trainingHandler = async (req, res) => {
         const foundTraining = await getCreatedTraining(req.body)
         const { name, description, video, companyId } = req.body
         
-        if(!name || !description || !video || !companyId) return res.status(401).json({error: "Falta informacion"})
+        // if(!name || !description || !video || !companyId) return res.status(401).json({error: "Falta informacion"})
 
         if(foundTraining) return  res.status(400).json({error : "El material de capacitacion ya existe"})
 
