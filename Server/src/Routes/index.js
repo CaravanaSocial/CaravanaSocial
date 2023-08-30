@@ -15,7 +15,7 @@ router.post('/offer', postOfferHandler)
 router.delete('/offer', deleteOfferHandler)
 router.get('/offer', getOfferHandler)
 //-----------------------------------------------
-router.get("/login", loginHandler)
+router.post("/login", loginHandler)
 router.post("/signup/company", userCompaniesUpHandler)
 router.post("/signup/user", userSignUpHandler)
 router.post("/signup/admin", adminSignUpHandler)

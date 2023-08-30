@@ -10,7 +10,7 @@ module.exports = (sequelize) =>{
         },
         name:{
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
         },
         email:{
             type: DataTypes.STRING,
@@ -20,7 +20,10 @@ module.exports = (sequelize) =>{
         password:{
             type: DataTypes.STRING,
             allowNull: false,
-            unique: true
+        },
+        createdKey:{
+            type : DataTypes.STRING,
+            allowNull:true,
         }
     })
 }
