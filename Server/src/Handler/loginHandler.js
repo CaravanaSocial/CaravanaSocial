@@ -4,8 +4,9 @@ const { getUserAccController } = require("../Controller/userController")
 const {loginController} = require("../Controller/loginController")
 
 const loginHandler = async (req, res) =>{
+    const {email, password} = req.body
     try {
-        const {email, password} = req.body
+        // console.log('handler', email)
         //Debe consultar los 3 modelo
         const adminAcc = await getAdminAccController(email)
         if(adminAcc){

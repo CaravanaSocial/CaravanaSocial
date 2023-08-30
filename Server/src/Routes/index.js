@@ -20,23 +20,24 @@ router.delete("/offer", deleteOfferHandler);
 router.get("/offer", getOfferHandler);
 router.get("/countries", createCountries);
 //-----------------------------------------------
-router.get("/login", loginHandler);
-router.post("/signup/company", userCompaniesUpHandler);
-router.post("/signup/user", userSignUpHandler);
-router.post("/signup/admin", adminSignUpHandler);
-//-----------------------------------------------
 
-router.get("/training", (req, res) => {
-  const { name } = req.body;
-  if (!name) {
-    getAlltraining(req, res);
-  } else {
-    getTrainingByName(req, res);
-  }
-});
+router.post("/login", loginHandler)
+router.post("/signup/company", userCompaniesUpHandler)
+router.post("/signup/user", userSignUpHandler)
+router.post("/signup/admin", adminSignUpHandler)
 
-router.post("/training/create", (req, res) => {
-  trainingHandler(req, res);
-});
+
+router.get('/training', (req, res) => {
+    const { name } = req.body;
+    if(!name){
+        getAlltraining(req, res);
+    }else{
+        getTrainingByName(req, res)
+    }
+})
+
+router.post('/training/create', (req, res) => {
+    trainingHandler(req, res)
+})
 
 module.exports = router;
