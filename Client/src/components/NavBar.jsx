@@ -17,9 +17,9 @@ export default function NavBar () {
   }
 
     return (
-        <div class="bg-light-1 dark:bg-dark-1">
-            <button class="text-white dark:text-black">Home</button>
-            <button class="text-white" onClick={handleThemeSwitch}>Dark Mode</button>
+        <div className="bg-custom-blue">
+            <button className="text-custom-white">Home</button>
+            <button className="text-custom-white" onClick={handleThemeSwitch}>Dark Mode</button>
         </div>
     )
 }

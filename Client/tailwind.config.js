@@ -10,12 +10,11 @@ export default {
   theme: {
     extend: {
       colors: {
-        "light-0": "#ffffff",
-        "light-1": "#a7b698",
-        "light-2": "#737b69",
-        "dark-2": "#737b69",
-        "dark-1": "#31352e",
-        "dark-0": "#191b17"
+        "custom-white": "#f2f2f2",
+        "custom-blue": "#296b70",
+        "custom-green": "#82d331",
+        "custom-violet": "#b63fc3",
+        "custom-black": "#242424",
       },
       backgroundImage: {
         "logo": "url('/public/logo.svg')"
@@ -25,4 +24,3 @@ export default {
 
   plugins: [],
 }
-
