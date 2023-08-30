@@ -2,9 +2,8 @@ import "./App.css";
 import { Route, Routes, useLocation } from "react-router-dom";
 import Login from "./Views/Login";
 import NavBar from "./components/NavBar";
+import RegisterCompany from "./Views/RegisterCompany";
 
-
-//****Todo lo relacionado con el tema del color debera pasarse a la NavBar****
 function App() {
   const {pathname} = useLocation();
   
@@ -13,6 +12,7 @@ function App() {
       {pathname !== "/" && <NavBar/>}
         <Routes>
           <Route path="/login" element={<Login />}/>
+          <Route path="/register-company" element={<RegisterCompany/>}/>
         </Routes>
     </div>
   );
