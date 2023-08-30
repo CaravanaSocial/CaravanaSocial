@@ -28,7 +28,7 @@ router.post("/signup/admin", adminSignUpHandler)
 
 
 router.get('/training', (req, res) => {
-    const { name } = req.body;
+    const { name } = req.query;
     if(!name){
         getAlltraining(req, res);
     }else{
