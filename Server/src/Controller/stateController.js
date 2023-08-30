@@ -1,13 +1,16 @@
 const states = require("../Tools/states.json");
 const { state } = require("../db");
 
-const CreateState = async (req, res) => {
-  const response = await state.bulkCreate(states.states);
-  try {
-    return res.status(200).send(response);
-  } catch (error) {
-    return res.status(500).send("Error occurred");
+const CreateState = async () => {
+  const dbInformation = await state.findAll();
+  if (dbInformation.length === 0) {
+    await state.bulkCreate(states.states);
+    message = "La informacion de los estados se ha cargado correctamente";
+  } else {
+    message = "la informacion de los estados ya fue cargada";
   }
+
+  return message;
 };
 
 module.exports = {
