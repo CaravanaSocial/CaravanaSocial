@@ -1,14 +1,13 @@
 import "./App.css";
 import { Route, Routes, useLocation } from "react-router-dom";
+import RegisterUser from "./Views/RegisterUser/RegisterUser";
 
 function App() {
-  const { pathname } = useLocation();
 
   return (
     <div>
-      {pathname}
       <Routes>
-        <Route path="/landing" element="" />
+        <Route path="/registerUser" element={<RegisterUser />} />
       </Routes>
     </div>
   );
