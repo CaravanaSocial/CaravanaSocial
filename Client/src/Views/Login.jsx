@@ -1,12 +1,12 @@
 import React from "react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function Login () {
     const [userData, setUserData] = useState({
         email: "",
         password: ""
     })
-    console.log(userData);
     
     const [error, setError] = useState({});
 
@@ -37,6 +37,7 @@ export default function Login () {
 
             <section>
                 <div>
+                    <h1>Inicio de Sesion</h1>
                     <input 
                         type="email"
                         name="email"
@@ -62,12 +63,18 @@ export default function Login () {
                     <br />
                     <button>Iniciar Sesion con Google</button>
                     <br />
-                    <h4>He olvidado mi Contraseña</h4>
+                    <Link to="/">
+                        <h4>He olvidado mi Contraseña</h4>
+                    </Link>
                     <hr />
                     <h4>Aun no tienes cuenta?</h4>
                     <h4>Registrate</h4>
-                    <button>Usuario</button>
-                    <button>Empresa</button>
+                    <Link to="/register-user">
+                        <button>Usuario</button>
+                    </Link>
+                    <Link to="/register-company">
+                        <button>Empresa</button>
+                    </Link>
                 </div>
             </section>
         </div>
