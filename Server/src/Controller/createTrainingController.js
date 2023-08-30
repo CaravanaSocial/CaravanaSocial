@@ -19,6 +19,7 @@ const createTraining = async (body) => {
     try {
         const { name, description, video, companyId } = body;
 
+
         const newTraining = await training.create({
             name,
             description,
