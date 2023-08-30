@@ -41,18 +41,19 @@ module.exports = (sequelize) => {
         password:{
             type: DataTypes.STRING,
             allowNull: false,
-            unique: true
         },
         freelancer: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
+            defaultValue: false
         },
         description:{
             type: DataTypes.STRING,
             allowNull: true,
         },
         activate:{
-            type: DataTypes.BOOLEAN
+            type: DataTypes.BOOLEAN,
+            defaultValue: true
         }
     },{
         timestamps : false
