@@ -1,8 +1,14 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const {companies} = require("../db")
+const {SIGNATURE} = process.env
 
-const getCompanyAccController = async (props) =>{
+const getCompanyAccController = async (email) =>{
+    const companyAcc = await companies.findOne({where: {email}})
+    return companyAcc
+}
+
+const createCompanyAccController = async (props) =>{
     const {password, email} = props
     const saltRounds = 10
     const hashedPassword = await bcrypt.hash(password, saltRounds)
@@ -14,16 +20,13 @@ const getCompanyAccController = async (props) =>{
 
     if(created){
         const companyId = newCompany.id
-        const token = jwt.sign({companyId},"Caravana")
+        const token = jwt.sign({companyId},SIGNATURE)
         return {newCompany, token}
     }
-    return false
-}
-
-const createCompanyAccController = () =>{
-
+    return "used"
 }
 
 module.exports={
-
+    createCompanyAccController,
+    getCompanyAccController
 }
