@@ -21,9 +21,5 @@ module.exports = (sequelize) =>{
             type: DataTypes.STRING,
             allowNull: false,
         },
-        createdKey:{
-            type : DataTypes.STRING,
-            allowNull:true,
-        }
     })
 }

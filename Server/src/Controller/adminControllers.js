@@ -20,7 +20,7 @@ const createAdminAccController = async (props) =>{
     if(createKey === CREATE_KEY){
         const [newAdmin, created] = await admin.findOrCreate({
             where: {email},
-            defaults: {email:email, createdKey:createKey, password: hashedPassword}
+            defaults: {email:email, password: hashedPassword}
         })
     
         if(created){
