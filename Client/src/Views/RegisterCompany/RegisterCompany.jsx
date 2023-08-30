@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
-import {NavLink} from 'react-router-dom'
+import {NavLink, useNavigate} from 'react-router-dom'
+import validation from './validation'
 
 const RegisterCompany = () => {
+
+    const navigate = useNavigate()
 
     const [companyInput, setCompanyInput] = useState({
         nombre: "",
@@ -12,6 +15,8 @@ const RegisterCompany = () => {
         contraseñaRepetida:""
     })
 
+    const [error, setError] = useState({})
+
 
     const handleInputs =(event)=>{
       event.preventDefault();
@@ -19,7 +24,16 @@ const RegisterCompany = () => {
         ...companyInput,
         [event.target.name]: event.target.value
       })
+      setError(validation({
+        ...companyInput,
+        [event.target.name]: event.target.value
+      }))
     }
+
+    const validateInput = (inputData) =>{
+        const errors = validation(inputData)
+        setError(errors)
+      }
     
     const handlePais =(event)=>{
         event.preventDefault();
@@ -29,10 +43,21 @@ const RegisterCompany = () => {
                 ...companyInput,
                 paises: [...companyInput.paises, event.target.value]
             })
+            validateInput({
+                ...companyInput, 
+                paises: [...companyInput.paises, event.target.value]
+            })
         }
     }
 
+  
+
+    const isSubmitDisabled = Object.keys(error).length > 0;
+
     const handleSubmit =()=>{
+        //dispatch para el post
+        //action para borrar los errores
+        //manejar errores con estado global
         alert("registro con exito");
         setCompanyInput({
             nombre: "",
@@ -42,55 +67,79 @@ const RegisterCompany = () => {
             descripcion: "",
             contraseñaRepetida:""
         })
+        navigate("/login");
     }
   return (
     <div>
         <h3>Registrarme como empresa:</h3>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={(event)=>handleSubmit(event)}>
+            <div>
             <label>Nombre</label>
                 <input 
-                    onChange={(event)=>handleInputs(event)}
+                    onChange={handleInputs}
                     type="text"
                     placeholder="Nombre de la empresa..." 
                     name="nombre"/>
+                <p style={{visibility: error.nombre ? 'visible' : 'hidden'}}>{error.nombre}</p> 
+            </div>
 
+            <div>
             <label>Email</label>
                 <input 
-                    onChange={(event)=>handleInputs(event)}
+                    onChange={handleInputs}
                     type="text" 
                     placeholder="Email de la empresa..." 
                     name="email"/>
+                <p style={{visibility: error.email ? 'visible' : 'hidden'}}>{error.email}</p> 
+            </div>
 
+            <div>
             <label>Contraseña</label>
                 <input 
-                    onChange={(event)=>handleInputs(event)}
+                    onChange={handleInputs}
                     type="password" 
-                    placeholder="Introduce una contraseña..." 
+                    placeholder="Contraseña..." 
                     name="contraseña"/>
+                <p style={{visibility: error.contraseña ? 'visible' : 'hidden'}}>{error.contraseña}</p> 
+            </div>
 
-            //hacer la logica para verificar si es igual a la anterior
+            <div>
                 <input 
+                    onChange={handleInputs}
                     type="password" 
-                    placeholder="Vuelve a introducir la contraseña..." 
+                    placeholder="Repite la Contraseña..." 
                     name="contraseñaRepetida"/>   
-
+                <p style={{visibility: error.contraseñaRepetida ? 'visible' : 'hidden'}}>{error.contraseñaRepetida}</p>
+            </div>
+    
+            <div>
             <label>Pais</label>
-            //hacer un map trayendo los paises con redux y renderizar un option por cada uno con su respectivo value
-                <select onClick={(event)=>handlePais(event)}>
+                <select onClick={handlePais}>
                     <option value="default">Selecciona el/los pais/es</option>
                     <option value="argentina">Argentina</option>
                     <option value="colombia">Colombia</option>
                     <option value="españa">España</option>
                     <option value="mexico">Mexico</option>
-                </select>     
+                </select>  
+            </div>
+            <div>
+                <h5>Paises seleccionados:</h5>
+                {companyInput.paises.map((p)=>{
+                    return (<div> {p}</div>)
+                })}
+            </div>
 
+            <div>
             <label>Descripción</label>
             <textarea  
-                    onChange={(event)=>handleInputs(event)}
+                    onChange={handleInputs}
                     placeholder="Añade una descripción de tu empresa..." 
-                    name="descripción"/>   
+                    name="descripcion"/>   
+                <p style={{visibility: error.descripcion ? 'visible' : 'hidden'}}>{error.descripcion}</p>
+            </div>
 
-            <button>Enviar</button>      
+            <hr />
+            <button disabled={isSubmitDisabled} type="submit">Enviar</button>      
         </form>
 
         <NavLink to="/login"><button>Ya tengo cuenta</button></NavLink>
