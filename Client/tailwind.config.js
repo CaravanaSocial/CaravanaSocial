@@ -16,6 +16,9 @@ export default {
         "dark-2": "#737b69",
         "dark-1": "#31352e",
         "dark-0": "#191b17"
+      },
+      backgroundImage: {
+        "logo": "url('/public/logo.svg')"
       }
     },
   },
