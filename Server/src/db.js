@@ -7,6 +7,7 @@ const OfferModel = require('./Models/Offers')
 const TraningModel = require('./Models/Trainings')
 const UserModel = require('./Models/Users')
 const RubroModel = require('./Models/Rubros')
+const AdminModel = require('./Models/admin')
 
 
 
@@ -21,8 +22,9 @@ OfferModel(sequelize)
 TraningModel(sequelize)
 UserModel(sequelize)
 RubroModel(sequelize)
+AdminModel(sequelize)
 
-const {country, companies, offer, training, user, areaTraining } = sequelize.models
+const {country, companies, offer, training, user, areaTraining, admin } = sequelize.models
 
 //Relacion de paises con empresas
 country.hasMany(companies);
@@ -66,5 +68,7 @@ module.exports = {
     offer,
     training,
     user,
+    areaTraining, 
+    admin,
     conn: sequelize
 }

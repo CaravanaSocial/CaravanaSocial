@@ -1,21 +1,23 @@
 const { training } = require('../db')
+const { companies } = require('../db')
 
-const getCreatedTraining = async (video) => {
+const getCreatedTraining = async (body) => {
     try {
+        const {video} = body
         const checkTraining = await training.findOne({
             where:{
                 video
             }
         })
-        return res.status(200).json(checkTraining);
+        return checkTraining
     } catch (error) {
-        return res.status(400).json(error.message)
+        throw error
     }
 }
 
 const createTraining = async (body) => {
     try {
-        const { name, description, video } = body;
+        const { name, description, video, companyId } = body;
 
         const newTraining = await training.create({
             name,
@@ -23,15 +25,19 @@ const createTraining = async (body) => {
             video
         })
 
-        return res.status(200).json(newTraining);
+        
+
+        await newTraining.setCompany(companyId)
+
+        return newTraining;
     } catch (error) {
-        return res.status(400).json({error: error.message})
+        throw error
     }
 
 
 } 
 
-module.export = {
+module.exports = {
     getCreatedTraining,
     createTraining
 }
