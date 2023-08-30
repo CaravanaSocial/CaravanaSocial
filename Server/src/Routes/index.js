@@ -8,7 +8,7 @@ const {
   getOfferHandler,
 } = require("../Handler/offersHandler");
 const { loginHandler } = require("../Handler/loginHandler");
-const { userCompaniesUpHandler } = require("../Handler/companiesHandlers");
+const { companiesSignUpHandler } = require("../Handler/companiesHandlers");
 const { userSignUpHandler } = require("../Handler/userHandlers");
 const { adminSignUpHandler } = require("../Handler/adminHandlers");
 const { createCountries } = require("../Controller/CountriesController");
@@ -26,7 +26,7 @@ router.get("/cities", CreateCities);
 //-----------------------------------------------
 
 router.post("/login", loginHandler);
-router.post("/signup/company", userCompaniesUpHandler);
+router.post("/signup/company", companiesSignUpHandler);
 router.post("/signup/user", userSignUpHandler);
 router.post("/signup/admin", adminSignUpHandler);
 

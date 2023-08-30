@@ -21,7 +21,8 @@ const createCompanyAccController = async (props) =>{
     if(created){
         const companyId = newCompany.id
         const token = jwt.sign({companyId},SIGNATURE)
-        return {newCompany, token}
+        newCompany.password=0
+        return {acc:newCompany, token}
     }
     return "used"
 }
