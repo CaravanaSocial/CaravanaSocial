@@ -17,8 +17,8 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        age:{
-            type: DataTypes.INTEGER,
+        birthdate:{
+            type: DataTypes.DATE,
             allowNull: false,
         },
         CUD:{
@@ -27,11 +27,11 @@ module.exports = (sequelize) => {
         },
         preferences:{
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
         },
         certificates:{
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
         },
         email:{
             type: DataTypes.STRING,
