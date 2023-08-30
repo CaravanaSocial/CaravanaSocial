@@ -14,12 +14,8 @@ router.post("/offer", postOfferHandler);
 router.delete("/offer", deleteOfferHandler);
 router.get("/offer", getOfferHandler);
 router.patch('/offer', updateOfferHandler)
-//-----------------------------------------------
-router.get("/countries", createCountries);
-router.get("/states", CreateState);
-router.get("/cities", CreateCities);
 
-//-----------------------------------------------
+//--------------------------------------------
 
 router.post("/login", loginHandler);
 router.post("/signup/company", companiesSignUpHandler);
