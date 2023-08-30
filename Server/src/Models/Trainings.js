@@ -1,4 +1,4 @@
-const { DataTypes } = require('sequelize');
+const { DataTypes, STRING } = require('sequelize');
 
 module.exports = (sequelize) => {
     sequelize.define('training', {
@@ -17,7 +17,7 @@ module.exports = (sequelize) => {
             allowNull: false,
         },
         video: {
-            type: DataTypes.STRING, 
+            type: DataTypes.ARRAY(DataTypes.STRING), 
             allowNull: false,
         }
     }, { timestamps: false });
