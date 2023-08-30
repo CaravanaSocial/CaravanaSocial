@@ -6,8 +6,8 @@ const companiesSignUpHandler = async (req, res)=>{
         if(findAcc) res.status(400).json({error: "Email in use"})
 
         const companyToken = await createCompanyAccController(req.body)
-        if(companyToken === "used") if(userToken === "used") return res.status(400).json({error: "Email in use"})
-        res.status(200).json(userToken)
+        if(companyToken === "used") return res.status(400).json({error: "Email in use"})
+        res.status(200).json({...companyToken, type: "company"})
     } catch (error) {
         res.status(500).json(error.message)
     }

@@ -1,11 +1,11 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
-const {users} = require("../db")
+const {user} = require("../db")
 const {SIGNATURE} = process.env
 
 
 const getUserAccController = async (email) =>{
-    const userAcc = await users.findOne({where : {email}})
+    const userAcc = await user.findOne({where : {email}})
     return userAcc
 }
 
@@ -14,7 +14,7 @@ const createUserAccController = async (props) =>{
     const saltRounds = 10
     const hashedPassword = await bcrypt.hash(password, saltRounds)
 
-    const [newUser, created] = await users.findOrCreate({
+    const [newUser, created] = await user.findOrCreate({
         where: {email},
         defaults: {...props, password: hashedPassword}
     })
