@@ -8,7 +8,7 @@ const getUserAccController = async (email) =>{
     const userAcc = await users.findOne({where : {email}})
     return userAcc
 }
-//
+//a
 const createUserAccController = async (props) =>{
     const {password, email} = props
     const saltRounds = 10
