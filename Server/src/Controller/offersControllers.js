@@ -1,12 +1,12 @@
 const { offer } = require("../db");
 
 const postOfferController = async (data) => {
-  const { title, description, image } = data;
+  const { title, description} = data;
   console.log("Estoy en controller", title);
-  if (title && description && image) {
+  if (title && description) {
     const [user, created] = await offer.findOrCreate({
       where: { title: title },
-      defaults: { title:title, description: description, image: image },
+      defaults: { title:title, description: description},
     });
     console.log(created)
     if (created) {
@@ -33,8 +33,22 @@ const getOfferController = async (id) => {
   } else return false;
 };
 
+const updateOfferController = async(data)=>{
+  console.log('Estoy en Controller')
+  const {id, title, description} = data
+  if(id){
+    // console.log(title)
+    await offer.update({title:title, description: description},{where :{id:id}})
+    const info = await offer.findByPk(id)
+    if(info){
+      return info
+    }else throw new Error("No se encontraron Offers")
+  }else throw new Error("Id invalida o incorrecta")
+}
+
 module.exports = {
   postOfferController,
   deleteOfferController,
   getOfferController,
+  updateOfferController
 };

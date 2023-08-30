@@ -1,11 +1,11 @@
-const {postOfferController, deleteOfferController, getOfferController} = require('../Controller/offersControllers')
+const {postOfferController, deleteOfferController, getOfferController, updateOfferController} = require('../Controller/offersControllers')
 
 const postOfferHandler = async (req, res)=>{
         const data = (req.query)
     try {
         const response = await postOfferController(data)
         if(response){
-            return res.status(200).send('Success')
+            return res.status(200).send('Offer created succesfully')
         }else return res.status(404).send('Offer already exist')
     } catch (error) {
         return res.status(500).json(error)
@@ -37,8 +37,21 @@ const getOfferHandler = async(req, res)=>{
     }   
 }
 
+const updateOfferHandler = async(req, res)=>{
+    console.log('Estoy en handler')
+    try{
+        const response = await updateOfferController(req.query)
+        if(response){
+            return res.status(200).json(response)
+        }
+    }catch(error){
+        return  res.status(500).send("No se encuentra")
+    }
+}
+
 module.exports = {
     postOfferHandler,
     deleteOfferHandler,
-    getOfferHandler
+    getOfferHandler,
+    updateOfferHandler
 }
