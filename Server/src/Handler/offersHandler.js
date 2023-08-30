@@ -38,7 +38,6 @@ const getOfferHandler = async(req, res)=>{
 }
 
 const updateOfferHandler = async(req, res)=>{
-    console.log('Estoy en handler')
     try{
         const response = await updateOfferController(req.query)
         if(response){
