@@ -8,6 +8,8 @@ const TraningModel = require("./Models/Trainings");
 const UserModel = require("./Models/Users");
 const RubroModel = require("./Models/Rubros");
 const AdminModel = require("./Models/admin");
+const CitiesModel = require("./Models/Cities");
+const StatesModel = require("./Models/States");
 
 const sequelize = new Sequelize(
   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/caravanadb`,
@@ -21,10 +23,12 @@ TraningModel(sequelize);
 UserModel(sequelize);
 RubroModel(sequelize);
 AdminModel(sequelize);
+CitiesModel(sequelize);
+StatesModel(sequelize);
 
 const {
   country,
-  cities,
+  city,
   state,
   companies,
   offer,
@@ -77,7 +81,7 @@ module.exports = {
   user,
   areaTraining,
   admin,
-  cities,
+  city,
   state,
   conn: sequelize,
 };
