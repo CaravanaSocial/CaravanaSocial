@@ -3,7 +3,6 @@ const {
   filterGetallCountries,
 } = require("../Controller/filterCountryController");
 
-const {prefix} = require('../db')
 
 const finterCountryHandler = async (req, res) => {
   const { name } = req.query;

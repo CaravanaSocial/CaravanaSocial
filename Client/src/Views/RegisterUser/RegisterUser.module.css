@@ -1,0 +1,15 @@
+.divReg {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 600px;
+}
+
+.formReg {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    flex-direction: column;
+    width: 500px;
+}
