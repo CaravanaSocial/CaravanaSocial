@@ -19,6 +19,7 @@ const createCompanyAccController = async (props) =>{
     })
 
     if(created){
+        //CREAR LA RELACIÓN CON EL RUBRO
         const companyId = newCompany.id
         const token = jwt.sign({companyId},SIGNATURE)
         newCompany.password=0
@@ -27,7 +28,20 @@ const createCompanyAccController = async (props) =>{
     return "used"
 }
 
+const getCompaniesController = async () =>{
+    const gotCompanies = await companies.findAll()
+    if(gotCompanies >0){
+        return gotCompanies
+    }throw Error("There is no companies")
+}
+
+const updateCompanyController = async (props) =>{
+
+}
+
 module.exports={
     createCompanyAccController,
-    getCompanyAccController
+    getCompanyAccController,
+    getCompaniesController,
+    updateCompanyController
 }

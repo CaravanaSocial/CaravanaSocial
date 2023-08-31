@@ -20,6 +20,7 @@ const createUserAccController = async (props) =>{
     })
 
     if(created){
+        //CREAR LA RELACIÓN CON EL PAIS
         const userId = newUser.id
         const token = jwt.sign({userId},SIGNATURE)
         newUser.password=0

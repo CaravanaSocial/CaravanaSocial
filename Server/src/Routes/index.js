@@ -4,9 +4,9 @@ const { getTrainingByName } = require("../Handler/getTrainingHandler");
 const { getAlltraining } = require("../Handler/getAllTraining");
 const {postOfferHandler,deleteOfferHandler,getOfferHandler,updateOfferHandler} = require("../Handler/offersHandler");
 const { loginHandler } = require("../Handler/loginHandler");
-const { companiesSignUpHandler } = require("../Handler/companiesHandlers");
-const { userSignUpHandler } = require("../Handler/userHandlers");
-const { adminSignUpHandler } = require("../Handler/adminHandlers");
+const { companiesSignUpHandler, getCompaniesHandler, updateCompanyHandler} = require("../Handler/companiesHandlers");
+const { userSignUpHandler, getUsersHandler, updateUserHandler} = require("../Handler/userHandlers");
+const { adminSignUpHandler, getAdminsHandler, updateAdminHandler} = require("../Handler/adminHandlers");
 
 const router = Router();
 //Rutas de Offer
@@ -18,9 +18,18 @@ router.patch('/offer', updateOfferHandler)
 //--------------------------------------------
 
 router.post("/login", loginHandler);
-router.post("/signup/company", companiesSignUpHandler);
-router.post("/signup/user", userSignUpHandler);
-router.post("/signup/admin", adminSignUpHandler);
+//---------------------company---------------------
+router.post("/company/signup", companiesSignUpHandler);
+router.get("/company/all", getCompaniesHandler)
+router.patch("/company/update", updateCompanyHandler)
+//---------------------user---------------------
+router.post("/user/signup", userSignUpHandler);
+router.get("/user/all", getUsersHandler)
+router.patch("/user/update", updateUserHandler)
+//---------------------admin---------------------
+router.post("/admin/signup", adminSignUpHandler);
+router.get("/admin/all", getAdminsHandler)
+router.patch("/admin/update", updateAdminHandler)
 
 router.get("/training", (req, res) => {
   const { name } = req.query;
