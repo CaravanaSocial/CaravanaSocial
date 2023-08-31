@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 export default function NavBar () {
     const [theme, setTheme] = useState("light");
@@ -19,8 +20,11 @@ export default function NavBar () {
     return (
         <div className="flex justify-between bg-white dark:bg-zinc-900 border-b-2 border-b-zinc-100 dark:border-b-zinc-800 p-2">
 
-          <button className="text-gray-500 font-medium text-sm max-sm:text-xs bg-gray-300 dark:bg-gray-300 rounded-3xl"
-          >Home</button>
+          <Link to="/">
+            <button className="text-gray-500 font-medium text-sm bg-gray-300 dark:bg-gray-300 rounded-3xl"
+            >Home</button>
+          </Link>
+          
           
           <div className="relative flex items-center w-30 h-5 mt-2.5 lg:w-64 group">
             <div className="absolute z-50 flex items-center justify-center w-30 h-10 p-3 pr-2 text-sm text-gray-500 cursor-pointer sm:hidden">
@@ -60,6 +64,12 @@ export default function NavBar () {
             </div>
             <span className="font-medium text-gray-400">{theme}</span>
           </div>
+
+          <Link to="/login">
+            <button className="text-gray-500 font-medium text-sm bg-gray-300 dark:bg-gray-300 rounded-3xl"
+            >Login</button>
+          </Link>
+          
         </div>
     )
 }
