@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Vilaka";
+  src: url(./assets/fonts/vilaka.ttf);
+}
+
+@font-face {
+  font-family: "TopModern";
+  src: url(./assets//fonts/topmodern.ttf);
+}
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
