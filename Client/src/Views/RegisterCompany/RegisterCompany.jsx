@@ -1,10 +1,16 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {NavLink, useNavigate} from 'react-router-dom'
+import {useDispatch, useSelector} from 'react-redux'
 import validation from './validation'
+import {getCountry, getState} from '../../Redux/Actions/Actions'
 
 const RegisterCompany = () => {
 
     const navigate = useNavigate()
+    const dispatch = useDispatch()
+    const country = useSelector((state)=> state.countries)
+    const state = useSelector((state)=> state.states)
+    const city = useSelector((state)=> state.cities)
 
     const [companyInput, setCompanyInput] = useState({
             nombre: "",
@@ -16,10 +22,14 @@ const RegisterCompany = () => {
             contraseña: "",
             contraseñaRepetida:"",
             descripcion: "",
-            paises: [],
+            location: {},
     })
 
     const [error, setError] = useState({})
+
+    useEffect(()=>{
+        dispatch(getCountry())
+    })
 
 
     const handleInputs =(event)=>{
@@ -34,23 +44,18 @@ const RegisterCompany = () => {
       }))
     }
 
-    const validateInput = (inputData) =>{
-        const errors = validation(inputData)
-        setError(errors)
-      }
-    
-    const handlePais =(event)=>{
+
+    const handleLocation=(event)=>{
         event.preventDefault();
-        const rep = companyInput.paises.find(p => p=== event.target.value)
-        if(event.target.value !== "default" && !rep){
-            setCompanyInput({
-                ...companyInput,
-                paises: [...companyInput.paises, event.target.value]
-            })
-            validateInput({
-                ...companyInput, 
-                paises: [...companyInput.paises, event.target.value]
-            })
+        setCompanyInput({
+            ...companyInput,
+            location : {...companyInput, [event.target.name]: event.target.value}
+        })  
+        if(companyInput.state !== "undefined"){
+            dispatch(getState(companyInput.state))
+        }
+        if(companyInput.city !== "undefined"){
+            dispatch(getCity(companyInput.city))
         }
     }
 
@@ -59,9 +64,7 @@ const RegisterCompany = () => {
     const isSubmitDisabled = Object.keys(error).length > 0;
 
     const handleSubmit =()=>{
-        //dispatch para el post
-        //action para borrar los errores
-        //manejar errores con estado global
+        dispatch(createCompany())
         alert("registro con exito");
         setCompanyInput({
             nombre: "",
@@ -74,23 +77,23 @@ const RegisterCompany = () => {
             contraseña: "",
             contraseñaRepetida:"",
             descripcion: "",
-            paises: [],
+            location: {},
         })
         navigate("/login");
     }
 
 
   return (
-    <div className='flex flex-row m-9'>
-        <div className='bg-black rounded-l-xl w-3/6 h-[700px] text-center'>
+    <div >
+        <div >
             <h3>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iure reprehenderit alias id doloribus corporis unde. Eum a, magnam unde dolore velit, accusamus mollitia quasi perferendis repellendus aliquid, dolorem sapiente natus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti eveniet, optio aspernatur consequatur tempore minus? Voluptatum suscipit vel natus amet molestias dignissimos adipisci ea ipsum beatae. Molestiae nulla quia consectetur!</h3>
         </div>
         
 
-         <div className='bg-green-500 rounded-r-xl w-3/6 h-[700px] '>
+         <div >
             <h3>Registrarme como empresa:</h3>
           <form onSubmit={(event)=>handleSubmit(event)}>
-            <div className='flex flex-col w-3/6 '>
+            <div >
             <label>Nombre: </label>
                 <input 
                     onChange={handleInputs}
@@ -100,7 +103,7 @@ const RegisterCompany = () => {
                 <p style={{visibility: error.nombre ? 'visible' : 'hidden'}}>{error.nombre}</p> 
             </div>
 
-            <div className='flex flex-col w-3/6 '>
+            <div >
             <label>Apellido: </label>
                 <input 
                     onChange={handleInputs}
@@ -110,7 +113,7 @@ const RegisterCompany = () => {
                 <p style={{visibility: error.apellido ? 'visible' : 'hidden'}}>{error.apellido}</p> 
             </div>
 
-            <div className='flex flex-col w-3/6 '>
+            <div >
             <label>Cargo: </label>
                 <input 
                     onChange={handleInputs}
@@ -120,7 +123,7 @@ const RegisterCompany = () => {
                 <p style={{visibility: error.cargo ? 'visible' : 'hidden'}}>{error.cargo}</p> 
             </div>
 
-            <div className='flex flex-col w-3/6 '>
+            <div >
             <label>Empresa: </label>
                 <input 
                     onChange={handleInputs}
@@ -130,7 +133,7 @@ const RegisterCompany = () => {
                 <p style={{visibility: error.nombreEmpresa ? 'visible' : 'hidden'}}>{error.nombreEmpresa}</p> 
             </div>
 
-            <div className='flex flex-col w-3/6 '>
+            <div>
             <label>Rubro de capacitación: </label>
                 <input 
                     onChange={handleInputs}
@@ -140,7 +143,7 @@ const RegisterCompany = () => {
                 <p style={{visibility: error.capacitacion ? 'visible' : 'hidden'}}>{error.capacitacion}</p> 
             </div>
 
-            <div className='flex flex-col w-3/6 '>
+            <div >
             <label>Telefono: </label>
                 <input 
                     onChange={handleInputs}
@@ -150,7 +153,7 @@ const RegisterCompany = () => {
                 <p style={{visibility: error.telefono ? 'visible' : 'hidden'}}>{error.telefono}</p> 
             </div>
 
-            <div className='flex flex-col w-3/6 '>
+            <div >
             <label>Email: </label>
                 <input 
                     onChange={handleInputs}
@@ -160,7 +163,7 @@ const RegisterCompany = () => {
                 <p style={{visibility: error.email ? 'visible' : 'hidden'}}>{error.email}</p> 
             </div>
 
-            <div className='flex flex-col w-3/6 '>
+            <div >
             <label>Contraseña</label>
                 <input 
                     onChange={handleInputs}
@@ -171,7 +174,7 @@ const RegisterCompany = () => {
             </div>
             <br/>
 
-            <div className='flex flex-col w-3/6 '>
+            <div >
                 <input 
                     onChange={handleInputs}
                     type="password" 
@@ -180,24 +183,35 @@ const RegisterCompany = () => {
                 <p style={{visibility: error.contraseñaRepetida ? 'visible' : 'hidden'}}>{error.contraseñaRepetida}</p>
             </div>
     
-            <div className='flex flex-col w-3/6 '>
-            <label>Pais</label>
-                <select onClick={handlePais}>
-                    <option value="default">Selecciona el/los pais/es</option>
-                    <option value="argentina">Argentina</option>
-                    <option value="colombia">Colombia</option>
-                    <option value="españa">España</option>
-                    <option value="mexico">Mexico</option>
-                </select>  
+            <div>
+                <select onClick={handleLocation} name="country">
+                    <option value="default">pais</option>
+                  {country.map((p)=>{
+                    return <option value={p}>{p}</option>
+                  })}
+
+                </select>
             </div>
-            <div className='flex flex-col w-3/6 '>
-                <h5>Paises seleccionados:</h5>
-                {companyInput.paises.map((p)=>{
-                    return (<div> {p}</div>)
-                })}
+            <div>
+                <select onClick={handleLocation} name="state">
+                    <option value="default">estado</option>
+                    {state?.map((p)=>{
+                    return <option value={p}>{p}</option>
+                    })}
+
+                </select>
+            </div>
+            <div>
+                <select onClick={handleLocation} name="city">
+                    <option value="default">ciudad</option>
+                    {city?.map((p)=>{
+                    return <option value={p}>{p}</option>
+                    })}
+
+                </select>
             </div>
 
-            <div className='flex flex-col w-3/6 '>
+            <div >
             <label>Descripción</label>
             <textarea  
                     onChange={handleInputs}

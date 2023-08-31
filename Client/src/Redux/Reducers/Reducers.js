@@ -16,6 +16,9 @@ import {
   DELETE_TRAINING,
   EDIT_TRAINING,
   LOGIN,
+  GET_CITY,
+  GET_COUNTRIES,
+  GET_STATE
 } from "../Actions/Actions";
 
 const initialState = {
@@ -24,6 +27,9 @@ const initialState = {
   companies: [],
   users: [],
   admins: [],
+  countries:[],
+  states: [],
+  cities: []
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -116,6 +122,23 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
       };
+
+    case GET_COUNTRIES:
+        return{
+            ...state,
+            countries: action.payload
+        }  
+    
+    case GET_STATE:
+        return{
+            ...state,
+            states: action.payload
+        }
+    case GET_CITY:
+        return{
+            ...state,
+            cities: action.payload
+        }      
 
     default:
       return { ...state };
