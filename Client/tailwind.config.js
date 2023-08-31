@@ -11,8 +11,9 @@ export default {
     extend: {
       colors: {
         "custom-white": "#f2f2f2",
+        "custom-grey": "#212121",
         "custom-blue": "#296b70",
-        "custom-green": "#82d331",
+        "custom-green": "#7DAD4E",
         "custom-violet": "#b63fc3",
         "custom-black": "#242424",
       },

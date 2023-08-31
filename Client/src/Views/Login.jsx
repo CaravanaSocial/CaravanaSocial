@@ -29,15 +29,15 @@ export default function Login () {
     };
 
     return (
-        <div>
+        <div className="inline-block m-4 p-4 bg-">
             <section>
-                <h1>Caravana Social</h1>
+                <h1 className="text-4xl">Caravana Social</h1>
                 <p>Te invitamos a formar parte de la re-evolución inclusiva.</p>
             </section>
 
             <section>
-                <div>
-                    <h1>Inicio de Sesion</h1>
+                <div className="border-spacing-96 border-gray-400 rounded-3xl max-w-sm p-4 my-4">
+                    <h1 className="text-4xl">Inicio de Sesion</h1>
                     <input 
                         type="email"
                         name="email"
