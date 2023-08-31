@@ -1,4 +1,5 @@
 const { offer } = require("../db");
+const {Op} = require('sequelize')
 
 const postOfferController = async (data) => {
   const { title, description} = data;
@@ -21,9 +22,11 @@ const deleteOfferController = async (id) => {
   } else return false;
 };
 
-const getOfferController = async (id) => {
-  if (id) {
-    const data = await offer.findOne({where:{id:id}})
+const getOfferController = async (title) => {
+  console.log(title)
+  if (title) {
+    const data = await offer.findAll({where:{title:{[Op.iLike]:`%${title}%`}}})
+    console.log(data)
     return data;
   } else return false;
 };
