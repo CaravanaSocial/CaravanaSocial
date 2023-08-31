@@ -1,19 +1,23 @@
 import "./App.css";
 import { Route, Routes, useLocation } from "react-router-dom";
-import Login from "./Views/Login";
 import NavBar from "./components/NavBar";
-import RegisterCompany from "./Views/RegisterCompany";
+import Login from "./Views/Login";
+import RegisterUser from "./Views/RegisterUser/RegisterUser";
+import RegisterCompany from "./Views/RegisterCompany/RegisterCompany";
+import LandingPage from "./Views/LandingPage";
 
 function App() {
-  const {pathname} = useLocation();
-  
+  const { pathname } = useLocation();
+
   return (
     <div>
-      {pathname !== "/" && <NavBar/>}
-        <Routes>
-          <Route path="/login" element={<Login />}/>
-          <Route path="/register-company" element={<RegisterCompany/>}/>
-        </Routes>
+      {pathname !== "/" && <NavBar />}
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/registerUser" element={<RegisterUser />} />
+        <Route path="/register-company" element={<RegisterCompany />} />
+      </Routes>
     </div>
   );
 }
