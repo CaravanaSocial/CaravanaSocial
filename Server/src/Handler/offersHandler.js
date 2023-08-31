@@ -26,9 +26,9 @@ const deleteOfferHandler = async (req, res)=>{
 }
 
 const getOfferHandler = async(req, res)=>{
-    const {id} = req.query
+    const {title} = req.query
     try {
-        const response = await getOfferController(id)
+        const response = await getOfferController(title)
         if(response){
             return res.status(200).json(response)
         }else return res.status(404).send('Offer not found')

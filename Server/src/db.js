@@ -10,6 +10,7 @@ const RubroModel = require("./Models/Rubros");
 const AdminModel = require("./Models/admin");
 const CitiesModel = require("./Models/Cities");
 const StatesModel = require("./Models/States");
+const PrefixesModel = require('./Models/Prefixes')
 
 const sequelize = new Sequelize(
   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/caravanadb`,
@@ -25,6 +26,7 @@ RubroModel(sequelize);
 AdminModel(sequelize);
 CitiesModel(sequelize);
 StatesModel(sequelize);
+PrefixesModel(sequelize);
 
 const {
   country,
@@ -36,6 +38,7 @@ const {
   user,
   areaTraining,
   admin,
+  prefix,
 } = sequelize.models;
 
 //Relacion de empresas con capacitaciones
@@ -50,23 +53,18 @@ areaTraining.belongsToMany(training, { through: "training_areaTraining" });
 user.belongsToMany(training, { through: "user_training" });
 training.belongsToMany(user, { through: "user_training" });
 
-//Relacion de empresas a rubros
-companies.belongsToMany(areaTraining, {
-  through: "companies_areaTraining",
-  as: "rubro",
-});
-areaTraining.belongsToMany(areaTraining, {
-  through: "companies_areaTraining",
-  as: "rubro",
-});
-
 //Relacion de empresas con avisos
 companies.hasMany(offer);
 offer.belongsTo(companies);
 
+//Relacion de empresas a rubros
+companies.belongsToMany(areaTraining, {through: "companies_areaTraining", as: "rubro",});
+areaTraining.belongsToMany(companies, {through: "companies_areaTraining", as: "rubro",});
+
 
 module.exports = {
   ...sequelize.models,
+  prefix,
   country,
   companies,
   offer,
