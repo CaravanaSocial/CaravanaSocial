@@ -38,17 +38,9 @@ const {
   admin,
 } = sequelize.models;
 
-//Relacion de paises con empresas
-country.hasMany(companies);
-companies.belongsTo(country);
-
 //Relacion de empresas con capacitaciones
 companies.hasMany(training);
 training.belongsTo(companies);
-
-//Relacion de paises a ususarios
-country.hasMany(user);
-user.belongsTo(country);
 
 //Relacion de capacitaciones a rubros => crear model de rubro
 training.belongsToMany(areaTraining, { through: "training_areaTraining" });
@@ -72,13 +64,6 @@ areaTraining.belongsToMany(areaTraining, {
 companies.hasMany(offer);
 offer.belongsTo(companies);
 
-// Relacion de paises con estados
-country.hasMany(state, { foreignKey: "countryId" });
-state.belongsTo(country, { foreignKey: "countryId" });
-
-//Relacion de estados con ciudades
-state.hasMany(city, { foreignKey: "countryId" });
-city.belongsTo(state, { foreignKey: "countryId" });
 
 module.exports = {
   ...sequelize.models,

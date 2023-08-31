@@ -45,6 +45,10 @@ module.exports = (sequelize) => {
         activate:{
             type: DataTypes.BOOLEAN,
             defaultValue: true
+        },
+        location: {
+            type: DataTypes.JSON,
+            allowNull:false
         }
 
     },{
