@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const {companies} = require("../db")
+const {areaTraining} = require("../db")
 const {SIGNATURE} = process.env
 
 const getCompanyAccController = async (email) =>{
@@ -9,7 +10,7 @@ const getCompanyAccController = async (email) =>{
 }
 
 const createCompanyAccController = async (props) =>{
-    const {password, email} = props
+    const {password, email, category} = props
     const saltRounds = 10
     const hashedPassword = await bcrypt.hash(password, saltRounds)
 
@@ -20,9 +21,31 @@ const createCompanyAccController = async (props) =>{
 
     if(created){
         //CREAR LA RELACIÓN CON EL RUBRO
+        /* for(let i =0 ; i<category;i++){
+            const categoryId = (await areaTraining.findOne({
+                where:{
+                    name: category[i]
+                }
+            })).id
+            await newCompany.addRubro(categoryId)
+        }
+        const returning = await companies.findOne({
+            where: {
+                id:newCompany.id
+            },
+            include: [
+                {
+                    model: areaTraining,
+                    attributes: ["name"],
+                    through:{attributes:[]}
+                }
+            ]
+        }) */ //Descomentar y en acc:returning
+
         const companyId = newCompany.id
         const token = jwt.sign({companyId},SIGNATURE)
-        newCompany.password=0
+        returning.password=0
+        console.log("prototipos", newCompany.__proto__);
         return {acc:newCompany, token}
     }
     return "used"
@@ -30,7 +53,6 @@ const createCompanyAccController = async (props) =>{
 
 const getCompaniesController = async () =>{
     const gotCompanies = await companies.findAll()
-    console.log(gotCompanies);
     if(gotCompanies.length >0){
         for(let i = 0; i<gotCompanies.length ; i++){
             gotCompanies[i].password=0

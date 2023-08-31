@@ -51,9 +51,17 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: true,
         },
+        adress: {
+            type: DataTypes.STRING,
+            allowNull:true
+        },
         activate:{
             type: DataTypes.BOOLEAN,
             defaultValue: true
+        },
+        location: {
+            type: DataTypes.JSON,
+            allowNull:false
         }
     },{
         timestamps : false

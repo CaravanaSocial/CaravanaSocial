@@ -41,17 +41,9 @@ const {
   prefix,
 } = sequelize.models;
 
-//Relacion de paises con empresas
-country.hasMany(companies);
-companies.belongsTo(country);
-
 //Relacion de empresas con capacitaciones
 companies.hasMany(training);
 training.belongsTo(companies);
-
-//Relacion de paises a ususarios
-country.hasMany(user);
-user.belongsTo(country);
 
 //Relacion de capacitaciones a rubros => crear model de rubro
 training.belongsToMany(areaTraining, { through: "training_areaTraining" });
@@ -68,19 +60,6 @@ offer.belongsTo(companies);
 //Relacion de empresas a rubros
 companies.belongsToMany(areaTraining, {through: "companies_areaTraining", as: "rubro",});
 areaTraining.belongsToMany(companies, {through: "companies_areaTraining", as: "rubro",});
-
-//Relacion de Prefijos numerales con Paises
-country.hasOne(prefix);
-prefix.belongsTo(country)
-
-
-// Relacion de paises con estados
-country.hasMany(state, { foreignKey: "countryId" });
-state.belongsTo(country, { foreignKey: "countryId" });
-
-//Relacion de estados con ciudades
-state.hasMany(city, { foreignKey: "countryId" });
-city.belongsTo(state, { foreignKey: "countryId" });
 
 
 module.exports = {
