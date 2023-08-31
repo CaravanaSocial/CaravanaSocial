@@ -31,13 +31,13 @@ export default function Login () {
     return (
         <div className="inline-block m-4 p-4">
             <section>
-                <h1 className="text-4xl border-b-2 border-zinc-100 dark:border-zinc-800 rounded-sm">Caravana Social</h1>
+                <h1 className="text-4xl border-b-2 border-zinc-100 dark:border-zinc-800">Caravana Social</h1>
                 <p>Te invitamos a formar parte de la re-evolución inclusiva.</p>
             </section>
 
             <section>
                 <div className="border-spacing-96 border-2 border-zinc-100 dark:border-zinc-800 rounded-3xl p-4 my-4">
-                    <h1 className="text-4xl border-b-2 border-zinc-100 dark:border-zinc-800 rounded-sm">Inicio de Sesion</h1>
+                    <h1 className="text-4xl border-b-2 border-zinc-100 dark:border-zinc-800">Inicio de Sesion</h1>
                     <br />
                     <input className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800"
                         type="email"
@@ -66,9 +66,8 @@ export default function Login () {
                     >Iniciar Sesion con Google</button>
                     <br />
                     <Link to="/">
-                        <h4>He olvidado mi Contraseña</h4>
+                        <h4 className="border-b-2 border-zinc-100 dark:border-zinc-800 rounded-sm">He olvidado mi Contraseña</h4>
                     </Link>
-                    <hr />
                     <h4>Aun no tienes cuenta?</h4>
                     <h4>Registrate</h4>
                     <Link to="/register-user">
