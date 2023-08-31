@@ -5,19 +5,19 @@ import Login from "./Views/Login";
 import RegisterUser from "./Views/RegisterUser/RegisterUser";
 import RegisterCompany from "./Views/RegisterCompany/RegisterCompany";
 import LandingPage from "./Views/LandingPage";
+import Footer from "./components/Footer";
 
 function App() {
-  const { pathname } = useLocation();
-
   return (
     <div>
-      {pathname !== "/" && <NavBar />}
+      <NavBar />
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/registerUser" element={<RegisterUser />} />
         <Route path="/register-company" element={<RegisterCompany />} />
       </Routes>
+      <Footer />
     </div>
   );
 }
