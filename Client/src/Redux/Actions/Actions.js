@@ -21,6 +21,8 @@ export const CREATE_TRAINING = "CREATE_TRAINING";
 export const DELETE_TRAINING = "DELETE_TRAINING";
 export const EDIT_TRAINING = "EDIT_TRAINING";
 
+export const GET_LOCATION = "GET_LOCATION";
+
 export const LOGIN = "LOGIN";
 
 export const createUser = (user) => {
@@ -252,6 +254,19 @@ export const login = (user) => {
       const response = await axios.post(endpoint, user);
       alert(response.data);
       return dispatch({ type: LOGIN });
+    } catch (error) {
+      alert("asdasd");
+    }
+  };
+};
+
+export const getLocation = (country) => {
+  const endpoint = `http://localhost:3001/countries/${country}`;
+  return async (dispatch) => {
+    try {
+      const response = await axios(endpoint);
+      alert(response.data);
+      return dispatch({ type: GET_LOCATION, payload: response.data });
     } catch (error) {
       alert("asdasd");
     }
