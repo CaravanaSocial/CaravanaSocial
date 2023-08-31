@@ -26,15 +26,15 @@ router.post("/login", loginHandler);
 //---------------------company---------------------
 router.post("/company/signup", companiesSignUpHandler);
 router.get("/company/all", getCompaniesHandler)
-router.patch("/company/update", updateCompanyHandler)
+router.patch("/company/update/:id", updateCompanyHandler)
 //---------------------user---------------------
 router.post("/user/signup", userSignUpHandler);
 router.get("/user/all", getUsersHandler)
-router.patch("/user/update", updateUserHandler)
+router.patch("/user/update/:id", updateUserHandler)
 //---------------------admin---------------------
 router.post("/admin/signup", adminSignUpHandler);
 router.get("/admin/all", getAdminsHandler)
-router.patch("/admin/update", updateAdminHandler)
+router.patch("/admin/update/:id", updateAdminHandler)
 
 router.get("/training", (req, res) => {
   const { name } = req.query;

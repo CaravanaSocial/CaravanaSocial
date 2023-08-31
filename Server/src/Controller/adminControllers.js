@@ -15,8 +15,6 @@ const createAdminAccController = async (props) =>{
     const saltRounds = 10
     const hashedPassword = await bcrypt.hash(password, saltRounds)
 
-
-
     if(createKey === CREATE_KEY){
         const [newAdmin, created] = await admin.findOrCreate({
             where: {email},
@@ -34,7 +32,27 @@ const createAdminAccController = async (props) =>{
     return "wrongKey"
 }
 
+const getAdminsController = async () =>{
+    const admins = await admin.findAll()
+    if(admins.length > 0){
+        for(let i = 0; i<admins.length ; i++){
+            admins[i].password=0
+        } 
+        return admins
+    }throw Error("There is no admins")
+}
+
+const updateAdminController = async (props, id) =>{
+    const updated = await admin.update(props,{where:{id}})
+    if(updated){
+        const updatedAdmin = await admin.findOne({where:{id}})
+        return updatedAdmin
+    } throw Error("Something went wrong")
+}
+
 module.exports={
     createAdminAccController,
-    getAdminAccController
+    getAdminAccController,
+    getAdminsController,
+    updateAdminController
 }

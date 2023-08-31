@@ -1,4 +1,4 @@
-const {createUserAccController} = require("../Controller/userController")
+const {createUserAccController, getUsersController, updateUserController} = require("../Controller/userController")
 const {getCompanyAccController} = require("../Controller/companiesControllers")
 const userSignUpHandler = async (req, res)=>{
     try {
@@ -14,11 +14,22 @@ const userSignUpHandler = async (req, res)=>{
 }
 
 const getUsersHandler = async (req, res) =>{
-
+    try {
+        const users = await getUsersController()
+        res.status(200).json(users)
+    } catch (error) {
+        res.status(500).json(error.message)
+    }
 }
 
 const updateUserHandler = async (req, res) =>{
-
+    try {
+        const {id} = req.params
+        const updated = await updateUserController(req.body, id)
+        res.status(200).json(updated)
+    } catch (error) {
+        res.status(500).json(error.message)
+    } 
 }
 
 

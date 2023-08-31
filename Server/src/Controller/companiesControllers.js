@@ -30,13 +30,23 @@ const createCompanyAccController = async (props) =>{
 
 const getCompaniesController = async () =>{
     const gotCompanies = await companies.findAll()
-    if(gotCompanies >0){
-        return gotCompanies
+    console.log(gotCompanies);
+    if(gotCompanies.length >0){
+        for(let i = 0; i<gotCompanies.length ; i++){
+            gotCompanies[i].password=0
+        } return gotCompanies
     }throw Error("There is no companies")
 }
 
-const updateCompanyController = async (props) =>{
-
+const updateCompanyController = async (props, id) =>{
+    const updated = await companies.update(props,{
+        where : {id}
+    })
+    //Eliminar y volver a relacionar con el rubro.
+    if(updated){
+        const updatedCompany = companies.findOne({where:{id}})
+        return updatedCompany
+    }throw Error("Something went wrong")
 }
 
 module.exports={
