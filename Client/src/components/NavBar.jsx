@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import logo from "../../public/logo.png";
+import { CgProfile } from "react-icons/cg";
 
 export default function NavBar() {
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState("Claro");
 
   useEffect(() => {
-    if (theme === "dark") {
+    if (theme === "Oscuro") {
       document.documentElement.classList.add("dark");
     } else {
       document.documentElement.classList.remove("dark");
@@ -13,16 +15,15 @@ export default function NavBar() {
   }, [theme]);
 
   const handleThemeSwitch = () => {
-    setTheme(theme === "dark" ? "light" : "dark");
+    setTheme(theme === "Oscuro" ? "Claro" : "Oscuro");
   };
 
   return (
-    <div className="flex justify-between bg-white dark:bg-zinc-900 border-b-2 border-b-zinc-100 dark:border-b-zinc-800 p-2">
-      <Link to="/">
-        <button className="text-gray-500 font-medium text-sm bg-gray-300 dark:bg-gray-300 rounded-3xl">
-          Landing
-        </button>
-      </Link>
+    <div className="flex items-center justify-between bg-white dark:bg-zinc-900 border-b-2 border-b-zinc-100 dark:border-b-zinc-800 p-2">
+      <a href="/">
+        <img className="w-20" src={logo}></img>
+      </a>
+
       <div className="relative flex items-center w-30 h-5 mt-2.5 lg:w-64 group">
         <div className="absolute z-50 flex items-center justify-center w-30 h-10 p-3 pr-2 text-sm text-gray-500 cursor-pointer sm:hidden">
           <svg
@@ -45,7 +46,7 @@ export default function NavBar() {
           <path d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"></path>
         </svg>
         <input
-          className="block w-30 py-1.5 pl-10 pr-4 leading-normal rounded-2xl focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 ring-opacity-90 bg-gray-100 dark:bg-gray-800 text-gray-400 aa-input"
+          className="block w-30 py-1.5 pl-10 pr-4 leading-normal rounded-2xl focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700 ring-opacity-90 bg-gray-100 dark:bg-gray-800 text-gray-400 aa-input"
           placeholder="Search"
           type="text"
         />
@@ -69,8 +70,9 @@ export default function NavBar() {
         <span className="font-medium text-gray-400">{theme}</span>
       </div>
       <Link to="/login">
-        <button className="text-gray-500 font-medium text-sm bg-gray-300 dark:bg-gray-300 rounded-3xl">
-          Login
+        <button className="text-gray-500 font-medium text-sm bg-gray-300 dark:bg-gray-300 rounded-3xl flex py-1 px-2 items-center">
+          <CgProfile className="w-[40px] h-[30px]" />
+          Entrar
         </button>
       </Link>
     </div>
