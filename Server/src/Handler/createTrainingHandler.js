@@ -2,16 +2,16 @@ const { getCreatedTraining, createTraining } = require('../Controller/createTrai
 
 const trainingHandler = async (req, res) => {
     try {
-
+        console.log('handler')
         const foundTraining = await getCreatedTraining(req.body)
-        const { name, description, video, companyId } = req.body
+
+        if(foundTraining){
+            return res.status(200).send('Capacitacion creada')
+        }else{
+            return res.status(404).send('Capacitacion ya existente')
+        }
         
-        if(!name || !description || !video || !companyId) return res.status(401).json({error: "Falta informacion"})
-
-        if(foundTraining) return  res.status(400).json({error : "El material de capacitacion ya existe"})
-
-        const trainingOk = await createTraining(req.body)
-        return res.status(200).json(trainingOk);
+        
 
     } catch (error) {
         res.status(400).send(error.message)

@@ -13,6 +13,17 @@ const userSignUpHandler = async (req, res)=>{
     }
 }
 
+const getUsersHandler = async (req, res) =>{
+
+}
+
+const updateUserHandler = async (req, res) =>{
+
+}
+
+
 module.exports={
-    userSignUpHandler
+    userSignUpHandler,
+    getUsersHandler,
+    updateUserHandler
 }

@@ -12,6 +12,16 @@ const adminSignUpHandler = async (req, res)=>{
     }
 }
 
+const getAdminsHandler = async (req, res) =>{
+
+}
+
+const updateAdminHandler = async (req, res) =>{
+
+}
+
 module.exports={
-    adminSignUpHandler
+    adminSignUpHandler,
+    getAdminsHandler,
+    updateAdminHandler
 }

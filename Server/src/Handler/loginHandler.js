@@ -6,22 +6,27 @@ const {loginController} = require("../Controller/loginController")
 const loginHandler = async (req, res) =>{
     const {email, password} = req.body
     try {
-        // console.log('handler', email)
         //Debe consultar los 3 modelo
         const adminAcc = await getAdminAccController(email)
         if(adminAcc){
             let accTokenType = await loginController(adminAcc, password)
-            return res.status(200).json({...accTokenType, type:"admin"})
+            if(accTokenType.acc.activate!==false){
+                return res.status(200).json({...accTokenType, type:"admin"})
+            }return res.status(400).json({error: "Usuario bloqueado"})
         }
         const companyAcc = await getCompanyAccController(email)
         if(companyAcc){
             let accTokenType = await loginController(companyAcc, password)
-            return res.status(200).json({...accTokenType, type:"company"})
+            if(accTokenType.acc.activate!==false){
+                return res.status(200).json({...accTokenType, type:"company"})
+            }return res.status(400).json({error: "Usuario bloqueado"})
         }
         const userAcc = await getUserAccController(email)
         if(userAcc){
             let accTokenType = await loginController(userAcc, password)
-            return res.status(200).json({...accTokenType, type:"user"})
+            if(accTokenType.acc.activate!==false){
+                return res.status(200).json({...accTokenType, type:"user"})
+            }return res.status(400).json({error: "Usuario bloqueado"})
         }
         return res.status(404).json({error: "invalid credentials"})
 
