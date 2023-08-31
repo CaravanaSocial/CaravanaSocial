@@ -2,18 +2,24 @@ const { Router } = require("express");
 const { trainingHandler } = require("../Handler/createTrainingHandler");
 const { getTrainingByName } = require("../Handler/getTrainingHandler");
 const { getAlltraining } = require("../Handler/getAllTraining");
-const {postOfferHandler,deleteOfferHandler,getOfferHandler,updateOfferHandler} = require("../Handler/offersHandler");
+const {
+  postOfferHandler,
+  deleteOfferHandler,
+  getOfferHandler,
+  updateOfferHandler,
+} = require("../Handler/offersHandler");
 const { loginHandler } = require("../Handler/loginHandler");
 const { companiesSignUpHandler } = require("../Handler/companiesHandlers");
 const { userSignUpHandler } = require("../Handler/userHandlers");
 const { adminSignUpHandler } = require("../Handler/adminHandlers");
-
+const { finterCountryHandler } = require("../Handler/filterCountry");
 const router = Router();
 //Rutas de Offer
 router.post("/offer", postOfferHandler);
 router.delete("/offer", deleteOfferHandler);
 router.get("/offer", getOfferHandler);
-router.patch('/offer', updateOfferHandler)
+router.patch("/offer", updateOfferHandler);
+router.get("/countries", finterCountryHandler);
 
 //--------------------------------------------
 

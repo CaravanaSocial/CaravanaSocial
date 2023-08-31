@@ -72,6 +72,14 @@ areaTraining.belongsToMany(areaTraining, {
 companies.hasMany(offer);
 offer.belongsTo(companies);
 
+// Relacion de paises con estados
+country.hasMany(state, { foreignKey: "countryId" });
+state.belongsTo(country, { foreignKey: "countryId" });
+
+//Relacion de estados con ciudades
+state.hasMany(city, { foreignKey: "countryId" });
+city.belongsTo(state, { foreignKey: "countryId" });
+
 module.exports = {
   ...sequelize.models,
   country,
