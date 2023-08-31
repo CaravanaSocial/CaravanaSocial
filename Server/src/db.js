@@ -74,6 +74,15 @@ country.hasOne(prefix);
 prefix.belongsTo(country)
 
 
+// Relacion de paises con estados
+country.hasMany(state, { foreignKey: "countryId" });
+state.belongsTo(country, { foreignKey: "countryId" });
+
+//Relacion de estados con ciudades
+state.hasMany(city, { foreignKey: "countryId" });
+city.belongsTo(state, { foreignKey: "countryId" });
+
+
 module.exports = {
   ...sequelize.models,
   prefix,

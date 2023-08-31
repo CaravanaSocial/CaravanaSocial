@@ -29,7 +29,28 @@ const createUserAccController = async (props) =>{
     return "used"
 }
 
+const getUsersController = async () =>{
+    const users = await user.findAll()
+    if(users.length > 0){
+        for(let i = 0; i<users.length ; i++){
+            users[i].password=0
+        } return users
+    }throw Error("There is no users")
+}
+
+const updateUserController = async (props, id) =>{
+    const updated = await user.update(props,{
+        where : {id}
+    })
+    //Eliminar y volver a relacionar con el rubro.
+    if(updated){
+        const updatedUser = user.findOne({where:{id}})
+        return updatedUser
+    }throw Error("Something went wrong")
+}
 module.exports={
     getUserAccController,
-    createUserAccController
+    createUserAccController,
+    getUsersController,
+    updateUserController
 }

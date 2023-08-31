@@ -1,4 +1,4 @@
-const {createAdminAccController} = require("../Controller/adminControllers")
+const {createAdminAccController, getAdminsController,updateAdminController} = require("../Controller/adminControllers")
 
 const adminSignUpHandler = async (req, res)=>{
     try {
@@ -13,11 +13,22 @@ const adminSignUpHandler = async (req, res)=>{
 }
 
 const getAdminsHandler = async (req, res) =>{
-
+    try {
+        const admins = await getAdminsController()
+        res.status(200).json(admins)
+    } catch (error) {
+        res.status(500).json(error.message)
+    }
 }
 
 const updateAdminHandler = async (req, res) =>{
-
+    try {
+        const {id} = req.params
+        const updated = await updateAdminController(req.body, id)
+        res.status(200).json(updated)
+    } catch (error) {
+        res.status(500).json(error.message)
+    }
 }
 
 module.exports={
