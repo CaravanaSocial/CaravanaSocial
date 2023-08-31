@@ -12,13 +12,16 @@ module.exports = (sequelize) => {
         name:{
             type: DataTypes.STRING,
             allowNull: false,
-            unique:true
+        },
+        lastName: {
+            type: DataTypes.STRING,
+            allowNull:false
         },
         position:{
             type: DataTypes.STRING,
             allowNull: false,
         },
-        nameCompanie:{
+        nameCompany:{
             type: DataTypes.STRING,
             allowNull: false,
         },
@@ -34,6 +37,10 @@ module.exports = (sequelize) => {
         phone:{
             type: DataTypes.STRING,
             allowNull: false,
+        },
+        description: {
+            type: DataTypes.TEXT,
+            allowNull: false
         }
 
     },{

@@ -8,6 +8,7 @@ const loginController = async (acc, password) =>{
         throw Error("invalid credentials")
     }
     const token = jwt.sign({userId: acc.id}, SIGNATURE)
+    acc.password=0
     return {token, acc}
 }
 

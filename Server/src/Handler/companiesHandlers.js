@@ -1,18 +1,39 @@
-const {createCompanyAccController} = require("../Controller/companiesControllers")
+const {createCompanyAccController, getCompaniesController, updateCompanyController} = require("../Controller/companiesControllers")
 const {getUserAccController} = require("../Controller/userController")
+
 const companiesSignUpHandler = async (req, res)=>{
     try {
         const findAcc = await getUserAccController(req.body.email)
         if(findAcc) res.status(400).json({error: "Email in use"})
 
         const companyToken = await createCompanyAccController(req.body)
-        if(companyToken === "used") if(userToken === "used") return res.status(400).json({error: "Email in use"})
-        res.status(200).json(userToken)
+        if(companyToken === "used") return res.status(400).json({error: "Email in use"})
+        res.status(200).json({...companyToken, type: "company"})
     } catch (error) {
         res.status(500).json(error.message)
     }
 }
 
+const getCompaniesHandler = async (req, res) =>{
+    try {
+        const companies = await getCompaniesController()
+        res.status(200).json(companies)
+    } catch (error) {
+        res.status(500).json(error.message)
+    }
+}
+
+const updateCompanyHandler = async (req, res) =>{
+    try {
+        const updated = await updateCompanyController(req.body)
+        res.status(200).json(updated)
+    } catch (error) {
+        res.status(500).json(error.message)
+    }    
+}
+
 module.exports={
-    companiesSignUpHandler
+    companiesSignUpHandler,
+    getCompaniesHandler,
+    updateCompanyHandler
 }
