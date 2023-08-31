@@ -4,9 +4,14 @@ const { getTrainingByName } = require("../Handler/getTrainingHandler");
 const { getAlltraining } = require("../Handler/getAllTraining");
 const {postOfferHandler,deleteOfferHandler,getOfferHandler,updateOfferHandler} = require("../Handler/offersHandler");
 const { loginHandler } = require("../Handler/loginHandler");
+
+const { deletetraining } = require('../Handler/deleteTraining');
+const { updateTraining } = require('../Handler/patchTraining')
+
 const { companiesSignUpHandler, getCompaniesHandler, updateCompanyHandler} = require("../Handler/companiesHandlers");
 const { userSignUpHandler, getUsersHandler, updateUserHandler} = require("../Handler/userHandlers");
 const { adminSignUpHandler, getAdminsHandler, updateAdminHandler} = require("../Handler/adminHandlers");
+
 
 const router = Router();
 //Rutas de Offer
@@ -40,8 +45,13 @@ router.get("/training", (req, res) => {
   }
 });
 
-router.post("/training/create", (req, res) => {
-  trainingHandler(req, res);
-});
+router.post("/training/create",trainingHandler);
+
+router.delete('/training/delete', deletetraining)
+
+
+//cambios
+
+router.patch("/training/update", updateTraining)
 
 module.exports = router;
