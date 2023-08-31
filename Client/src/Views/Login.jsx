@@ -29,16 +29,17 @@ export default function Login () {
     };
 
     return (
-        <div>
+        <div className="inline-block m-4 p-4">
             <section>
-                <h1>Caravana Social</h1>
+                <h1 className="text-4xl border-b-2 border-zinc-100 dark:border-zinc-800 rounded-sm">Caravana Social</h1>
                 <p>Te invitamos a formar parte de la re-evolución inclusiva.</p>
             </section>
 
             <section>
-                <div>
-                    <h1>Inicio de Sesion</h1>
-                    <input 
+                <div className="border-spacing-96 border-2 border-zinc-100 dark:border-zinc-800 rounded-3xl p-4 my-4">
+                    <h1 className="text-4xl border-b-2 border-zinc-100 dark:border-zinc-800 rounded-sm">Inicio de Sesion</h1>
+                    <br />
+                    <input className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800"
                         type="email"
                         name="email"
                         placeholder="Email"
@@ -47,7 +48,7 @@ export default function Login () {
                     />
                     {error.email && (<span>{error.email}</span>)}
                     <br />
-                    <input
+                    <input className="rounded-3xl px-2 bg-zinc-300 text-zinc-800"
                         type="password"
                         name="password"
                         placeholder="Contraseña"
@@ -56,12 +57,13 @@ export default function Login () {
                     />
                     {error.password && (<span>{error.password}</span>)}
                     <br />
-                    <button
+                    <button className="bg-zinc-300 mt-2 text-black rounded-3xl"
                         onClick={handleSubmit}
                         type="submit"
                     >Iniciar Sesion</button>
                     <br />
-                    <button>Iniciar Sesion con Google</button>
+                    <button className="bg-zinc-300 my-2 text-black rounded-3xl"
+                    >Iniciar Sesion con Google</button>
                     <br />
                     <Link to="/">
                         <h4>He olvidado mi Contraseña</h4>
@@ -70,10 +72,10 @@ export default function Login () {
                     <h4>Aun no tienes cuenta?</h4>
                     <h4>Registrate</h4>
                     <Link to="/register-user">
-                        <button>Usuario</button>
+                        <button className="bg-zinc-300 mr-1 text-black rounded-3xl">Usuario</button>
                     </Link>
                     <Link to="/register-company">
-                        <button>Empresa</button>
+                        <button className="bg-zinc-300 ml-1 text-black rounded-3xl">Empresa</button>
                     </Link>
                 </div>
             </section>
