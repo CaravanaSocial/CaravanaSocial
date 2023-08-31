@@ -44,7 +44,7 @@ const createCompanyAccController = async (props) =>{
 
         const companyId = newCompany.id
         const token = jwt.sign({companyId},SIGNATURE)
-        returning.password=0
+        newCompany.password=0
         console.log("prototipos", newCompany.__proto__);
         return {acc:newCompany, token}
     }
