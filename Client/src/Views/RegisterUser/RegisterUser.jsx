@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styles from "./RegisterUser.module.css"
 import validation from "./validation";
+import { Link } from "react-router-dom";
 
 export default function RegisterUser() {
 
@@ -37,10 +38,16 @@ export default function RegisterUser() {
     const handleCheckboxFreeChange = (checkbox) => {
         setCheckboxFreelancer(checkbox);
         if (checkbox === "NO"){
+            setUserData({
+                ...userData, freelancer: false
+            })
             delete errors.trabajo
             delete errors.geolocalizacion
         }
         if (checkbox === "SI"){
+            setUserData({
+                ...userData, freelancer: true
+            })
             errors.trabajo = "Debe ingresar una descripción de su trabajo"
             errors.geolocalizacion = "Debe ingresar su geolocalización"
         }
@@ -63,6 +70,7 @@ export default function RegisterUser() {
             event.preventDefault();
         }
     }
+
 
     return (
         <div className={styles.divReg} >
@@ -139,6 +147,10 @@ export default function RegisterUser() {
                 }
                 <br />
                 <button type="submit" >REGISTRARME</button>
+                <br />
+                <section>
+                    <Link to={"/register-company"} >Registrarme como Empresa</Link>
+                </section>
             </form>
         </div>
     )
