@@ -9,7 +9,7 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
       id_state: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
     },
