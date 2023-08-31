@@ -118,7 +118,7 @@ const LandingPage = () => {
 
       <section className="w-full lg:gap-x-20 md:flex md:justify-center   ">
         <a
-          href="/"
+          href="/register-company"
           className="text-[40px] w-[400px] m-auto  px-5 py-5  flex flex-col items-center font-topmodern  hover:rotate-6 transition duration-500 "
         >
           <img
@@ -130,7 +130,7 @@ const LandingPage = () => {
         </a>
 
         <a
-          href="/"
+          href="/registerUser"
           className="text-[40px] px-5 py-5 w-[400px] m-auto  text-center flex flex-col items-center font-topmodern hover:-rotate-6 transition duration-500 "
         >
           Soy Freelancer quiero unirme...
