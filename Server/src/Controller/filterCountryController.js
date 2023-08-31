@@ -9,7 +9,8 @@ const filterCountryController = async (name) => {
     where: { id_country: countryId },
   });
 
-  return responseState;
+  const stateName = responseState.map((state) => state.name);
+  return stateName;
 };
 
 const filterGetallCountries = async () => {
