@@ -23,6 +23,10 @@ export const EDIT_TRAINING = "EDIT_TRAINING";
 
 export const LOGIN = "LOGIN";
 
+export const GET_COUNTRIES = "GET_COUNTRIES";
+export const GET_STATE = "GET_STATE";
+export const GET_CITY = "GET_CITY";
+
 export const createUser = (user) => {
   const endpoint = "http://localhost:3001/user/signup";
   return async (dispatch) => {
@@ -257,3 +261,54 @@ export const login = (user) => {
     }
   };
 };
+
+
+export const getCountry =()=>{
+  return async function(dispatch){
+      try {
+          const response = (await axios.get("http://localhost:3001/countries")).data
+          return dispatch({
+              type: GET_COUNTRIES,
+              payload: response
+          })
+      } catch (error) {
+          console.log("get countries", error.message)
+      }
+  }
+}
+
+export const getState =(value)=>{
+  return async function(dispatch){
+      try {
+          if(value !== "default"){
+              const response = (await axios.get("http://localhost:3001/countries?name="+ value)).data
+              return dispatch({
+                  type: GET_STATE,
+                  payload: response
+              })
+          
+          }
+      } catch (error) {
+          console.log("get state", error.message)
+      }
+  }
+}
+
+
+export const getCity =(value)=>{
+  return async function(dispatch){
+      try {
+          if(value !== "default"){
+              const response = (await axios.get("http://localhost:3001/countries?name="+ value)).data
+              return dispatch({
+                  type: GET_CITY,
+                  payload: response
+              })
+          
+          }
+      } catch (error) {
+          console.log("get city", error.message)
+      }
+  }
+}
+
