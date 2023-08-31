@@ -1,16 +1,28 @@
-const { country, state } = require("../db");
+const { country, state, city } = require("../db");
 
 const filterCountryController = async (name) => {
   const responseCountry = await country.findOne({ where: { name: name } });
 
-  const countryId = responseCountry.dataValues.id;
+  if (responseCountry === null) {
+    const responseCity = await city.findOne({ where: { name: name } });
 
-  const responseState = await state.findAll({
-    where: { id_country: countryId },
-  });
+    const responseCityID = responseCity.dataValues.id_state;
+    const allCities = await city.findAll({
+      where: { id_state: responseCityID },
+    });
 
-  const stateName = responseState.map((state) => state.name);
-  return stateName;
+    const allCityname = allCities.map((city) => city.dataValues.name);
+    return allCityname;
+  } else {
+    const countryId = responseCountry.dataValues.id;
+
+    const responseState = await state.findAll({
+      where: { id_country: countryId },
+    });
+
+    const stateName = responseState.map((state) => state.name);
+    return stateName;
+  }
 };
 
 const filterGetallCountries = async () => {

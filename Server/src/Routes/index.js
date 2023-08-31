@@ -37,6 +37,8 @@ router.post("/offer", postOfferHandler);
 router.delete("/offer", deleteOfferHandler);
 router.get("/offer", getOfferHandler);
 router.patch("/offer", updateOfferHandler);
+
+// -----------------------Select de Countries--------------------------------
 router.get("/countries", finterCountryHandler);
 
 //--------------------------------------------
