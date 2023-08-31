@@ -68,7 +68,7 @@ const LandingPage = () => {
 
       <section className=" w-full  h-[500px] m-auto flex flex-col mt-5 lg:items-center lg:justify-center ">
         {" "}
-        <h2 className="text-center font-vilaka xl:text-[50px] text-[40px] font-bold   ">
+        <h2 className="text-center font-vilaka xl:text-[50px] text-black text-[40px] font-bold   ">
           Nuestra Filosofia
         </h2>
         <div className="hover:skew-x-3 transition duration-500 text-center mt-5 mb-5 lg:w-[600px] lg:h-[300px] lg:m-5 m-auto  w-[400px] h-[400px]  rounded ">
@@ -119,7 +119,7 @@ const LandingPage = () => {
       <section className="w-full lg:gap-x-20 md:flex md:justify-center   ">
         <a
           href="/register-company"
-          className="text-[40px] w-[400px] m-auto  px-5 py-5  flex flex-col items-center font-topmodern  hover:rotate-6 transition duration-500 "
+          className="text-[40px] w-[400px] m-auto text-black  px-5 py-5  flex flex-col items-center font-topmodern   "
         >
           <img
             className="rounded h-[400px"
@@ -131,14 +131,14 @@ const LandingPage = () => {
 
         <a
           href="/registerUser"
-          className="text-[40px] px-5 py-5 w-[400px] m-auto  text-center flex flex-col items-center font-topmodern hover:-rotate-6 transition duration-500 "
+          className="text-[40px] px-5 py-5 w-[400px] text-black m-auto  text-center flex flex-col items-center font-topmodern  "
         >
-          Soy Freelancer quiero unirme...
           <img
             className="rounded h-[350px]"
             src="https://dt2sdf0db8zob.cloudfront.net/wp-content/uploads/2018/11/Why-it%E2%80%99s-Awesome-to-be-a-Freelancer-1.png"
             width={400}
           ></img>
+          Soy Freelancer quiero unirme...
         </a>
       </section>
 

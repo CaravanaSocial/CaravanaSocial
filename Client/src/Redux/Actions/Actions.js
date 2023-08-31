@@ -21,6 +21,8 @@ export const CREATE_TRAINING = "CREATE_TRAINING";
 export const DELETE_TRAINING = "DELETE_TRAINING";
 export const EDIT_TRAINING = "EDIT_TRAINING";
 
+export const GET_LOCATION = "GET_LOCATION";
+
 export const LOGIN = "LOGIN";
 
 export const GET_COUNTRIES = "GET_COUNTRIES";
@@ -261,7 +263,6 @@ export const login = (user) => {
     }
   };
 };
-
 
 export const getCountry =()=>{
   return async function(dispatch){
