@@ -1,7 +1,7 @@
 const { Router } = require("express");
-const { trainingHandler } = require("../Handler/createTrainingHandler");
-const { getTrainingByName } = require("../Handler/getTrainingHandler");
-const { getAlltraining } = require("../Handler/getAllTraining");
+const { trainingHandler } = require("../Handler/trainingHandler");
+const { getTrainingByName } = require("../Handler/trainingHandler");
+const { getAlltraining } = require("../Handler/trainingHandler");
 const {
   postOfferHandler,
   deleteOfferHandler,
@@ -12,8 +12,8 @@ const { loginHandler } = require("../Handler/loginHandler");
 
 const { finterCountryHandler } = require("../Handler/filterCountry");
 
-const { deletetraining } = require("../Handler/deleteTraining");
-const { updateTraining } = require("../Handler/patchTraining");
+const { deletetraining } = require("../Handler/trainingHandler");
+const { updateTraining } = require("../Handler/trainingHandler");
 
 const {
   companiesSignUpHandler,
