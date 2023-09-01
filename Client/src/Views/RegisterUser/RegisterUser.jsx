@@ -39,9 +39,9 @@ export default function RegisterUser() {
         if (checkbox === "NO"){
             delete errors.CUD
         }
-        /* if (checkbox === "SI"){
+        if (checkbox === "SI"){
             errors.CUD = "Debe ingresar su código CUD"
-        } */
+        }
     };
 
     const handleCheckboxFreeChange = (checkbox) => {
@@ -79,7 +79,7 @@ export default function RegisterUser() {
             setErrors(validation({
                 ...userData, location: {...userData.location, [name]: value}
             }))
-            dispatch(getCity(value))
+            dispatch(getCity(event.target.options[event.target.selectedIndex].id))
         } else if (name === "city"){
             setUserData({
                 ...userData, location: {...userData.location, [name]: value}
@@ -151,8 +151,8 @@ export default function RegisterUser() {
                         onChange={handleChange}
                         name="state">
                         <option value="default">Seleccioná un Estado/Provincia...</option>
-                        {state.stateName?.map((s)=> (
-                            <option key={s} value={s}>{s}</option>
+                        {state.allStates?.map((s)=> (
+                            <option key={s.id} id={s.id} value={s.name}>{s.name}</option>
                         ))}
                     </select>
                     <p className="text-red-600">{ errors.state ? errors.state : null }</p>
