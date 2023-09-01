@@ -100,150 +100,112 @@ const RegisterCompany = () => {
 
   console.log("local state", companyInput);
   return (
-    <div>
-      <div>
-        <h3>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iure
-          reprehenderit alias id doloribus corporis unde. Eum a, magnam unde
-          dolore velit, accusamus mollitia quasi perferendis repellendus
-          aliquid, dolorem sapiente natus. Lorem ipsum dolor sit amet
-          consectetur adipisicing elit. Corrupti eveniet, optio aspernatur
-          consequatur tempore minus? Voluptatum suscipit vel natus amet
-          molestias dignissimos adipisci ea ipsum beatae. Molestiae nulla quia
-          consectetur!
-        </h3>
-      </div>
+    <div className="inline-block m-4 p-4">
+      <div className="border-spacing-96 border-2 border-zinc-100 dark:border-zinc-800 rounded-3xl p-4 my-4">
+        <h1 className="text-4xl border-b-2 border-zinc-100 dark:border-zinc-800">Registrarme como empresa</h1>
 
-      <div>
-        <h3>Registrarme como empresa:</h3>
         <form onSubmit={(event) => handleSubmit(event)}>
-          <div>
-            <label>Nombre: </label>
-            <input
+            <h2>Nombre: </h2>
+            <input className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
               onChange={handleInputs}
               type="text"
               placeholder="Escribe tu nombre"
               name="nombre"
             />
-            <p style={{ visibility: error.nombre ? "visible" : "hidden" }}>
+            <p className="text-red-600" style={{ visibility: error.nombre ? "visible" : "hidden" }}>
               {error.nombre}
             </p>
-          </div>
 
-          <div>
-            <label>Apellido: </label>
-            <input
+            <h2>Apellido: </h2>
+            <input className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
               onChange={handleInputs}
               type="text"
               placeholder="Escribe tu apellido"
               name="apellido"
             />
-            <p style={{ visibility: error.apellido ? "visible" : "hidden" }}>
+            <p className="text-red-600" style={{ visibility: error.apellido ? "visible" : "hidden" }}>
               {error.apellido}
             </p>
-          </div>
 
-          <div>
-            <label>Cargo: </label>
-            <input
+            <h2>Cargo: </h2>
+            <input className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
               onChange={handleInputs}
               type="text"
               placeholder="Cargo"
               name="cargo"
             />
-            <p style={{ visibility: error.cargo ? "visible" : "hidden" }}>
+            <p className="text-red-600" style={{ visibility: error.cargo ? "visible" : "hidden" }}>
               {error.cargo}
             </p>
-          </div>
 
-          <div>
-            <label>Empresa: </label>
-            <input
+            <h2>Empresa: </h2>
+            <input className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
               onChange={handleInputs}
               type="text"
               placeholder="Nombre de la Empresa"
               name="nombreEmpresa"
             />
-            <p
-              style={{ visibility: error.nombreEmpresa ? "visible" : "hidden" }}
-            >
+            <p className="text-red-600" style={{ visibility: error.nombreEmpresa ? "visible" : "hidden" }}>
               {error.nombreEmpresa}
             </p>
-          </div>
 
-          <div>
-            <label>Rubro de capacitación: </label>
-            <input
+            <h2>Rubro de capacitación: </h2>
+            <input className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
               onChange={handleInputs}
               type="text"
               placeholder="Rubro de la capacitación"
               name="capacitacion"
             />
-            <p
-              style={{ visibility: error.capacitacion ? "visible" : "hidden" }}
-            >
+            <p className="text-red-600" style={{ visibility: error.capacitacion ? "visible" : "hidden" }}>
               {error.capacitacion}
             </p>
-          </div>
 
-          <div>
-            <label>Telefono: </label>
-            <input
+            <h2>Telefono: </h2>
+            <input className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
               onChange={handleInputs}
               type="tel"
               placeholder="Telefono"
               name="telefono"
             />
-            <p style={{ visibility: error.telefono ? "visible" : "hidden" }}>
+            <p className="text-red-600" style={{ visibility: error.telefono ? "visible" : "hidden" }}>
               {error.telefono}
             </p>
-          </div>
 
-          <div>
-            <label>Email: </label>
-            <input
+            <h2>Email: </h2>
+            <input className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
               onChange={handleInputs}
               type="text"
               placeholder="Email de la empresa..."
               name="email"
             />
-            <p style={{ visibility: error.email ? "visible" : "hidden" }}>
+            <p className="text-red-600" style={{ visibility: error.email ? "visible" : "hidden" }}>
               {error.email}
             </p>
-          </div>
 
-          <div>
-            <label>Contraseña</label>
-            <input
+            <h2>Contraseña</h2>
+            <input className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
               onChange={handleInputs}
               type="password"
               placeholder="Contraseña..."
               name="contraseña"
             />
-            <p style={{ visibility: error.contraseña ? "visible" : "hidden" }}>
+            <p className="text-red-600" style={{ visibility: error.contraseña ? "visible" : "hidden" }}>
               {error.contraseña}
             </p>
-          </div>
-          <br />
 
-          <div>
-            <input
+            <input className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
               onChange={handleInputs}
               type="password"
               placeholder="Repite la Contraseña..."
               name="contraseñaRepetida"
             />
-            <p
-              style={{
-                visibility: error.contraseñaRepetida ? "visible" : "hidden",
-              }}
-            >
+            <p className="text-red-600" style={{visibility: error.contraseñaRepetida ? "visible" : "hidden",}}>
               {error.contraseñaRepetida}
             </p>
-          </div>
 
-          <div>
-            <select onChange={handleLocation} name="country">
+            <select className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
+              onChange={handleLocation}
+              name="country">
               <option value="default">pais</option>
               {country.map((p) => {
                 return (
@@ -253,9 +215,10 @@ const RegisterCompany = () => {
                 );
               })}
             </select>
-          </div>
-          <div>
-            <select onChange={handleLocation} name="state">
+
+            <select className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
+              onChange={handleLocation}
+              name="state">
               <option value="default">estado</option>
               {state.allStates?.map((p) => {
                 return (
@@ -265,9 +228,9 @@ const RegisterCompany = () => {
                 );
               })}
             </select>
-          </div>
-          <div>
-            <select name="city">
+
+            <select className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
+              name="city">
               <option value="default">ciudad</option>
               {city?.map((p) => {
                 return (
@@ -277,28 +240,25 @@ const RegisterCompany = () => {
                 );
               })}
             </select>
-          </div>
 
-          <div>
-            <label>Descripción</label>
-            <textarea
+            <h2>Descripción</h2>
+            <textarea className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
               onChange={handleInputs}
               placeholder="Añade una descripción de tu empresa..."
               name="descripcion"
-            />
-            <p style={{ visibility: error.descripcion ? "visible" : "hidden" }}>
+              cols="20"
+              rows="8"/>
+            <p className="text-red-600" style={{ visibility: error.descripcion ? "visible" : "hidden" }}>
               {error.descripcion}
             </p>
-          </div>
 
-          <hr />
-          <button disabled={isSubmitDisabled} type="submit">
-            Enviar
-          </button>
+          <button className="bg-zinc-300 mt-2 text-black rounded-3xl p-2"
+            disabled={isSubmitDisabled}
+            type="submit">Enviar</button>
         </form>
 
         <NavLink to="/login">
-          <button>Ya tengo cuenta</button>
+          <button className="bg-zinc-300 mt-2 text-black rounded-3xl p-2">Ya tengo cuenta</button>
         </NavLink>
       </div>
     </div>
