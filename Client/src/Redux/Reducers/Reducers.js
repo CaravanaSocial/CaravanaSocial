@@ -20,6 +20,7 @@ import {
   GET_COUNTRIES,
   GET_STATE,
   GET_TRAINING,
+  GET_PREFIXES,
 } from "../Actions/Actions";
 
 const initialState = {
@@ -32,7 +33,8 @@ const initialState = {
   countries:[],
   states: [],
   cities: [],
-  trainings: []
+  trainings: [],
+  prefixes: []
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -150,7 +152,16 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         trainings: action.payload
       } 
-
+    case GET_CATEGORIES:
+        return {
+          ...state,
+          categories: action.payload
+        }    
+    case  GET_PREFIXES:
+      return{
+        ...state,
+        prefixes: action.payload
+      }    
     default:
       return { ...state };
   }
