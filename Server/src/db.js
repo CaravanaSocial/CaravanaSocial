@@ -61,8 +61,8 @@ companies.hasMany(offer);
 offer.belongsTo(companies);
 
 //Relacion de empresas a rubros
-companies.belongsToMany(areaTraining, {through: "companies_areaTraining", as: "rubro",});
-areaTraining.belongsToMany(companies, {through: "companies_areaTraining", as: "rubro",});
+companies.belongsToMany(areaTraining, {through: "companies_areaTraining"});
+areaTraining.belongsToMany(companies, {through: "companies_areaTraining"});
 
 
 module.exports = {
