@@ -34,12 +34,14 @@ export const createUser = (user) => {
   return async (dispatch) => {
     try {
       const response = await axios.post(endpoint, user);
-      alert(response.data);
+      const { data } = response
+      localStorage.setItem("authorization", data.token)
       return dispatch({
         type: CREATE_USER,
+        payload: data
       });
     } catch (error) {
-      alert(error.response.data.error);
+      console.log();(error.data.error);
     }
   };
 };
@@ -49,13 +51,13 @@ export const getUsers = () => {
   return async (dispatch) => {
     try {
       const response = await axios(endpoint);
-      alert(response.data);
+      const { data } = response
       return dispatch({
         type: CREATE_USER,
-        payload: response.data,
+        payload: data,
       });
     } catch (error) {
-      alert("asdasd");
+      console.log(error);
     }
   };
 };
@@ -65,12 +67,12 @@ export const editUser = (id, user) => {
   return async (dispatch) => {
     try {
       const response = await axios.patch(endpoint, user);
-      alert(response.data);
+      const { data } = response
       return dispatch({
         type: EDIT_USER,
       });
     } catch (error) {
-      alert("asdasd");
+      console.log(error);
     }
   };
 };
@@ -80,12 +82,12 @@ export const createAdmin = (admin) => {
   return async (dispatch) => {
     try {
       const response = await axios.post(endpoint, admin);
-      alert(response.data);
+      const { data } = response
       return dispatch({
         type: CREATE_ADMIN,
       });
     } catch (error) {
-      alert("asdasd");
+      console.log(error);
     }
   };
 };
@@ -95,12 +97,12 @@ export const editAdmin = (id, admin) => {
   return async (dispatch) => {
     try {
       const response = await axios.patch(endpoint, admin);
-      alert(response.data);
+      const { data } = response
       return dispatch({
         type: EDIT_ADMIN,
       });
     } catch (error) {
-      alert("asdasd");
+      console.log(error);
     }
   };
 };
@@ -110,13 +112,13 @@ export const getAdmins = () => {
   return async (dispatch) => {
     try {
       const response = await axios(endpoint);
-      alert(response.data);
+      const { data } = response
       return dispatch({
         type: GET_ADMINS,
-        payload: response.data,
+        payload: data,
       });
     } catch (error) {
-      alert("asdasd");
+      console.log(error);
     }
   };
 };
@@ -126,10 +128,10 @@ export const getCompanies = () => {
   return async (dispatch) => {
     try {
       const response = await axios(endpoint);
-      alert(response.data);
-      return dispatch({ type: GET_COMPANIES, payload: response.data });
+      const { data } = response
+      return dispatch({ type: GET_COMPANIES, payload: data });
     } catch (error) {
-      alert("asdasd");
+      console.log(error);
     }
   };
 };
@@ -139,10 +141,10 @@ export const createCompany = (company) => {
   return async (dispatch) => {
     try {
       const response = await axios.post(endpoint, company);
-      alert(response.data);
+      const { data } = response
       return dispatch({ type: CREATE_COMPANY });
     } catch (error) {
-      alert("asdasd");
+      console.log(error);
     }
   };
 };
@@ -152,10 +154,10 @@ export const editCompany = (id, company) => {
   return async (dispatch) => {
     try {
       const response = await axios.patch(endpoint, company);
-      alert(response.data);
+      const { data } = response
       return dispatch({ type: EDIT_COMPANY });
     } catch (error) {
-      alert("asdasd");
+      console.log(error);
     }
   };
 };
@@ -165,10 +167,10 @@ export const createOffer = (offer) => {
   return async (dispatch) => {
     try {
       const response = await axios.post(endpoint, offer);
-      alert(response.data);
+      const { data } = response
       return dispatch({ type: CREATE_OFFER });
     } catch (error) {
-      alert("asdasd");
+      console.log(error);
     }
   };
 };
@@ -178,10 +180,10 @@ export const deleteOffer = (id) => {
   return async (dispatch) => {
     try {
       const response = await axios.delete(endpoint);
-      alert(response.data);
+      const { data } = response
       return dispatch({ type: DELETE_OFFER });
     } catch (error) {
-      alert("asdasd");
+      console.log(error);
     }
   };
 };
@@ -191,10 +193,10 @@ export const getOffer = (id) => {
   return async (dispatch) => {
     try {
       const response = await axios(endpoint);
-      alert(response.data);
-      return dispatch({ type: GET_OFFER, payload: response.data });
+      const { data } = response
+      return dispatch({ type: GET_OFFER, payload: data });
     } catch (error) {
-      alert("asdasd");
+      console.log(error);
     }
   };
 };
@@ -204,10 +206,10 @@ export const editOffer = (id) => {
   return async (dispatch) => {
     try {
       const response = await axios.patch(endpoint);
-      alert(response.data);
+      const { data } = response
       return dispatch({ type: EDIT_OFFER });
     } catch (error) {
-      alert("asdasd");
+      console.log(error);
     }
   };
 };
@@ -217,10 +219,10 @@ export const createTraining = (training) => {
   return async (dispatch) => {
     try {
       const response = await axios.post(endpoint, training);
-      alert(response.data);
+      const { data } = response
       return dispatch({ type: CREATE_TRAINING });
     } catch (error) {
-      alert("asdasd");
+      console.log(error);
     }
   };
 };
@@ -230,10 +232,10 @@ export const deleteTraining = (id) => {
   return async (dispatch) => {
     try {
       const response = await axios.delete(endpoint);
-      alert(response.data);
+      const { data } = response
       return dispatch({ type: DELETE_OFFER });
     } catch (error) {
-      alert("asdasd");
+      console.log(error);
     }
   };
 };
@@ -243,10 +245,10 @@ export const editTraining = (id, training) => {
   return async (dispatch) => {
     try {
       const response = await axios.patch(endpoint, training);
-      alert(response.data);
+      const { data } = response
       return dispatch({ type: EDIT_TRAINING });
     } catch (error) {
-      alert("asdasd");
+      console.log(error);
     }
   };
 };
@@ -256,10 +258,10 @@ export const login = (user) => {
   return async (dispatch) => {
     try {
       const response = await axios.post(endpoint, user);
-      alert(response.data);
-      return dispatch({ type: LOGIN });
+      const { data } = response
+      return dispatch({ type: LOGIN, payload: data });
     } catch (error) {
-      alert("asdasd");
+      console.log(error);
     }
   };
 };
