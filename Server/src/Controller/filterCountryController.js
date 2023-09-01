@@ -1,7 +1,6 @@
 const { country, state, city, prefix } = require("../db");
 
 const filterCountryController = async (name) => {
-  console.log("hola", name);
   //*************************solo name country ********************************/
 
   if (Number(name)) {
@@ -16,7 +15,7 @@ const filterCountryController = async (name) => {
     const responseState = await state.findAll({
       where: { id_country: countryId },
     });
-    console.log(responseState);
+
     // const id = responseState[0].dataValues.id;
 
     const allStates = responseState.map((state) => state.dataValues);
