@@ -3,19 +3,18 @@ const {
   filterGetallCountries,
 } = require("../Controller/filterCountryController");
 
-const {prefix} = require('../db')
+const { prefix } = require("../db");
 
 const finterCountryHandler = async (req, res) => {
   const { name } = req.query;
+
   try {
     if (name) {
-      
-
       const response = await filterCountryController(name);
-      res.status(200).send(response);
+      return res.status(200).send(response);
     }
     const response = await filterGetallCountries();
-    res.status(200).send(response);
+    return res.status(200).send(response);
   } catch (error) {
     error.message;
   }
