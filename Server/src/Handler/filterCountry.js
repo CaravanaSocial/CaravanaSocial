@@ -9,6 +9,7 @@ const finterCountryHandler = async (req, res) => {
   try {
     if (name) {
       const response = await filterCountryController(name);
+      console.log("asdasdasda", response);
       return res.status(200).send(response);
     }
     const response = await filterGetallCountries();
