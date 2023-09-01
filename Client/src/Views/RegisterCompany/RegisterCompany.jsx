@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import validation from "./validation";
-import { getCountry, getState, getCity } from "../../Redux/Actions/Actions";
+import { getCountry, getState, getCity, getCategories, getPrefixes } from "../../Redux/Actions/Actions";
 
 const RegisterCompany = () => {
   const navigate = useNavigate();
@@ -10,28 +10,32 @@ const RegisterCompany = () => {
   const country = useSelector((state) => state.countries);
   const state = useSelector((state) => state.states);
   const city = useSelector((state) => state.cities);
-
-  console.log("local state", state);
-  console.log("local city", city);
+  const category = useSelector((state) => state.categories);
+  // const prefixes = useSelector((state) => state.prefixes);
+  
 
   const [companyInput, setCompanyInput] = useState({
-    nombre: "",
-    apellido: "",
-    cargo: "",
-    nombreEmpresa: "",
-    telefono: "",
+    name: "",
+    lastName: "",
+    position: "",
+    nameCompany: "",
+    category: [],
+    phone: "",
     email: "",
-    contraseña: "",
-    contraseñaRepetida: "",
-    descripcion: "",
-    location: { country: "", state: "", city: "" },
+    password: "",
+    passwordRep: "",
+    description: "",
+    location: {country: "", state:"", city:""},
   });
 
   const [error, setError] = useState({});
 
   useEffect(() => {
     dispatch(getCountry());
+    dispatch(getCategories());
+    // dispatch(getPrefixes())
   }, []);
+
 
   const handleInputs = (event) => {
     event.preventDefault();
@@ -47,9 +51,27 @@ const RegisterCompany = () => {
     );
   };
 
-  const handleLocation = (event) => {
-    // event.preventDefault();
+  const validateInput=(companyInputData)=>{
+    const errors = validation(companyInputData)
+    setError(errors)
+  }
 
+  const handleCategory =(event)=>{
+    const rep = companyInput.category.find(cat => cat === event.target.value)
+    if(event.target.value !== "default" && !rep){
+      setCompanyInput({
+        ...companyInput,
+        category: [...companyInput.category, event.target.value]
+      })
+      event.target.value = "default";
+      validateInput({
+        ...companyInput,
+        category: [...companyInput.category, event.target.value]
+      })
+    }event.target.value = "default"
+  }
+
+  const handleLocation = (event) => {
     if (!companyInput.location.country) {
       setCompanyInput({
         ...companyInput,
@@ -62,7 +84,6 @@ const RegisterCompany = () => {
 
       return;
     }
-
     if (companyInput.location.country) {
       setCompanyInput({
         ...companyInput,
@@ -77,28 +98,38 @@ const RegisterCompany = () => {
     }
   };
 
+  const handlePrefix =(event)=>{
+    event.preventDefault();
+    const code = event.target.value
+    const aux = [code, companyInput.phone]
+    const phonePrefix = aux.join("")
+    setCompanyInput({
+      ...companyInput,
+      phone: phonePrefix
+    })
+  }
+
   const isSubmitDisabled = Object.keys(error).length > 0;
 
   const handleSubmit = () => {
     dispatch(createCompany(companyInput));
     alert("registro con exito");
     setCompanyInput({
-      nombre: "",
-      apellido: "",
-      cargo: "",
-      nombreEmpresa: "",
-      capacitacion: "",
-      telefono: "",
+      name: "",
+      lastName: "",
+      position: "",
+      nameCompany: "",
+      category: [],
+      phone: "",
       email: "",
-      contraseña: "",
-      contraseñaRepetida: "",
-      descripcion: "",
-      location: {},
+      password: "",
+      passwordRep: "",
+      description: "",
+      location: {country: "", state:"", city:""},
     });
     navigate("/login");
   };
 
-  console.log("local state", companyInput);
   return (
     <div className="inline-block m-4 p-4">
       <div className="border-spacing-96 border-2 border-zinc-100 dark:border-zinc-800 rounded-3xl p-4 my-4">
@@ -110,10 +141,10 @@ const RegisterCompany = () => {
               onChange={handleInputs}
               type="text"
               placeholder="Escribe tu nombre"
-              name="nombre"
+              name="name"
             />
-            <p className="text-red-600" style={{ visibility: error.nombre ? "visible" : "hidden" }}>
-              {error.nombre}
+            <p className="text-red-600" style={{ visibility: error.name ? "visible" : "hidden" }}>
+              {error.name}
             </p>
 
             <h2>Apellido: </h2>
@@ -121,10 +152,10 @@ const RegisterCompany = () => {
               onChange={handleInputs}
               type="text"
               placeholder="Escribe tu apellido"
-              name="apellido"
+              name="lastName"
             />
-            <p className="text-red-600" style={{ visibility: error.apellido ? "visible" : "hidden" }}>
-              {error.apellido}
+            <p className="text-red-600" style={{ visibility: error.lastName ? "visible" : "hidden" }}>
+              {error.lastName}
             </p>
 
             <h2>Cargo: </h2>
@@ -132,10 +163,10 @@ const RegisterCompany = () => {
               onChange={handleInputs}
               type="text"
               placeholder="Cargo"
-              name="cargo"
+              name="position"
             />
-            <p className="text-red-600" style={{ visibility: error.cargo ? "visible" : "hidden" }}>
-              {error.cargo}
+            <p className="text-red-600" style={{ visibility: error.position ? "visible" : "hidden" }}>
+              {error.position}
             </p>
 
             <h2>Empresa: </h2>
@@ -143,32 +174,51 @@ const RegisterCompany = () => {
               onChange={handleInputs}
               type="text"
               placeholder="Nombre de la Empresa"
-              name="nombreEmpresa"
+              name="nameCompany"
             />
-            <p className="text-red-600" style={{ visibility: error.nombreEmpresa ? "visible" : "hidden" }}>
-              {error.nombreEmpresa}
+            <p className="text-red-600" style={{ visibility: error.nameCompany ? "visible" : "hidden" }}>
+              {error.nameCompany}
             </p>
 
-            <h2>Rubro de capacitación: </h2>
-            <input className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
-              onChange={handleInputs}
-              type="text"
-              placeholder="Rubro de la capacitación"
-              name="capacitacion"
-            />
-            <p className="text-red-600" style={{ visibility: error.capacitacion ? "visible" : "hidden" }}>
-              {error.capacitacion}
+            <select className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
+              onChange={handleCategory}
+              name="category">
+              <option value="default">rubro</option>
+              {category.rubro.map((c) => {
+                return (
+                  <option key={c.name} value={c.name}>
+                    {c.name}
+                  </option>
+                );
+              })}
+            </select>
+            <span>Rubros seleccionados: </span>
+                <div>
+                  {companyInput.category.map((cat)=>{
+                    return <div>{cat}</div>
+                  })}
+                </div>
+            <p className="text-red-600" style={{ visibility: error.category ? "visible" : "hidden" }}>
+              {error.category}
             </p>
 
+            
             <h2>Telefono: </h2>
+            <select name="code" onClick={handlePrefix}>
+              <option value="defualt">codigo</option>
+              {state?.map((c)=>{
+               return <option value={c.code}>{c.allStates.name}</option>
+              })}
+            </select>
+
             <input className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
               onChange={handleInputs}
               type="tel"
               placeholder="Telefono"
-              name="telefono"
+              name="phone"
             />
-            <p className="text-red-600" style={{ visibility: error.telefono ? "visible" : "hidden" }}>
-              {error.telefono}
+            <p className="text-red-600" style={{ visibility: error.phone ? "visible" : "hidden" }}>
+              {error.phone}
             </p>
 
             <h2>Email: </h2>
@@ -187,20 +237,20 @@ const RegisterCompany = () => {
               onChange={handleInputs}
               type="password"
               placeholder="Contraseña..."
-              name="contraseña"
+              name="password"
             />
-            <p className="text-red-600" style={{ visibility: error.contraseña ? "visible" : "hidden" }}>
-              {error.contraseña}
+            <p className="text-red-600" style={{ visibility: error.password ? "visible" : "hidden" }}>
+              {error.password}
             </p>
 
             <input className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
               onChange={handleInputs}
               type="password"
               placeholder="Repite la Contraseña..."
-              name="contraseñaRepetida"
+              name="passwordRep"
             />
-            <p className="text-red-600" style={{visibility: error.contraseñaRepetida ? "visible" : "hidden",}}>
-              {error.contraseñaRepetida}
+            <p className="text-red-600" style={{visibility: error.passwordRep ? "visible" : "hidden",}}>
+              {error.passwordRep}
             </p>
 
             <select className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
@@ -245,11 +295,11 @@ const RegisterCompany = () => {
             <textarea className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
               onChange={handleInputs}
               placeholder="Añade una descripción de tu empresa..."
-              name="descripcion"
+              name="description"
               cols="20"
               rows="8"/>
-            <p className="text-red-600" style={{ visibility: error.descripcion ? "visible" : "hidden" }}>
-              {error.descripcion}
+            <p className="text-red-600" style={{ visibility: error.description ? "visible" : "hidden" }}>
+              {error.description}
             </p>
 
           <button className="bg-zinc-300 mt-2 text-black rounded-3xl p-2"

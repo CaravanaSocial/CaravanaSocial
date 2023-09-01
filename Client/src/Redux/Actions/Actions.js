@@ -30,6 +30,9 @@ export const GET_COUNTRIES = "GET_COUNTRIES";
 export const GET_STATE = "GET_STATE";
 export const GET_CITY = "GET_CITY";
 
+export const GET_CATEGORIES = "GET_CATEGORIES";
+export const  GET_PREFIXES = " GET_PREFIXES";
+
 export const createUser = (user) => {
   const endpoint = "http://localhost:3001/user/signup";
   return async (dispatch) => {
@@ -328,4 +331,33 @@ export const getCity = (value) => {
       console.log("get city", error.message);
     }
   };
+};
+
+export const getCategories =()=>{
+  return async function(dispatch){
+   try {
+     const response = (await axios.get("http://localhost:3001/categories")).data
+     return dispatch({
+       type: GET_CATEGORIES,
+       payload: response
+     })
+   } catch (error) {
+     console.log("cat", error.message)
+   }
+  }
+};
+
+
+export const getPrefixes=()=>{
+  return async function(dispatch){
+    try {
+      const response =(await axios.get("http://localhost:3001/prefixes")).data
+      return dispatch({
+        type: GET_PREFIXES,
+        payload: response
+      })
+    } catch (error) {
+      console.log("prefixes", error.message)
+    }
+  }
 };
