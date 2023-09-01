@@ -20,6 +20,7 @@ export const EDIT_OFFER = "EDIT_OFFER";
 export const CREATE_TRAINING = "CREATE_TRAINING";
 export const DELETE_TRAINING = "DELETE_TRAINING";
 export const EDIT_TRAINING = "EDIT_TRAINING";
+export const GET_TRAINING = "GET_TRAINING";
 
 export const GET_LOCATION = "GET_LOCATION";
 
@@ -214,13 +215,26 @@ export const editOffer = (id) => {
   };
 };
 
+export const getTraining = () => {
+  const endpoint = `http://localhost:3001/training`;
+  return async (dispatch) => {
+    try {
+      const response = await axios(endpoint);
+      const { data } = response
+      return dispatch({ type: GET_TRAINING, payload: data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
 export const createTraining = (training) => {
   const endpoint = "http://localhost:3001/training/create";
   return async (dispatch) => {
     try {
       const response = await axios.post(endpoint, training);
       const { data } = response
-      return dispatch({ type: CREATE_TRAINING });
+      return dispatch({ type: CREATE_TRAINING, payload: data });
     } catch (error) {
       console.log(error);
     }
