@@ -32,12 +32,15 @@ export default function CreateTrainings (){
         })
     }
 
-    const handleSubmitVideo = () => {
-        setInputTrainings({
-            ...inputTrainings,
-            videos: [...inputTrainings.videos, video.video],
-        })
-      };
+    const handleSubmitVideo = () => { 
+        if (video.video){
+            setInputTrainings({
+                ...inputTrainings,
+                videos: [...inputTrainings.videos, video.video],
+            })
+        }
+        setVideo({video: ""})
+    };
 
     const deleteChoice = (videos, value) => {
         const newValues = inputTrainings[videos].filter((event) => event !== value);
@@ -108,6 +111,8 @@ export default function CreateTrainings (){
                 </div>
 
                 <button className="bg-zinc-300 mt-2 text-black rounded-3xl p-2"
+                    type="submit"
+                    onClick={handleSubmit}
                 >Crear</button>
             </div>
             
