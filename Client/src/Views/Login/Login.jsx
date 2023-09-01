@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { login } from "../../Redux/Actions/Actions";
 import { useDispatch, useSelector } from "react-redux";
 import validation from "./validation";
@@ -8,33 +8,30 @@ import validation from "./validation";
 export default function Login () {
 
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const globalErrors = useSelector((state) => state.errors)
     const [errors, setErrors] = useState({});
     const [userData, setUserData] = useState({
         email: "",
         password: ""
     })
-    
 
     const handleChange = (event) => {
         setUserData({
             ...userData,
             [event.target.name]: event.target.value
         });
-        //Falta el Validate para el form
-        setErrors(validation({
-            ...userData,
-            [event.target.name]: event.target.value
-        }));
     };
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        if (Object.keys(errors).length === 0) {
-            dispatch(login(userData)).then((postError) =>{
-                console.log(postError);
-            })
-        }else {console.log("no despache");}
+        dispatch(login(userData)).then((postError) =>{
+            if (!postError){
+                return;
+            }else{
+                navigate("/")
+            }
+        })
     };
 
     return (
@@ -48,6 +45,8 @@ export default function Login () {
                 <div className="border-spacing-96 border-2 border-zinc-100 dark:border-zinc-800 rounded-3xl p-4 my-4">
                     <h1 className="text-4xl border-b-2 border-zinc-100 dark:border-zinc-800">Inicio de Sesion</h1>
                     <br />
+                    <p>{globalErrors.LOGIN?.error ? globalErrors.LOGIN.error : null}</p>
+                    <br />
                     <input className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
                         type="email"
                         name="email"
@@ -55,7 +54,6 @@ export default function Login () {
                         onChange={handleChange}
                         value={userData.email}
                     />
-                    {errors.email && (<span>{errors.email}</span>)}
                     <br />
                     <input className="rounded-3xl px-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
                         type="password"
@@ -64,7 +62,6 @@ export default function Login () {
                         onChange={handleChange}
                         value={userData.password}
                     />
-                    {errors.password && (<span>{errors.password}</span>)}
                     <br />
                     <button className="bg-zinc-300 mt-2 text-black rounded-3xl"
                         onClick={handleSubmit}

@@ -20,6 +20,8 @@ import {
   GET_COUNTRIES,
   GET_STATE,
   GET_TRAINING,
+  GET_CATEGORIES,
+  ERRORS
 } from "../Actions/Actions";
 
 const initialState = {
@@ -33,7 +35,8 @@ const initialState = {
   states: [],
   cities: [],
   trainings: [],
-  prefixes: []
+  prefixes: [],
+  errors: {}
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -157,6 +160,13 @@ export default function rootReducer(state = initialState, action) {
           ...state,
           categories: action.payload
         }  
+      
+    case ERRORS:
+        const errObj= action.payload
+        return {
+          ...state,
+          errors:{...state.errors,[errObj.type]:errObj.error}
+    }
 
     default:
       return { ...state };
