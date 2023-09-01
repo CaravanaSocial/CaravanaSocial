@@ -264,52 +264,54 @@ export const login = (user) => {
   };
 };
 
-export const getCountry =()=>{
-  return async function(dispatch){
-      try {
-          const response = (await axios.get("http://localhost:3001/countries")).data
-          return dispatch({
-              type: GET_COUNTRIES,
-              payload: response
-          })
-      } catch (error) {
-          console.log("get countries", error.message)
+export const getCountry = () => {
+  return async function (dispatch) {
+    try {
+      const response = (await axios.get("http://localhost:3001/countries"))
+        .data;
+      return dispatch({
+        type: GET_COUNTRIES,
+        payload: response,
+      });
+    } catch (error) {
+      console.log("get countries", error.message);
+    }
+  };
+};
+
+export const getState = (value) => {
+  console.log("estad", value);
+  return async function (dispatch) {
+    try {
+      if (value !== "default") {
+        const response = (
+          await axios.get("http://localhost:3001/countries?name=" + value)
+        ).data;
+
+        return dispatch({
+          type: GET_STATE,
+          payload: response,
+        });
       }
-  }
-}
+    } catch (error) {
+      console.log("get state", error.message);
+    }
+  };
+};
 
-export const getState =(value)=>{
-  return async function(dispatch){
-      try {
-          if(value !== "default"){
-              const response = (await axios.get("http://localhost:3001/countries?name="+ value)).data
-              return dispatch({
-                  type: GET_STATE,
-                  payload: response
-              })
-          
-          }
-      } catch (error) {
-          console.log("get state", error.message)
-      }
-  }
-}
-
-
-export const getCity =(value)=>{
-  return async function(dispatch){
-      try {
-          if(value !== "default"){
-              const response = (await axios.get("http://localhost:3001/countries?name="+ value)).data
-              return dispatch({
-                  type: GET_CITY,
-                  payload: response
-              })
-          
-          }
-      } catch (error) {
-          console.log("get city", error.message)
-      }
-  }
-}
-
+export const getCity = (value) => {
+  console.log("value", value);
+  return async function (dispatch) {
+    try {
+      const response = (
+        await axios.get("http://localhost:3001/countries?name=" + value)
+      ).data;
+      return dispatch({
+        type: GET_CITY,
+        payload: response,
+      });
+    } catch (error) {
+      console.log("get city", error.message);
+    }
+  };
+};

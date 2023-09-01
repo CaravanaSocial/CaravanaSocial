@@ -11,7 +11,8 @@ const RegisterCompany = () => {
   const state = useSelector((state) => state.states);
   const city = useSelector((state) => state.cities);
 
-  console.log("city", city);
+  console.log("local state", state);
+  console.log("local city", city);
 
   const [companyInput, setCompanyInput] = useState({
     nombre: "",
@@ -26,7 +27,6 @@ const RegisterCompany = () => {
     location: { country: "", state: "", city: "" },
   });
 
-  console.log(companyInput.location);
   const [error, setError] = useState({});
 
   useEffect(() => {
@@ -48,29 +48,39 @@ const RegisterCompany = () => {
   };
 
   const handleLocation = (event) => {
-    event.preventDefault();
-    setCompanyInput({
-      ...companyInput,
-      location: {
-        ...companyInput.location,
-        [event.target.name]: event.target.value,
-      },
-    });
-    if (companyInput.location.country !== "undefined") {
-      console.log("evento", event.target.value);
-      console.log("evento", event.target.name);
+    // event.preventDefault();
 
+    if (!companyInput.location.country) {
+      setCompanyInput({
+        ...companyInput,
+        location: {
+          ...companyInput.location,
+          [event.target.name]: event.target.value,
+        },
+      });
       dispatch(getState(event.target.value));
+
+      return;
     }
-    if (companyInput.location.state !== "undefined") {
-      dispatch(getCity(companyInput.location.state));
+
+    if (companyInput.location.country) {
+      setCompanyInput({
+        ...companyInput,
+        location: {
+          ...companyInput.location,
+          [event.target.name]: event.target.value,
+        },
+      });
+      dispatch(getState(event.target.value));
+      dispatch(getCity(event.target.options[event.target.selectedIndex].id));
+      return;
     }
   };
 
   const isSubmitDisabled = Object.keys(error).length > 0;
 
   const handleSubmit = () => {
-    dispatch(createCompany());
+    dispatch(createCompany(companyInput));
     alert("registro con exito");
     setCompanyInput({
       nombre: "",
@@ -88,6 +98,7 @@ const RegisterCompany = () => {
     navigate("/login");
   };
 
+  console.log("local state", companyInput);
   return (
     <div>
       <div>
@@ -232,26 +243,38 @@ const RegisterCompany = () => {
           </div>
 
           <div>
-            <select onClick={handleLocation} name="country">
+            <select onChange={handleLocation} name="country">
               <option value="default">pais</option>
               {country.map((p) => {
-                return <option value={p}>{p}</option>;
+                return (
+                  <option key={p} value={p}>
+                    {p}
+                  </option>
+                );
               })}
             </select>
           </div>
           <div>
             <select onChange={handleLocation} name="state">
               <option value="default">estado</option>
-              {state.stateName?.map((p) => {
-                return <option value={p}>{p}</option>;
+              {state.allStates?.map((p) => {
+                return (
+                  <option key={p.id} id={p.id} value={p.name}>
+                    {p.name}
+                  </option>
+                );
               })}
             </select>
           </div>
           <div>
-            <select onChange={handleLocation} name="city">
+            <select name="city">
               <option value="default">ciudad</option>
               {city?.map((p) => {
-                return <option value={p}>{p}</option>;
+                return (
+                  <option key={p} value={p}>
+                    {p}
+                  </option>
+                );
               })}
             </select>
           </div>
