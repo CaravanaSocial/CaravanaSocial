@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useRef } from "react";
+import Validation from "./Validation"
 
 export default function CreateTrainings (){
     const addBtn = useRef(null);
@@ -10,8 +11,6 @@ export default function CreateTrainings (){
         description: "",
         videos: []
     });
-
-    console.log(inputTrainings)
 
     const handleKeyPress = (event) => {
         if (event.key === "Enter") {
@@ -24,12 +23,20 @@ export default function CreateTrainings (){
             ...inputTrainings,
             [event.target.name]: event.target.value
         })
+        setError(Validation({
+            ...inputTrainings,
+            [event.target.name]: event.target.value
+        }))
     }
 
     const handleChangeVideo = (event) => {
         setVideo({
             [event.target.name]: event.target.value
         })
+        setError(Validation({
+            ...video,
+            [event.target.name]: event.target.value
+        }))
     }
 
     const handleSubmitVideo = () => { 
@@ -68,6 +75,8 @@ export default function CreateTrainings (){
                     value={inputTrainings.name}
                     onChange={handleChange}
                     placeholder="Nombre..." />
+                <br />
+                {error.name && <span>{error.name}</span>}
 
                 <h2>Descripción</h2>
                 <textarea className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
@@ -78,6 +87,8 @@ export default function CreateTrainings (){
                     value={inputTrainings.description}
                     onChange={handleChange}
                     placeholder="Descripcion..." />
+                <br />
+                {error.description && <span>{error.description}</span>}
 
                 <h2>Video</h2>
                 <input className="align-text-top rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
@@ -93,6 +104,8 @@ export default function CreateTrainings (){
                     onClick={handleSubmitVideo}
                     ref={addBtn}
                 >+</button>
+                <br />
+                {error.video && <span>{error.video}</span>}
                 
 
                 <div>
