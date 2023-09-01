@@ -17,7 +17,7 @@ module.exports = (sequelize) => {
             allowNull: false,
         },
         testimony:{
-            type: DataTypes.STRING,
+            type: DataTypes.TEXT,
             allowNull: false
         }
     })
