@@ -20,6 +20,7 @@ import {
   GET_COUNTRIES,
   GET_STATE,
   GET_TRAINING,
+  ERRORS
 } from "../Actions/Actions";
 
 const initialState = {
@@ -27,12 +28,13 @@ const initialState = {
   offer: [],
   companies: [],
   users: [],
-  currentAccount: [],
+  currentAccount: {},
   admins: [],
   countries:[],
   states: [],
   cities: [],
-  trainings: []
+  trainings: [],
+  errors: {}
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -150,6 +152,13 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         trainings: action.payload
       } 
+
+    case ERRORS:
+      const errObj = action.payload
+      return{
+        ...state,
+        errors:{...state.errors,[errObj.type]:errObj.error}
+      }
 
     default:
       return { ...state };

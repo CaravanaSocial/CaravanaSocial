@@ -1,14 +1,20 @@
 import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { login } from "../../Redux/Actions/Actions";
+import { useDispatch, useSelector } from "react-redux";
+import validation from "./validation";
 
 export default function Login () {
+
+    const dispatch = useDispatch()
+    const globalErrors = useSelector((state) => state.errors)
+    const [errors, setErrors] = useState({});
     const [userData, setUserData] = useState({
         email: "",
         password: ""
     })
     
-    const [error, setError] = useState({});
 
     const handleChange = (event) => {
         setUserData({
@@ -16,16 +22,19 @@ export default function Login () {
             [event.target.name]: event.target.value
         });
         //Falta el Validate para el form
-        setError("Validation"({
+        setErrors(validation({
             ...userData,
             [event.target.name]: event.target.value
         }));
     };
 
     const handleSubmit = (event) => {
-        if (error.length) {
-            event.preventDefault();
-        }
+        event.preventDefault();
+        if (Object.keys(errors).length === 0) {
+            dispatch(login(userData)).then((postError) =>{
+                console.log(postError);
+            })
+        }else {console.log("no despache");}
     };
 
     return (
@@ -46,7 +55,7 @@ export default function Login () {
                         onChange={handleChange}
                         value={userData.email}
                     />
-                    {error.email && (<span>{error.email}</span>)}
+                    {errors.email && (<span>{errors.email}</span>)}
                     <br />
                     <input className="rounded-3xl px-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
                         type="password"
@@ -55,7 +64,7 @@ export default function Login () {
                         onChange={handleChange}
                         value={userData.password}
                     />
-                    {error.password && (<span>{error.password}</span>)}
+                    {errors.password && (<span>{errors.password}</span>)}
                     <br />
                     <button className="bg-zinc-300 mt-2 text-black rounded-3xl"
                         onClick={handleSubmit}
@@ -71,7 +80,7 @@ export default function Login () {
                     <hr />
                     <h4>Aun no tienes cuenta?</h4>
                     <h4>Registrate</h4>
-                    <Link to="/register-user">
+                    <Link to="/registerUser">
                         <button className="bg-zinc-300 mr-1 text-black rounded-3xl">Usuario</button>
                     </Link>
                     <Link to="/register-company">
