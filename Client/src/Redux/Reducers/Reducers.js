@@ -26,6 +26,7 @@ const initialState = {
   offer: [],
   companies: [],
   users: [],
+  currentAccount: [],
   admins: [],
   countries:[],
   states: [],
@@ -37,6 +38,7 @@ export default function rootReducer(state = initialState, action) {
     case CREATE_USER:
       return {
         ...state,
+        currentAccount: action.payload
       };
 
     case GET_USERS:
@@ -121,6 +123,7 @@ export default function rootReducer(state = initialState, action) {
     case LOGIN:
       return {
         ...state,
+        currentAccount: action.payload
       };
 
     case GET_COUNTRIES:
