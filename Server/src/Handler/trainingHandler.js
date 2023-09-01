@@ -42,9 +42,9 @@ const trainingHandler = async (req, res) => {
         const foundTraining = await getCreatedTraining(req.body)
 
         if(foundTraining){
-            return res.status(200).send('Capacitacion creada')
+            return res.status(200).send('Capacitacion creada correctamente')
         }else{
-            return res.status(404).send('Capacitacion ya existente')
+            return res.status(400).send('Capacitacion ya existente')
         }
         
         
@@ -67,7 +67,7 @@ const updateTraining = async (req, res) => {
 
         return res.status(200).send(allDone)
     } catch (error) {
-        res.status(400).json({error:"hola"})
+        res.status(400).send(error.message)
     }
 }
 

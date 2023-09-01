@@ -1,0 +1,14 @@
+{
+    "rubros":[
+        {"name" : "Salud y Medicina"},
+        {"name" : "Tecnología de la Información (TI)"},
+        {"name" : "Educación"},
+        {"name" : "Ingeniería"},
+        {"name" : "Finanzas"},
+        {"name" : "Sector Automotriz"},
+        {"name" : "Artes y Entretenimiento"},
+        {"name" : "Turismo y Hospitalidad"},
+        {"name" : "Construcción"},
+        {"name" : "Marketing y Publicidad"}
+    ]
+}
