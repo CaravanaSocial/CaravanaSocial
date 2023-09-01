@@ -21,13 +21,13 @@ const createCompanyAccController = async (props) =>{
 
     if(created){
         //CREAR LA RELACIÓN CON EL RUBRO
-        /* for(let i =0 ; i<category;i++){
+        for(let i =0 ; i<category.length;i++){
             const categoryId = (await areaTraining.findOne({
                 where:{
                     name: category[i]
                 }
             })).id
-            await newCompany.addRubro(categoryId)
+            await newCompany.addAreaTraining(categoryId)
         }
         const returning = await companies.findOne({
             where: {
@@ -40,13 +40,12 @@ const createCompanyAccController = async (props) =>{
                     through:{attributes:[]}
                 }
             ]
-        }) */ //Descomentar y en acc:returning
+        })
 
         const companyId = newCompany.id
         const token = jwt.sign({companyId},SIGNATURE)
-        newCompany.password=0
-        console.log("prototipos", newCompany.__proto__);
-        return {acc:newCompany, token}
+        returning.password=0
+        return {acc:returning, token}
     }
     return "used"
 }
@@ -61,12 +60,32 @@ const getCompaniesController = async () =>{
 }
 
 const updateCompanyController = async (props, id) =>{
+    const {category} = props
     const updated = await companies.update(props,{
         where : {id}
     })
     //Eliminar y volver a relacionar con el rubro.
     if(updated){
-        const updatedCompany = companies.findOne({where:{id}})
+        if(category){
+            const company = await companies.findByPk(id)
+            await company.setAreaTrainings([]);
+            for(let i =0; i<category.length; i++){
+                const newCategory = (await areaTraining.findOne({
+                    where:{
+                        name: category[i]
+                    }
+                }))
+                await company.addAreaTraining(newCategory)
+            }
+        }
+        const updatedCompany = companies.findOne({where:{id},
+            include: [
+            {
+                model: areaTraining,
+                attributes: ["name"],
+                through:{attributes:[]}
+            }
+        ]})
         return updatedCompany
     }throw Error("Something went wrong")
 }
