@@ -29,17 +29,14 @@ export default function validation(input) {
     if (!input.birthdate) {
         error.birthdate = "Debe ingresar una Fecha de Nacimiento"
     }
-    if (!input.country) {
-        error.country = "Debe seleccionar un País"
+    if (!input.location.country) {
+        error.location.country = "Debe seleccionar un País"
     }
-    if (!input.state) {
+    if (!input.location.state) {
         error.state = "Debe seleccionar un Estado/Provincia"
     }
-    if (!input.city) {
+    if (!input.location.city) {
         error.city = "Debe seleccionar una Ciudad"
-    }
-    if (!input.CUD) {
-        error.CUD = "Debe ingresar su código CUD"
     }
     if (!input.description) {
         error.description = "Debe ingresar una descripción de su trabajo"

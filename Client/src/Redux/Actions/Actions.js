@@ -296,7 +296,6 @@ export const getCountry = () => {
 };
 
 export const getState = (value) => {
-  console.log("estad", value);
   return async function (dispatch) {
     try {
       if (value !== "default") {
@@ -316,7 +315,6 @@ export const getState = (value) => {
 };
 
 export const getCity = (value) => {
-  console.log("value", value);
   return async function (dispatch) {
     try {
       const response = (
