@@ -37,6 +37,7 @@ const {
   updateAdminHandler,
 } = require("../Handler/adminHandlers");
 const {getRubrosHandler} = require("../Handler/rubrosHandler")
+const {getPrefixesHandler} = require("../Handler/prefixesHandler")
 const router = Router();
 //Rutas de Offer
 router.post("/offer", postOfferHandler);
@@ -79,5 +80,7 @@ router.post("/success/create", createSuccessStories)
 router.get("/success/",getAllSuccessStories)
 router.patch("/success/update", updateSuccessStories)
 router.delete("/success/delete", deleteSuccessStories)
-router.get("/categories",getRubrosHandler)
+
+router.get("/categories", getRubrosHandler)
+router.get("/prefixes", getPrefixesHandler)
 module.exports = router;
