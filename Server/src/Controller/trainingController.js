@@ -39,7 +39,7 @@ const getCreatedTraining = async (body) => {
     try {
         console.log('controller')
         const {name, description, video, companyId} = body
-        if(!name || !description || !video || !companyId) return res.status(401).json({error: "Falta informacion"})
+        if(!name || !description || !video || !companyId) return res.status(400).json({error: "Falta informacion"})
         console.log(video)
 
         const [user,created] = await training.findOrCreate({
@@ -78,7 +78,7 @@ const changer = async (body) => {
 
         await trainingToChange.update(newTraining)
 
-        return "Capacitacion Actualizada"
+        return newTraining
     } catch (error) {
         throw error
     }

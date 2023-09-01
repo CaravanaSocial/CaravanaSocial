@@ -2,6 +2,14 @@ const { Router } = require("express");
 const { trainingHandler } = require("../Handler/trainingHandler");
 const { getTrainingByName } = require("../Handler/trainingHandler");
 const { getAlltraining } = require("../Handler/trainingHandler");
+const { deletetraining } = require("../Handler/trainingHandler");
+const { updateTraining } = require("../Handler/trainingHandler");
+
+const { createSuccessStories } = require("../Handler/successHandler")
+const { getAllSuccessStories } = require("../Handler/successHandler")
+const { updateSuccessStories } = require("../Handler/successHandler")
+const { deleteSuccessStories } = require("../Handler/successHandler")
+
 const {
   postOfferHandler,
   deleteOfferHandler,
@@ -12,8 +20,6 @@ const { loginHandler } = require("../Handler/loginHandler");
 
 const { finterCountryHandler } = require("../Handler/filterCountry");
 
-const { deletetraining } = require("../Handler/trainingHandler");
-const { updateTraining } = require("../Handler/trainingHandler");
 
 const {
   companiesSignUpHandler,
@@ -56,7 +62,7 @@ router.patch("/user/update/:id", updateUserHandler);
 router.post("/admin/signup", adminSignUpHandler);
 router.get("/admin/all", getAdminsHandler);
 router.patch("/admin/update/:id", updateAdminHandler);
-
+//---------------------training--------------------
 router.get("/training", (req, res) => {
   const { name } = req.query;
   if (!name) {
@@ -65,13 +71,13 @@ router.get("/training", (req, res) => {
     getTrainingByName(req, res);
   }
 });
-
 router.post("/training/create", trainingHandler);
-
 router.delete("/training/delete", deletetraining);
-
-//cambios
-
 router.patch("/training/update", updateTraining);
+//--------------------Success-----------------------
+router.post("/success/create", createSuccessStories)
+router.get("/success/",getAllSuccessStories)
+router.patch("/success/update", updateSuccessStories)
+router.delete("/success/delete", deleteSuccessStories)
 
 module.exports = router;
