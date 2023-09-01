@@ -30,7 +30,7 @@ export default function validation(input) {
         error.birthdate = "Debe ingresar una Fecha de Nacimiento"
     }
     if (!input.location.country) {
-        error.location.country = "Debe seleccionar un País"
+        error.country = "Debe seleccionar un País"
     }
     if (!input.location.state) {
         error.state = "Debe seleccionar un Estado/Provincia"

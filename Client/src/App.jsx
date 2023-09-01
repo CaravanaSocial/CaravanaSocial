@@ -1,7 +1,7 @@
 import "./App.css";
 import { Route, Routes, useLocation } from "react-router-dom";
 import NavBar from "./components/NavBar";
-import Login from "./Views/Login";
+import Login from "./Views/Login/Login";
 import RegisterUser from "./Views/RegisterUser/RegisterUser";
 import RegisterCompany from "./Views/RegisterCompany/RegisterCompany";
 import LandingPage from "./Views/LandingPage";

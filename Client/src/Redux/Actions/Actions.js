@@ -26,6 +26,8 @@ export const GET_LOCATION = "GET_LOCATION";
 
 export const LOGIN = "LOGIN";
 
+export const ERRORS = "ERRORS"
+
 export const GET_COUNTRIES = "GET_COUNTRIES";
 export const GET_STATE = "GET_STATE";
 export const GET_CITY = "GET_CITY";
@@ -277,8 +279,11 @@ export const login = (user) => {
       const response = await axios.post(endpoint, user);
       const { data } = response
       return dispatch({ type: LOGIN, payload: data });
-    } catch (error) {
-      console.log(error);
+    }catch (error) {
+      dispatch({
+        type: ERRORS,
+        payload: { type: LOGIN, error: error.response.data}
+      })
     }
   };
 };

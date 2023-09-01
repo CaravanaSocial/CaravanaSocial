@@ -12,7 +12,6 @@ const RegisterCompany = () => {
   const city = useSelector((state) => state.cities);
   const category = useSelector((state) => state.categories);
   // const prefixes = useSelector((state) => state.prefixes);
-  
 
   const [companyInput, setCompanyInput] = useState({
     name: "",
@@ -180,7 +179,7 @@ const RegisterCompany = () => {
               {error.nameCompany}
             </p>
 
-            <select className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
+            {/* <select className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
               onChange={handleCategory}
               name="category">
               <option value="default">rubro</option>
@@ -191,8 +190,8 @@ const RegisterCompany = () => {
                   </option>
                 );
               })}
-            </select>
-            <span>Rubros seleccionados: </span>
+            </select> */}
+            {/* <span>Rubros seleccionados: </span>
                 <div>
                   {companyInput.category.map((cat)=>{
                     return <div>{cat}</div>
@@ -200,14 +199,14 @@ const RegisterCompany = () => {
                 </div>
             <p className="text-red-600" style={{ visibility: error.category ? "visible" : "hidden" }}>
               {error.category}
-            </p>
+            </p> */}
 
             
             <h2>Telefono: </h2>
             <select name="code" onClick={handlePrefix}>
               <option value="defualt">codigo</option>
-              {state?.map((c)=>{
-               return <option value={c.code}>{c.allStates.name}</option>
+              {state.allStates?.map((c)=>{
+               return <option value={c.code}>{c.name}</option>
               })}
             </select>
 
