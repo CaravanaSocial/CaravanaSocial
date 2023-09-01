@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useRef } from "react";
 import Validation from "./Validation"
+import { createTraining } from "../../Redux/Actions/Actions";
 
 export default function CreateTrainings (){
     const addBtn = useRef(null);
@@ -60,6 +61,10 @@ export default function CreateTrainings (){
     const handleSubmit = (event) => {
         if (error.length) {
             event.preventDefault();
+        }
+        if (Object.keys(error).length === 0){
+            dispatch(createTraining(inputTrainings))
+            navigate("/")
         }
     };
 
