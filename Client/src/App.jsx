@@ -6,6 +6,7 @@ import RegisterUser from "./Views/RegisterUser/RegisterUser";
 import RegisterCompany from "./Views/RegisterCompany/RegisterCompany";
 import LandingPage from "./Views/LandingPage";
 import Footer from "./components/Footer";
+import CreateTrainings from "./Views/CreateTrainings/CreateTrainings";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/registerUser" element={<RegisterUser />} />
         <Route path="/register-company" element={<RegisterCompany />} />
+        <Route path="/create-trainings" element={<CreateTrainings/>}/>
       </Routes>
       <Footer />
     </div>
