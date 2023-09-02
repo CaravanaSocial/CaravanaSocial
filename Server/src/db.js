@@ -68,6 +68,9 @@ areaTraining.belongsToMany(offer, { through: 'offers_rubro'});
 companies.belongsToMany(areaTraining, {through: "companies_areaTraining"});
 areaTraining.belongsToMany(companies, {through: "companies_areaTraining"});
 
+user.belongsToMany(areaTraining, {through: "users_areaTraining"});
+areaTraining.belongsToMany(user, {through: "users_areaTraining"});
+
 
 module.exports = {
   ...sequelize.models,
