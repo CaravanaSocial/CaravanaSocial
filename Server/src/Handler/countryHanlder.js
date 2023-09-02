@@ -1,8 +1,8 @@
-const { CreateState } = require("../Controller/stateController");
-const { CreateCities } = require("../Controller/citiesController");
-const { createCountries } = require("../Controller/CountriesController");
-const {createPrefixes} = require("../Controller/prefixesController")
-const {createRubro} = require("../Controller/rubroController")
+const { CreateState } = require("../Controller/StarterDB/stateController");
+const { CreateCities } = require("../Controller/StarterDB/citiesController");
+const { createCountries } = require("../Controller/StarterDB/CountriesController");
+const {createPrefixes} = require("../Controller/StarterDB/prefixesController")
+const {createRubro} = require("../Controller/StarterDB/rubroController")
 
 const CreateData = async () => {
   try {

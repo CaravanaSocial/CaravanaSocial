@@ -1,5 +1,5 @@
-const countries = require("../Tools/countries.json");
-const { country } = require("../db");
+const countries = require("../../Tools/countries.json");
+const { country } = require("../../db");
 
 const createCountries = async () => {
   const dbInformation = await country.findAll();

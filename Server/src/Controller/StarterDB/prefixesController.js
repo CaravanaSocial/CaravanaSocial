@@ -1,5 +1,5 @@
-const Prefixes = require('../Tools/Prefixes.json')
-const {prefix} = require('../db')
+const Prefixes = require('../../Tools/Prefixes.json')
+const {prefix} = require('../../db')
 
 const createPrefixes = async()=>{
     const dbInformation = await prefix.findAll()
@@ -12,13 +12,6 @@ const createPrefixes = async()=>{
     }
 }
 
-const getPrefixesController = async () =>{
-    const prefixes = await prefix.findAll()
-    if(prefixes.length>0) return prefixes
-    throw Error("There is no prefixes")
-}
-
 module.exports = {
-    createPrefixes,
-    getPrefixesController
+    createPrefixes
 }

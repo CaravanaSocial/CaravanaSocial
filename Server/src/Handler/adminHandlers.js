@@ -1,4 +1,6 @@
-const {createAdminAccController, getAdminsController,updateAdminController} = require("../Controller/adminControllers")
+const {createAdminAccController} = require('../Controller/Admin/createAdminAccController')
+const  {getAdminsController} = require('../Controller/Admin/getAdminsController')
+const  {updateAdminController} = require("../Controller/Admin/updateAdminController")
 
 const adminSignUpHandler = async (req, res)=>{
     try {
