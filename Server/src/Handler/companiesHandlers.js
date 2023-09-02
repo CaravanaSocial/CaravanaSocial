@@ -1,5 +1,7 @@
-const {createCompanyAccController, getCompaniesController, updateCompanyController} = require("../Controller/companiesControllers")
-const {getUserAccController} = require("../Controller/userController")
+const {createCompanyAccController} = require("../Controller/Companies/createCompanyAccController")
+const {getCompaniesController} = require("../Controller/Companies/getCompaniesController")
+const {updateCompanyController} = require("../Controller/Companies/updateCompanyController")
+const {getUserAccController} = require("../Controller/User/getUserAccController")
 
 const companiesSignUpHandler = async (req, res)=>{
     try {

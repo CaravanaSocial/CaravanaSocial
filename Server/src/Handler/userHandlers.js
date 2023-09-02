@@ -1,5 +1,8 @@
-const {createUserAccController, getUsersController, updateUserController} = require("../Controller/userController")
-const {getCompanyAccController} = require("../Controller/companiesControllers")
+const {createUserAccController} = require("../Controller/User/createUserAccController")
+const {getUsersController}= require("../Controller/User/getUsersController")
+const {updateUserController} = require("../Controller/User/updateUserController")
+const {getCompanyAccController} = require("../Controller/Companies/getCompanyAccController")
+
 const userSignUpHandler = async (req, res)=>{
     try {
         const findAcc = await getCompanyAccController(req.body.email)
