@@ -144,11 +144,15 @@ export const getCompanies = () => {
 
 export const createCompany = (company) => {
   const endpoint = "http://localhost:3001/company/signup";
+  console.log(company)
   return async (dispatch) => {
     try {
       const response = await axios.post(endpoint, company);
       const { data } = response
-      return dispatch({ type: CREATE_COMPANY });
+      return dispatch({ 
+        type: CREATE_COMPANY,
+        payload: data
+       });
     } catch (error) {
       console.log(error);
     }
