@@ -3,7 +3,7 @@ const {postOfferHandler, deleteOfferHandler, getOfferHandler, updateOfferHandler
 
 const router = Router()
 
-router.post("/", postOfferHandler);
+router.post("/:id", postOfferHandler);
 router.delete("/:id", deleteOfferHandler);
 router.get("/", getOfferHandler);
 router.patch("/:id", updateOfferHandler);
