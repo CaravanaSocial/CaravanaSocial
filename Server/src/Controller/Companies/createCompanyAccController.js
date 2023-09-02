@@ -1,8 +1,8 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const {companies} = require("../../db")
-const {areaTraining} = require("../../db")
 const {SIGNATURE} = process.env
+const {areaTraining} = require("../../db")
 
 const createCompanyAccController = async (props) =>{
     const {password, email, category} = props
