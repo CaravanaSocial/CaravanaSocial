@@ -29,7 +29,7 @@ export default function Login () {
         dispatch(login(userData)).then((postError) =>{
             if (!postError){
                 alert("loginnnnnn")
-                navigate("/") //navigate("/home")
+                navigate("/homeUsers")
                 dispatch(clearErrors())
             }else{
                 dispatch(setNewErrors({type: "LOGIN", error: postError.response.data}))
