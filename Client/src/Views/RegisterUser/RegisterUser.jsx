@@ -24,12 +24,13 @@ export default function RegisterUser() {
          preferences: "", 
          email: "", 
          password: "",
-         certificates: "",
+         certificates: [],
          freelancer: false,
          description: "",
          adress: ""
         }
     )
+
     useEffect(()=>{
         dispatch(getCountry())
     }, [])
@@ -216,7 +217,8 @@ export default function RegisterUser() {
                         type='url'
                         name='certificates'
                         value={userData.certificates}
-                        onChange={handleChange} />
+                        onChange={handleChange} 
+                    />
 
                     <h2>Sos Freelancer?</h2>
                     <label> Si <input type='checkbox' checked={checkboxFreelancer === 'SI'}
