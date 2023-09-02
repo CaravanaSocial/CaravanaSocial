@@ -1,8 +1,8 @@
-const { createSuccSto,
-    getSuccessStories,
-    changeStory,
-    delSuc
-} = require("../Controller/successController")
+const { createSuccSto} = require("../Controller/SuccessStories/createSuccSto")
+const {getSuccessStories} = require("../Controller/SuccessStories/getSuccessStories")
+const {changeStory} = require("../Controller/SuccessStories/changeStory")
+const {delSuc} = require("../Controller/SuccessStories/delSuc")
+
 
 const createSuccessStories = async (req, res) => {
     try {

@@ -1,7 +1,6 @@
-const {
-  filterCountryController,
-  filterGetallCountries,
-} = require("../Controller/filterCountryController");
+const {filterCountryController} = require("../Controller/Country/filterCountryController");
+const {filterGetallCountries} = require("../Controller/Country/filterGetallCountries");
+
 
 
 const finterCountryHandler = async (req, res) => {

@@ -1,8 +1,7 @@
-const { country, state, city, prefix } = require("../db");
+const { country, state, city, prefix } = require("../../db");
 
 const filterCountryController = async (name) => {
   const responseCountry = await country.findOne({ where: { name: name } });
-  const responsePrefix = await prefix.findOne({where:{name:name}})
 
   if (responseCountry === null) {
     const responseCity = await city.findOne({ where: { name: name } });
@@ -28,14 +27,6 @@ const filterCountryController = async (name) => {
   }
 };
 
-const filterGetallCountries = async () => {
-  const response = await country.findAll({ attributes: ["name"] });
-  const newResponse = response.map((name) => name.name);
-
-  return newResponse;
-};
-
 module.exports = {
-  filterCountryController,
-  filterGetallCountries,
+  filterCountryController
 };

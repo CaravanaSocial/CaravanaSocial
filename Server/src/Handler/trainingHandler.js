@@ -1,8 +1,8 @@
-const { delTraining } = require('../Controller/trainingController')
-const { changer } = require('../Controller/trainingController')
-const { getCreatedTraining } = require('../Controller/trainingController')
-const { getAll } = require('../Controller/trainingController')
-const { getTrainingOnDb } = require('../Controller/trainingController')
+const { delTraining } = require('../Controller/Trainings/delTraining')
+const { changer } = require('../Controller/Trainings/changer')
+const { getCreatedTraining } = require('../Controller/Trainings/getCreatedTraining')
+const { getAll } = require('../Controller/Trainings/getAll')
+const { getTrainingOnDb } = require('../Controller/Trainings/getTrainingOnDb')
 
 const getAlltraining = async (req, res) => {
     try {

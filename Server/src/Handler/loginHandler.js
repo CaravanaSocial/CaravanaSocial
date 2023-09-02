@@ -1,7 +1,7 @@
-const { getAdminAccController } = require("../Controller/adminControllers")
-const { getCompanyAccController } = require("../Controller/companiesControllers")
-const { getUserAccController } = require("../Controller/userController")
-const {loginController} = require("../Controller/loginController")
+const { getAdminAccController } = require("../Controller/Admin/getAdminAccController")
+const { getCompanyAccController } = require("../Controller/Companies/getCompanyAccController")
+const { getUserAccController } = require("../Controller/User/getUserAccController")
+const {loginController} = require("../Controller/Login/loginController")
 
 const loginHandler = async (req, res) =>{
     const {email, password} = req.body
