@@ -109,7 +109,7 @@ export default function RegisterUser() {
     return (
         <div className="inline-block m-4 p-4">
             <div className="border-spacing-96 border-2 border-zinc-100 dark:border-zinc-800 rounded-3xl p-4 my-4">
-                <h1 className="text-4xl border-b-2 border-zinc-100 dark:border-zinc-800">REGISTRO</h1>
+                <h1 className="text-4xl border-b-2 border-zinc-100 dark:border-zinc-800">Registrarme como Usuario</h1>
                 <form onSubmit={handleSubmit} >
                     <h2>Nombre</h2>
                     <input className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
