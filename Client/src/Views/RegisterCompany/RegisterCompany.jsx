@@ -258,11 +258,12 @@ const RegisterCompany = () => {
                 );
               })}
             </select>
+            <br/>
             <span>Rubros seleccionados: </span>
-                <div>
+                <div className="p-2 m-auto bg-zinc-300 text-zinc-800 focus:border-transparent w-[200px] justify-center align-middle rounded-3xl">
                   {companyInput.category.map((cat)=>{
-                    return <div>{cat}
-                    <button className="text-red-600" onClick={handleDelCategory} value={cat}> x</button></div>
+                    return <div className="text-center bg-zinc-400 mb-1 rounded-3xl">{cat}
+                    <button className="bg-red-600 px-1 text-white h-[20px] m-auto rounded-3xl" onClick={handleDelCategory} value={cat}> x</button></div>
                   })}
                 </div>
             <p className="text-red-600" style={{ visibility: error.category ? "visible" : "hidden" }}>
