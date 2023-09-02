@@ -2,16 +2,23 @@ import React from "react";
 import { useState, useRef } from "react";
 import Validation from "./Validation"
 import { createTraining } from "../../Redux/Actions/Actions";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export default function CreateTrainings (){
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const addBtn = useRef(null);
     const [video, setVideo] = useState({video: ""});
     const [error, setError] = useState({});
     const [inputTrainings, setInputTrainings] = useState({
+        companyId: "9c53d9cf-01f4-4909-bce6-2708fcecc936",
         name: "",
         description: "",
-        videos: []
+        video: []
     });
+
+    console.log(inputTrainings)
 
     const handleKeyPress = (event) => {
         if (event.key === "Enter") {
@@ -44,17 +51,17 @@ export default function CreateTrainings (){
         if (video.video){
             setInputTrainings({
                 ...inputTrainings,
-                videos: [...inputTrainings.videos, video.video],
+                video: [...inputTrainings.video, video.video],
             })
         }
         setVideo({video: ""})
     };
 
-    const deleteChoice = (videos, value) => {
-        const newValues = inputTrainings[videos].filter((event) => event !== value);
+    const deleteChoice = (video, value) => {
+        const newValues = inputTrainings[video].filter((event) => event !== value);
         setInputTrainings({
             ...inputTrainings,
-            videos: newValues
+            video: newValues
         })
     };
     
@@ -62,10 +69,9 @@ export default function CreateTrainings (){
         if (error.length) {
             event.preventDefault();
         }
-        if (Object.keys(error).length === 0){
-            dispatch(createTraining(inputTrainings))
-            navigate("/")
-        }
+        dispatch(createTraining(inputTrainings))
+        navigate("/")
+        console.log("Creado");
     };
 
     return (
@@ -114,7 +120,7 @@ export default function CreateTrainings (){
                 
 
                 <div>
-                    {inputTrainings.videos.map((v, i) => {
+                    {inputTrainings.video.map((v, i) => {
                         if (i < 7) {
                             return (
                                 <div key={i}>
