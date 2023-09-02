@@ -2,6 +2,7 @@ const {postOfferController} = require("../Controller/Offer/postOfferController")
 const {deleteOfferController} = require("../Controller/Offer/deleteOfferController")
 const {getOfferController} = require("../Controller/Offer/getOfferController")
 const {updateOfferController} = require('../Controller/Offer/updateOfferController')
+const {getOfferByIdController} = require("../Controller/Offer/getOfferByIdController")
 
 const postOfferHandler = async (req, res)=>{
         const data = (req.body)
@@ -51,9 +52,20 @@ const updateOfferHandler = async(req, res)=>{
     }
 }
 
+const getOfferByIdHandler = async (req, res) =>{
+    try {
+        const {id} = req.params
+        const offer = await getOfferByIdController(id)
+        return res.status(200).json(offer)
+    } catch (error) {
+        return  res.status(500).send({error:error.message})
+    }
+}
+
 module.exports = {
     postOfferHandler,
     deleteOfferHandler,
     getOfferHandler,
-    updateOfferHandler
+    updateOfferHandler,
+    getOfferByIdHandler
 }
