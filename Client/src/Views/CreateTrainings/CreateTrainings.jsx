@@ -2,23 +2,20 @@ import React from "react";
 import { useState, useRef } from "react";
 import Validation from "./Validation"
 import { createTraining } from "../../Redux/Actions/Actions";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-export default function CreateTrainings (){
+export default function createTrainings (){
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const addBtn = useRef(null);
     const [video, setVideo] = useState({video: ""});
     const [error, setError] = useState({});
     const [inputTrainings, setInputTrainings] = useState({
-        companyId: "9c53d9cf-01f4-4909-bce6-2708fcecc936",
         name: "",
         description: "",
         video: []
     });
-
-    console.log(inputTrainings)
 
     const handleKeyPress = (event) => {
         if (event.key === "Enter") {
@@ -64,15 +61,14 @@ export default function CreateTrainings (){
             video: newValues
         })
     };
-    
+
     const handleSubmit = (event) => {
-        if (error.length) {
-            event.preventDefault();
+        event.preventDefault()
+        if (Object.keys(error).length === 0){
+            dispatch(createTraining(inputTrainings))
+            navigate("/")
         }
-        dispatch(createTraining(inputTrainings))
-        navigate("/")
-        console.log("Creado");
-    };
+    }
 
     return (
         <div className="inline-block m-4 p-4">
@@ -87,10 +83,10 @@ export default function CreateTrainings (){
                     onChange={handleChange}
                     placeholder="Nombre..." />
                 <br />
-                {error.name && <span>{error.name}</span>}
+                {error.name && <span className="text-red-600">{error.name}</span>}
 
                 <h2>Descripción</h2>
-                <textarea className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
+                <textarea className="rounded-3xl px-2 py-1 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
                     type="text"
                     name="description"
                     cols="20"
@@ -99,7 +95,7 @@ export default function CreateTrainings (){
                     onChange={handleChange}
                     placeholder="Descripcion..." />
                 <br />
-                {error.description && <span>{error.description}</span>}
+                {error.description && <span className="text-red-600">{error.description}</span>}
 
                 <h2>Video</h2>
                 <input className="align-text-top rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
@@ -116,7 +112,7 @@ export default function CreateTrainings (){
                     ref={addBtn}
                 >+</button>
                 <br />
-                {error.video && <span>{error.video}</span>}
+                {error.video && <span className="text-red-600">{error.video}</span>}
                 
 
                 <div>
