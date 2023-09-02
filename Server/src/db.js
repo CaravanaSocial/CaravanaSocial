@@ -28,7 +28,7 @@ AdminModel(sequelize);
 CitiesModel(sequelize);
 StatesModel(sequelize);
 PrefixesModel(sequelize);
-SuccessModel(sequelize)
+SuccessModel(sequelize);
 
 const {
   country,
@@ -78,5 +78,6 @@ module.exports = {
   city,
   state,
   success,
+
   conn: sequelize,
 };
