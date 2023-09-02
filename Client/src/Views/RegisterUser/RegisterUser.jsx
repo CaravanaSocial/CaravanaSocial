@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import validation from "./validation";
 import { Link, useNavigate } from "react-router-dom";
-import { createUser, getCountry, getCity, getState } from "../../Redux/Actions/Actions";
+import { createUser, getCountry, getCity, getState, clearErrors, setNewErrors } from "../../Redux/Actions/Actions";
 import { useDispatch, useSelector } from "react-redux"
 
 
@@ -12,6 +12,7 @@ export default function RegisterUser() {
     const country = useSelector((state)=> state.countries)
     const state = useSelector((state)=> state.states)
     const city = useSelector((state)=> state.cities)
+    const globalErrors = useSelector((state)=> state.errors)
     const [checkboxCUD, setCheckboxCUD] = useState(null);
     const [checkboxFreelancer, setCheckboxFreelancer] = useState(null);
     const [errors, setErrors] = useState({})
@@ -24,6 +25,7 @@ export default function RegisterUser() {
          preferences: "", 
          email: "", 
          password: "",
+         passwordRep:"",
          certificates: "",
          freelancer: false,
          description: "",
@@ -99,11 +101,30 @@ export default function RegisterUser() {
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        if (Object.keys(errors).length === 0){
-            dispatch(createUser(userData))
-            navigate("/")
-        }
-    }
+        dispatch(createUser({
+            name: userData.name,
+            lastName: userData.lastName, 
+            birthdate: userData.birthdate, 
+            location: userData.location, 
+            CUD: userData.CUD, 
+            preferences: userData.preferences, 
+            email: userData.email, 
+            password: userData.passwordRep,
+            certificates: userData.certificates,
+            freelancer: userData.freelancer,
+            description: userData.description,
+            adress: userData.adress
+        }))
+        .then((postError)=>{
+            if(!postError){
+                alert("registro bien")
+                navigate("/login")
+                dispatch(clearErrors())
+            }else{
+                dispatch(setNewErrors({type: "CREATE_USER", error: postError.response.data}))
+            }
+        })
+    };
 
 
     return (
@@ -115,6 +136,7 @@ export default function RegisterUser() {
                     <input className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
                         type='text'
                         name='name'
+                        placeholder="nombre"
                         value={userData.name}
                         onChange={handleChange} />
                     <p className="text-red-600">{ errors.name ? errors.name : null }</p>
@@ -123,6 +145,7 @@ export default function RegisterUser() {
                     <input className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
                         type='text'
                         name='lastName'
+                        placeholder="apellido"
                         value={userData.lastName}
                         onChange={handleChange} />
                     <p className="text-red-600">{ errors.lastName ? errors.lastName : null }</p>
@@ -193,6 +216,7 @@ export default function RegisterUser() {
                     <input className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
                         type='email'
                         name='email'
+                        placeholder="email"
                         value={userData.email}
                         onChange={handleChange} />
                     <p className="text-red-600">{ errors.email ? errors.email : null }</p>
@@ -201,9 +225,18 @@ export default function RegisterUser() {
                     <input className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
                         type='password'
                         name='password'
+                        placeholder="contraseña"
                         value={userData.password}
                         onChange={handleChange} />
                     <p className="text-red-600">{ errors.password ? errors.password : null }</p>
+
+                    <input className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
+                        type='password'
+                        name='passwordRep'
+                        placeholder="repetir contraseña"
+                        value={userData.passwordRep}
+                        onChange={handleChange} />
+                    <p className="text-red-600">{ errors.passwordRep ? errors.passwordRep : null }</p>
 
                     <h2>Tipo/s de Preferencia/s</h2>
                     <select className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
@@ -232,6 +265,7 @@ export default function RegisterUser() {
                         <input className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
                             type='text'
                             name='description'
+                            placeholder="añadir descripcion"
                             value={userData.description}
                             onChange={handleChange} />
                         <p className="text-red-600">{ errors.description ? errors.description : null }</p>
@@ -250,6 +284,9 @@ export default function RegisterUser() {
 
                     <button className="bg-zinc-300 mt-2 text-black rounded-3xl p-2"
                         type="submit" >REGISTRARME</button>
+                         <p className="text-red-600" style={{ visibility: globalErrors?.CREATE_USER?.error ? "visible" : "hidden" }}>
+                                {globalErrors?.CREATE_USER?.error}
+                                </p>
                     <br />
                     <Link to={"/register-company"} >
                         <button className="bg-zinc-300 mt-2 text-black rounded-3xl p-2">Registrarme como Empresa</button>

@@ -25,6 +25,7 @@ export const GET_TRAINING = "GET_TRAINING";
 export const GET_LOCATION = "GET_LOCATION";
 
 export const LOGIN = "LOGIN";
+export const LOGOUT = "LOGOUT";
 
 export const ERRORS = "ERRORS";
 export const CLEAR_ERRORS = "CLEAR_ERRORS";
@@ -43,12 +44,17 @@ export const createUser = (user) => {
       const response = await axios.post(endpoint, user);
       const { data } = response
       localStorage.setItem("authorization", data.token)
-      return dispatch({
+       dispatch({
         type: CREATE_USER,
         payload: data
       });
+      return false
     } catch (error) {
-      console.log();(error.data.error);
+      dispatch({
+        type: ERRORS,
+        payload: {type: CREATE_USER, payload: error.response.data}
+      })
+      return error
     }
   };
 };
@@ -290,15 +296,26 @@ export const login = (user) => {
     try {
       const response = await axios.post(endpoint, user);
       const { data } = response
-      return dispatch({ type: LOGIN, payload: data });
+     dispatch({ type: LOGIN, payload: data });
+     return false
     }catch (error) {
       dispatch({
         type: ERRORS,
         payload: { type: LOGIN, error: error.response.data}
       })
+      return error
     }
   };
 };
+
+export const logOut = ()=>{
+  return async function(dispatch){
+    localStorage.setItem("")
+    dispatch({
+      type: LOGOUT
+    })
+  }
+}
 
 export const getCountry = () => {
   return async function (dispatch) {
