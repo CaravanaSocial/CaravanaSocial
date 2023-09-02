@@ -5,11 +5,12 @@ const {updateOfferController} = require('../Controller/Offer/updateOfferControll
 const {getOfferByIdController} = require("../Controller/Offer/getOfferByIdController")
 
 const postOfferHandler = async (req, res)=>{
+        const {id} = req.params
         const data = (req.body)
     try {
-        const response = await postOfferController(data)
+        const response = await postOfferController({data, id})
         if(response){
-            return res.status(200).send('Offer created succesfully')
+            return res.status(200).json(response)
         }else return res.status(404).send('Offer already exist')
     } catch (error) {
         return res.status(500).json(error)
@@ -18,7 +19,8 @@ const postOfferHandler = async (req, res)=>{
 
 const deleteOfferHandler = async (req, res)=>{
 
-    const {id} = req.body
+    const {id} = req.params
+    console.log(id)
     try {
         const response = await deleteOfferController(id)
         if(response){
@@ -30,9 +32,9 @@ const deleteOfferHandler = async (req, res)=>{
 }
 
 const getOfferHandler = async(req, res)=>{
-    const {title} = req.query
+    const {country, companyName, title, category } = req.query
     try {
-        const response = await getOfferController(title)
+        const response = await getOfferController({title,country, companyName, category})
         if(response){
             return res.status(200).json(response)
         }else return res.status(404).send('Offer not found')
