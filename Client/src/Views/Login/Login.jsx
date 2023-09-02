@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { login } from "../../Redux/Actions/Actions";
+import { login, clearErrors, setNewErrors } from "../../Redux/Actions/Actions";
 import { useDispatch, useSelector } from "react-redux";
 import validation from "./validation";
 
@@ -23,13 +23,16 @@ export default function Login () {
         });
     };
 
+   
     const handleSubmit = (event) => {
         event.preventDefault();
         dispatch(login(userData)).then((postError) =>{
             if (!postError){
-                return;
+                alert("loginnnnnn")
+                navigate("/") //navigate("/home")
+                dispatch(clearErrors())
             }else{
-                navigate("/")
+                dispatch(setNewErrors({type: "LOGIN", error: postError.response.data}))
             }
         })
     };
