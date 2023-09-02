@@ -16,6 +16,7 @@ import {
   DELETE_TRAINING,
   EDIT_TRAINING,
   LOGIN,
+  LOGOUT,
   GET_CITY,
   GET_COUNTRIES,
   GET_STATE,
@@ -134,6 +135,11 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         currentAccount: action.payload
       };
+    case LOGOUT:
+      return{
+       ...state,
+       currentAccount: {}
+      }  
 
     case GET_COUNTRIES:
         return{
