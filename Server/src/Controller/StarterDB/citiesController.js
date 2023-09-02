@@ -1,5 +1,5 @@
-const cities = require("../Tools/cities.json");
-const { city } = require("../db");
+const cities = require("../../Tools/cities.json");
+const { city } = require("../../db");
 
 const CreateCities = async () => {
   const dbInformation = await city.findAll();

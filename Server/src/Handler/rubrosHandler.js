@@ -1,4 +1,4 @@
-const { getRubrosController } = require("../Controller/rubroController")
+const { getRubrosController } = require("../Controller/Rubros/getRubrosController")
 
 const getRubrosHandler = async (req, res) =>{
     try {

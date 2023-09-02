@@ -1,5 +1,5 @@
-const Prefixes = require('../Tools/Prefixes.json')
-const {prefix} = require('../db')
+const Prefixes = require('../../Tools/Prefixes.json')
+const {prefix} = require('../../db')
 
 const createPrefixes = async()=>{
     const dbInformation = await prefix.findAll()

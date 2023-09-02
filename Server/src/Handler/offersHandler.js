@@ -1,7 +1,10 @@
-const {postOfferController, deleteOfferController, getOfferController, updateOfferController} = require('../Controller/offersControllers')
+const {postOfferController} = require("../Controller/Offer/postOfferController")
+const {deleteOfferController} = require("../Controller/Offer/deleteOfferController")
+const {getOfferController} = require("../Controller/Offer/getOfferController")
+const {updateOfferController} = require('../Controller/Offer/updateOfferController')
 
 const postOfferHandler = async (req, res)=>{
-        const data = (req.query)
+        const data = (req.body)
     try {
         const response = await postOfferController(data)
         if(response){
@@ -14,7 +17,7 @@ const postOfferHandler = async (req, res)=>{
 
 const deleteOfferHandler = async (req, res)=>{
 
-    const {id} = req.query
+    const {id} = req.body
     try {
         const response = await deleteOfferController(id)
         if(response){

@@ -2,15 +2,19 @@ import React from "react";
 import { useState, useRef } from "react";
 import Validation from "./Validation"
 import { createTraining } from "../../Redux/Actions/Actions";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
-export default function CreateTrainings (){
+export default function createTrainings (){
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const addBtn = useRef(null);
     const [video, setVideo] = useState({video: ""});
     const [error, setError] = useState({});
     const [inputTrainings, setInputTrainings] = useState({
         name: "",
         description: "",
-        videos: []
+        video: []
     });
 
     const handleKeyPress = (event) => {
@@ -44,29 +48,27 @@ export default function CreateTrainings (){
         if (video.video){
             setInputTrainings({
                 ...inputTrainings,
-                videos: [...inputTrainings.videos, video.video],
+                video: [...inputTrainings.video, video.video],
             })
         }
         setVideo({video: ""})
     };
 
-    const deleteChoice = (videos, value) => {
-        const newValues = inputTrainings[videos].filter((event) => event !== value);
+    const deleteChoice = (video, value) => {
+        const newValues = inputTrainings[video].filter((event) => event !== value);
         setInputTrainings({
             ...inputTrainings,
-            videos: newValues
+            video: newValues
         })
     };
-    
+
     const handleSubmit = (event) => {
-        if (error.length) {
-            event.preventDefault();
-        }
+        event.preventDefault()
         if (Object.keys(error).length === 0){
             dispatch(createTraining(inputTrainings))
             navigate("/")
         }
-    };
+    }
 
     return (
         <div className="inline-block m-4 p-4">
@@ -81,10 +83,10 @@ export default function CreateTrainings (){
                     onChange={handleChange}
                     placeholder="Nombre..." />
                 <br />
-                {error.name && <span>{error.name}</span>}
+                {error.name && <span className="text-red-600">{error.name}</span>}
 
                 <h2>Descripción</h2>
-                <textarea className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
+                <textarea className="rounded-3xl px-2 py-1 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
                     type="text"
                     name="description"
                     cols="20"
@@ -93,7 +95,7 @@ export default function CreateTrainings (){
                     onChange={handleChange}
                     placeholder="Descripcion..." />
                 <br />
-                {error.description && <span>{error.description}</span>}
+                {error.description && <span className="text-red-600">{error.description}</span>}
 
                 <h2>Video</h2>
                 <input className="align-text-top rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
@@ -110,11 +112,11 @@ export default function CreateTrainings (){
                     ref={addBtn}
                 >+</button>
                 <br />
-                {error.video && <span>{error.video}</span>}
+                {error.video && <span className="text-red-600">{error.video}</span>}
                 
 
                 <div>
-                    {inputTrainings.videos.map((v, i) => {
+                    {inputTrainings.video.map((v, i) => {
                         if (i < 7) {
                             return (
                                 <div key={i}>

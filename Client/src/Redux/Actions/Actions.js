@@ -26,14 +26,15 @@ export const GET_LOCATION = "GET_LOCATION";
 
 export const LOGIN = "LOGIN";
 
-export const ERRORS = "ERRORS"
+export const ERRORS = "ERRORS";
+export const CLEAR_ERRORS = "CLEAR_ERRORS";
 
 export const GET_COUNTRIES = "GET_COUNTRIES";
 export const GET_STATE = "GET_STATE";
 export const GET_CITY = "GET_CITY";
 
 export const GET_CATEGORIES = "GET_CATEGORIES";
-export const  GET_PREFIXES = " GET_PREFIXES";
+
 
 export const createUser = (user) => {
   const endpoint = "http://localhost:3001/user/signup";
@@ -144,13 +145,24 @@ export const getCompanies = () => {
 
 export const createCompany = (company) => {
   const endpoint = "http://localhost:3001/company/signup";
+  console.log(company)
   return async (dispatch) => {
     try {
       const response = await axios.post(endpoint, company);
       const { data } = response
-      return dispatch({ type: CREATE_COMPANY });
+      localStorage.setItem("authorization", data.token)
+       dispatch({ 
+        type: CREATE_COMPANY,
+        payload: data
+       });
+       return false
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
+      dispatch({
+        type: ERRORS,
+        payload: {type: CREATE_COMPANY, payload: error.response.data}
+      })
+      return error
     }
   };
 };
@@ -353,16 +365,19 @@ export const getCategories =()=>{
 };
 
 
-export const getPrefixes=()=>{
+export function setNewErrors(obj){
   return async function(dispatch){
-    try {
-      const response =(await axios.get("http://localhost:3001/prefixes")).data
-      return dispatch({
-        type: GET_PREFIXES,
-        payload: response
+    dispatch({
+      type: ERRORS,
+      payload: obj
+    })
+  }
+};
+
+export function clearErrors(){
+  return async function(dispatch){
+      dispatch({
+          type: CLEAR_ERRORS
       })
-    } catch (error) {
-      console.log("prefixes", error.message)
-    }
   }
 };
