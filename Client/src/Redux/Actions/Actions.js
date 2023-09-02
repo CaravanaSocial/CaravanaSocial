@@ -149,6 +149,7 @@ export const createCompany = (company) => {
     try {
       const response = await axios.post(endpoint, company);
       const { data } = response
+      localStorage.setItem("authorization", data.token)
       return dispatch({ 
         type: CREATE_COMPANY,
         payload: data
