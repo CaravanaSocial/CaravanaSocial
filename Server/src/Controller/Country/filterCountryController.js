@@ -17,10 +17,10 @@ const filterCountryController = async (name) => {
     });
 
     const allStates = responseState.map((state) => state.dataValues);
-    console.log(allStates);
+
     const prefixCountry = await prefix.findOne({ where: { name: name } });
     const code = prefixCountry.dataValues.code;
-    console.log("holahola", { allStates, code });
+
     return { allStates, code };
   }
 };
