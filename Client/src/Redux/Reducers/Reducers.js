@@ -21,7 +21,8 @@ import {
   GET_STATE,
   GET_TRAINING,
   GET_CATEGORIES,
-  ERRORS
+  ERRORS,
+  CLEAR_ERRORS,
 } from "../Actions/Actions";
 
 const initialState = {
@@ -168,6 +169,11 @@ export default function rootReducer(state = initialState, action) {
           ...state,
           errors:{...state.errors,[errObj.type]:errObj.error}
     }
+    case CLEAR_ERRORS:
+      return{
+        ...state,
+        errors:{}
+      }
 
     default:
       return { ...state };
