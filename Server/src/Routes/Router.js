@@ -8,6 +8,7 @@ const loginRoute = require('./loginRoute')
 const successRoute = require('./successStoriesRoute')
 const trainingRoute = require('./trainingRoute')
 const userRoute = require('./userRoute')
+const imageRout = require('./imageRoute')
 
 
 const router = Router();
@@ -21,5 +22,8 @@ router.use("/login", loginRoute)
 router.use('/success', successRoute)
 router.use('/training', trainingRoute)
 router.use('/user', userRoute)
+
+//------------Cloudinay--------------
+router.use('/image', imageRout)
 
 module.exports = router
