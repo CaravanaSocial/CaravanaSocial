@@ -370,7 +370,7 @@ export const getCity = (value) => {
 export const getCategories =()=>{
   return async function(dispatch){
    try {
-     const response = (await axios.get("http://localhost:3001/categories")).data
+     const response = (await axios.get("http://localhost:3001/rubro")).data
      return dispatch({
        type: GET_CATEGORIES,
        payload: response
