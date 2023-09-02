@@ -1,5 +1,5 @@
-const states = require("../Tools/states.json");
-const { state } = require("../db");
+const states = require("../../Tools/states.json");
+const { state } = require("../../db");
 
 const CreateState = async () => {
   const dbInformation = await state.findAll();

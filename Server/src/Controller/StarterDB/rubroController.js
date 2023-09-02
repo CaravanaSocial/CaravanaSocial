@@ -1,8 +1,7 @@
-const rubro = require("../Tools/rubros.json")
-const {areaTraining} = require("../db")
+const rubro = require("../../Tools/rubros.json")
+const {areaTraining} = require("../../db")
 
 const createRubro = async ()=>{
-console.log("rubroController")
     const dbInformation = await areaTraining.findAll()
     if(dbInformation.length===0){
         await areaTraining.bulkCreate(rubro.rubros)
@@ -14,16 +13,6 @@ console.log("rubroController")
     }
 }
 
-const getRubrosController = async () =>{
-    const rubros = await areaTraining.findAll()
-    if(rubros.length >0){
-        const rubrosArray = rubros.map(x=>x.name)
-        return rubrosArray
-    }
-    throw Error("There is no categories")
-}
-
 module.exports = {
-    createRubro,
-    getRubrosController
+    createRubro
 }
