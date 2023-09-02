@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import validation from "./validation";
-import { getCountry, getState, getCity, getCategories, createCompany } from "../../Redux/Actions/Actions";
+import { getCountry, getState, getCity, getCategories, createCompany, setNewErrors, clearErrors } from "../../Redux/Actions/Actions";
 
 const RegisterCompany = () => {
   const navigate = useNavigate();
@@ -11,7 +11,7 @@ const RegisterCompany = () => {
   const state = useSelector((state) => state.states);
   const city = useSelector((state) => state.cities);
   const category = useSelector((state) => state.categories);
-  // const prefixes = useSelector((state) => state.prefixes);
+  const globalErrors = useSelector((state) => state.errors)
 
   const [companyInput, setCompanyInput] = useState({
     name: "",
@@ -32,8 +32,8 @@ const RegisterCompany = () => {
   useEffect(() => {
     dispatch(getCountry());
     dispatch(getCategories());
-    // dispatch(getPrefixes())
-  }, []);
+    return()=>dispatch(clearErrors())
+  }, [dispatch]);
 
 
   const handleInputs = (event) => {
@@ -113,25 +113,45 @@ const RegisterCompany = () => {
   const isSubmitDisabled = Object.keys(error).length > 0;
 
   const handleSubmit = (event) => {
-   
     event.preventDefault();
-    if(Object.keys(error).length === 0){
-      dispatch(createCompany({
-        name: companyInput.name,
-        lastName: companyInput.lastName,
-        position: companyInput.position,
-        nameCompany: companyInput.nameCompany,
-        category: companyInput.category,
-        phone: state.code + " " + companyInput.phone,
-        email: companyInput.email,
-        password: companyInput.passwordRep,
-        description: companyInput.description,
-        location: companyInput.location
-        }));
-      
-      navigate("/");
-    }
-  };
+
+    dispatch(createCompany({
+      name: companyInput.name,
+      lastName: companyInput.lastName,
+      position: companyInput.position,
+      nameCompany: companyInput.nameCompany,
+      category: companyInput.category,
+      phone: state.code + " " + companyInput.phone,
+      email: companyInput.email,
+      password: companyInput.passwordRep,
+      description: companyInput.description,
+      location: companyInput.location
+    }))
+    .then((postError)=>{
+      console.log(postError)
+      if(!postError){
+          setCompanyInput({
+            name: "",
+            lastName: "",
+            position: "",
+            nameCompany: "",
+            category: [],
+            phone: "",
+            email: "",
+            password: "",
+            passwordRep: "",
+            description: "",
+            location: {country: "", state:"", city:""},
+          })
+          alert("registrado con exito");
+          navigate("/login")
+          dispatch(clearErrors())
+      }else{
+        dispatch(setNewErrors({type: "CREATE_COMPANY", error: postError.response.data }))
+      }
+    })
+    };
+ 
 
   return (
     <div className="inline-block m-4 p-4">
@@ -316,6 +336,9 @@ const RegisterCompany = () => {
         <NavLink to="/login">
           <button className="bg-zinc-300 mt-2 text-black rounded-3xl p-2">Ya tengo cuenta</button>
         </NavLink>
+        <p className="text-red-600" style={{ visibility: globalErrors?.CREATE_COMPANY?.error ? "visible" : "hidden" }}>
+              {globalErrors?.CREATE_COMPANY?.error}
+            </p>
       </div>
     </div>
   );
