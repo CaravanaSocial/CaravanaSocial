@@ -83,6 +83,7 @@ export default function rootReducer(state = initialState, action) {
     case CREATE_COMPANY:
       return {
         ...state,
+        currentAccount: action.payload
       };
 
     case EDIT_COMPANY:
