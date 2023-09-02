@@ -9,7 +9,6 @@ export default function createJobs (){
     const navigate = useNavigate();
     const [error, setError] = useState({})
     const [inputJobs, setInputJobs] = useState({
-        companyId: "9c53d9cf-01f4-4909-bce6-2708fcecc936",
         title: "",
         description: ""
     })
