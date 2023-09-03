@@ -169,37 +169,3 @@ const HomeUsers = () => {
 };
 
 export default HomeUsers;
-
-{
-  /* <section>
-  <div className="font-vilaka font-bold flex text-[40px]">FREELANCERS</div>
-  <button className="font-topmodern border-2 hover:text-light-1  self-end border-light-1 rounded p-1 ">
-    Ver Mas
-  </button>
-  <div className="relative flex items-center">
-    <MdChevronLeft
-      className="opacity-50 cursor-pointer hover:opacity-100"
-      onClick={slideLeft}
-      size={40}
-    />
-    <div
-      id="slider"
-      className="w-full h-full overflow-x-scroll scroll-smooth whitespace-nowrap scrollbar scrollbar-hide"
-    >
-      {" "}
-      {data.map((item) => (
-        <img
-          className="w-[220px] h-[200px] inline-block p-2 cursor-pointer hover:scale-105 ease-in-out duration-300"
-          src={item.img}
-          alt="/"
-        ></img>
-      ))}
-    </div>
-    <MdChevronRight
-      className="opacity-50 cursor-pointer hover:opacity-100"
-      onClick={slideRight}
-      size={40}
-    />
-  </div>
-</section>; */
-}
