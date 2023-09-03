@@ -158,6 +158,7 @@ export default function rootReducer(state = initialState, action) {
         cities: action.payload,
       };
     case GET_TRAINING:
+      console.log("actiion de reducer", action.payload);
       return {
         ...state,
         trainings: action.payload,
