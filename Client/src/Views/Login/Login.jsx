@@ -1,31 +1,37 @@
 import React from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { login } from "../../Redux/Actions/Actions";
+import { useDispatch, useSelector } from "react-redux";
+import validation from "./validation";
 
 export default function Login () {
+
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const globalErrors = useSelector((state) => state.errors)
+    const [errors, setErrors] = useState({});
     const [userData, setUserData] = useState({
         email: "",
         password: ""
     })
-    
-    const [error, setError] = useState({});
 
     const handleChange = (event) => {
         setUserData({
             ...userData,
             [event.target.name]: event.target.value
         });
-        //Falta el Validate para el form
-        setError("Validation"({
-            ...userData,
-            [event.target.name]: event.target.value
-        }));
     };
 
     const handleSubmit = (event) => {
-        if (error.length) {
-            event.preventDefault();
-        }
+        event.preventDefault();
+        dispatch(login(userData)).then((postError) =>{
+            if (!postError){
+                return;
+            }else{
+                navigate("/")
+            }
+        })
     };
 
     return (
@@ -37,25 +43,25 @@ export default function Login () {
 
             <section>
                 <div className="border-spacing-96 border-2 border-zinc-100 dark:border-zinc-800 rounded-3xl p-4 my-4">
-                    <h1 className="text-4xl border-b-2 border-zinc-100 dark:border-zinc-800 rounded-sm">Inicio de Sesion</h1>
+                    <h1 className="text-4xl border-b-2 border-zinc-100 dark:border-zinc-800">Inicio de Sesion</h1>
                     <br />
-                    <input className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800"
+                    <p>{globalErrors.LOGIN?.error ? globalErrors.LOGIN.error : null}</p>
+                    <br />
+                    <input className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
                         type="email"
                         name="email"
                         placeholder="Email"
                         onChange={handleChange}
                         value={userData.email}
                     />
-                    {error.email && (<span>{error.email}</span>)}
                     <br />
-                    <input className="rounded-3xl px-2 bg-zinc-300 text-zinc-800"
+                    <input className="rounded-3xl px-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
                         type="password"
                         name="password"
                         placeholder="Contraseña"
                         onChange={handleChange}
                         value={userData.password}
                     />
-                    {error.password && (<span>{error.password}</span>)}
                     <br />
                     <button className="bg-zinc-300 mt-2 text-black rounded-3xl"
                         onClick={handleSubmit}
@@ -71,7 +77,7 @@ export default function Login () {
                     <hr />
                     <h4>Aun no tienes cuenta?</h4>
                     <h4>Registrate</h4>
-                    <Link to="/register-user">
+                    <Link to="/registerUser">
                         <button className="bg-zinc-300 mr-1 text-black rounded-3xl">Usuario</button>
                     </Link>
                     <Link to="/register-company">

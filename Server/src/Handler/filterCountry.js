@@ -2,18 +2,17 @@ const {filterCountryController} = require("../Controller/Country/filterCountryCo
 const {filterGetallCountries} = require("../Controller/Country/filterGetallCountries");
 
 
-
 const finterCountryHandler = async (req, res) => {
   const { name } = req.query;
+
   try {
     if (name) {
-      
-
       const response = await filterCountryController(name);
-      res.status(200).send(response);
+      console.log("asdasdasda", response);
+      return res.status(200).send(response);
     }
     const response = await filterGetallCountries();
-    res.status(200).send(response);
+    return res.status(200).send(response);
   } catch (error) {
     error.message;
   }
