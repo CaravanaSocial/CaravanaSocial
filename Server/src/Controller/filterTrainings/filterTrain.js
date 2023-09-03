@@ -9,18 +9,25 @@ const filterTrain = async (query) => {
         const alltrain =  await  getAll()
 
         if(country && !rubro){
-            const trainingfilCountry = alltrain.filter((train) => train.dataValues.company.dataValues.location.contry === country)
-            console.log(trainingfilCountry);
+
+            const trainingfilCountry = alltrain.filter((train) => {
+                return train.dataValues.company.dataValues.location.contry === country
+            })
+
             return trainingfilCountry
         }
         else if(!country && rubro){
-            const trainingfilarea = alltrain.filter((train)=> train.dataValues.company.dataValues.areaTrainings.map((areas) => areas.dataValues.name).includes(rubro))
-            console.log(trainingfilarea)
+
+            console.log(alltrain.map((train)=>train.dataValues.areaTrainings.map((area) => area.dataValues.name)))
+            const trainingfilarea = alltrain.filter((train) => train.dataValues.areaTrainings.map((area) => area.dataValues.name).includes(rubro))
             return trainingfilarea
         }
         else if(country && rubro){
-            const trainingfilCountry = alltrain.filter((train) => train.dataValues.company.dataValues.location.contry === country)
-            const finallyBoth = trainingfilCountry.filter((train)=> train.dataValues.company.dataValues.areaTrainings.map((areas) => areas.dataValues.name).includes(rubro))
+            const trainingfilCountry = alltrain.filter((train) => {
+                return train.dataValues.company.dataValues.location.contry === country
+            })
+
+            const finallyBoth = trainingfilCountry.filter((train) => train.dataValues.areaTrainings.map((area) => area.dataValues.name).includes(rubro))
 
             return finallyBoth;
         }

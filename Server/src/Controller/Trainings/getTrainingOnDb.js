@@ -1,4 +1,4 @@
-const { training, companies } = require('../../db');
+const { training, companies, areaTraining } = require('../../db');
 const { Op } = require('sequelize')
 
 const getTrainingOnDb = async (name) => {
@@ -9,7 +9,19 @@ const getTrainingOnDb = async (name) => {
                     [Op.iLike]: `${name}%`
                 }
             },
-            include: companies
+            include:[
+                {
+                  model: companies,
+                  attributes: {
+                    exclude: ["password"],
+                  }
+                },
+                {
+                  model: areaTraining,
+                  attributes: ["name"],
+                  through: { attributes: [] },
+                },
+              ]
         })
     
         return findByName

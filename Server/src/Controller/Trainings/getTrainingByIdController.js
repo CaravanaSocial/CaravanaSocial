@@ -1,31 +1,23 @@
 const {training, areaTraining, companies} = require("../../db")
 
 const getTrainingByIdController = async (id) =>{
-    const foundTraining = await training.findOne({
-        where: {id},
-        include: [
-            {
-              model: companies,
-              attributes: {
-                exclude: ["password"],
-              },
-              include: [
-                {
-                  model: areaTraining,
-                  attributes: ["name"],
-      
-                  through: { attributes: [] },
-                },
-              ],
-            },
-            {
-              model: areaTraining,
-              attributes: ["name"],
-              through: { attributes: [] },
-            },
-          ],
+    const foundTraining = await training.findAll({
+      where:{
+        id:id
+      },
+      include:[
+        {
+          model: companies,
+          attributes: {
+            exclude: ["password"],
+          }
+        },
+        {
+          model: areaTraining,
           attributes: ["name"],
           through: { attributes: [] },
+        },
+      ]
     })
 
     if(foundTraining) return foundTraining
