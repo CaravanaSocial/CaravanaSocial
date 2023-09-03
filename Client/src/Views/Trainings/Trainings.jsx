@@ -10,7 +10,7 @@ const Trainings = () => {
 
   useEffect(() => {
     dispatch(getTraining());
-  }, []);
+  }, [dispatch]);
 
   console.log("trainings", trainings);
   return (

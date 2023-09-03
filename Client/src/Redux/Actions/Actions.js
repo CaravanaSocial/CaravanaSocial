@@ -1,5 +1,6 @@
 import axios from "axios";
 
+
 export const CREATE_USER = "CREATE_USER";
 export const GET_USERS = "GET_USERS";
 export const EDIT_USER = "EDIT_USER";
@@ -254,11 +255,13 @@ export const getTraining = () => {
 };
 
 export const createTraining = (training) => {
-  const endpoint = "http://localhost:3001/training/create";
+  const endpoint = "http://localhost:3001/training/";
+  console.log(localStorage)
   return async (dispatch) => {
     try {
-      const response = await axios.post(endpoint, training);
+      const response = await axios.post(endpoint + localStorage.accId, training);
       const { data } = response;
+
       return dispatch({ type: CREATE_TRAINING, payload: data });
     } catch (error) {
       console.log(error);
@@ -301,6 +304,7 @@ export const login = (user) => {
 
       localStorage.setItem("authorization", data.token);
       localStorage.setItem("accName", data.acc.name);
+      localStorage.setItem("accId", data.acc.id);
 
       dispatch({ type: LOGIN, payload: data });
       return false;
