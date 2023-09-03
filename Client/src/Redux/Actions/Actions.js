@@ -296,6 +296,7 @@ export const login = (user) => {
       const response = await axios.post(endpoint, user);
       const { data } = response;
       localStorage.setItem("authorization", data.token);
+      localStorage.setItem("accName", data.acc.name);
       dispatch({ type: LOGIN, payload: data });
       return false;
     } catch (error) {
