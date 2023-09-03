@@ -13,7 +13,7 @@ const postOfferHandler = async (req, res)=>{
             return res.status(200).json(response)
         }else return res.status(404).send('Offer already exist')
     } catch (error) {
-        return res.status(500).json(error)
+        return res.status(500).json({error: error.message})
     }
 }
 
