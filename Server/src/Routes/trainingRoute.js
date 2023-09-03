@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const {getAlltraining, getTrainingByName, trainingHandler, deletetraining, updateTraining } = require('../Handler/trainingHandler')
+const {getAlltraining, getTrainingByName, trainingHandler, deletetraining, updateTraining, getTrainingByIdHandler} = require('../Handler/trainingHandler')
 
 
 const router = Router()
@@ -12,8 +12,9 @@ router.get("/", (req, res) => {
       getTrainingByName(req, res);
     }
   });
-router.post("/create", trainingHandler);
+router.post("/:id", trainingHandler);
 router.delete("/delete", deletetraining);
 router.patch("/update", updateTraining);
+router.get("/:id", getTrainingByIdHandler)
 
 module.exports = router

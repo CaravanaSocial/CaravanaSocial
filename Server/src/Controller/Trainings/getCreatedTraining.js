@@ -1,11 +1,9 @@
 const { training } = require('../../db');
 
 
-const getCreatedTraining = async (body) => {
+const getCreatedTraining = async (body, id) => {
     try {
-        const {name, description, video, companyId} = body
-        if(!name || !description || !video || !companyId) return res.status(400).json({error: "Falta informacion"})
-        console.log(video[0])
+        const {name, description, video} = body
 
         const [user,created] = await training.findOrCreate({
             where:{
@@ -16,8 +14,8 @@ const getCreatedTraining = async (body) => {
                 video
             }
         })
-        await user.setCompany(companyId)
-        return created
+        await user.setCompany(id)
+        return user
 
     } catch (error) {
         console.log(error);
