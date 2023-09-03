@@ -1,3 +1,4 @@
+
 const {
   createUserAccController,
 } = require("../Controller/User/createUserAccController");
@@ -14,6 +15,7 @@ const {
 const {
   getFreelancersController,
 } = require("../Controller/User/getFreelancersController");
+
 
 const userSignUpHandler = async (req, res) => {
   console.log(req.body);
@@ -38,6 +40,7 @@ const getUsersHandler = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
 
 const updateUserHandler = async (req, res) => {
   try {
@@ -75,3 +78,4 @@ module.exports = {
   getUsersByIdHandler,
   getFreelancersHandler,
 };
+

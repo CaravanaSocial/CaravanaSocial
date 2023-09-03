@@ -41,6 +41,7 @@ const createUserAccController = async (props) => {
         })
       ).id;
       await newUser.addAreaTraining(categoryId);
+
     }
     const returning = await user.findOne({
       where: {
