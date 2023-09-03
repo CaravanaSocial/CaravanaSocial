@@ -4,6 +4,7 @@ import Validation from "./Validation"
 import { createTraining } from "../../Redux/Actions/Actions";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import UploadImage from "../../components/UploadImage";
 
 export default function createTrainings (){
     const dispatch = useDispatch();
@@ -129,6 +130,8 @@ export default function createTrainings (){
                         }
                     })}
                 </div>
+
+                <UploadImage/>
 
                 <button className="bg-zinc-300 mt-2 text-black rounded-3xl p-2"
                     type="submit"
