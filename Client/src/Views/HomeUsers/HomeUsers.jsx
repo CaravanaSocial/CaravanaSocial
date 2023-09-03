@@ -161,7 +161,7 @@ const HomeUsers = () => {
         </div>
       ) : (
         <div className="font-vilaka text-[50px] ">
-          Debes ingresar primero para ver este contenido :){" "}
+          Debes ingresar primero para ver este contenido :)
         </div>
       )}
     </main>
