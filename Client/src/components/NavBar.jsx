@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import logo from "../../public/logo.png";
+
+import { Link } from "react-router-dom";
+import logo from "../assets/images/logo.png";
+
 import { CgProfile } from "react-icons/cg";
 import { useDispatch, useSelector } from "react-redux";
 import { logOut } from "../Redux/Actions/Actions";
@@ -32,7 +34,7 @@ export default function NavBar() {
   return (
     <div className="flex items-center justify-between bg-white dark:bg-zinc-900 border-b-2 border-b-zinc-100 dark:border-b-zinc-800 p-2">
       <a href="/">
-        <img className="w-20" src={logo}></img>
+        <img className="w-14" src={logo}></img>
       </a>
 
       <div className="relative flex items-center w-30 h-5 mt-2.5 lg:w-64 group">
