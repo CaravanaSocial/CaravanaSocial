@@ -28,7 +28,7 @@ AdminModel(sequelize);
 CitiesModel(sequelize);
 StatesModel(sequelize);
 PrefixesModel(sequelize);
-SuccessModel(sequelize)
+SuccessModel(sequelize);
 
 const {
   country,
@@ -60,9 +60,16 @@ training.belongsToMany(user, { through: "user_training" });
 companies.hasMany(offer);
 offer.belongsTo(companies);
 
+//Relacion de avisos a Rubros
+offer.belongsToMany(areaTraining, { through: 'offers_rubro' });
+areaTraining.belongsToMany(offer, { through: 'offers_rubro'});
+
 //Relacion de empresas a rubros
 companies.belongsToMany(areaTraining, {through: "companies_areaTraining"});
 areaTraining.belongsToMany(companies, {through: "companies_areaTraining"});
+
+user.belongsToMany(areaTraining, {through: "users_areaTraining"});
+areaTraining.belongsToMany(user, {through: "users_areaTraining"});
 
 
 module.exports = {
@@ -78,5 +85,6 @@ module.exports = {
   city,
   state,
   success,
+
   conn: sequelize,
 };
