@@ -144,7 +144,7 @@ const RegisterCompany = () => {
             location: {country: "", state:"", city:""},
           })
           alert("registrado con exito");
-          navigate("/login")
+          navigate("/homeUsers")
           dispatch(clearErrors())
       }else{
         dispatch(setNewErrors({type: "CREATE_COMPANY", error: postError.response.data }))

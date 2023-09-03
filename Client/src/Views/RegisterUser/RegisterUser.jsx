@@ -119,7 +119,7 @@ export default function RegisterUser() {
         .then((postError)=>{
             if(!postError){
                 alert("registro bien")
-                navigate("/login")
+                navigate("/homeUsers")
                 dispatch(clearErrors())
             }else{
                 dispatch(setNewErrors({type: "CREATE_USER", error: postError.response.data}))
