@@ -9,11 +9,10 @@ import { logOut } from "../Redux/Actions/Actions";
 import { useNavigate } from "react-router-dom";
 
 export default function NavBar() {
-  const currentAccount = useSelector((state) => state.currentAccount);
-
   const [theme, setTheme] = useState("Claro");
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const currentAccount = useSelector((state) => state.currentAccount);
 
   useEffect(() => {
     if (theme === "Oscuro") {
@@ -83,14 +82,19 @@ export default function NavBar() {
         <span className="font-medium text-gray-400">{theme}</span>
       </div>
 
-      {Object.keys(currentAccount).length !== 0 ? (
-        <button
-          className="text-gray-400 border-4 border-gray-400 font-bold text-sm bg-white rounded-3xl flex py-1 px-2 items-center"
-          onClick={() => handleLogout()}
-        >
-          <CgProfile className="w-[40px] h-[30px]" />
-          Salir
-        </button>
+      {localStorage.length !== 0 ? (
+        <div className="flex">
+          <span className="font-topmodern p-3 flex justify-center">
+            {localStorage.accName}
+          </span>
+          <button
+            className="text-gray-400 border-4 border-gray-400 font-bold text-sm bg-white rounded-3xl flex py-1 px-2 items-center"
+            onClick={() => handleLogout()}
+          >
+            <CgProfile className="w-[40px] h-[30px]" />
+            Salir
+          </button>
+        </div>
       ) : (
         <Link to="/login">
           <button className="text-gray-400 border-4 border-gray-400 font-bold text-sm bg-white rounded-3xl flex py-1 px-2 items-center">
