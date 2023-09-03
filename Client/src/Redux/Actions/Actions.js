@@ -43,8 +43,6 @@ export const createUser = (user) => {
       const response = await axios.post(endpoint, user);
       const { data } = response;
 
-      localStorage.setItem("authorization", data.token);
-
       dispatch({
         type: CREATE_USER,
         payload: data,
@@ -315,11 +313,9 @@ export const login = (user) => {
 };
 
 export const logOut = () => {
-
   localStorage.clear();
   return (dispatch) => {
     dispatch({ type: LOGOUT });
-
   };
 };
 
