@@ -42,7 +42,9 @@ export const createUser = (user) => {
     try {
       const response = await axios.post(endpoint, user);
       const { data } = response;
+
       localStorage.setItem("authorization", data.token);
+
       dispatch({
         type: CREATE_USER,
         payload: data,
@@ -243,7 +245,7 @@ export const getTraining = () => {
     try {
       const response = await axios(endpoint);
       const { data } = response;
-      console.log("aaaaaaaaaaa", response);
+
       return dispatch({ type: GET_TRAINING, payload: data });
     } catch (error) {
       console.log(error);
@@ -296,6 +298,10 @@ export const login = (user) => {
     try {
       const response = await axios.post(endpoint, user);
       const { data } = response;
+
+      localStorage.setItem("authorization", data.token);
+      localStorage.setItem("accName", data.acc.name);
+
       dispatch({ type: LOGIN, payload: data });
       return false;
     } catch (error) {
@@ -309,11 +315,11 @@ export const login = (user) => {
 };
 
 export const logOut = () => {
-  return async function (dispatch) {
-    localStorage.setItem("");
-    dispatch({
-      type: LOGOUT,
-    });
+
+  localStorage.clear();
+  return (dispatch) => {
+    dispatch({ type: LOGOUT });
+
   };
 };
 

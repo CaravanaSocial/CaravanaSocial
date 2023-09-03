@@ -8,10 +8,15 @@ import {
   getState,
   clearErrors,
   setNewErrors,
+  getCategories,
+
 } from "../../Redux/Actions/Actions";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function RegisterUser() {
+
+  const category = useSelector((state) => state.categories);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const country = useSelector((state) => state.countries);
@@ -24,21 +29,22 @@ export default function RegisterUser() {
   const [userData, setUserData] = useState({
     name: "",
     lastName: "",
-    birthdate: "",
+    birthDate: "",
     location: { country: "", city: "", state: "" },
     CUD: "",
-    preferences: "",
+    category: [],
     email: "",
     password: "",
     passwordRep: "",
     certificates: "",
     freelancer: false,
     description: "",
-    adress: "",
+    address: "",
   });
-
+  console.log("ESTADOOOOO LOCAAAALLL", userData);
   useEffect(() => {
     dispatch(getCountry());
+    dispatch(getCategories());
   }, []);
 
   const handleCheckboxCUDChange = (checkbox) => {
@@ -59,7 +65,7 @@ export default function RegisterUser() {
         freelancer: false,
       });
       delete errors.description;
-      delete errors.adress;
+      delete errors.address;
     }
     if (checkbox === "SI") {
       setUserData({
@@ -67,7 +73,7 @@ export default function RegisterUser() {
         freelancer: true,
       });
       errors.description = "Debe ingresar una descripción de su trabajo";
-      errors.adress = "Debe ingresar su geolocalización";
+      errors.address = "Debe ingresar su geolocalización";
     }
   };
 
@@ -128,21 +134,21 @@ export default function RegisterUser() {
       createUser({
         name: userData.name,
         lastName: userData.lastName,
-        birthdate: userData.birthdate,
+        birthDate: userData.birthDate,
         location: userData.location,
         CUD: userData.CUD,
-        preferences: userData.preferences,
+        category: userData.category,
         email: userData.email,
         password: userData.passwordRep,
         certificates: userData.certificates,
         freelancer: userData.freelancer,
         description: userData.description,
-        adress: userData.adress,
+        address: userData.address,
       })
     ).then((postError) => {
       if (!postError) {
         alert("registro bien");
-        navigate("/homeUsers");
+        navigate("/login");
         dispatch(clearErrors());
       } else {
         dispatch(
@@ -150,6 +156,39 @@ export default function RegisterUser() {
         );
       }
     });
+  };
+
+  const handleCategory = (event) => {
+    const rep = userData.category.find((cat) => cat === event.target.value);
+    if (event.target.value !== "default" && !rep) {
+      setUserData({
+        ...userData,
+        category: [...userData.category, event.target.value],
+      });
+      event.target.value = "default";
+      validateInput({
+        ...userData,
+        category: [...userData.category, event.target.value],
+      });
+    }
+    event.target.value = "default";
+  };
+
+  const validateInput = (companyInputData) => {
+    const errors = validation(companyInputData);
+    setErrors(errors);
+  };
+
+  const handleDelCategory = (event) => {
+    event.preventDefault();
+    const filteredCat = userData.category.filter(
+      (cat) => cat !== event.target.value
+    );
+    setUserData({
+      ...userData,
+      category: filteredCat,
+    });
+    validateInput({ ...userData, category: filteredCat });
   };
 
   return (
@@ -187,12 +226,12 @@ export default function RegisterUser() {
           <input
             className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
             type="date"
-            name="birthdate"
-            value={userData.birthdate}
+            name="birthDate"
+            value={userData.birthDate}
             onChange={handleChange}
           />
           <p className="text-red-600">
-            {errors.birthdate ? errors.birthdate : null}
+            {errors.birthDate ? errors.birthDate : null}
           </p>
 
           <h2>País</h2>
@@ -316,10 +355,45 @@ export default function RegisterUser() {
           <h2>Tipo/s de Preferencia/s</h2>
           <select
             className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
-            name="preferences"
+
+            onChange={handleCategory}
+            name="category"
           >
-            <option value="Default">Seleccionar...</option>
+            <option value="default">rubro</option>
+            {category?.map((c) => {
+              return (
+                <option key={c} value={c}>
+                  {c}
+                </option>
+              );
+            })}
           </select>
+          <br />
+          <span>Rubros seleccionados: </span>
+          <div className="p-2 m-auto bg-zinc-300 text-zinc-800 focus:border-transparent w-[200px] justify-center align-middle rounded-3xl">
+            {userData.category.map((cat) => {
+              return (
+                <div className="text-center bg-zinc-400 mb-1 rounded-3xl">
+                  {cat}
+                  <button
+                    className="bg-red-600 px-1 text-white h-[20px] m-auto rounded-3xl"
+                    onClick={handleDelCategory}
+                    value={cat}
+                  >
+                    {" "}
+                    x
+                  </button>
+                </div>
+              );
+            })}
+          </div>
+          <p
+            className="text-red-600"
+            style={{ visibility: errors.category ? "visible" : "hidden" }}
+          >
+            {errors.category}
+          </p>
+
 
           <h2>Certificados (Opcional)</h2>
           <input
@@ -369,12 +443,14 @@ export default function RegisterUser() {
               <input
                 className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
                 type="text"
-                name="adress"
-                value={userData.adress}
+
+                name="address"
+                value={userData.address}
                 onChange={handleChange}
               />
               <p className="text-red-600">
-                {errors.adress ? errors.adress : null}
+                {errors.address ? errors.address : null}
+
               </p>
             </section>
           ) : null}
@@ -390,12 +466,16 @@ export default function RegisterUser() {
           <p
             className="text-red-600"
             style={{
-              visibility: globalErrors?.CREATE_USER?.error
+
+              visibility: globalErrors?.CREATE_USER?.errors
+
                 ? "visible"
                 : "hidden",
             }}
           >
-            {globalErrors?.CREATE_USER?.error}
+
+            {globalErrors?.CREATE_USER?.errors}
+
           </p>
           <br />
           <Link to={"/register-company"}>
