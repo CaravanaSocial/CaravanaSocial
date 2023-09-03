@@ -9,12 +9,10 @@ import {
   clearErrors,
   setNewErrors,
   getCategories,
-
 } from "../../Redux/Actions/Actions";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function RegisterUser() {
-
   const category = useSelector((state) => state.categories);
 
   const dispatch = useDispatch();
@@ -41,7 +39,7 @@ export default function RegisterUser() {
     description: "",
     address: "",
   });
-  console.log("ESTADOOOOO LOCAAAALLL", userData);
+
   useEffect(() => {
     dispatch(getCountry());
     dispatch(getCategories());
@@ -355,7 +353,6 @@ export default function RegisterUser() {
           <h2>Tipo/s de Preferencia/s</h2>
           <select
             className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
-
             onChange={handleCategory}
             name="category"
           >
@@ -393,7 +390,6 @@ export default function RegisterUser() {
           >
             {errors.category}
           </p>
-
 
           <h2>Certificados (Opcional)</h2>
           <input
@@ -443,14 +439,12 @@ export default function RegisterUser() {
               <input
                 className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
                 type="text"
-
                 name="address"
                 value={userData.address}
                 onChange={handleChange}
               />
               <p className="text-red-600">
                 {errors.address ? errors.address : null}
-
               </p>
             </section>
           ) : null}
@@ -466,16 +460,12 @@ export default function RegisterUser() {
           <p
             className="text-red-600"
             style={{
-
               visibility: globalErrors?.CREATE_USER?.errors
-
                 ? "visible"
                 : "hidden",
             }}
           >
-
             {globalErrors?.CREATE_USER?.errors}
-
           </p>
           <br />
           <Link to={"/register-company"}>

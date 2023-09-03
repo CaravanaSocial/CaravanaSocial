@@ -44,8 +44,6 @@ export const createUser = (user) => {
       const response = await axios.post(endpoint, user);
       const { data } = response;
 
-      localStorage.setItem("authorization", data.token);
-
       dispatch({
         type: CREATE_USER,
         payload: data,
@@ -189,10 +187,10 @@ export const editCompany = (id, company) => {
 };
 
 export const createOffer = (offer) => {
-  const endpoint = "http://localhost:3001/offer";
+  const endpoint = "http://localhost:3001/offer/";
   return async (dispatch) => {
     try {
-      const response = await axios.post(endpoint, offer);
+      const response = await axios.post(endpoint + localStorage.accId, offer);
       const { data } = response;
       return dispatch({ type: CREATE_OFFER });
     } catch (error) {
@@ -319,11 +317,9 @@ export const login = (user) => {
 };
 
 export const logOut = () => {
-
   localStorage.clear();
   return (dispatch) => {
     dispatch({ type: LOGOUT });
-
   };
 };
 
