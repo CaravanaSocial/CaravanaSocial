@@ -1,6 +1,6 @@
-const { delTraining } = require('../Controller/Trainings/delTraining')
-const { changer } = require('../Controller/Trainings/changer')
-const { getCreatedTraining } = require('../Controller/Trainings/getCreatedTraining')
+const { delTrainingController } = require('../Controller/Trainings/delTraining')
+const { updateTrainingController } = require('../Controller/Trainings/changer')
+const { createdTrainingController } = require('../Controller/Trainings/getCreatedTraining')
 const { getAll } = require('../Controller/Trainings/getAll')
 const { getTrainingOnDb } = require('../Controller/Trainings/getTrainingOnDb')
 const { getTrainingByIdController } = require("../Controller/Trainings/getTrainingByIdController")
@@ -37,9 +37,9 @@ const getTrainingByName = async (req, res) => {
 }
 
 
-const trainingHandler = async (req, res) => {
+const createTrainingHandler = async (req, res) => {
     try {
-        const foundTraining = await getCreatedTraining(req.body, req.id)
+        const foundTraining = await createdTrainingController(req.body, req.params)
 
             return res.status(200).json(foundTraining)
 
@@ -49,10 +49,10 @@ const trainingHandler = async (req, res) => {
 }
 
 
-const updateTraining = async (req, res) => {
+const updateTrainingHandler = async (req, res) => {
     try {
         console.log('nose');
-        const allDone = await changer(req.body);
+        const allDone = await updateTrainingController(req.body, req.params);
         console.log(allDone)
 
         if(!allDone) return res.status(400).send('Algo salio mal ')
@@ -66,9 +66,9 @@ const updateTraining = async (req, res) => {
 }
 
 
-const deletetraining = async (req, res) => {
+const deletetrainingHandler = async (req, res) => {
     const { id } = req.query;
-    const trainingDeleted = await delTraining(id)
+    const trainingDeleted = await delTrainingController(id)
     if(trainingDeleted) return res.status(200).send('La capacitacion fue eliminada')
     return res.status(404).send('La capacitacion no se ha encontrado')
 }
@@ -87,11 +87,11 @@ const getTrainingByIdHandler = async (req, res) =>{
 
 
 module.exports = {
-    updateTraining,
-    trainingHandler,
+    updateTrainingHandler,
+    createTrainingHandler,
     getTrainingByName,
     getAlltraining,
-    deletetraining,
+    deletetrainingHandler,
     getTrainingByIdHandler
 }
 

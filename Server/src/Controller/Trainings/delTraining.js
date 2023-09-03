@@ -1,7 +1,7 @@
 const { training } = require('../../db');
 
 
-const delTraining = (id) => {
+const delTrainingController = (id) => {
     const trainingToDelete = training.destroy({
         where:{
             id: id
@@ -11,5 +11,5 @@ const delTraining = (id) => {
 }
 
 module.exports = {
-    delTraining
+    delTrainingController
 }
