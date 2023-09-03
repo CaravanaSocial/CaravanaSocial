@@ -1,9 +1,11 @@
-const { training } = require('../../db');
+const { where } = require('sequelize');
+const { training, companies, areaTraining } = require('../../db');
 
 
-const getCreatedTraining = async (body, id) => {
+const createdTrainingController = async (body, companyId) => {
     try {
-        const {name, description, video} = body
+        const {name, description, video, category} = body
+        const { id } = companyId
 
         const [user,created] = await training.findOrCreate({
             where:{
@@ -14,9 +16,20 @@ const getCreatedTraining = async (body, id) => {
                 video
             }
         })
-        await user.setCompany(id)
-        return user
+        if(user){
+            for(let i = 0; i < category.length; i++){
+                const trainingCategory = await areaTraining.findOne({
+                    where:{
+                        name:category[i]
+                    }
+                })
+                await user.addAreaTraining(trainingCategory)
+            }
+        }
 
+        await user.setCompany(id)
+
+        return user
     } catch (error) {
         console.log(error);
         throw error
@@ -24,5 +37,5 @@ const getCreatedTraining = async (body, id) => {
 }
 
 module.exports = {
-    getCreatedTraining
+    createdTrainingController
 }
