@@ -9,6 +9,8 @@ import Footer from "./components/Footer";
 import CreateTrainings from "./Views/CreateTrainings/CreateTrainings";
 import HomeUsers from "./Views/HomeUsers/HomeUsers";
 import CreateJobs from "./Views/CreateJobs/CreateJobs";
+import Trainings from "./Views/Trainings/Trainings";
+import TrainingVideosPage from "./Views/Trainings/TrainingVideosPage";
 
 function App() {
   return (
@@ -20,8 +22,10 @@ function App() {
         <Route path="/registerUser" element={<RegisterUser />} />
         <Route path="/register-company" element={<RegisterCompany />} />
         <Route path="/create-trainings" element={<CreateTrainings />} />
-        <Route path="/create-jobs" element={<CreateJobs />}/>
+        <Route path="/create-jobs" element={<CreateJobs />} />
         <Route path="/homeUsers" element={<HomeUsers />} />
+        <Route path="/trainings/" element={<Trainings />} />
+        <Route path="/trainings/:id" element={<TrainingVideosPage />} />
       </Routes>
       <Footer />
     </div>
