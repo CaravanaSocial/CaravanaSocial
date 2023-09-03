@@ -1,4 +1,6 @@
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const HomeUsers = () => {
   const data = [
@@ -82,113 +84,88 @@ const HomeUsers = () => {
 
   return (
     <main className="flex p-7">
-      <div className=" w-[300px]"></div>
-      <div className=" w-full h-full">
-        <section className="p-2">
-          <div className="font-vilaka flex font-bold  text-[40px]">
-            CAPACITACIONES RECIENTES
-          </div>
+      {localStorage.length !== 0 ? (
+        <div>
+          {" "}
+          <div className=" w-[300px]"></div>
+          <div className=" w-full h-full">
+            <section className="p-2">
+              <div className="font-vilaka flex font-bold  text-[40px]">
+                CAPACITACIONES RECIENTES
+              </div>
 
-          <div className="relative flex items-center">
-            <MdChevronLeft
-              className="opacity-50 cursor-pointer hover:opacity-100"
-              onClick={slideLeft1}
-              size={40}
-            />
-            <div
-              id="slider1"
-              className="w-full h-full overflow-x-scroll scroll-smooth whitespace-nowrap scrollbar scrollbar-hide"
-            >
-              {" "}
-              {data.map((item) => (
-                <img
-                  className="w-[220px] h-[200px] inline-block p-2 cursor-pointer hover:scale-105 ease-in-out duration-300"
-                  src={item.img}
-                  alt="/"
-                ></img>
-              ))}
-            </div>
-            <MdChevronRight
-              className="opacity-50 cursor-pointer hover:opacity-100"
-              onClick={slideRight1}
-              size={40}
-            />
-          </div>
-          <button className="font-topmodern border-2  self-end hover:text-light-1 items-end  border-light-1 rounded p-1 ">
-            Ver Mas
-          </button>
-        </section>
-        <section className="p-2">
-          <div className="font-vilaka font-bold flex text-[40px]">
-            OFERTAS RECIENTES
-          </div>
+              <div className="relative flex items-center">
+                <MdChevronLeft
+                  className="opacity-50 cursor-pointer hover:opacity-100"
+                  onClick={slideLeft1}
+                  size={40}
+                />
+                <div
+                  id="slider1"
+                  className="w-full h-full overflow-x-scroll scroll-smooth whitespace-nowrap scrollbar scrollbar-hide"
+                >
+                  {" "}
+                  {data.map((item) => (
+                    <img
+                      className="w-[220px] h-[200px] inline-block p-2 cursor-pointer hover:scale-105 ease-in-out duration-300"
+                      src={item.img}
+                      alt="/"
+                    ></img>
+                  ))}
+                </div>
+                <MdChevronRight
+                  className="opacity-50 cursor-pointer hover:opacity-100"
+                  onClick={slideRight1}
+                  size={40}
+                />
+              </div>
+              <button className="font-topmodern border-2  self-end hover:text-light-1 items-end  border-light-1 rounded p-1 ">
+                Ver Mas
+              </button>
+            </section>
+            <section className="p-2">
+              <div className="font-vilaka font-bold flex text-[40px]">
+                OFERTAS RECIENTES
+              </div>
 
-          <div className="relative flex items-center ">
-            <MdChevronLeft
-              className="opacity-50 cursor-pointer hover:opacity-100"
-              onClick={slideLeft2}
-              size={40}
-            />
-            <div
-              id="slider2"
-              className="w-full h-full overflow-x-scroll scroll-smooth whitespace-nowrap scrollbar scrollbar-hide"
-            >
-              {" "}
-              {data.map((item) => (
-                <img
-                  className="w-[220px] h-[200px] inline-block p-2 cursor-pointer hover:scale-105 ease-in-out duration-300"
-                  src={item.img}
-                  alt="/"
-                ></img>
-              ))}
-            </div>
-            <MdChevronRight
-              className="opacity-50 cursor-pointer hover:opacity-100"
-              onClick={slideRight2}
-              size={40}
-            />
+              <div className="relative flex items-center ">
+                <MdChevronLeft
+                  className="opacity-50 cursor-pointer hover:opacity-100"
+                  onClick={slideLeft2}
+                  size={40}
+                />
+                <div
+                  id="slider2"
+                  className="w-full h-full overflow-x-scroll scroll-smooth whitespace-nowrap scrollbar scrollbar-hide"
+                >
+                  {" "}
+                  {data.map((item) => (
+                    <img
+                      className="w-[220px] h-[200px] inline-block p-2 cursor-pointer hover:scale-105 ease-in-out duration-300"
+                      src={item.img}
+                      alt="/"
+                    ></img>
+                  ))}
+                </div>
+                <MdChevronRight
+                  className="opacity-50 cursor-pointer hover:opacity-100"
+                  onClick={slideRight2}
+                  size={40}
+                />
+              </div>
+              <button className="font-topmodern border-2  hover:text-light-1  border-light-1 rounded p-1 ">
+                Ver Mas
+              </button>
+            </section>
           </div>
-          <button className="font-topmodern border-2  hover:text-light-1  border-light-1 rounded p-1 ">
-            Ver Mas
-          </button>
-        </section>
-      </div>
+        </div>
+      ) : (
+        <div className="font-vilaka text-[50px] ">
+          Debes ingresar primero para ver este contenido :)
+        </div>
+      )}
     </main>
   );
 };
 
 export default HomeUsers;
-
-{
-  /* <section>
-  <div className="font-vilaka font-bold flex text-[40px]">FREELANCERS</div>
-  <button className="font-topmodern border-2 hover:text-light-1  self-end border-light-1 rounded p-1 ">
-    Ver Mas
-  </button>
-  <div className="relative flex items-center">
-    <MdChevronLeft
-      className="opacity-50 cursor-pointer hover:opacity-100"
-      onClick={slideLeft}
-      size={40}
-    />
-    <div
-      id="slider"
-      className="w-full h-full overflow-x-scroll scroll-smooth whitespace-nowrap scrollbar scrollbar-hide"
-    >
-      {" "}
-      {data.map((item) => (
-        <img
-          className="w-[220px] h-[200px] inline-block p-2 cursor-pointer hover:scale-105 ease-in-out duration-300"
-          src={item.img}
-          alt="/"
-        ></img>
-      ))}
-    </div>
-    <MdChevronRight
-      className="opacity-50 cursor-pointer hover:opacity-100"
-      onClick={slideRight}
-      size={40}
-    />
-  </div>
-</section>; */
-}

@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
+
 const { user } = require("../../db");
 const { SIGNATURE } = process.env;
 const { areaTraining } = require("../../db");
@@ -18,7 +19,7 @@ const createUserAccController = async (props) => {
       lastName: props.lastName,
       birthDate: props.birthDate,
       location: props.location,
-      //   CUD: props.CUD,
+      CUD: props.CUD,
       //   category: props.category,
       email: props.email,
 
@@ -41,6 +42,8 @@ const createUserAccController = async (props) => {
         })
       ).id;
       await newUser.addAreaTraining(categoryId);
+
+
     }
     const returning = await user.findOne({
       where: {

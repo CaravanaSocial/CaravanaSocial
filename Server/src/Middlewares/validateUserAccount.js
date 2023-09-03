@@ -1,3 +1,4 @@
+
 const { areaTraining } = require("../db");
 
 const validateUserAccount = async (req, res, next) => {
@@ -79,3 +80,5 @@ const validateUserAccount = async (req, res, next) => {
 module.exports = {
   validateUserAccount,
 };
+
+

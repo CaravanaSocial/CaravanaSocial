@@ -33,12 +33,12 @@ const initialState = {
   users: [],
   currentAccount: {},
   admins: [],
-  countries:[],
+  countries: [],
   states: [],
   cities: [],
   trainings: [],
   prefixes: [],
-  errors: {}
+  errors: {},
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -46,7 +46,7 @@ export default function rootReducer(state = initialState, action) {
     case CREATE_USER:
       return {
         ...state,
-        currentAccount: action.payload
+        currentAccount: action.payload,
       };
 
     case GET_USERS:
@@ -85,7 +85,7 @@ export default function rootReducer(state = initialState, action) {
     case CREATE_COMPANY:
       return {
         ...state,
-        currentAccount: action.payload
+        currentAccount: action.payload,
       };
 
     case EDIT_COMPANY:
@@ -117,7 +117,7 @@ export default function rootReducer(state = initialState, action) {
     case CREATE_TRAINING:
       return {
         ...state,
-        trainings: action.payload
+        trainings: action.payload,
       };
 
     case DELETE_TRAINING:
@@ -133,53 +133,54 @@ export default function rootReducer(state = initialState, action) {
     case LOGIN:
       return {
         ...state,
-        currentAccount: action.payload
+        currentAccount: action.payload,
       };
     case LOGOUT:
-      return{
-       ...state,
-       currentAccount: {}
-      }  
-
-    case GET_COUNTRIES:
-        return{
-            ...state,
-            countries: action.payload
-        }  
-    
-    case GET_STATE:
-        return{
-            ...state,
-            states: action.payload
-        }
-    case GET_CITY:
-        return{
-            ...state,
-            cities: action.payload
-        }
-    case GET_TRAINING:
       return {
         ...state,
-        trainings: action.payload
-      } 
+        currentAccount: {},
+      };
+
+    case GET_COUNTRIES:
+      return {
+        ...state,
+        countries: action.payload,
+      };
+
+    case GET_STATE:
+      return {
+        ...state,
+        states: action.payload,
+      };
+    case GET_CITY:
+      return {
+        ...state,
+        cities: action.payload,
+      };
+    case GET_TRAINING:
+      console.log("actiion de reducer", action.payload);
+      return {
+        ...state,
+        trainings: action.payload,
+      };
 
     case GET_CATEGORIES:
-        return {
-          ...state,
-          categories: action.payload
-        }  
-      
-    case ERRORS:
-        const errObj= action.payload
-        return {
-          ...state,
-          errors:{...state.errors,[errObj.type]:errObj.error}
-    }
-    case CLEAR_ERRORS:
-      return{
+      return {
         ...state,
-        errors:{}
-      }
+        categories: action.payload,
+      };
+
+    case ERRORS:
+      const errObj = action.payload;
+      return {
+        ...state,
+        errors: { ...state.errors, [errObj.type]: errObj.error },
+      };
+    case CLEAR_ERRORS:
+      return {
+        ...state,
+        errors: {},
+      };
 
     default:
       return { ...state };

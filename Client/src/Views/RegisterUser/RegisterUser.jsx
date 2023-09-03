@@ -39,7 +39,7 @@ export default function RegisterUser() {
     description: "",
     address: "",
   });
-  console.log("ESTADOOOOO LOCAAAALLL", userData);
+
   useEffect(() => {
     dispatch(getCountry());
     dispatch(getCategories());
