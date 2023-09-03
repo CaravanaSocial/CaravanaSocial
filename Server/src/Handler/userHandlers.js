@@ -2,6 +2,8 @@ const {createUserAccController} = require("../Controller/User/createUserAccContr
 const {getUsersController}= require("../Controller/User/getUsersController")
 const {updateUserController} = require("../Controller/User/updateUserController")
 const {getCompanyAccController} = require("../Controller/Companies/getCompanyAccController")
+const {getUsersByIdController} = require("../Controller/User/getUsersByIdController")
+const {getFreelancersController} = require("../Controller/User/getFreelancersController")
 
 const userSignUpHandler = async (req, res)=>{
     try {
@@ -31,13 +33,34 @@ const updateUserHandler = async (req, res) =>{
         const updated = await updateUserController(req.body, id)
         res.status(200).json(updated)
     } catch (error) {
-        res.status(500).json(error.message)
+        res.status(500).json({error:error.message})
     } 
+}
+
+const getUsersByIdHandler = async (req, res) =>{
+    try {
+        const {id} = req.params
+        const user = await getUsersByIdController(id)
+        res.status(200).json(user)
+    } catch (error) {
+        res.status(400).json({error:error.message})
+    }
+}
+
+const getFreelancersHandler = async (req, res) =>{
+    try {
+        const freelancers = await getFreelancersController()
+        res.status(200).json(freelancers)
+    } catch (error) {
+        res.status(400).json({error:error.message})
+    }
 }
 
 
 module.exports={
     userSignUpHandler,
     getUsersHandler,
-    updateUserHandler
+    updateUserHandler,
+    getUsersByIdHandler,
+    getFreelancersHandler
 }

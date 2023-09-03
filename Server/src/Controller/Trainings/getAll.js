@@ -1,11 +1,21 @@
-const { training, companies } = require('../../db');
+const { training, companies, areaTraining } = require('../../db');
 
 const getAll = async () => {
     try {
         const findAll = await training.findAll({
-            include: companies
-        })
+            include: [
+                {
+                  model: companies, 
+                  include: [
+                    {
+                      model: areaTraining, 
+                    },
 
+                  ],
+                },
+               
+              ]
+        })
         return findAll
     } catch (error) {
         throw error

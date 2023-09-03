@@ -1,6 +1,7 @@
 const {createAdminAccController} = require('../Controller/Admin/createAdminAccController')
 const  {getAdminsController} = require('../Controller/Admin/getAdminsController')
 const  {updateAdminController} = require("../Controller/Admin/updateAdminController")
+const {getAdminsByIdController} = require("../Controller/Admin/getAdminsByIdController")
 
 const adminSignUpHandler = async (req, res)=>{
     try {
@@ -33,8 +34,19 @@ const updateAdminHandler = async (req, res) =>{
     }
 }
 
+const getAdminsByIdHandler = async (req, res) =>{
+    try {
+        const {id} = req.params
+        const admins = await getAdminsByIdController(id)
+        res.status(200).json(admins)
+    } catch (error) {
+        res.status(200).json({error:error.message})
+    }
+}
+
 module.exports={
     adminSignUpHandler,
     getAdminsHandler,
-    updateAdminHandler
+    updateAdminHandler,
+    getAdminsByIdHandler
 }
