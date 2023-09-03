@@ -6,6 +6,8 @@ const postOfferController = async (info) => {
   const {title, description, category} = info.data
   const {id} = info;
 
+  console.log(id);
+
   if (title && description && id) {
     const [user, created] = await offer.findOrCreate({
       where: { title: title },
