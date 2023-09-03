@@ -186,10 +186,10 @@ export const editCompany = (id, company) => {
 };
 
 export const createOffer = (offer) => {
-  const endpoint = "http://localhost:3001/offer";
+  const endpoint = "http://localhost:3001/offer/";
   return async (dispatch) => {
     try {
-      const response = await axios.post(endpoint, offer);
+      const response = await axios.post(endpoint + localStorage.accId, offer);
       const { data } = response;
       return dispatch({ type: CREATE_OFFER });
     } catch (error) {
@@ -299,7 +299,8 @@ export const login = (user) => {
 
       localStorage.setItem("authorization", data.token);
       localStorage.setItem("accName", data.acc.name);
-
+      localStorage.setItem("accId", data.acc.id);
+      
       dispatch({ type: LOGIN, payload: data });
       return false;
     } catch (error) {
