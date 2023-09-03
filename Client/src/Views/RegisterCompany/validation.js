@@ -8,54 +8,57 @@ export default function validation(input){
     error.email = "Debe ingresar un Email valido!"   
     }
 
-    if(!regexPass.test(input.contraseña)){
-     error.contraseña = "La contraseña debe tener como mínimo 8 caracteres, una letra mayúscula, una letra minúscula y un número."
+    if(!regexPass.test(input.password)){
+     error.password = "La contraseña debe tener como mínimo 8 caracteres, una letra mayúscula, una letra minúscula y un número."
     }
 
-    if(input.contraseñaRepetida !== input.contraseña){
-        error.contraseñaRepetida = "Las contraseñas no coinciden."
+    if(input.passwordRep !== input.password){
+        error.passwordRep = "Las contraseñas no coinciden."
     }
 
-    if(!input.nombreEmpresa){
-        error.nombreEmpresa = "Ingrese el nombre de la empresa."
+    if(!input.nameCompany){
+        error.nameCompany = "Ingrese el nombre de la empresa."
     }
 
-    if(input.nombre.length > 20 || input.nombre.length < 5){
-        error.nombre = "El nombre debe contener entre 5 y 20 caracteres."
+    if(input.name.length > 20 || input.name.length < 2){
+        error.name = "El nombre debe contener entre 3 y 20 caracteres."
     }
 
-    if(!input.descripcion){
-        error.descripcion = "Queremos saber de qué trata la empresa."
+    if(!input.description){
+        error.description = "Queremos saber de qué trata la empresa."
     }
 
-    if(!input.nombre){
-        error.nombre ="Introduzca su nombre."
+    if(!input.name){
+        error.name ="Introduzca su nombre."
     }
 
-    if(!input.apellido){
-        error.apellido ="Introduzca su apellido."
+    if(!input.lastName){
+        error.lastName ="Introduzca su apellido."
     }
 
-    if(!input.cargo){
-        error.cargo ="Introduzca su cargo."
+    if(!input.position){
+        error.position ="Introduzca su cargo."
     }
 
-    if(!input.telefono){
-        error.telefono ="Necesitamos un telefono para estar en contacto."
+    if(!input.phone){
+        error.phone ="Necesitamos un telefono para estar en contacto."
     }
 
-    if(!input.capacitacion){
-        error.capacitacion = "Ingrese el rubro de la capacitación."
+    if(!input.category){
+        error.category = "Ingrese el rubro de la capacitación."
     }
 
     // if(typeof(input.telefono) !== Number){
     //     error.telefono ="El numero de telefono debe ser valido"
     // }
 
-    if(input.paises === []){
-        error.paises ="Seleccione un pais."
-    }
+    // if(input.paises === []){
+    //     error.paises ="Seleccione un pais."
+    // }
 
+    if(!input.location.country || !input.location.state ){
+        error.location = "Rellene los tres campos"
+    }
 
 
     return error;

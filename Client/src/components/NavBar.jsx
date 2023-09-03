@@ -66,11 +66,13 @@ export default function NavBar() {
             className="block h-6 overflow-hidden bg-gray-300 rounded-full cursor-pointer"
             htmlFor="toggle"
           ></label>
+
         </div>
         <span className="font-medium text-gray-400">{theme}</span>
       </div>
+      
       <Link to="/login">
-        <button className="text-gray-500 font-medium text-sm bg-gray-300 dark:bg-gray-300 rounded-3xl flex py-1 px-2 items-center">
+        <button className="text-gray-400 border-4 border-gray-400 font-bold text-sm bg-white rounded-3xl flex py-1 px-2 items-center">
           <CgProfile className="w-[40px] h-[30px]" />
           Entrar
         </button>
