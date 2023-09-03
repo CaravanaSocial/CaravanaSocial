@@ -1,9 +1,10 @@
 const { training } = require('../../db');
 
 
-const changer = async (body) => {
+const updateTrainingController = async (body, params) => {
     try {
-        const {id, name, description, video} = body;
+        const { id } = params
+        const { name, description, video} = body;
         const trainingToChange = await training.findByPk(id);
         
 
@@ -25,5 +26,5 @@ const changer = async (body) => {
 }
 
 module.exports = {
-    changer
+    updateTrainingController
 }

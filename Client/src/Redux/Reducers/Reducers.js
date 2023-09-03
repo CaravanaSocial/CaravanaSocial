@@ -117,8 +117,12 @@ export default function rootReducer(state = initialState, action) {
     case CREATE_TRAINING:
       return {
         ...state,
-        trainings: action.payload,
       };
+    case GET_TRAINING:
+      return{
+        ...state,
+        trainings: action.payload
+      }
 
     case DELETE_TRAINING:
       return {
