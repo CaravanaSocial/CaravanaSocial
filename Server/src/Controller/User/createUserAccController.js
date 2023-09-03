@@ -18,7 +18,7 @@ const createUserAccController = async (props) => {
       lastName: props.lastName,
       birthDate: props.birthDate,
       location: props.location,
-      //   CUD: props.CUD,
+      CUD: props.CUD,
       //   category: props.category,
       email: props.email,
 
