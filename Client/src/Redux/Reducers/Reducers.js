@@ -16,9 +16,14 @@ import {
   DELETE_TRAINING,
   EDIT_TRAINING,
   LOGIN,
+  LOGOUT,
   GET_CITY,
   GET_COUNTRIES,
-  GET_STATE
+  GET_STATE,
+  GET_TRAINING,
+  GET_CATEGORIES,
+  ERRORS,
+  CLEAR_ERRORS,
 } from "../Actions/Actions";
 
 const initialState = {
@@ -26,10 +31,14 @@ const initialState = {
   offer: [],
   companies: [],
   users: [],
+  currentAccount: {},
   admins: [],
   countries:[],
   states: [],
-  cities: []
+  cities: [],
+  trainings: [],
+  prefixes: [],
+  errors: {}
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -37,6 +46,7 @@ export default function rootReducer(state = initialState, action) {
     case CREATE_USER:
       return {
         ...state,
+        currentAccount: action.payload
       };
 
     case GET_USERS:
@@ -75,6 +85,7 @@ export default function rootReducer(state = initialState, action) {
     case CREATE_COMPANY:
       return {
         ...state,
+        currentAccount: action.payload
       };
 
     case EDIT_COMPANY:
@@ -106,6 +117,7 @@ export default function rootReducer(state = initialState, action) {
     case CREATE_TRAINING:
       return {
         ...state,
+        trainings: action.payload
       };
 
     case DELETE_TRAINING:
@@ -121,7 +133,13 @@ export default function rootReducer(state = initialState, action) {
     case LOGIN:
       return {
         ...state,
+        currentAccount: action.payload
       };
+    case LOGOUT:
+      return{
+       ...state,
+       currentAccount: {}
+      }  
 
     case GET_COUNTRIES:
         return{
@@ -138,7 +156,30 @@ export default function rootReducer(state = initialState, action) {
         return{
             ...state,
             cities: action.payload
-        }      
+        }
+    case GET_TRAINING:
+      return {
+        ...state,
+        trainings: action.payload
+      } 
+
+    case GET_CATEGORIES:
+        return {
+          ...state,
+          categories: action.payload
+        }  
+      
+    case ERRORS:
+        const errObj= action.payload
+        return {
+          ...state,
+          errors:{...state.errors,[errObj.type]:errObj.error}
+    }
+    case CLEAR_ERRORS:
+      return{
+        ...state,
+        errors:{}
+      }
 
     default:
       return { ...state };
