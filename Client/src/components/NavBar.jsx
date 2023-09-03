@@ -6,7 +6,7 @@ import logo from "../assets/images/logo.png";
 import { CgProfile } from "react-icons/cg";
 import { useDispatch, useSelector } from "react-redux";
 import { logOut } from "../Redux/Actions/Actions";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function NavBar() {
   const currentAccount = useSelector((state) => state.currentAccount);
