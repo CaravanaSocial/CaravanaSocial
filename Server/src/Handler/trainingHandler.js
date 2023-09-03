@@ -3,6 +3,7 @@ const { changer } = require('../Controller/Trainings/changer')
 const { getCreatedTraining } = require('../Controller/Trainings/getCreatedTraining')
 const { getAll } = require('../Controller/Trainings/getAll')
 const { getTrainingOnDb } = require('../Controller/Trainings/getTrainingOnDb')
+const { getTrainingByIdController } = require("../Controller/Trainings/getTrainingByIdController")
 
 const getAlltraining = async (req, res) => {
     try {
@@ -38,16 +39,9 @@ const getTrainingByName = async (req, res) => {
 
 const trainingHandler = async (req, res) => {
     try {
-        console.log('handler')
-        const foundTraining = await getCreatedTraining(req.body)
+        const foundTraining = await getCreatedTraining(req.body, req.id)
 
-        if(foundTraining){
-            return res.status(200).send('Capacitacion creada correctamente')
-        }else{
-            return res.status(400).send('Capacitacion ya existente')
-        }
-        
-        
+            return res.status(200).json(foundTraining)
 
     } catch (error) {
         res.status(400).send(error.message)
@@ -79,7 +73,15 @@ const deletetraining = async (req, res) => {
     return res.status(404).send('La capacitacion no se ha encontrado')
 }
 
-
+const getTrainingByIdHandler = async (req, res) =>{
+    try {
+        const {id} = req.params
+        const training = await getTrainingByIdController(id)
+        res.status(200).json(training)
+    } catch (error) {
+        res.status(400).json({error:error.message})
+    }
+}
 
 
 
@@ -89,7 +91,8 @@ module.exports = {
     trainingHandler,
     getTrainingByName,
     getAlltraining,
-    deletetraining
+    deletetraining,
+    getTrainingByIdHandler
 }
 
 

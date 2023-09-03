@@ -17,7 +17,7 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        birthdate:{
+        birthDate:{
             type: DataTypes.DATE,
             allowNull: false,
         },
@@ -25,12 +25,9 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: true,
         },
-        preferences:{
-            type: DataTypes.STRING,
-            allowNull: true,
-        },
         certificates:{
-            type: DataTypes.STRING,
+            type: DataTypes.ARRAY(DataTypes.STRING),
+            defaultValue: [],
             allowNull: true,
         },
         email:{
@@ -51,7 +48,7 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: true,
         },
-        adress: {
+        address: {
             type: DataTypes.STRING,
             allowNull:true
         },

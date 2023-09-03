@@ -2,6 +2,7 @@ const {createCompanyAccController} = require("../Controller/Companies/createComp
 const {getCompaniesController} = require("../Controller/Companies/getCompaniesController")
 const {updateCompanyController} = require("../Controller/Companies/updateCompanyController")
 const {getUserAccController} = require("../Controller/User/getUserAccController")
+const {getCompanyByIdController} = require("../Controller/Companies/getCompanyByIdController")
 
 const companiesSignUpHandler = async (req, res)=>{
     try {
@@ -35,8 +36,19 @@ const updateCompanyHandler = async (req, res) =>{
     }    
 }
 
+const getCompanyByIdHandler = async (req, res) =>{
+    try {
+        const {id} = req.params 
+        const company = await getCompanyByIdController(id)
+        res.status(200).json(company)
+    } catch (error) {
+        res.status(400).json({error:error.message})
+    }
+}
+
 module.exports={
     companiesSignUpHandler,
     getCompaniesHandler,
-    updateCompanyHandler
+    updateCompanyHandler,
+    getCompanyByIdHandler
 }
