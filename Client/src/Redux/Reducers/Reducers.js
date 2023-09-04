@@ -25,6 +25,8 @@ import {
   ERRORS,
   CLEAR_ERRORS,
   TRAINING_FILTER,
+  FILTER_OFFER
+
 } from "../Actions/Actions";
 
 const initialState = {
@@ -42,6 +44,7 @@ const initialState = {
   prefixes: [],
   errors: {},
   trainingFiltered: [],
+  categories: []
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -116,6 +119,12 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
       };
+
+    case FILTER_OFFER:
+      return {
+        ...state,
+        offers: action.payload
+      }
 
     case CREATE_TRAINING:
       return {

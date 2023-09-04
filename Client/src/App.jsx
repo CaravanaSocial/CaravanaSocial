@@ -11,6 +11,7 @@ import HomeUsers from "./Views/HomeUsers/HomeUsers";
 import CreateJobs from "./Views/CreateJobs/CreateJobs";
 import Trainings from "./Views/Trainings/Trainings";
 import TrainingVideosPage from "./Views/Trainings/TrainingVideosPage";
+import Offer from "./Views/Offers/Offers";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/homeUsers" element={<HomeUsers />} />
         <Route path="/trainings/" element={<Trainings />} />
         <Route path="/trainings/:id" element={<TrainingVideosPage />} />
+        <Route path="/offers" element={<Offer />} />
       </Routes>
       <Footer />
     </div>

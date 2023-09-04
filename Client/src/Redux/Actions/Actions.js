@@ -16,6 +16,7 @@ export const CREATE_OFFER = "CREATE_OFFER";
 export const DELETE_OFFER = "DELETE_OFFER";
 export const GET_OFFER = "GET_OFFER";
 export const EDIT_OFFER = "EDIT_OFFER";
+export const FILTER_OFFER = "FILTER_OFFER";
 
 export const CREATE_TRAINING = "CREATE_TRAINING";
 export const DELETE_TRAINING = "DELETE_TRAINING";
@@ -213,8 +214,8 @@ export const deleteOffer = (id) => {
   };
 };
 
-export const getOffer = (id) => {
-  const endpoint = `http://localhost:3001/offer/${id}`;
+export const getOffer = () => {
+  const endpoint = `http://localhost:3001/offer/`;
   return async (dispatch) => {
     try {
       const response = await axios(endpoint);
@@ -225,6 +226,22 @@ export const getOffer = (id) => {
     }
   };
 };
+
+export const filterOffer = (data) => {
+  const { country, companyName, category} = data
+  const endpoint = `http://localhost:3001/offer?country=${country}&companyName=${companyName}&category=${category}`;
+  return async (dispatch) => {
+    try {
+      const response = await axios(endpoint);
+      const { data } = response;
+      return dispatch({ type: FILTER_OFFER, payload: data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+
 
 export const editOffer = (id) => {
   const endpoint = `http://localhost:3001/offer/${id}`;
