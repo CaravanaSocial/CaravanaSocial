@@ -24,6 +24,7 @@ import {
   GET_CATEGORIES,
   ERRORS,
   CLEAR_ERRORS,
+  FILTER_OFFER
 } from "../Actions/Actions";
 
 const initialState = {
@@ -39,6 +40,7 @@ const initialState = {
   trainings: [],
   prefixes: [],
   errors: {},
+  categories: []
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -113,6 +115,12 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
       };
+
+    case FILTER_OFFER:
+      return {
+        ...state,
+        offers: action.payload
+      }
 
     case CREATE_TRAINING:
       return {
