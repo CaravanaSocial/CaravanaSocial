@@ -24,6 +24,7 @@ import {
   GET_CATEGORIES,
   ERRORS,
   CLEAR_ERRORS,
+  TRAINING_FILTER,
 } from "../Actions/Actions";
 
 const initialState = {
@@ -37,8 +38,10 @@ const initialState = {
   states: [],
   cities: [],
   trainings: [],
+  training: [],
   prefixes: [],
   errors: {},
+  trainingFiltered: [],
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -119,10 +122,11 @@ export default function rootReducer(state = initialState, action) {
         ...state,
       };
     case GET_TRAINING:
-      return{
+      return {
         ...state,
-        trainings: action.payload
-      }
+        trainings: action.payload,
+        trainingFiltered: action.payload,
+      };
 
     case DELETE_TRAINING:
       return {
@@ -161,12 +165,6 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         cities: action.payload,
       };
-    case GET_TRAINING:
-      console.log("actiion de reducer", action.payload);
-      return {
-        ...state,
-        trainings: action.payload,
-      };
 
     case GET_CATEGORIES:
       return {
@@ -184,6 +182,12 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         errors: {},
+      };
+
+    case TRAINING_FILTER:
+      return {
+        ...state,
+        trainingFiltered: action.payload,
       };
 
     default:
