@@ -37,7 +37,11 @@ export const GET_CITY = "GET_CITY";
 
 export const GET_CATEGORIES = "GET_CATEGORIES";
 
+
+export const COMPANY_BUTTONS = "COMPANY_BUTTONS"
+
 export const TRAINING_FILTER = "TRAINING_FILTER";
+
 
 export const createUser = (user) => {
   const endpoint = "http://localhost:3001/user/signup";
@@ -324,6 +328,7 @@ export const login = (user) => {
       localStorage.setItem("authorization", data.token);
       localStorage.setItem("accName", data.acc.name);
       localStorage.setItem("accId", data.acc.id);
+      localStorage.setItem("type", data.type)
 
       dispatch({ type: LOGIN, payload: data });
       return false;
@@ -425,6 +430,16 @@ export function clearErrors() {
   };
 }
 
+
+export function companyButtons(boolean){
+  return async function(dispatch){
+    dispatch({
+      type: COMPANY_BUTTONS,
+      payload: boolean
+    })
+  }
+}
+
 export function filterTrainingBy(data) {
   return async function (dispatch) {
     console.log(data);
@@ -445,3 +460,4 @@ export function filterTrainingBy(data) {
     }
   };
 }
+

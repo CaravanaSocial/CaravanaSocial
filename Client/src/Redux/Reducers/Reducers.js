@@ -24,6 +24,8 @@ import {
   GET_CATEGORIES,
   ERRORS,
   CLEAR_ERRORS,
+  FILTER_OFFER,
+  COMPANY_BUTTONS,
   TRAINING_FILTER,
   FILTER_OFFER
 
@@ -43,6 +45,7 @@ const initialState = {
   training: [],
   prefixes: [],
   errors: {},
+  buttonsBool : false,
   trainingFiltered: [],
   categories: []
 };
@@ -192,6 +195,11 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         errors: {},
       };
+    case COMPANY_BUTTONS:
+      return{
+        ...state,
+        buttonsBool: action.payload
+      }  
 
     case TRAINING_FILTER:
       return {
