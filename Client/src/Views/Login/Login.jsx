@@ -44,7 +44,7 @@ export default function Login () {
             </section>
 
             <section>
-                <div className="border-spacing-96 border-2 border-zinc-100 dark:border-zinc-800 rounded-3xl p-4 my-4">
+                <div className="border-2 border-zinc-100 dark:border-zinc-800 rounded-3xl p-4 my-4">
                     <h1 className="text-4xl border-b-2 border-zinc-100 dark:border-zinc-800">Inicio de Sesion</h1>
                     <br />
                     <p>{globalErrors.LOGIN?.error ? globalErrors.LOGIN.error : null}</p>
