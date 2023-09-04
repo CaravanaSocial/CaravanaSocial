@@ -13,6 +13,7 @@ export default function NavBar() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const bool = useSelector((state) => state.buttonsBool);
+  const pathname = useLocation().pathname
  
   useEffect(() => {
     if (theme === "Oscuro") {
@@ -41,6 +42,10 @@ export default function NavBar() {
     navigate("/login");
   };
 
+  const goBack=()=>{
+    navigate("/homeUsers")
+  }
+
 
   return (
     <div className="flex items-center justify-between bg-white dark:bg-zinc-900 border-b-2 border-b-zinc-100 dark:border-b-zinc-800 p-2">
@@ -48,7 +53,13 @@ export default function NavBar() {
         <img className="w-14" src={logo}></img>
       </a>
 
-      <div className="relative flex items-center w-30 h-5 mt-2.5 lg:w-64 group">
+      {pathname === "/trainings/" || pathname === "/offers" ||pathname === "/create-trainings" || pathname === "/create-jobs"? (
+        <div>
+          <button className="text-gray-400 border-4 border-gray-400 font-bold text-sm bg-white rounded-3xl flex py-1 px-2 " onClick={()=>goBack()}>volver</button>
+        </div>
+      ): null}
+
+      {/* <div className="relative flex items-center w-30 h-5 mt-2.5 lg:w-64 group">
         <div className="absolute z-50 flex items-center justify-center w-30 h-10 p-3 pr-2 text-sm text-gray-500 cursor-pointer sm:hidden">
           <svg
             className="relative w-5 h-5"
@@ -74,7 +85,7 @@ export default function NavBar() {
           placeholder="Search"
           type="text"
         />
-      </div>
+      </div> */}
 
       <div className="mt-1.5">
         <div className="relative inline-block w-10 mr-2 align-middle select-none">
@@ -95,10 +106,10 @@ export default function NavBar() {
       </div>
 
       {bool ? (
-        <div>
+        <>
         <button className="text-gray-400 border-4 border-gray-400 font-bold text-sm bg-white rounded-3xl flex py-1 px-2 " onClick={()=>handleCreate()}>crear capacitacion</button>
         <button className="text-gray-400 border-4 border-gray-400 font-bold text-sm bg-white rounded-3xl flex py-1 px-2 " onClick={()=>handleCreateOffer()}>crear aviso</button>
-        </div>
+        </>
       ) : null}
 
 
