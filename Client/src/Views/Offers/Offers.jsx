@@ -76,11 +76,9 @@ export default function Offer() {
         </select>
       </div>
       <h1>Ofertas</h1>
-      <div className="flex flex-wrap items-center">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {offers?.map((offer) => (
-          <OfferCard className="mx-4"
-            key={offer.id}
-            offer={offer} />
+          <OfferCard key={offer.id} offer={offer} />
         ))}
       </div>
     </div>

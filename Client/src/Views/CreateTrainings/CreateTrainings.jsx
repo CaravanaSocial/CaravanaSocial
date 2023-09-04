@@ -3,7 +3,7 @@ import { useState, useRef } from "react";
 import Validation from "./Validation"
 import { createTraining, getCategories, getTraining } from "../../Redux/Actions/Actions";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import UploadImage from "../../components/UploadImage";
 
 export default function createTrainings (){
@@ -95,7 +95,7 @@ export default function createTrainings (){
         if (Object.keys(error).length === 0){
             dispatch(createTraining(inputTrainings))
             dispatch(getTraining())
-            navigate("/trainings/")
+            navigate("/home-trainings/")
         }
     }
 

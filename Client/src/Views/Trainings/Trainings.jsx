@@ -45,11 +45,11 @@ const Trainings = () => {
   };
 
   return (
-    <div className="p-7 ">
-      <div>
+    <div className="inline-block m-4 p-4">
+      <div className="border-2 border-zinc-100 dark:border-zinc-800 rounded-3xl pt-2">
         <span>Filtrar por : </span>
         <select
-          className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
+          className="mx-2 rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
           onChange={handleChange}
           name="country"
         >
@@ -64,7 +64,7 @@ const Trainings = () => {
         </select>
         <span> Filtrar por :</span>
         <select
-          className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
+          className="mx-2 rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
           onChange={handleChange}
           name="category"
         >
