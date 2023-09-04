@@ -95,7 +95,7 @@ export default function createTrainings (){
         if (Object.keys(error).length === 0){
             dispatch(createTraining(inputTrainings))
             dispatch(getTraining())
-            navigate("/trainings/")
+            navigate("/home-trainings")
         }
     }
 
@@ -180,7 +180,7 @@ export default function createTrainings (){
                     })}
                 </div>
 
-                <UploadImage/>
+                {/* <UploadImage/> */}
 
                 <button className="bg-zinc-300 mt-2 text-black rounded-3xl p-2"
                     type="submit"

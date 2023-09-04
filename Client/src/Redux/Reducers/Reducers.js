@@ -27,8 +27,6 @@ import {
   FILTER_OFFER,
   COMPANY_BUTTONS,
   TRAINING_FILTER,
-  FILTER_OFFER
-
 } from "../Actions/Actions";
 
 const initialState = {

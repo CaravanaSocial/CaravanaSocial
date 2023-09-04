@@ -6,7 +6,7 @@ import React, {useEffect} from "react";
 
 const HomeUsers = () => {
 
-
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   
   useEffect(()=>{
@@ -96,6 +96,14 @@ const HomeUsers = () => {
     slider.scrollLeft = slider.scrollLeft + 500;
   };
 
+  const handleCap =()=>{
+    navigate("/trainings/")
+  }
+
+  const handleOffer =()=>{
+    navigate("/offers")
+  }
+
   return (
     <main className="flex p-7">
       {localStorage.length !== 0 ? (
@@ -133,7 +141,7 @@ const HomeUsers = () => {
                   size={40}
                 />
               </div>
-              <button className="font-topmodern border-2  self-end hover:text-light-1 items-end  border-light-1 rounded p-1 ">
+              <button onClick={()=>handleCap()}className="font-topmodern border-2  self-end hover:text-light-1 items-end  border-light-1 rounded p-1 ">
                 Ver Mas
               </button>
             </section>
@@ -167,7 +175,7 @@ const HomeUsers = () => {
                   size={40}
                 />
               </div>
-              <button className="font-topmodern border-2  hover:text-light-1  border-light-1 rounded p-1 ">
+              <button onClick={()=>handleOffer()} className="font-topmodern border-2  hover:text-light-1  border-light-1 rounded p-1 ">
                 Ver Mas
               </button>
             </section>
