@@ -14,7 +14,7 @@ const TrainingCard = ({ training }) => {
           height="230"
         ></video>
       </div>
-      <Link to={`/training/${training.id}`}>Ver todos los videos</Link>
+      <Link to={`/trainings/${training.id}`}>Ver todos los videos</Link>
     </div>
   );
 };

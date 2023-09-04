@@ -79,7 +79,7 @@ export default function Login () {
                     <hr />
                     <h4>Aun no tienes cuenta?</h4>
                     <h4>Registrate</h4>
-                    <Link to="/registerUser">
+                    <Link to="/register-user">
                         <button className="bg-zinc-300 mr-1 text-black rounded-3xl">Usuario</button>
                     </Link>
                     <Link to="/register-company">
