@@ -128,7 +128,7 @@ const LandingPage = () => {
         </a>
 
         <a
-          href="/registerUser"
+          href="/register-user"
           className="text-[40px] px-5 py-5 w-[400px] text-black m-auto  text-center flex flex-col items-center font-topmodern  "
         >
           <img
