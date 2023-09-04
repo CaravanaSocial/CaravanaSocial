@@ -26,9 +26,7 @@ import {
   CLEAR_ERRORS,
   FILTER_OFFER,
   COMPANY_BUTTONS,
-  TRAINING_FILTER,
-  FILTER_OFFER
-
+  TRAINING_FILTER
 } from "../Actions/Actions";
 
 const initialState = {

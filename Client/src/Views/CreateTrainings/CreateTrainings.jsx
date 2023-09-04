@@ -95,7 +95,7 @@ export default function createTrainings (){
         if (Object.keys(error).length === 0){
             dispatch(createTraining(inputTrainings))
             dispatch(getTraining())
-            navigate("/trainings/")
+            navigate("/home-trainings")
         }
     }
 
