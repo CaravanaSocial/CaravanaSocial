@@ -37,7 +37,7 @@ export default function createJobs() {
     event.preventDefault();
     if (Object.keys(error).length === 0) {
       dispatch(createOffer(inputJobs));
-      navigate("/");
+      navigate("/offers");
     }
   };
 

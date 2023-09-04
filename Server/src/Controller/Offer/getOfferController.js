@@ -7,13 +7,13 @@ const getOfferController = async (info) => {
   var filterOptions = []
 
   if(companyName){
-    filterOptions.push({model:companies, where:{nameCompany:companyName}})
+    filterOptions.push({model:companies, where:{nameCompany:{[Op.iLike]: `%${companyName}%`}}})
   }else{
     filterOptions.push({model:companies})
   }
   
   if (country) {
-    filterOptions.push({ model: companies, where: { 'location.contry': country } });
+    filterOptions.push({ model: companies, where: { 'location.country': country } });
   }
   
   if(category){
