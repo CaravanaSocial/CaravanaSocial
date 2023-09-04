@@ -28,7 +28,6 @@ export default function Login () {
         event.preventDefault();
         dispatch(login(userData)).then((postError) =>{
             if (!postError){
-                alert("loginnnnnn")
                 navigate("/homeUsers")
                 dispatch(clearErrors())
             }else{

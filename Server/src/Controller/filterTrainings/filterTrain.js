@@ -1,51 +1,36 @@
-const  { training, companies, areaTraining} = require('../../db')
-const { getAll } = require('../Trainings/getAll')
+const { training, companies, areaTraining } = require("../../db");
+const { getAll } = require("../Trainings/getAll");
 
-const filterTrain = async (query) => {
-    try {
-        const { country } = query
-        const { rubro } = query
+const filterTrain = async (info) => {
+  const { country, category } = info;
 
-        const alltrain =  await  getAll()
-
-        if(country && !rubro){
-
-            const trainingfilCountry = alltrain.filter((train) => {
-                return train.dataValues.company.dataValues.location.contry === country
-            })
-
-            return trainingfilCountry
-        }
-        else if(!country && rubro){
-
-            console.log(alltrain.map((train)=>train.dataValues.areaTrainings.map((area) => area.dataValues.name)))
-            const trainingfilarea = alltrain.filter((train) => train.dataValues.areaTrainings.map((area) => area.dataValues.name).includes(rubro))
-            return trainingfilarea
-        }
-        else if(country && rubro){
-            const trainingfilCountry = alltrain.filter((train) => {
-                return train.dataValues.company.dataValues.location.contry === country
-            })
-
-            const finallyBoth = trainingfilCountry.filter((train) => train.dataValues.areaTrainings.map((area) => area.dataValues.name).includes(rubro))
-
-            return finallyBoth;
-        }
-        else{
-            return alltrain
-        }
-  
-
-
-
-    } catch (error) {
-        throw error
+  const filterOptions = [];
+  try {
+    if (country) {
+      filterOptions.push({
+        model: companies,
+        where: { "location.country": country },
+      });
     }
 
-    
-}
+    if (category) {
+      filterOptions.push({ model: areaTraining, where: { name: category } });
+    } else {
+      filterOptions.push({ model: areaTraining });
+    }
 
+    const offerFiltered = await training.findAll({
+      include: filterOptions,
+    });
+
+    if (offerFiltered) {
+      return offerFiltered;
+    } else {
+      throw new Error("No hay avisos en la base de datos");
+    }
+  } catch (error) {}
+};
 
 module.exports = {
-    filterTrain
-}
+  filterTrain,
+};

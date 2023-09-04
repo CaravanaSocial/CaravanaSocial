@@ -24,6 +24,11 @@ import {
   GET_CATEGORIES,
   ERRORS,
   CLEAR_ERRORS,
+  FILTER_OFFER,
+  COMPANY_BUTTONS,
+  TRAINING_FILTER,
+  FILTER_OFFER
+
 } from "../Actions/Actions";
 
 const initialState = {
@@ -37,8 +42,12 @@ const initialState = {
   states: [],
   cities: [],
   trainings: [],
+  training: [],
   prefixes: [],
   errors: {},
+  buttonsBool : false,
+  trainingFiltered: [],
+  categories: []
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -114,10 +123,21 @@ export default function rootReducer(state = initialState, action) {
         ...state,
       };
 
+    case FILTER_OFFER:
+      return {
+        ...state,
+        offers: action.payload
+      }
+
     case CREATE_TRAINING:
       return {
         ...state,
+      };
+    case GET_TRAINING:
+      return {
+        ...state,
         trainings: action.payload,
+        trainingFiltered: action.payload,
       };
 
     case DELETE_TRAINING:
@@ -157,12 +177,6 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         cities: action.payload,
       };
-    case GET_TRAINING:
-      console.log("actiion de reducer", action.payload);
-      return {
-        ...state,
-        trainings: action.payload,
-      };
 
     case GET_CATEGORIES:
       return {
@@ -180,6 +194,17 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         errors: {},
+      };
+    case COMPANY_BUTTONS:
+      return{
+        ...state,
+        buttonsBool: action.payload
+      }  
+
+    case TRAINING_FILTER:
+      return {
+        ...state,
+        trainingFiltered: action.payload,
       };
 
     default:

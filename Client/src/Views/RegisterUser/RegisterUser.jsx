@@ -145,7 +145,6 @@ export default function RegisterUser() {
       })
     ).then((postError) => {
       if (!postError) {
-        alert("registro bien");
         navigate("/login");
         dispatch(clearErrors());
       } else {
