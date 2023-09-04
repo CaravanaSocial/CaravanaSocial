@@ -1,6 +1,5 @@
 import axios from "axios";
 
-
 export const CREATE_USER = "CREATE_USER";
 export const GET_USERS = "GET_USERS";
 export const EDIT_USER = "EDIT_USER";
@@ -38,7 +37,11 @@ export const GET_CITY = "GET_CITY";
 
 export const GET_CATEGORIES = "GET_CATEGORIES";
 
+
 export const COMPANY_BUTTONS = "COMPANY_BUTTONS"
+
+export const TRAINING_FILTER = "TRAINING_FILTER";
+
 
 export const createUser = (user) => {
   const endpoint = "http://localhost:3001/user/signup";
@@ -69,7 +72,7 @@ export const getUsers = () => {
       const response = await axios(endpoint);
       const { data } = response;
       return dispatch({
-        type: CREATE_USER,
+        type: GET_USERS,
         payload: data,
       });
     } catch (error) {
@@ -154,12 +157,12 @@ export const getCompanies = () => {
 
 export const createCompany = (company) => {
   const endpoint = "http://localhost:3001/company/signup";
-  console.log(company);
+
   return async (dispatch) => {
     try {
       const response = await axios.post(endpoint, company);
       const { data } = response;
-      localStorage.setItem("authorization", data.token);
+
       dispatch({
         type: CREATE_COMPANY,
         payload: data,
@@ -273,10 +276,13 @@ export const getTraining = () => {
 
 export const createTraining = (training) => {
   const endpoint = "http://localhost:3001/training/";
-  console.log(localStorage)
+
   return async (dispatch) => {
     try {
-      const response = await axios.post(endpoint + localStorage.accId, training);
+      const response = await axios.post(
+        endpoint + localStorage.accId,
+        training
+      );
       const { data } = response;
 
       return dispatch({ type: CREATE_TRAINING, payload: data });
@@ -424,6 +430,7 @@ export function clearErrors() {
   };
 }
 
+
 export function companyButtons(boolean){
   return async function(dispatch){
     dispatch({
@@ -432,3 +439,25 @@ export function companyButtons(boolean){
     })
   }
 }
+
+export function filterTrainingBy(data) {
+  return async function (dispatch) {
+    console.log(data);
+    const { country, category } = data;
+    try {
+      const response = (
+        await axios.get(
+          `http://localhost:3001/filter?country=${country}&category=${category}`
+        )
+      ).data;
+
+      dispatch({
+        payload: response,
+        type: TRAINING_FILTER,
+      });
+    } catch (error) {
+      console.log("Error con el filtro", error.message);
+    }
+  };
+}
+
