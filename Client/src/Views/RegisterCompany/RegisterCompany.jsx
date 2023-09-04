@@ -143,7 +143,6 @@ const RegisterCompany = () => {
             description: "",
             location: {country: "", state:"", city:""},
           })
-          alert("registrado con exito");
           navigate("/login")
           dispatch(clearErrors())
       }else{

@@ -1,8 +1,22 @@
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { companyButtons } from "../../Redux/Actions/Actions";
+import React, {useEffect} from "react";
 
 const HomeUsers = () => {
+
+
+  const dispatch = useDispatch();
+  
+  useEffect(()=>{
+    if(localStorage.type === "company"){
+      dispatch(companyButtons(true))
+    }else{
+      dispatch(companyButtons(false))
+    }   
+  },[dispatch])
+
   const data = [
     {
       img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXtJ3u0vIXfn2Ywm3OSbevjXdWpG0mShZ6uA&usqp=CAU",

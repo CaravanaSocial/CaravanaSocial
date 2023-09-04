@@ -24,7 +24,8 @@ import {
   GET_CATEGORIES,
   ERRORS,
   CLEAR_ERRORS,
-  FILTER_OFFER
+  FILTER_OFFER,
+  COMPANY_BUTTONS
 } from "../Actions/Actions";
 
 const initialState = {
@@ -40,7 +41,8 @@ const initialState = {
   trainings: [],
   prefixes: [],
   errors: {},
-  categories: []
+  categories: [],
+  buttonsBool : false
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -193,6 +195,11 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         errors: {},
       };
+    case COMPANY_BUTTONS:
+      return{
+        ...state,
+        buttonsBool: action.payload
+      }  
 
     default:
       return { ...state };

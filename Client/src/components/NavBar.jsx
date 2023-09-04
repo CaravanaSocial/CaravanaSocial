@@ -5,31 +5,43 @@ import logo from "../assets/images/logo.png";
 
 import { CgProfile } from "react-icons/cg";
 import { useDispatch, useSelector } from "react-redux";
-import { logOut } from "../Redux/Actions/Actions";
-import { useNavigate } from "react-router-dom";
+import { companyButtons, logOut } from "../Redux/Actions/Actions";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export default function NavBar() {
   const [theme, setTheme] = useState("Claro");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const currentAccount = useSelector((state) => state.currentAccount);
-
+  const bool = useSelector((state) => state.buttonsBool);
+ 
   useEffect(() => {
     if (theme === "Oscuro") {
       document.documentElement.classList.add("dark");
     } else {
       document.documentElement.classList.remove("dark");
     }
+
   }, [theme]);
 
   const handleThemeSwitch = () => {
     setTheme(theme === "Oscuro" ? "Claro" : "Oscuro");
   };
 
+ const handleCreate =()=>{
+   navigate("/create-trainings")
+ }
+
+ const handleCreateOffer =()=>{
+  navigate("/create-jobs")
+}
+
   const handleLogout = () => {
     dispatch(logOut());
+    dispatch(companyButtons(false))
     navigate("/login");
   };
+
+
   return (
     <div className="flex items-center justify-between bg-white dark:bg-zinc-900 border-b-2 border-b-zinc-100 dark:border-b-zinc-800 p-2">
       <a href="/">
@@ -81,6 +93,14 @@ export default function NavBar() {
         </div>
         <span className="font-medium text-gray-400">{theme}</span>
       </div>
+
+      {bool ? (
+        <div>
+        <button className="text-gray-400 border-4 border-gray-400 font-bold text-sm bg-white rounded-3xl flex py-1 px-2 " onClick={()=>handleCreate()}>crear capacitacion</button>
+        <button className="text-gray-400 border-4 border-gray-400 font-bold text-sm bg-white rounded-3xl flex py-1 px-2 " onClick={()=>handleCreateOffer()}>crear aviso</button>
+        </div>
+      ) : null}
+
 
       {localStorage.length !== 0 ? (
         <div className="flex">

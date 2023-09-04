@@ -38,6 +38,8 @@ export const GET_CITY = "GET_CITY";
 
 export const GET_CATEGORIES = "GET_CATEGORIES";
 
+export const COMPANY_BUTTONS = "COMPANY_BUTTONS"
+
 export const createUser = (user) => {
   const endpoint = "http://localhost:3001/user/signup";
   return async (dispatch) => {
@@ -320,6 +322,7 @@ export const login = (user) => {
       localStorage.setItem("authorization", data.token);
       localStorage.setItem("accName", data.acc.name);
       localStorage.setItem("accId", data.acc.id);
+      localStorage.setItem("type", data.type)
 
       dispatch({ type: LOGIN, payload: data });
       return false;
@@ -419,4 +422,13 @@ export function clearErrors() {
       type: CLEAR_ERRORS,
     });
   };
+}
+
+export function companyButtons(boolean){
+  return async function(dispatch){
+    dispatch({
+      type: COMPANY_BUTTONS,
+      payload: boolean
+    })
+  }
 }
