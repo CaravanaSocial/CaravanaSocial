@@ -1,4 +1,5 @@
 const { Router } = require("express");
+
 const offerRoute = require("./offerRoute");
 const adminRoute = require("./adminRoute");
 const rubroRoute = require("./categoriesRoute");
@@ -22,6 +23,7 @@ router.use("/login", loginRoute);
 router.use("/success", successRoute);
 router.use("/trainings", trainingRoute);
 router.use("/user", userRoute);
+
 
 //------------Cloudinay(PRUEBA)--------------
 router.use("/image", imageRout);

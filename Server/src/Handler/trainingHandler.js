@@ -5,6 +5,7 @@ const { getAll } = require('../Controller/Trainings/getAll')
 const { getTrainingOnDb } = require('../Controller/Trainings/getTrainingOnDb')
 const { getTrainingByIdController } = require("../Controller/Trainings/getTrainingByIdController")
 
+
 const getAlltraining = async (req, res) => {
     try {
         
@@ -86,13 +87,15 @@ const getTrainingByIdHandler = async (req, res) =>{
 
 
 
+
+
 module.exports = {
     updateTrainingHandler,
     createTrainingHandler,
     getTrainingByName,
     getAlltraining,
     deletetrainingHandler,
-    getTrainingByIdHandler
+    getTrainingByIdHandler,
 }
 
 

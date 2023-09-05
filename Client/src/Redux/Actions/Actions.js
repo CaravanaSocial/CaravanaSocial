@@ -197,11 +197,21 @@ export const editCompany = (id, company) => {
   const endpoint = `http://localhost:3001/company/update/${id}`;
   return async (dispatch) => {
     try {
-      const response = await axios.patch(endpoint, company);
+      const headers={'Content-Type':'application/json'}
+      const response = await axios.patch(endpoint, company, {headers});
       const { data } = response;
-      return dispatch({ type: EDIT_COMPANY });
+
+       dispatch({ 
+           type: EDIT_COMPANY 
+       });
+       return false;
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
+      dispatch({
+        type: ERRORS,
+        payload: { type: EDIT_COMPANY, payload: error.response.data },
+      });
+      return error;
     }
   };
 };
@@ -336,7 +346,8 @@ export const login = (user) => {
     try {
       const response = await axios.post(endpoint, user);
       const { data } = response;
-
+      const account = JSON.stringify(data.acc)
+      localStorage.setItem("account", account)
       localStorage.setItem("authorization", data.token);
       localStorage.setItem("accName", data.acc.name);
       localStorage.setItem("accId", data.acc.id);
