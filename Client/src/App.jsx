@@ -15,6 +15,7 @@ import Offer from "./Views/Offers/Offers";
 import ProfileUser from "./Views/UpdateProfile/ProfileUser";
 
 function App() {
+  const account = JSON.parse(localStorage.account);
   return (
     <div>
       <NavBar />
@@ -29,7 +30,10 @@ function App() {
         <Route path="/home-trainings" element={<Trainings />} />
         <Route path="/home-offers" element={<Offer />} />
         <Route path="/trainings/:id" element={<TrainingVideosPage />} />
-        <Route path="/profileUser" element={<ProfileUser />} />
+        <Route
+          path={`/${account.name + account.lastName}`}
+          element={<ProfileUser />}
+        />
       </Routes>
       <Footer />
     </div>
