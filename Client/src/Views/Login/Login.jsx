@@ -2,8 +2,10 @@ import React from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { login, clearErrors, setNewErrors } from "../../Redux/Actions/Actions";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector} from "react-redux";
 import validation from "./validation";
+import { GoogleLogin } from "@react-oauth/google"
+import jwt_decode from "jwt-decode";
 
 export default function Login () {
 
@@ -70,9 +72,29 @@ export default function Login () {
                         type="submit"
                     >Iniciar Sesion</button>
                     <br />
-                    <button className="bg-zinc-300 my-2 text-black rounded-3xl"
-                    >Iniciar Sesion con Google</button>
-                    <br />
+                    <GoogleLogin
+                        onSuccess={(CredentialResponse) => {
+                            const CredentialResponseDecoded = jwt_decode(CredentialResponse.credential)
+                            dispatch(login({
+                                email: CredentialResponseDecoded.email,
+                                google:true
+                            })).then((postError)=>{
+                                if(postError){
+                                    dispatch(
+                                        setNewErrors({
+                                            type: "LOGIN",
+                                            error: postError.response.data,
+                                          })
+                                    )
+                                }else{
+                                    navigate("/home-users")
+                                }
+                            })
+                        }}
+                        onError={()=>{
+                            console.log("LOGIN FAILED");
+                        }}
+                    />
                     <Link to="/">
                         <h4>He olvidado mi Contraseña</h4>
                     </Link>
