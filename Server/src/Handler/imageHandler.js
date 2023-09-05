@@ -45,6 +45,6 @@ const uploadVideosorImage = async (file) => {
 };
 
 module.exports = {
-    uploadImage
+  uploadVideosorImage
 };
 
