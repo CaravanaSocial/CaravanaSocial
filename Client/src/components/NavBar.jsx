@@ -1,13 +1,11 @@
 import { useState, useEffect } from "react";
-
 import { Link } from "react-router-dom";
 import logo from "../assets/images/logo.png";
-
 import { CgProfile } from "react-icons/cg";
 import { CgMenu } from "react-icons/cg";
 import { useDispatch, useSelector } from "react-redux";
 import { companyButtons, logOut } from "../Redux/Actions/Actions";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function NavBar() {
   const [theme, setTheme] = useState("Claro");
@@ -83,7 +81,7 @@ export default function NavBar() {
         </div>
         
 
-        {menu === true ?(
+        {menu === true ? (
           <div className="absolute end-0 z-10 mt-2 w-56 divide-y divide-gray-100 rounded-md border border-gray-100 bg-white shadow-lg"
             role="menu">
 
