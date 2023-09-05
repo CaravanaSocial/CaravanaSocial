@@ -43,7 +43,7 @@ export default function NavBar() {
   };
 
   const goBack=()=>{
-    navigate("/homeUsers")
+    navigate("/home")
   }
 
 
@@ -53,13 +53,13 @@ export default function NavBar() {
         <img className="w-14" src={logo}></img>
       </a>
 
-      {pathname === "/trainings/" || pathname === "/offers" ||pathname === "/create-trainings" || pathname === "/create-jobs"? (
+      {pathname === "/home-trainings" || pathname === "/home-offers" ||pathname === "/create-trainings" || pathname === "/create-jobs"? (
         <div>
           <button className="text-gray-400 border-4 border-gray-400 font-bold text-sm bg-white rounded-3xl flex py-1 px-2 " onClick={()=>goBack()}>volver</button>
         </div>
       ): null}
 
-      {/* <div className="relative flex items-center w-30 h-5 mt-2.5 lg:w-64 group">
+      <div className="relative flex items-center w-30 h-5 mt-2.5 lg:w-64 group">
         <div className="absolute z-50 flex items-center justify-center w-30 h-10 p-3 pr-2 text-sm text-gray-500 cursor-pointer sm:hidden">
           <svg
             className="relative w-5 h-5"
@@ -85,7 +85,11 @@ export default function NavBar() {
           placeholder="Search"
           type="text"
         />
-      </div> */}
+      </div>
+
+      <Link to="/home">
+        <button className="text-gray-400 border-4 border-gray-400 font-bold text-sm bg-white rounded-3xl flex py-1 px-2 items-center">Home</button>
+      </Link>
 
       <div className="mt-1.5">
         <div className="relative inline-block w-10 mr-2 align-middle select-none">

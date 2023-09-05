@@ -7,7 +7,7 @@ import RegisterCompany from "./Views/RegisterCompany/RegisterCompany";
 import LandingPage from "./Views/LandingPage";
 import Footer from "./components/Footer";
 import CreateTrainings from "./Views/CreateTrainings/CreateTrainings";
-import HomeUsers from "./Views/HomeUsers/HomeUsers";
+import Home from "./Views/Home/Home";
 import CreateJobs from "./Views/CreateJobs/CreateJobs";
 import Trainings from "./Views/Trainings/Trainings";
 import TrainingVideosPage from "./Views/Trainings/TrainingVideosPage";
@@ -24,7 +24,7 @@ function App() {
         <Route path="/register-company" element={<RegisterCompany />} />
         <Route path="/create-trainings" element={<CreateTrainings />} />
         <Route path="/create-jobs" element={<CreateJobs />} />
-        <Route path="/home-users" element={<HomeUsers />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/home-trainings" element={<Trainings />} />
         <Route path="/home-offers" element={<Offer />} />
         <Route path="/trainings/:id" element={<TrainingVideosPage />} />

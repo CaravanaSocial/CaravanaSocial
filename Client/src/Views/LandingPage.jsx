@@ -1,4 +1,3 @@
-import NavBar from "../components/NavBar";
 import { useState } from "react";
 import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
 import { RxDotFilled } from "react-icons/rx";
