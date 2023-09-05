@@ -14,18 +14,6 @@ const freelancerRoute = require('./freelancerRoute')
 const user_trainingRoute = require('./user_trainingRoute')
 const questionRoute = require('./questionRoute');
 
-const offerRoute = require("./offerRoute");
-const adminRoute = require("./adminRoute");
-const rubroRoute = require("./categoriesRoute");
-const companyRoute = require("./companyRoute");
-const countryRoute = require("./countryRoute");
-const loginRoute = require("./loginRoute");
-const successRoute = require("./successStoriesRoute");
-const trainingRoute = require("./trainingRoute");
-const userRoute = require("./userRoute");
-const imageRout = require("./imageRoute");
-const filterRoute = require("./filterRoute");
-
 const router = Router();
 
 router.use("/offer", offerRoute)
@@ -47,5 +35,4 @@ router.use("/image", imageRout);
 //------------Filtros(PRUEBA)----------------
 router.use("/filter", filterRoute);
 
-
-module.exports = router
+module.exports = router;
