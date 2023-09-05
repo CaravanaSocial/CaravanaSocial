@@ -4,6 +4,7 @@ const { createdTrainingController } = require('../Controller/Trainings/getCreate
 const { getAll } = require('../Controller/Trainings/getAll')
 const { getTrainingOnDb } = require('../Controller/Trainings/getTrainingOnDb')
 const { getTrainingByIdController } = require("../Controller/Trainings/getTrainingByIdController")
+const {userToTrainingController} = require('../Controller/Trainings/userToTrainingController')
 
 const getAlltraining = async (req, res) => {
     try {
@@ -83,6 +84,15 @@ const getTrainingByIdHandler = async (req, res) =>{
     }
 }
 
+const userToTrainingHandler = async (req, res)=>{
+    try {
+        const response = await userToTrainingController(req.body)
+        response && res.status(200).json(response)
+    } catch (error) {
+        return res.status(500).json(error)
+    }
+}
+
 
 
 
@@ -92,7 +102,8 @@ module.exports = {
     getTrainingByName,
     getAlltraining,
     deletetrainingHandler,
-    getTrainingByIdHandler
+    getTrainingByIdHandler,
+    userToTrainingHandler
 }
 
 
