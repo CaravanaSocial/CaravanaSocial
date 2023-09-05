@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import {
   getCountry,
-  getTraining,
+  getTrainings,
   filterTrainingBy,
   getCategories,
 } from "../../Redux/Actions/Actions";
@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 
 const Trainings = () => {
   const trainings = useSelector((state) => state.trainings);
-  const trainingFiltered = useSelector((state) => state.trainingFiltered);
+  const trainingsFiltered = useSelector((state) => state.trainingsFiltered);
   const countries = useSelector((state) => state.countries);
   const category = useSelector((state) => state.categories);
   const dispatch = useDispatch();
@@ -22,10 +22,10 @@ const Trainings = () => {
   });
 
   useEffect(() => {
-    if (trainingFiltered.length) {
+    if (trainingsFiltered.length) {
       return;
     }
-    dispatch(getTraining());
+    dispatch(getTrainings());
     dispatch(getCategories());
     dispatch(getCountry());
   }, []);
@@ -80,7 +80,7 @@ const Trainings = () => {
       </div>
       <h1>Entrenamientos</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {trainingFiltered.map((training) => (
+        {trainingsFiltered?.map((training) => (
           <TrainingCard key={training.id} training={training} />
         ))}
       </div>
