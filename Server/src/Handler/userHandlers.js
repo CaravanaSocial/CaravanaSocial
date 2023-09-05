@@ -3,20 +3,13 @@
 const {
   createUserAccController,
 } = require("../Controller/User/createUserAccController");
-const { getUsersController } = require("../Controller/User/getUsersController");
-const {
-  updateUserController,
-} = require("../Controller/User/updateUserController");
-const {
-  getCompanyAccController,
-} = require("../Controller/Companies/getCompanyAccController");
-const {
-  getUsersByIdController,
-} = require("../Controller/User/getUsersByIdController");
-const {
-  getFreelancersController,
-} = require("../Controller/User/getFreelancersController");
-
+const {getUsersController} = require("../Controller/User/getUsersController");
+const {updateUserController} = require("../Controller/User/updateUserController");
+const {getCompanyAccController} = require("../Controller/Companies/getCompanyAccController");
+const {getUsersByIdController} = require("../Controller/User/getUsersByIdController");
+const {getFreelancersController} = require("../Controller/User/getFreelancersController");
+const {deleteUserController} =require("../Controller/User/deleteUserController")
+const {restoreUserController} =require("../Controller/User/restoreUserController")
 
 const userSignUpHandler = async (req, res) => {
   try {
@@ -71,12 +64,36 @@ const getFreelancersHandler = async (req, res) => {
   }
 };
 
+const deleteUserHandler = async (req, res) =>{
+  try {
+      const {id} = req.params
+      const deleted = await deleteUserController(id)
+      if(deleted) return res.status(200).json({message: deleted})
+      return res.status(400).json({error: "User not found"})
+  } catch (error) {
+      res.status(200).json({error:error.message})
+  }
+}
+
+const restoreUserHandler = async (req, res) => {
+  try {
+      const {id} = req.params
+      const restored = await restoreUserController(id)
+      if(restored) return res.status(200).json(restored)
+      return res.status(400).json({error: "User not found"})
+  } catch (error) {
+      res.status(200).json({error:error.message})
+  }
+}
+
 module.exports = {
   userSignUpHandler,
   getUsersHandler,
   updateUserHandler,
   getUsersByIdHandler,
   getFreelancersHandler,
+  deleteUserHandler,
+  restoreUserHandler
 };
 
 
