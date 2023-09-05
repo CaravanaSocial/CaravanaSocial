@@ -12,6 +12,7 @@ const CitiesModel = require("./Models/Cities");
 const StatesModel = require("./Models/States");
 const PrefixesModel = require('./Models/Prefixes')
 const SuccessModel = require("./Models/SuccessStory")
+const QuestionsModel = require("./Models/frequentQuestions")
 
 const sequelize = new Sequelize(
   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/caravanadb`,
@@ -29,6 +30,7 @@ CitiesModel(sequelize);
 StatesModel(sequelize);
 PrefixesModel(sequelize);
 SuccessModel(sequelize);
+QuestionsModel(sequelize)
 
 const {
   country,
@@ -41,7 +43,8 @@ const {
   areaTraining,
   admin,
   prefix,
-  success
+  success,
+  question
 } = sequelize.models;
 
 //Relacion de empresas con capacitaciones
@@ -85,6 +88,6 @@ module.exports = {
   city,
   state,
   success,
-
+  question,
   conn: sequelize,
 };
