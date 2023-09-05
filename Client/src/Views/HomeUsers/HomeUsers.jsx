@@ -97,11 +97,11 @@ const HomeUsers = () => {
   };
 
   const handleCap =()=>{
-    navigate("/trainings/")
+    navigate("/home-trainings")
   }
 
   const handleOffer =()=>{
-    navigate("/offers")
+    navigate("/home-offers")
   }
 
   return (
