@@ -78,8 +78,17 @@ export default function Login () {
                             dispatch(login({
                                 email: CredentialResponseDecoded.email,
                                 google:true
-                            })).then(()=>{
-                                navigate("/home-users")
+                            })).then((postError)=>{
+                                if(postError){
+                                    dispatch(
+                                        setNewErrors({
+                                            type: "LOGIN",
+                                            error: postError.response.data,
+                                          })
+                                    )
+                                }else{
+                                    navigate("/home-users")
+                                }
                             })
                         }}
                         onError={()=>{

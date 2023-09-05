@@ -33,6 +33,7 @@ const loginHandler = async (req, res) =>{
                     return res.status(200).json({...accTokenType, type:"user"})
                 }return res.status(400).json({error: "Usuario bloqueado"})
             }
+            return res.status(400).json({error: "Cuenta no registrada"})
         }
 
         const adminAcc = await getAdminAccController(email)
