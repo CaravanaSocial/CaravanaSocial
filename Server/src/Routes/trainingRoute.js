@@ -6,7 +6,6 @@ const {
   deletetrainingHandler,
   updateTrainingHandler,
   getTrainingByIdHandler,
-  userToTrainingHandler,
 } = require("../Handler/trainingHandler");
 
 const router = Router();
@@ -23,6 +22,5 @@ router.post("/:id", createTrainingHandler);
 router.delete("/delete", deletetrainingHandler);
 router.patch("/:id", updateTrainingHandler);
 router.get("/:id", getTrainingByIdHandler);
-router.put("/adduser", userToTrainingHandler);
 
 module.exports = router;
