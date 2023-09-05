@@ -1,28 +1,63 @@
 import { useState, useEffect } from "react";
+
 import { Link } from "react-router-dom";
-import logo from "../../public/logo.png";
+import logo from "../assets/images/logo.png";
+
 import { CgProfile } from "react-icons/cg";
+import { useDispatch, useSelector } from "react-redux";
+import { companyButtons, logOut } from "../Redux/Actions/Actions";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export default function NavBar() {
   const [theme, setTheme] = useState("Claro");
-
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const bool = useSelector((state) => state.buttonsBool);
+  const pathname = useLocation().pathname
+ 
   useEffect(() => {
     if (theme === "Oscuro") {
       document.documentElement.classList.add("dark");
     } else {
       document.documentElement.classList.remove("dark");
     }
+
   }, [theme]);
 
   const handleThemeSwitch = () => {
     setTheme(theme === "Oscuro" ? "Claro" : "Oscuro");
   };
 
+ const handleCreate =()=>{
+   navigate("/create-trainings")
+ }
+
+ const handleCreateOffer =()=>{
+  navigate("/create-jobs")
+}
+
+  const handleLogout = () => {
+    dispatch(logOut());
+    dispatch(companyButtons(false))
+    navigate("/login");
+  };
+
+  const goBack=()=>{
+    navigate("/home")
+  }
+
+
   return (
     <div className="flex items-center justify-between bg-white dark:bg-zinc-900 border-b-2 border-b-zinc-100 dark:border-b-zinc-800 p-2">
       <a href="/">
-        <img className="w-20" src={logo}></img>
+        <img className="w-14" src={logo}></img>
       </a>
+
+      {pathname === "/home-trainings" || pathname === "/home-offers" ||pathname === "/create-trainings" || pathname === "/create-jobs"? (
+        <div>
+          <button className="text-gray-400 border-4 border-gray-400 font-bold text-sm bg-white rounded-3xl flex py-1 px-2 " onClick={()=>goBack()}>volver</button>
+        </div>
+      ): null}
 
       <div className="relative flex items-center w-30 h-5 mt-2.5 lg:w-64 group">
         <div className="absolute z-50 flex items-center justify-center w-30 h-10 p-3 pr-2 text-sm text-gray-500 cursor-pointer sm:hidden">
@@ -52,6 +87,10 @@ export default function NavBar() {
         />
       </div>
 
+      <Link to="/home">
+        <button className="text-gray-400 border-4 border-gray-400 font-bold text-sm bg-white rounded-3xl flex py-1 px-2 items-center">Home</button>
+      </Link>
+
       <div className="mt-1.5">
         <div className="relative inline-block w-10 mr-2 align-middle select-none">
           <input
@@ -69,12 +108,40 @@ export default function NavBar() {
         </div>
         <span className="font-medium text-gray-400">{theme}</span>
       </div>
-      <Link to="/login">
-        <button className="text-gray-500 font-medium text-sm bg-gray-300 dark:bg-gray-300 rounded-3xl flex py-1 px-2 items-center">
-          <CgProfile className="w-[40px] h-[30px]" />
-          Entrar
-        </button>
-      </Link>
+
+      {bool ? (
+        <>
+        <button className="text-gray-400 border-4 border-gray-400 font-bold text-sm bg-white rounded-3xl flex py-1 px-2 " onClick={()=>handleCreate()}>crear capacitacion</button>
+        <button className="text-gray-400 border-4 border-gray-400 font-bold text-sm bg-white rounded-3xl flex py-1 px-2 " onClick={()=>handleCreateOffer()}>crear aviso</button>
+        </>
+      ) : null}
+
+
+      {localStorage.length !== 0 ? (
+        <div className="flex">
+          <span className="font-topmodern p-3 flex justify-center">
+            {localStorage.accName}
+          </span>
+          <button
+            className="text-gray-400 border-4 border-gray-400 font-bold text-sm bg-white rounded-3xl flex py-1 px-2 items-center"
+            onClick={() => handleLogout()}
+          >
+            <CgProfile className="w-[40px] h-[30px]" />
+            Salir
+          </button>
+        </div>
+      ) : (
+        <Link to="/login">
+          <button className="text-gray-400 border-4 border-gray-400 font-bold text-sm bg-white rounded-3xl flex py-1 px-2 items-center">
+            <CgProfile className="w-[40px] h-[30px]" />
+            Entrar
+          </button>
+        </Link>
+      )}
     </div>
   );
+}
+
+{
+  /* <button onClick={() => handleLogout()}>LOGOUT</button>; */
 }

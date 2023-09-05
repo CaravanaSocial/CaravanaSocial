@@ -11,35 +11,41 @@ export default function validation(input) {
     if (!regexPass.test(input.password)) {
         error.password = "La contraseña debe tener como mínimo 8 caracteres, una letra mayúscula, una letra minúscula y un número"
     }
-    if (!regexName.test(input.nombre)) {
-        error.nombre = "El nombre no debe contener números"
+    if(input.passwordRep !== input.password){
+        error.passwordRep = "Las contraseñas no coinciden"
     }
-    if (!input.nombre) {
-        error.nombre = "Debe ingresar un nombre"
+    if (!regexName.test(input.name)) {
+        error.name = "El nombre no debe contener números"
     }
-    if (!regexName.test(input.apellido)) {
-        error.apellido = "El apellido no debe contener números"
+    if (!input.name) {
+        error.name = "Debe ingresar un nombre"
     }
-    if (!input.apellido) {
-        error.apellido = "Debe ingresar un apellido"
+    if (!regexName.test(input.lastName)) {
+        error.lastName = "El apellido no debe contener números"
     }
-    if (!Number(input.edad)) {
-        error.edad = "La edad debe ser un número"
+    if (!input.lastName) {
+        error.lastName = "Debe ingresar un apellido"
     }
-    if (!input.edad) {
-        error.edad = "Debe ingresar una edad"
+    if (!Date(input.birthdate)) {
+        error.birthdate = "Debe ser una Fecha"
     }
-    if (!input.pais) {
-        error.pais = "Debe ingresar su país de residencia"
+    if (!input.birthdate) {
+        error.birthdate = "Debe ingresar una Fecha de Nacimiento"
     }
-    if (!input.CUD) {
-        error.CUD = "Debe ingresar su código CUD"
+    if (!input.location.country) {
+        error.country = "Debe seleccionar un País"
     }
-    if (!input.trabajo) {
-        error.trabajo = "Debe ingresar una descripción de su trabajo"
+    if (!input.location.state) {
+        error.state = "Debe seleccionar un Estado/Provincia"
     }
-    if (!input.geolocalizacion) {
-        error.geolocalizacion = "Debe ingresar su geolocalización"
+    if (!input.location.city) {
+        error.city = "Debe seleccionar una Ciudad"
+    }
+    if (!input.description) {
+        error.description = "Debe ingresar una descripción de su trabajo"
+    }
+    if (!input.adress) {
+        error.adress = "Debe ingresar su geolocalización"
     }
     return error;
 }

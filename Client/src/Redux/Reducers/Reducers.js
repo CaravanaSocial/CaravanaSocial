@@ -16,9 +16,17 @@ import {
   DELETE_TRAINING,
   EDIT_TRAINING,
   LOGIN,
+  LOGOUT,
   GET_CITY,
   GET_COUNTRIES,
-  GET_STATE
+  GET_STATE,
+  GET_TRAINING,
+  GET_CATEGORIES,
+  ERRORS,
+  CLEAR_ERRORS,
+  FILTER_OFFER,
+  COMPANY_BUTTONS,
+  TRAINING_FILTER,
 } from "../Actions/Actions";
 
 const initialState = {
@@ -26,10 +34,18 @@ const initialState = {
   offer: [],
   companies: [],
   users: [],
+  currentAccount: {},
   admins: [],
-  countries:[],
+  countries: [],
   states: [],
-  cities: []
+  cities: [],
+  trainings: [],
+  training: [],
+  prefixes: [],
+  errors: {},
+  buttonsBool : false,
+  trainingFiltered: [],
+  categories: []
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -37,6 +53,7 @@ export default function rootReducer(state = initialState, action) {
     case CREATE_USER:
       return {
         ...state,
+        currentAccount: action.payload,
       };
 
     case GET_USERS:
@@ -75,6 +92,7 @@ export default function rootReducer(state = initialState, action) {
     case CREATE_COMPANY:
       return {
         ...state,
+        currentAccount: action.payload,
       };
 
     case EDIT_COMPANY:
@@ -103,9 +121,21 @@ export default function rootReducer(state = initialState, action) {
         ...state,
       };
 
+    case FILTER_OFFER:
+      return {
+        ...state,
+        offers: action.payload
+      }
+
     case CREATE_TRAINING:
       return {
         ...state,
+      };
+    case GET_TRAINING:
+      return {
+        ...state,
+        trainings: action.payload,
+        trainingFiltered: action.payload,
       };
 
     case DELETE_TRAINING:
@@ -121,24 +151,59 @@ export default function rootReducer(state = initialState, action) {
     case LOGIN:
       return {
         ...state,
+        currentAccount: action.payload,
+      };
+    case LOGOUT:
+      return {
+        ...state,
+        currentAccount: {},
       };
 
     case GET_COUNTRIES:
-        return{
-            ...state,
-            countries: action.payload
-        }  
-    
+      return {
+        ...state,
+        countries: action.payload,
+      };
+
     case GET_STATE:
-        return{
-            ...state,
-            states: action.payload
-        }
+      return {
+        ...state,
+        states: action.payload,
+      };
     case GET_CITY:
-        return{
-            ...state,
-            cities: action.payload
-        }      
+      return {
+        ...state,
+        cities: action.payload,
+      };
+
+    case GET_CATEGORIES:
+      return {
+        ...state,
+        categories: action.payload,
+      };
+
+    case ERRORS:
+      const errObj = action.payload;
+      return {
+        ...state,
+        errors: { ...state.errors, [errObj.type]: errObj.error },
+      };
+    case CLEAR_ERRORS:
+      return {
+        ...state,
+        errors: {},
+      };
+    case COMPANY_BUTTONS:
+      return{
+        ...state,
+        buttonsBool: action.payload
+      }  
+
+    case TRAINING_FILTER:
+      return {
+        ...state,
+        trainingFiltered: action.payload,
+      };
 
     default:
       return { ...state };
