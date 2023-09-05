@@ -13,14 +13,13 @@ export default function NavBar() {
   const navigate = useNavigate();
   const bool = useSelector((state) => state.buttonsBool);
   const [menu, setMenu] = useState(false);
- 
+
   useEffect(() => {
     if (theme === "Oscuro") {
       document.documentElement.classList.add("dark");
     } else {
       document.documentElement.classList.remove("dark");
     }
-
   }, [theme]);
 
   const handleThemeSwitch = () => {
@@ -29,18 +28,18 @@ export default function NavBar() {
 
   const handleLogout = () => {
     dispatch(logOut());
-    dispatch(companyButtons(false))
+    dispatch(companyButtons(false));
     navigate("/login");
   };
 
   const handleMenu = () => {
     setMenu(menu === true ? false : true);
-  }
+  };
 
   return (
-    <div className="flex items-center justify-between bg-white dark:bg-zinc-900 border-b-2 border-b-zinc-100 dark:border-b-zinc-800 p-2">
+    <div className="flex h-[100px] items-center justify-between bg-white dark:bg-zinc-900 border-b-2 border-b-zinc-100 dark:border-b-zinc-800 p-2">
       <Link to="/">
-        <img className="w-14" src={logo}></img>
+        <img className="w-[100px]" src={logo}></img>
       </Link>
 
       <div className="relative flex items-center w-30 h-5 mt-2.5 lg:w-64 group">
@@ -73,79 +72,109 @@ export default function NavBar() {
 
       <div className="relative">
         <div className="inline-flex items-center overflow-hidden rounded-md border bg-white">
-          <button className="h-full p-2 text-gray-600 hover:bg-gray-50 hover:text-gray-700"
-            onClick={handleMenu}>
+          <button
+            className="h-full p-2 text-gray-600 hover:bg-gray-50 hover:text-gray-700"
+            onClick={handleMenu}
+          >
             <span className="sr-only">Menu</span>
-            <CgMenu/>
+            <CgMenu size={20} />
           </button>
         </div>
-        
 
         {menu === true ? (
-          <div className="absolute end-0 z-10 mt-2 w-56 divide-y divide-gray-100 rounded-md border border-gray-100 bg-white shadow-lg"
-            role="menu">
-
+          <div
+            className="absolute end-0 z-10 mt-2 w-56 divide-y divide-gray-100 rounded-md border border-gray-100 bg-white shadow-lg"
+            role="menu"
+          >
             <div className="justify-items-center">
-              <strong className="block p-2 text-xs font-medium uppercase text-gray-400">Perfil</strong>
-                {localStorage.length !== 0 ? (
-                  <div className="flex items-center justify-between m-2 p-2 hover:bg-gray-50 rounded-lg">
-                  
-                    <span className="text-gray-500 flex justify-center text-sm hover:text-gray-700">
-                      <CgProfile className="w-[25px] h-[25px] text-gray-400 mx-1 hover:text-blue-400"/>
-                      <a className="pt-0.5">{localStorage.accName}</a>
-                    </span>
+              <strong className="block p-2 text-xs font-medium uppercase text-gray-400">
+                Perfil
+              </strong>
+              {localStorage.length !== 0 ? (
+                <div className="flex items-center justify-between m-2 p-2 hover:bg-gray-50 rounded-lg">
+                  <span className="text-gray-500 flex justify-center text-sm hover:text-gray-700">
+                    <CgProfile className="w-[25px] h-[25px] text-gray-400 mx-1 hover:text-blue-400" />
+                    <a className="pt-0.5">{localStorage.accName}</a>
+                  </span>
 
-                    <button className="text-red-400 hover:text-red-600 pb-0.5 text-sm"
-                      onClick={() => handleLogout()}>
-                    Salir</button>
-                  </div>
-                ) : (
-                  <Link to="/login">
-                    <button className="text-blue-400 hover:text-blue-600 pb-0.5 text-sm">
-                    Entrar</button>
-                  </Link>
-                )}
+                  <button
+                    className="text-red-400 hover:text-red-600 pb-0.5 text-sm"
+                    onClick={() => handleLogout()}
+                  >
+                    Salir
+                  </button>
+                </div>
+              ) : (
+                <Link to="/login">
+                  <button className="text-blue-400 hover:text-blue-600 pb-0.5 text-sm">
+                    Entrar
+                  </button>
+                </Link>
+              )}
             </div>
 
             <div className="p-2">
               <strong className="block p-2 text-xs font-medium uppercase text-gray-400">
-                General</strong>
-                <Link className="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
-                  to="/"
-                  role="menuitem">Landing</Link>
+                General
+              </strong>
+              <Link
+                className="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+                to="/"
+                role="menuitem"
+              >
+                Landing
+              </Link>
 
-                <Link className="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
-                  to="/home"
-                  role="menuitem">Home</Link>
-                
-                {bool ? (
-                  <>
-                  <Link className="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+              <Link
+                className="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+                to="/home"
+                role="menuitem"
+              >
+                Home
+              </Link>
+
+              {bool ? (
+                <>
+                  <Link
+                    className="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
                     to="/create-trainings"
-                    role="menuitem">Crear Capacitacion</Link>
-                
-                  <Link className="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+                    role="menuitem"
+                  >
+                    Crear Capacitacion
+                  </Link>
+
+                  <Link
+                    className="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
                     to="/create-jobs"
-                    role="menuitem">Crear Avisos de Trabajo</Link>
-                  </>
-                ) : null}
+                    role="menuitem"
+                  >
+                    Crear Avisos de Trabajo
+                  </Link>
+                </>
+              ) : null}
             </div>
-          
+
             <div className="p-2">
-              <strong className="block p-2 text-xs font-medium uppercase text-gray-400">Ajustes</strong>
-                <div className="mt-1.5">
-                  <div className="relative inline-block w-10 mr-2 align-middle select-none">
-                    <input className="checked:bg-gray-500 outline-none focus:outline-none right-4 checked:right-0 duration-200 ease-in absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"
-                      type="checkbox"
-                      name="toggle"
-                      id="toggle"
-                      onClick={handleThemeSwitch}/>
-                    
-                    <label className="block h-6 overflow-hidden bg-gray-300 rounded-full cursor-pointer"
-                      htmlFor="toggle"></label>
-                  </div>
-                  <span className="font-medium text-gray-400">{theme}</span>
+              <strong className="block p-2 text-xs font-medium uppercase text-gray-400">
+                Ajustes
+              </strong>
+              <div className="mt-1.5">
+                <div className="relative inline-block w-10 mr-2 align-middle select-none">
+                  <input
+                    className="checked:bg-gray-500 outline-none focus:outline-none right-4 checked:right-0 duration-200 ease-in absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"
+                    type="checkbox"
+                    name="toggle"
+                    id="toggle"
+                    onClick={handleThemeSwitch}
+                  />
+
+                  <label
+                    className="block h-6 overflow-hidden bg-gray-300 rounded-full cursor-pointer"
+                    htmlFor="toggle"
+                  ></label>
                 </div>
+                <span className="font-medium text-gray-400">{theme}</span>
+              </div>
             </div>
           </div>
         ) : null}
