@@ -87,7 +87,7 @@ export default function Login () {
                                           })
                                     )
                                 }else{
-                                    navigate("/home-users")
+                                    navigate("/home")
                                 }
                             })
                         }}
