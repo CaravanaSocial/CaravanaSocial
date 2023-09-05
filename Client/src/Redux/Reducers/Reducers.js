@@ -10,7 +10,7 @@ import {
   EDIT_COMPANY,
   CREATE_OFFER,
   DELETE_OFFER,
-  GET_OFFER,
+  GET_OFFERS,
   EDIT_OFFER,
   CREATE_TRAINING,
   DELETE_TRAINING,
@@ -20,13 +20,14 @@ import {
   GET_CITY,
   GET_COUNTRIES,
   GET_STATE,
-  GET_TRAINING,
+  GET_TRAININGS,
   GET_CATEGORIES,
   ERRORS,
   CLEAR_ERRORS,
   FILTER_OFFER,
   COMPANY_BUTTONS,
   TRAINING_FILTER,
+  GET_FREELANCERS,
 } from "../Actions/Actions";
 
 const initialState = {
@@ -43,9 +44,10 @@ const initialState = {
   training: [],
   prefixes: [],
   errors: {},
-  buttonsBool : false,
-  trainingFiltered: [],
-  categories: []
+  buttonsBool: false,
+  trainingsFiltered: [],
+  categories: [],
+  freelancers: [],
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -65,6 +67,12 @@ export default function rootReducer(state = initialState, action) {
     case EDIT_USER:
       return {
         ...state,
+      };
+
+    case GET_FREELANCERS:
+      return {
+        ...state,
+        freelancers: action.payload,
       };
 
     case CREATE_ADMIN:
@@ -110,10 +118,10 @@ export default function rootReducer(state = initialState, action) {
         ...state,
       };
 
-    case GET_OFFER:
+    case GET_OFFERS:
       return {
         ...state,
-        offer: action.payload,
+        offers: action.payload,
       };
 
     case EDIT_OFFER:
@@ -124,18 +132,18 @@ export default function rootReducer(state = initialState, action) {
     case FILTER_OFFER:
       return {
         ...state,
-        offers: action.payload
-      }
+        offers: action.payload,
+      };
 
     case CREATE_TRAINING:
       return {
         ...state,
       };
-    case GET_TRAINING:
+    case GET_TRAININGS:
       return {
         ...state,
         trainings: action.payload,
-        trainingFiltered: action.payload,
+        trainingsFiltered: action.payload,
       };
 
     case DELETE_TRAINING:
@@ -194,15 +202,15 @@ export default function rootReducer(state = initialState, action) {
         errors: {},
       };
     case COMPANY_BUTTONS:
-      return{
+      return {
         ...state,
-        buttonsBool: action.payload
-      }  
+        buttonsBool: action.payload,
+      };
 
     case TRAINING_FILTER:
       return {
         ...state,
-        trainingFiltered: action.payload,
+        trainingsFiltered: action.payload,
       };
 
     default:
