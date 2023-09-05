@@ -13,6 +13,9 @@ export default function NavBar() {
   const navigate = useNavigate();
   const bool = useSelector((state) => state.buttonsBool);
   const [menu, setMenu] = useState(false);
+  const account =
+    localStorage.length !== 0 ? JSON.parse(localStorage.account) : null;
+  console.log(account);
 
   useEffect(() => {
     if (theme === "Oscuro") {
@@ -92,10 +95,12 @@ export default function NavBar() {
               </strong>
               {localStorage.length !== 0 ? (
                 <div className="flex items-center justify-between m-2 p-2 hover:bg-gray-50 rounded-lg">
-                  <span className="text-gray-500 flex justify-center text-sm hover:text-gray-700">
-                    <CgProfile className="w-[25px] h-[25px] text-gray-400 mx-1 hover:text-blue-400" />
-                    <a className="pt-0.5">{localStorage.accName}</a>
-                  </span>
+                  <Link /* to={} */>
+                    <span className="text-gray-500 flex justify-center text-sm hover:text-gray-700">
+                      <CgProfile className="w-[25px] h-[25px] text-gray-400 mx-1 hover:text-blue-400" />
+                      <a className="pt-0.5">{account.name}</a>
+                    </span>
+                  </Link>
 
                   <button
                     className="text-red-400 hover:text-red-600 pb-0.5 text-sm"
