@@ -12,6 +12,7 @@ import CreateJobs from "./Views/CreateJobs/CreateJobs";
 import Trainings from "./Views/Trainings/Trainings";
 import TrainingVideosPage from "./Views/Trainings/TrainingVideosPage";
 import Offer from "./Views/Offers/Offers";
+import ProfileUser from "./Views/UpdateProfile/ProfileUser";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route path="/home-trainings" element={<Trainings />} />
         <Route path="/home-offers" element={<Offer />} />
         <Route path="/trainings/:id" element={<TrainingVideosPage />} />
+        <Route path="/profileUser" element={<ProfileUser />} />
       </Routes>
       <Footer />
     </div>
