@@ -16,15 +16,29 @@ const opts = {
   resource_type: "auto",
 };
 
-const uploadImage = async (image) => {
+// const uploadImage = async (image) => {
+//   return new Promise((resolve, reject) => {
+//     cloudinary.uploader.upload(image, opts, (error, result) => {
+//       if (result && result.secure_url) {
+//         console.log(result.secure_url);
+//         resolve(result.secure_url);
+//       } else {
+//         console.log(error.message);
+//         reject(new Error("Failed to upload image."));
+//       }
+//     });
+//   });
+// };
+
+const uploadVideosorImage = async (file) => {
   return new Promise((resolve, reject) => {
-    cloudinary.uploader.upload(image, opts, (error, result) => {
-      if (result && result.secure_url) {
-        console.log(result.secure_url);
-        resolve(result.secure_url);
+    cloudinary.uploader.upload(file, opts, (error, result) => {
+      if (result && (result.secure_url || result.url)) {
+        console.log(result.secure_url || result.url);
+        resolve(result.secure_url || result.url);
       } else {
-        console.log(error.message);
-        reject(new Error("Failed to upload image."));
+        console.log(error.message || "Failed to upload file.");
+        reject(new Error("Failed to upload file."));
       }
     });
   });
