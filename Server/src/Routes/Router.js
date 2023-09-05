@@ -10,6 +10,7 @@ const trainingRoute = require('./trainingRoute')
 const userRoute = require('./userRoute')
 const imageRout = require('./imageRoute')
 const filterRoute =  require('./filterRoute')
+const freelancerRoute = require('./freelancerRoute')
 
 
 const router = Router();
@@ -23,6 +24,7 @@ router.use("/login", loginRoute)
 router.use('/success', successRoute)
 router.use('/training', trainingRoute)
 router.use('/user', userRoute)
+router.use('/freelancer', freelancerRoute)
 
 //------------Cloudinay(PRUEBA)--------------
 router.use('/image', imageRout)
