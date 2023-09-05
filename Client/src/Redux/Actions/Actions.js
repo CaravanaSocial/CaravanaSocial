@@ -4,6 +4,8 @@ export const CREATE_USER = "CREATE_USER";
 export const GET_USERS = "GET_USERS";
 export const EDIT_USER = "EDIT_USER";
 
+export const GET_FREELANCERS = "GET_FREELANCERS";
+
 export const CREATE_ADMIN = "CREATE_ADMIN";
 export const GET_ADMINS = "GET_ADMINS";
 export const EDIT_ADMIN = "EDIT_ADMIN";
@@ -14,14 +16,14 @@ export const EDIT_COMPANY = "EDIT_COMPANY";
 
 export const CREATE_OFFER = "CREATE_OFFER";
 export const DELETE_OFFER = "DELETE_OFFER";
-export const GET_OFFER = "GET_OFFER";
+export const GET_OFFERS = "GET_OFFERS";
 export const EDIT_OFFER = "EDIT_OFFER";
 export const FILTER_OFFER = "FILTER_OFFER";
 
 export const CREATE_TRAINING = "CREATE_TRAINING";
 export const DELETE_TRAINING = "DELETE_TRAINING";
 export const EDIT_TRAINING = "EDIT_TRAINING";
-export const GET_TRAINING = "GET_TRAINING";
+export const GET_TRAININGS = "GET_TRAININGS";
 
 export const GET_LOCATION = "GET_LOCATION";
 
@@ -37,11 +39,9 @@ export const GET_CITY = "GET_CITY";
 
 export const GET_CATEGORIES = "GET_CATEGORIES";
 
-
-export const COMPANY_BUTTONS = "COMPANY_BUTTONS"
+export const COMPANY_BUTTONS = "COMPANY_BUTTONS";
 
 export const TRAINING_FILTER = "TRAINING_FILTER";
-
 
 export const createUser = (user) => {
   const endpoint = "http://localhost:3001/user/signup";
@@ -75,6 +75,20 @@ export const getUsers = () => {
         type: GET_USERS,
         payload: data,
       });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const getFreelancers = () => {
+  const endpoint = `http://localhost:3001/user/freelancers`;
+  return async (dispatch) => {
+    try {
+      const response = await axios(endpoint);
+      const { data } = response;
+
+      return dispatch({ type: GET_FREELANCERS, payload: data });
     } catch (error) {
       console.log(error);
     }
@@ -183,11 +197,21 @@ export const editCompany = (id, company) => {
   const endpoint = `http://localhost:3001/company/update/${id}`;
   return async (dispatch) => {
     try {
-      const response = await axios.patch(endpoint, company);
+      const headers={'Content-Type':'application/json'}
+      const response = await axios.patch(endpoint, company, {headers});
       const { data } = response;
-      return dispatch({ type: EDIT_COMPANY });
+
+       dispatch({ 
+           type: EDIT_COMPANY 
+       });
+       return false;
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
+      dispatch({
+        type: ERRORS,
+        payload: { type: EDIT_COMPANY, payload: error.response.data },
+      });
+      return error;
     }
   };
 };
@@ -218,13 +242,13 @@ export const deleteOffer = (id) => {
   };
 };
 
-export const getOffer = () => {
-  const endpoint = `http://localhost:3001/offer/`;
+export const getOffers = () => {
+  const endpoint = `http://localhost:3001/offers/`;
   return async (dispatch) => {
     try {
       const response = await axios(endpoint);
       const { data } = response;
-      return dispatch({ type: GET_OFFER, payload: data });
+      return dispatch({ type: GET_OFFERS, payload: data });
     } catch (error) {
       console.log(error);
     }
@@ -232,8 +256,8 @@ export const getOffer = () => {
 };
 
 export const filterOffer = (data) => {
-  const { country, companyName, category} = data
-  const endpoint = `http://localhost:3001/offer?country=${country}&companyName=${companyName}&category=${category}`;
+  const { country, companyName, category } = data;
+  const endpoint = `http://localhost:3001/offers?country=${country}&companyName=${companyName}&category=${category}`;
   return async (dispatch) => {
     try {
       const response = await axios(endpoint);
@@ -244,8 +268,6 @@ export const filterOffer = (data) => {
     }
   };
 };
-
-
 
 export const editOffer = (id) => {
   const endpoint = `http://localhost:3001/offer/${id}`;
@@ -260,14 +282,14 @@ export const editOffer = (id) => {
   };
 };
 
-export const getTraining = () => {
-  const endpoint = `http://localhost:3001/training`;
+export const getTrainings = () => {
+  const endpoint = `http://localhost:3001/trainings`;
   return async (dispatch) => {
     try {
       const response = await axios(endpoint);
       const { data } = response;
 
-      return dispatch({ type: GET_TRAINING, payload: data });
+      return dispatch({ type: GET_TRAININGS, payload: data });
     } catch (error) {
       console.log(error);
     }
@@ -275,7 +297,7 @@ export const getTraining = () => {
 };
 
 export const createTraining = (training) => {
-  const endpoint = "http://localhost:3001/training/";
+  const endpoint = "http://localhost:3001/trainings/";
 
   return async (dispatch) => {
     try {
@@ -293,7 +315,7 @@ export const createTraining = (training) => {
 };
 
 export const deleteTraining = (id) => {
-  const endpoint = `http://localhost:3001/training/delete${id}`;
+  const endpoint = `http://localhost:3001/trainings/delete${id}`;
   return async (dispatch) => {
     try {
       const response = await axios.delete(endpoint);
@@ -306,7 +328,7 @@ export const deleteTraining = (id) => {
 };
 
 export const editTraining = (id, training) => {
-  const endpoint = `http://localhost:3001/training/update/${id}`;
+  const endpoint = `http://localhost:3001/trainings/update/${id}`;
   return async (dispatch) => {
     try {
       const response = await axios.patch(endpoint, training);
@@ -324,11 +346,12 @@ export const login = (user) => {
     try {
       const response = await axios.post(endpoint, user);
       const { data } = response;
-
+      const account = JSON.stringify(data.acc)
+      localStorage.setItem("account", account)
       localStorage.setItem("authorization", data.token);
       localStorage.setItem("accName", data.acc.name);
       localStorage.setItem("accId", data.acc.id);
-      localStorage.setItem("type", data.type)
+      localStorage.setItem("type", data.type);
 
       dispatch({ type: LOGIN, payload: data });
       return false;
@@ -430,19 +453,17 @@ export function clearErrors() {
   };
 }
 
-
-export function companyButtons(boolean){
-  return async function(dispatch){
+export function companyButtons(boolean) {
+  return async function (dispatch) {
     dispatch({
       type: COMPANY_BUTTONS,
-      payload: boolean
-    })
-  }
+      payload: boolean,
+    });
+  };
 }
 
 export function filterTrainingBy(data) {
   return async function (dispatch) {
-    console.log(data);
     const { country, category } = data;
     try {
       const response = (
@@ -460,4 +481,3 @@ export function filterTrainingBy(data) {
     }
   };
 }
-
