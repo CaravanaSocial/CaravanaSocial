@@ -59,6 +59,10 @@ module.exports = (sequelize) => {
         location: {
             type: DataTypes.JSON,
             allowNull:false
+        },
+        profilePicture: {
+            type: DataTypes.STRING,
+            allowNull: false
         }
     },{
         timestamps : false
