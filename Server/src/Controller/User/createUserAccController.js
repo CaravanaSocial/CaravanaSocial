@@ -6,12 +6,10 @@ const { SIGNATURE } = process.env;
 const { areaTraining } = require("../../db");
 
 const createUserAccController = async (props) => {
-  console.log("ENTRA AL CONTROLADOR DE CREACIÓN");
-  console.log("PRRRRRRRRRRRRRRRRROPS", props);
   const { password, email, category } = props;
   const saltRounds = 10;
   const hashedPassword = await bcrypt.hash(password, saltRounds);
-
+  const defaultProfilePicture = "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Windows_10_Default_Profile_Picture.svg/2048px-Windows_10_Default_Profile_Picture.svg.png"
   const [newUser, created] = await user.findOrCreate({
     where: { email },
     defaults: {
@@ -20,10 +18,8 @@ const createUserAccController = async (props) => {
       birthDate: props.birthDate,
       location: props.location,
       CUD: props.CUD,
-      //   category: props.category,
       email: props.email,
-
-      //   certificates: props.certificates,
+      profilePicture: defaultProfilePicture,
       freelancer: props.freelancer,
       description: props.description,
       address: props.address,
@@ -31,7 +27,6 @@ const createUserAccController = async (props) => {
     },
   });
 
-  console.log("DESPIEs", props);
   if (created) {
     for (let i = 0; i < category.length; i++) {
       const categoryId = (
@@ -57,10 +52,10 @@ const createUserAccController = async (props) => {
         },
       ],
     });
-    const userId = newUser.id;
-    // const token = jwt.sign({ userId }, SIGNATURE);
+    /* const userId = newUser.id;
+    const token = jwt.sign({ userId }, SIGNATURE); */
     returning.password = 0;
-    return { acc: returning };
+    return { acc: returning/* , token */};
   }
   return "used";
 };

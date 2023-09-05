@@ -19,7 +19,6 @@ const {
 
 
 const userSignUpHandler = async (req, res) => {
-  console.log(req.body);
   try {
     const findAcc = await getCompanyAccController(req.body.email);
     if (findAcc) return res.status(400).json({ error: "Email in use" });
