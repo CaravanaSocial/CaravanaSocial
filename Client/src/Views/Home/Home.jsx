@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { companyButtons } from "../../Redux/Actions/Actions";
 import React, {useEffect} from "react";
 
-const HomeUsers = () => {
+const Home = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -97,11 +97,11 @@ const HomeUsers = () => {
   };
 
   const handleCap =()=>{
-    navigate("/trainings/")
+    navigate("/home-trainings")
   }
 
   const handleOffer =()=>{
-    navigate("/offers")
+    navigate("/home-offers")
   }
 
   return (
@@ -190,4 +190,4 @@ const HomeUsers = () => {
   );
 };
 
-export default HomeUsers;
+export default Home;
