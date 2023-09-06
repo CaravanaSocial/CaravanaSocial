@@ -17,6 +17,7 @@ const CreateData = async () => {
       "la informacion de las las ciudades fue cargada correctamente a la base de datos"
     );
   } catch (error) {
+    console.log(error)
     console.error("Error al cargar la información:", error.message);
   }
 };
