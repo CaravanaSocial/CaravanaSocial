@@ -1,31 +1,28 @@
-const { question } = require('../../db')
+const { question } = require("../../db");
 
 const questionCreateController = async (body) => {
-    try {
-        const { quest, answer } = body
+  try {
+    const { quest, answer } = body;
 
-        if(!quest || !answer) throw new Error('Faltan datos relevantes para crear la pregunta')
+    if (!quest || !answer)
+      throw new Error("Faltan datos relevantes para crear la pregunta");
 
-        console.log(quest, answer);
-        const [questions, created] =  await question.findOrCreate({
-            where:{
-                question:quest
-            },defaults:{
-                question: quest,
-                answer: answer
-            }
-        })
+    const [questions, created] = await question.findOrCreate({
+      where: {
+        question: quest,
+      },
+      defaults: {
+        question: quest,
+        answer: answer,
+      },
+    });
 
-        return created
-    } catch (error) {
-        throw error
-    }
-
-}
-
-
-
+    return created;
+  } catch (error) {
+    throw error;
+  }
+};
 
 module.exports = {
-    questionCreateController
-}
+  questionCreateController,
+};

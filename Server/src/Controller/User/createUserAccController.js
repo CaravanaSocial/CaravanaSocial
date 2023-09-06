@@ -41,7 +41,7 @@ const createUserAccController = async (props) => {
   const menssageRegister = {
     from: emailUser,
     to: email,
-    subject: "Correo de prueba",
+    subject: "Confirmación de Registro",
     html: emailTemplate,
   };
 
@@ -72,21 +72,13 @@ const createUserAccController = async (props) => {
     const token = jwt.sign({ userId }, SIGNATURE); */
     returning.password = 0;
 
-    if (returning) {
-      transporter.sendMail(menssageRegister, (error, info) => {
-        if (error) {
-          console.error(
-            "Error al enviar el correo electrónico de prueba:",
-            error
-          );
-        } else {
-          console.log(
-            "Correo electrónico de prueba enviado con éxito:",
-            info.response
-          );
-        }
-      });
-    }
+    transporter.sendMail(menssageRegister, (error, info) => {
+      if (error) {
+        console.error("Error al enviar el correo electrónico :", error);
+      } else {
+        console.log("Correo electrónico enviado con éxito:", info.response);
+      }
+    });
 
     return { acc: returning /* , token */ };
   }
