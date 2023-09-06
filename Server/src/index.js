@@ -1,6 +1,6 @@
 const server = require("./app");
 const { conn } = require("./db");
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 const { CreateData } = require("./Handler/countryHanlder");
 
 conn.sync({ alter: true }).then(async () => {

@@ -14,7 +14,7 @@ const PrefixesModel = require('./Models/Prefixes')
 const SuccessModel = require("./Models/SuccessStory")
 
 const sequelize = new Sequelize(
-  `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/caravanadb`,
+  (process.env.DB_URL || `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/caravanadb`),
   { logging: false, native: false }
 );
 
