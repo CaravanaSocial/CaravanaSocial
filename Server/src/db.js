@@ -1,5 +1,5 @@
 require("dotenv").config();
-const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
+const { DB_USER, DB_PASSWORD, DB_HOST, SERVER_URL} = process.env;
 const { Sequelize } = require("sequelize");
 const CountryModel = require("./Models/Countries");
 const EmpresaModel = require("./Models/Companies");
@@ -15,7 +15,7 @@ const SuccessModel = require("./Models/SuccessStory")
 const QuestionsModel = require("./Models/frequentQuestions")
 
 const sequelize = new Sequelize(
-  (process.env.DB_URL || `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/caravanadb`),
+  SERVER_URL,
   {
     logging: false,
     native: false,
