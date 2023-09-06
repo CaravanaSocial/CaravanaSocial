@@ -26,11 +26,11 @@ export default function validation(input) {
     if (!input.lastName) {
         error.lastName = "Debe ingresar un apellido"
     }
-    if (!Date(input.birthdate)) {
-        error.birthdate = "Debe ser una Fecha"
+    if (!Date(input.birthDate)) {
+        error.birthDate = "Debe ser una Fecha"
     }
-    if (!input.birthdate) {
-        error.birthdate = "Debe ingresar una Fecha de Nacimiento"
+    if (!input.birthDate) {
+        error.birthDate = "Debe ingresar una Fecha de Nacimiento"
     }
     if (!input.location.country) {
         error.country = "Debe seleccionar un País"
@@ -44,8 +44,8 @@ export default function validation(input) {
     if (!input.description) {
         error.description = "Debe ingresar una descripción de su trabajo"
     }
-    if (!input.adress) {
-        error.adress = "Debe ingresar su geolocalización"
+    if (!input.address) {
+        error.address = "Debe ingresar su geolocalización"
     }
     return error;
 }

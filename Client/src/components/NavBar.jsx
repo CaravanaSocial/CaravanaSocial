@@ -95,7 +95,13 @@ export default function NavBar() {
               </strong>
               {localStorage.length !== 0 ? (
                 <div className="flex items-center justify-between m-2 p-2 hover:bg-gray-50 rounded-lg">
-                  <Link /* to={} */>
+                  <Link
+                    to={
+                      localStorage.type === "user"
+                        ? `/${account.name + account.lastName}`
+                        : "/profile-company"
+                    }
+                  >
                     <span className="text-gray-500 flex justify-center text-sm hover:text-gray-700">
                       <CgProfile className="w-[25px] h-[25px] text-gray-400 mx-1 hover:text-blue-400" />
                       <a className="pt-0.5">{account.name}</a>
