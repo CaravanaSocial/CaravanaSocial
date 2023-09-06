@@ -36,8 +36,6 @@ const Trainings = () => {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    console.log(name);
-    console.log(value);
     setFilter({
       ...filter,
       [name]: value,

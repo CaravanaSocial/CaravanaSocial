@@ -171,7 +171,6 @@ export default function ProfileUser() {
       setEdit(false);
     }
   };
-  console.log(errors);
 
   return (
     <div>

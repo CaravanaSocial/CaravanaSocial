@@ -19,10 +19,6 @@ const Home = () => {
 
   const { trainings, offers, freelancers } = useSelector((state) => state);
 
-  console.log(trainings);
-  console.log(offers);
-  console.log(freelancers);
-
   useEffect(() => {
     if (localStorage.type === "company") {
       dispatch(companyButtons(true));
@@ -33,51 +29,6 @@ const Home = () => {
     dispatch(getOffers());
     dispatch(getFreelancers());
   }, [dispatch]);
-
-  const data = [
-    {
-      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXtJ3u0vIXfn2Ywm3OSbevjXdWpG0mShZ6uA&usqp=CAU",
-    },
-    {
-      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5a317T68xcpuX9na_LCx-_5ZCemdgTYIlbw&usqp=CAU",
-    },
-    {
-      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQT5mOuP9zq13qg_m4IgpYeaaMwpOOXm9DNg&usqp=CAU",
-    },
-    {
-      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5ZreaT2y65wLN-Sncug77dsn2Dj6PmCu5Zg&usqp=CAU",
-    },
-    {
-      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9ejWCaeLYhNpr8miCEV4_flwazMDZBl1Cww&usqp=CAU",
-    },
-    {
-      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVPpN26_js1DlIOl9H56Ths314CtO8gQcRq8QVACztUDTKcXrUkjY1EBoaTU0iER9gB74&usqp=CAU",
-    },
-    {
-      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSlWjxh6xN96-51YEDn48K-wWFE-XFf-DjbA&usqp=CAU",
-    },
-    {
-      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXtJ3u0vIXfn2Ywm3OSbevjXdWpG0mShZ6uA&usqp=CAU",
-    },
-    {
-      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5a317T68xcpuX9na_LCx-_5ZCemdgTYIlbw&usqp=CAU",
-    },
-    {
-      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQT5mOuP9zq13qg_m4IgpYeaaMwpOOXm9DNg&usqp=CAU",
-    },
-    {
-      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5ZreaT2y65wLN-Sncug77dsn2Dj6PmCu5Zg&usqp=CAU",
-    },
-    {
-      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9ejWCaeLYhNpr8miCEV4_flwazMDZBl1Cww&usqp=CAU",
-    },
-    {
-      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVPpN26_js1DlIOl9H56Ths314CtO8gQcRq8QVACztUDTKcXrUkjY1EBoaTU0iER9gB74&usqp=CAU",
-    },
-    {
-      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSlWjxh6xN96-51YEDn48K-wWFE-XFf-DjbA&usqp=CAU",
-    },
-  ];
 
   const handleCap = () => {
     navigate("/home-trainings");
