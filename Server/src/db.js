@@ -16,7 +16,16 @@ const QuestionsModel = require("./Models/frequentQuestions")
 
 const sequelize = new Sequelize(
   (process.env.DB_URL || `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/caravanadb`),
-  { logging: false, native: false }
+  {
+    logging: false,
+    native: false,
+    dialectOptions: {
+      ssl: {
+        require: true, // Requiere una conexión SSL/TLS
+        rejectUnauthorized: false,
+      },
+    },
+  }
 );
 
 CountryModel(sequelize);
