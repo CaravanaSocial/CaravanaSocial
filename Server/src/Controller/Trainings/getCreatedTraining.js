@@ -9,6 +9,7 @@ const emailTemplate = fs.readFileSync(
   path.join(__dirname, "../../Templates/emailTraining.html"),
   "utf-8"
 );
+const { uploadImage } = require('../../Tools/imageCloudinary')
 
 const createdTrainingController = async (body, companyId) => {
   try {
@@ -25,14 +26,16 @@ const createdTrainingController = async (body, companyId) => {
       html: emailTemplate,
     };
 
+    const imagenNice = uploadImage(video);
+
     const [user, created] = await training.findOrCreate({
       where: {
-        video: video,
+        video: imagenNice,
       },
       defaults: {
         name,
         description,
-        video,
+        imagenNice,
       },
     });
     if (user) {

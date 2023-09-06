@@ -1,8 +1,8 @@
 const { Router } = require('express');
-const { uploadVideosorImage } = require('../Handler/imageHandler')
+const { uploadImageHandler } = require('../Handler/uploadImageHandler')
 
 const router = Router();
 
-router.post("/upload", uploadVideosorImage)
+router.post("/upload", uploadImageHandler)
 
 module.exports = router
