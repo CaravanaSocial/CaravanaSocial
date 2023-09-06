@@ -58,8 +58,6 @@ const RegisterCompany = () => {
     );
   };
 
-  console.log(companyInput);
-
   const validateInput = (companyInputData) => {
     const errors = validation(companyInputData);
     setError(errors);

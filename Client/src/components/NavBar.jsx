@@ -15,7 +15,6 @@ export default function NavBar() {
   const [menu, setMenu] = useState(false);
   const account =
     localStorage.length !== 0 ? JSON.parse(localStorage.account) : null;
-  console.log(account);
 
   useEffect(() => {
     if (theme === "Oscuro") {
@@ -40,12 +39,12 @@ export default function NavBar() {
   };
 
   return (
-    <div className="flex h-[100px] items-center justify-between bg-white dark:bg-zinc-900 border-b-2 border-b-zinc-100 dark:border-b-zinc-800 p-2">
+    <div className="flex items-center justify-between bg-white dark:bg-zinc-900 border-b-2 border-b-zinc-100 dark:border-b-zinc-800 p-2">
       <Link to="/">
-        <img className="w-[100px]" src={logo}></img>
+        <img className="w-[45px] h-[45px]" src={logo}></img>
       </Link>
 
-      <div className="relative flex items-center w-30 h-5 mt-2.5 lg:w-64 group">
+      <div className="relative flex items-center w-30 h-5 lg:w-64 group">
         <div className="absolute z-50 flex items-center justify-center w-30 h-10 p-3 pr-2 text-sm text-gray-500 cursor-pointer sm:hidden">
           <svg
             className="relative w-5 h-5"
