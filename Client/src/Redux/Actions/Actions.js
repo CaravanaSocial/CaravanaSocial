@@ -217,7 +217,6 @@ export const editCompany = (id, company) => {
 };
 
 export const createOffer = (offer) => {
-  console.log(offer);
   const endpoint = "http://localhost:3001/offers/";
   return async (dispatch) => {
     try {
