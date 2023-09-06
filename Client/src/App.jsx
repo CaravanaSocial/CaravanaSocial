@@ -16,7 +16,8 @@ import ProfileUser from "./Views/UpdateProfile/ProfileUser";
 import ProfileCompany from "./Views/UpdateProfile/ProfileCompany";
 
 function App() {
-  const account = JSON.parse(localStorage.account);
+  const account =
+    localStorage.length !== 0 ? JSON.parse(localStorage.account) : "notFound";
   return (
     <div>
       <NavBar />
@@ -32,7 +33,11 @@ function App() {
         <Route path="/home-offers" element={<Offer />} />
         <Route path="/trainings/:id" element={<TrainingVideosPage />} />
         <Route
-          path={`/${account.name + account.lastName}`}
+          path={
+            localStorage.length !== 0
+              ? `/${account.name + account.lastName}`
+              : "/login"
+          }
           element={<ProfileUser />}
         />
         <Route path="/profile-company" element={<ProfileCompany />} />
