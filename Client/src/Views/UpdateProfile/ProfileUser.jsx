@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import validation from "../RegisterUser/validation";
 import {
   getCountry,
   getState,
@@ -16,11 +17,13 @@ export default function ProfileUser() {
   const cities = useSelector((state) => state.cities);
   const category = useSelector((state) => state.categories);
   const [edit, setEdit] = useState(false);
+  const [errors, setErrors] = useState({});
   const categories = account.areaTrainings?.map((c) => c.name);
   const [dataAcc, setDataAcc] = useState({
     id: account.id,
     activate: account.activate,
     email: account.email,
+    birthDate: account.birthDate,
     name: account.name,
     lastName: account.lastName,
     location: {
@@ -60,16 +63,16 @@ export default function ProfileUser() {
         ...dataAcc,
         freelancer: false,
       });
-      /* delete errors.description;
-      delete errors.address; */
+      delete errors.description;
+      delete errors.address;
     }
     if (checkbox === true) {
       setDataAcc({
         ...dataAcc,
         freelancer: true,
       });
-      /* errors.description = "Debe ingresar una descripción de su trabajo";
-      errors.address = "Debe ingresar su geolocalización"; */
+      errors.description = "Debe ingresar una descripción de su trabajo";
+      errors.address = "Debe ingresar su geolocalización";
     }
   };
 
@@ -80,70 +83,73 @@ export default function ProfileUser() {
         ...dataAcc,
         location: { ...dataAcc.location, [name]: value },
       });
-      /* setErrors(
+      setErrors(
         validation({
           ...dataAcc,
           location: { ...dataAcc.location, [name]: value },
         })
-      ); */
+      );
       dispatch(getState(value));
     } else if (name === "state") {
       setDataAcc({
         ...dataAcc,
         location: { ...dataAcc.location, [name]: value },
       });
-      /* setErrors(
+      setErrors(
         validation({
           ...dataAcc,
           location: { ...dataAcc.location, [name]: value },
         })
-      ); */
+      );
       dispatch(getCity(event.target.options[event.target.selectedIndex].id));
     } else if (name === "city") {
       setDataAcc({
         ...dataAcc,
         location: { ...dataAcc.location, [name]: value },
       });
-      /* setErrors(
+      setErrors(
         validation({
           ...dataAcc,
           location: { ...dataAcc.location, [name]: value },
         })
-      ); */
+      );
     } else {
       setDataAcc({
         ...dataAcc,
         [name]: value,
       });
-      /* setErrors(
+      setErrors(
         validation({
           ...dataAcc,
           [name]: value,
         })
-      ); */
+      );
+    }
+    if (Object.keys(errors).length === 1 && errors.password) {
+      setErrors({});
     }
   };
 
   const handleCategory = (event) => {
-    const rep = dataAcc.category.find((cat) => cat === event.target.value);
+    const rep = dataAcc.category?.find((cat) => cat === event.target.value);
     if (event.target.value !== "default" && !rep) {
       setDataAcc({
         ...dataAcc,
         category: [...dataAcc.category, event.target.value],
       });
       event.target.value = "default";
-      /* validateInput({
+      validateInput({
         ...dataAcc,
         category: [...dataAcc.category, event.target.value],
-      }); */
+      });
     }
     event.target.value = "default";
   };
 
-  /* const validateInput = (companyInputData) => {
+  const validateInput = (companyInputData) => {
     const errors = validation(companyInputData);
     setErrors(errors);
-  }; */
+  };
 
   const handleDelCategory = (event) => {
     event.preventDefault();
@@ -154,15 +160,18 @@ export default function ProfileUser() {
       ...dataAcc,
       category: filteredCat,
     });
-    /* validateInput({ ...dataAcc, category: filteredCat }); */
+    validateInput({ ...dataAcc, category: filteredCat });
   };
 
   const handleSubmit = () => {
-    dispatch(editUser(account.id, dataAcc));
-    const editedAccount = JSON.stringify(dataAcc);
-    localStorage.setItem("account", editedAccount);
-    setEdit(false);
+    if (Object.keys(errors).length === 0) {
+      dispatch(editUser(account.id, dataAcc));
+      const editedAccount = JSON.stringify(dataAcc);
+      localStorage.setItem("account", editedAccount);
+      setEdit(false);
+    }
   };
+  console.log(errors);
 
   return (
     <div>
@@ -184,6 +193,11 @@ export default function ProfileUser() {
                 value={dataAcc.name}
                 placeholder="Nombre..."
               />
+              {
+                <p className="text-red-600">
+                  {errors.name ? errors.name : null}
+                </p>
+              }
               <br />
               <input
                 name="lastName"
@@ -191,6 +205,9 @@ export default function ProfileUser() {
                 value={dataAcc.lastName}
                 placeholder="Apellido..."
               />
+              <p className="text-red-600">
+                {errors.lastName ? errors.lastName : null}
+              </p>
               <br />
               <select name="country" onChange={handleChange}>
                 <option>Pais</option>
@@ -200,6 +217,9 @@ export default function ProfileUser() {
                   </option>
                 ))}
               </select>
+              <p className="text-red-600">
+                {errors.country ? errors.country : null}
+              </p>
               <br />
               <select name="state" onChange={handleChange}>
                 <option>Estado/Provincia</option>
@@ -209,6 +229,9 @@ export default function ProfileUser() {
                   </option>
                 ))}
               </select>
+              <p className="text-red-600">
+                {errors.state ? errors.state : null}
+              </p>
               <br />
               <select name="city" onChange={handleChange}>
                 <option>Ciudad</option>
@@ -218,6 +241,7 @@ export default function ProfileUser() {
                   </option>
                 ))}
               </select>
+              <p className="text-red-600">{errors.city ? errors.city : null}</p>
               <br />
               <span>Ubicacion:</span>
               <div className="p-2 m-auto bg-zinc-300 text-zinc-800 focus:border-transparent w-[200px] justify-center align-middle rounded-3xl">
@@ -270,6 +294,13 @@ export default function ProfileUser() {
                   );
                 })}
               </div>
+              <p
+                className="text-red-600"
+                style={{ visibility: errors.category ? "visible" : "hidden" }}
+              >
+                {errors.category}
+              </p>
+              <br />
               <h2>Sos Freelancer?</h2>
               <label>
                 {" "}
@@ -300,6 +331,9 @@ export default function ProfileUser() {
                     value={dataAcc.description}
                     onChange={handleChange}
                   />
+                  <p className="text-red-600">
+                    {errors.description ? errors.description : null}
+                  </p>
 
                   <h2>Dirección de su negocio </h2>
                   <input
@@ -309,6 +343,9 @@ export default function ProfileUser() {
                     value={dataAcc.address}
                     onChange={handleChange}
                   />
+                  <p className="text-red-600">
+                    {errors.address ? errors.address : null}
+                  </p>
                 </section>
               ) : null}
               <br />
