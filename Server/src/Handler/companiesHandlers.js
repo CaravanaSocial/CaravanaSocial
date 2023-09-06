@@ -2,7 +2,9 @@ const {createCompanyAccController} = require("../Controller/Companies/createComp
 const {getCompaniesController} = require("../Controller/Companies/getCompaniesController")
 const {updateCompanyController} = require("../Controller/Companies/updateCompanyController")
 const {getUserAccController} = require("../Controller/User/getUserAccController")
-
+const {getCompanyByIdController} = require("../Controller/Companies/getCompanyByIdController")
+const {deleteCompanyController} = require("../Controller/Companies/deleteCompanyController")
+const {restoreCompanyController} = require("../Controller/Companies/restoreCompanyController")
 const companiesSignUpHandler = async (req, res)=>{
     try {
         const findAcc = await getUserAccController(req.body.email)
@@ -35,8 +37,42 @@ const updateCompanyHandler = async (req, res) =>{
     }    
 }
 
+const getCompanyByIdHandler = async (req, res) =>{
+    try {
+        const {id} = req.params 
+        const company = await getCompanyByIdController(id)
+        res.status(200).json(company)
+    } catch (error) {
+        res.status(400).json({error:error.message})
+    }
+}
+
+const deleteCompanyHandler = async (req, res) =>{
+    try {
+        const {id} = req.params
+        const deleted = await deleteCompanyController(id)
+        if(deleted) return res.status(200).json({message: deleted})
+        return res.status(400).json({error: "Company not found"})
+    } catch (error) {
+        res.status(200).json({error:error.message})
+    }
+}
+
+const restoreCompanyHandler = async (req, res) => {
+    try {
+        const {id} = req.params
+        const restored = await restoreCompanyController(id)
+        if(restored) return res.status(200).json(restored)
+        return res.status(400).json({error: "Company not found"})
+    } catch (error) {
+        res.status(200).json({error:error.message})
+    }
+}
 module.exports={
     companiesSignUpHandler,
     getCompaniesHandler,
-    updateCompanyHandler
+    updateCompanyHandler,
+    getCompanyByIdHandler,
+    deleteCompanyHandler,
+    restoreCompanyHandler
 }

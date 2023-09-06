@@ -1,9 +1,11 @@
 import React from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { login } from "../../Redux/Actions/Actions";
-import { useDispatch, useSelector } from "react-redux";
+import { login, clearErrors, setNewErrors } from "../../Redux/Actions/Actions";
+import { useDispatch, useSelector} from "react-redux";
 import validation from "./validation";
+import { GoogleLogin } from "@react-oauth/google"
+import jwt_decode from "jwt-decode";
 
 export default function Login () {
 
@@ -23,13 +25,15 @@ export default function Login () {
         });
     };
 
+   
     const handleSubmit = (event) => {
         event.preventDefault();
         dispatch(login(userData)).then((postError) =>{
             if (!postError){
-                return;
+                navigate("/home")
+                dispatch(clearErrors())
             }else{
-                navigate("/")
+                dispatch(setNewErrors({type: "LOGIN", error: postError.response.data}))
             }
         })
     };
@@ -68,16 +72,36 @@ export default function Login () {
                         type="submit"
                     >Iniciar Sesion</button>
                     <br />
-                    <button className="bg-zinc-300 my-2 text-black rounded-3xl"
-                    >Iniciar Sesion con Google</button>
-                    <br />
+                    <GoogleLogin
+                        onSuccess={(CredentialResponse) => {
+                            const CredentialResponseDecoded = jwt_decode(CredentialResponse.credential)
+                            dispatch(login({
+                                email: CredentialResponseDecoded.email,
+                                google:true
+                            })).then((postError)=>{
+                                if(postError){
+                                    dispatch(
+                                        setNewErrors({
+                                            type: "LOGIN",
+                                            error: postError.response.data,
+                                          })
+                                    )
+                                }else{
+                                    navigate("/home")
+                                }
+                            })
+                        }}
+                        onError={()=>{
+                            console.log("LOGIN FAILED");
+                        }}
+                    />
                     <Link to="/">
                         <h4>He olvidado mi Contraseña</h4>
                     </Link>
                     <hr />
                     <h4>Aun no tienes cuenta?</h4>
                     <h4>Registrate</h4>
-                    <Link to="/registerUser">
+                    <Link to="/register-user">
                         <button className="bg-zinc-300 mr-1 text-black rounded-3xl">Usuario</button>
                     </Link>
                     <Link to="/register-company">

@@ -3,7 +3,7 @@ const {SIGNATURE} = process.env
 
 const auth = async (req, res, next) =>{
     try {
-        const token = req.headers.autorization.split(" ")[1];
+        const token = req.headers.authorization.split(" ")[1];
         const isCustomAuth = token.length < 500; // Si es token cuenta custom es true
 
         let decodedData

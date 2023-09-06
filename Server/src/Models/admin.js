@@ -21,5 +21,12 @@ module.exports = (sequelize) =>{
             type: DataTypes.STRING,
             allowNull: false,
         },
-    })
+        profilePicture: {
+            type: DataTypes.STRING,
+            allowNull: false
+        }
+    },{
+        paranoid: true
+    }
+    )
 }
