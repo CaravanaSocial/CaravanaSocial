@@ -21,6 +21,7 @@ const RegisterCompany = () => {
   const category = useSelector((state) => state.categories);
   const globalErrors = useSelector((state) => state.errors);
 
+
   const [companyInput, setCompanyInput] = useState({
     name: "",
     lastName: "",
@@ -56,8 +57,6 @@ const RegisterCompany = () => {
       })
     );
   };
-
-  console.log(companyInput);
 
   const validateInput = (companyInputData) => {
     const errors = validation(companyInputData);
@@ -151,7 +150,6 @@ const RegisterCompany = () => {
         location: companyInput.location,
       })
     ).then((postError) => {
-      console.log(postError);
       if (!postError) {
         setCompanyInput({
           name: "",

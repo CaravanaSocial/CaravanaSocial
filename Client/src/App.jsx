@@ -12,8 +12,12 @@ import CreateJobs from "./Views/CreateJobs/CreateJobs";
 import Trainings from "./Views/Trainings/Trainings";
 import TrainingVideosPage from "./Views/Trainings/TrainingVideosPage";
 import Offer from "./Views/Offers/Offers";
+import ProfileUser from "./Views/UpdateProfile/ProfileUser";
+import ProfileCompany from "./Views/UpdateProfile/ProfileCompany";
 
 function App() {
+  const account =
+    localStorage.length !== 0 ? JSON.parse(localStorage.account) : "notFound";
   return (
     <div>
       <NavBar />
@@ -28,6 +32,15 @@ function App() {
         <Route path="/home-trainings" element={<Trainings />} />
         <Route path="/home-offers" element={<Offer />} />
         <Route path="/trainings/:id" element={<TrainingVideosPage />} />
+        <Route
+          path={
+            localStorage.length !== 0
+              ? `/${account.name + account.lastName}`
+              : "/login"
+          }
+          element={<ProfileUser />}
+        />
+        <Route path="/profile-company" element={<ProfileCompany />} />
       </Routes>
       <Footer />
     </div>
