@@ -441,8 +441,11 @@ export const editTraining = (id, training) => {
 };
 
 export const login = (user) => {
+
   // const endpoint = `http://localhost:3001/login`;
-  const endpoint = `http://localhost:3001/login`;
+
+  const endpoint = `${serverURL}/login`;
+  
   return async (dispatch) => {
     try {
       const response = await axios.post(endpoint, user);
