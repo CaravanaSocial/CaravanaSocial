@@ -1,5 +1,5 @@
 require("dotenv").config();
-const { DB_USER, DB_PASSWORD, DB_HOST, SERVER_URL} = process.env;
+const { DB_USER, DB_PASSWORD, DB_HOST, SERVER_URL } = process.env;
 const { Sequelize } = require("sequelize");
 const CountryModel = require("./Models/Countries");
 const EmpresaModel = require("./Models/Companies");
@@ -10,24 +10,28 @@ const RubroModel = require("./Models/Rubros");
 const AdminModel = require("./Models/admin");
 const CitiesModel = require("./Models/Cities");
 const StatesModel = require("./Models/States");
-const PrefixesModel = require('./Models/Prefixes');
+const PrefixesModel = require("./Models/Prefixes");
 const SuccessModel = require("./Models/SuccessStory");
 const QuestionsModel = require("./Models/frequentQuestions");
-const CommentsModel = require("./Models/comments")
+const CommentsModel = require("./Models/comments");
 
+// const sequelize = new Sequelize(
+//   SERVER_URL,
+//   {
+//     logging: false,
+//     native: false,
+//     dialectOptions: {
+//       ssl: {
+//         require: true, // Requiere una conexión SSL/TLS
+//         rejectUnauthorized: false,
+//       },
+//     },
+//   }
+// );
 
 const sequelize = new Sequelize(
-  SERVER_URL,
-  {
-    logging: false,
-    native: false,
-    dialectOptions: {
-      ssl: {
-        require: true, // Requiere una conexión SSL/TLS
-        rejectUnauthorized: false,
-      },
-    },
-  }
+  `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/caravanadb`,
+  { logging: false, native: false }
 );
 
 CountryModel(sequelize);
@@ -57,7 +61,7 @@ const {
   prefix,
   success,
   question,
-  comment
+  comment,
 } = sequelize.models;
 
 //Relacion de empresas con capacitaciones
@@ -77,20 +81,19 @@ companies.hasMany(offer);
 offer.belongsTo(companies);
 
 //Relacion de avisos a Rubros
-offer.belongsToMany(areaTraining, { through: 'offers_rubro' });
-areaTraining.belongsToMany(offer, { through: 'offers_rubro'});
+offer.belongsToMany(areaTraining, { through: "offers_rubro" });
+areaTraining.belongsToMany(offer, { through: "offers_rubro" });
 
 //Relacion de empresas a rubros
-companies.belongsToMany(areaTraining, {through: "companies_areaTraining"});
-areaTraining.belongsToMany(companies, {through: "companies_areaTraining"});
+companies.belongsToMany(areaTraining, { through: "companies_areaTraining" });
+areaTraining.belongsToMany(companies, { through: "companies_areaTraining" });
 
-user.belongsToMany(areaTraining, {through: "users_areaTraining"});
-areaTraining.belongsToMany(user, {through: "users_areaTraining"});
+user.belongsToMany(areaTraining, { through: "users_areaTraining" });
+areaTraining.belongsToMany(user, { through: "users_areaTraining" });
 
 //Relacion de comentario con capacitacion
 training.hasMany(comment);
 comment.belongsTo(training);
-
 
 module.exports = {
   ...sequelize.models,

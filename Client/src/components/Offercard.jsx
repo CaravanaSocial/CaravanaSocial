@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function OfferCard({ offer }) {
   return (
-    <div className="border-2 border-light-1 hover:scale-95 bg-white p-4 rounded-3xl shadow-md h-full w-[400px]  justify-center">
+    <div className="border-2 border-light-1 hover:scale-95 bg-white p-4 rounded-3xl shadow-md  w-[370px] sm:h-full sm:w-[400px] justify-center">
       <h2 className="text-lg font-topmodern">{offer.title}</h2>
       <p className="text-gray-600 font-topmodern">{offer.description}</p>
       <div>
