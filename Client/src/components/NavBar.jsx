@@ -45,8 +45,8 @@ export default function NavBar() {
         <img className="w-[45px] h-[45px]" src={logo}></img>
       </Link>
 
-      <div className="relative flex items-center w-30 h-5 lg:w-64 group">
-        <div className="absolute z-50 flex items-center justify-center w-30 h-10 p-3 pr-2 text-sm text-gray-500 cursor-pointer">
+      <div className="relative flex items-center lg:w-64 group">
+        <div className="absolute z-50 flex items-center justify-center p-3 pr-2 text-sm text-gray-500 cursor-pointer">
           <CgSearch className="w-[20px] h-[20px] hover:text-lime-600"/>
         </div>
         <input
