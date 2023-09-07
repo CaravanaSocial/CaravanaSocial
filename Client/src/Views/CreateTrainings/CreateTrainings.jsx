@@ -8,8 +8,8 @@ import {
 } from "../../Redux/Actions/Actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import UploadImage from "../../components/UploadImage";
-import UploadWidget from "../../components/UploadVideo";
+import UploadImage from "../../components/UploadImage.jsx";
+import UploadWidget from "../../components/UploadVideo.jsx";
 
 export default function createTrainings() {
   const dispatch = useDispatch();
@@ -221,8 +221,7 @@ export default function createTrainings() {
           })}
         </div>
 
-        <UploadImage/>
-        
+        <UploadImage />
 
         <button
           className="bg-zinc-300 mt-2 text-black rounded-3xl p-2"
