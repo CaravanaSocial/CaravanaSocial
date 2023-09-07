@@ -98,7 +98,7 @@ export default function NavBar() {
                 <Link to="/login">
                   <div className="flex items-center justify-center m-2 p-2 hover:bg-gray-50 dark:hover:bg-gray-600 rounded-lg text-blue-500 hover:text-blue-600 dark:text-blue-600 dark:hover:text-blue-500">
                     <button className=" pb-0.5 text-sm">
-                      Iniciar Sesion
+                      Iniciar Sesión
                     </button>
                   </div>
                 </Link>

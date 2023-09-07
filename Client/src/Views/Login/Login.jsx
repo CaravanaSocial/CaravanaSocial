@@ -47,17 +47,17 @@ export default function Login () {
 
             <section>
                 <div className="justify-center border-spacing-96 border-2 border-lime-600 dark:border-lime-700 rounded-3xl p-4 my-4">
-                    <h1 className="text-3xl border-b-2 border-lime-600 dark:border-lime-700 dark:text-gray-300">Inicio de Sesion</h1>
+                    <h1 className="text-3xl border-b-2 border-lime-600 dark:border-lime-700 dark:text-gray-300">Inicio de Sesión</h1>
                     
-                    <input className="w-60 h-8 rounded-3xl px-2 my-2 bg-gray-100 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+                    <input className="h-8 rounded-3xl px-2 my-2 bg-gray-100 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
                         type="email"
                         name="email"
-                        placeholder="Email"
+                        placeholder="Correo electrónico"
                         onChange={handleChange}
                         value={userData.email}
                     />
                     <br />
-                    <input className="w-60 h-8 rounded-3xl px-2 bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+                    <input className="h-8 rounded-3xl px-2 bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
                         type="password"
                         name="password"
                         placeholder="Contraseña"
@@ -70,9 +70,9 @@ export default function Login () {
                     <button className="bg-gray-100 dark:bg-gray-800 rounded-3xl p-2 my-1 dark:text-gray-300"
                         onClick={handleSubmit}
                         type="submit"
-                    >Iniciar Sesion</button>
+                    >Iniciar Sesión</button>
                     <br />
-                    <div className="mx-12 my-1 w-[263px]">
+                    <div className="mt-1 w-[223px] inline-block">
                         <GoogleLogin
                             onSuccess={(CredentialResponse) => {
                                 const CredentialResponseDecoded = jwt_decode(CredentialResponse.credential)
@@ -97,6 +97,7 @@ export default function Login () {
                             }}
                         />
                     </div>
+                    <br />
                     
                     <Link to="/">
                         <button className="bg-gray-200 dark:bg-gray-800 rounded-3xl p-2 my-2 dark:text-gray-300">Has olvidado tu contraseña?</button>
