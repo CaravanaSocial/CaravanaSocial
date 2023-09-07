@@ -584,3 +584,13 @@ export function filterTrainingBy(data) {
     }
   };
 }
+
+export function uploadVideo (video){
+  return async function(dispatch){
+    try {
+      const response =( axios.post(`${serverURL}/video/upVideo`, video)).data
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}

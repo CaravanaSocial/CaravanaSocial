@@ -10,6 +10,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import UploadImage from "../../components/UploadImage.jsx";
 import UploadWidget from "../../components/UploadVideo.jsx";
+import UploadVideo from "../../components/UploadVideo.jsx";
+import { CloudinaryContext, Image, Transformation } from 'cloudinary-react';
 
 export default function createTrainings() {
   const dispatch = useDispatch();
@@ -221,7 +223,12 @@ export default function createTrainings() {
           })}
         </div>
 
-        <UploadImage />
+        <CloudinaryContext cloudName="da785kmjd">
+          <div className="App">
+           
+        <UploadVideo />
+          </div>
+        </CloudinaryContext>
 
         <button
           className="bg-zinc-300 mt-2 text-black rounded-3xl p-2"
