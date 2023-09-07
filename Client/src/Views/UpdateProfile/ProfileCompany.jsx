@@ -150,7 +150,7 @@ const ProfileCompany = () => {
     }
 
   return (
-    <div>
+    <div className="h-screen">
         <div>
             <img src={account.profilePicture} className='w-3/12 mt-2 ml-2'/>
             <h2>{input.name + " " + input.lastName}</h2>

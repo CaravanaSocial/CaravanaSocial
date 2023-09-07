@@ -39,7 +39,7 @@ export default function Login () {
     };
 
     return (
-        <div className="inline-block m-4 p-4">
+        <div className="inline-block m-4 p-4 h-screen">
             <section>
                 <h1 className="text-4xl border-b-2 border-lime-600 dark:border-lime-700 rounded-sm dark:text-gray-300">Caravana Social</h1>
                 <p className="dark:text-gray-300">Te invitamos a formar parte de la re-evolución inclusiva.</p>
