@@ -39,7 +39,7 @@ const Home = () => {
   };
 
   return (
-    <main className="">
+    <main className="h-screen">
       {localStorage.length !== 0 ? (
         <div className=" ">
           {" "}
