@@ -43,7 +43,7 @@ const Trainings = () => {
   };
 
   return (
-    <div className="inline-block m-4 p-4">
+    <div className="inline-block m-4 p-4 h-screen">
       <div className="border-spacing-96 border-2 border-zinc-100 dark:border-zinc-800 rounded-3xl pt-2 shadow-md">
         <span>Filtrar por : </span>
         <select
