@@ -34,7 +34,7 @@ const LandingPage = () => {
   };
 
   return (
-    <main className="relative h-screen">
+    <main className=" relative">
       {/* SECCION INTRO */}
       <section className="w-full 2xl:h-[300px] relative ">
         <h1 className="text-center 2xl:text-[150px] xl:text-[130px] lg:text=[100px] md:text-[80px] font-vilaka text-[70px] ">
@@ -82,7 +82,7 @@ const LandingPage = () => {
 
       {/* SECCION CASOS DE EXITO */}
       <section className="w-full border-2 bg-light-1">
-        <h1 className="font-vilaka text-[50px] font-bold ">
+        <h1 className="font-vilaka text-[50px] text-center font-bold ">
           Hechale un vistazo a nuestros casos de exito!!
         </h1>
         <div className="max-w-[1000px] h-[600px] w-full m-auto py-16 px-4 relative group">
