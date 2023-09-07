@@ -45,7 +45,7 @@ function App() {
           <Route
             path={
               localStorage.length !== 0
-                ? `/${account.name + account.lastName}`
+                ? `/user/:user`
                 : "/login"
             }
             element={<ProfileUser />}
