@@ -40,7 +40,7 @@ export default function NavBar() {
   };
 
   return (
-    <div className="flex items-center justify-between bg-white dark:bg-zinc-900 border-b-2 border-b-gray-100 dark:border-b-gray-700 p-2">
+    <div className="flex items-center justify-between bg-white dark:bg-zinc-900 border-b-[1px] border-b-gray-100 dark:border-b-gray-700 p-2">
       <Link to="/">
         <img className="w-[45px] h-[45px]" src={logo}></img>
       </Link>
