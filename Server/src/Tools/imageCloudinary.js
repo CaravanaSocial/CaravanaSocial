@@ -4,9 +4,7 @@ const cloud_name = process.env.CLOUD_NAME;
 const api_key = process.env.API_KEY;
 const api_secret = process.env.API_SECRET;
 
-console.log(cloud_name);
-console.log(api_key);
-console.log(api_secret);
+
 
 
 cloudinary.config({
@@ -40,19 +38,7 @@ const uploadImage = async (image) => {
   }
 };
 
-// const uploadVideosorImage = async (file) => {
-//   return new Promise((resolve, reject) => {
-//     cloudinary.uploader.upload(file, opts, (error, result) => {
-//       if (result && (result.secure_url || result.url)) {
-//         console.log(result.secure_url || result.url);
-//         resolve(result.secure_url || result.url);
-//       } else {
-//         console.log(error.message || "Failed to upload file.");
-//         reject(new Error("Failed to upload file."));
-//       }
-//     });
-//   });
-// };
+
 
 module.exports = {
   uploadImage

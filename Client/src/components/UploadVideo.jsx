@@ -10,8 +10,8 @@ const UploadWidget = () => {
     useEffect(()=>{
         cloudinaryRef.current = window.cloudinary;
         widgetRef.current.createUploadWidget({
-            cloudName:"da785kmjd",
-            uploadPreset:"rdvhkotr"
+            // cloudName:"da785kmjd",
+            // uploadPreset:"rdvhkotr"
         }, function(error, result){
             console.log(result);
         })

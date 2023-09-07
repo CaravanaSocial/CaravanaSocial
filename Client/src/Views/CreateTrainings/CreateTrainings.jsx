@@ -222,7 +222,7 @@ export default function createTrainings() {
         </div>
 
         <UploadImage/>
-        <UploadWidget/>
+        
 
         <button
           className="bg-zinc-300 mt-2 text-black rounded-3xl p-2"

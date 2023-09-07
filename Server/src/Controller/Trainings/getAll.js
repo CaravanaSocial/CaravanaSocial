@@ -1,4 +1,4 @@
-const { training, companies, areaTraining } = require('../../db');
+const { training, companies, areaTraining, comment } = require('../../db');
 
 const getAll = async () => {
     try {
@@ -15,6 +15,9 @@ const getAll = async () => {
               attributes: ["name"],
               through: { attributes: [] },
             },
+            {
+              model: comment
+            }
           ]
         })
         return findAll

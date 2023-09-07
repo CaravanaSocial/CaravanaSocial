@@ -26,16 +26,16 @@ const createdTrainingController = async (body, companyId) => {
       html: emailTemplate,
     };
 
-    const imagenNice = uploadImage(video);
+    // const imagenNice = uploadImage(video);
 
     const [user, created] = await training.findOrCreate({
       where: {
-        video: imagenNice,
+        video: video,
       },
       defaults: {
         name,
         description,
-        imagenNice,
+        video,
       },
     });
     if (user) {
