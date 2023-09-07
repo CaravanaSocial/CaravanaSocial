@@ -13,6 +13,7 @@ const filterRoute = require("./filterRoute");
 const freelancerRoute = require("./freelancerRoute");
 const user_trainingRoute = require("./user_trainingRoute");
 const questionRoute = require("./questionRoute");
+const commentRouter = require("./commentRoute")
 
 const router = Router();
 
@@ -28,6 +29,7 @@ router.use("/user", userRoute);
 router.use("/freelancers", freelancerRoute);
 router.use("/user-training", user_trainingRoute);
 router.use("/question", questionRoute);
+router.use("/comments", commentRouter)
 
 //------------Cloudinay(PRUEBA)--------------
 router.use("/image", imageRout);

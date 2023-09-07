@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
 import { RxDotFilled } from "react-icons/rx";
+import { Link } from "react-router-dom";
 import video1 from "../assets/videos/video1.mp4";
 
 const LandingPage = () => {
@@ -114,8 +115,8 @@ const LandingPage = () => {
       {/* SECCION UNETE */}
 
       <section className="w-full lg:gap-x-20 md:flex md:justify-center   ">
-        <a
-          href="/register-company"
+        <Link
+          to="/register-company"
           className="text-[40px] w-[400px] m-auto text-black  px-5 py-5  flex flex-col items-center font-topmodern   "
         >
           <img
@@ -124,10 +125,10 @@ const LandingPage = () => {
             width={400}
           ></img>
           Soy empresa quiero unirme...
-        </a>
+        </Link>
 
-        <a
-          href="/register-user"
+        <Link
+          to="/register-user"
           className="text-[40px] px-5 py-5 w-[400px] text-black m-auto  text-center flex flex-col items-center font-topmodern  "
         >
           <img
@@ -136,7 +137,7 @@ const LandingPage = () => {
             width={400}
           ></img>
           Soy Freelancer quiero unirme...
-        </a>
+        </Link>
       </section>
 
       {/* SECCION UNETE */}

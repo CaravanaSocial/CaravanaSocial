@@ -1,5 +1,5 @@
 const { success } = require("../../db");
-const { uploadImage } = require('../../Handler/imageHandler')
+const { uploadImage } = require('../../Tools/imageCloudinary')
 
 const createSuccSto = async(body) =>{
     try {
