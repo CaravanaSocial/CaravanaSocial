@@ -33,7 +33,7 @@ const LandingPage = () => {
   };
 
   return (
-    <main className="relative">
+    <main className="relative h-screen">
       {/* SECCION INTRO */}
       <section className="w-full 2xl:h-[300px] relative ">
         <h1 className="text-center 2xl:text-[150px] xl:text-[130px] lg:text=[100px] md:text-[80px] font-vilaka text-[70px] ">

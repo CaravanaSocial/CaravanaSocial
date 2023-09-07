@@ -166,6 +166,7 @@ const ProfileCompany = () => {
         
         <div className='m-4'>
             <img src={account.profilePicture} className='w-[300px] mt-2 mx-2'/>
+
             <h2>{input.name + " " + input.lastName}</h2>
             
 

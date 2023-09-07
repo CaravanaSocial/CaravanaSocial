@@ -173,7 +173,7 @@ export default function ProfileUser() {
   };
 
   return (
-    <div>
+    <div className="h-screen">
       <section className="flex">
         <div className="flex flex-col">
           <img className="h-[300px] w-[300px]" src={account.profilePicture} />
