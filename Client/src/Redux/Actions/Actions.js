@@ -43,7 +43,7 @@ export const COMPANY_BUTTONS = "COMPANY_BUTTONS";
 
 export const TRAINING_FILTER = "TRAINING_FILTER";
 
-// const serverURL = "https://caravanaserver.onrender.com"
+// const serverURL = "https://caravanaserver.onrender.com";
 const serverURL = "http://localhost:3001";
 
 export const createUser = (user) => {
