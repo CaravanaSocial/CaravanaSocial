@@ -81,7 +81,7 @@ export default function NavBar() {
                   <Link
                     to={
                       localStorage.type === "user"
-                        ? `/user/${account.name + account.lastName}`
+                        ? `/${account.name + account.lastName}`
                         : "/profile-company"
                     }
                   >
