@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector } from 'react-redux';
-import { getCategories, getCountry, getState, getCity, editCompany, clearErrors, setNewErrors } from '../../Redux/Actions/Actions';
+import { getCategories, getCountry, getState, getCity, editCompany, clearErrors, setNewErrors, getTrainings, getOffers } from '../../Redux/Actions/Actions';
 import validation from '../RegisterCompany/validation';
+import {NavLink} from 'react-router-dom';
 
 
 
@@ -9,13 +10,23 @@ const ProfileCompany = () => {
 
     const dispatch = useDispatch();
     const account = JSON.parse(localStorage.account);
+
+    
     const country = useSelector((state) => state.countries)
     const state = useSelector((state) => state.states);
     const city = useSelector((state) => state.cities);
     const category = useSelector((state) => state.categories);
     const globalErrors = useSelector((state) => state.errors);
+    const trainings = useSelector((state) => state.trainings);
+    const offers = useSelector((state) => state.offers);
 
-    const categories = account.areaTrainings.map(c => c.name)
+    const categories = account?.areaTrainings?.map(c => c.name)
+ 
+
+    const companyIdRelacion = trainings.filter(x=>x.companyId)
+    const companyIdRelOffer = offers.filter(x=>x.companyId)
+    
+
    
 
     const [edit, setEdit] = useState(false)
@@ -28,15 +39,18 @@ const ProfileCompany = () => {
           nameCompany: account.nameCompany,
           category: categories,
           phone: account.phone,
+          profilePicture: account.profilePicture,
           description: account.description,
           location: { country: account.location.country, 
                       state: account.location.state, 
                       city:account.location.city }
     })
-
+  
     useEffect(()=>{
-     dispatch(getCategories())
-     dispatch(getCountry())
+        dispatch(getCategories())
+        dispatch(getOffers())
+        dispatch(getTrainings())
+        dispatch(getCountry())
     },[])
 
     const handleEdit =()=>{
@@ -66,7 +80,7 @@ const ProfileCompany = () => {
 
     const handleCategory = (event) => {
         event.preventDefault();
-        const rep = input.category.find((cat) => cat === event.target.value);
+        const rep = input.category?.find((cat) => cat === event.target.value);
         if (event.target.value !== "default" && !rep) {
           setInput({
             ...input,
@@ -134,15 +148,13 @@ const ProfileCompany = () => {
 
     // const isSubmitDisabled = Object.keys(error).length > 0;
     const handleSubmit =(event)=>{
-        event.preventDefault();
-
-        dispatch(editCompany(account.id, input))
+        dispatch(editCompany(localStorage.accId, input))
         .then((updateError)=>{
             if(!updateError){
-                alert("updated with success")
-                // navigate(-1)
                 setEdit(false)
                 dispatch(clearErrors())
+                const editedAccount = JSON.stringify(input);
+                 localStorage.setItem("account", editedAccount);
                }else{
                  dispatch(setNewErrors({type:"EDIT_COMPANY", error: updateError.response.data}))
                }
@@ -150,11 +162,12 @@ const ProfileCompany = () => {
     }
 
   return (
-    <div>
-        <div>
-            <img src={account.profilePicture} className='w-3/12 mt-2 ml-2'/>
+    <div className='flex'>
+        
+        <div className='m-4'>
+            <img src={account.profilePicture} className='w-[300px] mt-2 mx-2'/>
             <h2>{input.name + " " + input.lastName}</h2>
-            <h4>{input.email}</h4>
+            
 
             {edit === true ? (
                 <div>
@@ -359,6 +372,52 @@ const ProfileCompany = () => {
                         </p>
                 </div>
             ) :<button className="bg-zinc-300 mb-2 mt-2 text-black rounded-3xl p-1" onClick={()=>handleEdit()}>Editar perfil</button>}
+
+           
+        </div>
+        <div className='block '>
+            <div className='w-8/12  inline-block'>
+                {input.description}
+            </div>
+            <div  className=' inline-block'>
+                <h2 className='font-bold'>Mis capacitaciones</h2>
+                {companyIdRelacion ? (<div  className="flex flex-wrap " >
+                   { trainings.map((t) => {
+                    return (<div className=" mx-1 border-2 border-light-1 hover:scale-95 bg-white p-4 rounded-3xl shadow-md h-full w-[300px]  justify-center">
+                        <div>
+                        {t.name}
+                        <div className="flex justify-center">
+                            <video
+                            src={t.video[0]}
+                            controls
+                            width="200"
+                            height="150"
+                            ></video>
+                        </div>
+                        </div>
+                    </div>)
+                   })}
+                </div>) 
+                : (<div><span>No hay capacitaciones creadas todavia</span></div>)}
+                <NavLink to="/create-trainings"><button className="bg-zinc-300 mb-2 mt-2 text-black rounded-3xl p-1">Crear</button></NavLink>
+                
+            </div>
+            <div  className=' inline-block'>
+                <h2 className='font-bold'>Mis ofertas de trabajo</h2>
+                {companyIdRelOffer ? (<div  className="flex flex-wrap justify-center" >
+                   { offers.map((o) => {
+                    return (<div className="border-2 border-light-1 hover:scale-95 bg-white p-4 rounded-3xl shadow-md h-full w-[300px]  justify-center">
+                        <div>
+                        {o.title}
+                        <br/>
+                        {o.description}
+                        </div>
+                    </div>)
+                   })}
+                </div>) 
+                : (<div><span>No hay ofertas de trabajo todavia</span></div>)}
+                <NavLink to="/create-jobs"><button className="bg-zinc-300 mb-2 mt-2 text-black rounded-3xl p-1">Crear</button></NavLink>
+            </div>
 
         </div>
         
