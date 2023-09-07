@@ -1,4 +1,4 @@
-import "./App.css";
+import React from "react";
 import { Route, Routes } from "react-router-dom";
 import NavBar from "./components/NavBar.jsx";
 import Login from "./Views/Login/Login.jsx";
@@ -14,35 +14,46 @@ import TrainingVideosPage from "./Views/Trainings/TrainingVideosPage.jsx";
 import Offer from "./Views/Offers/Offers.jsx";
 import ProfileUser from "./Views/UpdateProfile/ProfileUser.jsx";
 import ProfileCompany from "./Views/UpdateProfile/ProfileCompany.jsx";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 function App() {
   const account =
     localStorage.length !== 0 ? JSON.parse(localStorage.account) : "notFound";
+
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
+
   return (
-    <div>
+    <div className="flex flex-col h-screen">
       <NavBar />
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register-user" element={<RegisterUser />} />
-        <Route path="/register-company" element={<RegisterCompany />} />
-        <Route path="/create-trainings" element={<CreateTrainings />} />
-        <Route path="/create-jobs" element={<CreateJobs />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/home-trainings" element={<Trainings />} />
-        <Route path="/home-offers" element={<Offer />} />
-        <Route path="/trainings/:id" element={<TrainingVideosPage />} />
-        <Route
-          path={
-            localStorage.length !== 0
-              ? `/${account.name + account.lastName}`
-              : "/login"
-          }
-          element={<ProfileUser />}
-        />
-        <Route path="/profile-company" element={<ProfileCompany />} />
-      </Routes>
-      <Footer />
+      <div className="flex-grow flex-col">
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register-user" element={<RegisterUser />} />
+          <Route path="/register-company" element={<RegisterCompany />} />
+          <Route path="/create-trainings" element={<CreateTrainings />} />
+          <Route path="/create-jobs" element={<CreateJobs />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/home-trainings" element={<Trainings />} />
+          <Route path="/home-offers" element={<Offer />} />
+          <Route path="/trainings/:id" element={<TrainingVideosPage />} />
+          <Route
+            path={
+              localStorage.length !== 0
+                ? `/${account.name + account.lastName}`
+                : "/login"
+            }
+            element={<ProfileUser />}
+          />
+          <Route path="/profile-company" element={<ProfileCompany />} />
+        </Routes>
+        <Footer />
+      </div>
     </div>
   );
 }

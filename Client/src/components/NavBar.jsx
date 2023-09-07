@@ -42,12 +42,12 @@ export default function NavBar() {
   return (
     <div className="flex items-center justify-between bg-white dark:bg-zinc-900 border-b-[1px] border-b-gray-100 dark:border-b-gray-700 p-2">
       <Link to="/">
-        <img className="w-[45px] h-[45px]" src={logo}></img>
+        <img className="w-[80px] h-[80px]" src={logo}></img>
       </Link>
 
       <div className="relative flex items-center lg:w-64 group">
         <div className="absolute z-50 flex items-center justify-center p-3 pr-2 text-sm text-gray-500 cursor-pointer">
-          <CgSearch className="w-[20px] h-[20px] hover:text-lime-600"/>
+          <CgSearch className="w-[20px] h-[20px] hover:text-lime-600" />
         </div>
         <input
           className="block w-30 py-1.5 pl-10 pr-4 leading-normal rounded-2xl focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600 ring-opacity-90 bg-gray-100 dark:bg-gray-800 text-gray-400 aa-input"
@@ -63,7 +63,7 @@ export default function NavBar() {
             onClick={handleMenu}
           >
             <span className="sr-only">Menu</span>
-            <CgMenu size={20} />
+            <CgMenu size={30} />
           </button>
         </div>
 
@@ -74,16 +74,22 @@ export default function NavBar() {
           >
             <div className="justify-items-center">
               <strong className="block p-2 text-xs font-medium uppercase text-gray-400">
-                Perfil</strong>
-                {localStorage.length !== 0 ? (
-                  <div className="flex items-center justify-between m-2 p-2 hover:bg-gray-50 dark:hover:bg-gray-600 rounded-lg">
-                    <Link to={
+                Perfil
+              </strong>
+              {localStorage.length !== 0 ? (
+                <div className="flex items-center justify-between m-2 p-2 hover:bg-gray-50 dark:hover:bg-gray-600 rounded-lg">
+                  <Link
+                    to={
                       localStorage.type === "user"
-                      ? `/${account.name + account.lastName}`
-                      : "/profile-company"}>
+                        ? `/${account.name + account.lastName}`
+                        : "/profile-company"
+                    }
+                  >
                     <span className="text-gray-500 flex justify-center text-sm hover:text-gray-700">
                       <CgProfile className="w-[25px] h-[25px] text-gray-400 mx-1 hover:text-lime-600" />
-                      <a className="pt-0.5 hover:text-lime-600">{account.name}</a>
+                      <a className="pt-0.5 hover:text-lime-600">
+                        {account.name}
+                      </a>
                     </span>
                   </Link>
 
@@ -97,9 +103,7 @@ export default function NavBar() {
               ) : (
                 <Link to="/login">
                   <div className="flex items-center justify-center m-2 p-2 hover:bg-gray-50 dark:hover:bg-gray-600 rounded-lg text-blue-500 hover:text-blue-600 dark:text-blue-600 dark:hover:text-blue-500">
-                    <button className=" pb-0.5 text-sm">
-                      Iniciar Sesión
-                    </button>
+                    <button className=" pb-0.5 text-sm">Iniciar Sesión</button>
                   </div>
                 </Link>
               )}

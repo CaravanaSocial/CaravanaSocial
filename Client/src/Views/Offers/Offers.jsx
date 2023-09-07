@@ -42,8 +42,8 @@ export default function Offer() {
   };
 
   return (
-    <div className="inline-block m-4 p-4 h-screen">
-      <div className="border-2 border-zinc-100 dark:border-zinc-800 rounded-3xl py-2 shadow-md">
+    <div className=" h-full  text-center inline-block m-4 p-4  ">
+      <div className="border-2 text-center border-zinc-100 dark:border-zinc-800 rounded-3xl py-2 shadow-md">
         <select
           className="rounded-3xl px-2 mx-1 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
           name="country"

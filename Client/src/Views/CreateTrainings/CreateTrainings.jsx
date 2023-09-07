@@ -113,7 +113,7 @@ export default function createTrainings() {
   };
 
   return (
-    <div className="inline-block m-4 p-4 h-screen">
+    <div className="flex justify-center text-center  h-full">
       <div className="border-spacing-96 border-2 border-zinc-100 dark:border-zinc-800 rounded-3xl p-4 my-4">
         <h1 className="text-4xl border-b-2 border-zinc-100 dark:border-zinc-800">
           Crea una Capacitación
@@ -221,8 +221,7 @@ export default function createTrainings() {
           })}
         </div>
 
-        <UploadImage/>
-        
+        <UploadImage />
 
         <button
           className="bg-zinc-300 mt-2 text-black rounded-3xl p-2"
