@@ -25,7 +25,7 @@ export default function UploadImage() {
     function uploadSingleImage(base64) {
         setLoading(true);
         axios
-            .post("http://localhost:3001/uploadImage", { image: base64 })
+            .post("http://localhost:3001/image/upload", { image: base64 })
             .then((res) => {
                 setUrl(res.data);
                 alert("Image uploaded Succesfully");

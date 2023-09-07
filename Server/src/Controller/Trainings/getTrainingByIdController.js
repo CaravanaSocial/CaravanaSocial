@@ -17,6 +17,9 @@ const getTrainingByIdController = async (id) =>{
           attributes: ["name"],
           through: { attributes: [] },
         },
+        {
+          model: comment
+        }
       ]
     })
 

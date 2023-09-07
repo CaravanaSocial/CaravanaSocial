@@ -10,9 +10,11 @@ const RubroModel = require("./Models/Rubros");
 const AdminModel = require("./Models/admin");
 const CitiesModel = require("./Models/Cities");
 const StatesModel = require("./Models/States");
-const PrefixesModel = require('./Models/Prefixes')
-const SuccessModel = require("./Models/SuccessStory")
-const QuestionsModel = require("./Models/frequentQuestions")
+const PrefixesModel = require('./Models/Prefixes');
+const SuccessModel = require("./Models/SuccessStory");
+const QuestionsModel = require("./Models/frequentQuestions");
+const CommentsModel = require("./Models/comments")
+
 
 const sequelize = new Sequelize(
   SERVER_URL,
@@ -39,7 +41,8 @@ CitiesModel(sequelize);
 StatesModel(sequelize);
 PrefixesModel(sequelize);
 SuccessModel(sequelize);
-QuestionsModel(sequelize)
+QuestionsModel(sequelize);
+CommentsModel(sequelize);
 
 const {
   country,
@@ -53,7 +56,8 @@ const {
   admin,
   prefix,
   success,
-  question
+  question,
+  comment
 } = sequelize.models;
 
 //Relacion de empresas con capacitaciones
@@ -83,6 +87,10 @@ areaTraining.belongsToMany(companies, {through: "companies_areaTraining"});
 user.belongsToMany(areaTraining, {through: "users_areaTraining"});
 areaTraining.belongsToMany(user, {through: "users_areaTraining"});
 
+//Relacion de comentario con capacitacion
+training.hasMany(comment);
+comment.belongsTo(training);
+
 
 module.exports = {
   ...sequelize.models,
@@ -98,5 +106,6 @@ module.exports = {
   state,
   success,
   question,
+  comment,
   conn: sequelize,
 };
