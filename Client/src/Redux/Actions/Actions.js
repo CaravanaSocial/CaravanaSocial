@@ -43,16 +43,16 @@ export const COMPANY_BUTTONS = "COMPANY_BUTTONS";
 
 export const TRAINING_FILTER = "TRAINING_FILTER";
 
-const serverURL = "https://caravanaserver.onrender.com"
+// const serverURL = "https://caravanaserver.onrender.com"
+const serverURL = "http://localhost:3001";
 
 export const createUser = (user) => {
-
   //---------- Endpoint to Dev server -- Descomentar para usar
   // const endpoint = "http://localhost:3001/user/signup";
 
   //---------- Endpoint to deployed server
   const endpoint = `${serverURL}/user/signup`;
-  
+
   return async (dispatch) => {
     try {
       const response = await axios.post(endpoint, user);
@@ -74,7 +74,6 @@ export const createUser = (user) => {
 };
 
 export const getUsers = () => {
-
   //---------- Endpoint to Dev server -- Descomentar para usar
   // const endpoint = "http://localhost:3001/user/all";
 
@@ -95,7 +94,6 @@ export const getUsers = () => {
 };
 
 export const getFreelancers = () => {
-
   //---------- Endpoint to Dev server -- Descomentar para usar
   // const endpoint = `http://localhost:3001/user/freelancers`;
 
@@ -114,7 +112,6 @@ export const getFreelancers = () => {
 };
 
 export const editUser = (id, user) => {
-
   //---------- Endpoint to Dev server -- Descomentar para usar
   // const endpoint = `http://localhost:3001/user/update/${id}`;
 
@@ -134,7 +131,6 @@ export const editUser = (id, user) => {
 };
 
 export const createAdmin = (admin) => {
-
   //---------- Endpoint to Dev server -- Descomentar para usar
   // const endpoint = "http://localhost:3001/admin/signup";
 
@@ -154,7 +150,6 @@ export const createAdmin = (admin) => {
 };
 
 export const editAdmin = (id, admin) => {
-
   //---------- Endpoint to Dev server -- Descomentar para usar
   // const endpoint = `http://localhost:3001/admin/update/${id}`;
 
@@ -174,7 +169,6 @@ export const editAdmin = (id, admin) => {
 };
 
 export const getAdmins = () => {
-
   //---------- Endpoint to Dev server -- Descomentar para usar
   // const endpoint = "http://localhost:3001/admin/all";
 
@@ -195,7 +189,6 @@ export const getAdmins = () => {
 };
 
 export const getCompanies = () => {
-
   //---------- Endpoint to Dev server -- Descomentar para usar
   // const endpoint = `http://localhost:3001/company/all`;
 
@@ -213,7 +206,6 @@ export const getCompanies = () => {
 };
 
 export const createCompany = (company) => {
-
   //---------- Endpoint to Dev server -- Descomentar para usar
   // const endpoint = "http://localhost:3001/company/signup";
 
@@ -242,7 +234,6 @@ export const createCompany = (company) => {
 };
 
 export const editCompany = (id, company) => {
-
   //---------- Endpoint to Dev server -- Descomentar para usar
   // const endpoint = `http://localhost:3001/company/update/${id}`;
 
@@ -270,13 +261,12 @@ export const editCompany = (id, company) => {
 };
 
 export const createOffer = (offer) => {
-
   //---------- Endpoint to Dev server -- Descomentar para usar
   // const endpoint = "http://localhost:3001/offers/";
 
   //---------- Endpoint to deployed server
   const endpoint = `${serverURL}/offers/`;
-  
+
   return async (dispatch) => {
     try {
       const response = await axios.post(endpoint + localStorage.accId, offer);
@@ -289,7 +279,6 @@ export const createOffer = (offer) => {
 };
 
 export const deleteOffer = (id) => {
-
   //---------- Endpoint to Dev server -- Descomentar para usar
   // const endpoint = `http://localhost:3001/offer/${id}`;
 
@@ -307,13 +296,12 @@ export const deleteOffer = (id) => {
 };
 
 export const getOffers = () => {
-
   //---------- Endpoint to Dev server -- Descomentar para usar
   // const endpoint = `http://localhost:3001/offers/`;
 
   //---------- Endpoint to deployed server
   const endpoint = `${serverURL}/offers/`;
-  
+
   return async (dispatch) => {
     try {
       const response = await axios(endpoint);
@@ -345,7 +333,6 @@ export const filterOffer = (data) => {
 };
 
 export const editOffer = (id) => {
-
   //---------- Endpoint to Dev server -- Descomentar para usar
   // const endpoint = `http://localhost:3001/offer/${id}`;
 
@@ -363,7 +350,6 @@ export const editOffer = (id) => {
 };
 
 export const getTrainings = () => {
-
   //---------- Endpoint to Dev server -- Descomentar para usar
   // const endpoint = `http://localhost:3001/trainings`;
 
@@ -382,7 +368,6 @@ export const getTrainings = () => {
 };
 
 export const createTraining = (training) => {
-
   //---------- Endpoint to Dev server -- Descomentar para usar
   // const endpoint = "http://localhost:3001/trainings/";
 
@@ -405,7 +390,6 @@ export const createTraining = (training) => {
 };
 
 export const deleteTraining = (id) => {
-
   //---------- Endpoint to Dev server -- Descomentar para usar
   // const endpoint = `http://localhost:3001/trainings/delete${id}`;
 
@@ -423,7 +407,6 @@ export const deleteTraining = (id) => {
 };
 
 export const editTraining = (id, training) => {
-
   //---------- Endpoint to Dev server -- Descomentar para usar
   // const endpoint = `http://localhost:3001/trainings/update/${id}`;
 
@@ -441,11 +424,10 @@ export const editTraining = (id, training) => {
 };
 
 export const login = (user) => {
-
   // const endpoint = `http://localhost:3001/login`;
 
   const endpoint = `${serverURL}/login`;
-  
+
   return async (dispatch) => {
     try {
       const response = await axios.post(endpoint, user);
@@ -479,13 +461,11 @@ export const logOut = () => {
 export const getCountry = () => {
   return async function (dispatch) {
     try {
-
       //---------- Endpoint to Dev server -- Descomentar para usar
       // const response = (await axios.get("http://localhost:3001/countries"))
 
       //---------- Endpoint to deployed server
-      const response = (await axios.get(`${serverURL}/countries`))
-        .data;
+      const response = (await axios.get(`${serverURL}/countries`)).data;
       return dispatch({
         type: GET_COUNTRIES,
         payload: response,
@@ -500,14 +480,12 @@ export const getState = (value) => {
   return async function (dispatch) {
     try {
       if (value !== "default") {
-        const response = (
-
+        const response =
           //---------- Endpoint to Dev server -- Descomentar para usar
           // await axios.get("http://localhost:3001/countries?name=" + value)
 
           //---------- Endpoint to deployed server
-          await axios.get(`${serverURL}/countries?name=` + value)
-        ).data;
+          (await axios.get(`${serverURL}/countries?name=` + value)).data;
 
         return dispatch({
           type: GET_STATE,
@@ -523,14 +501,12 @@ export const getState = (value) => {
 export const getCity = (value) => {
   return async function (dispatch) {
     try {
-      const response = (
-
+      const response =
         //---------- Endpoint to Dev server -- Descomentar para usar
         // await axios.get("http://localhost:3001/countries?name=" + value)
 
         //---------- Endpoint to deployed server
-        await axios.get(`${serverURL}/countries?name=` + value)
-      ).data;
+        (await axios.get(`${serverURL}/countries?name=` + value)).data;
       return dispatch({
         type: GET_CITY,
         payload: response,
@@ -544,7 +520,6 @@ export const getCity = (value) => {
 export const getCategories = () => {
   return async function (dispatch) {
     try {
-
       //---------- Endpoint to Dev server -- Descomentar para usar
       // const response = (await axios.get("http://localhost:3001/rubro")).data;
 
@@ -592,7 +567,6 @@ export function filterTrainingBy(data) {
     try {
       const response = (
         await axios.get(
-
           //---------- Endpoint to Dev server -- Descomentar para usar
           // `http://localhost:3001/filter?country=${country}&category=${category}`
 

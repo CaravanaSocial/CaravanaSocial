@@ -1,19 +1,19 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
-import NavBar from "./components/NavBar";
-import Login from "./Views/Login/Login";
-import RegisterUser from "./Views/RegisterUser/RegisterUser";
-import RegisterCompany from "./Views/RegisterCompany/RegisterCompany";
-import LandingPage from "./Views/LandingPage";
-import Footer from "./components/Footer";
-import CreateTrainings from "./Views/CreateTrainings/CreateTrainings";
-import Home from "./Views/Home/Home";
-import CreateJobs from "./Views/CreateJobs/CreateJobs";
-import Trainings from "./Views/Trainings/Trainings";
-import TrainingVideosPage from "./Views/Trainings/TrainingVideosPage";
-import Offer from "./Views/Offers/Offers";
-import ProfileUser from "./Views/UpdateProfile/ProfileUser";
-import ProfileCompany from "./Views/UpdateProfile/ProfileCompany";
+import NavBar from "./components/NavBar.jsx";
+import Login from "./Views/Login/Login.jsx";
+import RegisterUser from "./Views/RegisterUser/RegisterUser.jsx";
+import RegisterCompany from "./Views/RegisterCompany/RegisterCompany.jsx";
+import LandingPage from "./Views/LandingPage.jsx";
+import Footer from "./components/Footer.jsx";
+import CreateTrainings from "./Views/CreateTrainings/CreateTrainings.jsx";
+import Home from "./Views/Home/Home.jsx";
+import CreateJobs from "./Views/CreateJobs/CreateJobs.jsx";
+import Trainings from "./Views/Trainings/Trainings.jsx";
+import TrainingVideosPage from "./Views/Trainings/TrainingVideosPage.jsx";
+import Offer from "./Views/Offers/Offers.jsx";
+import ProfileUser from "./Views/UpdateProfile/ProfileUser.jsx";
+import ProfileCompany from "./Views/UpdateProfile/ProfileCompany.jsx";
 
 function App() {
   const account =
