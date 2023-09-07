@@ -10,7 +10,7 @@ module.exports = (sequelize) =>{
         },
         name:{
             type: DataTypes.STRING,
-            allowNull: true,
+            allowNull: false,
         },
         email:{
             type: DataTypes.STRING,
@@ -21,5 +21,12 @@ module.exports = (sequelize) =>{
             type: DataTypes.STRING,
             allowNull: false,
         },
-    })
+        profilePicture: {
+            type: DataTypes.STRING,
+            allowNull: false
+        }
+    },{
+        paranoid: true
+    }
+    )
 }

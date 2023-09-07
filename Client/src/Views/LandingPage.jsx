@@ -1,7 +1,7 @@
-import NavBar from "../components/NavBar";
 import { useState } from "react";
 import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
 import { RxDotFilled } from "react-icons/rx";
+import { Link } from "react-router-dom";
 import video1 from "../assets/videos/video1.mp4";
 
 const LandingPage = () => {
@@ -34,7 +34,7 @@ const LandingPage = () => {
   };
 
   return (
-    <main className="relative">
+    <main className=" relative">
       {/* SECCION INTRO */}
       <section className="w-full 2xl:h-[300px] relative ">
         <h1 className="text-center 2xl:text-[150px] xl:text-[130px] lg:text=[100px] md:text-[80px] font-vilaka text-[70px] ">
@@ -82,7 +82,7 @@ const LandingPage = () => {
 
       {/* SECCION CASOS DE EXITO */}
       <section className="w-full border-2 bg-light-1">
-        <h1 className="font-vilaka text-[50px] font-bold ">
+        <h1 className="font-vilaka text-[50px] text-center font-bold ">
           Hechale un vistazo a nuestros casos de exito!!
         </h1>
         <div className="max-w-[1000px] h-[600px] w-full m-auto py-16 px-4 relative group">
@@ -115,8 +115,8 @@ const LandingPage = () => {
       {/* SECCION UNETE */}
 
       <section className="w-full lg:gap-x-20 md:flex md:justify-center   ">
-        <a
-          href="/register-company"
+        <Link
+          to="/register-company"
           className="text-[40px] w-[400px] m-auto text-black  px-5 py-5  flex flex-col items-center font-topmodern   "
         >
           <img
@@ -125,10 +125,10 @@ const LandingPage = () => {
             width={400}
           ></img>
           Soy empresa quiero unirme...
-        </a>
+        </Link>
 
-        <a
-          href="/registerUser"
+        <Link
+          to="/register-user"
           className="text-[40px] px-5 py-5 w-[400px] text-black m-auto  text-center flex flex-col items-center font-topmodern  "
         >
           <img
@@ -137,7 +137,7 @@ const LandingPage = () => {
             width={400}
           ></img>
           Soy Freelancer quiero unirme...
-        </a>
+        </Link>
       </section>
 
       {/* SECCION UNETE */}
