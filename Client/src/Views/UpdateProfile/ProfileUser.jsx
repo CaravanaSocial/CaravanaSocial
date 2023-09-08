@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import validation from "../RegisterUser/validation";
+import validation from "../UpdateProfile/validation";
+import UploadImage from "../../components/UploadImage";
 import {
   getCountry,
   getState,
@@ -11,6 +12,7 @@ import {
 
 export default function ProfileUser() {
   const account = JSON.parse(localStorage.account);
+  const profilePicture = localStorage.profilePicture;
   const dispatch = useDispatch();
   const countries = useSelector((state) => state.countries);
   const states = useSelector((state) => state.states);
@@ -18,6 +20,7 @@ export default function ProfileUser() {
   const category = useSelector((state) => state.categories);
   const [edit, setEdit] = useState(false);
   const [errors, setErrors] = useState({});
+  const [key, setKey] = useState(0);
   const categories = account.areaTrainings?.map((c) => c.name);
   const [dataAcc, setDataAcc] = useState({
     id: account.id,
@@ -37,16 +40,18 @@ export default function ProfileUser() {
     freelancer: account.freelancer,
     description: account.description,
     address: account.address,
-    profilePicture: account.profilePicture,
+    profilePicture: profilePicture,
   });
   const [checkboxFreelancer, setCheckboxFreelancer] = useState(
     account.freelancer
   );
 
+  console.log(dataAcc.profilePicture);
+
   useEffect(() => {
     dispatch(getCountry());
     dispatch(getCategories());
-  }, []);
+  }, [dataAcc]);
 
   const handleClick = (event) => {
     if (event.target.name === "edit") {
@@ -169,6 +174,7 @@ export default function ProfileUser() {
       const editedAccount = JSON.stringify(dataAcc);
       localStorage.setItem("account", editedAccount);
       setEdit(false);
+      setKey(key + 1);
     }
   };
 
@@ -176,7 +182,9 @@ export default function ProfileUser() {
     <div className="h-full">
       <section className="flex">
         <div className="flex flex-col">
-          <img className="h-[300px] w-[300px]" src={account.profilePicture} />
+          <img key={key} className="h-[300px] w-[300px]" src={profilePicture} />
+          <UploadImage />
+          <button onClick={handleSubmit}>Guardar imagen</button>
           <br />
           <h1>{account.name + " " + account.lastName}</h1>
           <br />
