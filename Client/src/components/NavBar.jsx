@@ -75,7 +75,7 @@ export default function NavBar() {
             role="menu"
           >
             <div className="justify-items-center">
-              <strong className="block p-2 text-xs font-medium uppercase text-gray-400">
+              <strong className="block p-2 text-xs font-medium uppercase text-center text-gray-400">
                 Perfil
               </strong>
               {localStorage.length !== 0 ? (
@@ -112,11 +112,11 @@ export default function NavBar() {
             </div>
 
             <div className="p-2">
-              <strong className="block p-2 text-xs font-medium uppercase text-gray-400">
+              <strong className="block p-2 text-xs font-medium uppercase text-center text-gray-400 ">
                 General
               </strong>
               <Link
-                className="block rounded-lg px-4 py-2 text-sm text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-600 hover:text-gray-700 dark:hover:text-gray-400"
+                className="text-center block rounded-lg px-4 py-2 text-sm text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-600 hover:text-gray-700 dark:hover:text-gray-400"
                 to="/"
                 role="menuitem"
               >
@@ -124,7 +124,7 @@ export default function NavBar() {
               </Link>
 
               <Link
-                className="block rounded-lg px-4 py-2 text-sm text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-600 hover:text-gray-700 dark:hover:text-gray-400"
+                className="text-center block rounded-lg px-4 py-2 text-sm text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-600 hover:text-gray-700 dark:hover:text-gray-400"
                 to="/home"
                 role="menuitem"
               >
@@ -134,7 +134,7 @@ export default function NavBar() {
               {bool ? (
                 <>
                   <Link
-                    className="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700 dark:hover:text-gray-400"
+                    className="text-center block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700 dark:hover:text-gray-400"
                     to="/create-trainings"
                     role="menuitem"
                   >
@@ -142,7 +142,7 @@ export default function NavBar() {
                   </Link>
 
                   <Link
-                    className="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700 dark:hover:text-gray-400"
+                    className="text-center block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700 dark:hover:text-gray-400"
                     to="/create-jobs"
                     role="menuitem"
                   >
@@ -153,10 +153,10 @@ export default function NavBar() {
             </div>
 
             <div className="p-2">
-              <strong className="block p-2 text-xs font-medium uppercase text-gray-400">
+              <strong className="text-center block p-2 text-xs font-medium uppercase text-gray-400">
                 Ajustes
               </strong>
-              <div className="mt-1.5">
+              <div className="mt-1.5 text-center">
                 <div className="relative inline-block w-10 mr-2 align-middle select-none">
                   <input
                     className="checked:bg-gray-500 outline-none focus:outline-none right-4 checked:right-0 duration-200 ease-in absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"
