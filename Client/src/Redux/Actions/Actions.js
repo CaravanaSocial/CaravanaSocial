@@ -1,4 +1,5 @@
 import axios from "axios";
+import Swal from "sweetalert2";
 
 export const CREATE_USER = "CREATE_USER";
 export const GET_USERS = "GET_USERS";
@@ -62,6 +63,16 @@ export const createUser = (user) => {
         type: CREATE_USER,
         payload: data,
       });
+      Swal.fire({
+        title: "Registro Completado!",
+        text: "Bienvenido",
+        icon: "success",
+        customClass: {
+          popup: "holahola",
+          confirmButton: "bg-light-1",
+        },
+      });
+
       return false;
     } catch (error) {
       dispatch({
@@ -221,6 +232,14 @@ export const createCompany = (company) => {
         type: CREATE_COMPANY,
         payload: data,
       });
+      Swal.fire({
+        title: "Registro Completado!",
+        text: "Bienvenido",
+        icon: "success",
+        customClass: {
+          popup: "holahola",
+        },
+      });
       return false;
     } catch (error) {
       console.log(error.message);
@@ -271,6 +290,14 @@ export const createOffer = (offer) => {
     try {
       const response = await axios.post(endpoint + localStorage.accId, offer);
       const { data } = response;
+      Swal.fire({
+        title: "Oferta Creada con exito!",
+
+        icon: "success",
+        customClass: {
+          popup: "holahola",
+        },
+      });
       return dispatch({ type: CREATE_OFFER });
     } catch (error) {
       console.log(error);
@@ -381,6 +408,14 @@ export const createTraining = (training) => {
         training
       );
       const { data } = response;
+      Swal.fire({
+        title: "Capacitacion Anadida!",
+
+        icon: "success",
+        customClass: {
+          popup: "holahola",
+        },
+      });
 
       return dispatch({ type: CREATE_TRAINING, payload: data });
     } catch (error) {

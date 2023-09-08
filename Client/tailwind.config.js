@@ -10,6 +10,9 @@ export default {
         vilaka: ["Vilaka", "Serif"],
         topmodern: ["TopModern"],
       },
+      backgroundColor: {
+        "light-1": "#a7b698",
+      },
       colors: {
         "light-0": "#f2f2f2",
         "light-1": "#a7b698",
