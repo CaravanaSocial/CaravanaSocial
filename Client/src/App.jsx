@@ -12,6 +12,7 @@ import CreateJobs from "./Views/CreateJobs/CreateJobs.jsx";
 import Trainings from "./Views/Trainings/Trainings.jsx";
 import TrainingVideosPage from "./Views/Trainings/TrainingVideosPage.jsx";
 import Offer from "./Views/Offers/Offers.jsx";
+import DetailOffer from "./Views/Offers/Detail/DetailOffer.jsx";
 import ProfileUser from "./Views/UpdateProfile/ProfileUser.jsx";
 import ProfileCompany from "./Views/UpdateProfile/ProfileCompany.jsx";
 import VideosTrainings from "./Views/CreateTrainings/videosTrainings.jsx";
@@ -42,6 +43,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/home-trainings" element={<Trainings />} />
           <Route path="/home-offers" element={<Offer />} />
+          <Route path="/home-offers/:title" element={<DetailOffer/>}/>
           <Route path="/trainings/:id" element={<TrainingVideosPage />} />
           <Route path="/trainings/video/:id" element={<VideosTrainings />} />
           <Route

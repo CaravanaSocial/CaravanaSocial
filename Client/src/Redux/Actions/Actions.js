@@ -18,6 +18,7 @@ export const EDIT_COMPANY = "EDIT_COMPANY";
 export const CREATE_OFFER = "CREATE_OFFER";
 export const DELETE_OFFER = "DELETE_OFFER";
 export const GET_OFFERS = "GET_OFFERS";
+export const GET_OFFERS_BYNAME = "GET_OFFERS_BYNAME"
 export const EDIT_OFFER = "EDIT_OFFER";
 export const FILTER_OFFER = "FILTER_OFFER";
 
@@ -323,11 +324,11 @@ export const deleteOffer = (id) => {
   };
 };
 
-export const getOffers = () => {
-  //---------- Endpoint to Dev server -- Descomentar para usar
-  // const endpoint = `http://localhost:3001/offers/`;
+export const getOfferByName = (name) =>{
+  const endpoint = `${serverURL}/offers/${name}`;
+}
 
-  //---------- Endpoint to deployed server
+export const getOffers = () => {
   const endpoint = `${serverURL}/offers/`;
 
   return async (dispatch) => {
