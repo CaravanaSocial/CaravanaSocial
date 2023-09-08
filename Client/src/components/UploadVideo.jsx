@@ -1,21 +1,19 @@
-import React, { useDebugValue } from 'react'
-import { CloudinaryContext, Image, Transformation, } from 'cloudinary-react';
-import { useDispatch } from 'react-redux';
-import { uploadVideo } from '../Redux/Actions/Actions';
+import React, { useDebugValue } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addVideo, uploadVideo } from "../Redux/Actions/Actions";
 
 const UploadVideo = () => {
-    const dispatch = useDispatch()
-    const cloudName = "da785kmjd"; // Reemplaza con tu cloud name
-    const uploadPreset = "rdvhkotr";   // Reemplaza con tu upload preset
-  
-    const handleUploadSuccess = (result) => {
-      console.log('Done! Here is the image info: ', result.info);
-      dispatch(uploadVideo(result.info))
-    };
+  const dispatch = useDispatch();
+  const cloudName = "da785kmjd"; // Reemplaza con tu cloud name
+  const uploadPreset = "an5itlfl"; // Reemplaza con tu upload preset
+
+  const handleUploadSuccess = (result) => {
+    console.log("Done! Here is the image info: ", result.info.secure_url);
+  };
 
   return (
     <div>
-        <button
+      <button
         className="bg-zinc-300 mt-2 text-black rounded-3xl p-2"
         id="upload_widget"
         onClick={() => {
@@ -25,9 +23,9 @@ const UploadVideo = () => {
               uploadPreset: uploadPreset,
             },
             (error, result) => {
-              if (!error && result && result.event === 'success') {
+              if (!error && result && result.event === "success") {
                 handleUploadSuccess(result);
-                
+                dispatch(addVideo(result.info.secure_url));
               }
             }
           );
@@ -36,7 +34,7 @@ const UploadVideo = () => {
         Cargar videos desde archivos
       </button>
     </div>
-  )
-}
+  );
+};
 
-export default UploadVideo
+export default UploadVideo;

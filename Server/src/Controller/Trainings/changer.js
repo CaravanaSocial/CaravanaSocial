@@ -13,8 +13,8 @@ const updateTrainingController = async (body, params) => {
         const newTraining = {
             id,
             name : name? name : trainingToChange.name,
-            description : description? description : trainingToChange.name,
-            video : video ? video :  trainingToChange.name
+            description : description? description : trainingToChange.description,
+            video : video ? video :  trainingToChange.video
         }
 
         await trainingToChange.update(newTraining)

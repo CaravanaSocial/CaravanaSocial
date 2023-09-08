@@ -14,6 +14,7 @@ import TrainingVideosPage from "./Views/Trainings/TrainingVideosPage.jsx";
 import Offer from "./Views/Offers/Offers.jsx";
 import ProfileUser from "./Views/UpdateProfile/ProfileUser.jsx";
 import ProfileCompany from "./Views/UpdateProfile/ProfileCompany.jsx";
+import VideosTrainings from "./Views/CreateTrainings/videosTrainings.jsx";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
@@ -42,6 +43,7 @@ function App() {
           <Route path="/home-trainings" element={<Trainings />} />
           <Route path="/home-offers" element={<Offer />} />
           <Route path="/trainings/:id" element={<TrainingVideosPage />} />
+          <Route path="/trainings/video/:id" element={<VideosTrainings />} />
           <Route
             path={
               localStorage.length !== 0
