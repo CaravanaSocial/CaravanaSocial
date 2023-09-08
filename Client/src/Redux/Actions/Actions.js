@@ -5,6 +5,8 @@ export const CREATE_USER = "CREATE_USER";
 export const GET_USERS = "GET_USERS";
 export const EDIT_USER = "EDIT_USER";
 
+export const GET_SUCCESCASES = "GET_SUCCESCASES";
+
 export const GET_FREELANCERS = "GET_FREELANCERS";
 
 export const CREATE_ADMIN = "CREATE_ADMIN";
@@ -641,3 +643,23 @@ export function addVideo(link) {
     }
   };
 }
+
+export const getSuccesCases = () => {
+  //---------- Endpoint to Dev server -- Descomentar para usar
+  // const endpoint = "http://localhost:3001/user/all";
+
+  //---------- Endpoint to deployed server
+  const endpoint = `${serverURL}/success`;
+  return async (dispatch) => {
+    try {
+      const response = await axios(endpoint);
+      const { data } = response;
+      return dispatch({
+        type: GET_SUCCESCASES,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};

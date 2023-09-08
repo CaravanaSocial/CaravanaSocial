@@ -17,6 +17,7 @@ import ProfileCompany from "./Views/UpdateProfile/ProfileCompany.jsx";
 import VideosTrainings from "./Views/CreateTrainings/videosTrainings.jsx";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import CreateSuccesCase from "./Views/CreateSuccessCase/CreateSuccesCase.jsx";
 
 function App() {
   const account =
@@ -39,11 +40,13 @@ function App() {
           <Route path="/register-company" element={<RegisterCompany />} />
           <Route path="/create-trainings" element={<CreateTrainings />} />
           <Route path="/create-jobs" element={<CreateJobs />} />
+          <Route path="/create-success" element={<CreateSuccesCase />} />
           <Route path="/home" element={<Home />} />
           <Route path="/home-trainings" element={<Trainings />} />
           <Route path="/home-offers" element={<Offer />} />
           <Route path="/trainings/:id" element={<TrainingVideosPage />} />
           <Route path="/trainings/video/:id" element={<VideosTrainings />} />
+
           <Route
             path={
               localStorage.length !== 0

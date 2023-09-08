@@ -29,6 +29,7 @@ import {
   TRAINING_FILTER,
   GET_FREELANCERS,
   ADDVIDEO,
+  GET_SUCCESCASES,
 } from "../Actions/Actions";
 
 const initialState = {
@@ -49,7 +50,8 @@ const initialState = {
   trainingsFiltered: [],
   categories: [],
   freelancers: [],
-  video: []
+  video: [],
+  successCases: [],
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -64,6 +66,12 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         users: action.payload,
+      };
+
+    case GET_SUCCESCASES:
+      return {
+        ...state,
+        successCases: action.payload,
       };
 
     case EDIT_USER:
@@ -216,11 +224,11 @@ export default function rootReducer(state = initialState, action) {
       };
 
     case ADDVIDEO:
-      let arr = [...state.video, action.payload]
+      let arr = [...state.video, action.payload];
       return {
         ...state,
-        video: arr
-      }
+        video: arr,
+      };
 
     default:
       return { ...state };
