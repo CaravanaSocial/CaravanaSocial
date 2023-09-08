@@ -4,6 +4,7 @@ import UploadVideo from "../../components/UploadVideo";
 import { useDispatch, useSelector } from "react-redux";
 import { editTraining } from "../../Redux/Actions/Actions";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function VideosTrainings() {
   const dispatch = useDispatch();
@@ -14,6 +15,8 @@ export default function VideosTrainings() {
   const [inputTrainings, setInputTrainings] = useState({
     video: [],
   });
+
+  const navigate = useNavigate();
 
   const handleChangeVideo = (event) => {
     setVideo({
@@ -49,6 +52,7 @@ export default function VideosTrainings() {
   const handleClick = (e) => {
     e.preventDefault();
     dispatch(editTraining(id, { video: [...inputTrainings.video, ...videos] }));
+    navigate("/home-trainings");
   };
 
   return (

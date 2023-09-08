@@ -74,10 +74,13 @@ export default function createJobs() {
     validateInput({ ...inputJobs, category: filteredCat });
   };
 
+  const disabled =
+    !inputJobs.title || !inputJobs.category || inputJobs.description;
+
   return (
     <div className=" h-full text-center ">
       <div className="inline-block m-4 p-4 text-center ">
-        <div className="border-spacing-96 border-2 border-zinc-100 dark:border-zinc-800 rounded-3xl p-4 my-4">
+        <div className="justify-center text-center border-2 border-lime-600 dark:border-lime-700 rounded-3xl p-4 m-4">
           <h1 className="text-4xl  border-b-2 border-zinc-100 dark:border-zinc-800">
             Crea un Aviso de Trabajo
           </h1>
@@ -155,6 +158,7 @@ export default function createJobs() {
             className="bg-zinc-300 mt-2 text-black rounded-3xl p-2"
             type="submit"
             onClick={handleSubmit}
+            disabled={disabled}
           >
             Crear
           </button>

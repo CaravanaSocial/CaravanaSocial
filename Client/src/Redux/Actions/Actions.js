@@ -25,7 +25,7 @@ export const CREATE_TRAINING = "CREATE_TRAINING";
 export const DELETE_TRAINING = "DELETE_TRAINING";
 export const EDIT_TRAINING = "EDIT_TRAINING";
 export const GET_TRAININGS = "GET_TRAININGS";
-export const ADDVIDEO = "ADDVIDEO"
+export const ADDVIDEO = "ADDVIDEO";
 
 export const GET_LOCATION = "GET_LOCATION";
 
@@ -409,17 +409,9 @@ export const createTraining = (training) => {
         training
       );
       const { data } = response;
-      Swal.fire({
-        title: "Capacitacion Anadida!",
-
-        icon: "success",
-        customClass: {
-          popup: "holahola",
-        },
-      });
 
       dispatch({ type: CREATE_TRAINING, payload: data });
-      return data
+      return data;
     } catch (error) {
       console.log(error);
     }
@@ -453,7 +445,15 @@ export const editTraining = (id, training) => {
     try {
       const response = await axios.patch(endpoint, training);
       const { data } = response;
-      return dispatch({ type: EDIT_TRAINING});
+      Swal.fire({
+        title: "Capacitacion Anadida!",
+
+        icon: "success",
+        customClass: {
+          popup: "",
+        },
+      });
+      return dispatch({ type: EDIT_TRAINING });
     } catch (error) {
       console.log(error);
     }
@@ -622,22 +622,22 @@ export function filterTrainingBy(data) {
   };
 }
 
-export function uploadVideo (video){
-  return async function(dispatch){
+export function uploadVideo(video) {
+  return async function (dispatch) {
     try {
-      const response =( axios.post(`${serverURL}/video/upVideo`, video)).data
+      const response = axios.post(`${serverURL}/video/upVideo`, video).data;
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 }
 
-export function addVideo(link){
-  return async function(dispatch){
+export function addVideo(link) {
+  return async function (dispatch) {
     try {
-      dispatch({type: ADDVIDEO, payload:link})
+      dispatch({ type: ADDVIDEO, payload: link });
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 }
