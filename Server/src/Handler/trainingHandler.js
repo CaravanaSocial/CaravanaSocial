@@ -54,13 +54,15 @@ const createTrainingHandler = async (req, res) => {
 
 const updateTrainingHandler = async (req, res) => {
   try {
-    const allDone = await updateTrainingController(req.body, req.params);
+    const {id} = req.params
+    const allDone = await updateTrainingController(req.body, id);
 
     if (!allDone) return res.status(400).send("Algo salio mal ");
 
-    return res.status(200).send(allDone);
+    return res.status(200).json(allDone);
   } catch (error) {
-    res.status(400).send(error.message);
+    console.log("EL ERROR ES: ",error);
+    res.status(400).json({error:error.message});
   }
 };
 

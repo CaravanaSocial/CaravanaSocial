@@ -15,11 +15,6 @@ export default function VideosTrainings() {
     video: [],
   });
 
-  useEffect(() => {
-    return () => {
-      dispatch(editTraining(id, { video: [...inputTrainings.video, videos] }));
-    };
-  }, []);
 
   const handleChangeVideo = (event) => {
     setVideo({
@@ -52,6 +47,10 @@ export default function VideosTrainings() {
       video: newValues,
     });
   };
+  const handleClick = (e) =>{
+    e.preventDefault()
+    dispatch(editTraining(id, { video: [...inputTrainings.video, ...videos] }))
+  }
 
   return (
     <div>
@@ -98,6 +97,8 @@ export default function VideosTrainings() {
           <UploadVideo />
         </div>
       </CloudinaryContext>
+
+      <button onClick={(e)=>handleClick(e)}>SUBMIT</button>
     </div>
   );
 }

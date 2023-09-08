@@ -216,9 +216,10 @@ export default function rootReducer(state = initialState, action) {
       };
 
     case ADDVIDEO:
+      let arr = [...state.video, action.payload]
       return {
         ...state,
-        video: [...state.video, action.payload]
+        video: arr
       }
 
     default:

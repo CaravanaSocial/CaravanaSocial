@@ -28,28 +28,25 @@ const createdTrainingController = async (body, companyId) => {
 
     // const imagenNice = uploadImage(video);
 
-    const [user, created] = await training.findOrCreate({
-      where: {
-        video: video,
-      },
-      defaults: {
+    const createdTraining = await training.create(
+      {
         name,
         description,
         video,
       },
-    });
-    if (user) {
+    );
+    if (createdTraining) {
       for (let i = 0; i < category.length; i++) {
         const trainingCategory = await areaTraining.findOne({
           where: {
             name: category[i],
           },
         });
-        await user.addAreaTraining(trainingCategory);
+        await createdTraining.addAreaTraining(trainingCategory);
       }
     }
 
-    await user.setCompany(id);
+    await createdTraining.setCompany(id);
 
     transporter.sendMail(menssageRegister, (error, info) => {
       if (error) {
@@ -59,7 +56,7 @@ const createdTrainingController = async (body, companyId) => {
       }
     });
 
-    return user;
+    return createdTraining;
   } catch (error) {
     console.log(error);
     throw error;

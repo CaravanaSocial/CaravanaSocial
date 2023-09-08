@@ -24,7 +24,7 @@ export default function createTrainings() {
     name: "",
     category: [],
     description: "",
-    video: ["a"],
+   /*  video: [], */
   });
 
   useEffect(() => {

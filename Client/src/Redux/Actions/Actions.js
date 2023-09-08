@@ -413,12 +413,12 @@ export const editTraining = (id, training) => {
   // const endpoint = `http://localhost:3001/trainings/update/${id}`;
 
   //---------- Endpoint to deployed server
-  const endpoint = `${serverURL}/trainings/update/${id}`;
+  const endpoint = `${serverURL}/trainings/${id}`;
   return async (dispatch) => {
     try {
       const response = await axios.patch(endpoint, training);
       const { data } = response;
-      return dispatch({ type: EDIT_TRAINING });
+      return dispatch({ type: EDIT_TRAINING});
     } catch (error) {
       console.log(error);
     }
@@ -597,10 +597,10 @@ export function uploadVideo (video){
   }
 }
 
-export function addVideo(video){
+export function addVideo(link){
   return async function(dispatch){
     try {
-      dispatch({type: ADDVIDEO, payload:video})
+      dispatch({type: ADDVIDEO, payload:link})
     } catch (error) {
       console.log(error)
     }
