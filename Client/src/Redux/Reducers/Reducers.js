@@ -30,6 +30,7 @@ import {
   GET_FREELANCERS,
   ADDVIDEO,
   GET_SUCCESCASES,
+  IMAGECHANGE,
 } from "../Actions/Actions";
 
 const initialState = {
@@ -52,6 +53,7 @@ const initialState = {
   freelancers: [],
   video: [],
   successCases: [],
+  imageChange: false,
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -228,6 +230,13 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         video: arr,
+      };
+
+    case IMAGECHANGE:
+      const goku = state.imageChange === true ? false : true;
+      return {
+        ...state,
+        imageChange: goku,
       };
 
     default:

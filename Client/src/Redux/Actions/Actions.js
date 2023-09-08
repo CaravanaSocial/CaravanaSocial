@@ -47,6 +47,8 @@ export const COMPANY_BUTTONS = "COMPANY_BUTTONS";
 
 export const TRAINING_FILTER = "TRAINING_FILTER";
 
+export const IMAGECHANGE = "IMAGECHANGE";
+
 // const serverURL = "https://caravanaserver.onrender.com";
 const serverURL = "http://localhost:3001";
 
@@ -135,9 +137,11 @@ export const editUser = (id, user) => {
     try {
       const response = await axios.patch(endpoint, user);
       const { data } = response;
-      return dispatch({
+      console.log(data);
+      dispatch({
         type: EDIT_USER,
       });
+      return data;
     } catch (error) {
       console.log(error);
     }
@@ -477,6 +481,7 @@ export const login = (user) => {
       localStorage.setItem("accName", data.acc.name);
       localStorage.setItem("accId", data.acc.id);
       localStorage.setItem("type", data.type);
+      localStorage.setItem("profilePicture", data.acc.profilePicture);
 
       dispatch({ type: LOGIN, payload: data });
       return false;
@@ -663,3 +668,13 @@ export const getSuccesCases = () => {
     }
   };
 };
+
+export function imageChange() {
+  return async function (dispatch) {
+    try {
+      dispatch({ type: IMAGECHANGE });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}

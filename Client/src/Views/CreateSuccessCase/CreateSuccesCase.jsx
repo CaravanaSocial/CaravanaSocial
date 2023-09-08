@@ -1,5 +1,5 @@
 import { CloudinaryContext, Image, Transformation } from "cloudinary-react";
-import UploadVideo from "../../components/UploadVideo";
+import UploadImage from "../../components/UploadImage";
 
 const CreateSuccesCase = () => {
   return (
@@ -19,7 +19,7 @@ const CreateSuccesCase = () => {
           <h2 className="font-topmodern">Foto</h2>
           <CloudinaryContext cloudName="da785kmjd">
             <div className="App">
-              <UploadVideo />
+              <UploadImage />
             </div>
           </CloudinaryContext>
 
