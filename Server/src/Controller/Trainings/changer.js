@@ -1,28 +1,23 @@
 const { training } = require('../../db');
 
 
-const updateTrainingController = async (body, params) => {
-    try {
-        const { id } = params
-        const { name, description, video} = body;
-        const trainingToChange = await training.findByPk(id);
+const updateTrainingController = async (body, id) => {
+    console.log("BODY: ",body);
+        /* const { name, description, video} = body;
+        const trainingToChange = await training.findByPk(params);
         
 
         if(!trainingToChange) throw error
 
         const newTraining = {
-            id,
             name : name? name : trainingToChange.name,
-            description : description? description : trainingToChange.name,
-            video : video ? video :  trainingToChange.name
-        }
+            description : description? description : trainingToChange.description,
+            video : video ? video :  trainingToChange.video
+        } */
 
-        await trainingToChange.update(newTraining)
+       const trainingUpdated = await training.update(body,{where:{id:id}})
 
-        return newTraining
-    } catch (error) {
-        throw error
-    }
+        return trainingUpdated //newTraining
 }
 
 module.exports = {

@@ -8,7 +8,7 @@ const postVideoHandler = async (req, res) => {
         const filecreate = await uploadFile(file)
         return res.status(200).json(filecreate)
     } catch (error) {
-        return res.status(400).send(error.message)
+        return res.status(400).send({error: error.message})
     }
 }
 

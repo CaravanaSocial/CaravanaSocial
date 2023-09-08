@@ -10,6 +10,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import UploadImage from "../../components/UploadImage.jsx";
 import UploadWidget from "../../components/UploadVideo.jsx";
+import UploadVideo from "../../components/UploadVideo.jsx";
+import { CloudinaryContext, Image, Transformation } from "cloudinary-react";
 
 export default function createTrainings() {
   const dispatch = useDispatch();
@@ -22,7 +24,7 @@ export default function createTrainings() {
     name: "",
     category: [],
     description: "",
-    video: [],
+   /*  video: [], */
   });
 
   useEffect(() => {
@@ -106,9 +108,10 @@ export default function createTrainings() {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (Object.keys(error).length === 0) {
-      dispatch(createTraining(inputTrainings));
+      dispatch(createTraining(inputTrainings)).then((data) => {
+        navigate("/trainings/video/" + data.id);
+      });
       dispatch(getTrainings());
-      navigate("/home-trainings");
     }
   };
 
@@ -180,48 +183,6 @@ export default function createTrainings() {
         {error.description && (
           <span className="text-red-600">{error.description}</span>
         )}
-
-        <h2>Video</h2>
-        <input
-          className="align-text-top rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
-          type="url"
-          name="video"
-          value={video.video}
-          onChange={handleChangeVideo}
-          placeholder="Url..."
-          onKeyDown={handleKeyPress}
-        />
-
-        <button
-          className="bg-zinc-300 mx-2 px-2 pb-1 text-black rounded-3xl"
-          type="submit"
-          onClick={handleSubmitVideo}
-          ref={addBtn}
-        >
-          +
-        </button>
-        <br />
-        {error.video && <span className="text-red-600">{error.video}</span>}
-
-        <div>
-          {inputTrainings.video.map((v, i) => {
-            if (i < 7) {
-              return (
-                <div key={i}>
-                  <button
-                    className="bg-zinc-300 text-black rounded-3xl m-1 p-2"
-                    type="button"
-                    onClick={() => deleteChoice("videos", v)}
-                  >
-                    {v}
-                  </button>
-                </div>
-              );
-            }
-          })}
-        </div>
-
-        <UploadImage />
 
         <button
           className="bg-zinc-300 mt-2 text-black rounded-3xl p-2"
