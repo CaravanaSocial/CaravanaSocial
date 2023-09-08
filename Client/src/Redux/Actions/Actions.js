@@ -8,6 +8,7 @@ export const EDIT_USER = "EDIT_USER";
 export const GET_SUCCESCASES = "GET_SUCCESCASES";
 
 export const GET_FREELANCERS = "GET_FREELANCERS";
+export const GET_USER_BY_ID = "GET_USER_BY_ID";
 
 export const CREATE_ADMIN = "CREATE_ADMIN";
 export const GET_ADMINS = "GET_ADMINS";
@@ -678,3 +679,19 @@ export function imageChange() {
     }
   };
 }
+
+
+export const getUserById = (id) => {
+  return async function (dispatch) {
+    try {
+      const response = (await axios.get(`${serverURL}/user/`+id)).data;
+      return dispatch({
+        type: GET_USER_BY_ID,
+        payload: response,
+      });
+    } catch (error) {
+      console.log("cat", error.message);
+    }
+  };
+};
+

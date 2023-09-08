@@ -55,6 +55,7 @@ const Home = () => {
                   <CardFreelancer
                     key={item.id}
                     name={item.name}
+                    id={item.id}
                     location={item.location}
                     description={item.description}
                   />
