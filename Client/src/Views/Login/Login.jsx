@@ -51,7 +51,7 @@ export default function Login() {
           </p>
         </section>
 
-        <section className=" text-center items-center">
+        <section className="text-center items-center">
           <div className="justify-center border-spacing-96 border-2 border-lime-600 dark:border-lime-700 rounded-3xl p-4 my-4">
             <h1 className="text-3xl text-center border-b-2 border-lime-600 dark:border-lime-700 dark:text-gray-300">
               Inicio de Sesión
