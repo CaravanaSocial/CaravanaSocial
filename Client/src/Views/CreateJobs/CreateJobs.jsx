@@ -75,9 +75,9 @@ export default function createJobs() {
   };
 
   return (
-    <div className=" h-full text-center ">
-      <div className="inline-block m-4 p-4 text-center ">
-        <div className="border-spacing-96 border-2 border-zinc-100 dark:border-zinc-800 rounded-3xl p-4 my-4">
+    <div className="h-full">
+      <div className="flex justify-center">
+        <div className="justify-center text-center border-2 border-lime-600 dark:border-lime-700 rounded-3xl p-4 m-4">
           <h1 className="text-4xl  border-b-2 border-zinc-100 dark:border-zinc-800">
             Crea un Aviso de Trabajo
           </h1>

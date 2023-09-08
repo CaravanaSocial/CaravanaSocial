@@ -116,8 +116,9 @@ export default function createTrainings() {
   };
 
   return (
-    <div className="flex justify-center text-center h-full">
-      <div className="border-spacing-96 border-2 border-zinc-100 dark:border-zinc-800 rounded-3xl p-4 my-4">
+    <div className="h-full">
+    <div className="flex justify-center h-full">
+      <div className="justify-center text-center border-2 border-lime-600 dark:border-lime-700 rounded-3xl p-4 m-4">
         <h1 className="text-4xl border-b-2 border-zinc-100 dark:border-zinc-800">
           Crea una Capacitación
         </h1>
@@ -192,6 +193,7 @@ export default function createTrainings() {
           Crear
         </button>
       </div>
+    </div>
     </div>
   );
 }
