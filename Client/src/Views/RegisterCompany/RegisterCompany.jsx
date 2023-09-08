@@ -177,17 +177,16 @@ const RegisterCompany = () => {
   };
 
   return (
-    <div className="   h-full text-center ">
-      <div className="inline-block   text-center">
-        <div className="border-spacing-96 border-2 border-zinc-100 dark:border-zinc-800 rounded-3xl p-4 my-4">
-          <h1 className="text-4xl border-b-2 border-zinc-100 dark:border-zinc-800">
+      <div className="flex justify-center">
+        <div className="justify-center text-center border-spacing-96 border-2 border-lime-600 dark:border-lime-700 rounded-3xl p-4 m-4">
+          <h1 className="text-3xl border-b-2 border-lime-600 dark:border-lime-700 dark:text-gray-300">
             Registrarme como empresa
           </h1>
 
           <form onSubmit={handleSubmit}>
-            <h2>Nombre: </h2>
+            <h2 className="text-lg dark:border-lime-700 dark:text-gray-300">Nombre: </h2>
             <input
-              className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
+              className="h-8 rounded-3xl px-2 my-2 bg-gray-100 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
               onChange={handleInputs}
               type="text"
               placeholder="Escribe tu nombre"
@@ -200,9 +199,9 @@ const RegisterCompany = () => {
               {error.name}
             </p>
 
-            <h2>Apellido: </h2>
+            <h2 className="text-lg dark:border-lime-700 dark:text-gray-300">Apellido: </h2>
             <input
-              className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
+              className="h-8 rounded-3xl px-2 my-2 bg-gray-100 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
               onChange={handleInputs}
               type="text"
               placeholder="Escribe tu apellido"
@@ -215,9 +214,9 @@ const RegisterCompany = () => {
               {error.lastName}
             </p>
 
-            <h2>Cargo: </h2>
+            <h2 className="text-lg dark:border-lime-700 dark:text-gray-300">Cargo: </h2>
             <input
-              className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
+              className="h-8 rounded-3xl px-2 my-2 bg-gray-100 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
               onChange={handleInputs}
               type="text"
               placeholder="Cargo"
@@ -230,9 +229,9 @@ const RegisterCompany = () => {
               {error.position}
             </p>
 
-            <h2>Empresa: </h2>
+            <h2 className="text-lg dark:border-lime-700 dark:text-gray-300">Empresa: </h2>
             <input
-              className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
+              className="h-8 rounded-3xl px-2 my-2 bg-gray-100 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
               onChange={handleInputs}
               type="text"
               placeholder="Nombre de la Empresa"
@@ -246,7 +245,7 @@ const RegisterCompany = () => {
             </p>
 
             <select
-              className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
+              className="h-8 rounded-3xl px-2 my-2 bg-gray-100 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
               onChange={handleLocation}
               name="country"
             >
@@ -259,9 +258,9 @@ const RegisterCompany = () => {
                 );
               })}
             </select>
-
+            <br />
             <select
-              className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
+              className="h-8 rounded-3xl px-2 my-2 bg-gray-100 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
               onChange={handleLocation}
               name="state"
             >
@@ -276,7 +275,7 @@ const RegisterCompany = () => {
             </select>
 
             <select
-              className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
+              className="h-8 rounded-3xl px-2 my-2 bg-gray-100 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
               name="city"
               onChange={handleLocation}
             >
@@ -297,7 +296,7 @@ const RegisterCompany = () => {
             </p>
 
             <select
-              className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
+              className="h-8 rounded-3xl px-2 my-2 bg-gray-100 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
               onChange={handleCategory}
               name="category"
             >
@@ -311,24 +310,18 @@ const RegisterCompany = () => {
               })}
             </select>
             <br />
-            <span>Rubros seleccionados: </span>
-            <div className="p-2 m-auto bg-zinc-300 text-zinc-800 focus:border-transparent w-[200px] justify-center align-middle rounded-3xl">
-              {companyInput.category.map((cat) => {
+            <h2 className="text-lg dark:border-lime-700 dark:text-gray-300">Rubros seleccionados: </h2>
+              {companyInput.category.map((cat, i) => {
                 return (
-                  <div className="text-center bg-zinc-400 mb-1 rounded-3xl">
-                    {cat}
-                    <button
-                      className="bg-red-600 px-1 text-white h-[20px] m-auto rounded-3xl"
-                      onClick={handleDelCategory}
-                      value={cat}
-                    >
-                      {" "}
-                      x
+                  <div key={i}>
+                    <button className="bg-gray-200 dark:bg-gray-800 rounded-3xl p-1 m-1 dark:text-gray-300 hover:bg-red-500"
+                    onClick={handleDelCategory}
+                    value={cat}
+                    >{cat}
                     </button>
                   </div>
                 );
               })}
-            </div>
             <p
               className="text-red-600"
               style={{ visibility: error.category ? "visible" : "hidden" }}
@@ -336,11 +329,11 @@ const RegisterCompany = () => {
               {error.category}
             </p>
 
-            <h2>Telefono: </h2>
+            <h2 className="text-lg dark:border-lime-700 dark:text-gray-300">Telefono: </h2>
             <span>{state.code}</span>
 
             <input
-              className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
+              className="h-8 rounded-3xl px-2 my-2 bg-gray-100 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
               onChange={handleInputs}
               type="tel"
               placeholder="Telefono"
@@ -353,9 +346,9 @@ const RegisterCompany = () => {
               {error.phone}
             </p>
 
-            <h2>Email: </h2>
+            <h2 className="text-lg dark:border-lime-700 dark:text-gray-300">Email: </h2>
             <input
-              className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
+              className="h-8 rounded-3xl px-2 my-2 bg-gray-100 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
               onChange={handleInputs}
               type="text"
               placeholder="Email de la empresa..."
@@ -368,9 +361,9 @@ const RegisterCompany = () => {
               {error.email}
             </p>
 
-            <h2>Contraseña</h2>
+            <h2 className="text-lg dark:border-lime-700 dark:text-gray-300">Contraseña</h2>
             <input
-              className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
+              className="h-8 rounded-3xl px-2 my-2 bg-gray-100 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
               onChange={handleInputs}
               type="password"
               placeholder="Contraseña..."
@@ -384,7 +377,7 @@ const RegisterCompany = () => {
             </p>
 
             <input
-              className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
+              className="h-8 rounded-3xl px-2 my-2 bg-gray-100 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
               onChange={handleInputs}
               type="password"
               placeholder="Repite la Contraseña..."
@@ -397,9 +390,9 @@ const RegisterCompany = () => {
               {error.passwordRep}
             </p>
 
-            <h2>Descripción</h2>
+            <h2 className="text-lg dark:border-lime-700 dark:text-gray-300">Descripción</h2>
             <textarea
-              className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
+              className="rounded-3xl px-2 my-2 bg-gray-100 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
               onChange={handleInputs}
               placeholder="Añade una descripción de tu empresa..."
               name="description"
@@ -414,7 +407,7 @@ const RegisterCompany = () => {
             </p>
 
             <button
-              className="bg-zinc-300 mt-2 text-black rounded-3xl p-2"
+              className="bg-gray-200 dark:bg-gray-800 rounded-3xl p-2 mr-1 mt-1 dark:text-gray-300"
               style={
                 isSubmitDisabled
                   ? { opacity: "0.6", cursor: "not-allowed" }
@@ -428,7 +421,7 @@ const RegisterCompany = () => {
           </form>
 
           <NavLink to="/login">
-            <button className="bg-zinc-300 mt-2 text-black rounded-3xl p-2">
+            <button className="bg-gray-200 dark:bg-gray-800 rounded-3xl p-2 mr-1 mt-1 dark:text-gray-300">
               Ya tengo cuenta
             </button>
           </NavLink>
@@ -444,7 +437,6 @@ const RegisterCompany = () => {
           </p>
         </div>
       </div>
-    </div>
   );
 };
 
