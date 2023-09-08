@@ -4,6 +4,7 @@ import UploadVideo from "../../components/UploadVideo";
 import { useDispatch, useSelector } from "react-redux";
 import { editTraining } from "../../Redux/Actions/Actions";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function VideosTrainings() {
   const dispatch = useDispatch();
@@ -15,6 +16,7 @@ export default function VideosTrainings() {
     video: [],
   });
 
+  const navigate = useNavigate();
 
   const handleChangeVideo = (event) => {
     setVideo({
@@ -47,13 +49,14 @@ export default function VideosTrainings() {
       video: newValues,
     });
   };
-  const handleClick = (e) =>{
-    e.preventDefault()
-    dispatch(editTraining(id, { video: [...inputTrainings.video, ...videos] }))
-  }
+  const handleClick = (e) => {
+    e.preventDefault();
+    dispatch(editTraining(id, { video: [...inputTrainings.video, ...videos] }));
+    navigate("/home-trainings");
+  };
 
   return (
-    <div>
+    <div className="h-full text-center">
       <h2>Video</h2>
       <input
         className="align-text-top rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
@@ -98,7 +101,7 @@ export default function VideosTrainings() {
         </div>
       </CloudinaryContext>
 
-      <button onClick={(e)=>handleClick(e)}>SUBMIT</button>
+      <button onClick={(e) => handleClick(e)}>SUBMIT</button>
     </div>
   );
 }
