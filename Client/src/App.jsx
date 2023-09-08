@@ -15,6 +15,7 @@ import Offer from "./Views/Offers/Offers.jsx";
 import ProfileUser from "./Views/UpdateProfile/ProfileUser.jsx";
 import ProfileCompany from "./Views/UpdateProfile/ProfileCompany.jsx";
 import VideosTrainings from "./Views/CreateTrainings/videosTrainings.jsx";
+import FreelancerDetail from "./Views/Users/FreelancerDetail.jsx";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
@@ -53,6 +54,7 @@ function App() {
             element={<ProfileUser />}
           />
           <Route path="/profile-company" element={<ProfileCompany />} />
+          <Route path="/home/freelancer/:id" element={<FreelancerDetail/>}/>
         </Routes>
         <Footer />
       </div>

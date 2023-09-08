@@ -29,7 +29,8 @@ import {
   TRAINING_FILTER,
   GET_FREELANCERS,
   ADDVIDEO,
-  IMAGECHANGE
+  IMAGECHANGE,
+  GET_USER_BY_ID
 } from "../Actions/Actions";
 
 const initialState = {
@@ -51,7 +52,8 @@ const initialState = {
   categories: [],
   freelancers: [],
   video: [],
-  imageChange: false
+  imageChange: false,
+  userDetail:{}
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -230,6 +232,11 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         imageChange: goku
       }
+      case GET_USER_BY_ID:
+        return {
+          ...state,
+          userDetail: action.payload
+        }
 
     default:
       return { ...state };
