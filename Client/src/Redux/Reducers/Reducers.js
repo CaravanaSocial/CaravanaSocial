@@ -29,6 +29,7 @@ import {
   TRAINING_FILTER,
   GET_FREELANCERS,
   ADDVIDEO,
+  IMAGECHANGE
 } from "../Actions/Actions";
 
 const initialState = {
@@ -49,7 +50,8 @@ const initialState = {
   trainingsFiltered: [],
   categories: [],
   freelancers: [],
-  video: []
+  video: [],
+  imageChange: false
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -220,6 +222,13 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         video: arr
+      }
+
+    case IMAGECHANGE:
+      const goku = state.imageChange === true ? false : true
+      return {
+        ...state,
+        imageChange: goku
       }
 
     default:
