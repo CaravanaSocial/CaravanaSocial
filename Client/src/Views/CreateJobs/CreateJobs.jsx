@@ -75,7 +75,7 @@ export default function createJobs() {
   };
 
   const disabled =
-    !inputJobs.title || !inputJobs.category || inputJobs.description;
+    !inputJobs.title || !inputJobs.category || !inputJobs.description;
 
   return (
     <div className=" h-full text-center ">
