@@ -4,6 +4,7 @@ import logo from "../assets/images/logo.png";
 import { CgProfile } from "react-icons/cg";
 import { CgMenu } from "react-icons/cg";
 import { CgSearch } from "react-icons/cg";
+import { CgHomeAlt } from "react-icons/cg";
 import { useDispatch, useSelector } from "react-redux";
 import { companyButtons, logOut } from "../Redux/Actions/Actions";
 import { useNavigate } from "react-router-dom";
@@ -42,7 +43,7 @@ export default function NavBar() {
   return (
     <div className="flex items-center justify-between bg-white dark:bg-zinc-900 border-b-[1px] border-b-gray-100 dark:border-b-gray-700 p-2">
       <Link to="/">
-        <img className="w-[80px] h-[80px]" src={logo}></img>
+        <img className="w-[60px] h-[60px]" src={logo}></img>
       </Link>
 
       <div className="relative flex items-center lg:w-64 group">
@@ -62,8 +63,9 @@ export default function NavBar() {
             className="h-full p-2 text-gray-700 dark:text-gray-400"
             onClick={handleMenu}
           >
-            <span className="sr-only">Menu</span>
-            <CgMenu size={30} />
+            
+            <CgHomeAlt className="ml-2" size={20} />
+            <h2 className="text-sm font-semibold">Menu</h2>
           </button>
         </div>
 
