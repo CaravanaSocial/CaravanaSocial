@@ -353,9 +353,6 @@ const RegisterCompany = () => {
             <h3 className="text-red-600"
               style={{ visibility: error.password ? "visible" : "hidden" }}
             >{error.password}</h3>
-
-            <h3 className="text-lg dark:text-gray-300">Hola</h3>
-            <br />
             <input
               className="h-8 rounded-3xl px-2 my-2 bg-gray-100 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
               onChange={handleInputs}
