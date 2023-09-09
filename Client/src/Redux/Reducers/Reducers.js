@@ -30,6 +30,10 @@ import {
   GET_FREELANCERS,
   ADDVIDEO,
   COMPANY_DETAIL,
+  GET_SUCCESCASES,
+  IMAGECHANGE,
+  GET_USER_BY_ID,
+
 } from "../Actions/Actions";
 
 const initialState = {
@@ -52,6 +56,9 @@ const initialState = {
   freelancers: [],
   video: [],
   companyDetail: {},
+  successCases: [],
+  imageChange: false,
+  userDetail: {},
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -66,6 +73,12 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         users: action.payload,
+      };
+
+    case GET_SUCCESCASES:
+      return {
+        ...state,
+        successCases: action.payload,
       };
 
     case EDIT_USER:
@@ -218,17 +231,31 @@ export default function rootReducer(state = initialState, action) {
       };
 
     case ADDVIDEO:
-      let arr = [...state.video, action.payload]
+      let arr = [...state.video, action.payload];
       return {
         ...state,
-        video: arr
-      }
+        video: arr,
+      };
+
+    case IMAGECHANGE:
+      const goku = state.imageChange === true ? false : true;
+      return {
+        ...state,
+
+        imageChange: goku,
+      };
+      
+    case GET_USER_BY_ID:
+      return {
+        ...state,
+       userDetail: action.payload,
+      };
+      
     case COMPANY_DETAIL:
       return{
         ...state,
         companyDetail: action.payload
       }  
-
     default:
       return { ...state };
   }
