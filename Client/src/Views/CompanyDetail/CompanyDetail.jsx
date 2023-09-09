@@ -11,8 +11,8 @@ const CompanyDetail = () => {
     const trainings = useSelector((state) => state.trainings);
     const offers = useSelector((state) => state.offers);
 
-    const companyIdRelacion = trainings.filter((x) => x.companyId);
-    const companyIdRelOffer = offers.filter((x) => x.companyId);
+    const companyIdRelacion = trainings.filter((x) => x.companyId === id);
+    const companyIdRelOffer = offers.filter((x) => x.companyId === id);
 
     useEffect(()=>{
         dispatch(detailCompany(id))
@@ -38,7 +38,7 @@ const CompanyDetail = () => {
         <h2 className="font-bold">Capacitaciones</h2>
           {companyIdRelacion ? (
             <div className="flex flex-wrap ">
-              {trainings.map((t) => {
+              {companyIdRelacion.map((t) => {
                 return (
                   <div className=" mx-1 border-2 border-light-1 hover:scale-95 bg-white p-4 rounded-3xl shadow-md h-full w-[300px]  justify-center">
                     <div>
@@ -67,7 +67,7 @@ const CompanyDetail = () => {
         <h2 className="font-bold">Ofertas de trabajo</h2>
           {companyIdRelOffer ? (
             <div className="flex flex-wrap justify-center">
-              {offers.map((o) => {
+              {companyIdRelOffer.map((o) => {
                 return (
                   <div className="border-2 border-light-1 hover:scale-95 bg-white p-4 rounded-3xl shadow-md h-full w-[300px]  justify-center">
                     <div>

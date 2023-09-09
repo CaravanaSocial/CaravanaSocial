@@ -6,7 +6,7 @@ import { CgMenu } from "react-icons/cg";
 import { CgSearch } from "react-icons/cg";
 import { CgHomeAlt } from "react-icons/cg";
 import { useDispatch, useSelector } from "react-redux";
-import { companyButtons, logOut } from "../Redux/Actions/Actions";
+import { companyButtons, getOffers, getTrainings, logOut } from "../Redux/Actions/Actions";
 import { useNavigate } from "react-router-dom";
 
 export default function NavBar() {
@@ -40,8 +40,9 @@ export default function NavBar() {
     setMenu(menu === true ? false : true);
   };
 
+ 
   return (
-    <div className="flex items-center justify-between bg-white dark:bg-zinc-900 border-b-[1px] border-b-gray-100 dark:border-b-gray-700 p-2">
+    <div className="flex items-center justify-between bg-white dark:bg-zinc-900 border-b-[1px] border-b-gray-300 dark:border-b-gray-700 p-2">
       <Link to="/">
         <img className="w-[60px] h-[60px]" src={logo}></img>
       </Link>
@@ -89,8 +90,8 @@ export default function NavBar() {
                   >
                     <span className="text-gray-500 flex justify-center text-sm dark:text-gray-300">
                       <CgProfile className="w-[25px] h-[25px] text-gray-400 mx-1 hover:text-lime-600" />
-                      <a className="pt-0.5 hover:text-lime-600">
-                        {account.name}
+                      <a  className="pt-0.5 hover:text-lime-600">
+                       {localStorage.type === "company" ? account.nameCompany : account.name}
                       </a>
                     </span>
                   </Link>

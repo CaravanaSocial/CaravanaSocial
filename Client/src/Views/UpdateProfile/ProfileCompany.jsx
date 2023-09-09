@@ -13,11 +13,12 @@ import {
 } from "../../Redux/Actions/Actions";
 import validation from "../RegisterCompany/validation";
 import { NavLink } from "react-router-dom";
+import UploadImage from "../../components/UploadImage";
 
 const ProfileCompany = () => {
   const dispatch = useDispatch();
   const account = JSON.parse(localStorage.account);
-
+  const profilePicture = localStorage.profilePicture;
   const country = useSelector((state) => state.countries);
   const state = useSelector((state) => state.states);
   const city = useSelector((state) => state.cities);
@@ -28,11 +29,12 @@ const ProfileCompany = () => {
 
   const categories = account?.areaTrainings?.map((c) => c.name);
 
-  const companyIdRelacion = trainings.filter((x) => x.companyId);
-  const companyIdRelOffer = offers.filter((x) => x.companyId);
+  const companyIdRelacion = trainings.filter((x) => x.companyId === account.id);
+  const companyIdRelOffer = offers.filter((x) => x.companyId === account.id);
 
   const [edit, setEdit] = useState(false);
   const [error, setError] = useState({});
+  const [key, setKey] = useState(0);
 
   const [input, setInput] = useState({
     name: account.name,
@@ -48,6 +50,7 @@ const ProfileCompany = () => {
       state: account.location.state,
       city: account.location.city,
     },
+    profilePicture: profilePicture
   });
 
   useEffect(() => {
@@ -163,6 +166,9 @@ const ProfileCompany = () => {
         dispatch(clearErrors());
         const editedAccount = JSON.stringify(input);
         localStorage.setItem("account", editedAccount);
+        setKey(key + 1);
+        dispatch(getOffers());
+        dispatch(getTrainings());
       } else {
         dispatch(
           setNewErrors({
@@ -177,12 +183,19 @@ const ProfileCompany = () => {
   return (
     <div className="h-full flex ">
       <div className="flex flex-col text-center border-spacing-96 border-2 border-light-1 dark:borderlight-1 rounded-3xl p-4 m-4">
-        <img src={account.profilePicture} className="w-[300px] mt-2 mx-2" />
+        <img key={key} src={account.profilePicture} className="w-[300px] mt-2 mx-2 rounded-full" />
 
-        <h2 className="font-topmodern">{input.name + " " + input.lastName}</h2>
+        <h2 className="font-topmodern">{input.nameCompany}</h2>
 
         {edit === true ? (
           <div>
+            <UploadImage />
+              <button
+                className="font-topmodern border-2 rounded border-light-1 bg-light-1 hover:text-white"
+                onClick={handleSubmit}
+              >
+                Guardar imagen
+              </button>
             <span className="font-topmodern">Nombre</span>
             <input
               className=" font-vilaka text-[22px] font-bold rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
@@ -426,9 +439,9 @@ const ProfileCompany = () => {
         </div>
         <div className=" inline-block">
           <h2 className="font-bold">Mis capacitaciones</h2>
-          {companyIdRelacion ? (
+          {companyIdRelacion? (
             <div className="flex flex-wrap ">
-              {trainings.map((t) => {
+              {companyIdRelacion.map((t) => {
                 return (
                   <div className=" mx-1 border-2 border-light-1 hover:scale-95 bg-white p-4 rounded-3xl shadow-md h-full w-[300px]  justify-center">
                     <div>
@@ -459,9 +472,9 @@ const ProfileCompany = () => {
         </div>
         <div className=" inline-block">
           <h2 className="font-bold">Mis ofertas de trabajo</h2>
-          {companyIdRelOffer ? (
+          {companyIdRelOffer? (
             <div className="flex flex-wrap justify-center">
-              {offers.map((o) => {
+              {companyIdRelOffer.map((o) => {
                 return (
                   <div className="border-2 border-light-1 hover:scale-95 bg-white p-4 rounded-3xl shadow-md h-full w-[300px]  justify-center">
                     <div>
