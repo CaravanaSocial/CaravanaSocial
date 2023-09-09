@@ -35,7 +35,7 @@ const CompanyDetail = () => {
         <h2>Contacto: {detail?.email} - {detail?.phone}</h2>
         </div>
         <div>
-        <h2 className="font-bold">Mis capacitaciones</h2>
+        <h2 className="font-bold">Capacitaciones</h2>
           {companyIdRelacion ? (
             <div className="flex flex-wrap ">
               {trainings.map((t) => {
@@ -64,7 +64,7 @@ const CompanyDetail = () => {
           )}
         </div>
         <div>
-        <h2 className="font-bold">Mis ofertas de trabajo</h2>
+        <h2 className="font-bold">Ofertas de trabajo</h2>
           {companyIdRelOffer ? (
             <div className="flex flex-wrap justify-center">
               {offers.map((o) => {

@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import { createComment } from "../../Redux/Actions/Actions";
-import { useParams } from "react-router-dom";
+import { useParams, NavLink} from "react-router-dom";
 import { trainingDetail } from "../../Redux/Actions/Actions";
 
 
@@ -61,9 +61,10 @@ const DetailTrainings = () => {
               })  
             }
             <img className="w-[300px]" src={detail?.company?.profilePicture} alt={detail?.company?.name} />
-            <span>{detail?.company?.name}</span>
-
-            <input type="text" value={comments.description} onChange={handlerChange}/>
+            <NavLink to={`/company/${detail?.companyId}`}><span>{detail?.company?.nameCompany}</span></NavLink>
+            <br/>
+            <span>Deja tu comentario sobre esta capacitación:</span>
+            <input className="bg-red-200" placeholder="Comenta..."type="text" value={comments.description} onChange={handlerChange}/>
             <button onClick={handleSubmit}>Comentar</button>
 
             {
