@@ -146,7 +146,6 @@ export const editUser = (id, user) => {
     try {
       const response = await axios.patch(endpoint, user);
       const { data } = response;
-      console.log(data);
       dispatch({
         type: EDIT_USER,
       });
@@ -712,7 +711,6 @@ export function trainingDetail(id) {
     const endpoint = `${serverURL}/trainings/${id}`
     try {
       const { data } = await axios.get(endpoint)
-      console.log(data);
       return dispatch({
         type: TRAINING_DETAIL,
         payload : data[0]
@@ -729,7 +727,6 @@ export function createComment(id, comment){
     const endpoint = `${serverURL}/comments/create/${id}`
     try {
       const { data } = await axios.post(endpoint, comment)
-      console.log(data);
       dispatch({
         type: COMMENTS_POST,
         payload : data
