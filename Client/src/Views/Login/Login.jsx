@@ -58,7 +58,7 @@ export default function Login() {
             </h1>
 
             <input
-              className="h-8 rounded-3xl px-2 my-2 bg-gray-100 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+              className="h-8 rounded-3xl px-2 my-2 bg-gray-200 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
               type="email"
               name="email"
               placeholder="Correo electrónico"
@@ -67,7 +67,7 @@ export default function Login() {
             />
             <br />
             <input
-              className="h-8 rounded-3xl px-2 bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+              className="h-8 rounded-3xl px-2 bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
               type="password"
               name="password"
               placeholder="Contraseña"
@@ -80,7 +80,7 @@ export default function Login() {
             ) : null}
             <br />
             <button
-              className="bg-gray-100 dark:bg-gray-800 rounded-3xl p-2 my-1 dark:text-gray-300"
+              className="bg-gray-200 dark:bg-gray-800 rounded-3xl p-2 my-1 dark:text-gray-300"
               onClick={handleSubmit}
               type="submit"
             >

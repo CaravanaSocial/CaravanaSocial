@@ -36,7 +36,6 @@ import {
   trainingDetail,
   COMPANY_DETAIL,
   GET_SUCCESCASES,
-  IMAGECHANGE,
   GET_USER_BY_ID,
 
 
@@ -253,7 +252,6 @@ export default function rootReducer(state = initialState, action) {
         imageChange: goku
       }
     case TRAINING_DETAIL:
-      console.log( action.payload + "holaa");
       return {
         ...state,
         trainingsDetail: action.payload
@@ -264,10 +262,6 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         comments: action.payload
       }
-
-        imageChange: goku,
-      };
-      
     case GET_USER_BY_ID:
       return {
         ...state,

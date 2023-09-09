@@ -58,10 +58,6 @@ export const COMMENTS_POST = "COMMENTS_POST";
 
 export const COMPANY_DETAIL = "COMPANY_DETAIL";
 
-export const IMAGECHANGE = "IMAGECHANGE";
-
-
-
 // const serverURL = "https://caravanaserver.onrender.com";
 const serverURL = "http://localhost:3001";
 
