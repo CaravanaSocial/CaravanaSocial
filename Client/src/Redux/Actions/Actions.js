@@ -45,6 +45,8 @@ export const COMPANY_BUTTONS = "COMPANY_BUTTONS";
 
 export const TRAINING_FILTER = "TRAINING_FILTER";
 
+export const COMPANY_DETAIL = "COMPANY_DETAIL";
+
 // const serverURL = "https://caravanaserver.onrender.com";
 const serverURL = "http://localhost:3001";
 
@@ -640,4 +642,21 @@ export function addVideo(link) {
       console.log(error);
     }
   };
+}
+
+
+export function detailCompany(id){
+  
+  return async function(dispatch){
+    try{
+     const response = ( await axios.get(`${serverURL}/company/${id}`)).data
+     
+     return dispatch({
+      type: COMPANY_DETAIL,
+      payload: response
+     })
+    }catch(error){
+      console.log(error)
+    }
+  }
 }

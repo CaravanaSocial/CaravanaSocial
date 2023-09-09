@@ -29,6 +29,7 @@ import {
   TRAINING_FILTER,
   GET_FREELANCERS,
   ADDVIDEO,
+  COMPANY_DETAIL,
 } from "../Actions/Actions";
 
 const initialState = {
@@ -49,7 +50,8 @@ const initialState = {
   trainingsFiltered: [],
   categories: [],
   freelancers: [],
-  video: []
+  video: [],
+  companyDetail: {},
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -221,6 +223,11 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         video: arr
       }
+    case COMPANY_DETAIL:
+      return{
+        ...state,
+        companyDetail: action.payload
+      }  
 
     default:
       return { ...state };
