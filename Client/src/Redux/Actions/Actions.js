@@ -330,6 +330,16 @@ export const deleteOffer = (id) => {
 
 export const getOfferByName = (name) =>{
   const endpoint = `${serverURL}/offers/${name}`;
+
+  return async (dispatch) => {
+    try {
+      const response = await axios(endpoint);
+      const { data } = response;
+      return dispatch({ type: GET_OFFERS_BYNAME, payload: data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 }
 
 export const getOffers = () => {

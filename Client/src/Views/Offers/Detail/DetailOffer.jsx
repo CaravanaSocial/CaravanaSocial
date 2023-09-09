@@ -1,8 +1,24 @@
-
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import React from "react";
+import * as actions from '../../../Redux/Actions/Actions'
 
 export default function DetailOffer() {
+    const {title} = useParams()
+    // const dispatch = useDispatch()
+    // const offer = useSelector(state => state.offer)
+    const selector = useSelector(state => state.offers)
     
-    
+    // React.useEffect(async()=>{
+    //      dispatch(actions.getOfferByName(title))
+    // },[])
+
+    const [offer] = selector.filter((offer)=>{
+        if(offer.title == title){
+            return offer
+        }
+    })
+
   return (
     <div className="bg-gray-100 p-4">
     {/* Main contenedor */}
@@ -10,14 +26,15 @@ export default function DetailOffer() {
         {/* Div izquierdo */}
         <div className="w-2/4 flex justify-end items-center">
             <div className="bg-white rounded-lg p-4 shadow-md text-center" style={{ width: '300px' }}>
-                <img
+                <h1 className="w-full h-48 object-cover rounded-t-lg">{offer.company.nameCompany}</h1>
+                {/* <img
                     src="ruta-de-tu-imagen.jpg"
                     alt="Imagen de la oferta laboral"
                     className="w-full h-48 object-cover rounded-t-lg"
-                />
-                <h2 className="text-2xl font-semibold mt-2">Título de la oferta</h2>
+                /> */}
+                <h2 className="text-2xl font-semibold mt-2">{offer.title}</h2>
                 <p className="text-gray-600">
-                    Descripción de la oferta laboral aquí...
+                    {offer.description}
                 </p>
             </div>
         </div>
