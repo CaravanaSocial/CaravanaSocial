@@ -17,7 +17,7 @@ const LandingPage = () => {
   return (
     <main className=" relative">
       {/* SECCION INTRO */}
-      <section className="w-full 2xl:h-[300px] relative ">
+      <section className="w-full  2xl:h-[300px] relative ">
         <h1 className="text-center 2xl:text-[150px] xl:text-[130px] lg:text=[100px] md:text-[80px] font-vilaka text-[70px] ">
           Bienvenidos a Caravana Social
         </h1>
@@ -28,14 +28,14 @@ const LandingPage = () => {
       {/* SECCION INTRO */}
 
       {/* SECCION CONOCENOS*/}
-      <section className="w-full border-2 text-center relative ">
+      <section className="w-full border-2 bg-light-1  p-2 text-center relative ">
         <h1 className="font-vilaka xl:text-[50px]  text-[40px] font-bold">
-          Conocenos!!
+          ¡Conocenos!
         </h1>
         <video
           muted
           controls
-          className="h-[500px] w-[1000px] object-cover m-auto"
+          className="h-[500px] rounded  w-[1000px] object-cover m-auto"
         >
           <source src={video1} type="video/mp4" />
         </video>
@@ -62,9 +62,9 @@ const LandingPage = () => {
       {/* SECCION NUESTRA FILOSOFIA */}
 
       {/* SECCION CASOS DE EXITO */}
-      <section className="w-full border-2 bg-light-1">
-        <h1 className="font-vilaka text-[50px] text-center font-bold ">
-          Hechale un vistazo a nuestros casos de exito!!
+      <section className="w-full bg-light-1 border-2 ">
+        <h1 className="font-vilaka  text-[50px] text-center font-bold ">
+          ¡Echale un vistazo a nuestros casos de exito!
         </h1>
         <SliderLanding />
       </section>

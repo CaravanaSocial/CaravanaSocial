@@ -175,8 +175,8 @@ const ProfileCompany = () => {
   };
 
   return (
-    <div className="flex h-full">
-      <div className=" text-center border-spacing-96 border-2 border-lime-600 dark:border-lime-700 rounded-3xl p-4 m-4">
+    <div className="h-full flex ">
+      <div className="flex flex-col text-center border-spacing-96 border-2 border-light-1 dark:borderlight-1 rounded-3xl p-4 m-4">
         <img src={account.profilePicture} className="w-[300px] mt-2 mx-2" />
 
         <h2 className="font-topmodern">{input.name + " " + input.lastName}</h2>

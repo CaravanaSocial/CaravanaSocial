@@ -11,7 +11,7 @@ const SliderLanding = () => {
   const CustomNextArrow = (props) => (
     <div
       {...props}
-      className=" right-0 absolute top-1/2 hover:scale-105   cursor-pointer "
+      className=" right-0 absolute top-1/2 hover:scale-150   cursor-pointer "
     >
       <MdChevronRight className="hidden lg:block" size={50} />
     </div>
@@ -20,7 +20,7 @@ const SliderLanding = () => {
   const CustomPrevArrow = (props) => (
     <div
       {...props}
-      className=" left-0 absolute top-1/2 hover:scale-105 z-10   cursor-pointer "
+      className=" left-0 absolute top-1/2 hover:scale-150 z-10   cursor-pointer "
     >
       <MdChevronLeft className="hidden lg:block " size={50} />
     </div>

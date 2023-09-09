@@ -180,21 +180,33 @@ export default function ProfileUser() {
 
   return (
     <div className="h-full">
-      <section className="flex">
-        <div className="flex flex-col">
+      <section className="flex ">
+        <div className="flex flex-col text-center border-spacing-96 border-2 border-light-1 dark:border-light-1 rounded-3xl p-4 m-4">
           <img key={key} className="h-[300px] w-[300px]" src={profilePicture} />
           <UploadImage />
-          <button onClick={handleSubmit}>Guardar imagen</button>
+          <button
+            className="font-topmodern border-2 rounded border-light-1 bg-light-1 hover:text-white"
+            onClick={handleSubmit}
+          >
+            Guardar imagen
+          </button>
           <br />
-          <h1>{account.name + " " + account.lastName}</h1>
+          <h1 className="font-vilaka text-[30px] font-bold">
+            {account.name + " " + account.lastName}
+          </h1>
           <br />
           {edit === false ? (
-            <button name="edit" onClick={handleClick}>
+            <button
+              className="font-topmodern border-2 border-light-1 rounded hover:text-light-1"
+              name="edit"
+              onClick={handleClick}
+            >
               Editar Perfil
             </button>
           ) : (
             <div className="flex flex-col">
               <input
+                className=" font-vilaka text-[22px] font-bold rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
                 name="name"
                 onChange={handleChange}
                 value={dataAcc.name}
@@ -207,6 +219,7 @@ export default function ProfileUser() {
               }
               <br />
               <input
+                className=" font-vilaka text-[22px] font-bold rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
                 name="lastName"
                 onChange={handleChange}
                 value={dataAcc.lastName}
@@ -216,7 +229,11 @@ export default function ProfileUser() {
                 {errors.lastName ? errors.lastName : null}
               </p>
               <br />
-              <select name="country" onChange={handleChange}>
+              <select
+                className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
+                name="country"
+                onChange={handleChange}
+              >
                 <option>Pais</option>
                 {countries.map((c) => (
                   <option key={c} value={c}>
@@ -228,7 +245,11 @@ export default function ProfileUser() {
                 {errors.country ? errors.country : null}
               </p>
               <br />
-              <select name="state" onChange={handleChange}>
+              <select
+                className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
+                name="state"
+                onChange={handleChange}
+              >
                 <option>Estado/Provincia</option>
                 {states.allStates?.map((c) => (
                   <option key={c.name} id={c.id} value={c.name}>
@@ -240,7 +261,11 @@ export default function ProfileUser() {
                 {errors.state ? errors.state : null}
               </p>
               <br />
-              <select name="city" onChange={handleChange}>
+              <select
+                className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
+                name="city"
+                onChange={handleChange}
+              >
                 <option>Ciudad</option>
                 {cities.map((c) => (
                   <option key={c} value={c}>
@@ -250,15 +275,15 @@ export default function ProfileUser() {
               </select>
               <p className="text-red-600">{errors.city ? errors.city : null}</p>
               <br />
-              <span>Ubicacion:</span>
+              <span className="font-topmodern">Ubicacion:</span>
               <div className="p-2 m-auto bg-zinc-300 text-zinc-800 focus:border-transparent w-[200px] justify-center align-middle rounded-3xl">
-                <div className="text-center bg-zinc-400 mb-1 rounded-3xl">
+                <div className="text-center font-vilaka font-bold text-[25px] bg-zinc-400 mb-1 rounded-3xl">
                   {dataAcc.location.country}
                 </div>
-                <div className="text-center bg-zinc-400 mb-1 rounded-3xl">
+                <div className="text-center font-vilaka font-bold text-[25px] bg-zinc-400 mb-1 rounded-3xl">
                   {dataAcc.location.state}
                 </div>
-                <div className="text-center bg-zinc-400 mb-1 rounded-3xl">
+                <div className="text-center font-vilaka font-bold text-[25px] bg-zinc-400 mb-1 rounded-3xl">
                   {dataAcc.location.city}
                 </div>
               </div>
@@ -270,7 +295,7 @@ export default function ProfileUser() {
                 onChange={handleCategory}
                 name="category"
               >
-                <option value="default">rubro</option>
+                <option value="default">Rubro</option>
                 {category?.map((c) => {
                   return (
                     <option key={c} value={c}>
@@ -280,7 +305,7 @@ export default function ProfileUser() {
                 })}
               </select>
               <br />
-              <span>Rubros seleccionados: </span>
+              <span className="font-topmodern">Rubros seleccionados: </span>
               <div className="p-2 m-auto bg-zinc-300 text-zinc-800 focus:border-transparent w-[200px] justify-center align-middle rounded-3xl">
                 {dataAcc.category?.map((cat) => {
                   return (
@@ -308,8 +333,8 @@ export default function ProfileUser() {
                 {errors.category}
               </p>
               <br />
-              <h2>Sos Freelancer?</h2>
-              <label>
+              <h2 className="font-topmodern">Sos Freelancer?</h2>
+              <label className="font-bold">
                 {" "}
                 Si{" "}
                 <input
@@ -318,7 +343,7 @@ export default function ProfileUser() {
                   onChange={() => handleCheckboxFreeChange(true)}
                 />
               </label>
-              <label>
+              <label className="font-bold">
                 {" "}
                 No{" "}
                 <input
@@ -329,7 +354,9 @@ export default function ProfileUser() {
               </label>
               {checkboxFreelancer === true ? (
                 <section>
-                  <h2>Descripción de tu Emprendimiento</h2>
+                  <h2 className="font-topmodern">
+                    Descripción de tu Emprendimiento
+                  </h2>
                   <input
                     className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
                     type="text"
@@ -342,7 +369,7 @@ export default function ProfileUser() {
                     {errors.description ? errors.description : null}
                   </p>
 
-                  <h2>Dirección de su negocio </h2>
+                  <h2 className="font-topmodern">Dirección de su negocio </h2>
                   <input
                     className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
                     type="text"
@@ -357,8 +384,17 @@ export default function ProfileUser() {
               ) : null}
               <br />
               <section>
-                <button onClick={handleSubmit}>Guardar</button>
-                <button name="cancel" onClick={handleClick}>
+                <button
+                  className="bg-light-1 font-topmodern mt-2 hover:text-white text-black rounded-3xl p-1"
+                  onClick={handleSubmit}
+                >
+                  Guardar
+                </button>
+                <button
+                  className="bg-zinc-300 font-topmodern hover:text-light-1 ml-2 mt-2 text-black rounded-3xl p-1"
+                  name="cancel"
+                  onClick={handleClick}
+                >
                   Cancelar
                 </button>
               </section>
@@ -366,7 +402,9 @@ export default function ProfileUser() {
           )}
         </div>
         <div>
-          <h1>Capacitaciones en curso y completadas</h1>
+          <h1 className="font-topmodern">
+            Capacitaciones en curso y completadas
+          </h1>
         </div>
       </section>
     </div>
