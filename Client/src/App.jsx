@@ -17,6 +17,7 @@ import ProfileCompany from "./Views/UpdateProfile/ProfileCompany.jsx";
 import VideosTrainings from "./Views/CreateTrainings/videosTrainings.jsx";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import DetailTrainings from "./Views/Trainings/TrainingDatail.jsx";
 
 function App() {
   const account =
@@ -53,6 +54,7 @@ function App() {
             element={<ProfileUser />}
           />
           <Route path="/profile-company" element={<ProfileCompany />} />
+          <Route path="/training/detail/:id" element={<DetailTrainings/>} />
         </Routes>
         <Footer />
       </div>

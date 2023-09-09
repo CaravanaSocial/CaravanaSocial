@@ -29,7 +29,10 @@ import {
   TRAINING_FILTER,
   GET_FREELANCERS,
   ADDVIDEO,
-  IMAGECHANGE
+  IMAGECHANGE,
+  TRAINING_DETAIL,
+  COMMENTS_POST,
+  trainingDetail
 } from "../Actions/Actions";
 
 const initialState = {
@@ -51,7 +54,9 @@ const initialState = {
   categories: [],
   freelancers: [],
   video: [],
-  imageChange: false
+  imageChange: false,
+  trainingsDetail : {},
+  comments : []
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -230,7 +235,19 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         imageChange: goku
       }
-
+    case TRAINING_DETAIL:
+      console.log( action.payload + "holaa");
+      return {
+        ...state,
+        trainingsDetail: action.payload
+      }
+    
+    case COMMENTS_POST :
+      return {
+        ...state,
+        comments: action.payload
+      }
+    
     default:
       return { ...state };
   }

@@ -45,7 +45,11 @@ export const COMPANY_BUTTONS = "COMPANY_BUTTONS";
 
 export const TRAINING_FILTER = "TRAINING_FILTER";
 
-export const IMAGECHANGE = "IMAGECHANGE"
+export const IMAGECHANGE = "IMAGECHANGE";
+
+export const TRAINING_DETAIL = "TRAINING_DETAIL";
+
+export const COMMENTS_POST = "COMMENTS_POST";
 
 // const serverURL = "https://caravanaserver.onrender.com";
 const serverURL = "http://localhost:3001";
@@ -657,12 +661,37 @@ export function imageChange() {
   };
 }
 
-export function imageChange() {
+export function trainingDetail(id) {
   return async function (dispatch) {
+    const endpoint = `${serverURL}/trainings/${id}`
     try {
-      dispatch({ type:  IMAGECHANGE });
-    } catch (error) {
+      const { data } = await axios.get(endpoint)
+      console.log(data);
+      return dispatch({
+        type: TRAINING_DETAIL,
+        payload : data[0]
+      })
+
+    } catch(error) {
       console.log(error);
     }
-  };
+  }
 }
+
+export function createComment(id, comment){
+  return async function (dispatch) {
+    const endpoint = `${serverURL}/comments/create/${id}`
+    try {
+      const { data } = await axios.post(endpoint, comment)
+      console.log(data);
+      dispatch({
+        type: COMMENTS_POST,
+        payload : data
+      })
+    } catch (error) {
+      
+    }
+  }
+}
+
+

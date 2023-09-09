@@ -2,6 +2,7 @@ const { comment } = require('../../db')
 
 const postCommentsController = async (id, body) => {
     try {
+
         const { description, userName, imageUser } = body
 
         const newComment = await comment.create({
