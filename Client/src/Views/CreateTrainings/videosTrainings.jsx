@@ -42,13 +42,17 @@ export default function VideosTrainings() {
     setVideo({ video: "" });
   };
 
-  const deleteChoice = (video, value) => {
-    const newValues = inputTrainings[video].filter((event) => event !== value);
+  const handleDelete = (event) => {
+    event.preventDefault();
+    const filteredCat = inputTrainings.video.filter(
+      (cat) => cat !== event.target.value
+    );
     setInputTrainings({
       ...inputTrainings,
-      video: newValues,
+      video: filteredCat,
     });
   };
+
   const handleClick = (e) => {
     e.preventDefault();
     dispatch(editTraining(id, { video: [...inputTrainings.video, ...videos] }));
@@ -57,51 +61,45 @@ export default function VideosTrainings() {
 
   return (
     <div className="h-full text-center">
-      <h2>Video</h2>
-      <input
-        className="align-text-top rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
-        type="url"
-        name="video"
-        value={video.video}
-        onChange={handleChangeVideo}
-        placeholder="Url..."
-      />
+      <div className="inline-block m-4 p-4 text-center ">
+        <div className="justify-center text-center border-2 border-lime-600 dark:border-lime-700 rounded-3xl p-4 m-4">
+          <h2 className="text-lg dark:text-gray-300">Video</h2>
+          <input
+            className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+            type="url"
+            name="video"
+            value={video.video}
+            onChange={handleChangeVideo}
+            placeholder="Url..."
+          />
 
-      <button
-        className="bg-zinc-300 mx-2 px-2 pb-1 text-black rounded-3xl"
-        type="submit"
-        onClick={handleSubmitVideo}
-      >
-        +
-      </button>
-      <br />
-      {error.video && <span className="text-red-600">{error.video}</span>}
-
-      <div>
-        {inputTrainings.video.map((v, i) => {
-          if (i < 7) {
+          <button className="align-middle bg-gray-300 dark:bg-gray-800 mx-2 px-2 pb-1 mb-1 dark:text-gray-300 rounded-3xl"
+            type="submit"
+            onClick={handleSubmitVideo}
+          >+</button>
+          <br />
+          {error.video && <span className="text-red-600">{error.video}</span>}
+          
+          {inputTrainings.video.map((cat, i) => {
             return (
               <div key={i}>
-                <button
-                  className="bg-zinc-300 text-black rounded-3xl m-1 p-2"
-                  type="button"
-                  onClick={() => deleteChoice("videos", v)}
-                >
-                  {v}
-                </button>
+                <button className="bg-gray-300 dark:bg-gray-800 rounded-3xl px-2 py-1 m-1 dark:text-gray-300 hover:bg-red-500 dark:hover:bg-red-500"
+                  onClick={handleDelete}
+                  value={cat}
+                >{cat}</button>
               </div>
-            );
-          }
-        })}
-      </div>
-
-      <CloudinaryContext cloudName="da785kmjd">
-        <div className="App">
-          <UploadVideo />
+              );
+          })}
+          
+          <CloudinaryContext cloudName="da785kmjd">
+            <div className="App">
+              <UploadVideo />
+            </div>
+          </CloudinaryContext>
+          
+          <button onClick={(e) => handleClick(e)}>SUBMIT</button>
         </div>
-      </CloudinaryContext>
-
-      <button onClick={(e) => handleClick(e)}>SUBMIT</button>
+      </div>
     </div>
   );
 }

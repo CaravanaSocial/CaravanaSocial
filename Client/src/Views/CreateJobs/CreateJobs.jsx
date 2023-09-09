@@ -87,7 +87,7 @@ export default function createJobs() {
 
           <h2 className="text-lg dark:text-gray-300">Nombre del Aviso de Trabajo</h2>
           <input
-            className="h-8 rounded-3xl px-2 my-2 bg-gray-200 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+            className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
             type="text"
             name="title"
             value={inputJobs.title}
@@ -99,7 +99,7 @@ export default function createJobs() {
           <br />
 
           <select
-            className="h-8 rounded-3xl px-2 my-2 bg-gray-200 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+            className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
             onChange={handleCategory}
             name="category"
           >
@@ -119,7 +119,7 @@ export default function createJobs() {
               {inputJobs.category.map((cat, i) => {
                 return (
                   <div key={i}>
-                    <button className="bg-gray-200 dark:bg-gray-800 rounded-3xl px-2 py-1 m-1 dark:text-gray-300 hover:bg-red-500 dark:hover:bg-red-500"
+                    <button className="bg-gray-300 dark:bg-gray-800 rounded-3xl px-2 py-1 m-1 dark:text-gray-300 hover:bg-red-500 dark:hover:bg-red-500"
                     onClick={handleDelCategory}
                     value={cat}
                     >{cat}
@@ -136,7 +136,7 @@ export default function createJobs() {
 
           <h2 className="text-lg dark:text-gray-300">Descripción</h2>
           <textarea
-            className="rounded-3xl px-2 py-1 my-2 bg-gray-200 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+            className="rounded-3xl px-2 py-1 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
             type="text"
             name="description"
             cols="28"
@@ -152,7 +152,7 @@ export default function createJobs() {
           <br />
 
           <button
-            className="bg-gray-200 dark:bg-gray-800 rounded-3xl p-2 my-2 dark:text-gray-300"
+            className="bg-gray-300 dark:bg-gray-800 rounded-3xl p-2 my-2 dark:text-gray-300"
             type="submit"
             onClick={handleSubmit}
             disabled={disabled}

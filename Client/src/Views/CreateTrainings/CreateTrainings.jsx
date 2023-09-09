@@ -131,7 +131,7 @@ export default function createTrainings() {
 
           <h2 className="text-lg dark:text-gray-300">Nombre de la Capacitación</h2>
           <input
-            className="h-8 rounded-3xl px-2 my-2 bg-gray-200 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+            className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
             type="text"
             name="name"
             value={inputTrainings.name}
@@ -141,8 +141,10 @@ export default function createTrainings() {
           <br />
           {error.name && <span className="text-red-600">{error.name}</span>}
 
+          <br />
+
           <select
-            className="h-8 rounded-3xl px-2 my-2 bg-gray-200 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+            className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
             onChange={handleCategory}
             name="category"
           >
@@ -162,7 +164,7 @@ export default function createTrainings() {
               {inputTrainings.category.map((cat, i) => {
                 return (
                   <div key={i}>
-                    <button className="bg-gray-200 dark:bg-gray-800 rounded-3xl px-2 py-1 m-1 dark:text-gray-300 hover:bg-red-500 dark:hover:bg-red-500"
+                    <button className="bg-gray-300 dark:bg-gray-800 rounded-3xl px-2 py-1 m-1 dark:text-gray-300 hover:bg-red-500 dark:hover:bg-red-500"
                     onClick={handleDelCategory}
                     value={cat}
                     >{cat}
@@ -173,7 +175,7 @@ export default function createTrainings() {
 
           <h2 className="text-lg dark:text-gray-300">Descripción</h2>
           <textarea
-            className="rounded-3xl px-2 py-1 my-2 bg-gray-200 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+            className="rounded-3xl px-2 py-1 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
             type="text"
             name="description"
             cols="28"
@@ -188,7 +190,7 @@ export default function createTrainings() {
           )}
 
           <button
-            className="bg-gray-200 dark:bg-gray-800 rounded-3xl p-2 my-2 dark:text-gray-300"
+            className="bg-gray-300 dark:bg-gray-800 rounded-3xl p-2 my-2 dark:text-gray-300"
             type="submit"
             onClick={handleSubmit}
             disabled={disabled}

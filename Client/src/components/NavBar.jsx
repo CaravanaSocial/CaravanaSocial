@@ -71,7 +71,7 @@ export default function NavBar() {
 
         {menu === true ? (
           <div
-            className="absolute end-0 z-10 mt-2 w-56 divide-y divide-gray-100 dark:divide-gray-700 rounded-md border border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-lg"
+            className="absolute end-0 z-10 mt-2 w-56 divide-y divide-gray-200 dark:divide-gray-700 rounded-md border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-2xl"
             role="menu"
           >
             <div className="justify-items-center">

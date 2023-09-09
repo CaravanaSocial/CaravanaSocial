@@ -188,7 +188,7 @@ const RegisterCompany = () => {
           <form onSubmit={handleSubmit}>
             <h2 className="text-lg dark:text-gray-300">Nombre: </h2>
             <input
-              className="h-8 rounded-3xl px-2 my-2 bg-gray-200 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+              className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
               onChange={handleInputs}
               type="text"
               placeholder="Escribe tu nombre"
@@ -200,7 +200,7 @@ const RegisterCompany = () => {
 
             <h2 className="text-lg dark:text-gray-300">Apellido: </h2>
             <input
-              className="h-8 rounded-3xl px-2 my-2 bg-gray-200 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+              className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
               onChange={handleInputs}
               type="text"
               placeholder="Escribe tu apellido"
@@ -212,7 +212,7 @@ const RegisterCompany = () => {
 
             <h2 className="text-lg dark:text-gray-300">Cargo: </h2>
             <input
-              className="h-8 rounded-3xl px-2 my-2 bg-gray-200 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+              className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
               onChange={handleInputs}
               type="text"
               placeholder="Cargo"
@@ -224,7 +224,7 @@ const RegisterCompany = () => {
 
             <h2 className="text-lg dark:text-gray-300">Empresa: </h2>
             <input
-              className="h-8 rounded-3xl px-2 my-2 bg-gray-200 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+              className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
               onChange={handleInputs}
               type="text"
               placeholder="Nombre de la Empresa"
@@ -235,7 +235,7 @@ const RegisterCompany = () => {
             >{error.nameCompany}</h3>
 
             <select
-              className="h-8 rounded-3xl px-2 my-2 bg-gray-200 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+              className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
               onChange={handleLocation}
               name="country"
             >
@@ -250,7 +250,7 @@ const RegisterCompany = () => {
             </select>
             <br />
             <select
-              className="h-8 mr-1 w-auto rounded-3xl px-2 my-2 bg-gray-200 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+              className="h-8 mr-1 w-auto rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
               onChange={handleLocation}
               name="state"
             >
@@ -265,7 +265,7 @@ const RegisterCompany = () => {
             </select>
 
             <select
-              className="h-8 ml-1 w-auto rounded-3xl px-2 my-2 bg-gray-200 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+              className="h-8 ml-1 w-auto rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
               name="city"
               onChange={handleLocation}
             >
@@ -283,7 +283,7 @@ const RegisterCompany = () => {
             >{error.location}</h3>
 
             <select
-              className="h-8 rounded-3xl px-2 my-2 bg-gray-200 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+              className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
               onChange={handleCategory}
               name="category"
             >
@@ -303,7 +303,7 @@ const RegisterCompany = () => {
               {companyInput.category.map((cat, i) => {
                 return (
                   <div key={i}>
-                    <button className="bg-gray-200 dark:bg-gray-800 rounded-3xl px-2 py-1 m-1 dark:text-gray-300 hover:bg-red-500 dark:hover:bg-red-500"
+                    <button className="bg-gray-300 dark:bg-gray-800 rounded-3xl px-2 py-1 m-1 dark:text-gray-300 hover:bg-red-500 dark:hover:bg-red-500"
                     onClick={handleDelCategory}
                     value={cat}
                     >{cat}
@@ -319,7 +319,7 @@ const RegisterCompany = () => {
             <span>{state.code}</span>
 
             <input
-              className="h-8 rounded-3xl px-2 my-2 bg-gray-200 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+              className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
               onChange={handleInputs}
               type="tel"
               placeholder="Telefono"
@@ -331,7 +331,7 @@ const RegisterCompany = () => {
 
             <h2 className="text-lg dark:text-gray-300">Email: </h2>
             <input
-              className="h-8 rounded-3xl px-2 my-2 bg-gray-200 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+              className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
               onChange={handleInputs}
               type="text"
               placeholder="Email de la empresa..."
@@ -343,7 +343,7 @@ const RegisterCompany = () => {
 
             <h2 className="text-lg dark:text-gray-300">Contraseña</h2>
             <input
-              className="h-8 rounded-3xl px-2 my-2 bg-gray-200 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+              className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
               onChange={handleInputs}
               type="password"
               placeholder="Contraseña..."
@@ -354,7 +354,7 @@ const RegisterCompany = () => {
               style={{ visibility: error.password ? "visible" : "hidden" }}
             >{error.password}</h3>
             <input
-              className="h-8 rounded-3xl px-2 my-2 bg-gray-200 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+              className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
               onChange={handleInputs}
               type="password"
               placeholder="Repite la Contraseña..."
@@ -366,7 +366,7 @@ const RegisterCompany = () => {
 
             <h2 className="text-lg dark:text-gray-300">Descripción</h2>
             <textarea
-              className="rounded-3xl px-2 py-1 my-2 bg-gray-200 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+              className="rounded-3xl px-2 py-1 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
               onChange={handleInputs}
               placeholder="Añade una descripción de tu empresa..."
               name="description"
@@ -380,7 +380,7 @@ const RegisterCompany = () => {
             <div className="border-t-2 border-lime-600 dark:border-lime-700"/>
 
             <button
-              className="bg-gray-200 dark:bg-gray-800 rounded-3xl p-2 my-2 dark:text-gray-300"
+              className="bg-gray-300 dark:bg-gray-800 rounded-3xl p-2 my-2 dark:text-gray-300"
               style={
                 isSubmitDisabled
                   ? { opacity: "0.6", cursor: "not-allowed" }
@@ -394,7 +394,7 @@ const RegisterCompany = () => {
           </form>
 
           <NavLink to="/register-user">
-            <button className="bg-gray-200 dark:bg-gray-800 rounded-3xl p-2 dark:text-gray-300">
+            <button className="bg-gray-300 dark:bg-gray-800 rounded-3xl p-2 dark:text-gray-300">
               Registrarme como Usuario
             </button>
           </NavLink>
