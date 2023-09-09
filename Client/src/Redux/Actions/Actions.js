@@ -48,7 +48,11 @@ export const COMPANY_BUTTONS = "COMPANY_BUTTONS";
 
 export const TRAINING_FILTER = "TRAINING_FILTER";
 
+
+export const COMPANY_DETAIL = "COMPANY_DETAIL";
+
 export const IMAGECHANGE = "IMAGECHANGE";
+
 
 // const serverURL = "https://caravanaserver.onrender.com";
 const serverURL = "http://localhost:3001";
@@ -650,6 +654,24 @@ export function addVideo(link) {
   };
 }
 
+
+
+export function detailCompany(id){
+  
+  return async function(dispatch){
+    try{
+     const response = ( await axios.get(`${serverURL}/company/${id}`)).data
+     
+     return dispatch({
+      type: COMPANY_DETAIL,
+      payload: response
+     })
+    }catch(error){
+      console.log(error)
+    }
+  }
+}
+
 export const getSuccesCases = () => {
   //---------- Endpoint to Dev server -- Descomentar para usar
   // const endpoint = "http://localhost:3001/user/all";
@@ -694,4 +716,5 @@ export const getUserById = (id) => {
     }
   };
 };
+
 
