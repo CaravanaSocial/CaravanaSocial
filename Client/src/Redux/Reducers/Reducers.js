@@ -29,13 +29,9 @@ import {
   TRAINING_FILTER,
   GET_FREELANCERS,
   ADDVIDEO,
-
   GET_SUCCESCASES,
   IMAGECHANGE,
-
-  IMAGECHANGE,
-  GET_USER_BY_ID
-
+  GET_USER_BY_ID,
 } from "../Actions/Actions";
 
 const initialState = {
@@ -61,9 +57,7 @@ const initialState = {
   successCases: [],
   imageChange: false,
 
-
-  userDetail:{}
-
+  userDetail: {},
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -250,14 +244,11 @@ export default function rootReducer(state = initialState, action) {
         imageChange: goku,
       };
 
-  
-
-      case GET_USER_BY_ID:
-        return {
-          ...state,
-          userDetail: action.payload
-        }
-
+    case GET_USER_BY_ID:
+      return {
+        ...state,
+        userDetail: action.payload,
+      };
 
     default:
       return { ...state };
