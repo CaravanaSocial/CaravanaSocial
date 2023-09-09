@@ -29,11 +29,9 @@ import {
   TRAINING_FILTER,
   GET_FREELANCERS,
   ADDVIDEO,
-
   IMAGECHANGE,
   TRAINING_DETAIL,
   COMMENTS_POST,
-  trainingDetail,
   COMPANY_DETAIL,
   GET_SUCCESCASES,
   GET_USER_BY_ID,
@@ -262,6 +260,7 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         comments: action.payload
       }
+      
     case GET_USER_BY_ID:
       return {
         ...state,
