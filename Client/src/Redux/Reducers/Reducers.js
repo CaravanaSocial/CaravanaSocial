@@ -29,14 +29,11 @@ import {
   TRAINING_FILTER,
   GET_FREELANCERS,
   ADDVIDEO,
-
   IMAGECHANGE,
   TRAINING_DETAIL,
   COMMENTS_POST,
-  trainingDetail,
   COMPANY_DETAIL,
   GET_SUCCESCASES,
-  IMAGECHANGE,
   GET_USER_BY_ID,
 
 
@@ -264,9 +261,6 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         comments: action.payload
       }
-
-        imageChange: goku,
-      };
       
     case GET_USER_BY_ID:
       return {
