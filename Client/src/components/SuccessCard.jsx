@@ -23,7 +23,7 @@ const SuccessCard = (props) => {
           molestiae provident laborum excepturi.
         </h1>
         <Link>
-          <span className=" flex">
+          <span className=" hover:text-white flex">
             <AiOutlineLink size={20} />
             <h2>Pagina Web </h2>: www.google.com
           </span>
