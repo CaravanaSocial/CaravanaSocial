@@ -1,4 +1,5 @@
-const {training, areaTraining, companies} = require("../../db")
+
+const {training, areaTraining, companies, comment} = require("../../db")
 
 const getTrainingByIdController = async (id) =>{
     const foundTraining = await training.findAll({

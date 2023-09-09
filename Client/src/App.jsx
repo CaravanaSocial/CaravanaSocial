@@ -18,8 +18,10 @@ import VideosTrainings from "./Views/CreateTrainings/videosTrainings.jsx";
 import FreelancerDetail from "./Views/Users/FreelancerDetail.jsx";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import DetailTrainings from "./Views/Trainings/TrainingDatail.jsx";
 import CompanyDetail from "./Views/CompanyDetail/CompanyDetail.jsx";
 import CreateSuccesCase from "./Views/CreateSuccessCase/CreateSuccesCase.jsx";
+
 
 
 function App() {
@@ -59,6 +61,7 @@ function App() {
             element={<ProfileUser />}
           />
           <Route path="/profile-company" element={<ProfileCompany />} />
+          <Route path="/training/detail/:id" element={<DetailTrainings/>} />
           <Route path="/company/:id" element={<CompanyDetail/>}/>
           <Route path="/home/freelancer/:id" element={<FreelancerDetail/>}/>
         </Routes>
