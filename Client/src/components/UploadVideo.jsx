@@ -14,7 +14,7 @@ const UploadVideo = () => {
   return (
     <div>
       <button
-        className="bg-zinc-300 mt-2 text-black rounded-3xl p-2"
+        className="bg-gray-200 dark:bg-gray-800 rounded-3xl p-2 my-2 dark:text-gray-300"
         id="upload_widget"
         onClick={() => {
           cloudinary.openUploadWidget(

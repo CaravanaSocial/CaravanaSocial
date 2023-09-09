@@ -250,7 +250,6 @@ export default function rootReducer(state = initialState, action) {
         imageChange: goku
       }
     case TRAINING_DETAIL:
-      console.log( action.payload + "holaa");
       return {
         ...state,
         trainingsDetail: action.payload

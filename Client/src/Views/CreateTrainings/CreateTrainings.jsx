@@ -125,13 +125,13 @@ export default function createTrainings() {
     <div className="h-full text-center">
       <div className="inline-block m-4 p-4 text-center ">
         <div className="justify-center text-center border-2 border-lime-600 dark:border-lime-700 rounded-3xl p-4 m-4">
-          <h1 className="text-4xl border-b-2 border-zinc-100 dark:border-zinc-800">
-            Crea una Capacitación
-          </h1>
+          <h1 className="text-3xl mb-1 dark:text-gray-300">Crea una Capacitación</h1>
 
-          <h2>Nombre de la Capacitación</h2>
+          <div className="border-t-2 border-lime-600 dark:border-lime-700"/>
+
+          <h2 className="text-lg dark:text-gray-300">Nombre de la Capacitación</h2>
           <input
-            className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
+            className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
             type="text"
             name="name"
             value={inputTrainings.name}
@@ -141,8 +141,10 @@ export default function createTrainings() {
           <br />
           {error.name && <span className="text-red-600">{error.name}</span>}
 
+          <br />
+
           <select
-            className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
+            className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
             onChange={handleCategory}
             name="category"
           >
@@ -156,31 +158,27 @@ export default function createTrainings() {
             })}
           </select>
           <br />
-          <span>Rubros seleccionados: </span>
-          <div className="p-2 m-auto bg-zinc-300 text-zinc-800 focus:border-transparent w-[200px] justify-center align-middle rounded-3xl">
-            {inputTrainings.category.map((cat) => {
-              return (
-                <div className="text-center bg-zinc-400 mb-1 rounded-3xl">
-                  {cat}
-                  <button
-                    className="bg-red-600 px-1 text-white h-[20px] m-auto rounded-3xl"
+          {inputTrainings.category.length ? (
+              <h2 className="text-lg dark:text-gray-300">Rubros seleccionados: </h2>
+            ) : null}
+              {inputTrainings.category.map((cat, i) => {
+                return (
+                  <div key={i}>
+                    <button className="bg-gray-300 dark:bg-gray-800 rounded-3xl px-2 py-1 m-1 dark:text-gray-300 hover:bg-red-500 dark:hover:bg-red-500"
                     onClick={handleDelCategory}
                     value={cat}
-                  >
-                    {" "}
-                    x
-                  </button>
-                </div>
-              );
-            })}
-          </div>
+                    >{cat}
+                    </button>
+                  </div>
+                );
+              })}
 
-          <h2>Descripción</h2>
+          <h2 className="text-lg dark:text-gray-300">Descripción</h2>
           <textarea
-            className="rounded-3xl px-2 py-1 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
+            className="rounded-3xl px-2 py-1 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
             type="text"
             name="description"
-            cols="20"
+            cols="28"
             rows="8"
             value={inputTrainings.description}
             onChange={handleChange}
@@ -192,7 +190,7 @@ export default function createTrainings() {
           )}
 
           <button
-            className="bg-zinc-300 mt-2 text-black rounded-3xl p-2"
+            className="bg-gray-300 dark:bg-gray-800 rounded-3xl p-2 my-2 dark:text-gray-300"
             type="submit"
             onClick={handleSubmit}
             disabled={disabled}

@@ -200,7 +200,7 @@ export default function RegisterUser() {
         <form onSubmit={handleSubmit}>
           <h2 className="text-lg dark:text-gray-300">Nombre</h2>
           <input
-            className="h-8 rounded-3xl px-2 my-2 bg-gray-100 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+            className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
             type="text"
             name="name"
             placeholder="nombre"
@@ -211,7 +211,7 @@ export default function RegisterUser() {
 
           <h2 className="text-lg dark:text-gray-300">Apellido</h2>
           <input
-            className="h-8 rounded-3xl px-2 my-2 bg-gray-100 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+            className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
             type="text"
             name="lastName"
             placeholder="apellido"
@@ -224,7 +224,7 @@ export default function RegisterUser() {
 
           <h2 className="text-lg dark:text-gray-300">Fecha de Nacimiento</h2>
           <input
-            className="h-8 rounded-3xl px-2 my-2 bg-gray-100 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+            className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
             type="date"
             name="birthDate"
             value={userData.birthDate}
@@ -236,7 +236,7 @@ export default function RegisterUser() {
 
           <h2 className="text-lg dark:text-gray-300">País</h2>
           <select
-            className="h-8 rounded-3xl px-2 my-2 bg-gray-100 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+            className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
             onChange={handleChange}
             name="country"
           >
@@ -253,7 +253,7 @@ export default function RegisterUser() {
 
           <h2 className="text-lg dark:text-gray-300">Estado/Provincia</h2>
           <select
-            className="h-8 rounded-3xl px-2 my-2 bg-gray-100 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+            className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
             onChange={handleChange}
             name="state"
           >
@@ -268,7 +268,7 @@ export default function RegisterUser() {
 
           <h2 className="text-lg dark:text-gray-300">Ciudad</h2>
           <select
-            className="h-8 rounded-3xl px-2 my-2 bg-gray-100 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+            className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
             onChange={handleChange}
             name="city"
           >
@@ -307,7 +307,7 @@ export default function RegisterUser() {
             <section>
               <h2 className="text-lg dark:text-gray-300">Código CUD</h2>
               <input
-                className="h-8 rounded-3xl px-2 my-2 bg-gray-100 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+                className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
                 type="text"
                 name="CUD"
                 value={userData.CUD}
@@ -320,7 +320,7 @@ export default function RegisterUser() {
 
           <h2 className="text-lg dark:text-gray-300">Email</h2>
           <input
-            className="h-8 rounded-3xl px-2 my-2 bg-gray-100 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+            className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
             type="email"
             name="email"
             placeholder="email"
@@ -331,7 +331,7 @@ export default function RegisterUser() {
 
           <h2 className="text-lg dark:text-gray-300">Contraseña</h2>
           <input
-            className="h-8 rounded-3xl px-2 my-2 bg-gray-100 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+            className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
             type="password"
             name="password"
             placeholder="contraseña"
@@ -343,7 +343,7 @@ export default function RegisterUser() {
           </h3>
 
           <input
-            className="h-8 rounded-3xl px-2 my-2 bg-gray-100 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+            className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
             type="password"
             name="passwordRep"
             placeholder="repetir contraseña"
@@ -358,7 +358,7 @@ export default function RegisterUser() {
             Tipo/s de Preferencia/s
           </h2>
           <select
-            className="h-8 rounded-3xl px-2 my-2 bg-gray-100 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+            className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
             onChange={handleCategory}
             name="category"
           >
@@ -381,7 +381,7 @@ export default function RegisterUser() {
             return (
               <div key={i}>
                 <button
-                  className="bg-gray-200 dark:bg-gray-800 rounded-3xl p-1 m-1 dark:text-gray-300 hover:bg-red-500 dark:hover:bg-red-500"
+                  className="bg-gray-300 dark:bg-gray-800 rounded-3xl px-2 py-1 m-1 dark:text-gray-300 hover:bg-red-500 dark:hover:bg-red-500"
                   onClick={handleDelCategory}
                   value={cat}
                 >
@@ -401,7 +401,7 @@ export default function RegisterUser() {
             Certificados (Opcional)
           </h2>
           <input
-            className="h-8 rounded-3xl px-2 my-2 bg-gray-100 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+            className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
             type="url"
             name="certificates"
             value={userData.certificates}
@@ -434,13 +434,13 @@ export default function RegisterUser() {
                 Descripción de tu Emprendimiento
               </h2>
               <textarea
-                className="rounded-3xl px-2 py-1 my-2 bg-gray-100 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+                className="rounded-3xl px-2 py-1 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
                 type="text"
                 name="description"
                 placeholder="añadir descripcion"
                 value={userData.description}
                 onChange={handleChange}
-                cols="20"
+                cols="28"
                 rows="8"
               />
               <h3 className="text-red-600">
@@ -451,7 +451,7 @@ export default function RegisterUser() {
                 Dirección de su negocio{" "}
               </h2>
               <input
-                className="rounded-3xl px-2 my-2 bg-gray-100 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+                className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
                 type="text"
                 name="address"
                 value={userData.address}
@@ -466,7 +466,7 @@ export default function RegisterUser() {
           <div className="border-t-2 border-lime-600 dark:border-lime-700" />
 
           <button
-            className="bg-gray-200 dark:bg-gray-800 rounded-3xl p-2 my-2 dark:text-gray-300"
+            className="bg-gray-300 dark:bg-gray-800 rounded-3xl p-2 my-2 dark:text-gray-300"
             type="submit"
           >
             REGISTRARME
@@ -475,7 +475,7 @@ export default function RegisterUser() {
           <br />
 
           <Link to={"/register-company"}>
-            <button className="bg-gray-200 dark:bg-gray-800 rounded-3xl p-2 dark:text-gray-300">
+            <button className="bg-gray-300 dark:bg-gray-800 rounded-3xl p-2 dark:text-gray-300">
               Registrarme como Empresa
             </button>
           </Link>

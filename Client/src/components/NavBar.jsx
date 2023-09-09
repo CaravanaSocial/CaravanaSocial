@@ -51,14 +51,14 @@ export default function NavBar() {
           <CgSearch className="w-[20px] h-[20px] hover:text-lime-600" />
         </div>
         <input
-          className="block w-30 py-1.5 pl-10 pr-4 leading-normal rounded-2xl focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600 ring-opacity-90 bg-gray-100 dark:bg-gray-800 text-gray-400 aa-input"
+          className="block w-30 py-1.5 pl-10 pr-4 leading-normal rounded-2xl focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600 ring-opacity-90 bg-gray-200 dark:bg-gray-800 text-gray-400 aa-input"
           placeholder="Search"
           type="text"
         />
       </div>
 
       <div className="relative">
-        <div className="inline-flex items-center overflow-hidden rounded-md bg-gray-100 dark:bg-gray-800 p-0.5 hover:p-0 hover:border-2 hover:border-lime-600">
+        <div className="inline-flex items-center overflow-hidden rounded-md bg-gray-200 dark:bg-gray-800 p-0.5 hover:p-0 hover:border-2 hover:border-lime-600">
           <button
             className="h-full p-2 text-gray-700 dark:text-gray-400"
             onClick={handleMenu}
@@ -71,7 +71,7 @@ export default function NavBar() {
 
         {menu === true ? (
           <div
-            className="absolute end-0 z-10 mt-2 w-56 divide-y divide-gray-100 dark:divide-gray-700 rounded-md border border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-lg"
+            className="absolute end-0 z-10 mt-2 w-56 divide-y divide-gray-200 dark:divide-gray-700 rounded-md border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-2xl"
             role="menu"
           >
             <div className="justify-items-center">
@@ -87,7 +87,7 @@ export default function NavBar() {
                         : "/profile-company"
                     }
                   >
-                    <span className="text-gray-500 flex justify-center text-sm hover:text-gray-700">
+                    <span className="text-gray-500 flex justify-center text-sm dark:text-gray-300">
                       <CgProfile className="w-[25px] h-[25px] text-gray-400 mx-1 hover:text-lime-600" />
                       <a className="pt-0.5 hover:text-lime-600">
                         {account.name}
@@ -134,7 +134,7 @@ export default function NavBar() {
               {bool ? (
                 <>
                   <Link
-                    className="text-center block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700 dark:hover:text-gray-400"
+                    className="text-center block rounded-lg px-4 py-2 text-sm text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-600 hover:text-gray-700 dark:hover:text-gray-400"
                     to="/create-trainings"
                     role="menuitem"
                   >
@@ -142,7 +142,7 @@ export default function NavBar() {
                   </Link>
 
                   <Link
-                    className="text-center block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700 dark:hover:text-gray-400"
+                    className="text-center block rounded-lg px-4 py-2 text-sm text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-600 hover:text-gray-700 dark:hover:text-gray-400"
                     to="/create-jobs"
                     role="menuitem"
                   >

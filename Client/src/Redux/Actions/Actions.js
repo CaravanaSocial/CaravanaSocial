@@ -58,10 +58,6 @@ export const COMMENTS_POST = "COMMENTS_POST";
 
 export const COMPANY_DETAIL = "COMPANY_DETAIL";
 
-export const IMAGECHANGE = "IMAGECHANGE";
-
-
-
 // const serverURL = "https://caravanaserver.onrender.com";
 const serverURL = "http://localhost:3001";
 
@@ -150,7 +146,6 @@ export const editUser = (id, user) => {
     try {
       const response = await axios.patch(endpoint, user);
       const { data } = response;
-      console.log(data);
       dispatch({
         type: EDIT_USER,
       });
@@ -716,7 +711,6 @@ export function trainingDetail(id) {
     const endpoint = `${serverURL}/trainings/${id}`
     try {
       const { data } = await axios.get(endpoint)
-      console.log(data);
       return dispatch({
         type: TRAINING_DETAIL,
         payload : data[0]
@@ -733,7 +727,6 @@ export function createComment(id, comment){
     const endpoint = `${serverURL}/comments/create/${id}`
     try {
       const { data } = await axios.post(endpoint, comment)
-      console.log(data);
       dispatch({
         type: COMMENTS_POST,
         payload : data
