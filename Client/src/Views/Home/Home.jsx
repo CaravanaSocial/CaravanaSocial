@@ -45,7 +45,7 @@ const Home = () => {
           {" "}
           <div className="w-[300px] h-full bg-violet-500"></div>
           <div className=" w-full h-full">
-            <section className="p-2">
+            <section className="p-2 text-center">
               <div className="font-vilaka font-bold flex text-[40px]">
                 FREELANCERS
               </div>
@@ -55,6 +55,7 @@ const Home = () => {
                   <CardFreelancer
                     key={item.id}
                     name={item.name}
+                    id={item.id}
                     location={item.location}
                     description={item.description}
                   />
@@ -67,7 +68,7 @@ const Home = () => {
                 Ver Mas
               </button>
             </section>
-            <section className="p-2">
+            <section className="p-2 text-center">
               <div className="font-vilaka flex font-bold  text-[40px]">
                 CAPACITACIONES RECIENTES
               </div>
@@ -84,7 +85,7 @@ const Home = () => {
                 Ver Mas
               </button>
             </section>
-            <section className="p-2">
+            <section className="p-2 text-center">
               <div className="font-vilaka font-bold flex text-[40px]">
                 OFERTAS RECIENTES
               </div>

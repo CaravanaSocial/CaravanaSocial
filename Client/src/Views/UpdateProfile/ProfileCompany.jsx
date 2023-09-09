@@ -175,17 +175,17 @@ const ProfileCompany = () => {
   };
 
   return (
-    <div className="flex h-full">
-      <div className="m-4">
+    <div className="h-full flex ">
+      <div className="flex flex-col text-center border-spacing-96 border-2 border-light-1 dark:borderlight-1 rounded-3xl p-4 m-4">
         <img src={account.profilePicture} className="w-[300px] mt-2 mx-2" />
 
-        <h2>{input.name + " " + input.lastName}</h2>
+        <h2 className="font-topmodern">{input.name + " " + input.lastName}</h2>
 
         {edit === true ? (
           <div>
-            <span className="font-bold">Nombre</span>
+            <span className="font-topmodern">Nombre</span>
             <input
-              className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
+              className=" font-vilaka text-[22px] font-bold rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
               onChange={handleChange}
               value={input.name}
               type="text"
@@ -199,9 +199,9 @@ const ProfileCompany = () => {
               {error.name}
             </p>
 
-            <span className="font-bold">Apellido</span>
+            <span className="font-topmodern">Apellido</span>
             <input
-              className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
+              className="font-vilaka text-[22px] font-bold rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
               onChange={handleChange}
               value={input.lastName}
               type="text"
@@ -215,9 +215,9 @@ const ProfileCompany = () => {
               {error.lastName}
             </p>
 
-            <span className="font-bold">Cargo</span>
+            <span className="font-topmodern">Cargo</span>
             <input
-              className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
+              className="font-vilaka text-[22px] font-bold rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
               onChange={handleChange}
               value={input.position}
               type="text"
@@ -231,9 +231,9 @@ const ProfileCompany = () => {
               {error.position}
             </p>
 
-            <span className="font-bold">Empresa</span>
+            <span className="font-topmodern">Empresa</span>
             <input
-              className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
+              className="font-vilaka text-[22px] font-bold rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
               onChange={handleChange}
               value={input.nameCompany}
               type="text"
@@ -252,7 +252,7 @@ const ProfileCompany = () => {
               onChange={handleLocation}
               name="country"
             >
-              <option value="default">pais</option>
+              <option value="default">Pais</option>
               {country.map((p) => {
                 return (
                   <option key={p} value={p}>
@@ -268,7 +268,7 @@ const ProfileCompany = () => {
               onChange={handleLocation}
               name="state"
             >
-              <option value="default">estado</option>
+              <option value="default">Estado</option>
               {state.allStates?.map((p) => {
                 return (
                   <option key={p.id} id={p.id} value={p.name}>
@@ -283,7 +283,7 @@ const ProfileCompany = () => {
               name="city"
               onChange={handleLocation}
             >
-              <option value="default">ciudad</option>
+              <option value="default">Ciudad</option>
               {city?.map((p) => {
                 return (
                   <option key={p} value={p}>
@@ -293,15 +293,15 @@ const ProfileCompany = () => {
               })}
             </select>
             <br />
-            <span>Ubicacion:</span>
+            <span className="font-topmodern">Ubicacion:</span>
             <div className="p-2 m-auto bg-zinc-300 text-zinc-800 focus:border-transparent w-[200px] justify-center align-middle rounded-3xl">
-              <div className="text-center bg-zinc-400 mb-1 rounded-3xl">
+              <div className=" font-vilaka text-[22px] font-bold text-center bg-zinc-400 mb-1 rounded-3xl">
                 {input.location.country}
               </div>
-              <div className="text-center bg-zinc-400 mb-1 rounded-3xl">
+              <div className=" font-vilaka text-[22px] font-bold text-center bg-zinc-400 mb-1 rounded-3xl">
                 {input.location.state}
               </div>
-              <div className="text-center bg-zinc-400 mb-1 rounded-3xl">
+              <div className=" font-vilaka text-[22px] font-bold text-center bg-zinc-400 mb-1 rounded-3xl">
                 {input.location.city}
               </div>
             </div>
@@ -317,7 +317,7 @@ const ProfileCompany = () => {
               onChange={handleCategory}
               name="category"
             >
-              <option value="default">rubro</option>
+              <option value="default">Rubro</option>
               {category?.map((c) => {
                 return (
                   <option key={c} value={c}>
@@ -327,7 +327,7 @@ const ProfileCompany = () => {
               })}
             </select>
             <br />
-            <span>Rubros seleccionados: </span>
+            <span className="font-topmodern">Rubros seleccionados: </span>
             <div className="p-2 m-auto bg-zinc-300 text-zinc-800 focus:border-transparent w-[200px] justify-center align-middle rounded-3xl">
               {input?.category?.map((cat) => {
                 return (
@@ -351,9 +351,9 @@ const ProfileCompany = () => {
               {error.category}
             </p>
 
-            <span className="font-bold">Telefono</span>
+            <span className="font-topmodern">Telefono</span>
             <input
-              className="rounded-3xl px-2 mb-2 mt-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
+              className=" font-vilaka text-[22px] font-bold rounded-3xl px-2 mb-2 mt-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
               onChange={handleChange}
               value={input.phone}
               type="tel"
@@ -367,10 +367,10 @@ const ProfileCompany = () => {
               {error.phone}
             </p>
 
-            <span className="font-bold">Descripción</span>
+            <span className="font-topmodern">Descripción</span>
             <br />
             <textarea
-              className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
+              className=" font-vilaka text-[22px] font-bold rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
               onChange={handleChange}
               value={input.description}
               placeholder="Añade una descripción de tu empresa..."
@@ -386,14 +386,15 @@ const ProfileCompany = () => {
             </p>
 
             <button
-              className="bg-green-700 mt-2 text-black rounded-3xl p-1"
+              className="bg-light-1 font-topmodern mt-2 hover:text-white text-black rounded-3xl p-1"
               onClick={(event) => handleSubmit(event)}
               type="submit"
             >
               Guardar
             </button>
+
             <button
-              className="bg-zinc-300 mt-2 text-black rounded-3xl p-1"
+              className="bg-zinc-300 font-topmodern hover:text-light-1 ml-2 mt-2 text-black rounded-3xl p-1"
               onClick={handleCancel}
             >
               Cancelar
@@ -412,7 +413,7 @@ const ProfileCompany = () => {
           </div>
         ) : (
           <button
-            className="bg-zinc-300 mb-2 mt-2 text-black rounded-3xl p-1"
+            className=" border-2 border-light-1 hover:text-light-1 font-topmodern mb-2 mt-2 text-black rounded-3xl p-1"
             onClick={() => handleEdit()}
           >
             Editar perfil
@@ -420,7 +421,9 @@ const ProfileCompany = () => {
         )}
       </div>
       <div className="block ">
-        <div className="w-8/12  inline-block">{input.description}</div>
+        <div className="w-8/12 font-topmodern  inline-block">
+          {input.description}
+        </div>
         <div className=" inline-block">
           <h2 className="font-bold">Mis capacitaciones</h2>
           {companyIdRelacion ? (
@@ -449,7 +452,7 @@ const ProfileCompany = () => {
             </div>
           )}
           <NavLink to="/create-trainings">
-            <button className="bg-zinc-300 mb-2 mt-2 text-black rounded-3xl p-1">
+            <button className=" border-2 border-light-1 hover:text-light-1 font-topmodern mb-2 mt-2 text-black rounded-3xl p-1">
               Crear
             </button>
           </NavLink>
@@ -476,7 +479,7 @@ const ProfileCompany = () => {
             </div>
           )}
           <NavLink to="/create-jobs">
-            <button className="bg-zinc-300 mb-2 mt-2 text-black rounded-3xl p-1">
+            <button className=" border-2 border-light-1 hover:text-light-1 font-topmodern mb-2 mt-2 text-black rounded-3xl p-1">
               Crear
             </button>
           </NavLink>

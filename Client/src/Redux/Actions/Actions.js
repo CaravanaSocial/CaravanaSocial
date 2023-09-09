@@ -5,7 +5,10 @@ export const CREATE_USER = "CREATE_USER";
 export const GET_USERS = "GET_USERS";
 export const EDIT_USER = "EDIT_USER";
 
+export const GET_SUCCESCASES = "GET_SUCCESCASES";
+
 export const GET_FREELANCERS = "GET_FREELANCERS";
+export const GET_USER_BY_ID = "GET_USER_BY_ID";
 
 export const CREATE_ADMIN = "CREATE_ADMIN";
 export const GET_ADMINS = "GET_ADMINS";
@@ -46,7 +49,19 @@ export const COMPANY_BUTTONS = "COMPANY_BUTTONS";
 
 export const TRAINING_FILTER = "TRAINING_FILTER";
 
-export const IMAGECHANGE = "IMAGECHANGE"
+
+export const IMAGECHANGE = "IMAGECHANGE";
+
+export const TRAINING_DETAIL = "TRAINING_DETAIL";
+
+export const COMMENTS_POST = "COMMENTS_POST";
+
+
+export const COMPANY_DETAIL = "COMPANY_DETAIL";
+
+export const IMAGECHANGE = "IMAGECHANGE";
+
+
 
 // const serverURL = "https://caravanaserver.onrender.com";
 const serverURL = "http://localhost:3001";
@@ -140,7 +155,7 @@ export const editUser = (id, user) => {
       dispatch({
         type: EDIT_USER,
       });
-      return data
+      return data;
     } catch (error) {
       console.log(error);
     }
@@ -658,12 +673,102 @@ export function addVideo(link) {
   };
 }
 
+
+
+export function detailCompany(id){
+  
+  return async function(dispatch){
+    try{
+     const response = ( await axios.get(`${serverURL}/company/${id}`)).data
+     
+     return dispatch({
+      type: COMPANY_DETAIL,
+      payload: response
+     })
+    }catch(error){
+      console.log(error)
+    }
+  }
+}
+
+export const getSuccesCases = () => {
+  //---------- Endpoint to Dev server -- Descomentar para usar
+  // const endpoint = "http://localhost:3001/user/all";
+
+  //---------- Endpoint to deployed server
+  const endpoint = `${serverURL}/success`;
+  return async (dispatch) => {
+    try {
+      const response = await axios(endpoint);
+      const { data } = response;
+      return dispatch({
+        type: GET_SUCCESCASES,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
 export function imageChange() {
   return async function (dispatch) {
     try {
-      dispatch({ type:  IMAGECHANGE });
+      dispatch({ type: IMAGECHANGE });
     } catch (error) {
       console.log(error);
     }
   };
 }
+
+
+export function trainingDetail(id) {
+  return async function (dispatch) {
+    const endpoint = `${serverURL}/trainings/${id}`
+    try {
+      const { data } = await axios.get(endpoint)
+      console.log(data);
+      return dispatch({
+        type: TRAINING_DETAIL,
+        payload : data[0]
+      })
+
+    } catch(error) {
+      console.log(error);
+    }
+  }
+}
+
+export function createComment(id, comment){
+  return async function (dispatch) {
+    const endpoint = `${serverURL}/comments/create/${id}`
+    try {
+      const { data } = await axios.post(endpoint, comment)
+      console.log(data);
+      dispatch({
+        type: COMMENTS_POST,
+        payload : data
+      })
+    } catch (error) {
+      
+    }
+  }
+}
+
+
+export const getUserById = (id) => {
+  return async function (dispatch) {
+    try {
+      const response = (await axios.get(`${serverURL}/user/`+id)).data;
+      return dispatch({
+        type: GET_USER_BY_ID,
+        payload: response,
+      });
+    } catch (error) {
+      console.log("cat", error.message);
+    }
+  };
+};
+
+
+

@@ -16,8 +16,14 @@ import DetailOffer from "./Views/Offers/Detail/DetailOffer.jsx";
 import ProfileUser from "./Views/UpdateProfile/ProfileUser.jsx";
 import ProfileCompany from "./Views/UpdateProfile/ProfileCompany.jsx";
 import VideosTrainings from "./Views/CreateTrainings/videosTrainings.jsx";
+import FreelancerDetail from "./Views/Users/FreelancerDetail.jsx";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import DetailTrainings from "./Views/Trainings/TrainingDatail.jsx";
+import CompanyDetail from "./Views/CompanyDetail/CompanyDetail.jsx";
+import CreateSuccesCase from "./Views/CreateSuccessCase/CreateSuccesCase.jsx";
+
+
 
 function App() {
   const account =
@@ -40,12 +46,14 @@ function App() {
           <Route path="/register-company" element={<RegisterCompany />} />
           <Route path="/create-trainings" element={<CreateTrainings />} />
           <Route path="/create-jobs" element={<CreateJobs />} />
+          <Route path="/create-success" element={<CreateSuccesCase />} />
           <Route path="/home" element={<Home />} />
           <Route path="/home-trainings" element={<Trainings />} />
           <Route path="/home-offers" element={<Offer />} />
           <Route path="/home-offers/:title" element={<DetailOffer/>}/>
           <Route path="/trainings/:id" element={<TrainingVideosPage />} />
           <Route path="/trainings/video/:id" element={<VideosTrainings />} />
+
           <Route
             path={
               localStorage.length !== 0
@@ -55,6 +63,9 @@ function App() {
             element={<ProfileUser />}
           />
           <Route path="/profile-company" element={<ProfileCompany />} />
+          <Route path="/training/detail/:id" element={<DetailTrainings/>} />
+          <Route path="/company/:id" element={<CompanyDetail/>}/>
+          <Route path="/home/freelancer/:id" element={<FreelancerDetail/>}/>
         </Routes>
         <Footer />
       </div>
