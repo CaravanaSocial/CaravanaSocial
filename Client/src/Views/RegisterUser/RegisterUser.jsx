@@ -189,278 +189,309 @@ export default function RegisterUser() {
   };
 
   return (
-      <div className="flex justify-center">
-        <div className="justify-center text-center border-spacing-96 border-2 border-lime-600 dark:border-lime-700 rounded-3xl p-4 m-4">
-          <h1 className="text-3xl mb-1 dark:text-gray-300">
-            Registrarme como Usuario
-          </h1>
+    <div className="flex justify-center">
+      <div className="justify-center text-center border-spacing-96 border-2 border-lime-600 dark:border-lime-700 rounded-3xl p-4 m-4">
+        <h1 className="text-3xl mb-1 dark:text-gray-300">
+          Registrarme como Usuario
+        </h1>
 
-          <div className="border-t-2 border-lime-600 dark:border-lime-700"/>
+        <div className="border-t-2 border-lime-600 dark:border-lime-700" />
 
-          <form onSubmit={handleSubmit}>
-            <h2 className="text-lg dark:text-gray-300">Nombre</h2>
+        <form onSubmit={handleSubmit}>
+          <h2 className="text-lg dark:text-gray-300">Nombre</h2>
+          <input
+            className="h-8 rounded-3xl px-2 my-2 bg-gray-100 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+            type="text"
+            name="name"
+            placeholder="nombre"
+            value={userData.name}
+            onChange={handleChange}
+          />
+          <h3 className="text-red-600">{errors.name ? errors.name : null}</h3>
+
+          <h2 className="text-lg dark:text-gray-300">Apellido</h2>
+          <input
+            className="h-8 rounded-3xl px-2 my-2 bg-gray-100 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+            type="text"
+            name="lastName"
+            placeholder="apellido"
+            value={userData.lastName}
+            onChange={handleChange}
+          />
+          <h3 className="text-red-600">
+            {errors.lastName ? errors.lastName : null}
+          </h3>
+
+          <h2 className="text-lg dark:text-gray-300">Fecha de Nacimiento</h2>
+          <input
+            className="h-8 rounded-3xl px-2 my-2 bg-gray-100 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+            type="date"
+            name="birthDate"
+            value={userData.birthDate}
+            onChange={handleChange}
+          />
+          <h3 className="text-red-600">
+            {errors.birthDate ? errors.birthDate : null}
+          </h3>
+
+          <h2 className="text-lg dark:text-gray-300">País</h2>
+          <select
+            className="h-8 rounded-3xl px-2 my-2 bg-gray-100 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+            onChange={handleChange}
+            name="country"
+          >
+            <option value="default">Seleccioná un país...</option>
+            {country.map((p) => (
+              <option key={p} value={p}>
+                {p}
+              </option>
+            ))}
+          </select>
+          <h3 className="text-red-600">
+            {errors.country ? errors.country : null}
+          </h3>
+
+          <h2 className="text-lg dark:text-gray-300">Estado/Provincia</h2>
+          <select
+            className="h-8 rounded-3xl px-2 my-2 bg-gray-100 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+            onChange={handleChange}
+            name="state"
+          >
+            <option value="default">Seleccioná un Estado/Provincia...</option>
+            {state.allStates?.map((s) => (
+              <option key={s.id} id={s.id} value={s.name}>
+                {s.name}
+              </option>
+            ))}
+          </select>
+          <h3 className="text-red-600">{errors.state ? errors.state : null}</h3>
+
+          <h2 className="text-lg dark:text-gray-300">Ciudad</h2>
+          <select
+            className="h-8 rounded-3xl px-2 my-2 bg-gray-100 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+            onChange={handleChange}
+            name="city"
+          >
+            <option value="default">Seleccioná una Ciudad...</option>
+            {city.map((c) => (
+              <option key={c} value={c}>
+                {c}
+              </option>
+            ))}
+          </select>
+          <h3 className="text-red-600">{errors.city ? errors.city : null}</h3>
+
+          <h2 className="text-lg dark:text-gray-300">
+            Tenes Certificado Único de Discapacidad (CUD)?
+          </h2>
+          <label>
+            {" "}
+            Si{" "}
             <input
-              className="h-8 rounded-3xl px-2 my-2 bg-gray-100 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
-              type="text"
-              name="name"
-              placeholder="nombre"
-              value={userData.name}
-              onChange={handleChange}
+              type="checkbox"
+              checked={checkboxCUD === "SI"}
+              onChange={() => handleCheckboxCUDChange("SI")}
             />
-            <h3 className="text-red-600">{errors.name ? errors.name : null}</h3>
-
-            <h2 className="text-lg dark:text-gray-300">Apellido</h2>
+          </label>
+          <label>
+            {" "}
+            No{" "}
             <input
-              className="h-8 rounded-3xl px-2 my-2 bg-gray-100 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
-              type="text"
-              name="lastName"
-              placeholder="apellido"
-              value={userData.lastName}
-              onChange={handleChange}
+              type="checkbox"
+              checked={checkboxCUD === "NO"}
+              onChange={() => handleCheckboxCUDChange("NO")}
             />
-            <h3 className="text-red-600">{errors.lastName ? errors.lastName : null}</h3>
+          </label>
 
-            <h2 className="text-lg dark:text-gray-300">Fecha de Nacimiento</h2>
-            <input
-              className="h-8 rounded-3xl px-2 my-2 bg-gray-100 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
-              type="date"
-              name="birthDate"
-              value={userData.birthDate}
-              onChange={handleChange}
-            />
-            <h3 className="text-red-600">{errors.birthDate ? errors.birthDate : null}</h3>
+          {checkboxCUD === "SI" ? (
+            <section>
+              <h2 className="text-lg dark:text-gray-300">Código CUD</h2>
+              <input
+                className="h-8 rounded-3xl px-2 my-2 bg-gray-100 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+                type="text"
+                name="CUD"
+                value={userData.CUD}
+                onChange={handleChange}
+                placeholder="CODIGO CUD..."
+              />
+              <h3 className="text-red-600">{errors.CUD ? errors.CUD : null}</h3>
+            </section>
+          ) : null}
 
-            <h2 className="text-lg dark:text-gray-300">País</h2>
-            <select
-              className="h-8 rounded-3xl px-2 my-2 bg-gray-100 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
-              onChange={handleChange}
-              name="country"
-            >
-              <option value="default">Seleccioná un país...</option>
-              {country.map((p) => (
-                <option key={p} value={p}>
-                  {p}
-                </option>
-              ))}
-            </select>
-            <h3 className="text-red-600">{errors.country ? errors.country : null}</h3>
+          <h2 className="text-lg dark:text-gray-300">Email</h2>
+          <input
+            className="h-8 rounded-3xl px-2 my-2 bg-gray-100 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+            type="email"
+            name="email"
+            placeholder="email"
+            value={userData.email}
+            onChange={handleChange}
+          />
+          <h3 className="text-red-600">{errors.email ? errors.email : null}</h3>
 
-            <h2 className="text-lg dark:text-gray-300">Estado/Provincia</h2>
-            <select
-              className="h-8 rounded-3xl px-2 my-2 bg-gray-100 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
-              onChange={handleChange}
-              name="state"
-            >
-              <option value="default">Seleccioná un Estado/Provincia...</option>
-              {state.allStates?.map((s) => (
-                <option key={s.id} id={s.id} value={s.name}>
-                  {s.name}
-                </option>
-              ))}
-            </select>
-            <h3 className="text-red-600">{errors.state ? errors.state : null}</h3>
+          <h2 className="text-lg dark:text-gray-300">Contraseña</h2>
+          <input
+            className="h-8 rounded-3xl px-2 my-2 bg-gray-100 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+            type="password"
+            name="password"
+            placeholder="contraseña"
+            value={userData.password}
+            onChange={handleChange}
+          />
+          <h3 className="text-red-600">
+            {errors.password ? errors.password : null}
+          </h3>
 
-            <h2 className="text-lg dark:text-gray-300">Ciudad</h2>
-            <select
-              className="h-8 rounded-3xl px-2 my-2 bg-gray-100 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
-              onChange={handleChange}
-              name="city"
-            >
-              <option value="default">Seleccioná una Ciudad...</option>
-              {city.map((c) => (
+          <input
+            className="h-8 rounded-3xl px-2 my-2 bg-gray-100 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+            type="password"
+            name="passwordRep"
+            placeholder="repetir contraseña"
+            value={userData.passwordRep}
+            onChange={handleChange}
+          />
+          <h3 className="text-red-600">
+            {errors.passwordRep ? errors.passwordRep : null}
+          </h3>
+
+          <h2 className="text-lg dark:text-gray-300">
+            Tipo/s de Preferencia/s
+          </h2>
+          <select
+            className="h-8 rounded-3xl px-2 my-2 bg-gray-100 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+            onChange={handleCategory}
+            name="category"
+          >
+            <option value="default">rubro</option>
+            {category?.map((c) => {
+              return (
                 <option key={c} value={c}>
                   {c}
                 </option>
-              ))}
-            </select>
-            <h3 className="text-red-600">{errors.city ? errors.city : null}</h3>
+              );
+            })}
+          </select>
+          <br />
+          {userData.category.length ? (
+            <h2 className="text-lg dark:text-gray-300">
+              Rubros seleccionados:{" "}
+            </h2>
+          ) : null}
+          {userData.category.map((cat, i) => {
+            return (
+              <div key={i}>
+                <button
+                  className="bg-gray-200 dark:bg-gray-800 rounded-3xl p-1 m-1 dark:text-gray-300 hover:bg-red-500 dark:hover:bg-red-500"
+                  onClick={handleDelCategory}
+                  value={cat}
+                >
+                  {cat}
+                </button>
+              </div>
+            );
+          })}
+          <h3
+            className="text-red-600"
+            style={{ visibility: errors.category ? "visible" : "hidden" }}
+          >
+            {errors.category}
+          </h3>
 
-            <h2 className="text-lg dark:text-gray-300">Tenes Certificado Único de Discapacidad (CUD)?</h2>
-            <label>
-              {" "}
-              Si{" "}
-              <input
-                type="checkbox"
-                checked={checkboxCUD === "SI"}
-                onChange={() => handleCheckboxCUDChange("SI")}
-              />
-            </label>
-            <label>
-              {" "}
-              No{" "}
-              <input
-                type="checkbox"
-                checked={checkboxCUD === "NO"}
-                onChange={() => handleCheckboxCUDChange("NO")}
-              />
-            </label>
+          <h2 className="text-lg dark:text-gray-300">
+            Certificados (Opcional)
+          </h2>
+          <input
+            className="h-8 rounded-3xl px-2 my-2 bg-gray-100 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+            type="url"
+            name="certificates"
+            value={userData.certificates}
+            onChange={handleChange}
+          />
 
-            {checkboxCUD === "SI" ? (
-              <section>
-                <h2 className="text-lg dark:text-gray-300">Código CUD</h2>
-                <input
-                  className="h-8 rounded-3xl px-2 my-2 bg-gray-100 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
-                  type="text"
-                  name="CUD"
-                  value={userData.CUD}
-                  onChange={handleChange}
-                  placeholder="CODIGO CUD..."
-                />
-                <h3 className="text-red-600">{errors.CUD ? errors.CUD : null}</h3>
-              </section>
-            ) : null}
-
-            <h2 className="text-lg dark:text-gray-300">Email</h2>
+          <h2 className="text-lg dark:text-gray-300">Sos Freelancer?</h2>
+          <label>
+            {" "}
+            Si{" "}
             <input
-              className="h-8 rounded-3xl px-2 my-2 bg-gray-100 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
-              type="email"
-              name="email"
-              placeholder="email"
-              value={userData.email}
-              onChange={handleChange}
+              type="checkbox"
+              checked={checkboxFreelancer === "SI"}
+              onChange={() => handleCheckboxFreeChange("SI")}
             />
-            <h3 className="text-red-600">{errors.email ? errors.email : null}</h3>
-
-            <h2 className="text-lg dark:text-gray-300">Contraseña</h2>
+          </label>
+          <label>
+            {" "}
+            No{" "}
             <input
-              className="h-8 rounded-3xl px-2 my-2 bg-gray-100 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
-              type="password"
-              name="password"
-              placeholder="contraseña"
-              value={userData.password}
-              onChange={handleChange}
+              type="checkbox"
+              checked={checkboxFreelancer === "NO"}
+              onChange={() => handleCheckboxFreeChange("NO")}
             />
-            <h3 className="text-red-600">{errors.password ? errors.password : null}</h3>
+          </label>
 
-            <input
-              className="h-8 rounded-3xl px-2 my-2 bg-gray-100 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
-              type="password"
-              name="passwordRep"
-              placeholder="repetir contraseña"
-              value={userData.passwordRep}
-              onChange={handleChange}
-            />
-            <h3 className="text-red-600">{errors.passwordRep ? errors.passwordRep : null}
-            </h3>
-
-            <h2 className="text-lg dark:text-gray-300">Tipo/s de Preferencia/s</h2>
-            <select
-              className="h-8 rounded-3xl px-2 my-2 bg-gray-100 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
-              onChange={handleCategory}
-              name="category"
-            >
-              <option value="default">rubro</option>
-              {category?.map((c) => {
-                return (
-                  <option key={c} value={c}>
-                    {c}
-                  </option>
-                );
-              })}
-            </select>
-            <br />
-            {userData.category.length ? (
-              <h2 className="text-lg dark:text-gray-300">Rubros seleccionados: </h2>
-            ) : null}
-              {userData.category.map((cat, i) => {
-                return (
-                  <div key={i}>
-                    <button className="bg-gray-200 dark:bg-gray-800 rounded-3xl p-1 m-1 dark:text-gray-300 hover:bg-red-500 dark:hover:bg-red-500"
-                    onClick={handleDelCategory}
-                    value={cat}
-                    >{cat}
-                    </button>
-                  </div>
-                );
-              })}
-            <h3 className="text-red-600"
-              style={{ visibility: errors.category ? "visible" : "hidden" }}
-            >{errors.category}</h3>
-
-            <h2 className="text-lg dark:text-gray-300">Certificados (Opcional)</h2>
-            <input
-              className="h-8 rounded-3xl px-2 my-2 bg-gray-100 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
-              type="url"
-              name="certificates"
-              value={userData.certificates}
-              onChange={handleChange}
-            />
-
-            <h2 className="text-lg dark:text-gray-300">Sos Freelancer?</h2>
-            <label>
-              {" "}
-              Si{" "}
-              <input
-                type="checkbox"
-                checked={checkboxFreelancer === "SI"}
-                onChange={() => handleCheckboxFreeChange("SI")}
+          {checkboxFreelancer === "SI" ? (
+            <section>
+              <h2 className="text-lg dark:text-gray-300">
+                Descripción de tu Emprendimiento
+              </h2>
+              <textarea
+                className="rounded-3xl px-2 py-1 my-2 bg-gray-100 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+                type="text"
+                name="description"
+                placeholder="añadir descripcion"
+                value={userData.description}
+                onChange={handleChange}
+                cols="20"
+                rows="8"
               />
-            </label>
-            <label>
-              {" "}
-              No{" "}
+              <h3 className="text-red-600">
+                {errors.description ? errors.description : null}
+              </h3>
+
+              <h2 className="text-lg dark:text-gray-300">
+                Dirección de su negocio{" "}
+              </h2>
               <input
-                type="checkbox"
-                checked={checkboxFreelancer === "NO"}
-                onChange={() => handleCheckboxFreeChange("NO")}
+                className="rounded-3xl px-2 my-2 bg-gray-100 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+                type="text"
+                name="address"
+                value={userData.address}
+                onChange={handleChange}
               />
-            </label>
+              <h3 className="text-red-600">
+                {errors.address ? errors.address : null}
+              </h3>
+            </section>
+          ) : null}
 
-            {checkboxFreelancer === "SI" ? (
-              <section>
-                <h2 className="text-lg dark:text-gray-300">Descripción de tu Emprendimiento</h2>
-                <textarea
-                  className="rounded-3xl px-2 py-1 my-2 bg-gray-100 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
-                  type="text"
-                  name="description"
-                  placeholder="añadir descripcion"
-                  value={userData.description}
-                  onChange={handleChange}
-                  cols="20"
-                  rows="8"
-                />
-                <h3 className="text-red-600">{errors.description ? errors.description : null}</h3>
+          <div className="border-t-2 border-lime-600 dark:border-lime-700" />
 
-                <h2 className="text-lg dark:text-gray-300">Dirección de su negocio </h2>
-                <input
-                  className="rounded-3xl px-2 my-2 bg-gray-100 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
-                  type="text"
-                  name="address"
-                  value={userData.address}
-                  onChange={handleChange}
-                />
-                <h3 className="text-red-600">
-                  {errors.address ? errors.address : null}</h3>
-              </section>
-            ) : null}
+          <button
+            className="bg-gray-200 dark:bg-gray-800 rounded-3xl p-2 my-2 dark:text-gray-300"
+            type="submit"
+          >
+            REGISTRARME
+          </button>
 
-            <div className="border-t-2 border-lime-600 dark:border-lime-700"/>
+          <br />
 
-            <button
-              className="bg-gray-200 dark:bg-gray-800 rounded-3xl p-2 my-2 dark:text-gray-300"
-              type="submit"
-            >
-              REGISTRARME
+          <Link to={"/register-company"}>
+            <button className="bg-gray-200 dark:bg-gray-800 rounded-3xl p-2 dark:text-gray-300">
+              Registrarme como Empresa
             </button>
+          </Link>
 
-            <br />
-            
-            <Link to={"/register-company"}>
-              <button className="bg-gray-200 dark:bg-gray-800 rounded-3xl p-2 dark:text-gray-300">
-                Registrarme como Empresa
-              </button>
-            </Link>
-
-            <h3
-              className="text-red-600"
-              style={{
-                visibility: globalErrors?.CREATE_USER?.errors
-                  ? "visible"
-                  : "hidden",
-              }}
-            >{globalErrors?.CREATE_USER?.errors}</h3>
-          </form>
-        </div>
+          <h3
+            className="text-red-600"
+            style={{
+              visibility: globalErrors?.CREATE_USER?.errors
+                ? "visible"
+                : "hidden",
+            }}
+          >
+            {globalErrors?.CREATE_USER?.errors}
+          </h3>
+        </form>
       </div>
+    </div>
   );
 }
