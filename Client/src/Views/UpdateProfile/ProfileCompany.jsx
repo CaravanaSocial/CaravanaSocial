@@ -18,6 +18,7 @@ import UploadImage from "../../components/UploadImage";
 const ProfileCompany = () => {
   const dispatch = useDispatch();
   const account = JSON.parse(localStorage.account);
+  const accountId = localStorage.accId;
   const profilePicture = localStorage.profilePicture;
   const country = useSelector((state) => state.countries);
   const state = useSelector((state) => state.states);
@@ -34,8 +35,8 @@ const ProfileCompany = () => {
 
   const categories = account?.areaTrainings?.map((c) => c.name);
 
-  const companyIdRelacion = trainings.filter((x) => x.companyId === account.id);
-  const companyIdRelOffer = offers.filter((x) => x.companyId === account.id);
+  const companyIdRelacion = trainings.filter((x) => x.companyId === accountId);
+  const companyIdRelOffer = offers.filter((x) => x.companyId === accountId);
 
   const [edit, setEdit] = useState(false);
   const [error, setError] = useState({});
@@ -184,11 +185,16 @@ const ProfileCompany = () => {
     });
   };
 
+  const handleSaveImage = () => {
+    setEdit(false);
+    setKey(key + 1);
+  }
+
   return (
     <div className="h-full">
       <div className="flex">
         <div className="block text-center border-2 border-lime-600 dark:border-lime-700 rounded-3xl p-4 m-4">
-          <img key={key} src={account.profilePicture} className="inline-block w-72 rounded-full border-2 border-lime-600 dark:border-lime-700 mb-2"/>
+          <img key={key} src={profilePicture} className="inline-block w-72 rounded-full border-2 border-lime-600 dark:border-lime-700 mb-2"/>
           <h2 className="font-topmodern">{input.nameCompany}</h2>
 
           {edit === true ? (
@@ -201,7 +207,7 @@ const ProfileCompany = () => {
                   <UploadImage />
                   <button
                     className="bg-gray-300 dark:bg-gray-800 rounded-3xl p-2 dark:text-gray-300 mb-2 border-2 border-transparent hover:border-lime-600 dark:hover:border-lime-700"
-                    onClick={handleSubmit}
+                    onClick={handleSaveImage}
                   >Guardar imagen</button>
                 </div>
               ) : null}

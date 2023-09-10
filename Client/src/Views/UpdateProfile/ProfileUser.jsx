@@ -178,6 +178,11 @@ export default function ProfileUser() {
     }
   };
 
+  const handleSaveImage = () => {
+    setEdit(false);
+    setKey(key + 1);
+  }
+
   return (
     <div className="h-full">
       <section className="flex ">
@@ -202,7 +207,7 @@ export default function ProfileUser() {
               <UploadImage />
               <button
                 className="font-topmodern border-2 rounded border-light-1 bg-light-1 hover:text-white"
-                onClick={handleSubmit}
+                onClick={handleSaveImage}
               >
                 Guardar imagen
               </button>

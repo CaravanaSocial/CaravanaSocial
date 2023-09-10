@@ -3,7 +3,7 @@ import { useState } from "react";
 import assets from "../assets/images/loading.gif";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { editUser, imageChange } from "../Redux/Actions/Actions";
+import { editCompany, editUser, imageChange } from "../Redux/Actions/Actions";
 
 export default function UploadImage() {
   const dispatch = useDispatch();
@@ -31,9 +31,15 @@ export default function UploadImage() {
       .post("http://localhost:3001/image/upload", { image: base64 })
       .then((res) => {
         setUrl(res.data);
-        dispatch(editUser(localStorage.accId, { profilePicture: res.data }));
-        localStorage.setItem("profilePicture", res.data);
-        dispatch(imageChange());
+        if(localStorage.type === "user"){
+          dispatch(editUser(localStorage.accId, { profilePicture: res.data }))
+          localStorage.setItem("profilePicture", res.data);
+          dispatch(imageChange());
+        } else if (localStorage.type === "company") {
+          dispatch(editCompany(localStorage.accId, { profilePicture: res.data }))
+          localStorage.setItem("profilePicture", res.data);
+          dispatch(imageChange());
+        }
       })
       .then(() => setLoading(false))
       .catch(console.log);
