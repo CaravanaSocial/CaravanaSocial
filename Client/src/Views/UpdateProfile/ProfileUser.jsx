@@ -182,14 +182,8 @@ export default function ProfileUser() {
     <div className="h-full">
       <section className="flex ">
         <div className="flex flex-col text-center border-spacing-96 border-2 border-light-1 dark:border-light-1 rounded-3xl p-4 m-4">
-          <img key={key} className="h-[300px] w-[300px]" src={profilePicture} />
-          <UploadImage />
-          <button
-            className="font-topmodern border-2 rounded border-light-1 bg-light-1 hover:text-white"
-            onClick={handleSubmit}
-          >
-            Guardar imagen
-          </button>
+          <img key={key} className="h-[300px] w-[300px] rounded-full" src={profilePicture} />
+          
           <br />
           <h1 className="font-vilaka text-[30px] font-bold">
             {account.name + " " + account.lastName}
@@ -205,6 +199,13 @@ export default function ProfileUser() {
             </button>
           ) : (
             <div className="flex flex-col">
+              <UploadImage />
+              <button
+                className="font-topmodern border-2 rounded border-light-1 bg-light-1 hover:text-white"
+                onClick={handleSubmit}
+              >
+                Guardar imagen
+              </button>
               <input
                 className=" font-vilaka text-[22px] font-bold rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
                 name="name"
