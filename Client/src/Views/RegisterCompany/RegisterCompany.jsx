@@ -380,7 +380,7 @@ const RegisterCompany = () => {
             <div className="border-t-2 border-lime-600 dark:border-lime-700"/>
 
             <button
-              className="bg-gray-300 dark:bg-gray-800 rounded-3xl p-2 my-2 dark:text-gray-300"
+              className="bg-gray-300 dark:bg-gray-800 rounded-3xl p-2 my-2 dark:text-gray-300 border-2 border-transparent hover:border-lime-600 dark:hover:border-lime-700"
               style={
                 isSubmitDisabled
                   ? { opacity: "0.6", cursor: "not-allowed" }
@@ -394,7 +394,7 @@ const RegisterCompany = () => {
           </form>
 
           <NavLink to="/register-user">
-            <button className="bg-gray-300 dark:bg-gray-800 rounded-3xl p-2 dark:text-gray-300">
+            <button className="bg-gray-300 dark:bg-gray-800 rounded-3xl p-2 dark:text-gray-300 border-2 border-transparent hover:border-lime-600 dark:hover:border-lime-700">
               Registrarme como Usuario
             </button>
           </NavLink>
