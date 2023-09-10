@@ -1,17 +1,16 @@
-import TrainingCard from "./CardTrainings";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import {
   getCountry,
-  getTrainings,
-  filterTrainingBy,
   getCategories,
+  getFreelancers,
 } from "../../Redux/Actions/Actions";
 import { useEffect, useState } from "react";
+import CardFreelancer from "../../components/CardFreelancer";
 
-const Trainings = () => {
-  const trainings = useSelector((state) => state.trainings);
-  const trainingsFiltered = useSelector((state) => state.trainingsFiltered);
+const Freelancers = () => {
+  const freelancers = useSelector((state) => state.freelancers);
+
   const countries = useSelector((state) => state.countries);
   const category = useSelector((state) => state.categories);
   const dispatch = useDispatch();
@@ -22,17 +21,13 @@ const Trainings = () => {
   });
 
   useEffect(() => {
-    if (trainingsFiltered.length) {
-      return;
-    }
-    dispatch(getTrainings());
     dispatch(getCategories());
     dispatch(getCountry());
   }, []);
 
   useEffect(() => {
-    dispatch(filterTrainingBy(filter));
-  }, [filter]);
+    dispatch(getFreelancers());
+  }, []);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -43,7 +38,7 @@ const Trainings = () => {
   };
 
   return (
-    <div className="inline-block m-4 p-4 h-full text-center flex flex-col">
+    <div className="  first-letter:m-4 p-4 h-full items-center text-center flex flex-col ">
       <div className="border-spacing-96 border-2 border-zinc-100 dark:border-zinc-800 rounded-3xl pt-2 shadow-md">
         <span className="font-topmodern">Filtrar por : </span>
         <select
@@ -76,14 +71,14 @@ const Trainings = () => {
           })}
         </select>
       </div>
-      <h1 className="font-vilaka font-bold text-[50px]">Entrenamientos</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {trainingsFiltered?.map((training) => (
-          <TrainingCard key={training.id} training={training} />
+      <h1 className="font-vilaka font-bold text-[50px]">Freelancers</h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-20">
+        {freelancers?.map((freelancer) => (
+          <CardFreelancer key={freelancer.id} freelancer={freelancer} />
         ))}
       </div>
     </div>
   );
 };
 
-export default Trainings;
+export default Freelancers;
