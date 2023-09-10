@@ -50,11 +50,9 @@ export const TRAINING_FILTER = "TRAINING_FILTER";
 
 export const IMAGECHANGE = "IMAGECHANGE";
 
-
 export const TRAINING_DETAIL = "TRAINING_DETAIL";
 
 export const COMMENTS_POST = "COMMENTS_POST";
-
 
 export const COMPANY_DETAIL = "COMPANY_DETAIL";
 
