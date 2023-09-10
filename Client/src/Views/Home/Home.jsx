@@ -38,6 +38,10 @@ const Home = () => {
     navigate("/home-offers");
   };
 
+  const handleFrelancer = () => {
+    navigate("/home-freelancers");
+  };
+
   return (
     <main>
       {localStorage.length !== 0 ? (
@@ -52,17 +56,11 @@ const Home = () => {
 
               <Slider>
                 {freelancers.map((item) => (
-                  <CardFreelancer
-                    key={item.id}
-                    name={item.name}
-                    id={item.id}
-                    location={item.location}
-                    description={item.description}
-                  />
+                  <CardFreelancer key={item.id} freelancer={item} />
                 ))}
               </Slider>
               <button
-                onClick={() => handleOffer()}
+                onClick={() => handleFrelancer()}
                 className="font-topmodern border-2  hover:text-light-1  border-light-1 rounded p-1 "
               >
                 Ver Mas

@@ -21,8 +21,7 @@ import { useLocation } from "react-router-dom";
 import DetailTrainings from "./Views/Trainings/TrainingDatail.jsx";
 import CompanyDetail from "./Views/CompanyDetail/CompanyDetail.jsx";
 import CreateSuccesCase from "./Views/CreateSuccessCase/CreateSuccesCase.jsx";
-
-
+import Freelancers from "./Views/Freelancers/Freelancers.jsx";
 
 function App() {
   const account =
@@ -49,9 +48,9 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/home-trainings" element={<Trainings />} />
           <Route path="/home-offers" element={<Offer />} />
+          <Route path="/home-freelancers" element={<Freelancers />} />
           <Route path="/trainings/:id" element={<TrainingVideosPage />} />
           <Route path="/trainings/video/:id" element={<VideosTrainings />} />
-
           <Route
             path={
               localStorage.length !== 0
@@ -61,9 +60,9 @@ function App() {
             element={<ProfileUser />}
           />
           <Route path="/profile-company" element={<ProfileCompany />} />
-          <Route path="/training/detail/:id" element={<DetailTrainings/>} />
-          <Route path="/company/:id" element={<CompanyDetail/>}/>
-          <Route path="/home/freelancer/:id" element={<FreelancerDetail/>}/>
+          <Route path="/training/detail/:id" element={<DetailTrainings />} />
+          <Route path="/company/:id" element={<CompanyDetail />} />
+          <Route path="/freelancer/:id" element={<FreelancerDetail />} />
         </Routes>
         <Footer />
       </div>
