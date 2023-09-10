@@ -3,7 +3,7 @@ import { useState } from "react";
 import assets from "../assets/images/loading.gif";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { editUser, imageChange } from "../Redux/Actions/Actions";
+import { editCompany, editUser, imageChange } from "../Redux/Actions/Actions";
 
 export default function UploadImage() {
   const dispatch = useDispatch();
@@ -31,9 +31,15 @@ export default function UploadImage() {
       .post("http://localhost:3001/image/upload", { image: base64 })
       .then((res) => {
         setUrl(res.data);
-        dispatch(editUser(localStorage.accId, { profilePicture: res.data }));
-        localStorage.setItem("profilePicture", res.data);
-        dispatch(imageChange());
+        if(localStorage.type === "user"){
+          dispatch(editUser(localStorage.accId, { profilePicture: res.data }))
+          localStorage.setItem("profilePicture", res.data);
+          dispatch(imageChange());
+        } else if (localStorage.type === "company") {
+          dispatch(editCompany(localStorage.accId, { profilePicture: res.data }))
+          localStorage.setItem("profilePicture", res.data);
+          dispatch(imageChange());
+        }
       })
       .then(() => setLoading(false))
       .catch(console.log);
@@ -73,7 +79,7 @@ export default function UploadImage() {
       <div className="flex items-center justify-center w-full">
         <label
           htmlFor="dropzone-file"
-          className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
+          className="flex flex-col items-center justify-center w-full h-64 border-2 border-lime-600 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-lime-700 dark:hover:border-gray-500 dark:hover:bg-gray-600"
         >
           <div className="flex flex-col items-center justify-center pt-5 pb-6">
             <svg

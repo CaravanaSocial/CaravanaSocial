@@ -54,7 +54,6 @@ export const TRAINING_DETAIL = "TRAINING_DETAIL";
 
 export const COMMENTS_POST = "COMMENTS_POST";
 
-
 export const COMPANY_DETAIL = "COMPANY_DETAIL";
 
 // const serverURL = "https://caravanaserver.onrender.com";

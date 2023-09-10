@@ -80,7 +80,7 @@ export default function Login() {
             ) : null}
             <br />
             <button
-              className="bg-gray-300 dark:bg-gray-800 rounded-3xl p-2 my-1 dark:text-gray-300"
+              className="bg-gray-300 dark:bg-gray-800 rounded-3xl p-2 my-1 dark:text-gray-300 border-2 border-transparent hover:border-lime-600 dark:hover:border-lime-700"
               onClick={handleSubmit}
               type="submit"
             >
@@ -119,7 +119,7 @@ export default function Login() {
             <br />
 
             <Link to="/">
-              <button className="bg-gray-300 dark:bg-gray-800 rounded-3xl p-2 my-2 dark:text-gray-300">
+              <button className="bg-gray-300 dark:bg-gray-800 rounded-3xl p-2 my-2 dark:text-gray-300 border-2 border-transparent hover:border-lime-600 dark:hover:border-lime-700">
                 Has olvidado tu contraseña?
               </button>
             </Link>
@@ -128,12 +128,12 @@ export default function Login() {
             </h4>
             <h4 className="dark:text-gray-200">Registrate</h4>
             <Link to="/register-user">
-              <button className="bg-gray-300 dark:bg-gray-800 rounded-3xl p-2 mr-1 mt-1 dark:text-gray-300">
+              <button className="bg-gray-300 dark:bg-gray-800 rounded-3xl p-2 mr-1 mt-1 dark:text-gray-300 border-2 border-transparent hover:border-lime-600 dark:hover:border-lime-700">
                 Usuario
               </button>
             </Link>
             <Link to="/register-company">
-              <button className="bg-gray-300 dark:bg-gray-800 rounded-3xl p-2 ml-1 mt-1 dark:text-gray-300">
+              <button className="bg-gray-300 dark:bg-gray-800 rounded-3xl p-2 ml-1 mt-1 dark:text-gray-300 border-2 border-transparent hover:border-lime-600 dark:hover:border-lime-700">
                 Empresa
               </button>
             </Link>

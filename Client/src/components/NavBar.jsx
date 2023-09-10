@@ -2,11 +2,10 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/images/logo.png";
 import { CgProfile } from "react-icons/cg";
-import { CgMenu } from "react-icons/cg";
 import { CgSearch } from "react-icons/cg";
 import { CgHomeAlt } from "react-icons/cg";
 import { useDispatch, useSelector } from "react-redux";
-import { companyButtons, getOffers, getTrainings, logOut } from "../Redux/Actions/Actions";
+import { companyButtons, logOut } from "../Redux/Actions/Actions";
 import { useNavigate } from "react-router-dom";
 
 export default function NavBar() {

@@ -190,7 +190,7 @@ export default function createTrainings() {
           )}
 
           <button
-            className="bg-gray-300 dark:bg-gray-800 rounded-3xl p-2 my-2 dark:text-gray-300"
+            className="bg-gray-300 dark:bg-gray-800 rounded-3xl p-2 my-2 dark:text-gray-300 border-2 border-transparent hover:border-lime-600 dark:hover:border-lime-700"
             type="submit"
             onClick={handleSubmit}
             disabled={disabled}

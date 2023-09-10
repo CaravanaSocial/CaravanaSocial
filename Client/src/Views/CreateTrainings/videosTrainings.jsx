@@ -73,7 +73,7 @@ export default function VideosTrainings() {
             placeholder="Url..."
           />
 
-          <button className="align-middle bg-gray-300 dark:bg-gray-800 mx-2 px-2 pb-1 mb-1 dark:text-gray-300 rounded-3xl"
+          <button className="align-middle bg-gray-300 dark:bg-gray-800 mx-2 px-2 pb-1 mb-1 dark:text-gray-300 rounded-3xl border-2 border-transparent hover:border-lime-600 dark:hover:border-lime-700"
             type="submit"
             onClick={handleSubmitVideo}
           >+</button>
@@ -97,7 +97,8 @@ export default function VideosTrainings() {
             </div>
           </CloudinaryContext>
           
-          <button onClick={(e) => handleClick(e)}>SUBMIT</button>
+          <button className="bg-gray-300 dark:bg-gray-800 rounded-3xl p-2 my-2 dark:text-gray-300 border-2 border-transparent hover:border-lime-600 dark:hover:border-lime-700"
+            onClick={(e) => handleClick(e)}>SUBMIT</button>
         </div>
       </div>
     </div>
