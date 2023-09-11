@@ -5,19 +5,14 @@ import * as actions from '../../../Redux/Actions/Actions'
 
 export default function DetailOffer() {
     const {title} = useParams()
-    // const dispatch = useDispatch()
-    // const offer = useSelector(state => state.offer)
-    const selector = useSelector(state => state.offers)
+    const dispatch = useDispatch()
+    const oferta = useSelector(state => state.offer)
     
-    // React.useEffect(async()=>{
-    //      dispatch(actions.getOfferByName(title))
-    // },[])
+    React.useEffect(()=>{
+         dispatch(actions.getOfferByName(title))
+    },[])
 
-    const [offer] = selector.filter((offer)=>{
-        if(offer.title == title){
-            return offer
-        }
-    })
+    console.log(oferta)
 
   return (
     <div className="bg-gray-100 p-4">
@@ -26,15 +21,15 @@ export default function DetailOffer() {
         {/* Div izquierdo */}
         <div className="w-2/4 flex justify-end items-center">
             <div className="bg-white rounded-lg p-4 shadow-md text-center" style={{ width: '300px' }}>
-                <h1 className="w-full h-48 object-cover rounded-t-lg">{offer.company.nameCompany}</h1>
+                <h1 className="w-full h-48 object-cover rounded-t-lg">{oferta?.company?.nameCompany}</h1>
                 {/* <img
                     src="ruta-de-tu-imagen.jpg"
                     alt="Imagen de la oferta laboral"
                     className="w-full h-48 object-cover rounded-t-lg"
                 /> */}
-                <h2 className="text-2xl font-semibold mt-2">{offer.title}</h2>
+                <h2 className="text-2xl font-semibold mt-2">{oferta?.title}</h2>
                 <p className="text-gray-600">
-                    {offer.description}
+                    {oferta?.description}
                 </p>
             </div>
         </div>
