@@ -14,7 +14,10 @@ export default function CardFreelancer(props) {
 
   return (
     <div className="border-2 flex-col border-light-1 hover:scale-95 bg-white p-4 rounded-3xl shadow-md  w-[370px] sm:h-full sm:w-[400px] flex justify-center">
-      <img className="h-[400px] rounded-[666px] " src={imagen} />
+      <img
+        className="h-[400px] rounded-[666px] "
+        src={props.freelancer.profilePicture}
+      />
       <section>
         <h1 className="font-topmodern">{props.freelancer.name}</h1>
 

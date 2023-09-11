@@ -188,59 +188,75 @@ const ProfileCompany = () => {
   const handleSaveImage = () => {
     setEdit(false);
     setKey(key + 1);
-  }
+  };
 
   return (
     <div className="h-full">
       <div className="flex">
-        <div className="block text-center border-2 border-lime-600 dark:border-lime-700 rounded-3xl p-4 m-4">
-          <img key={key} src={profilePicture} className="inline-block w-72 rounded-full border-2 border-lime-600 dark:border-lime-700 mb-2"/>
+        <div className="block text-center border-2 border-light-1 dark:border-light-1 rounded-3xl p-4 m-4">
+          <img
+            key={key}
+            src={profilePicture}
+            className="inline-block w-72 rounded-full border-2 border-light-1 dark:border-light-1 mb-2"
+          />
           <h2 className="font-topmodern">{input.nameCompany}</h2>
 
           {edit === true ? (
             <div>
-              <button className="bg-gray-300 dark:bg-gray-800 rounded-3xl p-2 dark:text-gray-300 mb-2 border-2 border-transparent hover:border-lime-600 dark:hover:border-lime-700"
-                onClick={handleImage}>Editar imagen de perfil</button>
+              <button
+                className="bg-gray-300 dark:bg-gray-800 rounded-3xl p-2 dark:text-gray-300 mb-2 border-2 border-transparent hover:border-light-1 dark:hover:border-light-1"
+                onClick={handleImage}
+              >
+                Editar imagen de perfil
+              </button>
 
               {image === true ? (
                 <div>
                   <UploadImage />
                   <button
-                    className="bg-gray-300 dark:bg-gray-800 rounded-3xl p-2 dark:text-gray-300 mb-2 border-2 border-transparent hover:border-lime-600 dark:hover:border-lime-700"
+                    className="bg-gray-300 dark:bg-gray-800 rounded-3xl p-2 dark:text-gray-300 mb-2 border-2 border-transparent hover:border-light-1 dark:hover:border-light-1"
                     onClick={handleSaveImage}
-                  >Guardar imagen</button>
+                  >
+                    Guardar imagen
+                  </button>
                 </div>
               ) : null}
 
               <h2 className="font-topmodern">Nombre</h2>
               <input
-                className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+                className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
                 onChange={handleChange}
                 value={input.name}
                 type="text"
                 placeholder="Escribe tu nombre"
                 name="name"
               />
-              <p className="text-red-600"
+              <p
+                className="text-red-600"
                 style={{ visibility: error.name ? "visible" : "hidden" }}
-              >{error.name}</p>
+              >
+                {error.name}
+              </p>
 
               <h2 className="font-topmodern">Apellido</h2>
               <input
-                className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+                className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
                 onChange={handleChange}
                 value={input.lastName}
                 type="text"
                 placeholder="Escribe tu apellido"
                 name="lastName"
               />
-              <p className="text-red-600"
+              <p
+                className="text-red-600"
                 style={{ visibility: error.lastName ? "visible" : "hidden" }}
-              >{error.lastName}</p>
-              
+              >
+                {error.lastName}
+              </p>
+
               <h2 className="font-topmodern">Cargo</h2>
               <input
-                className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+                className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
                 onChange={handleChange}
                 value={input.position}
                 type="text"
@@ -250,113 +266,139 @@ const ProfileCompany = () => {
               <p
                 className="text-red-600"
                 style={{ visibility: error.position ? "visible" : "hidden" }}
-              >{error.position}</p>
+              >
+                {error.position}
+              </p>
 
               <h2 className="font-topmodern">Empresa</h2>
               <input
-                className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+                className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
                 onChange={handleChange}
                 value={input.nameCompany}
                 type="text"
                 placeholder="Nombre de la Empresa"
                 name="nameCompany"
               />
-              <p className="text-red-600"
+              <p
+                className="text-red-600"
                 style={{ visibility: error.nameCompany ? "visible" : "hidden" }}
-              >{error.nameCompany}</p>
+              >
+                {error.nameCompany}
+              </p>
 
               <h2 className="font-topmodern">Localizacion</h2>
               <select
-                className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+                className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
                 onChange={handleLocation}
                 name="country"
               >
                 <option value="default">{account.location.country}</option>
                 {country.map((p) => {
                   return (
-                    <option key={p} value={p}>{p}</option>
+                    <option key={p} value={p}>
+                      {p}
+                    </option>
                   );
                 })}
               </select>
               <br />
 
               <select
-                className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+                className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
                 onChange={handleLocation}
                 name="state"
               >
                 <option value="default">{account.location.state}</option>
                 {state.allStates?.map((p) => {
                   return (
-                    <option key={p.id} id={p.id} value={p.name}>{p.name}</option>
+                    <option key={p.id} id={p.id} value={p.name}>
+                      {p.name}
+                    </option>
                   );
                 })}
               </select>
               <br />
               <select
-                className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+                className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
                 name="city"
                 onChange={handleLocation}
               >
                 <option value="default">{account.location.city}</option>
                 {city?.map((p) => {
                   return (
-                    <option key={p} value={p}>{p}</option>
+                    <option key={p} value={p}>
+                      {p}
+                    </option>
                   );
                 })}
               </select>
               <p
                 className="text-red-600"
                 style={{ visibility: error.location ? "visible" : "hidden" }}
-              >{error.location}</p>
-              
+              >
+                {error.location}
+              </p>
+
               <select
-                className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+                className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
                 onChange={handleCategory}
                 name="category"
               >
                 <option value="default">Rubro</option>
                 {category?.map((c) => {
                   return (
-                    <option key={c} value={c}>{c}</option>
+                    <option key={c} value={c}>
+                      {c}
+                    </option>
                   );
                 })}
               </select>
               <br />
               {input.category.length ? (
-                <h2 className="text-lg dark:text-gray-300">Rubros seleccionados: </h2>
+                <h2 className="text-lg dark:text-gray-300">
+                  Rubros seleccionados:{" "}
+                </h2>
               ) : null}
               {input.category.map((cat, i) => {
                 return (
                   <div key={i}>
-                    <button className="bg-gray-300 dark:bg-gray-800 rounded-3xl px-2 py-1 m-1 dark:text-gray-300 hover:bg-red-500 dark:hover:bg-red-500"
-                    onClick={handleDelCategory}
-                    value={cat}
-                    >{cat}</button>
+                    <button
+                      className="bg-gray-300 dark:bg-gray-800 rounded-3xl px-2 py-1 m-1 dark:text-gray-300 hover:bg-red-500 dark:hover:bg-red-500"
+                      onClick={handleDelCategory}
+                      value={cat}
+                    >
+                      {cat}
+                    </button>
                   </div>
                 );
               })}
-              <p className="text-red-600"
+              <p
+                className="text-red-600"
                 style={{ visibility: error.category ? "visible" : "hidden" }}
-              >{error.category}</p>
+              >
+                {error.category}
+              </p>
 
               <h2 className="font-topmodern">Telefono</h2>
               <input
-                className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+                className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
                 onChange={handleChange}
                 value={input.phone}
                 type="tel"
                 placeholder="Telefono"
                 name="phone"
               />
-              <p className="text-red-600"
+              <p
+                className="text-red-600"
                 style={{ visibility: error.phone ? "visible" : "hidden" }}
-              >{error.phone}</p>
+              >
+                {error.phone}
+              </p>
 
               <h2 className="font-topmodern">Descripción</h2>
               <br />
               <textarea
-                className="rounded-3xl px-2 py-1 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+                className="rounded-3xl px-2 py-1 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
                 onChange={handleChange}
                 value={input.description}
                 placeholder="Añade una descripción de tu empresa..."
@@ -364,55 +406,76 @@ const ProfileCompany = () => {
                 cols="28"
                 rows="8"
               />
-              <p className="text-red-600"
+              <p
+                className="text-red-600"
                 style={{ visibility: error.description ? "visible" : "hidden" }}
-              >{error.description}</p>
+              >
+                {error.description}
+              </p>
 
               <button
-                className="bg-gray-300 dark:bg-gray-800 rounded-3xl p-2 dark:text-gray-300 mr-1 border-2 border-transparent hover:border-lime-600 dark:hover:border-lime-700"
+                className="bg-light-1 font-topmodern dark:bg-gray-800 rounded-3xl p-2 dark:text-gray-300 mr-1 border-2 border-transparent hover:text-white dark:hover:border-light-1"
                 onClick={(event) => handleSubmit(event)}
                 type="submit"
-              >Guardar</button>
+              >
+                Guardar
+              </button>
 
               <button
-                className="bg-gray-300 dark:bg-gray-800 rounded-3xl p-2 dark:text-gray-300 ml-1 border-2 border-transparent hover:border-lime-600 dark:hover:border-lime-700"
+                className="bg-gray-300 dark:bg-gray-800 rounded-3xl p-2 dark:text-gray-300 ml-1 border-2 border-transparent hover:border-light-1 dark:hover:border-light-1"
                 onClick={handleCancel}
-              >Cancelar</button>
+              >
+                Cancelar
+              </button>
 
-              <p className="text-red-600"
-                style={{ visibility: globalErrors?.EDIT_COMPANY?.error ? "visible" : "hidden" }}
-              >{globalErrors?.EDIT_COMPANY?.error}</p>
+              <p
+                className="text-red-600"
+                style={{
+                  visibility: globalErrors?.EDIT_COMPANY?.error
+                    ? "visible"
+                    : "hidden",
+                }}
+              >
+                {globalErrors?.EDIT_COMPANY?.error}
+              </p>
             </div>
           ) : (
             <button
-              className="bg-gray-300 dark:bg-gray-800 rounded-3xl p-2 my-2 dark:text-gray-300 border-2 border-transparent hover:border-lime-600 dark:hover:border-lime-700"
+              className="bg-gray-300 dark:bg-gray-800 rounded-3xl p-2 my-2 dark:text-gray-300 border-2 border-transparent hover:border-light-1 dark:hover:border-light-1"
               onClick={() => handleEdit()}
-            >Editar perfil</button>
+            >
+              Editar perfil
+            </button>
           )}
         </div>
 
         <div className="block">
-          <div className="my-4 mr-4 border-2 rounded-3xl border-lime-600 dark:border-lime-700">
+          <div className="my-4 mr-4 border-2 rounded-3xl border-light-1 dark:border-light-1">
             <div className="flex justify-between m-2">
-              <h1 className="text-xl bg-gray-300 dark:bg-gray-800 rounded-3xl px-2 pb-2 pt-1 dark:text-gray-300"
-              >Mis capacitaciones</h1>
+              <h1 className="text-xl bg-gray-300 dark:bg-gray-800 rounded-3xl px-2 pb-2 pt-1 dark:text-gray-300">
+                Mis capacitaciones
+              </h1>
 
               <NavLink to="/create-trainings">
-                <button className="bg-gray-300 dark:bg-gray-800 rounded-3xl px-2 pb-2 pt-1 ml-2 dark:text-gray-300 border-2 border-transparent hover:border-lime-600 dark:hover:border-lime-700">
-                Crear</button>
+                <button className="bg-gray-300 dark:bg-gray-800 rounded-3xl px-2 pb-2 pt-1 ml-2 dark:text-gray-300 border-2 border-transparent hover:border-light-1 dark:hover:border-light-1">
+                  Crear
+                </button>
               </NavLink>
             </div>
-            
+
             <div className="m-2">
               {companyIdRelacion.length ? (
                 <div className="flex flex-wrap">
                   {companyIdRelacion.map((t) => {
                     return (
                       <div className="flex justify-center">
-                        <div className="text-center m-1 border-2 border-lime-600 dark:border-lime-700 hover:scale-95 p-4 rounded-3xl w-[300px]">
-                          <h2 className="text-xl border-b-2 border-lime-600 dark:border-lime-700 mb-2">{t.name}</h2>
+                        <div className="text-center m-1 border-2 border-light-1 dark:border-light-1 hover:scale-95 p-4 rounded-3xl w-[300px]">
+                          <h2 className="text-xl border-b-2 border-light-1 dark:border-light-1 mb-2">
+                            {t.name}
+                          </h2>
                           <div>
-                            <video className="inline-block border-2 border-lime-600 dark:border-lime-700 rounded-3xl"
+                            <video
+                              className="inline-block border-2 border-light-1 dark:border-light-1 rounded-3xl"
                               src={t.video[0]}
                               controls
                               width="200"
@@ -432,25 +495,29 @@ const ProfileCompany = () => {
             </div>
           </div>
 
-          <div className="my-4 mr-4 border-2 rounded-3xl border-lime-600 dark:border-lime-700">
+          <div className="my-4 mr-4 border-2 rounded-3xl border-light-1 dark:border-light-1">
             <div className="flex justify-between m-2">
-              <h1 className="text-xl bg-gray-300 dark:bg-gray-800 rounded-3xl px-2 pb-2 pt-1 dark:text-gray-300"
-              >Mis ofertas de trabajo</h1>
+              <h1 className="text-xl bg-gray-300 dark:bg-gray-800 rounded-3xl px-2 pb-2 pt-1 dark:text-gray-300">
+                Mis ofertas de trabajo
+              </h1>
 
               <NavLink to="/create-jobs">
-                <button className="bg-gray-300 dark:bg-gray-800 rounded-3xl px-2 pb-2 pt-1 ml-2 dark:text-gray-300 border-2 border-transparent hover:border-lime-600 dark:hover:border-lime-700">
-                Crear</button>
+                <button className="bg-gray-300 dark:bg-gray-800 rounded-3xl px-2 pb-2 pt-1 ml-2 dark:text-gray-300 border-2 border-transparent hover:border-light-1 dark:hover:border-light-1">
+                  Crear
+                </button>
               </NavLink>
             </div>
-            
+
             <div className="m-2">
               {companyIdRelOffer.length ? (
                 <div className="flex flex-wrap">
                   {companyIdRelOffer.map((o) => {
                     return (
                       <div className="flex justify-center">
-                        <div className="text-center m-1 border-2 border-lime-600 dark:border-lime-700 hover:scale-95 p-4 rounded-3xl w-[300px]">
-                          <h2 className="text-xl border-b-2 border-lime-600 dark:border-lime-700 mb-2">{o.title}</h2>
+                        <div className="text-center m-1 border-2 border-light-1 dark:border-light-1 hover:scale-95 p-4 rounded-3xl w-[300px]">
+                          <h2 className="text-xl border-b-2 border-light-1 dark:border-light-1 mb-2">
+                            {o.title}
+                          </h2>
                           <h2 className="text-xl">Descripcion:</h2>
                           <h3 className="text-lg">{o.description}</h3>
                         </div>

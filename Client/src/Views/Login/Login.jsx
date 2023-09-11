@@ -80,7 +80,7 @@ export default function Login() {
             ) : null}
             <br />
             <button
-              className="bg-gray-300 font-topmodern dark:bg-gray-800 rounded-3xl p-2 my-1 dark:text-gray-300 border-2 border-transparent hover:border-light-1 dark:hover:border-light-1"
+              className="bg-light-1 font-topmodern dark:bg-gray-800 rounded-3xl p-2 my-1 dark:text-gray-300 border-2 border-transparent hover:text-white dark:hover:border-light-1"
               onClick={handleSubmit}
               type="submit"
             >
