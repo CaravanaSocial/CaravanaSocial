@@ -177,237 +177,288 @@ const RegisterCompany = () => {
   };
 
   return (
-      <div className="flex justify-center">
-        <div className="justify-center text-center border-2 border-lime-600 dark:border-lime-700 rounded-3xl p-4 m-4">
-          <h1 className="text-3xl mb-1 dark:text-gray-300">
-            Registrarme como empresa
-          </h1>
+    <div className="flex justify-center">
+      <div className="justify-center text-center border-2 border-light-1 dark:border-light-1 rounded-3xl p-4 m-4">
+        <h1 className="text-3xl mb-1 font-vilaka font-bold  text-[50px] dark:text-gray-300">
+          Registrarme como empresa
+        </h1>
 
-          <div className="border-t-2 border-lime-600 dark:border-lime-700"/>
+        <div className="border-t-2 border-light-1 dark:border-light-1" />
 
-          <form onSubmit={handleSubmit}>
-            <h2 className="text-lg dark:text-gray-300">Nombre: </h2>
-            <input
-              className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
-              onChange={handleInputs}
-              type="text"
-              placeholder="Escribe tu nombre"
-              name="name"
-            />
-            <h3 className="text-red-600"
-              style={{ visibility: error.name ? "visible" : "hidden" }}
-            >{error.name}</h3>
-
-            <h2 className="text-lg dark:text-gray-300">Apellido: </h2>
-            <input
-              className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
-              onChange={handleInputs}
-              type="text"
-              placeholder="Escribe tu apellido"
-              name="lastName"
-            />
-            <h3 className="text-red-600"
-              style={{ visibility: error.lastName ? "visible" : "hidden" }}
-            >{error.lastName}</h3>
-
-            <h2 className="text-lg dark:text-gray-300">Cargo: </h2>
-            <input
-              className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
-              onChange={handleInputs}
-              type="text"
-              placeholder="Cargo"
-              name="position"
-            />
-            <h3 className="text-red-600"
-              style={{ visibility: error.position ? "visible" : "hidden" }}
-            >{error.position}</h3>
-
-            <h2 className="text-lg dark:text-gray-300">Empresa: </h2>
-            <input
-              className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
-              onChange={handleInputs}
-              type="text"
-              placeholder="Nombre de la Empresa"
-              name="nameCompany"
-            />
-            <h3 className="text-red-600"
-              style={{ visibility: error.nameCompany ? "visible" : "hidden" }}
-            >{error.nameCompany}</h3>
-
-            <select
-              className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
-              onChange={handleLocation}
-              name="country"
-            >
-              <option value="default">pais</option>
-              {country.map((p) => {
-                return (
-                  <option key={p} value={p}>
-                    {p}
-                  </option>
-                );
-              })}
-            </select>
-            <br />
-            <select
-              className="h-8 mr-1 w-auto rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
-              onChange={handleLocation}
-              name="state"
-            >
-              <option value="default">estado</option>
-              {state.allStates?.map((p) => {
-                return (
-                  <option key={p.id} id={p.id} value={p.name}>
-                    {p.name}
-                  </option>
-                );
-              })}
-            </select>
-
-            <select
-              className="h-8 ml-1 w-auto rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
-              name="city"
-              onChange={handleLocation}
-            >
-              <option value="default">ciudad</option>
-              {city?.map((p) => {
-                return (
-                  <option key={p} value={p}>
-                    {p}
-                  </option>
-                );
-              })}
-            </select>
-            <h3 className="text-red-600"
-              style={{ visibility: error.location ? "visible" : "hidden" }}
-            >{error.location}</h3>
-
-            <select
-              className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
-              onChange={handleCategory}
-              name="category"
-            >
-              <option value="default">rubro</option>
-              {category?.map((c) => {
-                return (
-                  <option key={c} value={c}>
-                    {c}
-                  </option>
-                );
-              })}
-            </select>
-            <br />
-            {companyInput.category.length ? (
-              <h2 className="text-lg dark:text-gray-300">Rubros seleccionados: </h2>
-            ) : null}
-              {companyInput.category.map((cat, i) => {
-                return (
-                  <div key={i}>
-                    <button className="bg-gray-300 dark:bg-gray-800 rounded-3xl px-2 py-1 m-1 dark:text-gray-300 hover:bg-red-500 dark:hover:bg-red-500"
-                    onClick={handleDelCategory}
-                    value={cat}
-                    >{cat}
-                    </button>
-                  </div>
-                );
-              })}
-            <h3 className="text-red-600"
-              style={{ visibility: error.category ? "visible" : "hidden" }}
-            >{error.category}</h3>
-
-            <h2 className="text-lg dark:text-gray-300">Telefono: </h2>
-            <span>{state.code}</span>
-
-            <input
-              className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
-              onChange={handleInputs}
-              type="tel"
-              placeholder="Telefono"
-              name="phone"
-            />
-            <h3 className="text-red-600"
-              style={{ visibility: error.phone ? "visible" : "hidden" }}
-            >{error.phone}</h3>
-
-            <h2 className="text-lg dark:text-gray-300">Email: </h2>
-            <input
-              className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
-              onChange={handleInputs}
-              type="text"
-              placeholder="Email de la empresa..."
-              name="email"
-            />
-            <h3 className="text-red-600"
-              style={{ visibility: error.email ? "visible" : "hidden" }}
-            >{error.email}</h3>
-
-            <h2 className="text-lg dark:text-gray-300">Contraseña</h2>
-            <input
-              className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
-              onChange={handleInputs}
-              type="password"
-              placeholder="Contraseña..."
-              name="password"
-            />
-            <br />
-            <h3 className="text-red-600"
-              style={{ visibility: error.password ? "visible" : "hidden" }}
-            >{error.password}</h3>
-            <input
-              className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
-              onChange={handleInputs}
-              type="password"
-              placeholder="Repite la Contraseña..."
-              name="passwordRep"
-            />
-            <h3 className="text-red-600"
-              style={{ visibility: error.passwordRep ? "visible" : "hidden" }}
-            >{error.passwordRep}</h3>
-
-            <h2 className="text-lg dark:text-gray-300">Descripción</h2>
-            <textarea
-              className="rounded-3xl px-2 py-1 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
-              onChange={handleInputs}
-              placeholder="Añade una descripción de tu empresa..."
-              name="description"
-              cols="28"
-              rows="8"
-            />
-            <h3 className="text-red-600"
-              style={{ visibility: error.description ? "visible" : "hidden" }}
-            >{error.description}</h3>
-
-            <div className="border-t-2 border-lime-600 dark:border-lime-700"/>
-
-            <button
-              className="bg-gray-300 dark:bg-gray-800 rounded-3xl p-2 my-2 dark:text-gray-300"
-              style={
-                isSubmitDisabled
-                  ? { opacity: "0.6", cursor: "not-allowed" }
-                  : null
-              }
-              disabled={isSubmitDisabled}
-              type="submit"
-            >
-              Enviar
-            </button>
-          </form>
-
-          <NavLink to="/register-user">
-            <button className="bg-gray-300 dark:bg-gray-800 rounded-3xl p-2 dark:text-gray-300">
-              Registrarme como Usuario
-            </button>
-          </NavLink>
-          <p
+        <form onSubmit={handleSubmit}>
+          <h2 className="text-lg font-topmodern dark:text-gray-300">
+            Nombre:{" "}
+          </h2>
+          <input
+            className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
+            onChange={handleInputs}
+            type="text"
+            placeholder="Escribe tu nombre"
+            name="name"
+          />
+          <h3
             className="text-red-600"
-            style={{
-              visibility: globalErrors?.CREATE_COMPANY?.error
-                ? "visible"
-                : "hidden",
-            }}
-          >{globalErrors?.CREATE_COMPANY?.error}</p>
-        </div>
+            style={{ visibility: error.name ? "visible" : "hidden" }}
+          >
+            {error.name}
+          </h3>
+
+          <h2 className="text-lg font-topmodern dark:text-gray-300">
+            Apellido:{" "}
+          </h2>
+          <input
+            className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
+            onChange={handleInputs}
+            type="text"
+            placeholder="Escribe tu apellido"
+            name="lastName"
+          />
+          <h3
+            className="text-red-600"
+            style={{ visibility: error.lastName ? "visible" : "hidden" }}
+          >
+            {error.lastName}
+          </h3>
+
+          <h2 className="text-lg font-topmodern dark:text-gray-300">Cargo: </h2>
+          <input
+            className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
+            onChange={handleInputs}
+            type="text"
+            placeholder="Cargo"
+            name="position"
+          />
+          <h3
+            className="text-red-600"
+            style={{ visibility: error.position ? "visible" : "hidden" }}
+          >
+            {error.position}
+          </h3>
+
+          <h2 className="text-lg font-topmodern dark:text-gray-300">
+            Empresa:{" "}
+          </h2>
+          <input
+            className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
+            onChange={handleInputs}
+            type="text"
+            placeholder="Nombre de la Empresa"
+            name="nameCompany"
+          />
+          <h3
+            className="text-red-600"
+            style={{ visibility: error.nameCompany ? "visible" : "hidden" }}
+          >
+            {error.nameCompany}
+          </h3>
+
+          <select
+            className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
+            onChange={handleLocation}
+            name="country"
+          >
+            <option value="default">Pais</option>
+            {country.map((p) => {
+              return (
+                <option key={p} value={p}>
+                  {p}
+                </option>
+              );
+            })}
+          </select>
+          <br />
+          <select
+            className="h-8 mr-1 w-auto rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
+            onChange={handleLocation}
+            name="state"
+          >
+            <option value="default">Estado</option>
+            {state.allStates?.map((p) => {
+              return (
+                <option key={p.id} id={p.id} value={p.name}>
+                  {p.name}
+                </option>
+              );
+            })}
+          </select>
+
+          <select
+            className="h-8 ml-1 w-auto rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
+            name="city"
+            onChange={handleLocation}
+          >
+            <option value="default">Ciudad</option>
+            {city?.map((p) => {
+              return (
+                <option key={p} value={p}>
+                  {p}
+                </option>
+              );
+            })}
+          </select>
+          <h3
+            className="text-red-600"
+            style={{ visibility: error.location ? "visible" : "hidden" }}
+          >
+            {error.location}
+          </h3>
+
+          <select
+            className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
+            onChange={handleCategory}
+            name="category"
+          >
+            <option value="default">Rubro</option>
+            {category?.map((c) => {
+              return (
+                <option key={c} value={c}>
+                  {c}
+                </option>
+              );
+            })}
+          </select>
+          <br />
+          {companyInput.category.length ? (
+            <h2 className="text-lg dark:text-gray-300">
+              Rubros seleccionados:{" "}
+            </h2>
+          ) : null}
+          {companyInput.category.map((cat, i) => {
+            return (
+              <div key={i}>
+                <button
+                  className="bg-gray-300 dark:bg-gray-800 rounded-3xl px-2 py-1 m-1 dark:text-gray-300 hover:bg-red-500 dark:hover:bg-red-500"
+                  onClick={handleDelCategory}
+                  value={cat}
+                >
+                  {cat}
+                </button>
+              </div>
+            );
+          })}
+          <h3
+            className="text-red-600"
+            style={{ visibility: error.category ? "visible" : "hidden" }}
+          >
+            {error.category}
+          </h3>
+
+          <h2 className="text-lg font-topmodern dark:text-gray-300">
+            Telefono:{" "}
+          </h2>
+          <span>{state.code}</span>
+
+          <input
+            className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
+            onChange={handleInputs}
+            type="tel"
+            placeholder="Telefono"
+            name="phone"
+          />
+          <h3
+            className="text-red-600"
+            style={{ visibility: error.phone ? "visible" : "hidden" }}
+          >
+            {error.phone}
+          </h3>
+
+          <h2 className="text-lg font-topmodern dark:text-gray-300">Email: </h2>
+          <input
+            className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
+            onChange={handleInputs}
+            type="text"
+            placeholder="Email de la empresa..."
+            name="email"
+          />
+          <h3
+            className="text-red-600"
+            style={{ visibility: error.email ? "visible" : "hidden" }}
+          >
+            {error.email}
+          </h3>
+
+          <h2 className="text-lg font-topmodern dark:text-gray-300">
+            Contraseña
+          </h2>
+          <input
+            className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
+            onChange={handleInputs}
+            type="password"
+            placeholder="Contraseña..."
+            name="password"
+          />
+          <br />
+          <h3
+            className="text-red-600"
+            style={{ visibility: error.password ? "visible" : "hidden" }}
+          >
+            {error.password}
+          </h3>
+          <input
+            className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
+            onChange={handleInputs}
+            type="password"
+            placeholder="Repite la Contraseña..."
+            name="passwordRep"
+          />
+          <h3
+            className="text-red-600"
+            style={{ visibility: error.passwordRep ? "visible" : "hidden" }}
+          >
+            {error.passwordRep}
+          </h3>
+
+          <h2 className="text-lg font-topmodern dark:text-gray-300">
+            Descripción
+          </h2>
+          <textarea
+            className="rounded-3xl px-2 py-1 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
+            onChange={handleInputs}
+            placeholder="Añade una descripción de tu empresa..."
+            name="description"
+            cols="28"
+            rows="8"
+          />
+          <h3
+            className="text-red-600"
+            style={{ visibility: error.description ? "visible" : "hidden" }}
+          >
+            {error.description}
+          </h3>
+
+          <div className="border-t-2 border-light-1 dark:border-light-1" />
+
+          <button
+            className="bg-gray-300 font-topmodern dark:bg-gray-800 rounded-3xl p-2 my-2 dark:text-gray-300 border-2 border-transparent hover:border-light-1 dark:hover:border-light-1"
+            style={
+              isSubmitDisabled
+                ? { opacity: "0.6", cursor: "not-allowed" }
+                : null
+            }
+            disabled={isSubmitDisabled}
+            type="submit"
+          >
+            Enviar
+          </button>
+        </form>
+
+        <NavLink to="/register-user">
+          <button className="bg-gray-300 font-topmodern dark:bg-gray-800 rounded-3xl p-2 dark:text-gray-300 border-2 border-transparent hover:border-light-1 dark:hover:border-light-1">
+            Registrarme como Usuario
+          </button>
+        </NavLink>
+        <p
+          className="text-red-600"
+          style={{
+            visibility: globalErrors?.CREATE_COMPANY?.error
+              ? "visible"
+              : "hidden",
+          }}
+        >
+          {globalErrors?.CREATE_COMPANY?.error}
+        </p>
       </div>
+    </div>
   );
 };
 

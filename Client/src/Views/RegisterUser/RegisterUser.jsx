@@ -188,19 +188,21 @@ export default function RegisterUser() {
     validateInput({ ...userData, category: filteredCat });
   };
 
+  const isSubmitDisabled = Object.keys(errors).length > 0;
+
   return (
     <div className="flex justify-center">
-      <div className="justify-center text-center border-spacing-96 border-2 border-lime-600 dark:border-lime-700 rounded-3xl p-4 m-4">
-        <h1 className="text-3xl mb-1 dark:text-gray-300">
+      <div className="justify-center text-center border-spacing-96 border-2 border-light-1 dark:border-light-1 rounded-3xl p-4 m-4">
+        <h1 className="text-3xl font-vilaka font-bold text-[50px] mb-1 dark:text-gray-300">
           Registrarme como Usuario
         </h1>
 
-        <div className="border-t-2 border-lime-600 dark:border-lime-700" />
+        <div className="border-t-2 border-light-1 dark:border-light-1" />
 
         <form onSubmit={handleSubmit}>
-          <h2 className="text-lg dark:text-gray-300">Nombre</h2>
+          <h2 className="text-lg font-topmodern dark:text-gray-300">Nombre</h2>
           <input
-            className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+            className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
             type="text"
             name="name"
             placeholder="nombre"
@@ -209,9 +211,11 @@ export default function RegisterUser() {
           />
           <h3 className="text-red-600">{errors.name ? errors.name : null}</h3>
 
-          <h2 className="text-lg dark:text-gray-300">Apellido</h2>
+          <h2 className="text-lg font-topmodern dark:text-gray-300">
+            Apellido
+          </h2>
           <input
-            className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+            className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
             type="text"
             name="lastName"
             placeholder="apellido"
@@ -222,9 +226,11 @@ export default function RegisterUser() {
             {errors.lastName ? errors.lastName : null}
           </h3>
 
-          <h2 className="text-lg dark:text-gray-300">Fecha de Nacimiento</h2>
+          <h2 className="text-lg font-topmodern dark:text-gray-300">
+            Fecha de Nacimiento
+          </h2>
           <input
-            className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+            className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
             type="date"
             name="birthDate"
             value={userData.birthDate}
@@ -234,9 +240,9 @@ export default function RegisterUser() {
             {errors.birthDate ? errors.birthDate : null}
           </h3>
 
-          <h2 className="text-lg dark:text-gray-300">País</h2>
+          <h2 className="text-lg font-topmodern dark:text-gray-300">País</h2>
           <select
-            className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+            className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
             onChange={handleChange}
             name="country"
           >
@@ -251,9 +257,11 @@ export default function RegisterUser() {
             {errors.country ? errors.country : null}
           </h3>
 
-          <h2 className="text-lg dark:text-gray-300">Estado/Provincia</h2>
+          <h2 className="text-lg font-topmodern dark:text-gray-300">
+            Estado/Provincia
+          </h2>
           <select
-            className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+            className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
             onChange={handleChange}
             name="state"
           >
@@ -266,9 +274,9 @@ export default function RegisterUser() {
           </select>
           <h3 className="text-red-600">{errors.state ? errors.state : null}</h3>
 
-          <h2 className="text-lg dark:text-gray-300">Ciudad</h2>
+          <h2 className="text-lg font-topmodern dark:text-gray-300">Ciudad</h2>
           <select
-            className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+            className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
             onChange={handleChange}
             name="city"
           >
@@ -281,7 +289,7 @@ export default function RegisterUser() {
           </select>
           <h3 className="text-red-600">{errors.city ? errors.city : null}</h3>
 
-          <h2 className="text-lg dark:text-gray-300">
+          <h2 className="text-lg font-topmodern dark:text-gray-300">
             Tenes Certificado Único de Discapacidad (CUD)?
           </h2>
           <label>
@@ -305,9 +313,11 @@ export default function RegisterUser() {
 
           {checkboxCUD === "SI" ? (
             <section>
-              <h2 className="text-lg dark:text-gray-300">Código CUD</h2>
+              <h2 className="text-lg font-topmodern dark:text-gray-300">
+                Código CUD
+              </h2>
               <input
-                className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+                className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
                 type="text"
                 name="CUD"
                 value={userData.CUD}
@@ -318,9 +328,9 @@ export default function RegisterUser() {
             </section>
           ) : null}
 
-          <h2 className="text-lg dark:text-gray-300">Email</h2>
+          <h2 className="text-lg font-topmodern dark:text-gray-300">Email</h2>
           <input
-            className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+            className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
             type="email"
             name="email"
             placeholder="email"
@@ -329,9 +339,11 @@ export default function RegisterUser() {
           />
           <h3 className="text-red-600">{errors.email ? errors.email : null}</h3>
 
-          <h2 className="text-lg dark:text-gray-300">Contraseña</h2>
+          <h2 className="text-lg font-topmodern dark:text-gray-300">
+            Contraseña
+          </h2>
           <input
-            className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+            className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
             type="password"
             name="password"
             placeholder="contraseña"
@@ -343,7 +355,7 @@ export default function RegisterUser() {
           </h3>
 
           <input
-            className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+            className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
             type="password"
             name="passwordRep"
             placeholder="repetir contraseña"
@@ -354,15 +366,15 @@ export default function RegisterUser() {
             {errors.passwordRep ? errors.passwordRep : null}
           </h3>
 
-          <h2 className="text-lg dark:text-gray-300">
+          <h2 className="text-lg font-topmodern dark:text-gray-300">
             Tipo/s de Preferencia/s
           </h2>
           <select
-            className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+            className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
             onChange={handleCategory}
             name="category"
           >
-            <option value="default">rubro</option>
+            <option value="default">Rubro</option>
             {category?.map((c) => {
               return (
                 <option key={c} value={c}>
@@ -373,7 +385,7 @@ export default function RegisterUser() {
           </select>
           <br />
           {userData.category.length ? (
-            <h2 className="text-lg dark:text-gray-300">
+            <h2 className="text-lg font-topmodern dark:text-gray-300">
               Rubros seleccionados:{" "}
             </h2>
           ) : null}
@@ -397,18 +409,20 @@ export default function RegisterUser() {
             {errors.category}
           </h3>
 
-          <h2 className="text-lg dark:text-gray-300">
+          <h2 className="text-lg font-topmodern dark:text-gray-300">
             Certificados (Opcional)
           </h2>
           <input
-            className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+            className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
             type="url"
             name="certificates"
             value={userData.certificates}
             onChange={handleChange}
           />
 
-          <h2 className="text-lg dark:text-gray-300">Sos Freelancer?</h2>
+          <h2 className="text-lg font-topmodern dark:text-gray-300">
+            Sos Freelancer?
+          </h2>
           <label>
             {" "}
             Si{" "}
@@ -430,11 +444,11 @@ export default function RegisterUser() {
 
           {checkboxFreelancer === "SI" ? (
             <section>
-              <h2 className="text-lg dark:text-gray-300">
+              <h2 className="text-lg font-topmodern dark:text-gray-300">
                 Descripción de tu Emprendimiento
               </h2>
               <textarea
-                className="rounded-3xl px-2 py-1 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+                className="rounded-3xl px-2 py-1 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
                 type="text"
                 name="description"
                 placeholder="añadir descripcion"
@@ -447,11 +461,11 @@ export default function RegisterUser() {
                 {errors.description ? errors.description : null}
               </h3>
 
-              <h2 className="text-lg dark:text-gray-300">
+              <h2 className="text-lg font-topmodern dark:text-gray-300">
                 Dirección de su negocio{" "}
               </h2>
               <input
-                className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
+                className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
                 type="text"
                 name="address"
                 value={userData.address}
@@ -463,11 +477,12 @@ export default function RegisterUser() {
             </section>
           ) : null}
 
-          <div className="border-t-2 border-lime-600 dark:border-lime-700" />
+          <div className="border-t-2 border-light-1 dark:border-light-1" />
 
           <button
-            className="bg-gray-300 dark:bg-gray-800 rounded-3xl p-2 my-2 dark:text-gray-300"
+            className="bg-light-1 font-topmodern dark:bg-gray-800 rounded-3xl p-2 my-2 dark:text-gray-300 border-2 border-transparent hover:text-white dark:hover:border-light-1"
             type="submit"
+            disabled={isSubmitDisabled}
           >
             REGISTRARME
           </button>
@@ -475,7 +490,7 @@ export default function RegisterUser() {
           <br />
 
           <Link to={"/register-company"}>
-            <button className="bg-gray-300 dark:bg-gray-800 rounded-3xl p-2 dark:text-gray-300">
+            <button className="bg-gray-300 font-topmodern dark:bg-gray-800 rounded-3xl p-2 dark:text-gray-300 border-2 border-transparent hover:border-light-1 dark:hover:border-light-1">
               Registrarme como Empresa
             </button>
           </Link>

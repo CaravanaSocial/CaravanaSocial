@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/images/logo.png";
 import { CgProfile } from "react-icons/cg";
-import { CgMenu } from "react-icons/cg";
 import { CgSearch } from "react-icons/cg";
 import { CgHomeAlt } from "react-icons/cg";
 import { useDispatch, useSelector } from "react-redux";
@@ -41,29 +40,28 @@ export default function NavBar() {
   };
 
   return (
-    <div className="flex items-center justify-between bg-white dark:bg-zinc-900 border-b-[1px] border-b-gray-100 dark:border-b-gray-700 p-2">
+    <div className="flex items-center justify-between bg-white dark:bg-zinc-900 border-b-[1px] border-b-gray-300 dark:border-b-gray-700 p-2">
       <Link to="/">
         <img className="w-[60px] h-[60px]" src={logo}></img>
       </Link>
 
       <div className="relative flex items-center lg:w-64 group">
         <div className="absolute z-50 flex items-center justify-center p-3 pr-2 text-sm text-gray-500 cursor-pointer">
-          <CgSearch className="w-[20px] h-[20px] hover:text-lime-600" />
+          <CgSearch className="w-[20px] h-[20px] hover:text-light-1" />
         </div>
         <input
-          className="block w-30 py-1.5 pl-10 pr-4 leading-normal rounded-2xl focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600 ring-opacity-90 bg-gray-200 dark:bg-gray-800 text-gray-400 aa-input"
+          className="block w-30 py-1.5 pl-10 pr-4 leading-normal rounded-2xl focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1 ring-opacity-90 bg-gray-200 dark:bg-gray-800 text-black font-topmodern aa-input"
           placeholder="Search"
           type="text"
         />
       </div>
 
       <div className="relative">
-        <div className="inline-flex items-center overflow-hidden rounded-md bg-gray-200 dark:bg-gray-800 p-0.5 hover:p-0 hover:border-2 hover:border-lime-600">
+        <div className="inline-flex items-center overflow-hidden rounded-md bg-gray-200 dark:bg-gray-800 p-0.5 hover:p-0 hover:border-2 hover:border-light-1">
           <button
             className="h-full p-2 text-gray-700 dark:text-gray-400"
             onClick={handleMenu}
           >
-            
             <CgHomeAlt className="ml-2" size={20} />
             <h2 className="text-sm font-semibold">Menu</h2>
           </button>
@@ -88,9 +86,11 @@ export default function NavBar() {
                     }
                   >
                     <span className="text-gray-500 flex justify-center text-sm dark:text-gray-300">
-                      <CgProfile className="w-[25px] h-[25px] text-gray-400 mx-1 hover:text-lime-600" />
-                      <a className="pt-0.5 hover:text-lime-600">
-                        {account.name}
+                      <CgProfile className="w-[25px] h-[25px] text-gray-400 mx-1 hover:text-light-1" />
+                      <a className="pt-0.5 hover:text-light-1">
+                        {localStorage.type === "company"
+                          ? account.nameCompany
+                          : account.name}
                       </a>
                     </span>
                   </Link>

@@ -57,6 +57,8 @@ export default function VideosTrainings() {
     e.preventDefault();
     dispatch(editTraining(id, { video: [...inputTrainings.video, ...videos] }));
     navigate("/home-trainings");
+    dispatch(clearVideos());
+    setInputTrainings([]);
   };
 
   return (
@@ -73,31 +75,42 @@ export default function VideosTrainings() {
             placeholder="Url..."
           />
 
-          <button className="align-middle bg-gray-300 dark:bg-gray-800 mx-2 px-2 pb-1 mb-1 dark:text-gray-300 rounded-3xl"
+          <button
+            className="align-middle bg-gray-300 dark:bg-gray-800 mx-2 px-2 pb-1 mb-1 dark:text-gray-300 rounded-3xl border-2 border-transparent hover:border-lime-600 dark:hover:border-lime-700"
             type="submit"
             onClick={handleSubmitVideo}
-          >+</button>
+          >
+            +
+          </button>
           <br />
           {error.video && <span className="text-red-600">{error.video}</span>}
-          
+
           {inputTrainings.video.map((cat, i) => {
             return (
               <div key={i}>
-                <button className="bg-gray-300 dark:bg-gray-800 rounded-3xl px-2 py-1 m-1 dark:text-gray-300 hover:bg-red-500 dark:hover:bg-red-500"
+                <button
+                  className="bg-gray-300 dark:bg-gray-800 rounded-3xl px-2 py-1 m-1 dark:text-gray-300 hover:bg-red-500 dark:hover:bg-red-500"
                   onClick={handleDelete}
                   value={cat}
-                >{cat}</button>
+                >
+                  {cat}
+                </button>
               </div>
-              );
+            );
           })}
-          
+
           <CloudinaryContext cloudName="da785kmjd">
             <div className="App">
               <UploadVideo />
             </div>
           </CloudinaryContext>
-          
-          <button onClick={(e) => handleClick(e)}>SUBMIT</button>
+
+          <button
+            className="bg-gray-300 dark:bg-gray-800 rounded-3xl p-2 my-2 dark:text-gray-300 border-2 border-transparent hover:border-lime-600 dark:hover:border-lime-700"
+            onClick={(e) => handleClick(e)}
+          >
+            SUBMIT
+          </button>
         </div>
       </div>
     </div>

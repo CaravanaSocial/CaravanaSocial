@@ -178,18 +178,21 @@ export default function ProfileUser() {
     }
   };
 
+  const handleSaveImage = () => {
+    setEdit(false);
+    setKey(key + 1);
+  };
+
   return (
     <div className="h-full">
       <section className="flex ">
         <div className="flex flex-col text-center border-spacing-96 border-2 border-light-1 dark:border-light-1 rounded-3xl p-4 m-4">
-          <img key={key} className="h-[300px] w-[300px]" src={profilePicture} />
-          <UploadImage />
-          <button
-            className="font-topmodern border-2 rounded border-light-1 bg-light-1 hover:text-white"
-            onClick={handleSubmit}
-          >
-            Guardar imagen
-          </button>
+          <img
+            key={key}
+            className="h-[300px] w-[300px] rounded-full"
+            src={profilePicture}
+          />
+
           <br />
           <h1 className="font-vilaka text-[30px] font-bold">
             {account.name + " " + account.lastName}
@@ -205,8 +208,15 @@ export default function ProfileUser() {
             </button>
           ) : (
             <div className="flex flex-col">
+              <UploadImage />
+              <button
+                className="font-topmodern border-2 rounded border-light-1 bg-light-1 hover:text-white"
+                onClick={handleSaveImage}
+              >
+                Guardar imagen
+              </button>
               <input
-                className=" font-vilaka text-[22px] font-bold rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
+                className=" font-vilaka text-[22px] font-bold rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
                 name="name"
                 onChange={handleChange}
                 value={dataAcc.name}
@@ -219,7 +229,7 @@ export default function ProfileUser() {
               }
               <br />
               <input
-                className=" font-vilaka text-[22px] font-bold rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
+                className=" font-vilaka text-[22px] font-bold rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
                 name="lastName"
                 onChange={handleChange}
                 value={dataAcc.lastName}
@@ -230,7 +240,7 @@ export default function ProfileUser() {
               </p>
               <br />
               <select
-                className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
+                className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
                 name="country"
                 onChange={handleChange}
               >
@@ -246,7 +256,7 @@ export default function ProfileUser() {
               </p>
               <br />
               <select
-                className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
+                className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
                 name="state"
                 onChange={handleChange}
               >
@@ -262,7 +272,7 @@ export default function ProfileUser() {
               </p>
               <br />
               <select
-                className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
+                className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
                 name="city"
                 onChange={handleChange}
               >
@@ -291,7 +301,7 @@ export default function ProfileUser() {
               <input name="CUD" onChange={handleChange} placeholder="CUD..." />
               <br />
               <select
-                className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
+                className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
                 onChange={handleCategory}
                 name="category"
               >
@@ -358,7 +368,7 @@ export default function ProfileUser() {
                     Descripción de tu Emprendimiento
                   </h2>
                   <input
-                    className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
+                    className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
                     type="text"
                     name="description"
                     placeholder="añadir descripcion"
@@ -371,7 +381,7 @@ export default function ProfileUser() {
 
                   <h2 className="font-topmodern">Dirección de su negocio </h2>
                   <input
-                    className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
+                    className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
                     type="text"
                     name="address"
                     value={dataAcc.address}
