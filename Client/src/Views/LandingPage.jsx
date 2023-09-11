@@ -47,7 +47,7 @@ const LandingPage = () => {
 
       <section className=" w-full  h-[500px] m-auto flex flex-col mt-5 lg:items-center lg:justify-center ">
         {" "}
-        <h2 className="text-center font-vilaka xl:text-[50px] text-black text-[40px] font-bold   ">
+        <h2 className="text-center font-vilaka xl:text-[50px] dark:text-white text-black text-[40px] font-bold   ">
           Nuestra Filosofia
         </h2>
         <div className="hover:skew-x-3 transition duration-500 text-center mt-5 mb-5 lg:w-[600px] lg:h-[300px] lg:m-5 m-auto  w-[400px] h-[400px]  rounded ">
@@ -76,7 +76,7 @@ const LandingPage = () => {
       <section className="w-full text-center  lg:gap-x-20 md:flex md:justify-center   ">
         <Link
           to="/register-company"
-          className="text-[40px] w-[400px] m-auto text-black  px-5 py-5  flex flex-col items-center font-topmodern   "
+          className="text-[40px] dark:text-white w-[400px] m-auto text-black  px-5 py-5  flex flex-col items-center font-topmodern   "
         >
           <img className="rounded h-[350px]" src={empresa1} width={400}></img>
           Soy empresa quiero unirme...
@@ -84,7 +84,7 @@ const LandingPage = () => {
 
         <Link
           to="/register-user"
-          className="text-[40px] px-5 py-5 w-[400px] text-black m-auto  text-center flex flex-col items-center font-topmodern  "
+          className="text-[40px] dark:text-white px-5 py-5 w-[400px] text-black m-auto  text-center flex flex-col items-center font-topmodern  "
         >
           <img className="rounded h-[350px]" src={freelancer} width={400}></img>
           Soy Freelancer quiero unirme...

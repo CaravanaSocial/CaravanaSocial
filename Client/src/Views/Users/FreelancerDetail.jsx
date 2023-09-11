@@ -19,30 +19,30 @@ const FreelancerDetail = () => {
   return (
     <main className=" lg:flex lg:flex-row  flex flex-col h-full justify-center gap-24 items-center  ">
       <div className=" border-2 rounded-lg border-light-1 flex  justify-center  text-center">
-        <img className="h-[500px] w-[500px]" src={userDetail.profilePicture} />
+        <img className="h-[500px] w-[500px]" src={userDetail?.profilePicture} />
       </div>
       <div className=" text-center ">
         <h1 className="font-topmodern text-light-1 rounded text-[25px]">
           Nombre:{" "}
         </h1>
         <span className="font-vilaka font-bold text-[45px]">
-          {userDetail.name}
+          {userDetail?.name}
         </span>
         <h1 className="font-topmodern text-light-1 text-[25px]">Apellido: </h1>
         <span className="font-vilaka font-bold text-[45px]">
-          {userDetail.lastName}
+          {userDetail?.lastName}
         </span>
         <h3 className="font-topmodern text-light-1 text-[25px]">
           Descripcion:{" "}
         </h3>
         <span className="font-vilaka font-bold text-[45px]">
-          {userDetail.description}
+          {userDetail?.description}
         </span>
         <h3 className="font-topmodern text-light-1 text-[25px]">
           Fecha de nacimiento:{" "}
         </h3>
         <span className="font-vilaka font-bold text-[45px]">
-          {userDetail.birthDate}
+          {userDetail?.birthDate}
         </span>
       </div>
       <div className=" text-center  ">
@@ -50,7 +50,7 @@ const FreelancerDetail = () => {
           Correo de contacto:{" "}
         </h3>
         <span className="font-vilaka font-bold text-[45px]">
-          {userDetail.email}
+          {userDetail?.email}
         </span>
         <h3 className="font-topmodern text-light-1 text-[25px]">Rubros: </h3>
         <span className="font-vilaka font-bold text-[45px]">{categories}</span>

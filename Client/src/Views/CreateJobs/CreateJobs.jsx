@@ -16,7 +16,7 @@ export default function createJobs() {
     category: [],
   });
 
-  console.log(currentAccount)
+  console.log(currentAccount);
 
   useEffect(() => {
     dispatch(getCategories());
@@ -80,7 +80,7 @@ export default function createJobs() {
     !inputJobs.title || !inputJobs.category || !inputJobs.description;
 
   return (
-    <div className="bg-gray-100 p-4">
+    <div className="bg-gray-100 h-full p-4">
       <div className="flex">
         <div className="w-2/4 flex justify-end items-center">
           <div className="justify-center text-center border-2 border-lime-600 dark:border-lime-700 rounded-3xl p-4 m-4">
@@ -168,19 +168,21 @@ export default function createJobs() {
           </div>
         </div>
         <div className="w-2/4 flex justify-center items-center">
-        <div className="w-2/4 flex flex-col justify-end items-center">
-              <h1 className="mb-4">PREVIEW</h1>
-              <div className="bg-white rounded-lg p-4 shadow-md text-center" style={{ width: '300px' }}>
-                  <h1 className="w-full h-48 object-cover rounded-t-lg">{inputJobs.title}</h1>
-                  <h2 className="text-2xl font-semibold mt-2">{inputJobs.title}</h2>
-                  <p className="text-gray-600">
-                  {inputJobs.description}
-                  </p>
-              </div>
+          <div className="w-2/4 flex flex-col justify-end items-center">
+            <h1 className="mb-4">PREVIEW</h1>
+            <div
+              className="bg-white rounded-lg p-4 shadow-md text-center"
+              style={{ width: "300px" }}
+            >
+              <h1 className="w-full h-48 object-cover rounded-t-lg">
+                {inputJobs.title}
+              </h1>
+              <h2 className="text-2xl font-semibold mt-2">{inputJobs.title}</h2>
+              <p className="text-gray-600">{inputJobs.description}</p>
+            </div>
           </div>
         </div>
       </div>
     </div>
   );
 }
-
