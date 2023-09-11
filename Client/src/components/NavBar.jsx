@@ -57,7 +57,7 @@ export default function NavBar() {
       </div>
 
       <div className="relative">
-        <div className="inline-flex items-center overflow-hidden rounded-md bg-gray-200 dark:bg-gray-800 p-0.5 hover:p-0 hover:border-2 hover:border-lime-600">
+        <div className="inline-flex items-center overflow-hidden rounded-md bg-gray-200 dark:bg-gray-800 p-0.5 hover:p-0 hover:border-2 hover:border-light-1">
           <button
             className="h-full p-2 text-gray-700 dark:text-gray-400"
             onClick={handleMenu}
@@ -86,8 +86,8 @@ export default function NavBar() {
                     }
                   >
                     <span className="text-gray-500 flex justify-center text-sm dark:text-gray-300">
-                      <CgProfile className="w-[25px] h-[25px] text-gray-400 mx-1 hover:text-lime-600" />
-                      <a className="pt-0.5 hover:text-lime-600">
+                      <CgProfile className="w-[25px] h-[25px] text-gray-400 mx-1 hover:text-light-1" />
+                      <a className="pt-0.5 hover:text-light-1">
                         {localStorage.type === "company"
                           ? account.nameCompany
                           : account.name}
