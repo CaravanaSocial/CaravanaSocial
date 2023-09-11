@@ -5,6 +5,7 @@ import { useParams, NavLink } from "react-router-dom";
 import { trainingDetail } from "../../Redux/Actions/Actions";
 
 const DetailTrainings = () => {
+  const enved = "https://www.youtube.com/embed/";
   const [comments, setComments] = useState({
     description: "",
     userName: localStorage.accName,
@@ -53,11 +54,21 @@ const DetailTrainings = () => {
         <p className="font-topmodern">{detail?.description}</p>
         {detail?.video?.map((video, index) => {
           return (
-            <div className="m-auto text-center " key={index}>
-              <video className="m-auto" controls width="840" height="560">
-                <source src={video} type="video/mp4" />
-                Tu navegador no soporta la reproducción de videos.
-              </video>
+            <div className="flex justify-center" key={index}>
+              {!video.includes("youtube") ? (
+                <video width={840} height={560} controls>
+                  <source src={video} type="video/mp4" />
+                  Tu navegador no soporta la reproducción de videos.
+                </video>
+              ) : (
+                <iframe
+                  src={enved + video.split("=")[1]}
+                  frameborder="0"
+                  width={840}
+                  height={560}
+                  className="m-6"
+                ></iframe>
+              )}
             </div>
           );
         })}
@@ -80,7 +91,7 @@ const DetailTrainings = () => {
         </button>
         {detail?.comments?.map((comment, index) => {
           return (
-            <div className="  w-[500px]  flex" key={index}>
+            <div className="  w-[500px] flex" key={index}>
               <div>
                 {" "}
                 <img
@@ -95,7 +106,7 @@ const DetailTrainings = () => {
                 <p className="font-vilaka font-bold text-[30px]">
                   {comment.userName}
                 </p>
-                <p className="font-topmodern">{comment.description}</p>
+                <p className="font-topmodern ml-3">{comment.description}</p>
               </div>
             </div>
           );
