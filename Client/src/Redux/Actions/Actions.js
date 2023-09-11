@@ -56,6 +56,10 @@ export const COMMENTS_POST = "COMMENTS_POST";
 
 export const COMPANY_DETAIL = "COMPANY_DETAIL";
 
+export const CLEAR_VIDEOS = "CLEAR_VIDEOS";
+
+export const ADD_USER_TRAINING = "ADD_USER_TRAINING";
+
 // const serverURL = "https://caravanaserver.onrender.com";
 const serverURL = "http://localhost:3001";
 
@@ -655,30 +659,27 @@ export function addVideo(link) {
   };
 }
 
+export function detailCompany(id) {
+  return async function (dispatch) {
+    try {
+      const response = (await axios.get(`${serverURL}/company/${id}`)).data;
 
-
-export function detailCompany(id){
-  
-  return async function(dispatch){
-    try{
-     const response = ( await axios.get(`${serverURL}/company/${id}`)).data
-     
-     return dispatch({
-      type: COMPANY_DETAIL,
-      payload: response
-     })
-    }catch(error){
-      console.log(error)
+      return dispatch({
+        type: COMPANY_DETAIL,
+        payload: response,
+      });
+    } catch (error) {
+      console.log(error);
     }
-  }
+  };
 }
 
 export const getSuccesCases = () => {
   //---------- Endpoint to Dev server -- Descomentar para usar
-  // const endpoint = "http://localhost:3001/user/all";
+  const endpoint = "http://localhost:3001/user/all";
 
   //---------- Endpoint to deployed server
-  const endpoint = `${serverURL}/success`;
+  // const endpoint = `${serverURL}/success`;
   return async (dispatch) => {
     try {
       const response = await axios(endpoint);
@@ -703,43 +704,38 @@ export function imageChange() {
   };
 }
 
-
 export function trainingDetail(id) {
   return async function (dispatch) {
-    const endpoint = `${serverURL}/trainings/${id}`
+    const endpoint = `${serverURL}/trainings/${id}`;
     try {
-      const { data } = await axios.get(endpoint)
+      const { data } = await axios.get(endpoint);
       return dispatch({
         type: TRAINING_DETAIL,
-        payload : data[0]
-      })
-
-    } catch(error) {
+        payload: data[0],
+      });
+    } catch (error) {
       console.log(error);
     }
-  }
+  };
 }
 
-export function createComment(id, comment){
+export function createComment(id, comment) {
   return async function (dispatch) {
-    const endpoint = `${serverURL}/comments/create/${id}`
+    const endpoint = `${serverURL}/comments/create/${id}`;
     try {
-      const { data } = await axios.post(endpoint, comment)
+      const { data } = await axios.post(endpoint, comment);
       dispatch({
         type: COMMENTS_POST,
-        payload : data
-      })
-    } catch (error) {
-      
-    }
-  }
+        payload: data,
+      });
+    } catch (error) {}
+  };
 }
-
 
 export const getUserById = (id) => {
   return async function (dispatch) {
     try {
-      const response = (await axios.get(`${serverURL}/user/`+id)).data;
+      const response = (await axios.get(`${serverURL}/user/` + id)).data;
       return dispatch({
         type: GET_USER_BY_ID,
         payload: response,
@@ -750,5 +746,26 @@ export const getUserById = (id) => {
   };
 };
 
+export const clearVideos = () => {
+  return async function (dispatch) {
+    return dispatch({
+      type: CLEAR_VIDEOS,
+    });
+  };
+};
 
-
+export const adduser = (idObject) => {
+  return async function (dispatch) {
+    try {
+      const response = (
+        await axios.post(`${serverURL}/user-training/adduser`, idObject)
+      ).data;
+      return dispatch({
+        type: ADD_USER_TRAINING,
+        payload: response,
+      });
+    } catch (error) {
+      console.log("cat", error.message);
+    }
+  };
+};
