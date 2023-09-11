@@ -61,8 +61,11 @@ export const CLEAR_VIDEOS = "CLEAR_VIDEOS";
 
 export const ADD_USER_TRAINING = "ADD_USER_TRAINING";
 
-const serverURL = "https://caravanaserver.onrender.com";
-// const serverURL = "http://localhost:3001";
+export const USER_TRAINING = "USER_TRAINING"
+
+// const serverURL = "https://caravanaserver.onrender.com";
+const serverURL = "http://localhost:3001";
+
 
 export const createUser = (user) => {
   //---------- Endpoint to Dev server -- Descomentar para usar
@@ -773,6 +776,22 @@ export const adduser = (idObject) => {
       ).data;
       return dispatch({
         type: ADD_USER_TRAINING,
+        payload: response,
+      });
+    } catch (error) {
+      console.log("cat", error.message);
+    }
+  };
+};
+
+export const getTrainingsUser = (id) => {
+  return async function (dispatch) {
+    try {
+      const response = (
+        await axios.get(`${serverURL}/user-training/trainingsByUser/` + id)
+      ).data;
+      return dispatch({
+        type: USER_TRAINING,
         payload: response,
       });
     } catch (error) {
