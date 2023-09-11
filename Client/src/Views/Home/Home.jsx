@@ -55,7 +55,7 @@ const Home = () => {
               </div>
 
               <Slider>
-                {freelancers.map((item) => (
+                {freelancers?.map((item) => (
                   <CardFreelancer key={item.id} freelancer={item} />
                 ))}
               </Slider>
@@ -72,7 +72,7 @@ const Home = () => {
               </div>
 
               <Slider>
-                {trainings.map((item) => (
+                {trainings?.map((item) => (
                   <TrainingCard key={item.id} training={item} />
                 ))}
               </Slider>
@@ -89,7 +89,7 @@ const Home = () => {
               </div>
 
               <Slider>
-                {offers.map((item) => (
+                {offers?.map((item) => (
                   <OfferCard key={item.id} offer={item} />
                 ))}
               </Slider>

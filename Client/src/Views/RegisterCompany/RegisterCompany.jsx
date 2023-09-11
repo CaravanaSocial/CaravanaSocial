@@ -273,7 +273,7 @@ const RegisterCompany = () => {
             name="state"
           >
             <option value="default">Estado</option>
-            {state.allStates?.map((p) => {
+            {state?.allStates?.map((p) => {
               return (
                 <option key={p.id} id={p.id} value={p.name}>
                   {p.name}
@@ -346,7 +346,7 @@ const RegisterCompany = () => {
           <h2 className="text-lg font-topmodern dark:text-gray-300">
             Telefono:{" "}
           </h2>
-          <span>{state.code}</span>
+          <span>{state?.code}</span>
 
           <input
             className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"

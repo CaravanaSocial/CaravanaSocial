@@ -266,7 +266,7 @@ export default function RegisterUser() {
             name="state"
           >
             <option value="default">Seleccioná un Estado/Provincia...</option>
-            {state.allStates?.map((s) => (
+            {state?.allStates?.map((s) => (
               <option key={s.id} id={s.id} value={s.name}>
                 {s.name}
               </option>
@@ -281,7 +281,7 @@ export default function RegisterUser() {
             name="city"
           >
             <option value="default">Seleccioná una Ciudad...</option>
-            {city.map((c) => (
+            {city?.map((c) => (
               <option key={c} value={c}>
                 {c}
               </option>

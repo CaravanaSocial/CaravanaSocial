@@ -309,7 +309,7 @@ const ProfileCompany = () => {
                 name="state"
               >
                 <option value="default">{account.location.state}</option>
-                {state.allStates?.map((p) => {
+                {state?.allStates?.map((p) => {
                   return (
                     <option key={p.id} id={p.id} value={p.name}>
                       {p.name}
