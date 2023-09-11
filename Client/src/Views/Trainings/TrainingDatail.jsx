@@ -12,19 +12,25 @@ const DetailTrainings = () => {
     imageUser: localStorage.profilePicture,
   });
 
+  const [commentAdded, setCommentAdded] = useState(false);
+
   const { id } = useParams();
 
   const dispatch = useDispatch();
   const detail = useSelector((state) => state.trainingsDetail);
 
   const handleSubmit = (event) => {
-    dispatch(createComment(detail.id, comments));
     event.preventDefault();
+    dispatch(createComment(detail.id, comments));
+    setCommentAdded(!commentAdded);
     dispatch(trainingDetail(id));
-    setComments({ description: "" });
+    setComments({ ...comments, description: "" });
+
+    return;
   };
 
   const handlerChange = (event) => {
+    console.log(event.target.value);
     setComments({
       ...comments,
       description: event.target.value,
@@ -32,8 +38,11 @@ const DetailTrainings = () => {
   };
 
   useEffect(() => {
+    // Solo ejecuta el efecto si se ha añadido un comentario
     dispatch(trainingDetail(id));
-  }, []);
+    // Restablece la variable de estado a false
+  }, [commentAdded]);
+
   return (
     <main className="h-full lg:flex lg:flex-row flex flex-col text-center justify-center">
       <div className=" border-r-2 border-light-1 w-[500px] text-center flex flex-col mx-auto items-center">
@@ -96,17 +105,17 @@ const DetailTrainings = () => {
                 {" "}
                 <img
                   className="w-[100px] m-auto rounded-full"
-                  src={comment.imageUser}
-                  alt={comment.userName}
+                  src={comment?.imageUser}
+                  alt={comment?.userName}
                 />
               </div>
 
               <div>
                 {" "}
                 <p className="font-vilaka font-bold text-[30px]">
-                  {comment.userName}
+                  {comment?.userName}
                 </p>
-                <p className="font-topmodern ml-3">{comment.description}</p>
+                <p className="font-topmodern ml-3">{comment?.description}</p>
               </div>
             </div>
           );

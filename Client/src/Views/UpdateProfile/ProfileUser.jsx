@@ -8,6 +8,7 @@ import {
   getCity,
   getCategories,
   editUser,
+  getTrainingsUser,
 } from "../../Redux/Actions/Actions";
 
 export default function ProfileUser() {
@@ -18,6 +19,7 @@ export default function ProfileUser() {
   const states = useSelector((state) => state.states);
   const cities = useSelector((state) => state.cities);
   const category = useSelector((state) => state.categories);
+  const trainingsUser = useSelector((state) => state.trainingsUser);
   const [edit, setEdit] = useState(false);
   const [errors, setErrors] = useState({});
   const [key, setKey] = useState(0);
@@ -46,11 +48,12 @@ export default function ProfileUser() {
     account.freelancer
   );
 
-  console.log(dataAcc.profilePicture);
+  console.log(trainingsUser);
 
   useEffect(() => {
     dispatch(getCountry());
     dispatch(getCategories());
+    dispatch(getTrainingsUser(localStorage.accId));
   }, [dataAcc]);
 
   const handleClick = (event) => {
@@ -415,6 +418,34 @@ export default function ProfileUser() {
           <h1 className="font-topmodern">
             Capacitaciones en curso y completadas
           </h1>
+          {trainingsUser.length > 0 ? (
+            <div className="flex flex-wrap">
+              {trainingsUser.map((t) => {
+                return (
+                  <div className="flex justify-center">
+                    <div className="text-center m-1 border-2 border-light-1 dark:border-light-1 hover:scale-95 p-4 rounded-3xl w-[300px]">
+                      <h2 className="text-xl border-b-2 border-light-1 dark:border-light-1 mb-2">
+                        {t.name}
+                      </h2>
+                      <div>
+                        <video
+                          className="inline-block border-2 border-light-1 dark:border-light-1 rounded-3xl"
+                          src={t.video[0]}
+                          controls
+                          width="200"
+                          height="150"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
+            <div>
+              <h1>Aún no te has inscripto a ni una capacitación</h1>
+            </div>
+          )}
         </div>
       </section>
     </div>

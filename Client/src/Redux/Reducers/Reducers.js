@@ -10,6 +10,7 @@ import {
   EDIT_COMPANY,
   CREATE_OFFER,
   DELETE_OFFER,
+  GET_OFFERS_BYNAME,
   GET_OFFERS,
   EDIT_OFFER,
   CREATE_TRAINING,
@@ -37,6 +38,7 @@ import {
   GET_USER_BY_ID,
   CLEAR_VIDEOS,
   ADD_USER_TRAINING,
+  USER_TRAINING
 } from "../Actions/Actions";
 
 const initialState = {
@@ -65,6 +67,7 @@ const initialState = {
   successCases: [],
   imageChange: false,
   userDetail: {},
+  trainingsUser: []
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -140,6 +143,11 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
       };
+    
+    case GET_OFFERS_BYNAME:
+      return {
+        offer: action.payload,
+      }  
 
     case GET_OFFERS:
       return {
@@ -283,6 +291,12 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
       };
+
+    case USER_TRAINING:
+      return {
+        ...state,
+        trainingsUser: action.payload
+      }
 
     default:
       return { ...state };
