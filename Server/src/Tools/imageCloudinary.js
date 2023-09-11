@@ -20,22 +20,20 @@ const opts = {
 };
 
 const uploadImage = async (image) => {
-  try {
-    console.log(image);
+    /* console.log(image); */
     return new Promise((resolve, reject) => {
       cloudinary.uploader.upload(image, opts, (error, result) => {
+        console.log("entra cloudinary");
         if (result && result.secure_url) {
+          console.log("holaa");
           console.log(result.secure_url);
           resolve(result.secure_url);
         } else {
           console.log(error.message);
-          throw new Error("Failed to upload image.");
+          throw Error(error);
         }
       });
     });
-  } catch (error) {
-    throw error
-  }
 };
 
 

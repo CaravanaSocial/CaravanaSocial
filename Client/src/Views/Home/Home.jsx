@@ -38,6 +38,10 @@ const Home = () => {
     navigate("/home-offers");
   };
 
+  const handleFrelancer = () => {
+    navigate("/home-freelancers");
+  };
+
   return (
     <main>
       {localStorage.length !== 0 ? (
@@ -45,29 +49,24 @@ const Home = () => {
           {" "}
           <div className="w-[300px] h-full bg-violet-500"></div>
           <div className=" w-full h-full">
-            <section className="p-2">
+            <section className="p-2 text-center">
               <div className="font-vilaka font-bold flex text-[40px]">
                 FREELANCERS
               </div>
 
               <Slider>
                 {freelancers.map((item) => (
-                  <CardFreelancer
-                    key={item.id}
-                    name={item.name}
-                    location={item.location}
-                    description={item.description}
-                  />
+                  <CardFreelancer key={item.id} freelancer={item} />
                 ))}
               </Slider>
               <button
-                onClick={() => handleOffer()}
+                onClick={() => handleFrelancer()}
                 className="font-topmodern border-2  hover:text-light-1  border-light-1 rounded p-1 "
               >
                 Ver Mas
               </button>
             </section>
-            <section className="p-2">
+            <section className="p-2 text-center">
               <div className="font-vilaka flex font-bold  text-[40px]">
                 CAPACITACIONES RECIENTES
               </div>
@@ -84,7 +83,7 @@ const Home = () => {
                 Ver Mas
               </button>
             </section>
-            <section className="p-2">
+            <section className="p-2 text-center">
               <div className="font-vilaka font-bold flex text-[40px]">
                 OFERTAS RECIENTES
               </div>

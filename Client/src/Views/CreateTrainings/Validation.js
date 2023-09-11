@@ -13,9 +13,9 @@ export default function Validation (input){
         error.description = "Debe ingresar una descripción de su trabajo"
     }
 
-    if(input.video && !regexUrl.test(input.video)) {
+    /* if(input.video && !regexUrl.test(input.video)) {
         error.video = "Debe ser una url: (http/https/ftp)"
     }
-
+ */
     return error;
 }

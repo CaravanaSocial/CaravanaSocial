@@ -14,6 +14,7 @@ const freelancerRoute = require("./freelancerRoute");
 const user_trainingRoute = require("./user_trainingRoute");
 const questionRoute = require("./questionRoute");
 const commentRouter = require("./commentRoute")
+const videoRoute = require("./videoRoute")
 
 const router = Router();
 
@@ -33,6 +34,9 @@ router.use("/comments", commentRouter)
 
 //------------Cloudinay(PRUEBA)--------------
 router.use("/image", imageRout);
+
+//prueba 2
+router.use("/video", videoRoute)
 
 //------------Filtros(PRUEBA)----------------
 router.use("/filter", filterRoute);

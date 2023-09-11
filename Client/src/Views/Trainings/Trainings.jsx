@@ -43,11 +43,11 @@ const Trainings = () => {
   };
 
   return (
-    <div className="inline-block m-4 p-4 h-screen">
+    <div className="m-4 p-4 h-full text-center flex flex-col">
       <div className="border-spacing-96 border-2 border-zinc-100 dark:border-zinc-800 rounded-3xl pt-2 shadow-md">
-        <span>Filtrar por : </span>
+        <span className="font-topmodern">Filtrar por : </span>
         <select
-          className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
+          className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
           onChange={handleChange}
           name="country"
         >
@@ -60,9 +60,9 @@ const Trainings = () => {
             );
           })}
         </select>
-        <span> Filtrar por :</span>
+        <span className="font-topmodern"> Filtrar por :</span>
         <select
-          className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
+          className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
           onChange={handleChange}
           name="category"
         >
@@ -76,7 +76,7 @@ const Trainings = () => {
           })}
         </select>
       </div>
-      <h1>Entrenamientos</h1>
+      <h1 className="font-vilaka font-bold text-[50px]">Entrenamientos</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {trainingsFiltered?.map((training) => (
           <TrainingCard key={training.id} training={training} />

@@ -74,17 +74,20 @@ export default function createJobs() {
     validateInput({ ...inputJobs, category: filteredCat });
   };
 
+  const disabled =
+    !inputJobs.title || !inputJobs.category || !inputJobs.description;
+
   return (
     <div className=" h-full text-center ">
       <div className="inline-block m-4 p-4 text-center ">
-        <div className="border-spacing-96 border-2 border-zinc-100 dark:border-zinc-800 rounded-3xl p-4 my-4">
-          <h1 className="text-4xl  border-b-2 border-zinc-100 dark:border-zinc-800">
-            Crea un Aviso de Trabajo
-          </h1>
+        <div className="justify-center text-center border-2 border-lime-600 dark:border-lime-700 rounded-3xl p-4 m-4">
+          <h1 className="text-3xl mb-1 dark:text-gray-300">Crea un Aviso de Trabajo</h1>
 
-          <h2>Nombre del Aviso de Trabajo</h2>
+          <div className="border-t-2 border-lime-600 dark:border-lime-700"/>
+
+          <h2 className="text-lg dark:text-gray-300">Nombre del Aviso de Trabajo</h2>
           <input
-            className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
+            className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
             type="text"
             name="title"
             value={inputJobs.title}
@@ -93,10 +96,10 @@ export default function createJobs() {
           />
           <br />
           {error.title && <span className="text-red-600">{error.title}</span>}
+          <br />
 
-          <h2>Categoria</h2>
           <select
-            className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
+            className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
             onChange={handleCategory}
             name="category"
           >
@@ -110,24 +113,20 @@ export default function createJobs() {
             })}
           </select>
           <br />
-          <span>Rubros seleccionados: </span>
-          <div className="p-2 m-auto bg-zinc-300 text-zinc-800 focus:border-transparent w-[200px] justify-center align-middle rounded-3xl">
-            {inputJobs.category.map((cat) => {
-              return (
-                <div className="text-center bg-zinc-400 mb-1 rounded-3xl">
-                  {cat}
-                  <button
-                    className="bg-red-600 px-1 text-white h-[20px] m-auto rounded-3xl"
+          {inputJobs.category.length ? (
+              <h2 className="text-lg dark:text-gray-300">Rubros seleccionados: </h2>
+            ) : null}
+              {inputJobs.category.map((cat, i) => {
+                return (
+                  <div key={i}>
+                    <button className="bg-gray-300 dark:bg-gray-800 rounded-3xl px-2 py-1 m-1 dark:text-gray-300 hover:bg-red-500 dark:hover:bg-red-500"
                     onClick={handleDelCategory}
                     value={cat}
-                  >
-                    {" "}
-                    x
-                  </button>
-                </div>
-              );
-            })}
-          </div>
+                    >{cat}
+                    </button>
+                  </div>
+                );
+              })}
           <p
             className="text-red-600"
             style={{ visibility: error.category ? "visible" : "hidden" }}
@@ -135,12 +134,12 @@ export default function createJobs() {
             {error.category}
           </p>
 
-          <h2>Descripción</h2>
+          <h2 className="text-lg dark:text-gray-300">Descripción</h2>
           <textarea
-            className="rounded-3xl px-2 py-1 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
+            className="rounded-3xl px-2 py-1 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
             type="text"
             name="description"
-            cols="20"
+            cols="28"
             rows="8"
             value={inputJobs.description}
             onChange={handleChange}
@@ -150,11 +149,13 @@ export default function createJobs() {
           {error.description && (
             <span className="text-red-600">{error.description}</span>
           )}
+          <br />
 
           <button
-            className="bg-zinc-300 mt-2 text-black rounded-3xl p-2"
+            className="bg-gray-300 dark:bg-gray-800 rounded-3xl p-2 my-2 dark:text-gray-300 border-2 border-transparent hover:border-lime-600 dark:hover:border-lime-700"
             type="submit"
             onClick={handleSubmit}
+            disabled={disabled}
           >
             Crear
           </button>

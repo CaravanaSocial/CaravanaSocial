@@ -28,6 +28,15 @@ import {
   COMPANY_BUTTONS,
   TRAINING_FILTER,
   GET_FREELANCERS,
+  ADDVIDEO,
+  IMAGECHANGE,
+  TRAINING_DETAIL,
+  COMMENTS_POST,
+  COMPANY_DETAIL,
+  GET_SUCCESCASES,
+  GET_USER_BY_ID,
+  CLEAR_VIDEOS,
+  ADD_USER_TRAINING,
 } from "../Actions/Actions";
 
 const initialState = {
@@ -48,6 +57,14 @@ const initialState = {
   trainingsFiltered: [],
   categories: [],
   freelancers: [],
+  video: [],
+  imageChange: false,
+  trainingsDetail: {},
+  comments: [],
+  companyDetail: {},
+  successCases: [],
+  imageChange: false,
+  userDetail: {},
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -62,6 +79,12 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         users: action.payload,
+      };
+
+    case GET_SUCCESCASES:
+      return {
+        ...state,
+        successCases: action.payload,
       };
 
     case EDIT_USER:
@@ -211,6 +234,54 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         trainingsFiltered: action.payload,
+      };
+
+    case ADDVIDEO:
+      let arr = [...state.video, action.payload];
+      return {
+        ...state,
+        video: arr,
+      };
+
+    case IMAGECHANGE:
+      const goku = state.imageChange === true ? false : true;
+      return {
+        ...state,
+        imageChange: goku,
+      };
+    case TRAINING_DETAIL:
+      return {
+        ...state,
+        trainingsDetail: action.payload,
+      };
+
+    case COMMENTS_POST:
+      return {
+        ...state,
+        comments: action.payload,
+      };
+
+    case GET_USER_BY_ID:
+      return {
+        ...state,
+        userDetail: action.payload,
+      };
+
+    case COMPANY_DETAIL:
+      return {
+        ...state,
+        companyDetail: action.payload,
+      };
+
+    case CLEAR_VIDEOS:
+      return {
+        ...state,
+        video: [],
+      };
+
+    case ADD_USER_TRAINING:
+      return {
+        ...state,
       };
 
     default:

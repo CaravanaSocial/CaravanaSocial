@@ -1,10 +1,14 @@
 import axios from "axios";
+import Swal from "sweetalert2";
 
 export const CREATE_USER = "CREATE_USER";
 export const GET_USERS = "GET_USERS";
 export const EDIT_USER = "EDIT_USER";
 
+export const GET_SUCCESCASES = "GET_SUCCESCASES";
+
 export const GET_FREELANCERS = "GET_FREELANCERS";
+export const GET_USER_BY_ID = "GET_USER_BY_ID";
 
 export const CREATE_ADMIN = "CREATE_ADMIN";
 export const GET_ADMINS = "GET_ADMINS";
@@ -24,6 +28,7 @@ export const CREATE_TRAINING = "CREATE_TRAINING";
 export const DELETE_TRAINING = "DELETE_TRAINING";
 export const EDIT_TRAINING = "EDIT_TRAINING";
 export const GET_TRAININGS = "GET_TRAININGS";
+export const ADDVIDEO = "ADDVIDEO";
 
 export const GET_LOCATION = "GET_LOCATION";
 
@@ -42,6 +47,21 @@ export const GET_CATEGORIES = "GET_CATEGORIES";
 export const COMPANY_BUTTONS = "COMPANY_BUTTONS";
 
 export const TRAINING_FILTER = "TRAINING_FILTER";
+
+
+export const IMAGECHANGE = "IMAGECHANGE";
+
+export const TRAINING_DETAIL = "TRAINING_DETAIL";
+
+export const COMMENTS_POST = "COMMENTS_POST";
+
+export const COMPANY_DETAIL = "COMPANY_DETAIL";
+
+export const CLEAR_VIDEOS = "CLEAR_VIDEOS";
+
+export const ADD_USER_TRAINING = "ADD_USER_TRAINING";
+
+
 
 const serverURL = "https://caravanaserver.onrender.com";
 // const serverURL = "http://localhost:3001";
@@ -62,6 +82,16 @@ export const createUser = (user) => {
         type: CREATE_USER,
         payload: data,
       });
+      Swal.fire({
+        title: "Registro Completado!",
+        text: "Bienvenido",
+        icon: "success",
+        customClass: {
+          popup: "holahola",
+          confirmButton: "bg-light-1",
+        },
+      });
+
       return false;
     } catch (error) {
       dispatch({
@@ -121,9 +151,10 @@ export const editUser = (id, user) => {
     try {
       const response = await axios.patch(endpoint, user);
       const { data } = response;
-      return dispatch({
+      dispatch({
         type: EDIT_USER,
       });
+      return data;
     } catch (error) {
       console.log(error);
     }
@@ -221,6 +252,14 @@ export const createCompany = (company) => {
         type: CREATE_COMPANY,
         payload: data,
       });
+      Swal.fire({
+        title: "Registro Completado!",
+        text: "Bienvenido",
+        icon: "success",
+        customClass: {
+          popup: "holahola",
+        },
+      });
       return false;
     } catch (error) {
       console.log(error.message);
@@ -271,6 +310,14 @@ export const createOffer = (offer) => {
     try {
       const response = await axios.post(endpoint + localStorage.accId, offer);
       const { data } = response;
+      Swal.fire({
+        title: "Oferta Creada con exito!",
+
+        icon: "success",
+        customClass: {
+          popup: "holahola",
+        },
+      });
       return dispatch({ type: CREATE_OFFER });
     } catch (error) {
       console.log(error);
@@ -382,7 +429,8 @@ export const createTraining = (training) => {
       );
       const { data } = response;
 
-      return dispatch({ type: CREATE_TRAINING, payload: data });
+      dispatch({ type: CREATE_TRAINING, payload: data });
+      return data;
     } catch (error) {
       console.log(error);
     }
@@ -411,11 +459,19 @@ export const editTraining = (id, training) => {
   // const endpoint = `http://localhost:3001/trainings/update/${id}`;
 
   //---------- Endpoint to deployed server
-  const endpoint = `${serverURL}/trainings/update/${id}`;
+  const endpoint = `${serverURL}/trainings/${id}`;
   return async (dispatch) => {
     try {
       const response = await axios.patch(endpoint, training);
       const { data } = response;
+      Swal.fire({
+        title: "Capacitacion Anadida!",
+
+        icon: "success",
+        customClass: {
+          popup: "",
+        },
+      });
       return dispatch({ type: EDIT_TRAINING });
     } catch (error) {
       console.log(error);
@@ -438,6 +494,7 @@ export const login = (user) => {
       localStorage.setItem("accName", data.acc.name);
       localStorage.setItem("accId", data.acc.id);
       localStorage.setItem("type", data.type);
+      localStorage.setItem("profilePicture", data.acc.profilePicture);
 
       dispatch({ type: LOGIN, payload: data });
       return false;
@@ -584,3 +641,134 @@ export function filterTrainingBy(data) {
     }
   };
 }
+
+export function uploadVideo(video) {
+  return async function (dispatch) {
+    try {
+      const response = axios.post(`${serverURL}/video/upVideo`, video).data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function addVideo(link) {
+  return async function (dispatch) {
+    try {
+      dispatch({ type: ADDVIDEO, payload: link });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function detailCompany(id) {
+  return async function (dispatch) {
+    try {
+      const response = (await axios.get(`${serverURL}/company/${id}`)).data;
+
+      return dispatch({
+        type: COMPANY_DETAIL,
+        payload: response,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export const getSuccesCases = () => {
+  //---------- Endpoint to Dev server -- Descomentar para usar
+  const endpoint = "http://localhost:3001/user/all";
+
+  //---------- Endpoint to deployed server
+  // const endpoint = `${serverURL}/success`;
+  return async (dispatch) => {
+    try {
+      const response = await axios(endpoint);
+      const { data } = response;
+      return dispatch({
+        type: GET_SUCCESCASES,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export function imageChange() {
+  return async function (dispatch) {
+    try {
+      dispatch({ type: IMAGECHANGE });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function trainingDetail(id) {
+  return async function (dispatch) {
+    const endpoint = `${serverURL}/trainings/${id}`;
+    try {
+      const { data } = await axios.get(endpoint);
+      return dispatch({
+        type: TRAINING_DETAIL,
+        payload: data[0],
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function createComment(id, comment) {
+  return async function (dispatch) {
+    const endpoint = `${serverURL}/comments/create/${id}`;
+    try {
+      const { data } = await axios.post(endpoint, comment);
+      dispatch({
+        type: COMMENTS_POST,
+        payload: data,
+      });
+    } catch (error) {}
+  };
+}
+
+export const getUserById = (id) => {
+  return async function (dispatch) {
+    try {
+      const response = (await axios.get(`${serverURL}/user/` + id)).data;
+      return dispatch({
+        type: GET_USER_BY_ID,
+        payload: response,
+      });
+    } catch (error) {
+      console.log("cat", error.message);
+    }
+  };
+};
+
+export const clearVideos = () => {
+  return async function (dispatch) {
+    return dispatch({
+      type: CLEAR_VIDEOS,
+    });
+  };
+};
+
+export const adduser = (idObject) => {
+  return async function (dispatch) {
+    try {
+      const response = (
+        await axios.post(`${serverURL}/user-training/adduser`, idObject)
+      ).data;
+      return dispatch({
+        type: ADD_USER_TRAINING,
+        payload: response,
+      });
+    } catch (error) {
+      console.log("cat", error.message);
+    }
+  };
+};

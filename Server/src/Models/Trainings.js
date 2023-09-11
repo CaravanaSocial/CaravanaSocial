@@ -18,7 +18,8 @@ module.exports = (sequelize) => {
         },
         video: {
             type: DataTypes.ARRAY(DataTypes.STRING), 
-            allowNull: false,
+            allowNull: true,
+            defaultValue:[]
         }
     }, { timestamps: false });
 };
