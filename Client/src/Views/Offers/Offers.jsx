@@ -42,10 +42,10 @@ export default function Offer() {
   };
 
   return (
-    <div className=" h-full  text-center inline-block m-4 p-4  ">
+    <div className=" h-full  text-center m-4 p-4 flex flex-col ">
       <div className="border-2 text-center border-zinc-100 dark:border-zinc-800 rounded-3xl py-2 shadow-md">
         <select
-          className="rounded-3xl px-2 mx-1 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
+          className="rounded-3xl px-2 mx-1 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
           name="country"
           onChange={handleChange}
         >
@@ -57,7 +57,7 @@ export default function Offer() {
           ))}
         </select>
         <select
-          className="rounded-3xl px-2 mx-1 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
+          className="rounded-3xl px-2 mx-1 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
           name="companyName"
           onChange={handleChange}
         >
@@ -69,7 +69,7 @@ export default function Offer() {
           ))}
         </select>
         <select
-          className="rounded-3xl px-2 mx-1 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
+          className="rounded-3xl px-2 mx-1 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
           name="category"
           onChange={handleChange}
         >
@@ -81,7 +81,7 @@ export default function Offer() {
           ))}
         </select>
       </div>
-      <h1>Ofertas</h1>
+      <h1 className="font-vilaka font-bold text-[50px]">Ofertas</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {offers?.map((offer) => (
           <OfferCard key={offer.id} offer={offer} />

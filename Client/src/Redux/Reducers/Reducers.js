@@ -35,8 +35,8 @@ import {
   COMPANY_DETAIL,
   GET_SUCCESCASES,
   GET_USER_BY_ID,
-
-
+  CLEAR_VIDEOS,
+  ADD_USER_TRAINING,
 } from "../Actions/Actions";
 
 const initialState = {
@@ -59,8 +59,8 @@ const initialState = {
   freelancers: [],
   video: [],
   imageChange: false,
-  trainingsDetail : {},
-  comments : [],
+  trainingsDetail: {},
+  comments: [],
   companyDetail: {},
   successCases: [],
   imageChange: false,
@@ -247,31 +247,43 @@ export default function rootReducer(state = initialState, action) {
       const goku = state.imageChange === true ? false : true;
       return {
         ...state,
-        imageChange: goku
-      }
+        imageChange: goku,
+      };
     case TRAINING_DETAIL:
       return {
         ...state,
-        trainingsDetail: action.payload
-      }
-    
-    case COMMENTS_POST :
+        trainingsDetail: action.payload,
+      };
+
+    case COMMENTS_POST:
       return {
         ...state,
-        comments: action.payload
-      }
-      
+        comments: action.payload,
+      };
+
     case GET_USER_BY_ID:
       return {
         ...state,
-       userDetail: action.payload,
+        userDetail: action.payload,
       };
-      
+
     case COMPANY_DETAIL:
-      return{
+      return {
         ...state,
-        companyDetail: action.payload
-      }  
+        companyDetail: action.payload,
+      };
+
+    case CLEAR_VIDEOS:
+      return {
+        ...state,
+        video: [],
+      };
+
+    case ADD_USER_TRAINING:
+      return {
+        ...state,
+      };
+
     default:
       return { ...state };
   }

@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getFreelancers, getUserById } from "../../Redux/Actions/Actions";
+import { getUserById } from "../../Redux/Actions/Actions";
 import { useParams } from "react-router-dom";
 
 const FreelancerDetail = () => {
