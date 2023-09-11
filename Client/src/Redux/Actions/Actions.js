@@ -21,6 +21,7 @@ export const EDIT_COMPANY = "EDIT_COMPANY";
 export const CREATE_OFFER = "CREATE_OFFER";
 export const DELETE_OFFER = "DELETE_OFFER";
 export const GET_OFFERS = "GET_OFFERS";
+export const GET_OFFERS_BYNAME = "GET_OFFERS_BYNAME"
 export const EDIT_OFFER = "EDIT_OFFER";
 export const FILTER_OFFER = "FILTER_OFFER";
 
@@ -64,6 +65,7 @@ export const USER_TRAINING = "USER_TRAINING"
 
 // const serverURL = "https://caravanaserver.onrender.com";
 const serverURL = "http://localhost:3001";
+
 
 export const createUser = (user) => {
   //---------- Endpoint to Dev server -- Descomentar para usar
@@ -341,11 +343,21 @@ export const deleteOffer = (id) => {
   };
 };
 
-export const getOffers = () => {
-  //---------- Endpoint to Dev server -- Descomentar para usar
-  // const endpoint = `http://localhost:3001/offers/`;
+export const getOfferByName = (name) =>{
+  const endpoint = `${serverURL}/offers/${name}`;
 
-  //---------- Endpoint to deployed server
+  return async (dispatch) => {
+    try {
+      const response = await axios(endpoint);
+      const { data } = response;
+      return dispatch({ type: GET_OFFERS_BYNAME, payload: data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export const getOffers = () => {
   const endpoint = `${serverURL}/offers/`;
 
   return async (dispatch) => {

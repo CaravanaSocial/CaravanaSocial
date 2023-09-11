@@ -12,6 +12,7 @@ import CreateJobs from "./Views/CreateJobs/CreateJobs.jsx";
 import Trainings from "./Views/Trainings/Trainings.jsx";
 import TrainingVideosPage from "./Views/Trainings/TrainingVideosPage.jsx";
 import Offer from "./Views/Offers/Offers.jsx";
+import DetailOffer from "./Views/Offers/Detail/DetailOffer.jsx";
 import ProfileUser from "./Views/UpdateProfile/ProfileUser.jsx";
 import ProfileCompany from "./Views/UpdateProfile/ProfileCompany.jsx";
 import VideosTrainings from "./Views/CreateTrainings/videosTrainings.jsx";
@@ -21,7 +22,8 @@ import { useLocation } from "react-router-dom";
 import DetailTrainings from "./Views/Trainings/TrainingDatail.jsx";
 import CompanyDetail from "./Views/CompanyDetail/CompanyDetail.jsx";
 import CreateSuccesCase from "./Views/CreateSuccessCase/CreateSuccesCase.jsx";
-import Freelancers from "./Views/Freelancers/Freelancers.jsx";
+
+
 
 function App() {
   const account =
@@ -48,9 +50,10 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/home-trainings" element={<Trainings />} />
           <Route path="/home-offers" element={<Offer />} />
-          <Route path="/home-freelancers" element={<Freelancers />} />
+          <Route path="/home-offers/:title" element={<DetailOffer/>}/>
           <Route path="/trainings/:id" element={<TrainingVideosPage />} />
           <Route path="/trainings/video/:id" element={<VideosTrainings />} />
+
           <Route
             path={
               localStorage.length !== 0
@@ -60,9 +63,9 @@ function App() {
             element={<ProfileUser />}
           />
           <Route path="/profile-company" element={<ProfileCompany />} />
-          <Route path="/training/detail/:id" element={<DetailTrainings />} />
-          <Route path="/company/:id" element={<CompanyDetail />} />
-          <Route path="/freelancer/:id" element={<FreelancerDetail />} />
+          <Route path="/training/detail/:id" element={<DetailTrainings/>} />
+          <Route path="/company/:id" element={<CompanyDetail/>}/>
+          <Route path="/home/freelancer/:id" element={<FreelancerDetail/>}/>
         </Routes>
         <Footer />
       </div>

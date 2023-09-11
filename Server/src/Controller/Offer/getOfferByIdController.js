@@ -1,8 +1,8 @@
 const { offer, companies, areaTraining } = require("../../db");
 
-const getOfferByIdController = async (id) => {
+const getOfferByIdController = async (title) => {
   const foundOffer = await offer.findOne({
-    where: { id },
+    where: {title:title},
     include: [
       {
         model: companies,
@@ -24,8 +24,6 @@ const getOfferByIdController = async (id) => {
         through: { attributes: [] },
       },
     ],
-    attributes: ["title"],
-    through: { attributes: [] },
   });
 
   if (foundOffer) return foundOffer;

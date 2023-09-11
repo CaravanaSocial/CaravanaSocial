@@ -10,6 +10,7 @@ import {
   EDIT_COMPANY,
   CREATE_OFFER,
   DELETE_OFFER,
+  GET_OFFERS_BYNAME,
   GET_OFFERS,
   EDIT_OFFER,
   CREATE_TRAINING,
@@ -142,6 +143,11 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
       };
+    
+    case GET_OFFERS_BYNAME:
+      return {
+        offer: action.payload,
+      }  
 
     case GET_OFFERS:
       return {
