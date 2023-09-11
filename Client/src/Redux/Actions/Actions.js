@@ -48,6 +48,7 @@ export const COMPANY_BUTTONS = "COMPANY_BUTTONS";
 
 export const TRAINING_FILTER = "TRAINING_FILTER";
 
+
 export const IMAGECHANGE = "IMAGECHANGE";
 
 export const TRAINING_DETAIL = "TRAINING_DETAIL";
@@ -59,6 +60,8 @@ export const COMPANY_DETAIL = "COMPANY_DETAIL";
 export const CLEAR_VIDEOS = "CLEAR_VIDEOS";
 
 export const ADD_USER_TRAINING = "ADD_USER_TRAINING";
+
+
 
 const serverURL = "https://caravanaserver.onrender.com";
 // const serverURL = "http://localhost:3001";
