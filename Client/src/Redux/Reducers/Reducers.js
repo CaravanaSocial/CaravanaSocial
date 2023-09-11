@@ -37,6 +37,7 @@ import {
   GET_USER_BY_ID,
   CLEAR_VIDEOS,
   ADD_USER_TRAINING,
+  USER_TRAINING
 } from "../Actions/Actions";
 
 const initialState = {
@@ -65,6 +66,7 @@ const initialState = {
   successCases: [],
   imageChange: false,
   userDetail: {},
+  trainingsUser: []
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -283,6 +285,12 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
       };
+
+    case USER_TRAINING:
+      return {
+        ...state,
+        trainingsUser: action.payload
+      }
 
     default:
       return { ...state };
