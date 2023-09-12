@@ -20,6 +20,11 @@ module.exports = (sequelize) => {
             type: DataTypes.ARRAY(DataTypes.STRING), 
             allowNull: true,
             defaultValue:[]
+        },
+        approved: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: null,
+            allowNull: true
         }
     }, { timestamps: false });
 };
