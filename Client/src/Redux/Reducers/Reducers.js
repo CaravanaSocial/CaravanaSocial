@@ -39,7 +39,11 @@ import {
   CLEAR_VIDEOS,
   ADD_USER_TRAINING,
   USER_TRAINING,
+
+  GET_TRAININGS_BY_VALUE
+
   CLEAR_FREELANCERS,
+
 } from "../Actions/Actions";
 
 const initialState = {
@@ -69,6 +73,11 @@ const initialState = {
   imageChange: false,
   userDetail: {},
   trainingsUser: [],
+
+  trainingsApproved: [],
+  trainingsDeclined: [],
+  trainingsNoCheck: []
+
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -296,14 +305,34 @@ export default function rootReducer(state = initialState, action) {
     case USER_TRAINING:
       return {
         ...state,
-        trainingsUser: action.payload,
-      };
+        trainingsUser: action.payload
+      }
+    case GET_TRAININGS_BY_VALUE:
+      console.log(action.payload)
+      if(action.payload[0].approved === true){
+        return{
+          ...state,
+          trainingsApproved: action.payload
+        }
+      }else if(action.payload[0].approved === false){
+        return{
+          ...state,
+          trainingsDeclined: action.payload
+        }
+      }else{
+        return{
+          ...state,
+          trainingsNoCheck: action.payload
+        }
+      }
+
 
     case CLEAR_FREELANCERS:
       return {
         ...state,
         userDetail: {},
       };
+
 
     default:
       return { ...state };
