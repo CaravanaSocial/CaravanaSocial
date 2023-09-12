@@ -480,7 +480,7 @@ export default function RegisterUser() {
           <div className="border-t-2 border-light-1 dark:border-light-1" />
 
           <button
-            className="bg-light-1 font-topmodern dark:bg-gray-800 rounded-3xl p-2 my-2 dark:text-gray-300 border-2 border-transparent hover:text-white dark:hover:border-light-1"
+            className="bg-light-1 font-topmodern rounded-3xl p-2 my-2 border-2 border-transparent dark:text-zinc-900 hover:text-white hover:scale-95"
             type="submit"
             disabled={isSubmitDisabled}
           >
