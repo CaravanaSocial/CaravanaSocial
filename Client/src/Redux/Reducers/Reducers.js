@@ -38,7 +38,8 @@ import {
   GET_USER_BY_ID,
   CLEAR_VIDEOS,
   ADD_USER_TRAINING,
-  USER_TRAINING
+  USER_TRAINING,
+  CLEAR_FREELANCERS,
 } from "../Actions/Actions";
 
 const initialState = {
@@ -67,7 +68,7 @@ const initialState = {
   successCases: [],
   imageChange: false,
   userDetail: {},
-  trainingsUser: []
+  trainingsUser: [],
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -143,11 +144,11 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
       };
-    
+
     case GET_OFFERS_BYNAME:
       return {
         offer: action.payload,
-      }  
+      };
 
     case GET_OFFERS:
       return {
@@ -295,8 +296,14 @@ export default function rootReducer(state = initialState, action) {
     case USER_TRAINING:
       return {
         ...state,
-        trainingsUser: action.payload
-      }
+        trainingsUser: action.payload,
+      };
+
+    case CLEAR_FREELANCERS:
+      return {
+        ...state,
+        userDetail: {},
+      };
 
     default:
       return { ...state };
