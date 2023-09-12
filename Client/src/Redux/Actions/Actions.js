@@ -21,7 +21,7 @@ export const EDIT_COMPANY = "EDIT_COMPANY";
 export const CREATE_OFFER = "CREATE_OFFER";
 export const DELETE_OFFER = "DELETE_OFFER";
 export const GET_OFFERS = "GET_OFFERS";
-export const GET_OFFERS_BYNAME = "GET_OFFERS_BYNAME"
+export const GET_OFFERS_BYNAME = "GET_OFFERS_BYNAME";
 export const EDIT_OFFER = "EDIT_OFFER";
 export const FILTER_OFFER = "FILTER_OFFER";
 
@@ -62,11 +62,12 @@ export const CLEAR_VIDEOS = "CLEAR_VIDEOS";
 
 export const ADD_USER_TRAINING = "ADD_USER_TRAINING";
 
-export const USER_TRAINING = "USER_TRAINING"
+export const USER_TRAINING = "USER_TRAINING";
+
+export const CLEAR_FREELANCERS = "CLEAR_FREELANCERS";
 
 // const serverURL = "https://caravanaserver.onrender.com";
 const serverURL = "http://localhost:3001";
-
 
 export const createUser = (user) => {
   //---------- Endpoint to Dev server -- Descomentar para usar
@@ -344,7 +345,7 @@ export const deleteOffer = (id) => {
   };
 };
 
-export const getOfferByName = (name) =>{
+export const getOfferByName = (name) => {
   const endpoint = `${serverURL}/offers/${name}`;
 
   return async (dispatch) => {
@@ -356,7 +357,7 @@ export const getOfferByName = (name) =>{
       console.log(error);
     }
   };
-}
+};
 
 export const getOffers = () => {
   const endpoint = `${serverURL}/offers/`;
@@ -831,5 +832,13 @@ export const getTrainingsUser = (id) => {
     } catch (error) {
       console.log("cat", error.message);
     }
+  };
+};
+
+export const clearFreelancers = () => {
+  return function (dispatch) {
+    return dispatch({
+      type: CLEAR_FREELANCERS,
+    });
   };
 };

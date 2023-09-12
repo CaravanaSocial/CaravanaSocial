@@ -39,7 +39,11 @@ import {
   CLEAR_VIDEOS,
   ADD_USER_TRAINING,
   USER_TRAINING,
+
   GET_TRAININGS_BY_VALUE
+
+  CLEAR_FREELANCERS,
+
 } from "../Actions/Actions";
 
 const initialState = {
@@ -69,9 +73,11 @@ const initialState = {
   imageChange: false,
   userDetail: {},
   trainingsUser: [],
+
   trainingsApproved: [],
   trainingsDeclined: [],
   trainingsNoCheck: []
+
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -147,11 +153,11 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
       };
-    
+
     case GET_OFFERS_BYNAME:
       return {
         offer: action.payload,
-      }  
+      };
 
     case GET_OFFERS:
       return {
@@ -319,6 +325,15 @@ export default function rootReducer(state = initialState, action) {
           trainingsNoCheck: action.payload
         }
       }
+
+
+    case CLEAR_FREELANCERS:
+      return {
+        ...state,
+        userDetail: {},
+      };
+
+
     default:
       return { ...state };
   }
