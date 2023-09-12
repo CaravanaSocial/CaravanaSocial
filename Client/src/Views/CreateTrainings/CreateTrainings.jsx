@@ -159,19 +159,18 @@ export default function createTrainings() {
           </select>
           <br />
           {inputTrainings.category.length ? (
-              <h2 className="text-lg dark:text-gray-300">Rubros seleccionados: </h2>
-            ) : null}
-              {inputTrainings.category.map((cat, i) => {
-                return (
-                  <div key={i}>
-                    <button className="bg-gray-300 dark:bg-gray-800 rounded-3xl px-2 py-1 m-1 dark:text-gray-300 hover:bg-red-500 dark:hover:bg-red-500"
-                    onClick={handleDelCategory}
-                    value={cat}
-                    >{cat}
-                    </button>
-                  </div>
-                );
-              })}
+            <h2 className="text-lg dark:text-gray-300">Rubros seleccionados: </h2>
+          ) : null}
+          {inputTrainings.category.map((cat, i) => {
+            return (
+              <div key={i}>
+                <button className="bg-gray-300 dark:bg-gray-800 rounded-3xl px-2 py-1 m-1 dark:text-gray-300 hover:bg-red-500 dark:hover:bg-red-500"
+                  onClick={handleDelCategory}
+                  value={cat}
+                >{cat}</button>
+              </div>
+            );
+          })}
 
           <h2 className="text-lg dark:text-gray-300">Descripción</h2>
           <textarea
@@ -190,7 +189,7 @@ export default function createTrainings() {
           )}
 
           <button
-            className="bg-gray-300 dark:bg-gray-800 rounded-3xl p-2 my-2 dark:text-gray-300 border-2 border-transparent hover:border-lime-600 dark:hover:border-lime-700"
+            className="bg-light-1 font-topmodern rounded-3xl p-2 border-2 border-transparent dark:text-zinc-900 hover:text-white hover:scale-95"
             type="submit"
             onClick={handleSubmit}
             disabled={disabled}

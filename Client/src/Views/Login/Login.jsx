@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useRef} from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { login, clearErrors, setNewErrors } from "../../Redux/Actions/Actions";
@@ -8,6 +8,7 @@ import { GoogleLogin } from "@react-oauth/google";
 import jwt_decode from "jwt-decode";
 
 export default function Login() {
+  const loginButton = useRef(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const globalErrors = useSelector((state) => state.errors);
@@ -16,6 +17,12 @@ export default function Login() {
     email: "",
     password: "",
   });
+
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+        loginButton.current.click();
+    }
+}
 
   const handleChange = (event) => {
     setUserData({
@@ -64,6 +71,7 @@ export default function Login() {
               placeholder="Correo electrónico"
               onChange={handleChange}
               value={userData.email}
+              onKeyDown={handleKeyPress}
             />
             <br />
             <input
@@ -73,6 +81,7 @@ export default function Login() {
               placeholder="Contraseña"
               onChange={handleChange}
               value={userData.password}
+              onKeyDown={handleKeyPress}
             />
             <br />
             {globalErrors.LOGIN?.error ? (
@@ -80,12 +89,11 @@ export default function Login() {
             ) : null}
             <br />
             <button
-              className="bg-light-1 font-topmodern dark:bg-gray-800 rounded-3xl p-2 my-1 dark:text-gray-300 border-2 border-transparent hover:text-white dark:hover:border-light-1"
+              className="bg-light-1 font-topmodern rounded-3xl p-2 mb-2 border-2 border-transparent dark:text-zinc-900 hover:text-white hover:scale-95"
               onClick={handleSubmit}
               type="submit"
-            >
-              Iniciar Sesión
-            </button>
+              ref={loginButton}
+            >Iniciar Sesión</button>
             <br />
             <div className="mt-1 w-[223px] inline-block">
               <GoogleLogin
