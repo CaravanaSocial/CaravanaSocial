@@ -10,17 +10,21 @@ const { getTrainingOnDb } = require("../Controller/Trainings/getTrainingOnDb");
 const {
   getTrainingByIdController,
 } = require("../Controller/Trainings/getTrainingByIdController");
+const { aproveTrainingController } = require("../Controller/Trainings/aproveTriningController")
 
 const getAlltraining = async (req, res) => {
   try {
-    const getTrainings = await getAll();
+    const { option } = req.query;
+      const getTrainings = await getAll(option);
 
-    if (getTrainings.length === 0)
-      return res
-        .status(400)
-        .json({ error: "No hay capacitaciones existentes" });
+      if (getTrainings.length === 0)
+        return res
+          .status(400)
+          .json({ error: "No hay capacitaciones existentes" });
+  
+      return res.status(200).json(getTrainings);
+    
 
-    return res.status(200).json(getTrainings);
   } catch (error) {
     return res.status(400).send(error.message);
   }
@@ -84,6 +88,19 @@ const getTrainingByIdHandler = async (req, res) => {
   }
 };
 
+const aproveTrainingHandler =  async ( req, res) => {
+  try {
+    const { id } =  req.params;
+    const { answer } = req.body;
+
+    const response = await aproveTrainingController(id, answer); 
+    return res.status(200).json(response)
+
+  } catch (error) {
+    return res.status(400).send(error.message)
+  }
+}
+
 module.exports = {
   updateTrainingHandler,
   createTrainingHandler,
@@ -91,4 +108,5 @@ module.exports = {
   getAlltraining,
   deletetrainingHandler,
   getTrainingByIdHandler,
+  aproveTrainingHandler
 };
