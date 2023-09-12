@@ -1,4 +1,4 @@
-const {companies, areaTraining} = require("../../db")
+const {companies, areaTraining, training, offer} = require("../../db")
 
 const getCompanyByIdController = async (id) =>{
         const foundCompany = await companies.findOne({
@@ -8,6 +8,12 @@ const getCompanyByIdController = async (id) =>{
                     model: areaTraining,
                     attributes: ["name"],
                     through: {attributes:[]}
+                },
+                {
+                    model: training,
+                },
+                {
+                    model: offer, 
                 }
             ]
         })
