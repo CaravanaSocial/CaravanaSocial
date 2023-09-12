@@ -1,5 +1,4 @@
-const {companies} = require("../../db")
-const {areaTraining} = require("../../db")
+const {companies, areaTraining,training, offer} = require("../../db")
 
 const getCompaniesController = async () =>{
     const gotCompanies = await companies.findAll({
@@ -8,6 +7,12 @@ const getCompaniesController = async () =>{
                 model: areaTraining,
                 attributes: ["name"],
                 through:{attributes:[]}
+            },
+            {
+                model: training,
+            },
+            {
+                model: offer, 
             }
         ]})
     if(gotCompanies.length >0){

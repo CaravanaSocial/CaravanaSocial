@@ -1,5 +1,5 @@
 const {companies} = require("../../db")
-const {areaTraining} = require("../../db")
+const {areaTraining, training, offer} = require("../../db")
 
 
 const updateCompanyController = async (props, id) =>{
@@ -27,6 +27,12 @@ const updateCompanyController = async (props, id) =>{
                 model: areaTraining,
                 attributes: ["name"],
                 through:{attributes:[]}
+            },
+            {
+                model: training,
+            },
+            {
+                model: offer, 
             }
         ]})
         return updatedCompany

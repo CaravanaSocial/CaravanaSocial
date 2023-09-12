@@ -1,4 +1,4 @@
-const {user} = require("../../db")
+const {user, training} = require("../../db")
 const {areaTraining} = require("../../db")
 
 
@@ -10,6 +10,9 @@ const getUsersController = async () =>{
                 model: areaTraining,
                 attributes: ["name"],
                 through:{attributes:[]}
+            },
+            {
+                model: training
             }
         ]
     })

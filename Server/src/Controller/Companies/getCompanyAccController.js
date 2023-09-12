@@ -1,5 +1,5 @@
 const {companies} = require("../../db")
-const {areaTraining} = require("../../db")
+const {areaTraining, training, offer} = require("../../db")
 
 const getCompanyAccController = async (email) =>{
     const companyAcc = await companies.findOne({where: {email},
@@ -8,7 +8,14 @@ const getCompanyAccController = async (email) =>{
                 model: areaTraining,
                 attributes: ["name"],
                 through:{attributes:[]}
+            },
+            {
+                model: training,
+            },
+            {
+                model: offer, 
             }
+            
         ]})
     return companyAcc
 }
