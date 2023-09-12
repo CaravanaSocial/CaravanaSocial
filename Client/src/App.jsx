@@ -23,6 +23,7 @@ import DetailTrainings from "./Views/Trainings/TrainingDatail.jsx";
 import CompanyDetail from "./Views/CompanyDetail/CompanyDetail.jsx";
 import CreateSuccesCase from "./Views/CreateSuccessCase/CreateSuccesCase.jsx";
 import Freelancers from "./Views/Freelancers/Freelancers.jsx";
+import AdminDashboard from "./Views/Admin/AdminDashboard.jsx";
 
 function App() {
   const account =
@@ -66,6 +67,7 @@ function App() {
           <Route path="/training/detail/:id" element={<DetailTrainings />} />
           <Route path="/company/:id" element={<CompanyDetail />} />
           <Route path="/freelancer/:id" element={<FreelancerDetail />} />
+          <Route path="/admin" element={<AdminDashboard />} />
         </Routes>
         <Footer />
       </div>

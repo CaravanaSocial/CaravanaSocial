@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
-import { createComment } from "../../Redux/Actions/Actions";
+import { createComment, acceptTraining } from "../../Redux/Actions/Actions";
 import { useParams, NavLink } from "react-router-dom";
 import { trainingDetail } from "../../Redux/Actions/Actions";
 
@@ -37,6 +37,18 @@ const DetailTrainings = () => {
     });
   };
 
+  const handleApprove =()=>{
+    dispatch(acceptTraining(id, {
+     answer: true
+    }))
+  }
+
+  const handleDecline =()=>{
+    dispatch(acceptTraining(id, {
+     answer: false
+    }))
+  }
+
   useEffect(() => {
     // Solo ejecuta el efecto si se ha añadido un comentario
     dispatch(trainingDetail(id));
@@ -59,6 +71,10 @@ const DetailTrainings = () => {
         <br />
       </div>
       <div className=" w-full">
+        
+        <button onClick={()=>handleApprove()}>Aceptar</button>
+        <button onClick={()=>handleDecline()}>Rechazar</button>
+
         <h1 className="font-vilaka font-bold text-[70px]">{detail?.name}</h1>
         <p className="font-topmodern">{detail?.description}</p>
         {detail?.video?.map((video, index) => {
