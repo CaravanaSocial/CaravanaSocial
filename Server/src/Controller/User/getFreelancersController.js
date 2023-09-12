@@ -1,4 +1,4 @@
-const {user, areaTraining} = require("../../db")
+const {user, areaTraining, training} = require("../../db")
 
 const getFreelancersController = async () =>{
     const freelancers = await user.findAll({
@@ -10,6 +10,9 @@ const getFreelancersController = async () =>{
                 model: areaTraining,
                 attributes: ["name"],
                 through:{attributes:[]}
+            },
+            {
+                model:training
             }
         ]
 
