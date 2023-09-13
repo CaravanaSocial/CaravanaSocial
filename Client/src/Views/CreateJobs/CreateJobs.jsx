@@ -15,8 +15,9 @@ export default function createJobs() {
     description: "",
     category: [],
   });
-
-  console.log(currentAccount);
+  const userInfo = JSON.parse(localStorage.account)
+  const {profilePicture} = userInfo
+  const {nameCompany} = userInfo
 
   useEffect(() => {
     dispatch(getCategories());
@@ -80,15 +81,16 @@ export default function createJobs() {
     !inputJobs.title || !inputJobs.category || !inputJobs.description;
 
   return (
-    <div className="bg-gray-100 h-full p-4">
+    <div className="bg-gray-loca00 h-full p-4">
       <div className="flex">
         <div className="w-2/4 flex justify-end items-center">
           <div className="justify-center text-center border-2 border-lime-600 dark:border-lime-700 rounded-3xl p-4 m-4">
-            <h1 className="text-4xl  border-b-2 border-zinc-100 dark:border-zinc-800">
-              Crea un Aviso de Trabajo
-            </h1>
+            <h1 className="text-3xl mb-1 dark:text-gray-300">Crea un Aviso de Trabajo</h1>
 
-            <h2>Nombre del Aviso de Trabajo</h2>
+            <div className="border-t-2 border-lime-600 dark:border-lime-700"/>
+
+            <br />
+            <h2 className="text-lg dark:text-gray-300">Nombre del Aviso de Trabajo</h2>
             <input
               className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
               type="text"
@@ -100,9 +102,9 @@ export default function createJobs() {
             <br />
             {error.title && <span className="text-red-600">{error.title}</span>}
 
-            <h2>Categoria</h2>
+            <h2 className="text-lg dark:text-gray-300">Categoria</h2>
             <select
-              className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
+              className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
               onChange={handleCategory}
               name="category"
             >
@@ -116,24 +118,19 @@ export default function createJobs() {
               })}
             </select>
             <br />
-            <span>Rubros seleccionados: </span>
-            <div className="p-2 m-auto bg-zinc-300 text-zinc-800 focus:border-transparent w-[200px] justify-center align-middle rounded-3xl">
-              {inputJobs.category.map((cat) => {
-                return (
-                  <div className="text-center bg-zinc-400 mb-1 rounded-3xl">
-                    {cat}
-                    <button
-                      className="bg-red-600 px-1 text-white h-[20px] m-auto rounded-3xl"
-                      onClick={handleDelCategory}
-                      value={cat}
-                    >
-                      {" "}
-                      x
-                    </button>
-                  </div>
-                );
-              })}
-            </div>
+            {inputJobs.category.length ? (
+              <h2 className="text-lg dark:text-gray-300">Rubros seleccionados: </h2>
+            ) : null}
+            {inputJobs.category.map((cat, i) => {
+              return (
+                <div key={i}>
+                  <button className="bg-gray-300 dark:bg-gray-800 rounded-3xl px-2 py-1 m-1 dark:text-gray-300 hover:bg-red-500 dark:hover:bg-red-500"
+                    onClick={handleDelCategory}
+                    value={cat}
+                  >{cat}</button>
+                </div>
+              );
+            })}
             <p
               className="text-red-600"
               style={{ visibility: error.category ? "visible" : "hidden" }}
@@ -141,12 +138,12 @@ export default function createJobs() {
               {error.category}
             </p>
 
-            <h2>Descripción</h2>
+            <h2 className="text-lg dark:text-gray-300">Descripción</h2>
             <textarea
-              className="rounded-3xl px-2 py-1 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-700"
+              className="rounded-3xl px-2 py-1 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
               type="text"
               name="description"
-              cols="20"
+              cols="28"
               rows="8"
               value={inputJobs.description}
               onChange={handleChange}
@@ -158,7 +155,7 @@ export default function createJobs() {
             )}
 
             <button
-              className="bg-zinc-300 mt-2 text-black rounded-3xl p-2"
+              className="bg-light-1 font-topmodern rounded-3xl p-2 border-2 border-transparent dark:text-zinc-900 hover:text-white hover:scale-95"
               type="submit"
               onClick={handleSubmit}
               disabled={disabled}
@@ -174,9 +171,14 @@ export default function createJobs() {
               className="bg-white rounded-lg p-4 shadow-md text-center"
               style={{ width: "300px" }}
             >
-              <h1 className="w-full h-48 object-cover rounded-t-lg">
-                {inputJobs.title}
+              <h1 className="w-full rounded-t-lg text-3xl font-bold">
+                {nameCompany}
               </h1>
+              <img
+                    src= {profilePicture}
+                    alt="profile picture company"
+                    className="w-full h-48 object-cover rounded-t-lg"
+                />
               <h2 className="text-2xl font-semibold mt-2">{inputJobs.title}</h2>
               <p className="text-gray-600">{inputJobs.description}</p>
             </div>

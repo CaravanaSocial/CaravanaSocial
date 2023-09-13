@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserById } from "../../Redux/Actions/Actions";
+import { clearFreelancers, getUserById } from "../../Redux/Actions/Actions";
 import { useParams } from "react-router-dom";
 
 const FreelancerDetail = () => {
@@ -10,7 +10,10 @@ const FreelancerDetail = () => {
 
   useEffect(() => {
     dispatch(getUserById(id));
-  }, []);
+    return () => {
+      dispatch(clearFreelancers());
+    };
+  }, [id]);
 
   const categories = userDetail?.areaTrainings?.map((x) => x.name).join(", ");
   //No se sabe como van a venir los certificados xd. Si los renderizo se rompe.

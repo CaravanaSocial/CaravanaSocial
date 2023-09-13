@@ -429,7 +429,7 @@ const RegisterCompany = () => {
           <div className="border-t-2 border-light-1 dark:border-light-1" />
 
           <button
-            className="bg-gray-300 font-topmodern dark:bg-gray-800 rounded-3xl p-2 my-2 dark:text-gray-300 border-2 border-transparent hover:border-light-1 dark:hover:border-light-1"
+            className="bg-light-1 font-topmodern rounded-3xl p-2 my-2 border-2 border-transparent dark:text-zinc-900 hover:text-white hover:scale-95"
             style={
               isSubmitDisabled
                 ? { opacity: "0.6", cursor: "not-allowed" }

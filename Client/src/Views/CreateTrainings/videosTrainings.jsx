@@ -106,7 +106,7 @@ export default function VideosTrainings() {
           </CloudinaryContext>
 
           <button
-            className="bg-gray-300 dark:bg-gray-800 rounded-3xl p-2 my-2 dark:text-gray-300 border-2 border-transparent hover:border-lime-600 dark:hover:border-lime-700"
+            className="bg-light-1 font-topmodern rounded-3xl p-2 mt-2 border-2 border-transparent dark:text-zinc-900 hover:text-white hover:scale-95"
             onClick={(e) => handleClick(e)}
           >
             SUBMIT

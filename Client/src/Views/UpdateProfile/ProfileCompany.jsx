@@ -35,8 +35,8 @@ const ProfileCompany = () => {
 
   const categories = account?.areaTrainings?.map((c) => c.name);
 
-  const companyIdRelacion = trainings.filter((x) => x.companyId === accountId);
-  const companyIdRelOffer = offers.filter((x) => x.companyId === accountId);
+  const companyIdRelacion = trainings?.filter((x) => x.companyId === accountId);
+  const companyIdRelOffer = offers?.filter((x) => x.companyId === accountId);
 
   const [edit, setEdit] = useState(false);
   const [error, setError] = useState({});
@@ -414,7 +414,7 @@ const ProfileCompany = () => {
               </p>
 
               <button
-                className="bg-light-1 font-topmodern dark:bg-gray-800 rounded-3xl p-2 dark:text-gray-300 mr-1 border-2 border-transparent hover:text-white dark:hover:border-light-1"
+                className="bg-light-1 font-topmodern rounded-3xl p-2 mr-1 border-2 border-transparent dark:text-zinc-900 hover:text-white hover:scale-95"
                 onClick={(event) => handleSubmit(event)}
                 type="submit"
               >
@@ -441,7 +441,7 @@ const ProfileCompany = () => {
             </div>
           ) : (
             <button
-              className="bg-gray-300 dark:bg-gray-800 rounded-3xl p-2 my-2 dark:text-gray-300 border-2 border-transparent hover:border-light-1 dark:hover:border-light-1"
+              className="bg-light-1 font-topmodern rounded-3xl p-2 border-2 border-transparent dark:text-zinc-900 hover:text-white hover:scale-95"
               onClick={() => handleEdit()}
             >
               Editar perfil
@@ -457,14 +457,14 @@ const ProfileCompany = () => {
               </h1>
 
               <NavLink to="/create-trainings">
-                <button className="bg-gray-300 dark:bg-gray-800 rounded-3xl px-2 pb-2 pt-1 ml-2 dark:text-gray-300 border-2 border-transparent hover:border-light-1 dark:hover:border-light-1">
+                <button className="bg-light-1 font-topmodern rounded-3xl px-2 pb-1 pt-1 ml-2 border-2 border-transparent dark:text-zinc-900 hover:text-white hover:scale-95">
                   Crear
                 </button>
               </NavLink>
             </div>
 
             <div className="m-2">
-              {companyIdRelacion.length ? (
+              {companyIdRelacion?.length ? (
                 <div className="flex flex-wrap">
                   {companyIdRelacion.map((t) => {
                     return (
@@ -502,16 +502,16 @@ const ProfileCompany = () => {
               </h1>
 
               <NavLink to="/create-jobs">
-                <button className="bg-gray-300 dark:bg-gray-800 rounded-3xl px-2 pb-2 pt-1 ml-2 dark:text-gray-300 border-2 border-transparent hover:border-light-1 dark:hover:border-light-1">
+                <button className="bg-light-1 font-topmodern rounded-3xl px-2 pb-1 pt-1 ml-2 border-2 border-transparent dark:text-zinc-900 hover:text-white hover:scale-95">
                   Crear
                 </button>
               </NavLink>
             </div>
 
             <div className="m-2">
-              {companyIdRelOffer.length ? (
+              {companyIdRelOffer?.length ? (
                 <div className="flex flex-wrap">
-                  {companyIdRelOffer.map((o) => {
+                  {companyIdRelOffer?.map((o) => {
                     return (
                       <div className="flex justify-center">
                         <div className="text-center m-1 border-2 border-light-1 dark:border-light-1 hover:scale-95 p-4 rounded-3xl w-[300px]">
