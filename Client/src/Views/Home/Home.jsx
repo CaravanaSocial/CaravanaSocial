@@ -18,7 +18,7 @@ const Home = () => {
   const dispatch = useDispatch();
 
   const { trainings, offers, freelancers } = useSelector((state) => state);
-  const approvedTraininigs = trainings.filter(x=>x.approved===true)
+  const approvedTraininigs = trainings?.filter(x=>x.approved===true)
 
   useEffect(() => {
     if (localStorage.type === "company") {
