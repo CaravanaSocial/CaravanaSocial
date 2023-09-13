@@ -63,8 +63,8 @@ export const ADD_USER_TRAINING = "ADD_USER_TRAINING";
 
 export const USER_TRAINING = "USER_TRAINING";
 
-const serverURL = "https://caravanaserver.onrender.com";
-// const serverURL = "http://localhost:3001";
+// const serverURL = "https://caravanaserver.onrender.com";
+const serverURL = "http://localhost:3001";
 
 export const createUser = (user) => {
   //---------- Endpoint to Dev server -- Descomentar para usar
