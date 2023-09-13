@@ -65,6 +65,7 @@ export const ADD_USER_TRAINING = "ADD_USER_TRAINING";
 export const USER_TRAINING = "USER_TRAINING";
 
 export const CLEAR_FREELANCERS = "CLEAR_FREELANCERS";
+export const GET_Q_AND_A = "GET_Q_AND_A";
 
 // const serverURL = "https://caravanaserver.onrender.com";
 const serverURL = "http://localhost:3001";
@@ -840,5 +841,47 @@ export const clearFreelancers = () => {
     return dispatch({
       type: CLEAR_FREELANCERS,
     });
+  };
+};
+
+export const createQAndA = (input) => {
+  return async function (dispatch) {
+    try {
+      const response = (
+        await axios.post(`${serverURL}/question/create`, input)
+      ).data;
+      alert("se creó, creo")
+    } catch (error) {
+      console.log("cat", error.message);
+    }
+  };
+};
+
+export const getQAndAs = () => {
+  return async function (dispatch) {
+    try {
+      const response = (
+        await axios.get(`${serverURL}/question`)
+      ).data;
+      dispatch({
+        type: GET_Q_AND_A,
+        payload: response
+      })
+    } catch (error) {
+      console.log("cat", error.message);
+    }
+  };
+};
+
+
+export const updateQAndA = (id, input) => {
+  return async function (dispatch) {
+    try {
+      const response = (
+        await axios.patch(`${serverURL}/question/update/${id}`, input)
+      ).data;
+    } catch (error) {
+      console.log("cat", error.message);
+    }
   };
 };

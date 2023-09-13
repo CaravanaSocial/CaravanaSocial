@@ -40,10 +40,10 @@ import {
   ADD_USER_TRAINING,
   USER_TRAINING,
 
-  GET_TRAININGS_BY_VALUE
+  GET_TRAININGS_BY_VALUE,
 
   CLEAR_FREELANCERS,
-
+  GET_Q_AND_A
 } from "../Actions/Actions";
 
 const initialState = {
@@ -76,7 +76,8 @@ const initialState = {
 
   trainingsApproved: [],
   trainingsDeclined: [],
-  trainingsNoCheck: []
+  trainingsNoCheck: [],
+  faqs:[]
 
 };
 
@@ -332,7 +333,11 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         userDetail: {},
       };
-
+    case GET_Q_AND_A:
+      return{
+        ...state,
+        faqs:action.payload
+      }
 
     default:
       return { ...state };
