@@ -19,18 +19,18 @@ const Slider = ({ children }) => {
   return (
     <div className=" flex items-center">
       <MdChevronLeft
-        className="opacity-50 cursor-pointer hover:opacity-100"
+        className="opacity-50 hidden sm:block cursor-pointer hover:opacity-100"
         onClick={slideLeft}
         size={150}
       />
       <div
         ref={sliderRef}
-        className=" 2xl:w-[1280px] xl:w-[850px] lg:w-[850px] sm:w-[440px] w-[400px] grid h-[600px] overflow-x-scroll scroll-smooth whitespace-nowrap scrollbar scrollbar-hide"
+        className=" 2xl:w-[1280px] xl:w-[850px] lg:w-[850px] sm:w-[400px] w-[250px] grid h-[400px] sm:h-[600px] overflow-x-scroll scroll-smooth whitespace-nowrap scrollbar scrollbar-hide"
       >
         <div className=" flex space-x-8">{children}</div>
       </div>
       <MdChevronRight
-        className="opacity-50 cursor-pointer hover:opacity-100"
+        className="opacity-50 hidden sm:block cursor-pointer hover:opacity-100"
         onClick={slideRight}
         size={150}
       />

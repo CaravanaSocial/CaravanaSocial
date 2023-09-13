@@ -48,10 +48,10 @@ const Home = () => {
       className="2xl:flex  2xl:flex-row xl:flex xl:flex-row  lg:flex lg:flex-col  text-center  flex-col flex  2xl:w-full 2xl:h-full"
     >
       <div className=" border-r-2  2xl:w-[300px] xl:w-[300px] w-full">
-        <h1 className=" h-[300px] w-[300px] "></h1>
+        <h1 className=" sm:h-[300px] h-[150px] w-[300px] "></h1>
       </div>
       <div className="  md:flex md:flex-col md:items-center w-full ">
-        <section>
+        <section className=" flex flex-col items-center">
           <h1 className="font-vilaka font-bold text-[50px]">Freelancers: </h1>
           <Slider>
             {freelancers?.map((item) => (
@@ -65,7 +65,7 @@ const Home = () => {
         >
           Ver Mas
         </button>
-        <section>
+        <section className=" flex flex-col items-center">
           <h1 className="font-vilaka font-bold text-[50px]">
             Capacitaciones:{" "}
           </h1>
@@ -81,7 +81,7 @@ const Home = () => {
         >
           Ver Mas
         </button>
-        <section>
+        <section className=" flex flex-col items-center">
           <h1 className="font-vilaka font-bold text-[50px]">Ofertas: </h1>
           <Slider>
             {offers?.map((item) => (
