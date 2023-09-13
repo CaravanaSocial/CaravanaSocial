@@ -52,7 +52,7 @@ const DetailTrainings = () => {
           alt={detail?.company?.name}
         />
         <NavLink to={`/company/${detail?.companyId}`}>
-          <span className="font-topmodern text-[40px]">
+          <span className="font-vilaka font-bold text-[55px] hover:text-light-1">
             {detail?.company?.nameCompany}
           </span>
         </NavLink>
