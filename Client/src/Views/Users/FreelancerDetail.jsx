@@ -51,11 +51,11 @@ const FreelancerDetail = () => {
               <h2 className="text-2xl max-lg:text-xl"
               >{userDetail?.name}{" "}{userDetail?.lastName}</h2>
 
-              <h2 className="text-2xl max-lg:text-lg text-gray-700">
+              <h2 className="text-2xl max-lg:text-lg text-gray-700 dark:text-gray-400">
                 {userDetail?.location?.country + ", " + userDetail?.location?.state + ", " + userDetail?.location?.city}
               </h2>
 
-              <h2 className="text-2xl max-lg:text-lg text-gray-700"
+              <h2 className="text-2xl max-lg:text-lg text-gray-700 dark:text-gray-400"
               >{calcularEdad()} años.</h2>
             </div>
           </div>
