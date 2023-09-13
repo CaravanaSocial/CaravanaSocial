@@ -33,7 +33,9 @@ const getAllSuccessStories = async (req, res) => {
 
 const updateSuccessStories = async (req, res) => {
   try {
-    const updatedStory = await changeStory(req.body);
+    const {name, image, testimony, facebook, linkedin, instagram, twitter} = req.body;
+    const { id } = req.params
+    const updatedStory = await changeStory(name, image, testimony, facebook, linkedin, instagram, twitter, id);
 
     if (!updatedStory)
       return res.status(400).send("No se ha podido actualizar");
@@ -46,7 +48,7 @@ const updateSuccessStories = async (req, res) => {
 
 const deleteSuccessStories = async (req, res) => {
   try {
-    const { id } = req.query;
+    const { id } = req.params;
     const deletedSuccess = await delSuc(id);
 
     if (deletedSuccess) {

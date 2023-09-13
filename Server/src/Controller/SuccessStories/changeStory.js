@@ -1,10 +1,10 @@
 const { success } = require("../../db");
 
-const changeStory = async (body) => {
+const changeStory = async (name, image, testimony, facebook, linkedin, instagram, twitter, id) => {
   try {
-    const { id, name, image, testimony } = body;
-    if (!id || !name || !image || !testimony)
-      throw new Error("Falta informacion");
+    
+    if (!id)
+      throw new Error("Falta el id de la historia de exito");
 
     const foundStory = await success.findByPk(id);
 
@@ -14,6 +14,10 @@ const changeStory = async (body) => {
       name: name ? name : foundStory.name,
       image: image ? image : foundStory.image,
       testimony: testimony ? testimony : foundStory.testimony,
+      facebook: facebook ? facebook : foundStory.facebook,
+      linkedin: linkedin ? linkedin : foundStory.linkedin,
+      instagram : instagram ? instagram : foundStory.instagram,
+      twitter : twitter ? twitter : foundStory.twitter
     };
     await foundStory.update(newStory);
 
