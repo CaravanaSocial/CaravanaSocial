@@ -46,7 +46,7 @@ export default function DetailOffer() {
             </div>
             <div className="mt-4 text-center">
 
-              {offer.areaTrainings.map(x=>{return <span className="inline-block bg-green-500 text-white px-2 py-1 m-2 rounded-full mr-2 text-center">{x.name}</span> })}
+              {offer?.areaTrainings?.map(x=>{return <span className="inline-block bg-green-500 text-white px-2 py-1 m-2 rounded-full mr-2 text-center">{x.name}</span> })}
 
             </div>
           </div>
