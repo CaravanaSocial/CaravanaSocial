@@ -16,9 +16,9 @@ export default function createJobs() {
     category: [],
   });
   const userInfo = JSON.parse(localStorage.account)
-  const {profilePicture} = userInfo
   const {nameCompany} = userInfo
-
+  const {profilePicture} = localStorage
+  console.log(profilePicture)
   useEffect(() => {
     dispatch(getCategories());
   }, []);
