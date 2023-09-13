@@ -24,6 +24,11 @@ module.exports = (sequelize) =>{
         profilePicture: {
             type: DataTypes.STRING,
             allowNull: false
+        },
+        superAdmin: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue: false
         }
     },{
         paranoid: true

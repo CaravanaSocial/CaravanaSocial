@@ -1,5 +1,5 @@
-const { offer } = require("../../db");
-const { areaTraining, companies } = require("../../db");
+const { offer, admin } = require("../../db");
+const { areaTraining, companies} = require("../../db");
 const { Op } = require("sequelize");
 const fs = require("fs");
 const path = require("path");
@@ -15,8 +15,13 @@ const postOfferController = async (info) => {
   const { title, description, category } = info.data;
   const { id } = info;
 
-  const emailResponse = await companies.findOne({ where: { id: id } });
-  const email = emailResponse.dataValues.email;
+  const emailResponseCompany = await companies.findOne({ where: { id: id } });
+  const emailResponseAdmin = await admin.findOne({ where: { id: id } });
+  if(emailResponseCompany){
+    var email = emailResponseCompany.dataValues.email;
+  }else if(emailResponseAdmin){
+    var email = emailResponseAdmin.dataValues.email;
+  }
 
   const menssageRegister = {
     from: emailUser,
@@ -37,7 +42,12 @@ const postOfferController = async (info) => {
         });
         await user.addAreaTraining(userCategory);
       }
-      await user.setCompany(id);
+      if(emailResponseCompany){
+        await user.setCompany(id);
+      }else if (emailResponseAdmin){
+        await user.setAdmin(id);
+
+      }
 
       transporter.sendMail(menssageRegister, (error, info) => {
         if (error) {
