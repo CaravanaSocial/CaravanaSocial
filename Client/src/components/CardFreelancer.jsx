@@ -13,7 +13,7 @@ export default function CardFreelancer(props) {
   };
 
   return (
-    <div className="border-2  flex-grow flex-col border-light-1 hover:scale-95 bg-white p-4 rounded-3xl shadow-md  w-[230px] h-[400px] sm:h-full sm:w-[400px] flex justify-center">
+    <div className="border-2   flex-grow flex-col border-light-1 hover:scale-95 bg-white p-4 rounded-3xl shadow-md  w-[230px] h-[400px] sm:h-full sm:w-[400px] flex justify-center">
       <img
         className="h-[400px] rounded-[666px] "
         src={props.freelancer.profilePicture}
