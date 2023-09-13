@@ -18,6 +18,7 @@ const Home = () => {
   const dispatch = useDispatch();
 
   const { trainings, offers, freelancers } = useSelector((state) => state);
+  const approvedTraininigs = trainings.filter(x=>x.approved===true)
 
   useEffect(() => {
     if (localStorage.type === "company") {
@@ -72,7 +73,7 @@ const Home = () => {
               </div>
 
               <Slider>
-                {trainings?.map((item) => (
+                {approvedTraininigs?.map((item) => (
                   <TrainingCard key={item.id} training={item} />
                 ))}
               </Slider>

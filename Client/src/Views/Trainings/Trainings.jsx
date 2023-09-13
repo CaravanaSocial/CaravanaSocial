@@ -10,12 +10,11 @@ import {
 import { useEffect, useState } from "react";
 
 const Trainings = () => {
-  const trainings = useSelector((state) => state.trainings);
   const trainingsFiltered = useSelector((state) => state.trainingsFiltered);
   const countries = useSelector((state) => state.countries);
   const category = useSelector((state) => state.categories);
   const dispatch = useDispatch();
-
+  const approvedTraininigs = trainingsFiltered.filter(x=>x.approved===true)
   const [filter, setFilter] = useState({
     country: "",
     category: "",
@@ -78,7 +77,7 @@ const Trainings = () => {
       </div>
       <h1 className="font-vilaka font-bold text-[50px]">Entrenamientos</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {trainingsFiltered?.map((training) => (
+        {approvedTraininigs?.map((training) => (
           <TrainingCard key={training.id} training={training} />
         ))}
       </div>

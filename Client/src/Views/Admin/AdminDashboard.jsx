@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import { getTrainings, getTrainingsByValue } from '../../Redux/Actions/Actions';
 import { NavLink } from 'react-router-dom';
+import QAndA from "../../components/AdminViews/QAndA.jsx"
 
 const AdminDashboard = () => {
   const dispatch = useDispatch();
@@ -73,7 +74,7 @@ const AdminDashboard = () => {
        })) : <p>No hay capacitaciones pendientes</p>
     
       ) : null}
-      
+      <QAndA/>
     </div>
   )
 }
