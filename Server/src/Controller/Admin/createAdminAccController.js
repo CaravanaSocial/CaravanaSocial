@@ -1,4 +1,4 @@
-const {admin} = require("../../db")
+const {admin, training, offer} = require("../../db")
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const {SIGNATURE} = process.env
@@ -19,7 +19,20 @@ const createAdminAccController = async (props) =>{
             /* const adminId = newAdmin.id
             const token = jwt.sign({adminId},SIGNATURE) */
             newAdmin.password=0
-            return {acc:newAdmin/* , token */}
+            const newAdminFound = await admin.findOne({
+                where:{id: newAdmin.id},
+                include:[
+                    {
+                        model:training
+                    },
+                    {
+                        model:offer
+                    }
+
+                ]
+            })
+
+            return {acc:newAdminFound/* , token */}
         }
         return "used"
     }

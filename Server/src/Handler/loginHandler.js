@@ -14,6 +14,9 @@ const loginHandler = async (req, res) =>{
             if(adminAcc){
                 let accTokenType = await loginGoogleController(adminAcc)
                 if(accTokenType.acc.activate!==false){
+                    if(accTokenType.acc.superAdmin===true){
+                        return res.status(200).json({...accTokenType, type:"superAdmin"})    
+                    }
                     return res.status(200).json({...accTokenType, type:"admin"})
                 }return res.status(400).json({error: "Usuario bloqueado"})
             }
@@ -40,6 +43,9 @@ const loginHandler = async (req, res) =>{
         if(adminAcc){
             let accTokenType = await loginController(adminAcc, password)
             if(accTokenType.acc.activate!==false){
+                if(accTokenType.acc.superAdmin===true){
+                    return res.status(200).json({...accTokenType, type:"superAdmin"})    
+                }
                 return res.status(200).json({...accTokenType, type:"admin"})
             }return res.status(400).json({error: "Usuario bloqueado"})
         }
