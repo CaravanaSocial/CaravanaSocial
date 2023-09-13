@@ -9,6 +9,7 @@ export default {
       fontFamily: {
         vilaka: ["Vilaka", "Serif"],
         topmodern: ["TopModern"],
+        poppins: ["Poppins"],
       },
       backgroundColor: {
         "light-1": "#a7b698",
