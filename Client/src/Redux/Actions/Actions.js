@@ -29,6 +29,7 @@ export const CREATE_TRAINING = "CREATE_TRAINING";
 export const DELETE_TRAINING = "DELETE_TRAINING";
 export const EDIT_TRAINING = "EDIT_TRAINING";
 export const GET_TRAININGS = "GET_TRAININGS";
+export const GET_TRAININGS_BY_VALUE = "GET_TRAININGS_BY_VALUE";
 export const ADDVIDEO = "ADDVIDEO";
 
 export const GET_LOCATION = "GET_LOCATION";
@@ -62,6 +63,11 @@ export const CLEAR_VIDEOS = "CLEAR_VIDEOS";
 export const ADD_USER_TRAINING = "ADD_USER_TRAINING";
 
 export const USER_TRAINING = "USER_TRAINING";
+
+
+export const CLEAR_FREELANCERS = "CLEAR_FREELANCERS";
+export const GET_Q_AND_A = "GET_Q_AND_A";
+
 
 // const serverURL = "https://caravanaserver.onrender.com";
 const serverURL = "http://localhost:3001";
@@ -424,6 +430,26 @@ export const getTrainings = () => {
   };
 };
 
+export const getTrainingsByValue = (value) => {
+  //---------- Endpoint to Dev server -- Descomentar para usar
+  // const endpoint = `http://localhost:3001/trainings`;
+
+  //---------- Endpoint to deployed server
+  console.log(value)
+  const endpoint = `${serverURL}/trainings/?option=${value}`;
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(endpoint);
+      const { data } = response;
+      console.log(data)
+
+      return dispatch({ type: GET_TRAININGS_BY_VALUE, payload: data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
 export const createTraining = (training) => {
   //---------- Endpoint to Dev server -- Descomentar para usar
   // const endpoint = "http://localhost:3001/trainings/";
@@ -446,6 +472,7 @@ export const createTraining = (training) => {
     }
   };
 };
+
 
 export const deleteTraining = (id) => {
   //---------- Endpoint to Dev server -- Descomentar para usar
@@ -487,6 +514,18 @@ export const editTraining = (id, training) => {
       console.log(error);
     }
   };
+};
+
+export const acceptTraining =(id, answer)=>{
+  const endpoint = `${serverURL}/trainings/admin/${id}`;
+  return async function(dispatch){
+    try {
+      const response = await axios.patch(endpoint, answer)
+      alert("funciona")
+    } catch (error) {
+      console.log(error)
+    }
+  }
 };
 
 export const login = (user) => {
@@ -798,3 +837,55 @@ export const getTrainingsUser = (id) => {
     }
   };
 };
+
+
+export const clearFreelancers = () => {
+  return function (dispatch) {
+    return dispatch({
+      type: CLEAR_FREELANCERS,
+    });
+  };
+};
+
+export const createQAndA = (input) => {
+  return async function (dispatch) {
+    try {
+      const response = (
+        await axios.post(`${serverURL}/question/create`, input)
+      ).data;
+      alert("se creó, creo")
+    } catch (error) {
+      console.log("cat", error.message);
+    }
+  };
+};
+
+export const getQAndAs = () => {
+  return async function (dispatch) {
+    try {
+      const response = (
+        await axios.get(`${serverURL}/question`)
+      ).data;
+      dispatch({
+        type: GET_Q_AND_A,
+        payload: response
+      })
+    } catch (error) {
+      console.log("cat", error.message);
+    }
+  };
+};
+
+
+export const updateQAndA = (id, input) => {
+  return async function (dispatch) {
+    try {
+      const response = (
+        await axios.patch(`${serverURL}/question/update/${id}`, input)
+      ).data;
+    } catch (error) {
+      console.log("cat", error.message);
+    }
+  };
+};
+

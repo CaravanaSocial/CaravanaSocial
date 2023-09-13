@@ -15,8 +15,9 @@ export default function createJobs() {
     description: "",
     category: [],
   });
-
-  console.log(currentAccount);
+  const userInfo = JSON.parse(localStorage.account)
+  const {profilePicture} = userInfo
+  const {nameCompany} = userInfo
 
   useEffect(() => {
     dispatch(getCategories());
@@ -80,7 +81,7 @@ export default function createJobs() {
     !inputJobs.title || !inputJobs.category || !inputJobs.description;
 
   return (
-    <div className="bg-gray-100 h-full p-4">
+    <div className="bg-gray-loca00 h-full p-4">
       <div className="flex">
         <div className="w-2/4 flex justify-end items-center">
           <div className="justify-center text-center border-2 border-lime-600 dark:border-lime-700 rounded-3xl p-4 m-4">
@@ -170,9 +171,14 @@ export default function createJobs() {
               className="bg-white rounded-lg p-4 shadow-md text-center"
               style={{ width: "300px" }}
             >
-              <h1 className="w-full h-48 object-cover rounded-t-lg">
-                {inputJobs.title}
+              <h1 className="w-full rounded-t-lg text-3xl font-bold">
+                {nameCompany}
               </h1>
+              <img
+                    src= {profilePicture}
+                    alt="profile picture company"
+                    className="w-full h-48 object-cover rounded-t-lg"
+                />
               <h2 className="text-2xl font-semibold mt-2">{inputJobs.title}</h2>
               <p className="text-gray-600">{inputJobs.description}</p>
             </div>

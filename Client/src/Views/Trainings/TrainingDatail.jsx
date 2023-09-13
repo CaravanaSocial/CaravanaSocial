@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
-import { createComment } from "../../Redux/Actions/Actions";
+import { createComment, acceptTraining } from "../../Redux/Actions/Actions";
 import { useParams, NavLink } from "react-router-dom";
 import { trainingDetail } from "../../Redux/Actions/Actions";
 
@@ -13,6 +13,7 @@ const DetailTrainings = () => {
   });
 
   const [commentAdded, setCommentAdded] = useState(false);
+  const [updateButton, setUpdateButton] = useState(false);
 
   const { id } = useParams();
 
@@ -37,11 +38,27 @@ const DetailTrainings = () => {
     });
   };
 
+  const handleApprove =()=>{
+    dispatch(acceptTraining(id, {
+     answer: true
+    }))
+    setCommentAdded(!commentAdded);
+    dispatch(trainingDetail(id));
+  }
+
+  const handleDecline =()=>{
+    dispatch(acceptTraining(id, {
+     answer: false
+    }))
+    setCommentAdded(!commentAdded);
+    dispatch(trainingDetail(id));
+  }
+
   useEffect(() => {
     // Solo ejecuta el efecto si se ha añadido un comentario
     dispatch(trainingDetail(id));
     // Restablece la variable de estado a false
-  }, [commentAdded]);
+  }, [commentAdded, updateButton]);
 
   return (
     <main className="h-full lg:flex lg:flex-row flex flex-col text-center justify-center">
@@ -59,6 +76,14 @@ const DetailTrainings = () => {
         <br />
       </div>
       <div className=" w-full">
+        {console.log(detail.approved)}
+        {
+          (detail.approved === null && localStorage.type === "admin")? <><button onClick={()=>handleApprove()}>Aceptar</button>
+          <button onClick={()=>handleDecline()}>Rechazar</button></> : ((detail.approved === true && localStorage.type === "admin") ? (<button onClick={()=>handleDecline()}>Rechazar</button>) : (localStorage.type === "admin" ? (<button onClick={()=>handleApprove()}>Aceptar</button>) : null))
+        }
+        {/* <button onClick={()=>handleApprove()}>Aceptar</button>
+        <button onClick={()=>handleDecline()}>Rechazar</button> */}
+
         <h1 className="font-vilaka font-bold text-[70px]">{detail?.name}</h1>
         <p className="font-topmodern">{detail?.description}</p>
         {detail?.video?.map((video, index) => {
