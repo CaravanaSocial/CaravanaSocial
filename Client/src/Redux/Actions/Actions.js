@@ -64,8 +64,10 @@ export const ADD_USER_TRAINING = "ADD_USER_TRAINING";
 
 export const USER_TRAINING = "USER_TRAINING";
 
+
 export const CLEAR_FREELANCERS = "CLEAR_FREELANCERS";
 export const GET_Q_AND_A = "GET_Q_AND_A";
+
 
 // const serverURL = "https://caravanaserver.onrender.com";
 const serverURL = "http://localhost:3001";
@@ -836,6 +838,7 @@ export const getTrainingsUser = (id) => {
   };
 };
 
+
 export const clearFreelancers = () => {
   return function (dispatch) {
     return dispatch({
@@ -885,3 +888,4 @@ export const updateQAndA = (id, input) => {
     }
   };
 };
+

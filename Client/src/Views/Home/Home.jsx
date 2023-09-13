@@ -44,70 +44,62 @@ const Home = () => {
   };
 
   return (
-    <main>
-      {localStorage.length !== 0 ? (
-        <div className=" ">
-          {" "}
-          <div className="w-[300px] h-full bg-violet-500"></div>
-          <div className=" w-full h-full">
-            <section className="p-2 text-center">
-              <div className="font-vilaka font-bold flex text-[40px]">
-                FREELANCERS
-              </div>
 
-              <Slider>
-                {freelancers?.map((item) => (
-                  <CardFreelancer key={item.id} freelancer={item} />
-                ))}
-              </Slider>
-              <button
-                onClick={() => handleFrelancer()}
-                className="font-topmodern border-2  hover:text-light-1  border-light-1 rounded p-1 "
-              >
-                Ver Mas
-              </button>
-            </section>
-            <section className="p-2 text-center">
-              <div className="font-vilaka flex font-bold  text-[40px]">
-                CAPACITACIONES RECIENTES
-              </div>
+    
+    <main
+      name="asdasd"
+      className="2xl:flex  2xl:flex-row xl:flex xl:flex-row  lg:flex lg:flex-col  text-center  flex-col flex  2xl:w-full 2xl:h-full"
+    >
+      <div className=" border-r-2  2xl:w-[300px] xl:w-[300px] w-full">
+        <h1 className=" sm:h-[300px] h-[150px] w-[300px] "></h1>
+      </div>
+      <div className="  md:flex md:flex-col md:items-center w-full ">
+        <section className=" flex flex-col items-center">
+          <h1 className="font-vilaka font-bold text-[50px]">Freelancers: </h1>
+          <Slider>
+            {freelancers?.map((item) => (
+              <CardFreelancer key={item.id} freelancer={item} />
+            ))}
+          </Slider>
+        </section>
+        <button
+          onClick={() => handleFrelancer()}
+          className="font-topmodern border-2 my-5  hover:text-light-1  border-light-1 rounded p-1 "
+        >
+          Ver Mas
+        </button>
+        <section className=" flex flex-col items-center">
+          <h1 className="font-vilaka font-bold text-[50px]">
+            Capacitaciones:{" "}
+          </h1>
+          <Slider>
+            {approvedTraininigs?.map((item) => (
+              <TrainingCard key={item.id} training={item} />
+            ))}
+          </Slider>
+        </section>
+        <button
+          onClick={() => handleCap()}
+          className="font-topmodern border-2 my-5  hover:text-light-1 items-end  border-light-1 rounded p-1 "
+        >
+          Ver Mas
+        </button>
+        <section className=" flex flex-col items-center">
+          <h1 className="font-vilaka font-bold text-[50px]">Ofertas: </h1>
+          <Slider>
+            {offers?.map((item) => (
+              <OfferCard key={item.id} offer={item} />
+            ))}
+          </Slider>
+        </section>
+        <button
+          onClick={() => handleOffer()}
+          className="font-topmodern border-2 my-5  hover:text-light-1  border-light-1 rounded p-1 "
+        >
+          Ver Mas
+        </button>
+      </div>
 
-              <Slider>
-                {approvedTraininigs?.map((item) => (
-                  <TrainingCard key={item.id} training={item} />
-                ))}
-              </Slider>
-              <button
-                onClick={() => handleCap()}
-                className="font-topmodern border-2  self-end hover:text-light-1 items-end  border-light-1 rounded p-1 "
-              >
-                Ver Mas
-              </button>
-            </section>
-            <section className="p-2 text-center">
-              <div className="font-vilaka font-bold flex text-[40px]">
-                OFERTAS RECIENTES
-              </div>
-
-              <Slider>
-                {offers?.map((item) => (
-                  <OfferCard key={item.id} offer={item} />
-                ))}
-              </Slider>
-              <button
-                onClick={() => handleOffer()}
-                className="font-topmodern border-2  hover:text-light-1  border-light-1 rounded p-1 "
-              >
-                Ver Mas
-              </button>
-            </section>
-          </div>
-        </div>
-      ) : (
-        <div className="font-vilaka text-[50px] ">
-          Debes ingresar primero para ver este contenido :)
-        </div>
-      )}
     </main>
   );
 };
