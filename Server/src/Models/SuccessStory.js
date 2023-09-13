@@ -19,6 +19,22 @@ module.exports = (sequelize) => {
         testimony:{
             type: DataTypes.TEXT,
             allowNull: false
+        },
+        facebook:{
+            type: DataTypes.TEXT,
+            allowNull: true
+        },
+        linkedin:{
+            type: DataTypes.TEXT,
+            allowNull: true
+        },
+        instagram:{
+            type: DataTypes.TEXT,
+            allowNull : true
+        },
+        twitter:{
+            type: DataTypes.TEXT,
+            allowNull:true
         }
     })
 }
