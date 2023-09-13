@@ -14,7 +14,7 @@ const Faq = () => {
   return (
     <div className="h-full">
       {console.log(faqs)}
-      {faqs.map((x, i) => {
+      {faqs?.map((x, i) => {
         return (
           <div key={i}>
             {
