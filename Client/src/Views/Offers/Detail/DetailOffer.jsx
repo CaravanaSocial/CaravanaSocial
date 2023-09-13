@@ -20,8 +20,6 @@ export default function DetailOffer() {
     window.location.href = `mailto:${offer.company.email}`;
   }
 
-  console.log(offer)
-
   return (
     <div className="bg-gray-100 h-full p-4">
       {/* Main contenedor */}
@@ -33,7 +31,7 @@ export default function DetailOffer() {
               className="bg-white rounded-lg p-4 shadow-md text-center"
               style={{ width: "300px" }}
             >
-              <h1 className="w-full rounded-t-lg text-3xl font-bold">
+              <h1 className="w-full rounded-t-lg mb-1 text-3xl font-bold">
                 {offer?.company?.nameCompany}
               </h1>
               <img
