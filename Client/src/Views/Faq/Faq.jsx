@@ -29,9 +29,15 @@ const Faq = () => {
                 <h1>{x.answer}</h1>
               </div>
             }
-            <button onClick={() => handleSubmit(x.id)}>Eliminar</button>
             {localStorage?.type === "admin" ? (
-              <EditQAndA question={x.question} answer={x.answer} id={x.id} />
+              <div>
+                <button onClick={() => handleSubmit(x.id)}>Eliminar</button>
+                <EditQAndA
+                  question={x.question}
+                  answer={x.answer}
+                  id={x.id}
+                />{" "}
+              </div>
             ) : null}
           </div>
         );
