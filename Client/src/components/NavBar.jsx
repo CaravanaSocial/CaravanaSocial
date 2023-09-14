@@ -71,6 +71,7 @@ export default function NavBar() {
           <div
             className="absolute end-0 z-10 mt-2 w-56 divide-y divide-gray-200 dark:divide-gray-700 rounded-md border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-2xl"
             role="menu"
+            onClick={handleMenu}
           >
             <div className="justify-items-center">
               <strong className="block p-2 text-xs font-medium uppercase text-center text-gray-400">
@@ -157,15 +158,23 @@ export default function NavBar() {
                 Ajustes
               </strong>
               <div className="mt-1.5 text-center">
-                <div className="relative inline-block w-10 mr-2 align-middle select-none">
-                  <input
-                    className="checked:bg-gray-500 outline-none focus:outline-none right-4 checked:right-0 duration-200 ease-in absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"
-                    type="checkbox"
-                    name="toggle"
-                    id="toggle"
-                    onClick={handleThemeSwitch}
-                  />
-
+                <div className="relative inline-block w-10 mr-2 align-middle select-none"
+                  onClick={handleThemeSwitch}>
+                  {theme === "Claro" ? (
+                    <input
+                      className="outline-none focus:outline-none right-4 duration-200 ease-in absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"
+                      type="checkbox"
+                      name="toggle"
+                      id="toggle"
+                    />
+                  ) : (
+                    <input
+                      className="bg-gray-500 outline-none focus:outline-none right-0 duration-200 ease-in absolute block w-6 h-6 rounded-full border-4 appearance-none cursor-pointer"
+                      type="checkbox"
+                      name="toggle"
+                      id="toggle"
+                    />
+                  )}
                   <label
                     className="block h-6 overflow-hidden bg-gray-300 rounded-full cursor-pointer"
                     htmlFor="toggle"

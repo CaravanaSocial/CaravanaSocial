@@ -9,6 +9,9 @@ export default {
       fontFamily: {
         vilaka: ["Vilaka", "Serif"],
         topmodern: ["TopModern"],
+        montserrat: ["Montserrat"],
+        nunito: ["Nunito"]
+        poppins: ["Poppins"],
       },
       backgroundColor: {
         "light-1": "#a7b698",
@@ -36,5 +39,8 @@ export default {
     },
   },
 
-  plugins: [require("tailwind-scrollbar-hide")],
+  plugins: [require("tailwind-scrollbar-hide"), 
+  require("tw-elements/dist/plugin.cjs"), 
+  require('tailwindcss-animated')],
+
 };

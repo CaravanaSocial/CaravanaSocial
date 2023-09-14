@@ -67,6 +67,7 @@ export const USER_TRAINING = "USER_TRAINING";
 
 export const CLEAR_FREELANCERS = "CLEAR_FREELANCERS";
 export const GET_Q_AND_A = "GET_Q_AND_A";
+export const DELETE_Q_AND_A = "DELETE_Q_AND_A";
 
 
 const serverURL = "https://caravanaserver.onrender.com";
@@ -109,12 +110,12 @@ export const createUser = (user) => {
   };
 };
 
-export const getUsers = () => {
+export const getUsers = (value) => {
   //---------- Endpoint to Dev server -- Descomentar para usar
   // const endpoint = "http://localhost:3001/user/all";
 
   //---------- Endpoint to deployed server
-  const endpoint = `${serverURL}/user/all`;
+  const endpoint = `${serverURL}/user/all?value=${value}`;
   return async (dispatch) => {
     try {
       const response = await axios(endpoint);
@@ -225,16 +226,17 @@ export const getAdmins = () => {
   };
 };
 
-export const getCompanies = () => {
+export const getCompanies = (value) => {
   //---------- Endpoint to Dev server -- Descomentar para usar
   // const endpoint = `http://localhost:3001/company/all`;
 
   //---------- Endpoint to deployed server
-  const endpoint = `${serverURL}/company/all`;
+  const endpoint = `${serverURL}/company/all?value=${value}`;
   return async (dispatch) => {
     try {
       const response = await axios(endpoint);
       const { data } = response;
+      
       return dispatch({ type: GET_COMPANIES, payload: data });
     } catch (error) {
       console.log(error);
@@ -877,6 +879,18 @@ export const updateQAndA = (id, input) => {
     try {
       const response = (
         await axios.patch(`${serverURL}/question/update/${id}`, input)
+      ).data;
+    } catch (error) {
+      console.log("cat", error.message);
+    }
+  };
+};
+
+export const deleteQAndA = (id) => {
+  return async function (dispatch) {
+    try {
+      const response = (
+        await axios.delete(`${serverURL}/question/delete/${id}`)
       ).data;
     } catch (error) {
       console.log("cat", error.message);

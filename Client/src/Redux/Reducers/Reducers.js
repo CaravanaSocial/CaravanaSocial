@@ -50,7 +50,9 @@ const initialState = {
   offers: [],
   offer: [],
   companies: [],
+  companiesDelete: [],
   users: [],
+  usersDelete: [],
   currentAccount: {},
   admins: [],
   countries: [],
@@ -90,10 +92,17 @@ export default function rootReducer(state = initialState, action) {
       };
 
     case GET_USERS:
-      return {
-        ...state,
-        users: action.payload,
-      };
+      if(action.payload[0]?.deletedAt !== null){
+        return {
+          ...state,
+          usersDelete: action.payload
+        }
+      }else {
+        return {
+          ...state,
+          users: action.payload
+        }
+      }
 
     case GET_SUCCESCASES:
       return {
@@ -129,10 +138,18 @@ export default function rootReducer(state = initialState, action) {
       };
 
     case GET_COMPANIES:
-      return {
-        ...state,
-        companies: action.payload,
-      };
+      if(action.payload[0]?.deletedAt !== null){
+        return {
+          ...state,
+          companiesDelete: action.payload
+        }
+      }else {
+        return {
+          ...state,
+          companies: action.payload
+        }
+      }
+
 
     case CREATE_COMPANY:
       return {
