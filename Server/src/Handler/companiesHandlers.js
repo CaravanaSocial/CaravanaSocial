@@ -5,6 +5,8 @@ const {getUserAccController} = require("../Controller/User/getUserAccController"
 const {getCompanyByIdController} = require("../Controller/Companies/getCompanyByIdController")
 const {deleteCompanyController} = require("../Controller/Companies/deleteCompanyController")
 const {restoreCompanyController} = require("../Controller/Companies/restoreCompanyController")
+const { getCompanyByNameController } =  require("../Controller/Companies/getCompanyByNameController") 
+
 const companiesSignUpHandler = async (req, res)=>{
     try {
         const findAcc = await getUserAccController(req.body.email)
@@ -69,11 +71,26 @@ const restoreCompanyHandler = async (req, res) => {
         res.status(200).json({error:error.message})
     }
 }
+
+const getCompanyByNameHandler = async (req, res) => {
+    try {
+        const { name } =  req.query;
+
+        const response = await getCompanyByNameController(name);
+        
+        return res.status(200).json(response);
+
+    } catch (error) {
+        return res.status(400).send(error.message)
+    }
+}
+
 module.exports={
     companiesSignUpHandler,
     getCompaniesHandler,
     updateCompanyHandler,
     getCompanyByIdHandler,
     deleteCompanyHandler,
-    restoreCompanyHandler
+    restoreCompanyHandler,
+    getCompanyByNameHandler
 }
