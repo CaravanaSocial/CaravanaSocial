@@ -41,7 +41,7 @@ const FreelancerDetail = () => {
   return (
     <div className="h-full">
       <div className="flex justify-center">
-        <div className="justify-center text-center border-2 border-light-1 rounded-3xl p-2 m-4">
+        <div className="max-w-4xl justify-center text-center border-2 border-light-1 rounded-3xl p-2 m-4">
 
           <div className="flex justify-around items-center">
             <img className="w-52 max-lg:w-20 max-lg:h-20 rounded-full border-2 border-light-1"
@@ -64,21 +64,23 @@ const FreelancerDetail = () => {
           
           <div className="justify-center items-center">
             <div className="flex justify-center">
-              <h1 className="text-2xl max-lg:text-xl text-light-2 mr-2"
+              <h1 className="text-2xl max-lg:text-xl text-light-2 dark:text-light-1 mr-2"
               >Correo de contacto:</h1>
               <h1 className="text-xl max-lg:text-lg pt-0.5"
               >{userDetail?.email}</h1>
             </div>
+            <br />
+            <h1 className="text-2xl max-lg:text-xl text-light-2 dark:text-light-1"
+            >Rubros:</h1>
+            <h2 className="text-xl max-lg:text-lg"
+            >{categories}</h2>
             
-            <h1 className="text-2xl max-lg:text-xl text-light-2 mt-6"
+            <h1 className="text-2xl max-lg:text-xl text-light-2 dark:text-light-1 mt-6"
             >Descripción:</h1>
             <h2 className="text-xl max-lg:text-lg"
             >{userDetail?.description}</h2>
 
-            <h1 className="text-2xl max-lg:text-xl text-light-2"
-            >Rubros:</h1>
-            <h2 className="text-xl max-lg:text-lg"
-            >{categories}</h2>
+            
           </div>
         </div>
       </div>
