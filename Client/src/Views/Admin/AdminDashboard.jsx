@@ -49,11 +49,11 @@ const AdminDashboard = () => {
     dispatch(getTrainingsByValue(value));
   };
   return (
-    <main className="h-full">
+    <main className="h-full flex flex-col items-center">
       <div className=" flex  justify-center">
         {" "}
         <ul
-          className="mb-5 flex list-none flex-row flex-wrap border-b-0 pl-0"
+          className="mb-5 flex justify-center list-none flex-row flex-wrap border-b-0 pl-0"
           role="tablist"
           data-te-nav-ref
         >
@@ -130,8 +130,8 @@ const AdminDashboard = () => {
           </li>
         </ul>
       </div>
-      <div className=" flex ">
-        <div className="w-[500px] h-full   ">
+      <div className=" lg-flex lg:flex-row flex flex-col   ">
+        <div className="w-[500px] m-auto h-full   ">
           <div
             className="hidden opacity-100 transition-opacity duration-150 ease-linear data-[te-tab-active]:block"
             id="tabs-capacitaciones"
@@ -195,7 +195,7 @@ const AdminDashboard = () => {
             Tab 5 content
           </div>
         </div>
-        <div className=" flex h-full  w-full flex-wrap ">
+        <div className=" flex h-full   w-full flex-wrap ">
           {activeTab === "capacitaciones" ? (
             <div className="flex flex-wrap">
               {/* CAPACITACIONES  */}
