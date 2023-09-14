@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
 import validation from "../UpdateProfile/validation";
 import UploadImage from "../../components/UploadImage";
 import {
@@ -190,20 +191,20 @@ export default function ProfileUser() {
   };
 
   return (
-    <div className="h-full">
-      <div className="flex">
-        <div className="block text-center border-2 border-light-1 dark:border-light-1 rounded-3xl p-4 m-4">
+    <div className=" flex h-full">
+      <div className="flex justify-center max-lg:flex-col max-lg:bg-light-1 max-lg:items-center dark:max-lg:bg-light-2 ">
+        <div className="block text-center p-4   bg-light-1 dark:bg-light-2">
           <img
             key={key}
             className="inline-block w-72 rounded-full border-2 border-light-1 dark:border-light-1 mb-2"
             src={profilePicture}
           />
-          <h2 className="font-topmodern">{account.name + " " + account.lastName}</h2>
+          <h2 className="font-vilaka font-bold text-[30px] max-lg:text-[50px] dark:font-light">{account.name + " " + account.lastName}</h2>
 
           {edit === true ? (
             <div>
               <button
-                className="bg-gray-300 dark:bg-gray-800 rounded-3xl p-2 dark:text-gray-300 mb-2 border-2 border-transparent hover:border-light-1 dark:hover:border-light-1"
+                className="bg-light-2 font-nunito font-bold text-sm dark:bg-light-1 rounded-3xl px-2 py-1 dark:text-black mb-2 border-2 border-transparent hover:border-light-2 dark:hover:border-light-1 dark:font-light"
                 onClick={handleImage}
               >
                 Editar imagen de perfil
@@ -213,13 +214,13 @@ export default function ProfileUser() {
                 <div>
                   <UploadImage />
                   <button
-                    className="bg-gray-300 dark:bg-gray-800 rounded-3xl p-2 dark:text-gray-300 mb-2 border-2 border-transparent hover:border-light-1 dark:hover:border-light-1"
+                    className="bg-light-2 dark:bg-light-1 rounded-3xl px-2 py-1 text-sm font-bold font-nunito  dark:text-black mb-2 border-2 border-transparent hover:border-light-1 dark:hover:border-light-1"
                     onClick={handleSaveImage}
                   >Guardar imagen</button>
                 </div>
               ) : null}
 
-              <h2 className="font-topmodern">Nombre</h2>
+              <h2 className="font-nunito font-bold dark:font-light">Nombre</h2>
               <input
                 className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
                 name="name"
@@ -229,7 +230,7 @@ export default function ProfileUser() {
               />
               <p className="text-red-600">{errors.name ? errors.name : null}</p>
 
-              <h2 className="font-topmodern">Apellido</h2>
+              <h2 className="font-nunito font-bold dark:font-light">Apellido</h2>
               <input
                 className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
                 name="lastName"
@@ -239,7 +240,7 @@ export default function ProfileUser() {
               />
               <p className="text-red-600">{errors.lastName ? errors.lastName : null}</p>
 
-              <h2 className="font-topmodern">Localizacion</h2>
+              <h2 className="font-nunito font-bold dark:font-light">Localizacion</h2>
               <select
                 className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
                 name="country"
@@ -276,13 +277,14 @@ export default function ProfileUser() {
               </select>
               <p className="text-red-600">{errors.city ? errors.city : null}</p>
 
-              <h2 className="font-topmodern">Codigo CUD</h2>
+              <h2 className="font-nunito font-bold dark:font-light">Codigo CUD</h2>
               <input 
                 className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
                 name="CUD"
                 onChange={handleChange}
                 placeholder="CUD..." />
               <br />
+              <h2 className="font-nunito font-bold dark:font-light">Rubros</h2>
               <select
                 className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
                 onChange={handleCategory}
@@ -295,8 +297,8 @@ export default function ProfileUser() {
                     );
                   })}
               </select>
-              {dataAcc.category.length ? (
-                <h2 className="text-lg dark:text-gray-300">
+              {dataAcc?.category?.length ? (
+                <h2 className="text-sm font-bold font-nunito dark:text-gray-300">
                   Rubros seleccionados:{" "}
                 </h2>
               ) : null}
@@ -304,10 +306,10 @@ export default function ProfileUser() {
                 return (
                   <div key={cat}>
                     <button
-                      className="bg-gray-300 dark:bg-gray-800 rounded-3xl px-2 py-1 m-1 dark:text-gray-300 hover:bg-red-500 dark:hover:bg-red-500"
+                      className="bg-light-2 dark:bg-light-1 rounded-3xl px-2 py-1 m-1 dark:text-black dark:font-bold hover:bg-red-500 dark:hover:bg-red-500"
                       onClick={handleDelCategory}
                       value={cat}
-                    >{cat} X</button>
+                    >{cat} </button>
                   </div>
                 );
               })}
@@ -315,8 +317,8 @@ export default function ProfileUser() {
                 style={{ visibility: errors.category ? "visible" : "hidden" }}
               >{errors.category}</p>
 
-              <h2 className="font-topmodern">Sos Freelancer?</h2>
-              <label className="font-bold">
+              <h2 className="font-nunito font-bold dark:font-light">Sos Freelancer?</h2>
+              <label className="font-bold dark:font-light">
                 {" "}
                 Si{" "}
                 <input
@@ -325,7 +327,7 @@ export default function ProfileUser() {
                   onChange={() => handleCheckboxFreeChange(true)}
                 />
               </label>
-              <label className="font-bold">
+              <label className="font-bold dark:font-light">
                 {" "}
                 No{" "}
                 <input
@@ -337,7 +339,7 @@ export default function ProfileUser() {
 
               {checkboxFreelancer === true ? (
                 <section>
-                  <h2 className="font-topmodern">Descripción de tu Emprendimiento</h2>
+                  <h2 className="font-nunito font-bold dark:font-light">Descripción de tu Emprendimiento</h2>
                   <textarea
                     className="rounded-3xl px-2 py-1 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
                     type="text"
@@ -350,7 +352,7 @@ export default function ProfileUser() {
                   />
                   <p className="text-red-600">{errors.description ? errors.description : null}</p>
 
-                  <h2 className="font-topmodern">Dirección de su negocio </h2>
+                  <h2 className="font-nunito font-bold dark:font-light">Dirección de tu negocio </h2>
                   <input
                     className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
                     type="text"
@@ -363,11 +365,11 @@ export default function ProfileUser() {
               ) : null}
                 <section>
                   <button
-                    className="bg-light-1 font-topmodern rounded-3xl p-2 mr-1 border-2 border-transparent dark:text-zinc-900 hover:text-white hover:scale-95"
+                    className="bg-light-2 font-nunito font-bold rounded-3xl px-2 py-1 mr-1 border-2 border-transparent dark:text-black hover:text-white hover:scale-95 dark:bg-light-1"
                     onClick={handleSubmit}
                   >Guardar</button>
                   <button
-                    className="bg-gray-300 dark:bg-gray-800 rounded-3xl p-2 dark:text-gray-300 ml-1 border-2 border-transparent hover:border-light-1 dark:hover:border-light-1"
+                    className="bg-gray-300 font-nunito font-bold dark:bg-gray-800 rounded-3xl px-2 py-1 dark:text-gray-300 ml-1 border-2 border-transparent hover:border-light-1 dark:hover:border-light-1"
                     name="cancel"
                     onClick={handleClick}
                   >Cancelar</button>
@@ -375,25 +377,25 @@ export default function ProfileUser() {
               </div>
               ) : (
                 <button
-                  className="bg-light-1 font-topmodern rounded-3xl p-2 border-2 border-transparent dark:text-zinc-900 hover:text-white hover:scale-95"
+                  className="bg-light-2 font-nunito rounded-3xl font-bold px-2 py-1 border-2 border-transparent dark:text-zinc-900 hover:text-light-2 hover:scale-95 dark:bg-light-1"
                   name="edit"
                   onClick={handleClick}
                 >Editar Perfil</button>
               )}
         </div>
 
-            <div>
-              <h1 className="font-topmodern">
+            <div className="mx-4">
+              <h1 className="font-nunito text-2xl font-bold max-lg:flex max-lg:justify-center items-center mt-9 mb-4 max-lg:mx-4 dark:font-light">
               Capacitaciones en curso y completadas
               </h1>
 
               {trainingsUser.length > 0 ? (
-                <div className="flex flex-wrap">
+                <div className="flex flex-wrap justify-center">
                   {trainingsUser.map((t) => {
                     return (
                       <div className="flex justify-center">
-                        <div className="text-center m-1 border-2 border-light-1 dark:border-light-1 hover:scale-95 p-4 rounded-3xl w-[300px]">
-                          <h2 className="text-xl border-b-2 border-light-1 dark:border-light-1 mb-2">
+                        <div className="text-center mx-1 my-4 max-lg:bg-light-0 dark:max-lg:bg-light-0 dark:max-lg:text-black  border-2 border-light-2 bg-light-1 dark:border-light-1 dark:bg-light-2 hover:scale-95 p-4 rounded-3xl w-[400px]">
+                          <h2 className="text-xl font-nunito font-bold border-b-2 border-light-2 dark:border-light-1 dark:font-light dark:max-lg:font-bold mb-2">
                             {t.name}
                           </h2>
                           <div>
@@ -401,10 +403,11 @@ export default function ProfileUser() {
                               className="inline-block border-2 border-light-1 dark:border-light-1 rounded-3xl"
                               src={t.video[0]}
                               controls
-                              width="200"
-                              height="150"
+                              width="300"
+                              height="250"
                             />
                           </div>
+                          <NavLink to={`/training/detail/${t.id}`}><button className="border-2 mt-2 bg-light-2 max-lg:bg-light-2 max-lg:border-light-1 dark:bg-light-1 dark:text-black border-light-2 dark:border-light-1 dark:max-lg:bg-light-1 rounded-3xl p-1 font-topmodern hover:text-white">Ver detalle</button></NavLink>
                         </div>
                       </div>
                     );

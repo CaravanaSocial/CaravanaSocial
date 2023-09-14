@@ -193,7 +193,7 @@ const ProfileCompany = () => {
   return (
     <div className="h-full">
       <div className="flex max-lg:flex-col max-lg:items-center ">
-        <div className="block text-center dark:border-light-1 w-fit p-6 ">
+        <div className="block text-center  w-fit p-6 ">
           <img
             key={key}
             src={profilePicture}
@@ -204,7 +204,7 @@ const ProfileCompany = () => {
           {edit === true ? (
             <div>
               <button
-                className="bg-light-1 font-nunito font-bold text-sm dark:bg-gray-800 rounded-3xl px-2 py-1 dark:text-gray-300 mb-2 border-2 border-transparent hover:border-light-2 dark:hover:border-light-1"
+                className="bg-light-1 font-nunito font-bold text-sm dark:bg-gray-800 rounded-3xl px-2 py-1 dark:text-gray-300 mb-2 border-2 border-transparent hover:border-light-2 dark:hover:border-light-1 dark:font-light"
                 onClick={handleImage}
               >
                 Editar imagen de perfil
