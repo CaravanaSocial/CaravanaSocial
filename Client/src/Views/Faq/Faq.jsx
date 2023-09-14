@@ -26,7 +26,7 @@ const Faq = () => {
           <div key={x.id}>
             {" "}
             <div
-              className="border-2 border-light-1 justify-between items-center rounded p-2 flex mt-2  w-[1000px]"
+              className="border-2 border-light-1 justify-between items-center rounded p-2 flex mt-2  "
               key={x.id}
             >
               {

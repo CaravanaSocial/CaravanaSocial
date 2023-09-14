@@ -8,10 +8,14 @@ import SliderLanding from "../components/SliderLanding";
 import { getSuccesCases } from "../Redux/Actions/Actions";
 
 const LandingPage = () => {
+  const play = (text)=>{
+    speechSynthesis.speak( new SpeechSynthesisUtterance(text))
+  }
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getSuccesCases());
+    play("Página principal")
   }, []);
 
   return (
