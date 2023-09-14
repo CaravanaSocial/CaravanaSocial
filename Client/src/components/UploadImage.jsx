@@ -31,6 +31,7 @@ export default function UploadImage() {
       .post("http://localhost:3001/image/upload", { image: base64 })
       .then((res) => {
         setUrl(res.data);
+        console.log(res.data)
         if(localStorage.type === "user"){
           dispatch(editUser(localStorage.accId, { profilePicture: res.data }))
           localStorage.setItem("profilePicture", res.data);
@@ -40,6 +41,10 @@ export default function UploadImage() {
           localStorage.setItem("profilePicture", res.data);
           dispatch(imageChange());
         }
+        // else if(localStorage.type === 'admin' || localStorage.type === 'superAdmin'){
+        //   localStorage.setItem("blogPreview", res.data);
+        //   //Aqui Patch
+        // }
       })
       .then(() => setLoading(false))
       .catch(console.log);
