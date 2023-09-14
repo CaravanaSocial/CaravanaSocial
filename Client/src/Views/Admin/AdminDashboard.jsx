@@ -49,7 +49,7 @@ const AdminDashboard = () => {
     dispatch(getTrainingsByValue(value));
   };
   return (
-    <main className="h-full flex flex-col items-center">
+    <main className="h-full flex flex-col">
       <div className=" flex  justify-center">
         {" "}
         <ul
