@@ -227,7 +227,9 @@ const AdminDashboard = () => {
                     );
                   })
                 ) : (
-                  <p>No hay capacitaciones rechazadas</p>
+                  <p className="font-nunito text-[20px]">
+                    No hay capacitaciones rechazadas
+                  </p>
                 )
               ) : null}
 

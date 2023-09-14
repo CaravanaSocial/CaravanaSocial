@@ -35,8 +35,8 @@ const EditQAndA = ({ question, answer, id }) => {
   };
 
   return (
-    <div>
-      <input
+    <div className="">
+      <textarea
         className="border-4"
         onChange={handleChange}
         value={input.quest}
@@ -48,7 +48,13 @@ const EditQAndA = ({ question, answer, id }) => {
         value={input.answer}
         name="answer"
       />
-      <button onClick={handleSubmit}>Guardar</button>
+      <br />
+      <button
+        className="mx-5 hover:scale-105 rounded p-1 border-2"
+        onClick={handleSubmit}
+      >
+        Guardar
+      </button>
     </div>
   );
 };

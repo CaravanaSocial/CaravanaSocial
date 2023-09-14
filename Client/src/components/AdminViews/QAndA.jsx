@@ -19,6 +19,7 @@ const QAndA = () => {
   };
   const handleSubmit = (event) => {
     event.preventDefault();
+
     dispatch(createQAndA(input));
   };
   return (
@@ -52,15 +53,6 @@ const QAndA = () => {
       </button>
       <br />
       <br />
-      <NavLink>
-        <button
-          className="font-nunito text-[15px] border-2 bg-gray-300 hover:scale-105 rounded p-2 "
-          to="/faq"
-        >
-          {" "}
-          Editar Preguntas
-        </button>
-      </NavLink>
     </div>
   );
 };
