@@ -523,7 +523,6 @@ export const acceptTraining =(id, answer)=>{
   return async function(dispatch){
     try {
       const response = await axios.patch(endpoint, answer)
-      alert("funciona")
     } catch (error) {
       console.log(error)
     }

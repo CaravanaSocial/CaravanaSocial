@@ -90,10 +90,12 @@ const getTrainingByIdHandler = async (req, res) => {
 
 const aproveTrainingHandler =  async ( req, res) => {
   try {
+    console.log("ENTRA EL HANDLERRRR de aprove");
     const { id } =  req.params;
     const { answer } = req.body;
 
-    const response = await aproveTrainingController(id, answer); 
+    const response = await aproveTrainingController(id, answer);
+    console.log("SALE DE APROVETRAININGCONTROLLER");
     return res.status(200).json(response)
 
   } catch (error) {

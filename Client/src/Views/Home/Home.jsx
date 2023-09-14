@@ -14,6 +14,9 @@ import CardFreelancer from "../../components/CardFreelancer";
 import Slider from "../../components/Slider";
 
 const Home = () => {
+  const play = (text)=>{
+    speechSynthesis.speak( new SpeechSynthesisUtterance(text))
+  }
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -21,6 +24,7 @@ const Home = () => {
   const approvedTraininigs = trainings?.filter(x=>x.approved===true)
 
   useEffect(() => {
+    play("Página de inicio")
     if (localStorage.type === "company") {
       dispatch(companyButtons(true));
     } else {

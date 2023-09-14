@@ -1,4 +1,4 @@
-import React, {useRef} from "react";
+import React, {useEffect, useRef} from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { login, clearErrors, setNewErrors } from "../../Redux/Actions/Actions";
@@ -6,8 +6,18 @@ import { useDispatch, useSelector } from "react-redux";
 import validation from "./validation";
 import { GoogleLogin } from "@react-oauth/google";
 import jwt_decode from "jwt-decode";
+import Speaching from "../../components/Speaching"
 
 export default function Login() {
+
+  useEffect(()=>{
+    play("Inicia sesión")
+  },[])
+
+  const play = (text)=>{
+    speechSynthesis.speak( new SpeechSynthesisUtterance(text))
+  }
+
   const loginButton = useRef(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -50,17 +60,17 @@ export default function Login() {
       {" "}
       <div className="inline-block m-4  p-4 h-screen">
         <section>
-          <h1 className="text-4xl font-vilaka font-bold text-[50px] text-center  border-b-2 border-light-1 dark:border-light-1 rounded-sm dark:text-gray-300">
+          <h1 onClick={()=>play("Caravana Social")} name="title" className="text-4xl font-vilaka font-bold text-[50px] text-center  border-b-2 border-light-1 dark:border-light-1 rounded-sm dark:text-gray-300">
             Caravana Social
           </h1>
-          <p className=" font-nunito font-bold dark:font-medium text-[20px] dark:text-gray-300">
+          <p onClick={()=>play("Te invitamos a formar parte de la re-evolución inclusiva.")} className=" font-nunito font-bold dark:font-medium text-[20px] dark:text-gray-300">
             Te invitamos a formar parte de la re-evolución inclusiva.
           </p>
         </section>
 
         <section className="text-center items-center">
           <div className="justify-center border-spacing-96 border-2 border-light-1 dark:border-light-1 rounded-3xl p-4 my-4">
-            <h1 className="text-2xl font-nunito font-bold dark:font-medium text-[30px] text-center border-b-2 border-light-1 dark:border-light-1 dark:text-gray-300">
+            <h1 onClick={()=>play("Inicio de Sesión")}className="text-2xl font-nunito font-bold dark:font-medium text-[30px] text-center border-b-2 border-light-1 dark:border-light-1 dark:text-gray-300">
               Inicio de Sesión
             </h1>
 
@@ -131,7 +141,7 @@ export default function Login() {
                 Has olvidado tu contraseña?
               </button>
             </Link> */}
-            <h4 className="border-t-2 font-nunito font-bold dark:font-medium border-light-1 dark:border-light-1 dark:text-gray-200">
+            <h4 onClick={()=>play("¿Aún no tienes cuenta? Registrate")} className="border-t-2 font-nunito font-bold dark:font-medium border-light-1 dark:border-light-1 dark:text-gray-200">
               ¿Aún no tienes cuenta? Registrate
             </h4>
             {/* <h4 className="dark:text-gray-200 font-nunito  font-bold dark:font-medium">Registrate</h4> */}
