@@ -47,7 +47,7 @@ const Freelancers = () => {
           name="country"
         >
           <option value="Todos">Todos los Paises</option>
-          {countries.map((p) => {
+          {countries?.map((p) => {
             return (
               <option key={p} value={p}>
                 {p}

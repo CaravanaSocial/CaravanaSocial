@@ -19,19 +19,40 @@ const QAndA = () => {
   };
   const handleSubmit = (event) => {
     event.preventDefault();
+
     dispatch(createQAndA(input));
   };
   return (
-    <div>
+    <div className="ml-2">
       <br />
-      <label>Pregunta</label>
-      <input className="border-4" onChange={handleChange} name="quest" />
+      <label className="font-nunito text-[25px]">Pregunta</label>
       <br />
-      <label>Respuesta</label>
-      <textarea className="border-4" onChange={handleChange} name="answer" />
-      <button onClick={handleSubmit}>Publicar pregunta</button>
+      <textarea
+        className=" border-2 rounded focus:outline-none focus:border-light-1 focus:ring-1 focus:ring-light-1 "
+        onChange={handleChange}
+        name="quest"
+        cols={28}
+        rows={8}
+      />
       <br />
-      <NavLink to="/faq">Editar</NavLink>
+      <label className="font-nunito text-[25px]">Respuesta</label>
+      <br />
+      <textarea
+        cols={28}
+        rows={8}
+        className=" border-2 rounded focus:outline-none focus:border-light-1 focus:ring-1 focus:ring-light-1 "
+        onChange={handleChange}
+        name="answer"
+      />
+      <br />
+      <button
+        className="font-nunito text-[15px] border-2 bg-light-1 hover:scale-105 rounded p-2 "
+        onClick={handleSubmit}
+      >
+        Publicar pregunta
+      </button>
+      <br />
+      <br />
     </div>
   );
 };
