@@ -5,6 +5,8 @@ import { NavLink } from "react-router-dom";
 import QAndA from "../../components/AdminViews/QAndA.jsx";
 import { Tab, initTE } from "tw-elements";
 import { Datepicker, Input } from "tw-elements";
+import Users from "../../components/AdminViews/Users";
+import Companies from "../../components/AdminViews/Companies";
 
 const AdminDashboard = () => {
   initTE({ Datepicker, Input, Tab }, { allowReinits: true });
@@ -189,7 +191,9 @@ const AdminDashboard = () => {
           role="tabpanel"
           aria-labelledby="tabs-profile-tab"
         >
-          Tab 3 content
+          <div>
+            <Users />
+          </div>
         </div>
         <div
           class="hidden opacity-0 transition-opacity duration-150 ease-linear data-[te-tab-active]:block"
@@ -197,7 +201,7 @@ const AdminDashboard = () => {
           role="tabpanel"
           aria-labelledby="tabs-contact-tab"
         >
-          Tab 4 content
+          <Companies />
         </div>
         <div
           class="hidden opacity-0 transition-opacity duration-150 ease-linear data-[te-tab-active]:block"
