@@ -10,7 +10,7 @@ export default {
         vilaka: ["Vilaka", "Serif"],
         topmodern: ["TopModern"],
         montserrat: ["Montserrat"],
-        nunito: ["Nunito"]
+        nunito: ["Nunito"],
         poppins: ["Poppins"],
       },
       backgroundColor: {
