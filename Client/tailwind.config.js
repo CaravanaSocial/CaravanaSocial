@@ -37,8 +37,8 @@ export default {
     },
   },
 
-  plugins: [
-    require("tailwind-scrollbar-hide"),
-    require('tailwindcss-animated')
-  ],
+  plugins: [require("tailwind-scrollbar-hide"), 
+  require("tw-elements/dist/plugin.cjs"), 
+  require('tailwindcss-animated')],
+
 };
