@@ -5,6 +5,10 @@ import { useParams, NavLink } from "react-router-dom";
 import { trainingDetail } from "../../Redux/Actions/Actions";
 
 const DetailTrainings = () => {
+
+  const play = (text)=>{
+    speechSynthesis.speak( new SpeechSynthesisUtterance(text))
+  }
   const enved = "https://www.youtube.com/embed/";
   const [comments, setComments] = useState({
     description: "",
@@ -83,7 +87,7 @@ const DetailTrainings = () => {
         }
 
         <h1 className="font-vilaka font-bold text-[70px]">{detail?.name}</h1>
-        <p className="font-topmodern">{detail?.description}</p>
+        <p onClick={()=>play(detail?.description)} className="font-topmodern">{detail?.description}</p>
         {detail?.video?.map((video, index) => {
           return (
             <div className="flex justify-center" key={index}>
