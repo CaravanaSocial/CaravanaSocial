@@ -117,7 +117,7 @@ const CompanyDetail = () => {
                       <br />
                       {o.description}
                     </div>
-                    <NavLink to={`/offers/${o.id}`}>
+                    <NavLink to={`/home-offers/${o.title}`}>
                       <button className="border-2 mt-2 dark:text-black bg-light-2 border-light-2 max-lg:border-light-1 max-lg:bg-light-1 dark:border-light-1 dark:bg-light-1 rounded p-1 font-topmodern dark:max-lg:bg-light-2 hover:text-light-1">
                         Ver detalle
                       </button>
