@@ -20,7 +20,8 @@ const companiesSignUpHandler = async (req, res)=>{
 
 const getCompaniesHandler = async (req, res) =>{
     try {
-        const companies = await getCompaniesController()
+        const {value} = req.query
+        const companies = await getCompaniesController(value)
         res.status(200).json(companies)
     } catch (error) {
         res.status(500).json(error.message)

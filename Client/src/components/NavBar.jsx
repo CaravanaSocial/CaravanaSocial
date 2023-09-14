@@ -39,6 +39,8 @@ export default function NavBar() {
     setMenu(menu === true ? false : true);
   };
 
+  console.log(localStorage)
+
   return (
     <div className="flex items-center justify-between bg-white dark:bg-zinc-900 border-b-[1px] border-b-gray-300 dark:border-b-gray-700 p-2">
       <Link to="/">
@@ -71,6 +73,7 @@ export default function NavBar() {
           <div
             className="absolute end-0 z-10 mt-2 w-56 divide-y divide-gray-200 dark:divide-gray-700 rounded-md border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-2xl"
             role="menu"
+            onClick={handleMenu}
           >
             <div className="justify-items-center">
               <strong className="block p-2 text-xs font-medium uppercase text-center text-gray-400">
@@ -131,7 +134,7 @@ export default function NavBar() {
                 Home
               </Link>
 
-              {bool ? (
+              {localStorage.type === "company" ? (
                 <>
                   <Link
                     className="text-center block rounded-lg px-4 py-2 text-sm text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-600 hover:text-gray-700 dark:hover:text-gray-400"
@@ -149,6 +152,32 @@ export default function NavBar() {
                     Crear Avisos de Trabajo
                   </Link>
                 </>
+              ) : localStorage.type === "superAdmin" ? (
+                <>
+                  <Link
+                    className="text-center block rounded-lg px-4 py-2 text-sm text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-600 hover:text-gray-700 dark:hover:text-gray-400"
+                    to="/create-trainings"
+                    role="menuitem"
+                  >
+                    Crear Capacitacion
+                  </Link>
+
+                  <Link
+                    className="text-center block rounded-lg px-4 py-2 text-sm text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-600 hover:text-gray-700 dark:hover:text-gray-400"
+                    to="/create-jobs"
+                    role="menuitem"
+                  >
+                    Crear Avisos de Trabajo
+                  </Link>
+
+                  <Link
+                    className="text-center block rounded-lg px-4 py-2 text-sm text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-600 hover:text-gray-700 dark:hover:text-gray-400"
+                    to="/admin"
+                    role="menuitem"
+                  >
+                    Panel de Admin
+                  </Link>
+                </>
               ) : null}
             </div>
 
@@ -157,15 +186,23 @@ export default function NavBar() {
                 Ajustes
               </strong>
               <div className="mt-1.5 text-center">
-                <div className="relative inline-block w-10 mr-2 align-middle select-none">
-                  <input
-                    className="checked:bg-gray-500 outline-none focus:outline-none right-4 checked:right-0 duration-200 ease-in absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"
-                    type="checkbox"
-                    name="toggle"
-                    id="toggle"
-                    onClick={handleThemeSwitch}
-                  />
-
+                <div className="relative inline-block w-10 mr-2 align-middle select-none"
+                  onClick={handleThemeSwitch}>
+                  {theme === "Claro" ? (
+                    <input
+                      className="outline-none focus:outline-none right-4 duration-200 ease-in absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"
+                      type="checkbox"
+                      name="toggle"
+                      id="toggle"
+                    />
+                  ) : (
+                    <input
+                      className="bg-gray-500 outline-none focus:outline-none right-0 duration-200 ease-in absolute block w-6 h-6 rounded-full border-4 appearance-none cursor-pointer"
+                      type="checkbox"
+                      name="toggle"
+                      id="toggle"
+                    />
+                  )}
                   <label
                     className="block h-6 overflow-hidden bg-gray-300 rounded-full cursor-pointer"
                     htmlFor="toggle"

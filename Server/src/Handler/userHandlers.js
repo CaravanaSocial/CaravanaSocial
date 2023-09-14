@@ -27,7 +27,9 @@ const userSignUpHandler = async (req, res) => {
 
 const getUsersHandler = async (req, res) => {
   try {
-    const users = await getUsersController();
+    const {value} = req.query
+    const users =  await getUsersController(value)
+ 
     res.status(200).json(users);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -93,7 +95,7 @@ module.exports = {
   getUsersByIdHandler,
   getFreelancersHandler,
   deleteUserHandler,
-  restoreUserHandler
+  restoreUserHandler,
 };
 
 

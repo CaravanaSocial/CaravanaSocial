@@ -78,11 +78,9 @@ const DetailTrainings = () => {
       <div className=" w-full">
         {console.log(detail.approved)}
         {
-          (detail.approved === null && localStorage.type === "admin")? <><button onClick={()=>handleApprove()}>Aceptar</button>
-          <button onClick={()=>handleDecline()}>Rechazar</button></> : ((detail.approved === true && localStorage.type === "admin") ? (<button onClick={()=>handleDecline()}>Rechazar</button>) : (localStorage.type === "admin" ? (<button onClick={()=>handleApprove()}>Aceptar</button>) : null))
+          (detail.approved === null && localStorage.type === "superAdmin")? <><button onClick={()=>handleApprove()}>Aceptar</button>
+          <button onClick={()=>handleDecline()}>Rechazar</button></> : ((detail.approved === true && localStorage.type === "superAdmin") ? (<button onClick={()=>handleDecline()}>Rechazar</button>) : (localStorage.type === "superAdmin" ? (<button onClick={()=>handleApprove()}>Aceptar</button>) : null))
         }
-        {/* <button onClick={()=>handleApprove()}>Aceptar</button>
-        <button onClick={()=>handleDecline()}>Rechazar</button> */}
 
         <h1 className="font-vilaka font-bold text-[70px]">{detail?.name}</h1>
         <p className="font-topmodern">{detail?.description}</p>
