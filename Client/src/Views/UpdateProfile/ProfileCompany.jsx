@@ -52,9 +52,9 @@ const ProfileCompany = () => {
     profilePicture: account.profilePicture,
     description: account.description,
     location: {
-      country: account.location.country,
-      state: account.location.state,
-      city: account.location.city,
+      country: account?.location?.country,
+      state: account?.location?.state,
+      city: account?.location?.city,
     },
   });
 

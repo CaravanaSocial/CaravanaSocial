@@ -19,10 +19,10 @@ const Faq = () => {
   };
 
   return (
-    <div className="h-full">
+    <div className="h-full ">
       {faqs?.map((x) => {
         return (
-          <div key={x.id}>
+          <div className="bg-green-500" key={x.id}>
             {
               <div>
                 <h1>{x.question}</h1>
