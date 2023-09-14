@@ -26,7 +26,7 @@ const getCompaniesController = async (value) =>{
                 deletedCompanies[i].password=0
             } return deletedCompanies
         }
-    }else if(value==="online"){
+    }else if(value!=="deleted"){
         const gotCompanies = await companies.findAll({
             include: [
                 {
