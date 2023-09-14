@@ -52,13 +52,13 @@ const AdminDashboard = () => {
       >
         <li role="presentation">
           <a
-            href="#tabs-home"
+            href="#tabs-capacitaciones"
             class="my-2 block border-x-0 border-b-2 border-t-0 border-transparent px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 hover:isolate hover:border-transparent hover:bg-neutral-100 focus:isolate focus:border-transparent data-[te-nav-active]:border-primary data-[te-nav-active]:text-primary dark:text-neutral-400 dark:hover:bg-transparent dark:data-[te-nav-active]:border-primary-400 dark:data-[te-nav-active]:text-primary-400"
             data-te-toggle="pill"
-            data-te-target="#tabs-home"
+            data-te-target="#tabs-capacitaciones"
             data-te-nav-active
             role="tab"
-            aria-controls="tabs-home"
+            aria-controls="tabs-capacitaciones"
             aria-selected="true"
           >
             Capacitaciones
@@ -66,12 +66,12 @@ const AdminDashboard = () => {
         </li>
         <li role="presentation">
           <a
-            href="#tabs-profile"
+            href="#tabs-preguntas"
             class="my-2 block border-x-0 border-b-2 border-t-0 border-transparent px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 hover:isolate hover:border-transparent hover:bg-neutral-100 focus:isolate focus:border-transparent data-[te-nav-active]:border-primary data-[te-nav-active]:text-primary dark:text-neutral-400 dark:hover:bg-transparent dark:data-[te-nav-active]:border-primary-400 dark:data-[te-nav-active]:text-primary-400"
             data-te-toggle="pill"
-            data-te-target="#tabs-profile"
+            data-te-target="#tabs-preguntas"
             role="tab"
-            aria-controls="tabs-profile"
+            aria-controls="tabs-preguntas"
             aria-selected="false"
           >
             Preguntas Frecuentes
@@ -79,12 +79,12 @@ const AdminDashboard = () => {
         </li>
         <li role="presentation">
           <a
-            href="#tabs-messages"
+            href="#tabs-usuarios"
             class="my-2 block border-x-0 border-b-2 border-t-0 border-transparent px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 hover:isolate hover:border-transparent hover:bg-neutral-100 focus:isolate focus:border-transparent data-[te-nav-active]:border-primary data-[te-nav-active]:text-primary dark:text-neutral-400 dark:hover:bg-transparent dark:data-[te-nav-active]:border-primary-400 dark:data-[te-nav-active]:text-primary-400"
             data-te-toggle="pill"
-            data-te-target="#tabs-messages"
+            data-te-target="#tabs-usuarios"
             role="tab"
-            aria-controls="tabs-messages"
+            aria-controls="tabs-usuarios"
             aria-selected="false"
           >
             Usuarios
@@ -92,12 +92,12 @@ const AdminDashboard = () => {
         </li>
         <li role="presentation">
           <a
-            href="#tabs-contact"
+            href="#tabs-empresas"
             class="my-2 block border-x-0 border-b-2 border-t-0 border-transparent px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 hover:isolate hover:border-transparent hover:bg-neutral-100 focus:isolate focus:border-transparent data-[te-nav-active]:border-primary data-[te-nav-active]:text-primary dark:text-neutral-400 dark:hover:bg-transparent dark:data-[te-nav-active]:border-primary-400 dark:data-[te-nav-active]:text-primary-400"
             data-te-toggle="pill"
-            data-te-target="#tabs-contact"
+            data-te-target="#tabs-empresas"
             role="tab"
-            aria-controls="tabs-contact"
+            aria-controls="tabs-empresas"
             aria-selected="false"
           >
             Empresas
@@ -105,12 +105,12 @@ const AdminDashboard = () => {
         </li>
         <li role="presentation">
           <a
-            href="#tabs-contact"
+            href="#tabs-admins"
             class="my-2 block border-x-0 border-b-2 border-t-0 border-transparent px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 hover:isolate hover:border-transparent hover:bg-neutral-100 focus:isolate focus:border-transparent data-[te-nav-active]:border-primary data-[te-nav-active]:text-primary dark:text-neutral-400 dark:hover:bg-transparent dark:data-[te-nav-active]:border-primary-400 dark:data-[te-nav-active]:text-primary-400"
             data-te-toggle="pill"
-            data-te-target="#tabs-contact"
+            data-te-target="#tabs-admins"
             role="tab"
-            aria-controls="tabs-contact"
+            aria-controls="tabs-admins"
             aria-selected="false"
           >
             Admins
@@ -121,9 +121,9 @@ const AdminDashboard = () => {
       <div class="mb-6">
         <div
           class="hidden opacity-100 transition-opacity duration-150 ease-linear data-[te-tab-active]:block"
-          id="tabs-home"
+          id="tabs-capacitaciones"
           role="tabpanel"
-          aria-labelledby="tabs-home-tab"
+          aria-labelledby="tabs-capacitaciones-tab"
           data-te-tab-active
         >
           <button onClick={() => handleTrainingsApproved(approved)}>
@@ -179,17 +179,17 @@ const AdminDashboard = () => {
         </div>
         <div
           class="hidden opacity-0 transition-opacity duration-150 ease-linear data-[te-tab-active]:block"
-          id="tabs-profile"
+          id="tabs-preguntas"
           role="tabpanel"
-          aria-labelledby="tabs-profile-tab"
+          aria-labelledby="tabs-preguntas-tab"
         >
           <QAndA />
         </div>
         <div
           class="hidden opacity-0 transition-opacity duration-150 ease-linear data-[te-tab-active]:block"
-          id="tabs-messages"
+          id="tabs-usuarios"
           role="tabpanel"
-          aria-labelledby="tabs-profile-tab"
+          aria-labelledby="tabs-usuarios-tab"
         >
           <div>
             <Users />
@@ -197,17 +197,17 @@ const AdminDashboard = () => {
         </div>
         <div
           class="hidden opacity-0 transition-opacity duration-150 ease-linear data-[te-tab-active]:block"
-          id="tabs-contact"
+          id="tabs-empresas"
           role="tabpanel"
-          aria-labelledby="tabs-contact-tab"
+          aria-labelledby="tabs-empresas-tab"
         >
           <Companies />
         </div>
         <div
           class="hidden opacity-0 transition-opacity duration-150 ease-linear data-[te-tab-active]:block"
-          id="tabs-contact"
+          id="tabs-admins"
           role="tabpanel"
-          aria-labelledby="tabs-contact-tab"
+          aria-labelledby="tabs-admins-tab"
         >
           Tab 5 content
         </div>
