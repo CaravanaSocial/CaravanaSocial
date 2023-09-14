@@ -88,6 +88,14 @@ areaTraining.belongsToMany(companies, { through: "companies_areaTraining" });
 user.belongsToMany(areaTraining, { through: "users_areaTraining" });
 areaTraining.belongsToMany(user, { through: "users_areaTraining" });
 
+//Relación de admin con avisos.
+admin.hasMany(offer);
+offer.belongsTo(admin);
+
+//Relación de admin con empresas.
+admin.hasMany(training);
+training.belongsTo(admin);
+
 //Relacion de comentario con capacitacion
 training.hasMany(comment);
 comment.belongsTo(training);

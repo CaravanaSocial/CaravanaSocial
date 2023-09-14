@@ -9,6 +9,7 @@ export default {
       fontFamily: {
         vilaka: ["Vilaka", "Serif"],
         topmodern: ["TopModern"],
+        poppins: ["Poppins"],
       },
       backgroundColor: {
         "light-1": "#a7b698",
@@ -38,4 +39,5 @@ export default {
 
   plugins: [require("tailwind-scrollbar-hide")],
   plugins: [require("tw-elements/dist/plugin.cjs")],
+  plugins: [require('tailwindcss-animated')],
 };

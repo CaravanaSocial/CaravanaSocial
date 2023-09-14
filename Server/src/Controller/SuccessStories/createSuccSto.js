@@ -3,18 +3,22 @@ const { uploadImage } = require('../../Tools/imageCloudinary')
 
 const createSuccSto = async(body) =>{
     try {
-        const { name, image, testimony } = body;
+        const { name, image, testimony, facebook, linkedin, instagram, twitter } = body;
         if(!name || !image || !testimony)throw new Error("Falta informacion necesaria")
-
-        const realImage = uploadImage(image)
-        
+        // const realImage = uploadImage(image)
+    console.log(image);
+    
         const [user, created] = await success.findOrCreate({
             where:{
                 name: name
             },defaults:{
                 name,
-                realImage,
-                testimony
+                image,
+                testimony,
+                facebook,
+                linkedin,
+                instagram,
+                twitter
             }
         })
         
