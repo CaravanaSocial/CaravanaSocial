@@ -43,14 +43,14 @@ const ProfileCompany = () => {
   const [key, setKey] = useState(0);
 
   const [input, setInput] = useState({
-    name: account.name,
-    lastName: account.lastName,
-    position: account.position,
-    nameCompany: account.nameCompany,
+    name: account?.name,
+    lastName: account?.lastName,
+    position: account?.position,
+    nameCompany: account?.nameCompany,
     category: categories,
-    phone: account.phone,
-    profilePicture: account.profilePicture,
-    description: account.description,
+    phone: account?.phone,
+    profilePicture: account?.profilePicture,
+    description: account?.description,
     location: {
       country: account?.location?.country,
       state: account?.location?.state,
@@ -94,22 +94,22 @@ const ProfileCompany = () => {
 
   const handleCategory = (event) => {
     event.preventDefault();
-    const rep = input.category?.find((cat) => cat === event.target.value);
+    const rep = input?.category?.find((cat) => cat === event.target.value);
     if (event.target.value !== "default" && !rep) {
       setInput({
         ...input,
-        category: [...input.category, event.target.value],
+        category: [...input?.category, event.target.value],
       });
       validateInput({
         ...input,
-        category: [...input.category, event.target.value],
+        category: [...input?.category, event.target.value],
       });
     }
   };
 
   const handleDelCategory = (event) => {
     event.preventDefault();
-    const filteredCat = input.category.filter(
+    const filteredCat = input?.category?.filter(
       (cat) => cat !== event.target.value
     );
     setInput({
@@ -192,19 +192,19 @@ const ProfileCompany = () => {
 
   return (
     <div className="h-full">
-      <div className="flex">
-        <div className="block text-center border-2 border-light-1 dark:border-light-1 rounded-3xl p-4 m-4">
+      <div className="flex max-lg:flex-col max-lg:items-center ">
+        <div className="block text-center  w-fit p-6 ">
           <img
             key={key}
             src={profilePicture}
             className="inline-block w-72 rounded-full border-2 border-light-1 dark:border-light-1 mb-2"
           />
-          <h2 className="font-topmodern">{input.nameCompany}</h2>
+          <h2 className="font-vilaka font-bold text-[30px] max-lg:text-[50px] dark:font-light">{input.nameCompany}</h2>
 
           {edit === true ? (
             <div>
               <button
-                className="bg-gray-300 dark:bg-gray-800 rounded-3xl p-2 dark:text-gray-300 mb-2 border-2 border-transparent hover:border-light-1 dark:hover:border-light-1"
+                className="bg-light-1 font-nunito font-bold text-sm dark:bg-gray-800 rounded-3xl px-2 py-1 dark:text-gray-300 mb-2 border-2 border-transparent hover:border-light-2 dark:hover:border-light-1 dark:font-light"
                 onClick={handleImage}
               >
                 Editar imagen de perfil
@@ -214,7 +214,7 @@ const ProfileCompany = () => {
                 <div>
                   <UploadImage />
                   <button
-                    className="bg-gray-300 dark:bg-gray-800 rounded-3xl p-2 dark:text-gray-300 mb-2 border-2 border-transparent hover:border-light-1 dark:hover:border-light-1"
+                    className="bg-light-1 dark:bg-gray-800 rounded-3xl px-2 py-1 text-sm font-bold font-nunito  dark:text-gray-300 mb-2 border-2 border-transparent hover:border-light-1 dark:hover:border-light-1"
                     onClick={handleSaveImage}
                   >
                     Guardar imagen
@@ -222,7 +222,7 @@ const ProfileCompany = () => {
                 </div>
               ) : null}
 
-              <h2 className="font-topmodern">Nombre</h2>
+              <h2 className="font-nunito font-bold">Nombre</h2>
               <input
                 className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
                 onChange={handleChange}
@@ -238,7 +238,7 @@ const ProfileCompany = () => {
                 {error.name}
               </p>
 
-              <h2 className="font-topmodern">Apellido</h2>
+              <h2 className="font-nunito font-bold">Apellido</h2>
               <input
                 className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
                 onChange={handleChange}
@@ -254,7 +254,7 @@ const ProfileCompany = () => {
                 {error.lastName}
               </p>
 
-              <h2 className="font-topmodern">Cargo</h2>
+              <h2 className="font-nunito font-bold">Cargo</h2>
               <input
                 className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
                 onChange={handleChange}
@@ -270,7 +270,7 @@ const ProfileCompany = () => {
                 {error.position}
               </p>
 
-              <h2 className="font-topmodern">Empresa</h2>
+              <h2 className="font-nunito font-bold">Nombre empresa</h2>
               <input
                 className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
                 onChange={handleChange}
@@ -286,13 +286,13 @@ const ProfileCompany = () => {
                 {error.nameCompany}
               </p>
 
-              <h2 className="font-topmodern">Localizacion</h2>
+              <h2 className="font-nunito font-bold">Localizacion</h2>
               <select
                 className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
                 onChange={handleLocation}
                 name="country"
               >
-                <option value="default">{account.location.country}</option>
+                <option value="default">{account?.location?.country}</option>
                 {country.map((p) => {
                   return (
                     <option key={p} value={p}>
@@ -308,7 +308,7 @@ const ProfileCompany = () => {
                 onChange={handleLocation}
                 name="state"
               >
-                <option value="default">{account.location.state}</option>
+                <option value="default">{account?.location?.state}</option>
                 {state?.allStates?.map((p) => {
                   return (
                     <option key={p.id} id={p.id} value={p.name}>
@@ -323,7 +323,7 @@ const ProfileCompany = () => {
                 name="city"
                 onChange={handleLocation}
               >
-                <option value="default">{account.location.city}</option>
+                <option value="default">{account?.location?.city}</option>
                 {city?.map((p) => {
                   return (
                     <option key={p} value={p}>
@@ -339,6 +339,7 @@ const ProfileCompany = () => {
                 {error.location}
               </p>
 
+              <h2 className="font-nunito font-bold">Rubros</h2>
               <select
                 className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
                 onChange={handleCategory}
@@ -354,16 +355,17 @@ const ProfileCompany = () => {
                 })}
               </select>
               <br />
-              {input.category.length ? (
-                <h2 className="text-lg dark:text-gray-300">
+              
+              {input?.category?.length ? (
+                <h2 className="text-sm font-bold font-nunito dark:text-gray-300">
                   Rubros seleccionados:{" "}
                 </h2>
               ) : null}
-              {input.category.map((cat, i) => {
+              {input?.category?.map((cat, i) => {
                 return (
                   <div key={i}>
                     <button
-                      className="bg-gray-300 dark:bg-gray-800 rounded-3xl px-2 py-1 m-1 dark:text-gray-300 hover:bg-red-500 dark:hover:bg-red-500"
+                      className="bg-light-1 dark:bg-light-2 rounded-3xl px-2 py-1 m-1 dark:text-gray-300 hover:bg-red-500 dark:hover:bg-red-500"
                       onClick={handleDelCategory}
                       value={cat}
                     >
@@ -372,6 +374,7 @@ const ProfileCompany = () => {
                   </div>
                 );
               })}
+              
               <p
                 className="text-red-600"
                 style={{ visibility: error.category ? "visible" : "hidden" }}
@@ -379,7 +382,7 @@ const ProfileCompany = () => {
                 {error.category}
               </p>
 
-              <h2 className="font-topmodern">Telefono</h2>
+              <h2 className="font-nunito font-bold">Teléfono</h2>
               <input
                 className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
                 onChange={handleChange}
@@ -395,8 +398,8 @@ const ProfileCompany = () => {
                 {error.phone}
               </p>
 
-              <h2 className="font-topmodern">Descripción</h2>
-              <br />
+              <h2 className="font-nunito font-bold">Descripción</h2>
+              
               <textarea
                 className="rounded-3xl px-2 py-1 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
                 onChange={handleChange}
@@ -414,7 +417,7 @@ const ProfileCompany = () => {
               </p>
 
               <button
-                className="bg-light-1 font-topmodern rounded-3xl p-2 mr-1 border-2 border-transparent dark:text-zinc-900 hover:text-white hover:scale-95"
+                className="bg-light-1 font-nunito font-bold rounded-3xl px-2 py-1 mr-1 border-2 border-transparent dark:text-zinc-900 hover:text-white hover:scale-95"
                 onClick={(event) => handleSubmit(event)}
                 type="submit"
               >
@@ -422,7 +425,7 @@ const ProfileCompany = () => {
               </button>
 
               <button
-                className="bg-gray-300 dark:bg-gray-800 rounded-3xl p-2 dark:text-gray-300 ml-1 border-2 border-transparent hover:border-light-1 dark:hover:border-light-1"
+                className="bg-gray-300 font-nunito font-bold dark:bg-gray-800 rounded-3xl px-2 py-1 dark:text-gray-300 ml-1 border-2 border-transparent hover:border-light-1 dark:hover:border-light-1"
                 onClick={handleCancel}
               >
                 Cancelar
@@ -441,7 +444,7 @@ const ProfileCompany = () => {
             </div>
           ) : (
             <button
-              className="bg-light-1 font-topmodern rounded-3xl p-2 border-2 border-transparent dark:text-zinc-900 hover:text-white hover:scale-95"
+              className="bg-light-1 font-nunito rounded-3xl font-bold px-2 py-1 border-2 border-transparent dark:text-zinc-900 hover:text-light-2 hover:scale-95"
               onClick={() => handleEdit()}
             >
               Editar perfil
@@ -449,15 +452,15 @@ const ProfileCompany = () => {
           )}
         </div>
 
-        <div className="block">
-          <div className="my-4 mr-4 border-2 rounded-3xl border-light-1 dark:border-light-1">
+        <div className="block ">
+          <div className="my-4 mr-4 border-2 rounded-2xl border-light-2 dark:border-light-1 dark:max-lg:border-none  max-lg:border-none">
             <div className="flex justify-between m-2">
-              <h1 className="text-xl bg-gray-300 dark:bg-gray-800 rounded-3xl px-2 pb-2 pt-1 dark:text-gray-300">
+              <h1 className="text-3xl font-nunito font-bold   px-2 dark:text-gray-300">
                 Mis capacitaciones
               </h1>
 
               <NavLink to="/create-trainings">
-                <button className="bg-light-1 font-topmodern rounded-3xl px-2 pb-1 pt-1 ml-2 border-2 border-transparent dark:text-zinc-900 hover:text-white hover:scale-95">
+                <button className="bg-light-1 font-nunito font-bold rounded-3xl px-2 pb-1 pt-1 ml-2 border-2 border-transparent dark:text-zinc-900 hover:text-white hover:scale-95">
                   Crear
                 </button>
               </NavLink>
@@ -465,12 +468,12 @@ const ProfileCompany = () => {
 
             <div className="m-2">
               {companyIdRelacion?.length ? (
-                <div className="flex flex-wrap">
-                  {companyIdRelacion.map((t) => {
+                <div className="flex flex-wrap justify-center">
+                  {companyIdRelacion?.map((t) => {
                     return (
                       <div className="flex justify-center">
-                        <div className="text-center m-1 border-2 border-light-1 dark:border-light-1 hover:scale-95 p-4 rounded-3xl w-[300px]">
-                          <h2 className="text-xl border-b-2 border-light-1 dark:border-light-1 mb-2">
+                        <div className="text-center m-1 border-2 border-light-2 bg-light-1 dark:border-light-1 dark:bg-light-2 hover:scale-95 p-4 rounded-3xl w-[300px]">
+                          <h2 className="text-xl font-nunito font-bold border-b-2 border-light-2 dark:border-light-1 mb-2">
                             {t.name}
                           </h2>
                           <div>
@@ -482,6 +485,7 @@ const ProfileCompany = () => {
                               height="150"
                             />
                           </div>
+                          <NavLink to={`/training/detail/${t.id}`}><button className="border-2 mt-2 bg-light-2 max-lg:bg-light-1 max-lg:border-light-1 dark:bg-light-1 dark:text-black border-light-2 dark:border-light-1 dark:max-lg:bg-light-2 rounded-3xl p-1 font-topmodern hover:text-white">Ver detalle</button></NavLink>
                         </div>
                       </div>
                     );
@@ -494,15 +498,15 @@ const ProfileCompany = () => {
               )}
             </div>
           </div>
-
-          <div className="my-4 mr-4 border-2 rounded-3xl border-light-1 dark:border-light-1">
+          
+          <div className="my-9 mr-4 border-2 rounded-3xl border-light-2 dark:border-light-1 dark:max-lg:border-none  max-lg:border-none">
             <div className="flex justify-between m-2">
-              <h1 className="text-xl bg-gray-300 dark:bg-gray-800 rounded-3xl px-2 pb-2 pt-1 dark:text-gray-300">
+              <h1 className="text-3xl font-nunito font-bold px-2 dark:text-gray-300">
                 Mis ofertas de trabajo
               </h1>
 
               <NavLink to="/create-jobs">
-                <button className="bg-light-1 font-topmodern rounded-3xl px-2 pb-1 pt-1 ml-2 border-2 border-transparent dark:text-zinc-900 hover:text-white hover:scale-95">
+                <button className="bg-light-1 font-nunito font-bold rounded-3xl px-2 pb-1 pt-1 ml-2 border-2 border-transparent dark:text-zinc-900 hover:text-white hover:scale-95">
                   Crear
                 </button>
               </NavLink>
@@ -510,17 +514,19 @@ const ProfileCompany = () => {
 
             <div className="m-2">
               {companyIdRelOffer?.length ? (
-                <div className="flex flex-wrap">
+                <div className="flex flex-wrap justify-center">
                   {companyIdRelOffer?.map((o) => {
                     return (
                       <div className="flex justify-center">
-                        <div className="text-center m-1 border-2 border-light-1 dark:border-light-1 hover:scale-95 p-4 rounded-3xl w-[300px]">
-                          <h2 className="text-xl border-b-2 border-light-1 dark:border-light-1 mb-2">
+                        <div className="text-center m-1 border-2 border-light-2 bg-light-1 dark:border-light-1 dark:bg-light-2 hover:scale-95 p-4 rounded-3xl w-[300px]">
+                          <h2 className="text-xl font-nunito font-bold border-b-2 border-light-2 dark:border-light-1 mb-2">
                             {o.title}
                           </h2>
-                          <h2 className="text-xl">Descripcion:</h2>
-                          <h3 className="text-lg">{o.description}</h3>
+                          <h2 className="text-l font-nunito font-bold text-light-2 dark:text-light-1">Descripcion:</h2>
+                          <h3 className="text-xl font-nunito font-bold">{o.description}</h3>
+                          <NavLink to={`/home-offers/${o.title}`}><button className="border-2 mt-2 bg-light-2 max-lg:bg-light-1 max-lg:border-light-1 dark:bg-light-1 dark:text-black border-light-2 dark:border-light-1 dark:max-lg:bg-light-2 rounded-3xl p-1 font-topmodern hover:text-white">Ver detalle</button></NavLink>
                         </div>
+                        
                       </div>
                     );
                   })}
