@@ -39,23 +39,27 @@ const DetailTrainings = () => {
     });
   };
 
-  const handleApprove =()=>{
-    dispatch(acceptTraining(id, {
-     answer: true
-    }))
+  const handleApprove = () => {
+    dispatch(
+      acceptTraining(id, {
+        answer: true,
+      })
+    );
     setCommentAdded(!commentAdded);
     dispatch(trainingDetail(id));
-    navigate(-1)
-  }
+    navigate(-1);
+  };
 
-  const handleDecline =()=>{
-    dispatch(acceptTraining(id, {
-     answer: false
-    }))
+  const handleDecline = () => {
+    dispatch(
+      acceptTraining(id, {
+        answer: false,
+      })
+    );
     setCommentAdded(!commentAdded);
     dispatch(trainingDetail(id));
-    navigate(-1)
-  }
+    navigate(-1);
+  };
 
   useEffect(() => {
     // Solo ejecuta el efecto si se ha añadido un comentario
@@ -64,26 +68,55 @@ const DetailTrainings = () => {
   }, [commentAdded, updateButton]);
 
   return (
-    <main className="h-full lg:flex lg:flex-row flex flex-col text-center justify-center ">
-      <div className=" border-r-2 max-lg:border-none my-6 max-lg:my-1 border-light-1 w-[500px] text-center flex flex-col mx-auto items-center max-lg:flex max-lg:flex-col max-lg:justify-center">
+    <main className="h-full lg:flex lg:flex-row flex flex-col text-center ">
+      <div className="flex flex-col items-center ">
         <img
           className="w-[300px] rounded-full"
           src={detail?.company?.profilePicture}
           alt={detail?.company?.name}
         />
-          <span className="font-vilaka font-bold text-[55px] hover:text-light-1">
-            {detail?.company?.nameCompany}
-          </span>
-        <NavLink to={`/company/${detail?.companyId}`}><button className="bg-light-1 font-nunito rounded-3xl font-bold px-2 py-1 border-2 border-transparent dark:text-zinc-900 hover:text-light-2 hover:scale-95 dark:bg-light-2">Ver detalle de la empresa</button>
+        <span className="font-vilaka font-bold text-[55px] hover:text-light-1">
+          {detail?.company?.nameCompany}
+        </span>
+        <NavLink to={`/company/${detail?.companyId}`}>
+          <button className="bg-light-1 font-nunito rounded-3xl font-bold px-2 py-1 border-2 border-transparent dark:text-zinc-900 hover:text-light-2 hover:scale-95 dark:bg-light-2">
+            Ver detalle de la empresa
+          </button>
         </NavLink>
         <br />
       </div>
       <div className=" w-full">
         {console.log(detail.approved)}
-        {
-          (detail.approved === null && localStorage.type === "superAdmin")? <><button onClick={()=>handleApprove()} className="bg-green-600 font-nunito rounded-3xl font-bold px-2 py-1 border-2 border-transparent dark:text-white hover:bg-green-500 hover:scale-95 mx-4 my-4">Aceptar</button>
-          <button onClick={()=>handleDecline()} className="bg-red-600 font-nunito rounded-3xl font-bold px-2 py-1 border-2 border-transparent dark:text-white hover:bg-red-500 hover:scale-95 mx-4 my-4 ">Rechazar</button></> : ((detail.approved === true && localStorage.type === "superAdmin") ? (<button onClick={()=>handleDecline()} className="bg-red-600 font-nunito rounded-3xl font-bold px-2 py-1 border-2 border-transparent dark:text-white hover:bg-red-500 hover:scale-95 mx-4 my-4">Rechazar</button>) : (localStorage.type === "superAdmin" ? (<button onClick={()=>handleApprove()} className="bg-green-600 font-nunito rounded-3xl font-bold px-2 py-1 border-2 border-transparent dark:text-white hover:bg-green-500 hover:scale-95 mx-4 my-4">Aceptar</button>) : null))
-        }
+        {detail.approved === null && localStorage.type === "superAdmin" ? (
+          <>
+            <button
+              onClick={() => handleApprove()}
+              className="bg-green-600 font-nunito rounded-3xl font-bold px-2 py-1 border-2 border-transparent dark:text-white hover:bg-green-500 hover:scale-95 mx-4 my-4"
+            >
+              Aceptar
+            </button>
+            <button
+              onClick={() => handleDecline()}
+              className="bg-red-600 font-nunito rounded-3xl font-bold px-2 py-1 border-2 border-transparent dark:text-white hover:bg-red-500 hover:scale-95 mx-4 my-4 "
+            >
+              Rechazar
+            </button>
+          </>
+        ) : detail.approved === true && localStorage.type === "superAdmin" ? (
+          <button
+            onClick={() => handleDecline()}
+            className="bg-red-600 font-nunito rounded-3xl font-bold px-2 py-1 border-2 border-transparent dark:text-white hover:bg-red-500 hover:scale-95 mx-4 my-4"
+          >
+            Rechazar
+          </button>
+        ) : localStorage.type === "superAdmin" ? (
+          <button
+            onClick={() => handleApprove()}
+            className="bg-green-600 font-nunito rounded-3xl font-bold px-2 py-1 border-2 border-transparent dark:text-white hover:bg-green-500 hover:scale-95 mx-4 my-4"
+          >
+            Aceptar
+          </button>
+        ) : null}
 
         <h1 className="font-nunito font-bold text-[55px]">{detail?.name}</h1>
         <p className="font-nunito font-bold">{detail?.description}</p>
@@ -126,8 +159,11 @@ const DetailTrainings = () => {
         </button>
         {detail?.comments?.map((comment, index) => {
           return (
-            <div className=" mx-6 w-[800px] flex flex-col items-start my-4 border-b-2 " key={index}>
-              <div >
+            <div
+              className=" mx-6 w-[800px] flex flex-col items-start my-4 border-b-2 "
+              key={index}
+            >
+              <div>
                 {" "}
                 <img
                   className="w-[60px] m-auto rounded-full "
@@ -136,14 +172,16 @@ const DetailTrainings = () => {
                 />
               </div>
 
-              <div className=" mx-4 w-[500px] flex" >
+              <div className=" mx-4 w-[500px] flex">
                 {" "}
                 <p className="font-nunito font-bold text-[20px]">
                   {comment?.userName}
                 </p>
-              </div> 
-              <div className=" mx-4 w-[500px] flex "> 
-                <p className="font-nunito  text-start">{comment?.description}</p>
+              </div>
+              <div className=" mx-4 w-[500px] flex ">
+                <p className="font-nunito  text-start">
+                  {comment?.description}
+                </p>
               </div>
             </div>
           );
