@@ -37,4 +37,5 @@ export default {
   },
 
   plugins: [require("tailwind-scrollbar-hide")],
+  plugins: [require("tw-elements/dist/plugin.cjs")],
 };
