@@ -39,6 +39,8 @@ export default function NavBar() {
     setMenu(menu === true ? false : true);
   };
 
+  console.log(localStorage)
+
   return (
     <div className="flex items-center justify-between bg-white dark:bg-zinc-900 border-b-[1px] border-b-gray-300 dark:border-b-gray-700 p-2">
       <Link to="/">
@@ -132,7 +134,7 @@ export default function NavBar() {
                 Home
               </Link>
 
-              {bool ? (
+              {localStorage.type === "company" ? (
                 <>
                   <Link
                     className="text-center block rounded-lg px-4 py-2 text-sm text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-600 hover:text-gray-700 dark:hover:text-gray-400"
@@ -148,6 +150,32 @@ export default function NavBar() {
                     role="menuitem"
                   >
                     Crear Avisos de Trabajo
+                  </Link>
+                </>
+              ) : localStorage.type === "superAdmin" ? (
+                <>
+                  <Link
+                    className="text-center block rounded-lg px-4 py-2 text-sm text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-600 hover:text-gray-700 dark:hover:text-gray-400"
+                    to="/create-trainings"
+                    role="menuitem"
+                  >
+                    Crear Capacitacion
+                  </Link>
+
+                  <Link
+                    className="text-center block rounded-lg px-4 py-2 text-sm text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-600 hover:text-gray-700 dark:hover:text-gray-400"
+                    to="/create-jobs"
+                    role="menuitem"
+                  >
+                    Crear Avisos de Trabajo
+                  </Link>
+
+                  <Link
+                    className="text-center block rounded-lg px-4 py-2 text-sm text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-600 hover:text-gray-700 dark:hover:text-gray-400"
+                    to="/admin"
+                    role="menuitem"
+                  >
+                    Panel de Admin
                   </Link>
                 </>
               ) : null}
