@@ -53,14 +53,14 @@ export default function Login() {
           <h1 className="text-4xl font-vilaka font-bold text-[50px] text-center  border-b-2 border-light-1 dark:border-light-1 rounded-sm dark:text-gray-300">
             Caravana Social
           </h1>
-          <p className=" font-topmodern text-[20px] dark:text-gray-300">
+          <p className=" font-nunito font-bold dark:font-medium text-[20px] dark:text-gray-300">
             Te invitamos a formar parte de la re-evolución inclusiva.
           </p>
         </section>
 
         <section className="text-center items-center">
           <div className="justify-center border-spacing-96 border-2 border-light-1 dark:border-light-1 rounded-3xl p-4 my-4">
-            <h1 className="text-3xl font-vilaka font-bold text-[40px] text-center border-b-2 border-light-1 dark:border-light-1 dark:text-gray-300">
+            <h1 className="text-2xl font-nunito font-bold dark:font-medium text-[30px] text-center border-b-2 border-light-1 dark:border-light-1 dark:text-gray-300">
               Inicio de Sesión
             </h1>
 
@@ -89,7 +89,7 @@ export default function Login() {
             ) : null}
             <br />
             <button
-              className="bg-light-1 font-topmodern rounded-3xl p-2 mb-2 border-2 border-transparent dark:text-zinc-900 hover:text-white hover:scale-95"
+              className="bg-light-1 font-nunito font-bold rounded-3xl p-2 mb-2 border-2 border-transparent dark:text-zinc-900 hover:text-white hover:scale-95"
               onClick={handleSubmit}
               type="submit"
               ref={loginButton}
@@ -126,22 +126,22 @@ export default function Login() {
             </div>
             <br />
 
-            <Link to="/">
+            {/* <Link to="/">
               <button className="bg-gray-300 font-topmodern dark:bg-gray-800 rounded-3xl p-2 my-2 dark:text-gray-300 border-2 border-transparent hover:border-light-1 dark:hover:border-light-1">
                 Has olvidado tu contraseña?
               </button>
-            </Link>
-            <h4 className="border-t-2 font-topmodern border-light-1 dark:border-light-1 dark:text-gray-200">
-              Aun no tienes cuenta?
+            </Link> */}
+            <h4 className="border-t-2 font-nunito font-bold dark:font-medium border-light-1 dark:border-light-1 dark:text-gray-200">
+              ¿Aún no tienes cuenta? Registrate
             </h4>
-            <h4 className="dark:text-gray-200 font-topmodern">Registrate</h4>
+            {/* <h4 className="dark:text-gray-200 font-nunito  font-bold dark:font-medium">Registrate</h4> */}
             <Link to="/register-user">
-              <button className="bg-gray-300 font-topmodern dark:bg-gray-800 rounded-3xl p-2 mr-1 mt-1 dark:text-gray-300 border-2 border-transparent hover:border-light-1 dark:hover:border-light-1">
+              <button className="bg-gray-300 font-nunito font-bold dark:font-medium dark:bg-gray-800 rounded-3xl p-2 mr-1 mt-1 dark:text-gray-300 border-2 border-transparent hover:border-light-1 dark:hover:border-light-1">
                 Usuario
               </button>
             </Link>
             <Link to="/register-company">
-              <button className="bg-gray-300 font-topmodern dark:bg-gray-800 rounded-3xl p-2 ml-1 mt-1 dark:text-gray-300 border-2 border-transparent hover:border-light-1 dark:hover:border-light-1">
+              <button className="bg-gray-300 font-nunito font-bold dark:font-medium dark:bg-gray-800 rounded-3xl p-2 ml-1 mt-1 dark:text-gray-300 border-2 border-transparent hover:border-light-1 dark:hover:border-light-1">
                 Empresa
               </button>
             </Link>

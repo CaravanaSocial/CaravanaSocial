@@ -9,6 +9,8 @@ export default {
       fontFamily: {
         vilaka: ["Vilaka", "Serif"],
         topmodern: ["TopModern"],
+        montserrat: ["Montserrat"],
+        nunito: ["Nunito"]
         poppins: ["Poppins"],
       },
       backgroundColor: {
