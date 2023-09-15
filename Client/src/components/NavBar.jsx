@@ -18,7 +18,7 @@ export default function NavBar() {
   const [menu, setMenu] = useState(false);
   const account =
     localStorage.length !== 0 ? JSON.parse(localStorage.account) : null;
-  console.log(location.pathname);
+
   useEffect(() => {
     if (theme === "Oscuro") {
       document.documentElement.classList.add("dark");
@@ -49,7 +49,8 @@ export default function NavBar() {
 
       {location.pathname !== "/" &&
         location.pathname !== "/home" &&
-        !/^\/freelancer\//.test(location.pathname) && (
+        !/^\/freelancer\//.test(location.pathname) &&
+        !/^\/training\/detail\//.test(location.pathname) && (
           <div className="relative flex items-center lg:w-64 group">
             <div className="absolute z-50 flex items-center justify-center p-3 pr-2 text-sm text-gray-500 cursor-pointer">
               <CgSearch className="w-[20px] h-[20px] hover:text-light-1" />
