@@ -70,11 +70,12 @@ export const ADD_USER_TRAINING = "ADD_USER_TRAINING";
 
 export const USER_TRAINING = "USER_TRAINING";
 
-
 export const CLEAR_FREELANCERS = "CLEAR_FREELANCERS";
 export const GET_Q_AND_A = "GET_Q_AND_A";
 export const DELETE_Q_AND_A = "DELETE_Q_AND_A";
-
+export const FREELANCER_BY_NAME = "FREELANCER_BY_NAME";
+export const TRAINING_BY_NAME = "TRAINING_BY_NAME";
+export const OFFERS_BY_NAME = "OFFERS_BY_NAME";
 
 // const serverURL = "https://caravanaserver.onrender.com";
 const serverURL = "http://localhost:3001";
@@ -326,6 +327,7 @@ export const getCompanies = (value) => {
     try {
       const response = await axios(endpoint);
       const { data } = response;
+
       
       return dispatch({ 
         type: GET_COMPANIES, 
@@ -367,6 +369,7 @@ export const restoreCompanies = (id) => {
       const { data } = response;
       
       return dispatch({ type: RESTORE_COMPANIES, payload: data });
+
     } catch (error) {
       console.log(error);
     }
@@ -566,13 +569,13 @@ export const getTrainingsByValue = (value) => {
   // const endpoint = `http://localhost:3001/trainings`;
 
   //---------- Endpoint to deployed server
-  console.log(value)
+  console.log(value);
   const endpoint = `${serverURL}/trainings/?option=${value}`;
   return async (dispatch) => {
     try {
       const response = await axios.get(endpoint);
       const { data } = response;
-      console.log(data)
+      console.log(data);
 
       return dispatch({ type: GET_TRAININGS_BY_VALUE, payload: data });
     } catch (error) {
@@ -603,7 +606,6 @@ export const createTraining = (training) => {
     }
   };
 };
-
 
 export const deleteTraining = (id) => {
   //---------- Endpoint to Dev server -- Descomentar para usar
@@ -647,15 +649,15 @@ export const editTraining = (id, training) => {
   };
 };
 
-export const acceptTraining =(id, answer)=>{
+export const acceptTraining = (id, answer) => {
   const endpoint = `${serverURL}/trainings/admin/${id}`;
-  return async function(dispatch){
+  return async function (dispatch) {
     try {
-      const response = await axios.patch(endpoint, answer)
+      const response = await axios.patch(endpoint, answer);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 };
 
 export const login = (user) => {
@@ -968,7 +970,6 @@ export const getTrainingsUser = (id) => {
   };
 };
 
-
 export const clearFreelancers = () => {
   return function (dispatch) {
     return dispatch({
@@ -980,10 +981,9 @@ export const clearFreelancers = () => {
 export const createQAndA = (input) => {
   return async function (dispatch) {
     try {
-      const response = (
-        await axios.post(`${serverURL}/question/create`, input)
-      ).data;
-      alert("se creó, creo")
+      const response = (await axios.post(`${serverURL}/question/create`, input))
+        .data;
+      alert("se creó, creo");
     } catch (error) {
       console.log("cat", error.message);
     }
@@ -993,19 +993,16 @@ export const createQAndA = (input) => {
 export const getQAndAs = () => {
   return async function (dispatch) {
     try {
-      const response = (
-        await axios.get(`${serverURL}/question`)
-      ).data;
+      const response = (await axios.get(`${serverURL}/question`)).data;
       dispatch({
         type: GET_Q_AND_A,
-        payload: response
-      })
+        payload: response,
+      });
     } catch (error) {
       console.log("cat", error.message);
     }
   };
 };
-
 
 export const updateQAndA = (id, input) => {
   return async function (dispatch) {
@@ -1031,3 +1028,49 @@ export const deleteQAndA = (id) => {
   };
 };
 
+export const searchFreelancersByName = (name) => {
+  return async function (dispatch) {
+    try {
+      const response = (await axios.get(`${serverURL}/user/?name=${name}`))
+        .data;
+      return dispatch({
+        type: FREELANCER_BY_NAME,
+        payload: response,
+      });
+    } catch (error) {
+      console.log("searchFreelancersByName", error.message);
+    }
+  };
+};
+
+export const searchTrainingByName = (name) => {
+  return async function (dispatch) {
+    try {
+      const response = (await axios.get(`${serverURL}/trainings/?name=${name}`))
+        .data;
+
+      return dispatch({
+        type: TRAINING_BY_NAME,
+        payload: response,
+      });
+    } catch (error) {
+      console.log("searchTrainingByName", error.message);
+    }
+  };
+};
+
+export const searchOffersByName = (name) => {
+  return async function (dispatch) {
+    try {
+      const response = (await axios.get(`${serverURL}/offers/by?name=${name}`))
+        .data;
+
+      return dispatch({
+        type: OFFERS_BY_NAME,
+        payload: response,
+      });
+    } catch (error) {
+      console.log("searchOffersByName", error.message);
+    }
+  };
+};

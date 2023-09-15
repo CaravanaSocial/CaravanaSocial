@@ -8,6 +8,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { companyButtons, logOut } from "../Redux/Actions/Actions";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import {
+  searchFreelancersByName,
+  getFreelancers,
+  getTrainings,
+  searchTrainingByName,
+  searchOffersByName,
+  getOffers,
+} from "../Redux/Actions/Actions";
 
 export default function NavBar() {
   const location = useLocation();
@@ -18,6 +26,7 @@ export default function NavBar() {
   const [menu, setMenu] = useState(false);
   const account =
     localStorage.length !== 0 ? JSON.parse(localStorage.account) : null;
+  const [input, setInput] = useState("");
 
   useEffect(() => {
     if (theme === "Oscuro") {
@@ -35,6 +44,37 @@ export default function NavBar() {
     dispatch(logOut());
     dispatch(companyButtons(false));
     navigate("/login");
+  };
+
+  const handleChange = (e) => {
+    e.preventDefault();
+    setInput(e.target.value);
+  };
+
+  const handleSubmit = () => {
+    if (location.pathname === "/home-freelancers") {
+      if (input === "") {
+        dispatch(getFreelancers());
+      } else {
+        dispatch(searchFreelancersByName(input));
+      }
+    }
+
+    if (location.pathname === "/home-trainings") {
+      if (input === "") {
+        dispatch(getTrainings());
+      } else {
+        dispatch(searchTrainingByName(input));
+      }
+    }
+
+    if (location.pathname === "/home-offers") {
+      if (input === "") {
+        dispatch(getOffers());
+      } else {
+        dispatch(searchOffersByName(input));
+      }
+    }
   };
 
   const handleMenu = () => {
@@ -61,13 +101,15 @@ export default function NavBar() {
 
       {shouldRenderSearchBar && (
         <div className="relative flex items-center lg:w-64 group">
-          <div className="absolute z-50 flex items-center justify-center p-3 pr-2 text-sm text-gray-500 cursor-pointer">
+          <button className="absolute z-50 flex items-center justify-center p-3 pr-2 text-sm text-gray-500 cursor-pointer">
             <CgSearch className="w-[20px] h-[20px] hover:text-light-1" />
-          </div>
+          </button>
           <input
             className="block w-30 py-1.5 pl-10 pr-4 leading-normal rounded-2xl focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1 ring-opacity-90 bg-gray-200 dark:bg-gray-800 text-black font-topmodern aa-input"
             placeholder="Search"
             type="text"
+            onChange={handleChange}
+            onClick={handleSubmit()}
           />
         </div>
       )}

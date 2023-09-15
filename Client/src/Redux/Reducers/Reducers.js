@@ -41,7 +41,10 @@ import {
   USER_TRAINING,
   GET_TRAININGS_BY_VALUE,
   CLEAR_FREELANCERS,
-  GET_Q_AND_A
+  GET_Q_AND_A,
+  FREELANCER_BY_NAME,
+  TRAINING_BY_NAME,
+  OFFERS_BY_NAME,
 } from "../Actions/Actions";
 
 const initialState = {
@@ -78,8 +81,7 @@ const initialState = {
   trainingsApproved: [],
   trainingsDeclined: [],
   trainingsNoCheck: [],
-  faqs:[]
-
+  faqs: [],
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -91,6 +93,7 @@ export default function rootReducer(state = initialState, action) {
       };
 
     case GET_USERS:
+
       if(action.payload.type === "deleted"){
         return {
           ...state,
@@ -101,6 +104,7 @@ export default function rootReducer(state = initialState, action) {
           ...state,
           users: action.payload.array
         }
+
       }
 
     case GET_SUCCESCASES:
@@ -144,6 +148,7 @@ export default function rootReducer(state = initialState, action) {
       };
 
     case GET_COMPANIES:
+
       if(action.payload.type === "deleted"){
         return {
           ...state,
@@ -154,8 +159,8 @@ export default function rootReducer(state = initialState, action) {
           ...state,
           companies: action.payload.array
         }
-      }
 
+      }
 
     case CREATE_COMPANY:
       return {
@@ -329,27 +334,26 @@ export default function rootReducer(state = initialState, action) {
     case USER_TRAINING:
       return {
         ...state,
-        trainingsUser: action.payload
-      }
+        trainingsUser: action.payload,
+      };
     case GET_TRAININGS_BY_VALUE:
-      console.log(action.payload)
-      if(action.payload[0].approved === true){
-        return{
+      console.log(action.payload);
+      if (action.payload[0].approved === true) {
+        return {
           ...state,
-          trainingsApproved: action.payload
-        }
-      }else if(action.payload[0].approved === false){
-        return{
+          trainingsApproved: action.payload,
+        };
+      } else if (action.payload[0].approved === false) {
+        return {
           ...state,
-          trainingsDeclined: action.payload
-        }
-      }else{
-        return{
+          trainingsDeclined: action.payload,
+        };
+      } else {
+        return {
           ...state,
-          trainingsNoCheck: action.payload
-        }
+          trainingsNoCheck: action.payload,
+        };
       }
-
 
     case CLEAR_FREELANCERS:
       return {
@@ -357,10 +361,29 @@ export default function rootReducer(state = initialState, action) {
         userDetail: {},
       };
     case GET_Q_AND_A:
-      return{
+      return {
         ...state,
-        faqs:action.payload
-      }
+        faqs: action.payload,
+      };
+
+    case FREELANCER_BY_NAME:
+      return {
+        ...state,
+        freelancers: action.payload,
+      };
+
+    case TRAINING_BY_NAME:
+      return {
+        ...state,
+        trainings: action.payload,
+        trainingsFiltered: action.payload,
+      };
+
+    case OFFERS_BY_NAME:
+      return {
+        ...state,
+        offers: action.payload,
+      };
 
     default:
       return { ...state };

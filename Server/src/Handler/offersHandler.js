@@ -13,10 +13,9 @@ const {
 const {
   getOfferByIdController,
 } = require("../Controller/Offer/getOfferByIdController");
-const{
-  getOfferByNameController
+const {
+  getOfferByNameController,
 } = require("../Controller/Offer/getOfferByNameController");
-
 
 const postOfferHandler = async (req, res) => {
   const { id } = req.params;
@@ -27,7 +26,7 @@ const postOfferHandler = async (req, res) => {
       return res.status(200).json(response);
     } else return res.status(404).send("Offer already exist");
   } catch (error) {
-    console.log({error: error.message});
+    console.log({ error: error.message });
     return res.status(500).json({ error: error.message });
   }
 };
@@ -89,11 +88,11 @@ const getOfferByNameHandler = async (req, res) => {
 
     const response = await getOfferByNameController(name);
 
-    return res.status(200).json(response)
+    return res.status(200).json(response);
   } catch (error) {
     return res.status(400).send(error.message);
   }
-} 
+};
 
 module.exports = {
   postOfferHandler,
@@ -101,5 +100,5 @@ module.exports = {
   getOfferHandler,
   updateOfferHandler,
   getOfferByIdHandler,
-  getOfferByNameHandler
+  getOfferByNameHandler,
 };
