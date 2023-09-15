@@ -47,7 +47,7 @@ const getCompaniesController = async (value) =>{
             } return gotCompanies
         }
     }
-    throw Error("There is no companies")
+    return []
 }
 
 module.exports = {
