@@ -69,6 +69,7 @@ export const GET_Q_AND_A = "GET_Q_AND_A";
 export const DELETE_Q_AND_A = "DELETE_Q_AND_A";
 export const FREELANCER_BY_NAME = "FREELANCER_BY_NAME";
 export const TRAINING_BY_NAME = "TRAINING_BY_NAME";
+export const OFFERS_BY_NAME = "OFFERS_BY_NAME";
 
 // const serverURL = "https://caravanaserver.onrender.com";
 const serverURL = "http://localhost:3001";
@@ -916,14 +917,29 @@ export const searchTrainingByName = (name) => {
     try {
       const response = (await axios.get(`${serverURL}/trainings/?name=${name}`))
         .data;
-      console.log(name);
-      console.log("response", response);
+
       return dispatch({
         type: TRAINING_BY_NAME,
         payload: response,
       });
     } catch (error) {
       console.log("searchTrainingByName", error.message);
+    }
+  };
+};
+
+export const searchOffersByName = (name) => {
+  return async function (dispatch) {
+    try {
+      const response = (await axios.get(`${serverURL}/offers/by?name=${name}`))
+        .data;
+
+      return dispatch({
+        type: OFFERS_BY_NAME,
+        payload: response,
+      });
+    } catch (error) {
+      console.log("searchOffersByName", error.message);
     }
   };
 };
