@@ -44,6 +44,7 @@ import {
   GET_Q_AND_A,
   FREELANCER_BY_NAME,
   TRAINING_BY_NAME,
+  OFFERS_BY_NAME,
 } from "../Actions/Actions";
 
 const initialState = {
@@ -364,6 +365,12 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         trainings: action.payload,
         trainingsFiltered: action.payload,
+      };
+
+    case OFFERS_BY_NAME:
+      return {
+        ...state,
+        offers: action.payload,
       };
 
     default:
