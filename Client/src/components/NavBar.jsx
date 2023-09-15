@@ -90,7 +90,9 @@ export default function NavBar() {
     location.pathname.startsWith("/company/") ||
     location.pathname === "/create-trainings" ||
     location.pathname === "/create-jobs" ||
-    location.pathname === "/admin"
+    location.pathname === "/admin" ||
+    location.pathname === "/register-user" ||
+    location.pathname === "/register-company"
   );
 
   return (
