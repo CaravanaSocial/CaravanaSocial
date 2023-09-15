@@ -43,6 +43,7 @@ import {
   CLEAR_FREELANCERS,
   GET_Q_AND_A,
   FREELANCER_BY_NAME,
+  TRAINING_BY_NAME,
 } from "../Actions/Actions";
 
 const initialState = {
