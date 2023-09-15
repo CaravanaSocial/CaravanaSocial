@@ -898,7 +898,8 @@ export const deleteQAndA = (id) => {
 export const searchFreelancersByName = (name) => {
   return async function (dispatch) {
     try {
-      const response = (await axios.get(`${serverURL}/user/${name}`)).data;
+      const response = (await axios.get(`${serverURL}/user/?name=${name}`))
+        .data;
       return dispatch({
         type: FREELANCER_BY_NAME,
         payload: response,
