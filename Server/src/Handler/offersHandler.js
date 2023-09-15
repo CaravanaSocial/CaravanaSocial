@@ -13,6 +13,10 @@ const {
 const {
   getOfferByIdController,
 } = require("../Controller/Offer/getOfferByIdController");
+const{
+  getOfferByNameController
+} = require("../Controller/Offer/getOfferByNameController");
+
 
 const postOfferHandler = async (req, res) => {
   const { id } = req.params;
@@ -79,10 +83,23 @@ const getOfferByIdHandler = async (req, res) => {
   }
 };
 
+const getOfferByNameHandler = async (req, res) => {
+  try {
+    const { name } = req.query;
+
+    const response = await getOfferByNameController(name);
+
+    return res.status(200).json(response)
+  } catch (error) {
+    return res.status(400).send(error.message);
+  }
+} 
+
 module.exports = {
   postOfferHandler,
   deleteOfferHandler,
   getOfferHandler,
   updateOfferHandler,
   getOfferByIdHandler,
+  getOfferByNameHandler
 };

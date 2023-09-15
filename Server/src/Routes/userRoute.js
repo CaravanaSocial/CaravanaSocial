@@ -7,6 +7,7 @@ const {
   getFreelancersHandler,
   deleteUserHandler,
   restoreUserHandler,
+  getUserByNameHandler
 } = require("../Handler/userHandlers");
 const { validateUserAccount } = require("../Middlewares/validateUserAccount");
 const router = Router();
@@ -18,5 +19,6 @@ router.get("/freelancers", getFreelancersHandler);
 router.get("/:id", getUsersByIdHandler);
 router.delete("/:id", deleteUserHandler)
 router.post("/restore/:id", restoreUserHandler);
+router.get("/", getUserByNameHandler);
 module.exports = router;
 
