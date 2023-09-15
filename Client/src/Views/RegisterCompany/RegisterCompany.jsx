@@ -11,6 +11,7 @@ import {
   setNewErrors,
   clearErrors,
 } from "../../Redux/Actions/Actions";
+import Swal from "sweetalert2";
 
 const RegisterCompany = () => {
   const navigate = useNavigate();
@@ -20,6 +21,20 @@ const RegisterCompany = () => {
   const city = useSelector((state) => state.cities);
   const category = useSelector((state) => state.categories);
   const globalErrors = useSelector((state) => state.errors);
+
+  // <p>{globalErrors?.CREATE_COMPANY?.error}</p>;
+
+  if (globalErrors?.CREATE_COMPANY?.error) {
+    Swal.fire({
+      title:
+        "Correo electronico ya se encuentra en uso, por favor selecciona otro",
+
+      icon: "error",
+      customClass: {
+        popup: "",
+      },
+    });
+  }
 
   const [companyInput, setCompanyInput] = useState({
     name: "",
@@ -447,16 +462,6 @@ const RegisterCompany = () => {
             Registrarme como Usuario
           </button>
         </NavLink>
-        <p
-          className="text-red-600"
-          style={{
-            visibility: globalErrors?.CREATE_COMPANY?.error
-              ? "visible"
-              : "hidden",
-          }}
-        >
-          {globalErrors?.CREATE_COMPANY?.error}
-        </p>
       </div>
     </div>
   );
