@@ -13,6 +13,8 @@ import {
   getFreelancers,
   getTrainings,
   searchTrainingByName,
+  searchOffersByName,
+  getOffers,
 } from "../Redux/Actions/Actions";
 
 export default function NavBar() {
@@ -59,11 +61,18 @@ export default function NavBar() {
     }
 
     if (location.pathname === "/home-trainings") {
-      console.log("training", input);
       if (input === "") {
         dispatch(getTrainings());
       } else {
         dispatch(searchTrainingByName(input));
+      }
+    }
+
+    if (location.pathname === "/home-offers") {
+      if (input === "") {
+        dispatch(getOffers());
+      } else {
+        dispatch(searchOffersByName(input));
       }
     }
   };
