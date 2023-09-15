@@ -6,12 +6,12 @@ import {
 } from "../../Redux/Actions/Actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, NavLink } from "react-router-dom";
-
 import { HiOutlineMail } from "react-icons/hi";
 import { AiOutlinePhone } from "react-icons/ai";
 import {HiOutlineLocationMarker} from "react-icons/hi";
 
 const CompanyDetail = () => {
+ 
   const { id } = useParams();
   const dispatch = useDispatch();
   const detail = useSelector((state) => state.companyDetail);
@@ -66,6 +66,7 @@ const CompanyDetail = () => {
         
       </div>
       <div className=" text-center w-full  ">
+          
         <div>
           <h2 className="font-bold font-nunito text-[40px]">Capacitaciones</h2>
           {companyIdRelacion ? (

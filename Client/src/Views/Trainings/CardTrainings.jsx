@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { adduser, trainingDetail } from "../../Redux/Actions/Actions";
 import { useNavigate } from "react-router-dom";
@@ -8,7 +8,7 @@ const TrainingCard = ({ training }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  console.log("trainings", training);
+ 
 
   const handleSubmit = () => {
     dispatch(trainingDetail(training.id));
@@ -21,7 +21,7 @@ const TrainingCard = ({ training }) => {
       <h2 className="text-[25px] font-topmodern whitespace-normal ">
         {training.name}
       </h2>
-      <p className="font-vilaka whitespace-normal text-center font-bold text-[25px]">
+      <p className="font-nunito whitespace-normal text-center font-bold text-[16px]">
         {training.description}
       </p>
       <img
@@ -30,11 +30,12 @@ const TrainingCard = ({ training }) => {
       />
 
       <button
-        className="border-2 rounded-lg font-topmodern bg-light-1 hover:text-white p-1 w-[100px] self-center"
+        className=" mt-2 rounded-lg font-topmodern bg-light-1 hover:text-white p-1 w-[100px] self-center"
         onClick={handleSubmit}
       >
         Unirse
       </button>
+        
     </div>
   );
 };

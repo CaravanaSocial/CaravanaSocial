@@ -8,7 +8,7 @@ export default function OfferCard({ offer }) {
       <h2 className=" font-topmodern whitespace-normal text-[25px]">
         {offer?.title}
       </h2>
-      <p className="font-vilaka whitespace-normal text-center font-bold text-[25px]">
+      <p className="font-nunito whitespace-normal text-center font-bold text-[20px]">
         {offer.description}
       </p>
       <div>
@@ -17,7 +17,7 @@ export default function OfferCard({ offer }) {
         ))}
       </div>
       <Link
-        className="border-2 rounded-lg font-topmodern bg-light-1 hover:text-white w-[100px] self-center p-1"
+        className="mt-2 rounded-lg font-topmodern bg-light-1 hover:text-white w-[100px] self-center p-1"
         to={`/home-offers/${offer?.title}`}
       >
         Ver oferta
