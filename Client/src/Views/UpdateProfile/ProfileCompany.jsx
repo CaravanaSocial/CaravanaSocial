@@ -165,7 +165,7 @@ const ProfileCompany = () => {
 
   // const isSubmitDisabled = Object.keys(error).length > 0;
   const handleSubmit = (event) => {
-    dispatch(editCompany(localStorage.accId, input)).then((updateError) => {
+    dispatch(editCompany(localStorage?.accId, input)).then((updateError) => {
       if (!updateError) {
         setEdit(false);
         dispatch(clearErrors());
@@ -469,9 +469,9 @@ const ProfileCompany = () => {
             <div className="m-2">
               {companyIdRelacion?.length ? (
                 <div className="flex flex-wrap justify-center">
-                  {companyIdRelacion?.map((t) => {
+                  {companyIdRelacion?.map((t, i) => {
                     return (
-                      <div className="flex justify-center">
+                      <div key={i} className="flex justify-center">
                         <div className="text-center m-1 border-2 border-light-2 bg-light-1 dark:border-light-1 dark:bg-light-2 hover:scale-95 p-4 rounded-3xl w-[300px]">
                           <h2 className="text-xl font-nunito font-bold border-b-2 border-light-2 dark:border-light-1 mb-2">
                             {t.name}
@@ -515,9 +515,9 @@ const ProfileCompany = () => {
             <div className="m-2">
               {companyIdRelOffer?.length ? (
                 <div className="flex flex-wrap justify-center">
-                  {companyIdRelOffer?.map((o) => {
+                  {companyIdRelOffer?.map((o, i) => {
                     return (
-                      <div className="flex justify-center">
+                      <div key={i} className="flex justify-center">
                         <div className="text-center m-1 border-2 border-light-2 bg-light-1 dark:border-light-1 dark:bg-light-2 hover:scale-95 p-4 rounded-3xl w-[300px]">
                           <h2 className="text-xl font-nunito font-bold border-b-2 border-light-2 dark:border-light-1 mb-2">
                             {o.title}

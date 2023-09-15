@@ -64,6 +64,7 @@ function App() {
             }
             element={<ProfileUser />}
           />
+          <Route path="/profile-user" element={<ProfileUser/>}/>
           <Route path="/profile-company" element={<ProfileCompany />} />
           <Route path="/training/detail/:id" element={<DetailTrainings />} />
           <Route path="/company/:id" element={<CompanyDetail />} />
