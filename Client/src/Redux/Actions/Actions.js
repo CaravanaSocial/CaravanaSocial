@@ -68,6 +68,7 @@ export const CLEAR_FREELANCERS = "CLEAR_FREELANCERS";
 export const GET_Q_AND_A = "GET_Q_AND_A";
 export const DELETE_Q_AND_A = "DELETE_Q_AND_A";
 export const FREELANCER_BY_NAME = "FREELANCER_BY_NAME";
+export const TRAINING_BY_NAME = "TRAINING_BY_NAME";
 
 // const serverURL = "https://caravanaserver.onrender.com";
 const serverURL = "http://localhost:3001";
@@ -906,6 +907,21 @@ export const searchFreelancersByName = (name) => {
       });
     } catch (error) {
       console.log("searchFreelancersByName", error.message);
+    }
+  };
+};
+
+export const searchTrainingByName = (name) => {
+  return async function (dispatch) {
+    try {
+      const response = (await axios.get(`${serverURL}/trainings/?name=${name}`))
+        .data;
+      return dispatch({
+        type: TRAINING_BY_NAME,
+        payload: response,
+      });
+    } catch (error) {
+      console.log("searchTrainingByName", error.message);
     }
   };
 };
