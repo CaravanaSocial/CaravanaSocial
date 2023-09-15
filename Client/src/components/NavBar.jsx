@@ -7,8 +7,10 @@ import { CgHomeAlt } from "react-icons/cg";
 import { useDispatch, useSelector } from "react-redux";
 import { companyButtons, logOut } from "../Redux/Actions/Actions";
 import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 export default function NavBar() {
+  const location = useLocation();
   const [theme, setTheme] = useState("Claro");
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -39,24 +41,24 @@ export default function NavBar() {
     setMenu(menu === true ? false : true);
   };
 
-  console.log(localStorage)
-
   return (
     <div className="flex items-center justify-between bg-white dark:bg-zinc-900 border-b-[1px] border-b-gray-300 dark:border-b-gray-700 p-2">
       <Link to="/">
         <img className="w-[60px] h-[60px]" src={logo}></img>
       </Link>
 
-      <div className="relative flex items-center lg:w-64 group">
-        <div className="absolute z-50 flex items-center justify-center p-3 pr-2 text-sm text-gray-500 cursor-pointer">
-          <CgSearch className="w-[20px] h-[20px] hover:text-light-1" />
+      {location.pathname !== "/" && location.pathname !== "/home" && (
+        <div className="relative flex items-center lg:w-64 group">
+          <div className="absolute z-50 flex items-center justify-center p-3 pr-2 text-sm text-gray-500 cursor-pointer">
+            <CgSearch className="w-[20px] h-[20px] hover:text-light-1" />
+          </div>
+          <input
+            className="block w-30 py-1.5 pl-10 pr-4 leading-normal rounded-2xl focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1 ring-opacity-90 bg-gray-200 dark:bg-gray-800 text-black font-topmodern aa-input"
+            placeholder="Search"
+            type="text"
+          />
         </div>
-        <input
-          className="block w-30 py-1.5 pl-10 pr-4 leading-normal rounded-2xl focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1 ring-opacity-90 bg-gray-200 dark:bg-gray-800 text-black font-topmodern aa-input"
-          placeholder="Search"
-          type="text"
-        />
-      </div>
+      )}
 
       <div className="relative">
         <div className="inline-flex items-center overflow-hidden rounded-md bg-gray-200 dark:bg-gray-800 p-0.5 hover:p-0 hover:border-2 hover:border-light-1">
@@ -186,8 +188,10 @@ export default function NavBar() {
                 Ajustes
               </strong>
               <div className="mt-1.5 text-center">
-                <div className="relative inline-block w-10 mr-2 align-middle select-none"
-                  onClick={handleThemeSwitch}>
+                <div
+                  className="relative inline-block w-10 mr-2 align-middle select-none"
+                  onClick={handleThemeSwitch}
+                >
                   {theme === "Claro" ? (
                     <input
                       className="outline-none focus:outline-none right-4 duration-200 ease-in absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"
