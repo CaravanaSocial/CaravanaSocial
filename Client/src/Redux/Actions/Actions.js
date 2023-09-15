@@ -4,6 +4,8 @@ import Swal from "sweetalert2";
 export const CREATE_USER = "CREATE_USER";
 export const GET_USERS = "GET_USERS";
 export const EDIT_USER = "EDIT_USER";
+export const DELETE_USERS = "DELETE_USERS";
+export const RESTORE_USERS = "RESTORE_USERS";
 
 export const GET_SUCCESCASES = "GET_SUCCESCASES";
 
@@ -13,10 +15,14 @@ export const GET_USER_BY_ID = "GET_USER_BY_ID";
 export const CREATE_ADMIN = "CREATE_ADMIN";
 export const GET_ADMINS = "GET_ADMINS";
 export const EDIT_ADMIN = "EDIT_ADMIN";
+export const DELETE_ADMINS = "DELETE_ADMINS";
+export const RESTORE_ADMINS = "RESTORE_ADMINS";
 
 export const GET_COMPANIES = "GET_COMPANIES";
 export const CREATE_COMPANY = "CREATE_COMPANY";
 export const EDIT_COMPANY = "EDIT_COMPANY";
+export const RESTORE_COMPANIES = "RESTORE_COMPANIES";
+export const DELETE_COMPANIES = "DELETE_COMPANIES";
 
 export const CREATE_OFFER = "CREATE_OFFER";
 export const DELETE_OFFER = "DELETE_OFFER";
@@ -122,6 +128,46 @@ export const getUsers = (value) => {
       const { data } = response;
       return dispatch({
         type: GET_USERS,
+        payload: value === "deleted" ? {type: "deleted", array: data} : {type: "online", array: data},
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const deleteUsers = (id) => {
+  //---------- Endpoint to Dev server -- Descomentar para usar
+  // const endpoint = "http://localhost:3001/user/all";
+
+  //---------- Endpoint to deployed server
+  const endpoint = `${serverURL}/user/${id}`;
+  return async (dispatch) => {
+    try {
+      const response = await axios.delete(endpoint);
+      const { data } = response;
+      return dispatch({
+        type: DELETE_USERS,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const restoreUsers = (id) => {
+  //---------- Endpoint to Dev server -- Descomentar para usar
+  // const endpoint = "http://localhost:3001/user/all";
+
+  //---------- Endpoint to deployed server
+  const endpoint = `${serverURL}/user/restore/${id}`;
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(endpoint);
+      const { data } = response;
+      return dispatch({
+        type: RESTORE_USERS,
         payload: data,
       });
     } catch (error) {
@@ -182,7 +228,11 @@ export const createAdmin = (admin) => {
         type: CREATE_ADMIN,
       });
     } catch (error) {
-      console.log(error);
+      dispatch({
+        type: ERRORS,
+        payload: { type: CREATE_ADMIN, payload: error.response.data },
+      });
+      return error;
     }
   };
 };
@@ -206,18 +256,58 @@ export const editAdmin = (id, admin) => {
   };
 };
 
-export const getAdmins = () => {
+export const getAdmins = (value) => {
   //---------- Endpoint to Dev server -- Descomentar para usar
   // const endpoint = "http://localhost:3001/admin/all";
 
   //---------- Endpoint to deployed server
-  const endpoint = `${serverURL}/admin/all`;
+  const endpoint = `${serverURL}/admin/all?value=${value}`;
   return async (dispatch) => {
     try {
       const response = await axios(endpoint);
       const { data } = response;
       return dispatch({
         type: GET_ADMINS,
+        payload: value === "deleted" ? {type: "deleted", array: data} : {type: "online", array: data},
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const deletedAdmins = (id) => {
+  //---------- Endpoint to Dev server -- Descomentar para usar
+  // const endpoint = "http://localhost:3001/admin/all";
+
+  //---------- Endpoint to deployed server
+  const endpoint = `${serverURL}/admin/${id}`;
+  return async (dispatch) => {
+    try {
+      const response = await axios.delete(endpoint);
+      const { data } = response;
+      return dispatch({
+        type: DELETE_ADMINS,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const restoreAdmins = (id) => {
+  //---------- Endpoint to Dev server -- Descomentar para usar
+  // const endpoint = "http://localhost:3001/admin/all";
+
+  //---------- Endpoint to deployed server
+  const endpoint = `${serverURL}/admin/restore/${id}`;
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(endpoint);
+      const { data } = response;
+      return dispatch({
+        type: RESTORE_ADMINS,
         payload: data,
       });
     } catch (error) {
@@ -237,7 +327,46 @@ export const getCompanies = (value) => {
       const response = await axios(endpoint);
       const { data } = response;
       
-      return dispatch({ type: GET_COMPANIES, payload: data });
+      return dispatch({ 
+        type: GET_COMPANIES, 
+        payload: value === "deleted" ? {type: "deleted", array: data} : {type: "online", array: data}, 
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const deleteCompanies = (id) => {
+  //---------- Endpoint to Dev server -- Descomentar para usar
+  // const endpoint = `http://localhost:3001/company/all`;
+
+  //---------- Endpoint to deployed server
+  const endpoint = `${serverURL}/company/${id}`;
+  return async (dispatch) => {
+    try {
+      const response = await axios.delete(endpoint);
+      const { data } = response;
+      
+      return dispatch({ type: DELETE_COMPANIES, payload: data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const restoreCompanies = (id) => {
+  //---------- Endpoint to Dev server -- Descomentar para usar
+  // const endpoint = `http://localhost:3001/company/all`;
+
+  //---------- Endpoint to deployed server
+  const endpoint = `${serverURL}/company/restore/${id}`;
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(endpoint);
+      const { data } = response;
+      
+      return dispatch({ type: RESTORE_COMPANIES, payload: data });
     } catch (error) {
       console.log(error);
     }

@@ -39,9 +39,7 @@ import {
   CLEAR_VIDEOS,
   ADD_USER_TRAINING,
   USER_TRAINING,
-
   GET_TRAININGS_BY_VALUE,
-
   CLEAR_FREELANCERS,
   GET_Q_AND_A
 } from "../Actions/Actions";
@@ -55,6 +53,7 @@ const initialState = {
   usersDelete: [],
   currentAccount: {},
   admins: [],
+  adminsDeleted: [],
   countries: [],
   states: [],
   cities: [],
@@ -92,15 +91,15 @@ export default function rootReducer(state = initialState, action) {
       };
 
     case GET_USERS:
-      if(action.payload[0]?.deletedAt !== null){
+      if(action.payload.type === "deleted"){
         return {
           ...state,
-          usersDelete: action.payload
+          usersDelete: action.payload.array
         }
-      }else {
+      }else if(action.payload.type === "online"){
         return {
           ...state,
-          users: action.payload
+          users: action.payload.array
         }
       }
 
@@ -127,10 +126,17 @@ export default function rootReducer(state = initialState, action) {
       };
 
     case GET_ADMINS:
-      return {
-        ...state,
-        admins: action.payload,
-      };
+      if(action.payload.type === "deleted"){
+        return {
+          ...state,
+          adminsDeleted: action.payload.array
+        }
+      }else if(action.payload.type === "online"){
+        return {
+          ...state,
+          admins: action.payload.array
+        }
+      }
 
     case EDIT_ADMIN:
       return {
@@ -138,15 +144,15 @@ export default function rootReducer(state = initialState, action) {
       };
 
     case GET_COMPANIES:
-      if(action.payload[0]?.deletedAt !== null){
+      if(action.payload.type === "deleted"){
         return {
           ...state,
-          companiesDelete: action.payload
+          companiesDelete: action.payload.array
         }
-      }else {
+      }else if(action.payload.type === "online"){
         return {
           ...state,
-          companies: action.payload
+          companies: action.payload.array
         }
       }
 
