@@ -24,17 +24,7 @@ const RegisterCompany = () => {
 
   // <p>{globalErrors?.CREATE_COMPANY?.error}</p>;
 
-  if (globalErrors?.CREATE_COMPANY?.error) {
-    Swal.fire({
-      title:
-        "Correo electronico ya se encuentra en uso, por favor selecciona otro",
-
-      icon: "error",
-      customClass: {
-        popup: "",
-      },
-    });
-  }
+  
 
   const [companyInput, setCompanyInput] = useState({
     name: "",
@@ -165,19 +155,6 @@ const RegisterCompany = () => {
       })
     ).then((postError) => {
       if (!postError) {
-        setCompanyInput({
-          name: "",
-          lastName: "",
-          position: "",
-          nameCompany: "",
-          category: [],
-          phone: "",
-          email: "",
-          password: "",
-          passwordRep: "",
-          description: "",
-          location: { country: "", state: "", city: "" },
-        });
         navigate("/login");
         dispatch(clearErrors());
       } else {
@@ -187,6 +164,19 @@ const RegisterCompany = () => {
             error: postError.response.data,
           })
         );
+        console.log("GLOBAL", globalErrors?.CREATE_COMPANY?.error)
+        console.log("THEN", postError?.response?.data)
+        if (postError?.response?.data) {
+          Swal.fire({
+            title:
+              "Correo electronico ya se encuentra en uso, por favor selecciona otro",
+      
+            icon: "error",
+            customClass: {
+              popup: "",
+            },
+          });
+        }
       }
     });
   };
@@ -455,6 +445,16 @@ const RegisterCompany = () => {
           >
             Enviar
           </button>
+          <h3
+            className="text-red-600"
+            style={{
+              visibility: globalErrors?.CREATE_COMPANY?.error
+                ? "visible"
+                : "hidden",
+            }}
+          >
+            {globalErrors?.CREATE_COMPANY?.error}
+          </h3>
         </form>
 
         <NavLink to="/register-user">

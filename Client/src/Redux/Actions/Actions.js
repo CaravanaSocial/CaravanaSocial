@@ -110,7 +110,7 @@ export const createUser = (user) => {
     } catch (error) {
       dispatch({
         type: ERRORS,
-        payload: { type: CREATE_USER, payload: error.response.data },
+        payload: { type: CREATE_USER, payload: error?.response?.data },
       });
       return error;
     }
@@ -405,7 +405,7 @@ export const createCompany = (company) => {
       console.log(error.message);
       dispatch({
         type: ERRORS,
-        payload: { type: CREATE_COMPANY, payload: error.response.data },
+        payload: { type: CREATE_COMPANY, payload: error?.response?.data },
       });
       return error;
     }
