@@ -358,6 +358,12 @@ export default function rootReducer(state = initialState, action) {
         freelancers: action.payload,
       };
 
+    case TRAINING_BY_NAME:
+      return {
+        ...state,
+        trainings: action.payload,
+      };
+
     default:
       return { ...state };
   }
