@@ -11,6 +11,8 @@ import { useLocation } from "react-router-dom";
 import {
   searchFreelancersByName,
   getFreelancers,
+  getTrainings,
+  searchTrainingByName,
 } from "../Redux/Actions/Actions";
 
 export default function NavBar() {
@@ -53,6 +55,15 @@ export default function NavBar() {
         dispatch(getFreelancers());
       } else {
         dispatch(searchFreelancersByName(input));
+      }
+    }
+
+    if (location.pathname === "/home-trainings") {
+      console.log("training", input);
+      if (input === "") {
+        dispatch(getTrainings());
+      } else {
+        dispatch(searchTrainingByName(input));
       }
     }
   };

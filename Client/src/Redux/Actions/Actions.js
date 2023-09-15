@@ -916,6 +916,8 @@ export const searchTrainingByName = (name) => {
     try {
       const response = (await axios.get(`${serverURL}/trainings/?name=${name}`))
         .data;
+      console.log(name);
+      console.log("response", response);
       return dispatch({
         type: TRAINING_BY_NAME,
         payload: response,
