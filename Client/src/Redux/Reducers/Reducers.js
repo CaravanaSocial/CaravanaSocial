@@ -56,6 +56,7 @@ const initialState = {
   usersDelete: [],
   currentAccount: {},
   admins: [],
+  adminsDeleted: [],
   countries: [],
   states: [],
   cities: [],
@@ -92,16 +93,18 @@ export default function rootReducer(state = initialState, action) {
       };
 
     case GET_USERS:
-      if (action.payload[0]?.deletedAt !== null) {
+
+      if(action.payload.type === "deleted"){
         return {
           ...state,
-          usersDelete: action.payload,
-        };
-      } else {
+          usersDelete: action.payload.array
+        }
+      }else if(action.payload.type === "online"){
         return {
           ...state,
-          users: action.payload,
-        };
+          users: action.payload.array
+        }
+
       }
 
     case GET_SUCCESCASES:
@@ -127,10 +130,17 @@ export default function rootReducer(state = initialState, action) {
       };
 
     case GET_ADMINS:
-      return {
-        ...state,
-        admins: action.payload,
-      };
+      if(action.payload.type === "deleted"){
+        return {
+          ...state,
+          adminsDeleted: action.payload.array
+        }
+      }else if(action.payload.type === "online"){
+        return {
+          ...state,
+          admins: action.payload.array
+        }
+      }
 
     case EDIT_ADMIN:
       return {
@@ -138,16 +148,18 @@ export default function rootReducer(state = initialState, action) {
       };
 
     case GET_COMPANIES:
-      if (action.payload[0]?.deletedAt !== null) {
+
+      if(action.payload.type === "deleted"){
         return {
           ...state,
-          companiesDelete: action.payload,
-        };
-      } else {
+          companiesDelete: action.payload.array
+        }
+      }else if(action.payload.type === "online"){
         return {
           ...state,
-          companies: action.payload,
-        };
+          companies: action.payload.array
+        }
+
       }
 
     case CREATE_COMPANY:

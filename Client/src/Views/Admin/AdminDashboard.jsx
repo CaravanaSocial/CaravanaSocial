@@ -9,6 +9,7 @@ import Users from "../../components/AdminViews/Users";
 import Companies from "../../components/AdminViews/Companies";
 import TrainingCard from "../Trainings/CardTrainings";
 import Faq from "../../Views/Faq/Faq.jsx";
+import Admins from "../../components/AdminViews/Admins/Admins";
 
 const AdminDashboard = () => {
   initTE({ Datepicker, Input, Tab }, { allowReinits: true });
@@ -192,7 +193,7 @@ const AdminDashboard = () => {
             role="tabpanel"
             aria-labelledby="tabs-admins-tab"
           >
-            Tab 5 content
+            <Admins />
           </div>
         </div>
         <div className=" flex h-full   w-full flex-wrap ">
@@ -200,8 +201,8 @@ const AdminDashboard = () => {
             <div className="flex flex-wrap">
               {/* CAPACITACIONES  */}
               {approvedState === true ? (
-                trainingsApproved.length !== 0 ? (
-                  trainingsApproved.map((t, i) => {
+                trainingsApproved?.length !== 0 ? (
+                  trainingsApproved?.map((t, i) => {
                     return (
                       <div key={i}>
                         <NavLink to={`/training/detail/${t.id}`}>
@@ -216,8 +217,8 @@ const AdminDashboard = () => {
               ) : null}
 
               {declinedState === true ? (
-                trainingsDeclined.length !== 0 ? (
-                  trainingsDeclined.map((t, i) => {
+                trainingsDeclined?.length !== 0 ? (
+                  trainingsDeclined?.map((t, i) => {
                     return (
                       <div key={i}>
                         <NavLink to={`/training/detail/${t.id}`}>
@@ -234,8 +235,8 @@ const AdminDashboard = () => {
               ) : null}
 
               {noCheckState === true ? (
-                trainingsNoCheck.length !== 0 ? (
-                  trainingsNoCheck.map((t, i) => {
+                trainingsNoCheck?.length !== 0 ? (
+                  trainingsNoCheck?.map((t, i) => {
                     return (
                       <div key={i}>
                         <NavLink to={`/training/detail/${t.id}`}>

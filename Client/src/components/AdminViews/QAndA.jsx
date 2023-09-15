@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { createQAndA } from "../../Redux/Actions/Actions";
-import { NavLink } from "react-router-dom";
 
 const QAndA = () => {
   const [input, setInput] = useState({
