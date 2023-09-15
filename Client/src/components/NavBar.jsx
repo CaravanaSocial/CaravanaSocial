@@ -139,22 +139,44 @@ export default function NavBar() {
               </strong>
               {localStorage.length !== 0 ? (
                 <div className="flex items-center justify-between m-2 p-2 hover:bg-gray-50 dark:hover:bg-gray-600 rounded-lg">
-                  <Link
-                    to={
-                      localStorage.type === "user"
-                        ? `/${account.name + account.lastName}`
-                        : "/profile-company"
-                    }
-                  >
-                    <span className="text-gray-500 flex justify-center text-sm dark:text-gray-300">
+                  {localStorage.type === "user" ? (
+                    <div className="text-gray-500 flex justify-center text-sm dark:text-gray-300">
                       <CgProfile className="w-[25px] h-[25px] text-gray-400 mx-1 hover:text-light-1" />
-                      <a className="pt-0.5 hover:text-light-1">
-                        {localStorage.type === "company"
-                          ? account.nameCompany
-                          : account.name}
-                      </a>
-                    </span>
-                  </Link>
+                      <Link to="/profile-user">
+                        <h1 className="pt-0.5 hover:text-light-1"
+                        >{account.name}{" "}{account.lastname}</h1>
+                      </Link>
+                    </div>
+                  ) : localStorage.type === "company" ? (
+                    <div className="text-gray-500 flex justify-center text-sm dark:text-gray-300">
+                      <CgProfile className="w-[25px] h-[25px] text-gray-400 mx-1 hover:text-light-1" />
+                      <Link to="/profile-company">
+                        <h1 className="pt-0.5 hover:text-light-1"
+                        >{account.nameCompany}</h1>
+                      </Link>
+                    </div>
+                  ) : localStorage.type === "superAdmin" ? (
+                    <div className="text-gray-500 flex justify-center text-sm dark:text-gray-300">
+                      <CgProfile className="w-[25px] h-[25px] text-gray-400 mx-1 hover:text-light-1" />
+                      <Link to="/admin">
+                        <h1 className="pt-0.5 hover:text-light-1"
+                        >{account.name}</h1>
+                      </Link>
+                    </div>
+                  ) : localStorage.type === "admin" ? (
+                    <div className="text-gray-500 flex justify-center text-sm dark:text-gray-300">
+                      <CgProfile className="w-[25px] h-[25px] text-gray-400 mx-1 hover:text-light-1" />
+                      <Link to="/admin">
+                        <h1 className="pt-0.5 hover:text-light-1"
+                        >{account.name}</h1>
+                      </Link>
+                    </div>
+                  ) : (
+                    <div>
+                      <h1 className="pt-0.5 hover:text-light-1"
+                      >Cuenta no reconocida</h1>
+                    </div>
+                  )}
 
                   <button
                     className="text-red-400 hover:text-red-600 pb-0.5 text-sm"

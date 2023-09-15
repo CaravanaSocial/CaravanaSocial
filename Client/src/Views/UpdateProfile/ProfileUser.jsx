@@ -391,9 +391,9 @@ export default function ProfileUser() {
 
               {trainingsUser.length > 0 ? (
                 <div className="flex flex-wrap justify-center">
-                  {trainingsUser.map((t) => {
+                  {trainingsUser.map((t, i) => {
                     return (
-                      <div className="flex justify-center">
+                      <div key={i} className="flex justify-center">
                         <div className="text-center mx-1 my-4 max-lg:bg-light-0 dark:max-lg:bg-light-0 dark:max-lg:text-black  border-2 border-light-2 bg-light-1 dark:border-light-1 dark:bg-light-2 hover:scale-95 p-4 rounded-3xl w-[400px]">
                           <h2 className="text-xl font-nunito font-bold border-b-2 border-light-2 dark:border-light-1 dark:font-light dark:max-lg:font-bold mb-2">
                             {t.name}
