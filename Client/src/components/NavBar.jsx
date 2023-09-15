@@ -41,29 +41,33 @@ export default function NavBar() {
     setMenu(menu === true ? false : true);
   };
 
+  const shouldRenderSearchBar = !(
+    location.pathname === "/" ||
+    location.pathname === "/home" ||
+    /^\/freelancer\//.test(location.pathname) ||
+    /^\/training\/detail\//.test(location.pathname) ||
+    location.pathname.startsWith("/home-offers/") ||
+    location.pathname.startsWith("/company/")
+  );
+
   return (
     <div className="flex items-center justify-between bg-white dark:bg-zinc-900 border-b-[1px] border-b-gray-300 dark:border-b-gray-700 p-2">
       <Link to="/">
         <img className="w-[60px] h-[60px]" src={logo}></img>
       </Link>
 
-      {location.pathname !== "/" &&
-        location.pathname !== "/home" &&
-        !/^\/freelancer\//.test(location.pathname) &&
-        !/^\/training\/detail\//.test(location.pathname) &&
-        !location.pathname.startsWith("/home-offers/") &&
-        location.pathname !== "/create-jobs" && (
-          <div className="relative flex items-center lg:w-64 group">
-            <div className="absolute z-50 flex items-center justify-center p-3 pr-2 text-sm text-gray-500 cursor-pointer">
-              <CgSearch className="w-[20px] h-[20px] hover:text-light-1" />
-            </div>
-            <input
-              className="block w-30 py-1.5 pl-10 pr-4 leading-normal rounded-2xl focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1 ring-opacity-90 bg-gray-200 dark:bg-gray-800 text-black font-topmodern aa-input"
-              placeholder="Search"
-              type="text"
-            />
+      {shouldRenderSearchBar && (
+        <div className="relative flex items-center lg:w-64 group">
+          <div className="absolute z-50 flex items-center justify-center p-3 pr-2 text-sm text-gray-500 cursor-pointer">
+            <CgSearch className="w-[20px] h-[20px] hover:text-light-1" />
           </div>
-        )}
+          <input
+            className="block w-30 py-1.5 pl-10 pr-4 leading-normal rounded-2xl focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1 ring-opacity-90 bg-gray-200 dark:bg-gray-800 text-black font-topmodern aa-input"
+            placeholder="Search"
+            type="text"
+          />
+        </div>
+      )}
 
       <div className="relative">
         <div className="inline-flex items-center overflow-hidden rounded-md bg-gray-200 dark:bg-gray-800 p-0.5 hover:p-0 hover:border-2 hover:border-light-1">
