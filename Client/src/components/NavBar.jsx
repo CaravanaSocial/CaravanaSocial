@@ -47,7 +47,9 @@ export default function NavBar() {
     /^\/freelancer\//.test(location.pathname) ||
     /^\/training\/detail\//.test(location.pathname) ||
     location.pathname.startsWith("/home-offers/") ||
-    location.pathname.startsWith("/company/")
+    location.pathname.startsWith("/company/") ||
+    location.pathname === "/create-trainings" ||
+    location.pathname === "/create-jobs"
   );
 
   return (
