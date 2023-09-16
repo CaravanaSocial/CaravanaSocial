@@ -23,7 +23,7 @@ const getAdminsController = async (value) =>{
                 adminsDeleted[i].password=0
             } 
             return adminsDeleted
-        }throw Error("There is no admins deleted")
+        }return []
     }else if(value!=="deleted"){
         const admins = await admin.findAll({
             include:[
@@ -41,7 +41,7 @@ const getAdminsController = async (value) =>{
                 admins[i].password=0
             } 
             return admins
-        }throw Error("There is no admins")
+        }return []
     }
 }
 

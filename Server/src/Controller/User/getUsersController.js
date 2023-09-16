@@ -42,7 +42,7 @@ const getUsersController = async (value) =>{
             }
         return users;
      }
-    }throw Error("There is no users")
+    }return []
     
 }
 

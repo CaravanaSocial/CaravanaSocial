@@ -4,6 +4,8 @@ import Swal from "sweetalert2";
 export const CREATE_USER = "CREATE_USER";
 export const GET_USERS = "GET_USERS";
 export const EDIT_USER = "EDIT_USER";
+export const DELETE_USERS = "DELETE_USERS";
+export const RESTORE_USERS = "RESTORE_USERS";
 
 export const GET_SUCCESCASES = "GET_SUCCESCASES";
 
@@ -13,10 +15,15 @@ export const GET_USER_BY_ID = "GET_USER_BY_ID";
 export const CREATE_ADMIN = "CREATE_ADMIN";
 export const GET_ADMINS = "GET_ADMINS";
 export const EDIT_ADMIN = "EDIT_ADMIN";
+export const DELETE_ADMINS = "DELETE_ADMINS";
+export const RESTORE_ADMINS = "RESTORE_ADMINS";
 
 export const GET_COMPANIES = "GET_COMPANIES";
 export const CREATE_COMPANY = "CREATE_COMPANY";
 export const EDIT_COMPANY = "EDIT_COMPANY";
+export const RESTORE_COMPANIES = "RESTORE_COMPANIES";
+export const DELETE_COMPANIES = "DELETE_COMPANIES";
+export const GET_COMPANY_BY_ID = "GET_COMPANY_BY_ID";
 
 export const CREATE_OFFER = "CREATE_OFFER";
 export const DELETE_OFFER = "DELETE_OFFER";
@@ -64,7 +71,6 @@ export const ADD_USER_TRAINING = "ADD_USER_TRAINING";
 
 export const USER_TRAINING = "USER_TRAINING";
 
-
 export const CLEAR_FREELANCERS = "CLEAR_FREELANCERS";
 export const GET_Q_AND_A = "GET_Q_AND_A";
 export const DELETE_Q_AND_A = "DELETE_Q_AND_A";
@@ -73,6 +79,9 @@ export const POST_BLOG = "POST_BLOG";
 export const GET_ALL_BLOGS = 'GET_ALL_BLOGS';
 export const GET_BLOGS_BY_ID = 'GET_BLOGS_BY_ID'
 
+export const FREELANCER_BY_NAME = "FREELANCER_BY_NAME";
+export const TRAINING_BY_NAME = "TRAINING_BY_NAME";
+export const OFFERS_BY_NAME = "OFFERS_BY_NAME";
 
 // const serverURL = "https://caravanaserver.onrender.com";
 const serverURL = "http://localhost:3001";
@@ -107,7 +116,7 @@ export const createUser = (user) => {
     } catch (error) {
       dispatch({
         type: ERRORS,
-        payload: { type: CREATE_USER, payload: error.response.data },
+        payload: { type: CREATE_USER, payload: error?.response?.data },
       });
       return error;
     }
@@ -126,6 +135,46 @@ export const getUsers = (value) => {
       const { data } = response;
       return dispatch({
         type: GET_USERS,
+        payload: value === "deleted" ? {type: "deleted", array: data} : {type: "online", array: data},
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const deleteUsers = (id) => {
+  //---------- Endpoint to Dev server -- Descomentar para usar
+  // const endpoint = "http://localhost:3001/user/all";
+
+  //---------- Endpoint to deployed server
+  const endpoint = `${serverURL}/user/${id}`;
+  return async (dispatch) => {
+    try {
+      const response = await axios.delete(endpoint);
+      const { data } = response;
+      return dispatch({
+        type: DELETE_USERS,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const restoreUsers = (id) => {
+  //---------- Endpoint to Dev server -- Descomentar para usar
+  // const endpoint = "http://localhost:3001/user/all";
+
+  //---------- Endpoint to deployed server
+  const endpoint = `${serverURL}/user/restore/${id}`;
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(endpoint);
+      const { data } = response;
+      return dispatch({
+        type: RESTORE_USERS,
         payload: data,
       });
     } catch (error) {
@@ -167,6 +216,7 @@ export const editUser = (id, user) => {
       });
       return data;
     } catch (error) {
+      return error
       console.log(error);
     }
   };
@@ -186,7 +236,11 @@ export const createAdmin = (admin) => {
         type: CREATE_ADMIN,
       });
     } catch (error) {
-      console.log(error);
+      dispatch({
+        type: ERRORS,
+        payload: { type: CREATE_ADMIN, payload: error.response.data },
+      });
+      return error;
     }
   };
 };
@@ -210,18 +264,58 @@ export const editAdmin = (id, admin) => {
   };
 };
 
-export const getAdmins = () => {
+export const getAdmins = (value) => {
   //---------- Endpoint to Dev server -- Descomentar para usar
   // const endpoint = "http://localhost:3001/admin/all";
 
   //---------- Endpoint to deployed server
-  const endpoint = `${serverURL}/admin/all`;
+  const endpoint = `${serverURL}/admin/all?value=${value}`;
   return async (dispatch) => {
     try {
       const response = await axios(endpoint);
       const { data } = response;
       return dispatch({
         type: GET_ADMINS,
+        payload: value === "deleted" ? {type: "deleted", array: data} : {type: "online", array: data},
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const deletedAdmins = (id) => {
+  //---------- Endpoint to Dev server -- Descomentar para usar
+  // const endpoint = "http://localhost:3001/admin/all";
+
+  //---------- Endpoint to deployed server
+  const endpoint = `${serverURL}/admin/${id}`;
+  return async (dispatch) => {
+    try {
+      const response = await axios.delete(endpoint);
+      const { data } = response;
+      return dispatch({
+        type: DELETE_ADMINS,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const restoreAdmins = (id) => {
+  //---------- Endpoint to Dev server -- Descomentar para usar
+  // const endpoint = "http://localhost:3001/admin/all";
+
+  //---------- Endpoint to deployed server
+  const endpoint = `${serverURL}/admin/restore/${id}`;
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(endpoint);
+      const { data } = response;
+      return dispatch({
+        type: RESTORE_ADMINS,
         payload: data,
       });
     } catch (error) {
@@ -240,8 +334,49 @@ export const getCompanies = (value) => {
     try {
       const response = await axios(endpoint);
       const { data } = response;
+
       
-      return dispatch({ type: GET_COMPANIES, payload: data });
+      return dispatch({ 
+        type: GET_COMPANIES, 
+        payload: value === "deleted" ? {type: "deleted", array: data} : {type: "online", array: data}, 
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const deleteCompanies = (id) => {
+  //---------- Endpoint to Dev server -- Descomentar para usar
+  // const endpoint = `http://localhost:3001/company/all`;
+
+  //---------- Endpoint to deployed server
+  const endpoint = `${serverURL}/company/${id}`;
+  return async (dispatch) => {
+    try {
+      const response = await axios.delete(endpoint);
+      const { data } = response;
+      
+      return dispatch({ type: DELETE_COMPANIES, payload: data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const restoreCompanies = (id) => {
+  //---------- Endpoint to Dev server -- Descomentar para usar
+  // const endpoint = `http://localhost:3001/company/all`;
+
+  //---------- Endpoint to deployed server
+  const endpoint = `${serverURL}/company/restore/${id}`;
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(endpoint);
+      const { data } = response;
+      
+      return dispatch({ type: RESTORE_COMPANIES, payload: data });
+
     } catch (error) {
       console.log(error);
     }
@@ -277,7 +412,7 @@ export const createCompany = (company) => {
       console.log(error.message);
       dispatch({
         type: ERRORS,
-        payload: { type: CREATE_COMPANY, payload: error.response.data },
+        payload: { type: CREATE_COMPANY, payload: error?.response?.data },
       });
       return error;
     }
@@ -441,13 +576,13 @@ export const getTrainingsByValue = (value) => {
   // const endpoint = `http://localhost:3001/trainings`;
 
   //---------- Endpoint to deployed server
-  console.log(value)
+  console.log(value);
   const endpoint = `${serverURL}/trainings/?option=${value}`;
   return async (dispatch) => {
     try {
       const response = await axios.get(endpoint);
       const { data } = response;
-      console.log(data)
+      console.log(data);
 
       return dispatch({ type: GET_TRAININGS_BY_VALUE, payload: data });
     } catch (error) {
@@ -478,7 +613,6 @@ export const createTraining = (training) => {
     }
   };
 };
-
 
 export const deleteTraining = (id) => {
   //---------- Endpoint to Dev server -- Descomentar para usar
@@ -522,15 +656,15 @@ export const editTraining = (id, training) => {
   };
 };
 
-export const acceptTraining =(id, answer)=>{
+export const acceptTraining = (id, answer) => {
   const endpoint = `${serverURL}/trainings/admin/${id}`;
-  return async function(dispatch){
+  return async function (dispatch) {
     try {
-      const response = await axios.patch(endpoint, answer)
+      const response = await axios.patch(endpoint, answer);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 };
 
 export const login = (user) => {
@@ -726,6 +860,7 @@ export function detailCompany(id) {
         payload: response,
       });
     } catch (error) {
+      return error
       console.log(error);
     }
   };
@@ -793,6 +928,7 @@ export const getUserById = (id) => {
   return async function (dispatch) {
     try {
       const response = (await axios.get(`${serverURL}/user/` + id)).data;
+      console.log("BYID USER", response);
       return dispatch({
         type: GET_USER_BY_ID,
         payload: response,
@@ -843,7 +979,6 @@ export const getTrainingsUser = (id) => {
   };
 };
 
-
 export const clearFreelancers = () => {
   return function (dispatch) {
     return dispatch({
@@ -855,10 +990,9 @@ export const clearFreelancers = () => {
 export const createQAndA = (input) => {
   return async function (dispatch) {
     try {
-      const response = (
-        await axios.post(`${serverURL}/question/create`, input)
-      ).data;
-      alert("se creó, creo")
+      const response = (await axios.post(`${serverURL}/question/create`, input))
+        .data;
+      alert("se creó, creo");
     } catch (error) {
       console.log("cat", error.message);
     }
@@ -868,19 +1002,16 @@ export const createQAndA = (input) => {
 export const getQAndAs = () => {
   return async function (dispatch) {
     try {
-      const response = (
-        await axios.get(`${serverURL}/question`)
-      ).data;
+      const response = (await axios.get(`${serverURL}/question`)).data;
       dispatch({
         type: GET_Q_AND_A,
-        payload: response
-      })
+        payload: response,
+      });
     } catch (error) {
       console.log("cat", error.message);
     }
   };
 };
-
 
 export const updateQAndA = (id, input) => {
   return async function (dispatch) {
@@ -944,4 +1075,50 @@ export const getBlogsByID = (id) => {
     }
   }
 }
+export const searchFreelancersByName = (name) => {
+  return async function (dispatch) {
+    try {
+      const response = (await axios.get(`${serverURL}/user/?name=${name}`))
+        .data;
+      return dispatch({
+        type: FREELANCER_BY_NAME,
+        payload: response,
+      });
+    } catch (error) {
+      console.log("searchFreelancersByName", error.message);
+    }
+  };
+};
+
+export const searchTrainingByName = (name) => {
+  return async function (dispatch) {
+    try {
+      const response = (await axios.get(`${serverURL}/trainings/?name=${name}`))
+        .data;
+
+      return dispatch({
+        type: TRAINING_BY_NAME,
+        payload: response,
+      });
+    } catch (error) {
+      console.log("searchTrainingByName", error.message);
+    }
+  };
+};
+
+export const searchOffersByName = (name) => {
+  return async function (dispatch) {
+    try {
+      const response = (await axios.get(`${serverURL}/offers/by?name=${name}`))
+        .data;
+
+      return dispatch({
+        type: OFFERS_BY_NAME,
+        payload: response,
+      });
+    } catch (error) {
+      console.log("searchOffersByName", error.message);
+    }
+  };
+};
 

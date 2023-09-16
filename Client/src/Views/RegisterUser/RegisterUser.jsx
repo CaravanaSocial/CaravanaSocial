@@ -11,6 +11,7 @@ import {
   getCategories,
 } from "../../Redux/Actions/Actions";
 import { useDispatch, useSelector } from "react-redux";
+import Swal from "sweetalert2";
 
 export default function RegisterUser() {
   const category = useSelector((state) => state.categories);
@@ -43,7 +44,8 @@ export default function RegisterUser() {
   useEffect(() => {
     dispatch(getCountry());
     dispatch(getCategories());
-  }, []);
+    return () => dispatch(clearErrors());
+  }, [dispatch]);
 
   const handleCheckboxCUDChange = (checkbox) => {
     setCheckboxCUD(checkbox);
@@ -151,6 +153,18 @@ export default function RegisterUser() {
         dispatch(
           setNewErrors({ type: "CREATE_USER", error: postError.response.data })
         );
+        setCheckboxFreelancer(null);
+        if (postError?.response?.data) {
+          Swal.fire({
+            title:
+              "Correo electronico ya se encuentra en uso, por favor selecciona otro",
+      
+            icon: "error",
+            customClass: {
+              popup: "",
+            },
+          });
+        }
       }
     });
   };
@@ -189,6 +203,8 @@ export default function RegisterUser() {
   };
 
   const isSubmitDisabled = Object.keys(errors).length > 0;
+
+  console.log(errors)
 
   return (
     <div className="flex justify-center">
@@ -482,6 +498,11 @@ export default function RegisterUser() {
           <button
             className="bg-light-1 font-topmodern rounded-3xl p-2 my-2 border-2 border-transparent dark:text-zinc-900 hover:text-white hover:scale-95"
             type="submit"
+            style={
+              isSubmitDisabled
+                ? { opacity: "0.6", cursor: "not-allowed" }
+                : null
+            }
             disabled={isSubmitDisabled}
           >
             REGISTRARME
@@ -498,12 +519,12 @@ export default function RegisterUser() {
           <h3
             className="text-red-600"
             style={{
-              visibility: globalErrors?.CREATE_USER?.errors
+              visibility: globalErrors?.CREATE_USER?.error
                 ? "visible"
                 : "hidden",
             }}
           >
-            {globalErrors?.CREATE_USER?.errors}
+            {globalErrors?.CREATE_USER?.error}
           </h3>
         </form>
       </div>

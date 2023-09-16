@@ -1,6 +1,6 @@
 export default function validation(input){
    let error ={}
-   const regexEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+   const regexEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{3,4}$/;
    const regexPass = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
 
 

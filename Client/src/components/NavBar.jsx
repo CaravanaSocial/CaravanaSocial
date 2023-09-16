@@ -7,8 +7,18 @@ import { CgHomeAlt } from "react-icons/cg";
 import { useDispatch, useSelector } from "react-redux";
 import { companyButtons, logOut } from "../Redux/Actions/Actions";
 import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import {
+  searchFreelancersByName,
+  getFreelancers,
+  getTrainings,
+  searchTrainingByName,
+  searchOffersByName,
+  getOffers,
+} from "../Redux/Actions/Actions";
 
 export default function NavBar() {
+  const location = useLocation();
   const [theme, setTheme] = useState("Claro");
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -16,6 +26,7 @@ export default function NavBar() {
   const [menu, setMenu] = useState(false);
   const account =
     localStorage.length !== 0 ? JSON.parse(localStorage.account) : null;
+  const [input, setInput] = useState("");
 
   useEffect(() => {
     if (theme === "Oscuro") {
@@ -35,11 +46,54 @@ export default function NavBar() {
     navigate("/login");
   };
 
+  const handleChange = (e) => {
+    e.preventDefault();
+    setInput(e.target.value);
+  };
+
+  const handleSubmit = () => {
+    if (location.pathname === "/home-freelancers") {
+      if (input === "") {
+        dispatch(getFreelancers());
+      } else {
+        dispatch(searchFreelancersByName(input));
+      }
+    }
+
+    if (location.pathname === "/home-trainings") {
+      if (input === "") {
+        dispatch(getTrainings());
+      } else {
+        dispatch(searchTrainingByName(input));
+      }
+    }
+
+    if (location.pathname === "/home-offers") {
+      if (input === "") {
+        dispatch(getOffers());
+      } else {
+        dispatch(searchOffersByName(input));
+      }
+    }
+  };
+
   const handleMenu = () => {
     setMenu(menu === true ? false : true);
   };
 
-  console.log(localStorage)
+  const shouldRenderSearchBar = !(
+    location.pathname === "/" ||
+    location.pathname === "/home" ||
+    /^\/freelancer\//.test(location.pathname) ||
+    /^\/training\/detail\//.test(location.pathname) ||
+    location.pathname.startsWith("/home-offers/") ||
+    location.pathname.startsWith("/company/") ||
+    location.pathname === "/create-trainings" ||
+    location.pathname === "/create-jobs" ||
+    location.pathname === "/admin" ||
+    location.pathname === "/register-user" ||
+    location.pathname === "/register-company"
+  );
 
   return (
     <div className="flex items-center justify-between bg-white dark:bg-zinc-900 border-b-[1px] border-b-gray-300 dark:border-b-gray-700 p-2">
@@ -47,16 +101,20 @@ export default function NavBar() {
         <img className="w-[60px] h-[60px]" src={logo}></img>
       </Link>
 
-      <div className="relative flex items-center lg:w-64 group">
-        <div className="absolute z-50 flex items-center justify-center p-3 pr-2 text-sm text-gray-500 cursor-pointer">
-          <CgSearch className="w-[20px] h-[20px] hover:text-light-1" />
+      {shouldRenderSearchBar && (
+        <div className="relative flex items-center lg:w-64 group">
+          <button className="absolute z-50 flex items-center justify-center p-3 pr-2 text-sm text-gray-500 cursor-pointer">
+            <CgSearch className="w-[20px] h-[20px] hover:text-light-1" />
+          </button>
+          <input
+            className="block w-30 py-1.5 pl-10 pr-4 leading-normal rounded-2xl focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1 ring-opacity-90 bg-gray-200 dark:bg-gray-800 text-black font-topmodern aa-input"
+            placeholder="Search"
+            type="text"
+            onChange={handleChange}
+            onClick={handleSubmit()}
+          />
         </div>
-        <input
-          className="block w-30 py-1.5 pl-10 pr-4 leading-normal rounded-2xl focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1 ring-opacity-90 bg-gray-200 dark:bg-gray-800 text-black font-topmodern aa-input"
-          placeholder="Search"
-          type="text"
-        />
-      </div>
+      )}
 
       <div className="relative">
         <div className="inline-flex items-center overflow-hidden rounded-md bg-gray-200 dark:bg-gray-800 p-0.5 hover:p-0 hover:border-2 hover:border-light-1">
@@ -81,22 +139,49 @@ export default function NavBar() {
               </strong>
               {localStorage.length !== 0 ? (
                 <div className="flex items-center justify-between m-2 p-2 hover:bg-gray-50 dark:hover:bg-gray-600 rounded-lg">
-                  <Link
-                    to={
-                      localStorage.type === "user"
-                        ? `/${account.name + account.lastName}`
-                        : "/profile-company"
-                    }
-                  >
-                    <span className="text-gray-500 flex justify-center text-sm dark:text-gray-300">
+                  {localStorage.type === "user" ? (
+                    <div className="text-gray-500 flex justify-center text-sm dark:text-gray-300">
                       <CgProfile className="w-[25px] h-[25px] text-gray-400 mx-1 hover:text-light-1" />
-                      <a className="pt-0.5 hover:text-light-1">
-                        {localStorage.type === "company"
-                          ? account.nameCompany
-                          : account.name}
-                      </a>
-                    </span>
-                  </Link>
+                      <Link to={`/${account.name + account.lastName}`}>
+                        <h1 className="pt-0.5 hover:text-light-1">
+                          {account.name} {account.lastname}
+                        </h1>
+                      </Link>
+                    </div>
+                  ) : localStorage.type === "company" ? (
+                    <div className="text-gray-500 flex justify-center text-sm dark:text-gray-300">
+                      <CgProfile className="w-[25px] h-[25px] text-gray-400 mx-1 hover:text-light-1" />
+                      <Link to="/profile-company">
+                        <h1 className="pt-0.5 hover:text-light-1">
+                          {account.nameCompany}
+                        </h1>
+                      </Link>
+                    </div>
+                  ) : localStorage.type === "superAdmin" ? (
+                    <div className="text-gray-500 flex justify-center text-sm dark:text-gray-300">
+                      <CgProfile className="w-[25px] h-[25px] text-gray-400 mx-1 hover:text-light-1" />
+                      <Link to="/admin">
+                        <h1 className="pt-0.5 hover:text-light-1">
+                          {account.name}
+                        </h1>
+                      </Link>
+                    </div>
+                  ) : localStorage.type === "admin" ? (
+                    <div className="text-gray-500 flex justify-center text-sm dark:text-gray-300">
+                      <CgProfile className="w-[25px] h-[25px] text-gray-400 mx-1 hover:text-light-1" />
+                      <Link to="/admin">
+                        <h1 className="pt-0.5 hover:text-light-1">
+                          {account.name}
+                        </h1>
+                      </Link>
+                    </div>
+                  ) : (
+                    <div>
+                      <h1 className="pt-0.5 hover:text-light-1">
+                        Cuenta no reconocida
+                      </h1>
+                    </div>
+                  )}
 
                   <button
                     className="text-red-400 hover:text-red-600 pb-0.5 text-sm"
@@ -186,8 +271,10 @@ export default function NavBar() {
                 Ajustes
               </strong>
               <div className="mt-1.5 text-center">
-                <div className="relative inline-block w-10 mr-2 align-middle select-none"
-                  onClick={handleThemeSwitch}>
+                <div
+                  className="relative inline-block w-10 mr-2 align-middle select-none"
+                  onClick={handleThemeSwitch}
+                >
                   {theme === "Claro" ? (
                     <input
                       className="outline-none focus:outline-none right-4 duration-200 ease-in absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"

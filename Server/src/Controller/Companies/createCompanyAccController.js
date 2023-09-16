@@ -15,6 +15,7 @@ const emailTemplate = fs.readFileSync(
 
 const createCompanyAccController = async (props) => {
   const { password, email, category } = props;
+  const randomCode = Math.round(Math.random()*999999)
   const saltRounds = 10;
   const hashedPassword = await bcrypt.hash(password, saltRounds);
   const defaultProfilePicture =
@@ -25,13 +26,14 @@ const createCompanyAccController = async (props) => {
       ...props,
       password: hashedPassword,
       profilePicture: defaultProfilePicture,
+      verificationCode: randomCode
     },
   });
 
   const menssageRegister = {
     from: emailUser,
     to: email,
-    subject: "Confirmación de Registro",
+    subject: `Confirmación de Registro: Verifica tu codigo ${randomCode} en http://localhost:5173/verification/${newCompany.id}`,
     html: emailTemplate,
   };
 
