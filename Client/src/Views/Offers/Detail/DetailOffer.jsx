@@ -16,8 +16,6 @@ export default function DetailOffer() {
 
   const handleAppy = () => {};
 
-  console.log(offer)
-
   const handleContact = () => {
     if (offer.adminId === null){
       window.location.href = `mailto:${offer.company.email}`;
