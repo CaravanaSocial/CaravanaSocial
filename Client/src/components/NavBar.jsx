@@ -174,7 +174,11 @@ export default function NavBar() {
                   {localStorage.type === "user" ? (
                     <div className="text-gray-500 flex justify-center text-sm dark:text-gray-300">
                       <CgProfile className="w-[25px] h-[25px] text-gray-400 mx-1 hover:text-light-1" />
+
                       <Link to="/profile-user">
+
+                      <Link to={`/${account.name + account.lastName}`}>
+
                         <h1 className="pt-0.5 hover:text-light-1">
                           {account.name} {account.lastname}
                         </h1>

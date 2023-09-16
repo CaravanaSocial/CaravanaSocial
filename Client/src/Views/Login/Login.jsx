@@ -7,7 +7,9 @@ import validation from "./validation";
 import { GoogleLogin } from "@react-oauth/google";
 import jwt_decode from "jwt-decode";
 import Speaching from "../../components/Speaching";
+
 import Swal from "sweetalert2";
+
 
 export default function Login() {
   useEffect(() => {
@@ -117,7 +119,7 @@ export default function Login() {
               onKeyDown={handleKeyPress}
             />
             <br />
-            {globalErrors.LOGIN?.error ? (
+            {globalErrors?.LOGIN?.error ? (
               <text className="text-red-500">{globalErrors.LOGIN.error}</text>
             ) : null}
             <br />

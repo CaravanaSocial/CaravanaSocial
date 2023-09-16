@@ -23,6 +23,7 @@ export const CREATE_COMPANY = "CREATE_COMPANY";
 export const EDIT_COMPANY = "EDIT_COMPANY";
 export const RESTORE_COMPANIES = "RESTORE_COMPANIES";
 export const DELETE_COMPANIES = "DELETE_COMPANIES";
+export const GET_COMPANY_BY_ID = "GET_COMPANY_BY_ID";
 
 export const CREATE_OFFER = "CREATE_OFFER";
 export const DELETE_OFFER = "DELETE_OFFER";
@@ -862,6 +863,7 @@ export function detailCompany(id) {
         payload: response,
       });
     } catch (error) {
+      return error
       console.log(error);
     }
   };
@@ -1085,6 +1087,7 @@ export const searchOffersByName = (name) => {
   };
 };
 
+
 export const enableSpeech = (boolean) => {
   return async function (dispatch) {
     return dispatch({
@@ -1093,3 +1096,4 @@ export const enableSpeech = (boolean) => {
     });
   };
 };
+
