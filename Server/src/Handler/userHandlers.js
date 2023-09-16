@@ -10,7 +10,8 @@ const {getUsersByIdController} = require("../Controller/User/getUsersByIdControl
 const {getFreelancersController} = require("../Controller/User/getFreelancersController");
 const {deleteUserController} =require("../Controller/User/deleteUserController")
 const {restoreUserController} =require("../Controller/User/restoreUserController")
-const { getUserByNameController } = require("../Controller/User/getUserByNameController")
+const { getUserByNameController } = require("../Controller/User/getUserByNameController");
+const { updatePassUserController } = require("../Controller/User/updatePassUserController");
 
 const userSignUpHandler = async (req, res) => {
   try {
@@ -102,6 +103,21 @@ const getUserByNameHandler = async(req, res) => {
   }
 }
 
+const updatePassUserHandler = async (req, res)=> {
+  try {
+    const { oldPassword, newPassword } = req.body;
+    const { id } = req.params;
+
+    const response = await updatePassUserController(id, oldPassword, newPassword)
+    if(response){
+      return res.status(200).send("Contraseña actualizada")
+
+    }
+  } catch (error) {
+    return res.status(400).send(error.message)
+  }
+};
+
 module.exports = {
   userSignUpHandler,
   getUsersHandler,
@@ -110,7 +126,8 @@ module.exports = {
   getFreelancersHandler,
   deleteUserHandler,
   restoreUserHandler,
-  getUserByNameHandler
+  getUserByNameHandler,
+  updatePassUserHandler
 };
 
 

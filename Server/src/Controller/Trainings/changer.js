@@ -2,7 +2,6 @@ const { training } = require('../../db');
 
 
 const updateTrainingController = async (body, id) => {
-    console.log("BODY: ",body);
         /* const { name, description, video} = body;
         const trainingToChange = await training.findByPk(params);
         
