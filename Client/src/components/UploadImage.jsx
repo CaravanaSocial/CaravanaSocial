@@ -41,10 +41,6 @@ export default function UploadImage() {
           localStorage.setItem("profilePicture", res.data);
           dispatch(imageChange());
         }
-        // else if(localStorage.type === 'admin' || localStorage.type === 'superAdmin'){
-        //   localStorage.setItem("blogPreview", res.data);
-        //   //Aqui Patch
-        // }
       })
       .then(() => setLoading(false))
       .catch(console.log);

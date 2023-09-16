@@ -17,6 +17,7 @@
     "@xeger/quill-image-formats": "^0.7.1",
     "axios": "^1.5.0",
     "cloudinary-react": "^1.8.1",
+    "html-react-parser": "^4.2.2",
     "jwt-decode": "^3.1.2",
     "lodash": "^4.17.21",
     "react": "^18.2.0",

@@ -43,7 +43,10 @@ import {
   GET_TRAININGS_BY_VALUE,
 
   CLEAR_FREELANCERS,
-  GET_Q_AND_A
+  GET_Q_AND_A,
+
+  GET_ALL_BLOGS,
+  GET_BLOGS_BY_ID
 } from "../Actions/Actions";
 
 const initialState = {
@@ -79,7 +82,10 @@ const initialState = {
   trainingsApproved: [],
   trainingsDeclined: [],
   trainingsNoCheck: [],
-  faqs:[]
+  faqs:[],
+
+  blogs:[],
+  blog:[],
 
 };
 
@@ -355,6 +361,18 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         faqs:action.payload
       }
+
+      case GET_ALL_BLOGS:
+        return {
+          ...state,
+          blogs:action.payload
+        }
+
+      case GET_BLOGS_BY_ID:
+        return {
+          ...state,
+          blog:action.payload
+        }
 
     default:
       return { ...state };

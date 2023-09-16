@@ -1,3 +1,9 @@
-.editor {
+.editorContainer img {
+    display: inline;
+    margin: auto;
+}
+
+.editorContainer {
+    display: inline;
     margin: auto;
 }
