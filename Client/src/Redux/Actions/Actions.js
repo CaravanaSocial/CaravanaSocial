@@ -210,6 +210,7 @@ export const editUser = (id, user) => {
       });
       return data;
     } catch (error) {
+      return error
       console.log(error);
     }
   };
@@ -920,6 +921,7 @@ export const getUserById = (id) => {
   return async function (dispatch) {
     try {
       const response = (await axios.get(`${serverURL}/user/` + id)).data;
+      console.log("BYID USER", response);
       return dispatch({
         type: GET_USER_BY_ID,
         payload: response,
