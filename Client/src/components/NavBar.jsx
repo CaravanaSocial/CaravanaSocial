@@ -93,7 +93,7 @@ export default function NavBar() {
   };
 
   const handleMenu = () => {
-    setMenu(menu === true ? false : true);
+    setMenu(!menu);
   };
 
   const closeMenu = () => {
@@ -113,7 +113,8 @@ export default function NavBar() {
     location.pathname === "/create-jobs" ||
     location.pathname === "/admin" ||
     location.pathname === "/register-user" ||
-    location.pathname === "/register-company"
+    location.pathname === "/register-company" ||
+    location.pathname === "/login"
   );
 
   return (
