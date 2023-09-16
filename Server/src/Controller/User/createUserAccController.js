@@ -14,23 +14,23 @@ const emailTemplate = fs.readFileSync(
   path.join(__dirname, "../../Templates/emailRegister.html"),
   "utf-8"
 );
-
 const createUserAccController = async (props) => {
   const { password, email, category } = props;
   const randomCode = Math.round(Math.random()*999999)
   const saltRounds = 10;
   const hashedPassword = await bcrypt.hash(password, saltRounds);
+  const lowerCaseMail = props.email.toLowerCase()
   const defaultProfilePicture =
     "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Windows_10_Default_Profile_Picture.svg/2048px-Windows_10_Default_Profile_Picture.svg.png";
   const [newUser, created] = await user.findOrCreate({
-    where: { email },
+    where: { email: lowerCaseMail },
     defaults: {
+      email: lowerCaseMail,
       name: props.name,
       lastName: props.lastName,
       birthDate: props.birthDate,
       location: props.location,
       CUD: props.CUD,
-      email: props.email,
       profilePicture: defaultProfilePicture,
       freelancer: props.freelancer,
       description: props.description,

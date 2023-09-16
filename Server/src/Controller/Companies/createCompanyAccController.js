@@ -21,9 +21,10 @@ const createCompanyAccController = async (props) => {
   const defaultProfilePicture =
     "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Windows_10_Default_Profile_Picture.svg/2048px-Windows_10_Default_Profile_Picture.svg.png";
   const [newCompany, created] = await companies.findOrCreate({
-    where: { email },
+    where: { email: email.toLowerCase() },
     defaults: {
       ...props,
+      email: email.toLowerCase(),
       password: hashedPassword,
       profilePicture: defaultProfilePicture,
       verificationCode: randomCode
