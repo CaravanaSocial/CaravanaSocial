@@ -144,7 +144,6 @@ const DetailTrainings = () => {
                   ) : (
                     <iframe
                       src={enved + video.split("=")[1]}
-                      frameborder="0"
                       width={840}
                       height={560}
                       className="m-6"

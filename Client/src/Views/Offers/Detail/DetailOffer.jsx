@@ -16,8 +16,15 @@ export default function DetailOffer() {
 
   const handleAppy = () => {};
 
+  console.log(offer)
+
   const handleContact = () => {
-    window.location.href = `mailto:${offer.company.email}`;
+    if (offer.adminId === null){
+      window.location.href = `mailto:${offer.company.email}`;
+    } else {
+      window.location.href = `mailto:${"caravanasocial.dev@gmail.com"}`;
+    }
+    
   };
 
   const categories = offer?.areaTrainings?.map((x) => x.name).join(", ");

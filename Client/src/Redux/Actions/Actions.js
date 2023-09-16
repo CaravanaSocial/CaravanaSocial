@@ -569,7 +569,7 @@ export const getTrainings = () => {
 
       return dispatch({ type: GET_TRAININGS, payload: data });
     } catch (error) {
-      console.log(error);
+      console.log("No existen Capacitaciones en la base de datos.", error);
     }
   };
 };
