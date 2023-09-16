@@ -96,6 +96,12 @@ export default function NavBar() {
     setMenu(menu === true ? false : true);
   };
 
+  const closeMenu = () => {
+    if (menu) {
+      setMenu(false);
+    }
+  };
+
   const shouldRenderSearchBar = !(
     location.pathname === "/" ||
     location.pathname === "/home" ||
@@ -134,6 +140,7 @@ export default function NavBar() {
       <div className="relative">
         <div className="inline-flex items-center overflow-hidden rounded-md bg-gray-200 dark:bg-gray-800 p-0.5 hover:p-0 hover:border-2 hover:border-light-1">
           <button
+            onMouseEnter={handleMenu}
             className="h-full p-2 text-gray-700 dark:text-gray-400"
             onClick={handleMenu}
           >
@@ -144,6 +151,7 @@ export default function NavBar() {
 
         {menu === true ? (
           <div
+            onMouseLeave={closeMenu}
             className="absolute end-0 z-10 mt-2 w-56 divide-y divide-gray-200 dark:divide-gray-700 rounded-md border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-2xl"
             role="menu"
             onClick={handleMenu}
