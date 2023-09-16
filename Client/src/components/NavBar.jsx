@@ -304,7 +304,7 @@ export default function NavBar() {
                 Ajustes
               </strong>
               <div className="mt-1.5 text-center flex justify-between bg-gray-200 p-2 rounded-xl dark:bg-gray-600">
-                <span className="font-medium text-gray-400">{theme}</span>
+                <span className="font-medium text-gray-400">Tema: {theme}</span>
                 <div
                   className="relative inline-block w-10 mr-2 align-middle select-none"
                   onClick={handleThemeSwitch}
