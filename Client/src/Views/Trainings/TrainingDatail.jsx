@@ -37,7 +37,6 @@ const DetailTrainings = () => {
   };
 
   const handlerChange = (event) => {
-    console.log(event.target.value);
     setComments({
       ...comments,
       description: event.target.value,

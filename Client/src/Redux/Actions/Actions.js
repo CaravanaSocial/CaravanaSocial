@@ -221,7 +221,6 @@ export const editUser = (id, user) => {
       return data;
     } catch (error) {
       return error;
-      console.log(error);
     }
   };
 };
@@ -262,7 +261,6 @@ export const editAdmin = (id, admin) => {
       return data
     } catch (error) {
       return error
-      console.log(error);
     }
   };
 };
@@ -416,7 +414,6 @@ export const createCompany = (company) => {
       });
       return false;
     } catch (error) {
-      console.log(error.message);
       dispatch({
         type: ERRORS,
         payload: { type: CREATE_COMPANY, payload: error?.response?.data },
@@ -443,7 +440,6 @@ export const editCompany = (id, company) => {
       });
       return false;
     } catch (error) {
-      console.log(error.message);
       dispatch({
         type: ERRORS,
         payload: { type: EDIT_COMPANY, payload: error.response.data },
@@ -583,13 +579,11 @@ export const getTrainingsByValue = (value) => {
   // const endpoint = `http://localhost:3001/trainings`;
 
   //---------- Endpoint to deployed server
-  console.log(value);
   const endpoint = `${serverURL}/trainings/?option=${value}`;
   return async (dispatch) => {
     try {
       const response = await axios.get(endpoint);
       const { data } = response;
-      console.log(data);
 
       return dispatch({ type: GET_TRAININGS_BY_VALUE, payload: data });
     } catch (error) {
@@ -868,7 +862,6 @@ export function detailCompany(id) {
       });
     } catch (error) {
       return error
-      console.log(error);
     }
   };
 }
@@ -935,7 +928,6 @@ export const getUserById = (id) => {
   return async function (dispatch) {
     try {
       const response = (await axios.get(`${serverURL}/user/` + id)).data;
-      console.log("BYID USER", response);
       return dispatch({
         type: GET_USER_BY_ID,
         payload: response,
@@ -999,7 +991,6 @@ export const createQAndA = (input) => {
     try {
       const response = (await axios.post(`${serverURL}/question/create`, input))
         .data;
-      alert("se creó, creo");
     } catch (error) {
       console.log("cat", error.message);
     }
@@ -1136,7 +1127,6 @@ export const emailVerify = (email) => {
       return verifyEmail
 
     } catch (error) {
-      console.log(error);
       return error
     }
   };

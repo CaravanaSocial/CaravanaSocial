@@ -31,7 +31,6 @@ export default function UploadImage() {
       .post("http://localhost:3001/image/upload", { image: base64 })
       .then((res) => {
         setUrl(res.data);
-        console.log(res.data)
         if(localStorage.type === "user"){
           dispatch(editUser(localStorage.accId, { profilePicture: res.data }))
           localStorage.setItem("profilePicture", res.data);

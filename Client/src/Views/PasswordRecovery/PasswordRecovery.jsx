@@ -24,9 +24,7 @@ const PasswordRecovery = () => {
                 var randomCodeMath = Math.round(Math.random()*999999)
                 setRandomCode(randomCodeMath)
                 //Acá se mandaría el mail xd
-                console.log("EL CODIGO ES :",randomCodeMath);
             }else{
-                console.log("ENTRA AL ELSEEEE");
                 dispatch(setNewErrors({type: "EMAIL_VERIFICATION", error:verified?.response?.data?.error}))
             }
         })

@@ -103,8 +103,6 @@ export default function PresetBlog(){
       dispatch(actions.postBlog({template, image, title, author, date}))
     }
 
-    console.log(template)
-
     return (
         <div>
         <div className="bg-gray-200 min-h-screen flex justify-center items-center pt-9">
