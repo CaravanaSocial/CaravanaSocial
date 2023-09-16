@@ -259,10 +259,9 @@ export const editAdmin = (id, admin) => {
     try {
       const response = await axios.patch(endpoint, admin);
       const { data } = response;
-      return dispatch({
-        type: EDIT_ADMIN,
-      });
+      return data
     } catch (error) {
+      return error
       console.log(error);
     }
   };
@@ -1130,6 +1129,18 @@ export const searchOffersByName = (name) => {
   };
 };
 
+export const emailVerify = (email) => {
+  return async function (dispatch) {
+    try {
+      const verifyEmail = (await axios.get(`${serverURL}/email/?email=${email}`)).data;
+      return verifyEmail
+
+    } catch (error) {
+      console.log(error);
+      return error
+    }
+  };
+};
 
 export const enableSpeech = (boolean) => {
   return async function (dispatch) {
@@ -1139,4 +1150,5 @@ export const enableSpeech = (boolean) => {
     });
   };
 };
+
 

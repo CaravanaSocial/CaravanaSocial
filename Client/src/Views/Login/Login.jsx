@@ -163,15 +163,12 @@ export default function Login() {
             </div>
             <br />
 
-            {/* <Link to="/">
+            <Link to="/password-recovery">
               <button className="bg-gray-300 font-topmodern dark:bg-gray-800 rounded-3xl p-2 my-2 dark:text-gray-300 border-2 border-transparent hover:border-light-1 dark:hover:border-light-1">
                 Has olvidado tu contraseña?
               </button>
-            </Link> */}
-            <h4
-              onClick={() => play("¿Aún no tienes cuenta? Registrate")}
-              className="border-t-2 font-nunito font-bold dark:font-medium border-light-1 dark:border-light-1 dark:text-gray-200"
-            >
+            </Link>
+            <h4 onClick={()=>play("¿Aún no tienes cuenta? Registrate")} className="border-t-2 font-nunito font-bold dark:font-medium border-light-1 dark:border-light-1 dark:text-gray-200">
               ¿Aún no tienes cuenta? Registrate
             </h4>
             {/* <h4 className="dark:text-gray-200 font-nunito  font-bold dark:font-medium">Registrate</h4> */}
