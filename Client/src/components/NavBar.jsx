@@ -25,7 +25,6 @@ export default function NavBar() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const speech = useSelector((state) => state.enableSpeech);
-  console.log(speech);
   const [menu, setMenu] = useState(false);
   const account =
     localStorage.length !== 0 ? JSON.parse(localStorage.account) : null;
@@ -129,7 +128,6 @@ export default function NavBar() {
       <Link to="/">
         <img className="w-[60px] h-[60px]" src={logo}></img>
       </Link>
-      <button onClick={handleSpeech}> Hola </button>
 
       {shouldRenderSearchBar && (
         <div className="relative flex items-center lg:w-64 group">
@@ -305,32 +303,60 @@ export default function NavBar() {
               <strong className="text-center block p-2 text-xs font-medium uppercase text-gray-400">
                 Ajustes
               </strong>
-              <div className="mt-1.5 text-center">
+              <div className="mt-1.5 text-center flex justify-between bg-gray-200 p-2 rounded-xl dark:bg-gray-600">
+                <span className="font-medium text-gray-400">{theme}</span>
                 <div
                   className="relative inline-block w-10 mr-2 align-middle select-none"
                   onClick={handleThemeSwitch}
                 >
                   {theme === "Claro" ? (
                     <input
-                      className="outline-none focus:outline-none right-4 duration-200 ease-in absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"
+                      className="outline-none focus:outline-none right-4 duration-200 ease-in absolute block w-6 h-6 rounded-full bg-white border-4 border-gray-300 appearance-none cursor-pointer"
                       type="checkbox"
                       name="toggle"
                       id="toggle"
                     />
                   ) : (
                     <input
-                      className="bg-gray-500 outline-none focus:outline-none right-0 duration-200 ease-in absolute block w-6 h-6 rounded-full border-4 appearance-none cursor-pointer"
+                      className="bg-gray-500 outline-none focus:outline-none right-0 duration-200 ease-in absolute block w-6 h-6 rounded-full border-4 border-gray-300 appearance-none cursor-pointer"
                       type="checkbox"
                       name="toggle"
                       id="toggle"
                     />
                   )}
                   <label
-                    className="block h-6 overflow-hidden bg-gray-300 rounded-full cursor-pointer"
+                    className="block h-6 overflow-hidden bg-gray-400 rounded-full cursor-pointer"
                     htmlFor="toggle"
                   ></label>
                 </div>
-                <span className="font-medium text-gray-400">{theme}</span>
+              </div>
+
+              <div className="mt-1.5 text-center flex justify-between bg-gray-200 p-2 rounded-xl dark:bg-gray-600">
+                <span className="font-medium text-gray-400">Texto por Voz</span>
+                <div
+                  className="relative inline-block w-10 mr-2 align-middle select-none"
+                  onClick={handleSpeech}
+                >
+                  {speech === true ? (
+                    <input
+                      className="outline-none focus:outline-none right-4 duration-200 ease-in absolute block w-6 h-6 rounded-full bg-white border-4 border-gray-300 appearance-none cursor-pointer"
+                      type="checkbox"
+                      name="toggle"
+                      id="toggle"
+                    />
+                  ) : (
+                    <input
+                      className="bg-gray-500 outline-none focus:outline-none right-0 duration-200 ease-in absolute block w-6 h-6 rounded-full border-4 border-gray-300 appearance-none cursor-pointer"
+                      type="checkbox"
+                      name="toggle"
+                      id="toggle"
+                    />
+                  )}
+                  <label
+                    className="block h-6 overflow-hidden bg-gray-400 rounded-full cursor-pointer"
+                    htmlFor="toggle"
+                  ></label>
+                </div>
               </div>
             </div>
           </div>
