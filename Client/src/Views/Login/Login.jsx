@@ -52,6 +52,8 @@ export default function Login() {
           customClass: {
             popup: "inicioSesion",
           },
+          iconColor: "#a7b698",
+          confirmButtonColor: "#a7b698",
         });
 
         navigate("/home");

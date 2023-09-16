@@ -16,6 +16,7 @@ import {
   searchOffersByName,
   getOffers,
 } from "../Redux/Actions/Actions";
+import Swal from "sweetalert2";
 
 export default function NavBar() {
   const location = useLocation();
@@ -41,9 +42,23 @@ export default function NavBar() {
   };
 
   const handleLogout = () => {
-    dispatch(logOut());
-    dispatch(companyButtons(false));
-    navigate("/login");
+    Swal.fire({
+      title: "¿Estás seguro de que deseas cerrar sesión?",
+      text: "Se cerrará tu sesión actual",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#a7b698",
+      cancelButtonColor: "#d33",
+      iconColor: "#a7b698",
+      confirmButtonText: "Sí, cerrar sesión",
+      cancelButtonText: "Cancelar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(logOut());
+        dispatch(companyButtons(false));
+        navigate("/login");
+      }
+    });
   };
 
   const handleChange = (e) => {
@@ -143,38 +158,43 @@ export default function NavBar() {
                     <div className="text-gray-500 flex justify-center text-sm dark:text-gray-300">
                       <CgProfile className="w-[25px] h-[25px] text-gray-400 mx-1 hover:text-light-1" />
                       <Link to="/profile-user">
-                        <h1 className="pt-0.5 hover:text-light-1"
-                        >{account.name}{" "}{account.lastname}</h1>
+                        <h1 className="pt-0.5 hover:text-light-1">
+                          {account.name} {account.lastname}
+                        </h1>
                       </Link>
                     </div>
                   ) : localStorage.type === "company" ? (
                     <div className="text-gray-500 flex justify-center text-sm dark:text-gray-300">
                       <CgProfile className="w-[25px] h-[25px] text-gray-400 mx-1 hover:text-light-1" />
                       <Link to="/profile-company">
-                        <h1 className="pt-0.5 hover:text-light-1"
-                        >{account.nameCompany}</h1>
+                        <h1 className="pt-0.5 hover:text-light-1">
+                          {account.nameCompany}
+                        </h1>
                       </Link>
                     </div>
                   ) : localStorage.type === "superAdmin" ? (
                     <div className="text-gray-500 flex justify-center text-sm dark:text-gray-300">
                       <CgProfile className="w-[25px] h-[25px] text-gray-400 mx-1 hover:text-light-1" />
                       <Link to="/admin">
-                        <h1 className="pt-0.5 hover:text-light-1"
-                        >{account.name}</h1>
+                        <h1 className="pt-0.5 hover:text-light-1">
+                          {account.name}
+                        </h1>
                       </Link>
                     </div>
                   ) : localStorage.type === "admin" ? (
                     <div className="text-gray-500 flex justify-center text-sm dark:text-gray-300">
                       <CgProfile className="w-[25px] h-[25px] text-gray-400 mx-1 hover:text-light-1" />
                       <Link to="/admin">
-                        <h1 className="pt-0.5 hover:text-light-1"
-                        >{account.name}</h1>
+                        <h1 className="pt-0.5 hover:text-light-1">
+                          {account.name}
+                        </h1>
                       </Link>
                     </div>
                   ) : (
                     <div>
-                      <h1 className="pt-0.5 hover:text-light-1"
-                      >Cuenta no reconocida</h1>
+                      <h1 className="pt-0.5 hover:text-light-1">
+                        Cuenta no reconocida
+                      </h1>
                     </div>
                   )}
 
