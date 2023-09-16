@@ -154,11 +154,11 @@ export default function RegisterUser() {
           setNewErrors({ type: "CREATE_USER", error: postError.response.data })
         );
         setCheckboxFreelancer(null);
-        if (postError?.response?.data) {
+        if (postError?.response?.data.error === "Email in use") {
           Swal.fire({
             title:
               "Correo electronico ya se encuentra en uso, por favor selecciona otro",
-      
+
             icon: "error",
             customClass: {
               popup: "",
@@ -202,9 +202,8 @@ export default function RegisterUser() {
     validateInput({ ...userData, category: filteredCat });
   };
 
-  const isSubmitDisabled = Object.keys(errors).length > 0;
-
-  console.log(errors)
+  const isSubmitDisabled =
+    Object.keys(errors).length > 0 || userData.category.length === 0;
 
   return (
     <div className="flex justify-center">
