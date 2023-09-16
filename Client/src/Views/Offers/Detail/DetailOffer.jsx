@@ -14,8 +14,6 @@ export default function DetailOffer() {
     dispatch(actions.getOfferByName(title));
   }, []);
 
-  const handleAppy = () => {};
-
   const handleContact = () => {
     if (offer.adminId === null){
       window.location.href = `mailto:${offer.company.email}`;
