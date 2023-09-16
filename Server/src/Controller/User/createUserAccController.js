@@ -16,7 +16,7 @@ const emailTemplate = fs.readFileSync(
 );
 const createUserAccController = async (props) => {
   const { password, email, category } = props;
-  const randomCode = Math.round(Math.random()*999999)
+  const randomCode = Math.round(Math.random() * 999999);
   const saltRounds = 10;
   const hashedPassword = await bcrypt.hash(password, saltRounds);
   const lowerCaseMail = props.email.toLowerCase()
@@ -36,15 +36,19 @@ const createUserAccController = async (props) => {
       description: props.description,
       address: props.address,
       password: hashedPassword,
-      verificationCode: randomCode
+      verificationCode: randomCode,
     },
   });
+
+  const emailTemplateConValores = emailTemplate
+    .replace("${randomCode}", randomCode)
+    .replace("${newUserId}", newUser.id);
 
   const menssageRegister = {
     from: emailUser,
     to: email,
-    subject: `Confirmación de Registro: Verifica tu codigo ${randomCode} en http://localhost:5173/verification/${newUser.id}`,
-    html: emailTemplate,
+    subject: `Confirmación de Registro`,
+    html: emailTemplateConValores,
   };
 
   if (created) {

@@ -15,14 +15,17 @@ import {
   searchTrainingByName,
   searchOffersByName,
   getOffers,
+  enableSpeech,
 } from "../Redux/Actions/Actions";
+import Swal from "sweetalert2";
 
 export default function NavBar() {
   const location = useLocation();
   const [theme, setTheme] = useState("Claro");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const bool = useSelector((state) => state.buttonsBool);
+  const speech = useSelector((state) => state.enableSpeech);
+  console.log(speech);
   const [menu, setMenu] = useState(false);
   const account =
     localStorage.length !== 0 ? JSON.parse(localStorage.account) : null;
@@ -41,9 +44,28 @@ export default function NavBar() {
   };
 
   const handleLogout = () => {
-    dispatch(logOut());
-    dispatch(companyButtons(false));
-    navigate("/login");
+    Swal.fire({
+      title: "¿Estás seguro de que deseas cerrar sesión?",
+      text: "Se cerrará tu sesión actual",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#a7b698",
+      cancelButtonColor: "#d33",
+      iconColor: "#a7b698",
+      confirmButtonText: "Sí, cerrar sesión",
+      cancelButtonText: "Cancelar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(logOut());
+        dispatch(companyButtons(false));
+        navigate("/login");
+      }
+    });
+  };
+
+  const handleSpeech = (e) => {
+    e.preventDefault();
+    dispatch(enableSpeech(!speech));
   };
 
   const handleChange = (e) => {
@@ -78,7 +100,13 @@ export default function NavBar() {
   };
 
   const handleMenu = () => {
-    setMenu(menu === true ? false : true);
+    setMenu(!menu);
+  };
+
+  const closeMenu = () => {
+    if (menu) {
+      setMenu(false);
+    }
   };
 
   const shouldRenderSearchBar = !(
@@ -92,7 +120,8 @@ export default function NavBar() {
     location.pathname === "/create-jobs" ||
     location.pathname === "/admin" ||
     location.pathname === "/register-user" ||
-    location.pathname === "/register-company"
+    location.pathname === "/register-company" ||
+    location.pathname === "/login"
   );
 
   return (
@@ -100,6 +129,7 @@ export default function NavBar() {
       <Link to="/">
         <img className="w-[60px] h-[60px]" src={logo}></img>
       </Link>
+      <button onClick={handleSpeech}> Hola </button>
 
       {shouldRenderSearchBar && (
         <div className="relative flex items-center lg:w-64 group">
@@ -119,6 +149,7 @@ export default function NavBar() {
       <div className="relative">
         <div className="inline-flex items-center overflow-hidden rounded-md bg-gray-200 dark:bg-gray-800 p-0.5 hover:p-0 hover:border-2 hover:border-light-1">
           <button
+            onMouseEnter={handleMenu}
             className="h-full p-2 text-gray-700 dark:text-gray-400"
             onClick={handleMenu}
           >
@@ -129,6 +160,7 @@ export default function NavBar() {
 
         {menu === true ? (
           <div
+            onMouseLeave={closeMenu}
             className="absolute end-0 z-10 mt-2 w-56 divide-y divide-gray-200 dark:divide-gray-700 rounded-md border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-2xl"
             role="menu"
             onClick={handleMenu}
@@ -142,39 +174,47 @@ export default function NavBar() {
                   {localStorage.type === "user" ? (
                     <div className="text-gray-500 flex justify-center text-sm dark:text-gray-300">
                       <CgProfile className="w-[25px] h-[25px] text-gray-400 mx-1 hover:text-light-1" />
-                      <Link to="/profile-user">
-                        <h1 className="pt-0.5 hover:text-light-1"
-                        >{account.name}{" "}{account.lastname}</h1>
+
+                      <Link to="/profile-user" />
+
+                      <Link to={`/${account.name + account.lastName}`}>
+                        <h1 className="pt-0.5 hover:text-light-1">
+                          {account.name} {account.lastname}
+                        </h1>
                       </Link>
                     </div>
                   ) : localStorage.type === "company" ? (
                     <div className="text-gray-500 flex justify-center text-sm dark:text-gray-300">
                       <CgProfile className="w-[25px] h-[25px] text-gray-400 mx-1 hover:text-light-1" />
                       <Link to="/profile-company">
-                        <h1 className="pt-0.5 hover:text-light-1"
-                        >{account.nameCompany}</h1>
+                        <h1 className="pt-0.5 hover:text-light-1">
+                          {account.nameCompany}
+                        </h1>
                       </Link>
                     </div>
                   ) : localStorage.type === "superAdmin" ? (
                     <div className="text-gray-500 flex justify-center text-sm dark:text-gray-300">
                       <CgProfile className="w-[25px] h-[25px] text-gray-400 mx-1 hover:text-light-1" />
                       <Link to="/admin">
-                        <h1 className="pt-0.5 hover:text-light-1"
-                        >{account.name}</h1>
+                        <h1 className="pt-0.5 hover:text-light-1">
+                          {account.name}
+                        </h1>
                       </Link>
                     </div>
                   ) : localStorage.type === "admin" ? (
                     <div className="text-gray-500 flex justify-center text-sm dark:text-gray-300">
                       <CgProfile className="w-[25px] h-[25px] text-gray-400 mx-1 hover:text-light-1" />
                       <Link to="/admin">
-                        <h1 className="pt-0.5 hover:text-light-1"
-                        >{account.name}</h1>
+                        <h1 className="pt-0.5 hover:text-light-1">
+                          {account.name}
+                        </h1>
                       </Link>
                     </div>
                   ) : (
                     <div>
-                      <h1 className="pt-0.5 hover:text-light-1"
-                      >Cuenta no reconocida</h1>
+                      <h1 className="pt-0.5 hover:text-light-1">
+                        Cuenta no reconocida
+                      </h1>
                     </div>
                   )}
 

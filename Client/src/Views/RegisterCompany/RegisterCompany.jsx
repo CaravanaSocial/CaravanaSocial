@@ -24,8 +24,6 @@ const RegisterCompany = () => {
 
   // <p>{globalErrors?.CREATE_COMPANY?.error}</p>;
 
-  
-
   const [companyInput, setCompanyInput] = useState({
     name: "",
     lastName: "",
@@ -135,7 +133,8 @@ const RegisterCompany = () => {
     }
   };
 
-  const isSubmitDisabled = Object.keys(error).length > 0;
+  const isSubmitDisabled =
+    Object.keys(error).length > 0 || companyInput.category.length === 0;
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -164,13 +163,13 @@ const RegisterCompany = () => {
             error: postError.response.data,
           })
         );
-        console.log("GLOBAL", globalErrors?.CREATE_COMPANY?.error)
-        console.log("THEN", postError?.response?.data)
-        if (postError?.response?.data) {
+        console.log("GLOBAL", globalErrors?.CREATE_COMPANY?.error);
+        console.log("THEN", postError?.response?.data);
+        if (postError?.response?.data.error === "Email in use") {
           Swal.fire({
             title:
               "Correo electronico ya se encuentra en uso, por favor selecciona otro",
-      
+
             icon: "error",
             customClass: {
               popup: "",

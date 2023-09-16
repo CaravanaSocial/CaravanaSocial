@@ -9,8 +9,10 @@ import {
   filterOffer,
 } from "../../Redux/Actions/Actions";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Offer() {
+  const navigate = useNavigate();
   const offers = useSelector((state) => state.offers);
   const countries = useSelector((state) => state.countries);
   const companies = useSelector((state) => state.companies);
@@ -43,50 +45,56 @@ export default function Offer() {
 
   return (
     <div className=" h-full  text-center m-4 p-4 flex flex-col ">
-      <div className="border-2 text-center border-zinc-100 dark:border-zinc-800 rounded-3xl py-2 shadow-md">
-        <select
-          className="rounded-3xl px-2 mx-1 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
-          name="country"
-          onChange={handleChange}
-        >
-          <option value="">Pais</option>
-          {countries?.map((c) => (
-            <option key={c} value={c}>
-              {c}
-            </option>
-          ))}
-        </select>
-        <select
-          className="rounded-3xl px-2 mx-1 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
-          name="companyName"
-          onChange={handleChange}
-        >
-          <option value="">Empresa</option>
-          {companies?.map((c) => (
-            <option key={c.name} value={c.nameCompany}>
-              {c.nameCompany}
-            </option>
-          ))}
-        </select>
-        <select
-          className="rounded-3xl px-2 mx-1 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
-          name="category"
-          onChange={handleChange}
-        >
-          <option value="">Categorias</option>
-          {categories?.map((c) => (
-            <option key={c} value={c}>
-              {c}
-            </option>
-          ))}
-        </select>
-      </div>
-      <h1 className="font-vilaka font-bold text-[50px]">Ofertas</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {offers?.map((offer) => (
-          <OfferCard key={offer.id} offer={offer} />
-        ))}
-      </div>
+      {localStorage.length !== 0 ? (
+        <>
+          <div className="border-2 text-center border-zinc-100 dark:border-zinc-800 rounded-3xl py-2 shadow-md">
+            <select
+              className="rounded-3xl px-2 mx-1 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
+              name="country"
+              onChange={handleChange}
+            >
+              <option value="">Pais</option>
+              {countries?.map((c) => (
+                <option key={c} value={c}>
+                  {c}
+                </option>
+              ))}
+            </select>
+            <select
+              className="rounded-3xl px-2 mx-1 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
+              name="companyName"
+              onChange={handleChange}
+            >
+              <option value="">Empresa</option>
+              {companies?.map((c) => (
+                <option key={c.name} value={c.nameCompany}>
+                  {c.nameCompany}
+                </option>
+              ))}
+            </select>
+            <select
+              className="rounded-3xl px-2 mx-1 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
+              name="category"
+              onChange={handleChange}
+            >
+              <option value="">Categorias</option>
+              {categories?.map((c) => (
+                <option key={c} value={c}>
+                  {c}
+                </option>
+              ))}
+            </select>
+          </div>
+          <h1 className="font-vilaka font-bold text-[50px]">Ofertas</h1>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {offers?.map((offer) => (
+              <OfferCard key={offer.id} offer={offer} />
+            ))}
+          </div>
+        </>
+      ) : (
+        <div>{navigate("/login")}</div>
+      )}
     </div>
   );
 }

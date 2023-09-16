@@ -42,9 +42,14 @@ import {
   GET_TRAININGS_BY_VALUE,
   CLEAR_FREELANCERS,
   GET_Q_AND_A,
+
+  GET_ALL_BLOGS,
+  GET_BLOGS_BY_ID,
   FREELANCER_BY_NAME,
   TRAINING_BY_NAME,
   OFFERS_BY_NAME,
+  ENABLE_SPEECH,
+  enableSpeech,
 } from "../Actions/Actions";
 
 const initialState = {
@@ -77,11 +82,16 @@ const initialState = {
   imageChange: false,
   userDetail: {},
   trainingsUser: [],
-
   trainingsApproved: [],
   trainingsDeclined: [],
   trainingsNoCheck: [],
+  faqs:[],
+
+  blogs:[],
+  blog:[],
+
   faqs: [],
+  enableSpeech: false,
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -93,18 +103,16 @@ export default function rootReducer(state = initialState, action) {
       };
 
     case GET_USERS:
-
-      if(action.payload.type === "deleted"){
+      if (action.payload.type === "deleted") {
         return {
           ...state,
-          usersDelete: action.payload.array
-        }
-      }else if(action.payload.type === "online"){
+          usersDelete: action.payload.array,
+        };
+      } else if (action.payload.type === "online") {
         return {
           ...state,
-          users: action.payload.array
-        }
-
+          users: action.payload.array,
+        };
       }
 
     case GET_SUCCESCASES:
@@ -130,16 +138,16 @@ export default function rootReducer(state = initialState, action) {
       };
 
     case GET_ADMINS:
-      if(action.payload.type === "deleted"){
+      if (action.payload.type === "deleted") {
         return {
           ...state,
-          adminsDeleted: action.payload.array
-        }
-      }else if(action.payload.type === "online"){
+          adminsDeleted: action.payload.array,
+        };
+      } else if (action.payload.type === "online") {
         return {
           ...state,
-          admins: action.payload.array
-        }
+          admins: action.payload.array,
+        };
       }
 
     case EDIT_ADMIN:
@@ -148,18 +156,16 @@ export default function rootReducer(state = initialState, action) {
       };
 
     case GET_COMPANIES:
-
-      if(action.payload.type === "deleted"){
+      if (action.payload.type === "deleted") {
         return {
           ...state,
-          companiesDelete: action.payload.array
-        }
-      }else if(action.payload.type === "online"){
+          companiesDelete: action.payload.array,
+        };
+      } else if (action.payload.type === "online") {
         return {
           ...state,
-          companies: action.payload.array
-        }
-
+          companies: action.payload.array,
+        };
       }
 
     case CREATE_COMPANY:
@@ -384,6 +390,26 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         offers: action.payload,
       };
+
+
+      case GET_ALL_BLOGS:
+        return {
+          ...state,
+          blogs:action.payload
+        }
+
+      case GET_BLOGS_BY_ID:
+        return {
+          ...state,
+          blog:action.payload
+        }
+
+    case ENABLE_SPEECH:
+      return {
+        ...state,
+        enableSpeech: action.payload,
+      };
+
 
     default:
       return { ...state };
