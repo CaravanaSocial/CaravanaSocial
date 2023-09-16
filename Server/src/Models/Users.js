@@ -65,6 +65,15 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      verified: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false 
+      },
+      verificationCode:{
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      }
     },
     {
       paranoid: true,

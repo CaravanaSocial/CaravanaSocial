@@ -22,6 +22,7 @@ const userSignUpHandler = async (req, res) => {
       return res.status(400).json({ error: "Email in use" });
     return res.status(200).json({ ...userToken, type: "user" });
   } catch (error) {
+    console.log(error.message);
     res.status(500).json({ error: error.message });
   }
 };
