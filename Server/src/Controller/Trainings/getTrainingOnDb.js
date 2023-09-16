@@ -1,4 +1,4 @@
-const { training, companies, areaTraining, comment } = require('../../db');
+const { training, companies, areaTraining, comment, admin } = require('../../db');
 const { Op } = require('sequelize')
 
 const getTrainingOnDb = async (name) => {
@@ -23,7 +23,10 @@ const getTrainingOnDb = async (name) => {
                 },
                 {
                   model: comment
-                }
+                },
+                {
+                  model: admin
+                },
               ]
         })
     

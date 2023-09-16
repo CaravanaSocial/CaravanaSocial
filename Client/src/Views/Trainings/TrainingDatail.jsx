@@ -78,7 +78,7 @@ const DetailTrainings = () => {
           <div className="flex flex-col items-center ">
             <img
               className="w-[300px] rounded-full"
-              src={detail?.company?.profilePicture}
+              src={detail?.company?.profilePicture ? detail?.company?.profilePicture : detail?.admin?.profilePicture}
               alt={detail?.company?.name}
             />
             <span className="font-vilaka font-bold text-[55px] hover:text-light-1">

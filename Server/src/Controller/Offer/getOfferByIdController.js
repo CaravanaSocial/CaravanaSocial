@@ -1,4 +1,4 @@
-const { offer, companies, areaTraining } = require("../../db");
+const { offer, companies, areaTraining, admin } = require("../../db");
 
 const getOfferByIdController = async (title) => {
   const foundOffer = await offer.findOne({
@@ -17,6 +17,9 @@ const getOfferByIdController = async (title) => {
             through: { attributes: [] },
           },
         ],
+      },
+      {
+        model: admin,
       },
       {
         model: areaTraining,

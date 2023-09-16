@@ -22,6 +22,7 @@ const PasswordRecovery = () => {
                 setAcc(verified)
                 setEdit(true)
                 var randomCodeMath = Math.round(Math.random()*999999)
+                console.log(randomCodeMath)
                 setRandomCode(randomCodeMath)
                 //Acá se mandaría el mail xd
             }else{
