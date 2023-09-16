@@ -24,7 +24,6 @@ import CompanyDetail from "./Views/CompanyDetail/CompanyDetail.jsx";
 import CreateSuccesCase from "./Views/CreateSuccessCase/CreateSuccesCase.jsx";
 import Freelancers from "./Views/Freelancers/Freelancers.jsx";
 import AdminDashboard from "./Views/Admin/AdminDashboard.jsx";
-import Faq from "./Views/Faq/Faq.jsx"
 import PresetBlog from "./components/Blog/PresetBlog.jsx";
 import BlogDetail from "./components/Blog/BlogDetail.jsx";
 import BlogHub from "./components/Blog/BlogHub.jsx";
@@ -60,9 +59,9 @@ function App() {
           <Route path="/home-offers/:title" element={<DetailOffer />} />
           <Route path="/trainings/:id" element={<TrainingVideosPage />} />
           <Route path="/trainings/video/:id" element={<VideosTrainings />} />
-          <Route path="/blog-create" element={<PresetBlog/>} />
-          <Route path="/blogs" element={<BlogHub/>} />
-          <Route path="/blog/:id" element={<BlogDetail/>} />
+          <Route path="/blog-create" element={<PresetBlog />} />
+          <Route path="/blogs" element={<BlogHub />} />
+          <Route path="/blog/:id" element={<BlogDetail />} />
 
           <Route
             path={

@@ -24,8 +24,6 @@ const RegisterCompany = () => {
 
   // <p>{globalErrors?.CREATE_COMPANY?.error}</p>;
 
-  
-
   const [companyInput, setCompanyInput] = useState({
     name: "",
     lastName: "",
@@ -164,13 +162,13 @@ const RegisterCompany = () => {
             error: postError.response.data,
           })
         );
-        console.log("GLOBAL", globalErrors?.CREATE_COMPANY?.error)
-        console.log("THEN", postError?.response?.data)
+        console.log("GLOBAL", globalErrors?.CREATE_COMPANY?.error);
+        console.log("THEN", postError?.response?.data);
         if (postError?.response?.data) {
           Swal.fire({
             title:
               "Correo electronico ya se encuentra en uso, por favor selecciona otro",
-      
+
             icon: "error",
             customClass: {
               popup: "",
