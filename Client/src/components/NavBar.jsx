@@ -15,6 +15,7 @@ import {
   searchTrainingByName,
   searchOffersByName,
   getOffers,
+  enableSpeech,
 } from "../Redux/Actions/Actions";
 import Swal from "sweetalert2";
 
@@ -23,7 +24,8 @@ export default function NavBar() {
   const [theme, setTheme] = useState("Claro");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const bool = useSelector((state) => state.buttonsBool);
+  const speech = useSelector((state) => state.enableSpeech);
+  console.log(speech);
   const [menu, setMenu] = useState(false);
   const account =
     localStorage.length !== 0 ? JSON.parse(localStorage.account) : null;
@@ -59,6 +61,11 @@ export default function NavBar() {
         navigate("/login");
       }
     });
+  };
+
+  const handleSpeech = (e) => {
+    e.preventDefault();
+    dispatch(enableSpeech(!speech));
   };
 
   const handleChange = (e) => {
@@ -122,6 +129,7 @@ export default function NavBar() {
       <Link to="/">
         <img className="w-[60px] h-[60px]" src={logo}></img>
       </Link>
+      <button onClick={handleSpeech}> Hola </button>
 
       {shouldRenderSearchBar && (
         <div className="relative flex items-center lg:w-64 group">

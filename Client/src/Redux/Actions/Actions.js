@@ -76,6 +76,7 @@ export const DELETE_Q_AND_A = "DELETE_Q_AND_A";
 export const FREELANCER_BY_NAME = "FREELANCER_BY_NAME";
 export const TRAINING_BY_NAME = "TRAINING_BY_NAME";
 export const OFFERS_BY_NAME = "OFFERS_BY_NAME";
+export const ENABLE_SPEECH = "ENABLE_SPEECH";
 
 // const serverURL = "https://caravanaserver.onrender.com";
 const serverURL = "http://localhost:3001";
@@ -129,7 +130,10 @@ export const getUsers = (value) => {
       const { data } = response;
       return dispatch({
         type: GET_USERS,
-        payload: value === "deleted" ? {type: "deleted", array: data} : {type: "online", array: data},
+        payload:
+          value === "deleted"
+            ? { type: "deleted", array: data }
+            : { type: "online", array: data },
       });
     } catch (error) {
       console.log(error);
@@ -210,7 +214,7 @@ export const editUser = (id, user) => {
       });
       return data;
     } catch (error) {
-      return error
+      return error;
       console.log(error);
     }
   };
@@ -270,7 +274,10 @@ export const getAdmins = (value) => {
       const { data } = response;
       return dispatch({
         type: GET_ADMINS,
-        payload: value === "deleted" ? {type: "deleted", array: data} : {type: "online", array: data},
+        payload:
+          value === "deleted"
+            ? { type: "deleted", array: data }
+            : { type: "online", array: data },
       });
     } catch (error) {
       console.log(error);
@@ -329,10 +336,12 @@ export const getCompanies = (value) => {
       const response = await axios(endpoint);
       const { data } = response;
 
-      
-      return dispatch({ 
-        type: GET_COMPANIES, 
-        payload: value === "deleted" ? {type: "deleted", array: data} : {type: "online", array: data}, 
+      return dispatch({
+        type: GET_COMPANIES,
+        payload:
+          value === "deleted"
+            ? { type: "deleted", array: data }
+            : { type: "online", array: data },
       });
     } catch (error) {
       console.log(error);
@@ -350,7 +359,7 @@ export const deleteCompanies = (id) => {
     try {
       const response = await axios.delete(endpoint);
       const { data } = response;
-      
+
       return dispatch({ type: DELETE_COMPANIES, payload: data });
     } catch (error) {
       console.log(error);
@@ -368,9 +377,8 @@ export const restoreCompanies = (id) => {
     try {
       const response = await axios.post(endpoint);
       const { data } = response;
-      
-      return dispatch({ type: RESTORE_COMPANIES, payload: data });
 
+      return dispatch({ type: RESTORE_COMPANIES, payload: data });
     } catch (error) {
       console.log(error);
     }
@@ -1074,5 +1082,14 @@ export const searchOffersByName = (name) => {
     } catch (error) {
       console.log("searchOffersByName", error.message);
     }
+  };
+};
+
+export const enableSpeech = (boolean) => {
+  return async function (dispatch) {
+    return dispatch({
+      type: ENABLE_SPEECH,
+      payload: boolean,
+    });
   };
 };

@@ -6,16 +6,24 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import SliderLanding from "../components/SliderLanding";
 import { getSuccesCases } from "../Redux/Actions/Actions";
+import { useState } from "react";
+
+const synth = window.speechSynthesis;
+let text = "Página principal";
+const utterThis = new SpeechSynthesisUtterance(text);
+utterThis.lang = "es-ES";
 
 const LandingPage = () => {
-  const play = (text)=>{
-    speechSynthesis.speak( new SpeechSynthesisUtterance(text))
-  }
+  const [voiceEnabled, setVoiceEnabled] = useState(false);
+
+  const play = (text) => {
+    synth.speak(utterThis);
+  };
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getSuccesCases());
-    play("Página principal")
+    play("Página principal");
   }, []);
 
   return (
@@ -78,15 +86,16 @@ const LandingPage = () => {
       {/* SECCION UNETE */}
 
       <section className="w-full text-center  lg:gap-x-20 md:flex md:justify-center   ">
-      
         <Link
           to="/register-company"
           className="text-[30px] dark:text-white w-[400px] m-auto text-black  px-5 py-5  flex flex-col items-center font-nunito font-bold   "
         >
           <img className="rounded h-[350px]" src={empresa1} width={400}></img>
-          <span >Soy empresa quiero unirme</span>
-          <button className="bg-light-1 font-nunito rounded-3xl font-bold px-2 py-1 border-2 border-transparent dark:text-zinc-900 hover:text-white hover:scale-95">Registrarme</button>
-          </Link>
+          <span>Soy empresa quiero unirme</span>
+          <button className="bg-light-1 font-nunito rounded-3xl font-bold px-2 py-1 border-2 border-transparent dark:text-zinc-900 hover:text-white hover:scale-95">
+            Registrarme
+          </button>
+        </Link>
 
         <Link
           to="/register-user"
@@ -94,11 +103,13 @@ const LandingPage = () => {
         >
           <img className="rounded h-[350px]" src={freelancer} width={400}></img>
           <span>
-          Quiero capacitarme -
-          <br/>
-          Soy freelancer
+            Quiero capacitarme -
+            <br />
+            Soy freelancer
           </span>
-          <button className="bg-light-1 font-nunito rounded-3xl font-bold px-2 py-1 border-2 border-transparent dark:text-zinc-900 hover:text-white hover:scale-95">Registrarme</button>
+          <button className="bg-light-1 font-nunito rounded-3xl font-bold px-2 py-1 border-2 border-transparent dark:text-zinc-900 hover:text-white hover:scale-95">
+            Registrarme
+          </button>
         </Link>
       </section>
 
