@@ -8,6 +8,9 @@ import { GoogleLogin } from "@react-oauth/google";
 import jwt_decode from "jwt-decode";
 import Speaching from "../../components/Speaching";
 
+import Swal from "sweetalert2";
+
+
 export default function Login() {
   useEffect(() => {
     play("Inicia sesión");
@@ -44,6 +47,17 @@ export default function Login() {
     event.preventDefault();
     dispatch(login(userData)).then((postError) => {
       if (!postError) {
+        Swal.fire({
+          title: "Inicio de sesión exitoso!",
+          text: "Bienvenido",
+          icon: "success",
+          customClass: {
+            popup: "inicioSesion",
+          },
+          iconColor: "#a7b698",
+          confirmButtonColor: "#a7b698",
+        });
+
         navigate("/home");
         dispatch(clearErrors());
       } else {
