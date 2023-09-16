@@ -1,12 +1,14 @@
 const {user} = require("../../db")
 const {areaTraining} = require("../../db")
-
+const bcrypt = require("bcryptjs");
 
 const updateUserController = async (props, id) =>{
-    const {category} = props
-    const updated = await user.update(props,{
-        where : {id}
-    })
+    const {category, password} = props
+    const saltRounds = 10;
+    const hashedPassword = props?.password ? await bcrypt.hash(props.password, saltRounds) : null
+    const updated = await user.update(
+        password ? {...props,password : hashedPassword}: props,
+        {where : {id}})
     
     if(updated){
         if(category){

@@ -26,6 +26,7 @@ import Freelancers from "./Views/Freelancers/Freelancers.jsx";
 import AdminDashboard from "./Views/Admin/AdminDashboard.jsx";
 import Faq from "./Views/Faq/Faq.jsx";
 import Verification from "./Views/Verification/Verification.jsx"
+import PasswordRecovery from "./Views/PasswordRecovery/PasswordRecovery.jsx";
 
 function App() {
   const account =
@@ -73,6 +74,7 @@ function App() {
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/faq" element={<Faq />} />
           <Route path="/verification/:id" element={<Verification/>}/>
+          <Route path="/password-recovery" element={<PasswordRecovery/>}/>
         </Routes>
         <Footer />
       </div>
