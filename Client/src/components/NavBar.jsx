@@ -142,39 +142,44 @@ export default function NavBar() {
                   {localStorage.type === "user" ? (
                     <div className="text-gray-500 flex justify-center text-sm dark:text-gray-300">
                       <CgProfile className="w-[25px] h-[25px] text-gray-400 mx-1 hover:text-light-1" />
-                      <Link to="/profile-user">
-                        <h1 className="pt-0.5 hover:text-light-1"
-                        >{account.name}{" "}{account.lastname}</h1>
+                      <Link to={`/${account.name + account.lastName}`}>
+                        <h1 className="pt-0.5 hover:text-light-1">
+                          {account.name} {account.lastname}
+                        </h1>
                       </Link>
                     </div>
                   ) : localStorage.type === "company" ? (
                     <div className="text-gray-500 flex justify-center text-sm dark:text-gray-300">
                       <CgProfile className="w-[25px] h-[25px] text-gray-400 mx-1 hover:text-light-1" />
                       <Link to="/profile-company">
-                        <h1 className="pt-0.5 hover:text-light-1"
-                        >{account.nameCompany}</h1>
+                        <h1 className="pt-0.5 hover:text-light-1">
+                          {account.nameCompany}
+                        </h1>
                       </Link>
                     </div>
                   ) : localStorage.type === "superAdmin" ? (
                     <div className="text-gray-500 flex justify-center text-sm dark:text-gray-300">
                       <CgProfile className="w-[25px] h-[25px] text-gray-400 mx-1 hover:text-light-1" />
                       <Link to="/admin">
-                        <h1 className="pt-0.5 hover:text-light-1"
-                        >{account.name}</h1>
+                        <h1 className="pt-0.5 hover:text-light-1">
+                          {account.name}
+                        </h1>
                       </Link>
                     </div>
                   ) : localStorage.type === "admin" ? (
                     <div className="text-gray-500 flex justify-center text-sm dark:text-gray-300">
                       <CgProfile className="w-[25px] h-[25px] text-gray-400 mx-1 hover:text-light-1" />
                       <Link to="/admin">
-                        <h1 className="pt-0.5 hover:text-light-1"
-                        >{account.name}</h1>
+                        <h1 className="pt-0.5 hover:text-light-1">
+                          {account.name}
+                        </h1>
                       </Link>
                     </div>
                   ) : (
                     <div>
-                      <h1 className="pt-0.5 hover:text-light-1"
-                      >Cuenta no reconocida</h1>
+                      <h1 className="pt-0.5 hover:text-light-1">
+                        Cuenta no reconocida
+                      </h1>
                     </div>
                   )}
 
