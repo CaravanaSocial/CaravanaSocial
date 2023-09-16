@@ -6,6 +6,8 @@ const {getCompanyByIdController} = require("../Controller/Companies/getCompanyBy
 const {deleteCompanyController} = require("../Controller/Companies/deleteCompanyController")
 const {restoreCompanyController} = require("../Controller/Companies/restoreCompanyController")
 const { getCompanyByNameController } =  require("../Controller/Companies/getCompanyByNameController") 
+const { updatePassCompanyController } = require("../Controller/Companies/updatePassCompanyController")
+
 
 const companiesSignUpHandler = async (req, res)=>{
     try {
@@ -85,6 +87,19 @@ const getCompanyByNameHandler = async (req, res) => {
     }
 }
 
+const updatePassCompanyHandler =  async (req, res)=> {
+    try {
+        const { oldPassword, newPassword } = req.body;
+        const { id } = req.params;
+        
+        const response = await updatePassCompanyController(id, oldPassword, newPassword);
+        return res.status(200).send("Se ha cambiado exitosamente la contraseña")
+
+    } catch (error) {
+        return res.status(400).send(error.message)
+    }
+}
+
 module.exports={
     companiesSignUpHandler,
     getCompaniesHandler,
@@ -92,5 +107,6 @@ module.exports={
     getCompanyByIdHandler,
     deleteCompanyHandler,
     restoreCompanyHandler,
-    getCompanyByNameHandler
+    getCompanyByNameHandler,
+    updatePassCompanyHandler
 }
