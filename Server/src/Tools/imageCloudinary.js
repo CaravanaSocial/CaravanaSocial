@@ -20,7 +20,7 @@ const opts = {
 };
 
 const uploadImage = async (image) => {
-    /* console.log(image); */
+    console.log(image);
     return new Promise((resolve, reject) => {
       cloudinary.uploader.upload(image, opts, (error, result) => {
         console.log("entra cloudinary");

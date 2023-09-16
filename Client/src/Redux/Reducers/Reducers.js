@@ -42,6 +42,9 @@ import {
   GET_TRAININGS_BY_VALUE,
   CLEAR_FREELANCERS,
   GET_Q_AND_A,
+
+  GET_ALL_BLOGS,
+  GET_BLOGS_BY_ID,
   FREELANCER_BY_NAME,
   TRAINING_BY_NAME,
   OFFERS_BY_NAME,
@@ -82,6 +85,11 @@ const initialState = {
   trainingsApproved: [],
   trainingsDeclined: [],
   trainingsNoCheck: [],
+  faqs:[],
+
+  blogs:[],
+  blog:[],
+
   faqs: [],
   enableSpeech: false,
 };
@@ -383,11 +391,25 @@ export default function rootReducer(state = initialState, action) {
         offers: action.payload,
       };
 
+
+      case GET_ALL_BLOGS:
+        return {
+          ...state,
+          blogs:action.payload
+        }
+
+      case GET_BLOGS_BY_ID:
+        return {
+          ...state,
+          blog:action.payload
+        }
+
     case ENABLE_SPEECH:
       return {
         ...state,
         enableSpeech: action.payload,
       };
+
 
     default:
       return { ...state };

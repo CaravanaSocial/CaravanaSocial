@@ -1,0 +1,12 @@
+.ql-editor .ql-align-center img{
+    display: inline;
+    align-items: center;
+}
+.ql-editor .ql-align-right img{
+    display: inline;
+    align-items: right;
+}
+.ql-editor .ql-align-left img{
+    display: inline;
+    align-items: left;
+}
