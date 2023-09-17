@@ -406,10 +406,11 @@ export const createCompany = (company) => {
       });
       Swal.fire({
         title: "Registro Completado!",
-        text: "Bienvenido",
+        text: `hemos enviado un corro electronico a ${company.email} para confirmar su registro`,
         icon: "success",
         customClass: {
           popup: "holahola",
+          confirmButton: "bg-light-1",
         },
       });
       return false;
