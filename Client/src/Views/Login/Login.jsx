@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { login, clearErrors, setNewErrors } from "../../Redux/Actions/Actions";
+import { login, clearErrors, setNewErrors, logOut, companyButtons} from "../../Redux/Actions/Actions";
 import { useDispatch, useSelector } from "react-redux";
 import validation from "./validation";
 import { GoogleLogin } from "@react-oauth/google";
@@ -14,6 +14,8 @@ import Swal from "sweetalert2";
 export default function Login() {
   useEffect(() => {
     play("Inicia sesión");
+    dispatch(logOut());
+    dispatch(companyButtons(false));
   }, []);
 
   const play = (text) => {
@@ -143,6 +145,7 @@ export default function Login() {
                       email: CredentialResponseDecoded.email,
                       google: true,
                     })
+                    
                   ).then((postError) => {
                     if (postError) {
                       dispatch(
@@ -152,6 +155,16 @@ export default function Login() {
                         })
                       );
                     } else {
+                      Swal.fire({
+                        title: "Inicio de sesión exitoso!",
+                        text: "Bienvenido",
+                        icon: "success",
+                        customClass: {
+                          popup: "inicioSesion",
+                        },
+                        iconColor: "#a7b698",
+                        confirmButtonColor: "#a7b698",
+                      });
                       navigate("/home");
                     }
                   });
