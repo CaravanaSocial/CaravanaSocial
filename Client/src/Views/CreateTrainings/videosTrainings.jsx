@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { editTraining } from "../../Redux/Actions/Actions";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import NotFound from "../../components/NotFound";
 
 export default function VideosTrainings() {
   const dispatch = useDispatch();
@@ -115,7 +116,9 @@ export default function VideosTrainings() {
           </div>
         </div>
       ) : (
-        <div>Not found</div>
+        <div>
+          <NotFound />
+        </div>
       )}
     </div>
   );

@@ -11,6 +11,7 @@ import {
   editUser,
   getTrainingsUser,
 } from "../../Redux/Actions/Actions";
+import NotFound from "../../components/NotFound";
 
 export default function ProfileUser() {
   const account =
@@ -481,7 +482,9 @@ export default function ProfileUser() {
           </div>
         </div>
       ) : (
-        <div>Not found </div>
+        <div>
+          <NotFound />
+        </div>
       )}
     </div>
   );

@@ -10,6 +10,7 @@ import Companies from "../../components/AdminViews/Companies";
 import TrainingCard from "../Trainings/CardTrainings";
 import Faq from "../../Views/Faq/Faq.jsx";
 import Admins from "../../components/AdminViews/Admins/Admins";
+import NotFound from "../../components/NotFound";
 
 const AdminDashboard = () => {
   initTE({ Datepicker, Input, Tab }, { allowReinits: true });
@@ -295,7 +296,9 @@ const AdminDashboard = () => {
           </div>
         </>
       ) : (
-        <div>Not found</div>
+        <div>
+          <NotFound />
+        </div>
       )}
     </main>
   );
