@@ -1,5 +1,5 @@
 
-const {training, areaTraining, companies, comment} = require("../../db")
+const {training, areaTraining, companies, comment, admin} = require("../../db")
 
 const getTrainingByIdController = async (id) =>{
     const foundTraining = await training.findAll({
@@ -20,7 +20,10 @@ const getTrainingByIdController = async (id) =>{
         },
         {
           model: comment
-        }
+        },
+        {
+          model: admin,
+        },
       ]
     })
 

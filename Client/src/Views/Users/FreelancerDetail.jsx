@@ -51,7 +51,7 @@ const FreelancerDetail = () => {
                 src={userDetail?.profilePicture}
               />
 
-              <div className="text-start">
+              <div className="text-start border-l-2 border-light-1 ml-2 pl-2">
                 <h2 className="text-2xl max-lg:text-xl">
                   {userDetail?.name} {userDetail?.lastName}
                 </h2>

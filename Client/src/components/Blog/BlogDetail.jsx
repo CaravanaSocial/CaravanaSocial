@@ -9,15 +9,12 @@ import * as actions from '../../Redux/Actions/Actions'
 export default function BlogDetail(){
 
     const {id} = useParams()
-    console.log(id)
     const selector = useSelector(state=>state.blog)
     const dispatch = useDispatch()
 
     React.useEffect(()=>{
         dispatch(actions.getBlogsByID(id))
     },[])
-
-    console.log(selector.template)
 
     return (
         <div className="ql-snow">
