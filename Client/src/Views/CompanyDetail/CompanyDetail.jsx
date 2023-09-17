@@ -9,6 +9,7 @@ import { useParams, NavLink } from "react-router-dom";
 import { HiOutlineMail } from "react-icons/hi";
 import { AiOutlinePhone } from "react-icons/ai";
 import { HiOutlineLocationMarker } from "react-icons/hi";
+import NotFound from "../../components/NotFound";
 
 const CompanyDetail = () => {
   const { id } = useParams();
@@ -139,7 +140,9 @@ const CompanyDetail = () => {
           </div>
         </div>
       ) : (
-        <div>Not found</div>
+        <div>
+          <NotFound />
+        </div>
       )}
     </main>
   );

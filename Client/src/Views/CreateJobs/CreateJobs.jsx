@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { createOffer, getCategories } from "../../Redux/Actions/Actions";
 import Validation from "./Validation";
+import NotFound from "../../components/NotFound";
 
 export default function createJobs() {
   const dispatch = useDispatch();
@@ -199,7 +200,9 @@ export default function createJobs() {
           </div>
         </div>
       ) : (
-        <div>Not found</div>
+        <div>
+          <NotFound />
+        </div>
       )}
     </div>
   );

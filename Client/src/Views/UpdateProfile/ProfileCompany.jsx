@@ -14,6 +14,7 @@ import {
 import validation from "../RegisterCompany/validation";
 import { NavLink } from "react-router-dom";
 import UploadImage from "../../components/UploadImage";
+import NotFound from "../../components/NotFound";
 
 const ProfileCompany = () => {
   const dispatch = useDispatch();
@@ -561,7 +562,9 @@ const ProfileCompany = () => {
           </div>
         </div>
       ) : (
-        <div>Not found</div>
+        <div>
+          <NotFound />
+        </div>
       )}
     </div>
   );
