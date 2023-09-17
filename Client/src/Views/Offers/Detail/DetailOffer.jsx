@@ -14,12 +14,13 @@ export default function DetailOffer() {
     dispatch(actions.getOfferByName(title));
   }, []);
 
-  const handleAppy = () => {};
-
   const handleContact = () => {
-    window.location.href = `mailto:${offer.company.email}`;
+    if (offer.adminId === null){
+      window.location.href = `mailto:${offer.company.email}`;
+    } else {
+      window.location.href = `mailto:${"caravanasocial.dev@gmail.com"}`;
+    }
   };
-
   const categories = offer?.areaTrainings?.map((x) => x.name).join(", ");
 
   return (
@@ -30,7 +31,7 @@ export default function DetailOffer() {
             <div className="flex justify-around items-center">
               <img
                 className="w-52 max-lg:w-20 max-lg:h-20 rounded-full border-2 border-light-1"
-                src={offer?.company?.profilePicture}
+                src={offer?.company?.profilePicture ? offer?.company?.profilePicture : offer?.admin?.profilePicture}
               />
 
               <div className="text-start">

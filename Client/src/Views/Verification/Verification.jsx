@@ -2,17 +2,20 @@ import React, { useEffect, useState } from 'react'
 import {useNavigate, useParams} from "react-router-dom"
 import {useDispatch, useSelector} from "react-redux"
 import {editUser, setNewErrors, getUserById, detailCompany, editCompany} from "../../Redux/Actions/Actions"
+import Swal from "sweetalert2";
 
 const Verification = () => {
-    const {id} = useParams()
+    const {id, code} = useParams()
     const {userDetail, companyDetail} = useSelector((state)=>state)
 
     useEffect(()=>{
         dispatch(getUserById(id))
         dispatch(detailCompany(id))
+        console.log(userDetail);
+        console.log(companyDetail);
     },[])
 
-    const [code, setCode] = useState("")
+    const [inputCode, setCode] = useState("")
     const [error, setError] = useState("")
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -28,6 +31,14 @@ const Verification = () => {
                     verified: true
                 })).then((postError)=>{
                     if("name" in postError){
+                        Swal.fire({
+                            title: "El mail se ha verificado correctamente.",
+                            text: `Por favor inicia sesión para continuar`,
+                            icon: "success",
+                            customClass: {
+                              popup: "",
+                            },
+                          })
                         navigate("/login")
                         dispatch(clearErrors());
                     }else{
@@ -44,6 +55,14 @@ const Verification = () => {
                     verified: true
                 })).then((postError)=>{
                     if(!postError){
+                        Swal.fire({
+                            title: "El mail se ha verificado correctamente",
+                            text: `Por favor inicia sesión para continuar`,
+                            icon: "success",
+                            customClass: {
+                              popup: "",
+                            },
+                          })
                         navigate("/login")
                         dispatch(clearErrors());
                     }else{
@@ -60,9 +79,9 @@ const Verification = () => {
   return (
     <div>
 
-      <input onChange={handleChange} type="number" />
+     {/*  <input onChange={handleChange} type="number" /> */}
       <button onClick={handleSubmit}>Verificar</button>
-      <p style={{ visibility: error !== "" ? "visible" : "hidden"}}>{error}</p>
+      {/* <p style={{ visibility: error !== "" ? "visible" : "hidden"}}>{error}</p> */}
     </div>
   )
 }

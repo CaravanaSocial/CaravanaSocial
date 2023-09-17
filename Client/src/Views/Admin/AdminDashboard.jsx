@@ -10,6 +10,7 @@ import Companies from "../../components/AdminViews/Companies";
 import TrainingCard from "../Trainings/CardTrainings";
 import Faq from "../../Views/Faq/Faq.jsx";
 import Admins from "../../components/AdminViews/Admins/Admins";
+import NotFound from "../../components/NotFound";
 
 const AdminDashboard = () => {
   initTE({ Datepicker, Input, Tab }, { allowReinits: true });
@@ -20,8 +21,6 @@ const AdminDashboard = () => {
   const [declinedState, setDeclined] = useState(false);
   const [noCheckState, setNocheck] = useState(false);
   const [activeTab, setActiveTab] = useState("capacitaciones");
-
-  console.log(activeTab);
 
   //   const approvedFiltered = trainingsValue.filter(t => t.approved === true)
   //   const declinedFiltered = trainingsValue.filter(t => t.approved === false)
@@ -297,7 +296,9 @@ const AdminDashboard = () => {
           </div>
         </>
       ) : (
-        <div>Not found</div>
+        <div>
+          <NotFound />
+        </div>
       )}
     </main>
   );

@@ -39,7 +39,6 @@ const createUserAccController = async (props) => {
       verificationCode: randomCode,
     },
   });
-
   const emailTemplateConValores = emailTemplate
     .replace("${randomCode}", randomCode)
     .replace("${newUserId}", newUser.id);
