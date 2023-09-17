@@ -76,8 +76,8 @@ export const GET_Q_AND_A = "GET_Q_AND_A";
 export const DELETE_Q_AND_A = "DELETE_Q_AND_A";
 
 export const POST_BLOG = "POST_BLOG";
-export const GET_ALL_BLOGS = 'GET_ALL_BLOGS';
-export const GET_BLOGS_BY_ID = 'GET_BLOGS_BY_ID'
+export const GET_ALL_BLOGS = "GET_ALL_BLOGS";
+export const GET_BLOGS_BY_ID = "GET_BLOGS_BY_ID";
 
 export const FREELANCER_BY_NAME = "FREELANCER_BY_NAME";
 export const TRAINING_BY_NAME = "TRAINING_BY_NAME";
@@ -107,7 +107,7 @@ export const createUser = (user) => {
       });
       Swal.fire({
         title: "Registro Completado!",
-        text: "Bienvenido",
+        text: `hemos enviado un corro electronico a ${user.email} para confirmar su registro`,
         icon: "success",
         customClass: {
           popup: "holahola",
@@ -223,7 +223,6 @@ export const editUser = (id, user) => {
       return data;
     } catch (error) {
       return error;
-      console.log(error);
     }
   };
 };
@@ -261,10 +260,9 @@ export const editAdmin = (id, admin) => {
     try {
       const response = await axios.patch(endpoint, admin);
       const { data } = response;
-      return data
+      return data;
     } catch (error) {
-      return error
-      console.log(error);
+      return error;
     }
   };
 };
@@ -418,7 +416,6 @@ export const createCompany = (company) => {
       });
       return false;
     } catch (error) {
-      console.log(error.message);
       dispatch({
         type: ERRORS,
         payload: { type: CREATE_COMPANY, payload: error?.response?.data },
@@ -445,7 +442,6 @@ export const editCompany = (id, company) => {
       });
       return false;
     } catch (error) {
-      console.log(error.message);
       dispatch({
         type: ERRORS,
         payload: { type: EDIT_COMPANY, payload: error.response.data },
@@ -575,7 +571,7 @@ export const getTrainings = () => {
 
       return dispatch({ type: GET_TRAININGS, payload: data });
     } catch (error) {
-      console.log(error);
+      console.log("No existen Capacitaciones en la base de datos.", error);
     }
   };
 };
@@ -585,13 +581,11 @@ export const getTrainingsByValue = (value) => {
   // const endpoint = `http://localhost:3001/trainings`;
 
   //---------- Endpoint to deployed server
-  console.log(value);
   const endpoint = `${serverURL}/trainings/?option=${value}`;
   return async (dispatch) => {
     try {
       const response = await axios.get(endpoint);
       const { data } = response;
-      console.log(data);
 
       return dispatch({ type: GET_TRAININGS_BY_VALUE, payload: data });
     } catch (error) {
@@ -869,8 +863,7 @@ export function detailCompany(id) {
         payload: response,
       });
     } catch (error) {
-      return error
-      console.log(error);
+      return error;
     }
   };
 }
@@ -937,7 +930,6 @@ export const getUserById = (id) => {
   return async function (dispatch) {
     try {
       const response = (await axios.get(`${serverURL}/user/` + id)).data;
-      console.log("BYID USER", response);
       return dispatch({
         type: GET_USER_BY_ID,
         payload: response,
@@ -1001,7 +993,6 @@ export const createQAndA = (input) => {
     try {
       const response = (await axios.post(`${serverURL}/question/create`, input))
         .data;
-      alert("se creó, creo");
     } catch (error) {
       console.log("cat", error.message);
     }
@@ -1047,43 +1038,38 @@ export const deleteQAndA = (id) => {
 };
 
 export const postBlog = (info) => {
-
   return async function (dispatch) {
     try {
-      await axios.post(`${serverURL}/blogs/create`, info)
+      await axios.post(`${serverURL}/blogs/create`, info);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
-}
+  };
+};
 
 export const getAllBlogs = () => {
-  return async function (dispatch){
+  return async function (dispatch) {
     try {
-      const {data} = await axios.get(`${serverURL}/blogs/all`)
+      const { data } = await axios.get(`${serverURL}/blogs/all`);
       dispatch({
         type: GET_ALL_BLOGS,
-        payload: data
-      })
-    } catch (error) {
-      
-    }
-  }
-}
+        payload: data,
+      });
+    } catch (error) {}
+  };
+};
 
 export const getBlogsByID = (id) => {
-  return async function (dispatch){
+  return async function (dispatch) {
     try {
-      const {data} = await axios.get(`${serverURL}/blogs/${id}`)
+      const { data } = await axios.get(`${serverURL}/blogs/${id}`);
       dispatch({
         type: GET_BLOGS_BY_ID,
-        payload: data
-      })
-    } catch (error) {
-      
-    }
-  }
-}
+        payload: data,
+      });
+    } catch (error) {}
+  };
+};
 export const searchFreelancersByName = (name) => {
   return async function (dispatch) {
     try {
@@ -1134,12 +1120,12 @@ export const searchOffersByName = (name) => {
 export const emailVerify = (email) => {
   return async function (dispatch) {
     try {
-      const verifyEmail = (await axios.get(`${serverURL}/email/?email=${email}`)).data;
-      return verifyEmail
-
+      const verifyEmail = (
+        await axios.get(`${serverURL}/email/?email=${email}`)
+      ).data;
+      return verifyEmail;
     } catch (error) {
-      console.log(error);
-      return error
+      return error;
     }
   };
 };
@@ -1168,5 +1154,3 @@ export const changePassword = (id, passwordChange) => {
     }
   }
 }
-
-

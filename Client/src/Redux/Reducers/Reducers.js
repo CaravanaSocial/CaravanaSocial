@@ -344,7 +344,6 @@ export default function rootReducer(state = initialState, action) {
         trainingsUser: action.payload,
       };
     case GET_TRAININGS_BY_VALUE:
-      console.log(action.payload);
       if (action.payload[0].approved === true) {
         return {
           ...state,

@@ -21,8 +21,6 @@ const AdminDashboard = () => {
   const [noCheckState, setNocheck] = useState(false);
   const [activeTab, setActiveTab] = useState("capacitaciones");
 
-  console.log(activeTab);
-
   //   const approvedFiltered = trainingsValue.filter(t => t.approved === true)
   //   const declinedFiltered = trainingsValue.filter(t => t.approved === false)
   //   const noCheckFiltered = trainingsValue.filter(t => t.approved === null)

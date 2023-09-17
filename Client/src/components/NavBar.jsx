@@ -25,7 +25,6 @@ export default function NavBar() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const speech = useSelector((state) => state.enableSpeech);
-  console.log(speech);
   const [menu, setMenu] = useState(false);
   const account =
     localStorage.length !== 0 ? JSON.parse(localStorage.account) : null;
@@ -129,7 +128,6 @@ export default function NavBar() {
       <Link to="/">
         <img className="w-[60px] h-[60px]" src={logo}></img>
       </Link>
-      <button onClick={handleSpeech}> Hola </button>
 
       {shouldRenderSearchBar && (
         <div className="relative flex items-center lg:w-64 group">
@@ -170,7 +168,7 @@ export default function NavBar() {
                 Perfil
               </strong>
               {localStorage.length !== 0 ? (
-                <div className="flex items-center justify-between m-2 p-2 hover:bg-gray-50 dark:hover:bg-gray-600 rounded-lg">
+                <div className="flex items-center justify-between m-2 p-2 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg">
                   {localStorage.type === "user" ? (
                     <div className="text-gray-500 flex justify-center text-sm dark:text-gray-300">
                       <CgProfile className="w-[25px] h-[25px] text-gray-400 mx-1 hover:text-light-1" />
@@ -179,7 +177,7 @@ export default function NavBar() {
 
                       <Link to={`/${account.name + account.lastName}`}>
                         <h1 className="pt-0.5 hover:text-light-1">
-                          {account.name} {account.lastname}
+                          {account.name} {account.lastName}
                         </h1>
                       </Link>
                     </div>
@@ -239,7 +237,7 @@ export default function NavBar() {
                 General
               </strong>
               <Link
-                className="text-center block rounded-lg px-4 py-2 text-sm text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-600 hover:text-gray-700 dark:hover:text-gray-400"
+                className="text-center block rounded-lg px-4 py-2 text-sm text-gray-500 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 hover:text-gray-700 dark:hover:text-gray-400"
                 to="/"
                 role="menuitem"
               >
@@ -247,7 +245,7 @@ export default function NavBar() {
               </Link>
 
               <Link
-                className="text-center block rounded-lg px-4 py-2 text-sm text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-600 hover:text-gray-700 dark:hover:text-gray-400"
+                className="text-center block rounded-lg px-4 py-2 text-sm text-gray-500 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 hover:text-gray-700 dark:hover:text-gray-400"
                 to="/home"
                 role="menuitem"
               >
@@ -257,7 +255,7 @@ export default function NavBar() {
               {localStorage.type === "company" ? (
                 <>
                   <Link
-                    className="text-center block rounded-lg px-4 py-2 text-sm text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-600 hover:text-gray-700 dark:hover:text-gray-400"
+                    className="text-center block rounded-lg px-4 py-2 text-sm text-gray-500 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 hover:text-gray-700 dark:hover:text-gray-400"
                     to="/create-trainings"
                     role="menuitem"
                   >
@@ -265,7 +263,7 @@ export default function NavBar() {
                   </Link>
 
                   <Link
-                    className="text-center block rounded-lg px-4 py-2 text-sm text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-600 hover:text-gray-700 dark:hover:text-gray-400"
+                    className="text-center block rounded-lg px-4 py-2 text-sm text-gray-500 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 hover:text-gray-700 dark:hover:text-gray-400"
                     to="/create-jobs"
                     role="menuitem"
                   >
@@ -275,7 +273,7 @@ export default function NavBar() {
               ) : localStorage.type === "superAdmin" ? (
                 <>
                   <Link
-                    className="text-center block rounded-lg px-4 py-2 text-sm text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-600 hover:text-gray-700 dark:hover:text-gray-400"
+                    className="text-center block rounded-lg px-4 py-2 text-sm text-gray-500 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 hover:text-gray-700 dark:hover:text-gray-400"
                     to="/create-trainings"
                     role="menuitem"
                   >
@@ -283,7 +281,7 @@ export default function NavBar() {
                   </Link>
 
                   <Link
-                    className="text-center block rounded-lg px-4 py-2 text-sm text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-600 hover:text-gray-700 dark:hover:text-gray-400"
+                    className="text-center block rounded-lg px-4 py-2 text-sm text-gray-500 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 hover:text-gray-700 dark:hover:text-gray-400"
                     to="/create-jobs"
                     role="menuitem"
                   >
@@ -291,7 +289,7 @@ export default function NavBar() {
                   </Link>
 
                   <Link
-                    className="text-center block rounded-lg px-4 py-2 text-sm text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-600 hover:text-gray-700 dark:hover:text-gray-400"
+                    className="text-center block rounded-lg px-4 py-2 text-sm text-gray-500 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 hover:text-gray-700 dark:hover:text-gray-400"
                     to="/admin"
                     role="menuitem"
                   >
@@ -305,32 +303,60 @@ export default function NavBar() {
               <strong className="text-center block p-2 text-xs font-medium uppercase text-gray-400">
                 Ajustes
               </strong>
-              <div className="mt-1.5 text-center">
+              <div className="mt-1.5 text-center flex justify-between bg-gray-200 p-2 rounded-lg dark:bg-gray-600">
+                <span className="font-medium text-gray-400">Tema: {theme}</span>
                 <div
                   className="relative inline-block w-10 mr-2 align-middle select-none"
                   onClick={handleThemeSwitch}
                 >
                   {theme === "Claro" ? (
                     <input
-                      className="outline-none focus:outline-none right-4 duration-200 ease-in absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"
+                      className="outline-none focus:outline-none right-4 duration-200 ease-in absolute block w-6 h-6 rounded-full bg-white border-4 border-gray-300 appearance-none cursor-pointer"
                       type="checkbox"
                       name="toggle"
                       id="toggle"
                     />
                   ) : (
                     <input
-                      className="bg-gray-500 outline-none focus:outline-none right-0 duration-200 ease-in absolute block w-6 h-6 rounded-full border-4 appearance-none cursor-pointer"
+                      className="bg-gray-500 outline-none focus:outline-none right-0 duration-200 ease-in absolute block w-6 h-6 rounded-full border-4 border-gray-300 appearance-none cursor-pointer"
                       type="checkbox"
                       name="toggle"
                       id="toggle"
                     />
                   )}
                   <label
-                    className="block h-6 overflow-hidden bg-gray-300 rounded-full cursor-pointer"
+                    className="block h-6 overflow-hidden bg-gray-400 rounded-full cursor-pointer"
                     htmlFor="toggle"
                   ></label>
                 </div>
-                <span className="font-medium text-gray-400">{theme}</span>
+              </div>
+
+              <div className="mt-1.5 text-center flex justify-between bg-gray-200 p-2 rounded-lg dark:bg-gray-600">
+                <span className="font-medium text-gray-400">Texto por Voz</span>
+                <div
+                  className="relative inline-block w-10 mr-2 align-middle select-none"
+                  onClick={handleSpeech}
+                >
+                  {speech === true ? (
+                    <input
+                      className="outline-none focus:outline-none right-4 duration-200 ease-in absolute block w-6 h-6 rounded-full bg-white border-4 border-gray-300 appearance-none cursor-pointer"
+                      type="checkbox"
+                      name="toggle"
+                      id="toggle"
+                    />
+                  ) : (
+                    <input
+                      className="bg-gray-500 outline-none focus:outline-none right-0 duration-200 ease-in absolute block w-6 h-6 rounded-full border-4 border-gray-300 appearance-none cursor-pointer"
+                      type="checkbox"
+                      name="toggle"
+                      id="toggle"
+                    />
+                  )}
+                  <label
+                    className="block h-6 overflow-hidden bg-gray-400 rounded-full cursor-pointer"
+                    htmlFor="toggle"
+                  ></label>
+                </div>
               </div>
             </div>
           </div>

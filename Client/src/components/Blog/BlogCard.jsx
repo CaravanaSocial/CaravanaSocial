@@ -6,7 +6,6 @@ export default function BlogCard(props) {
   const {post} = props
 
   const clickHandler = () =>{
-    console.log('estoy')
     navigate(`/blog/${post.id}`)
   }
 

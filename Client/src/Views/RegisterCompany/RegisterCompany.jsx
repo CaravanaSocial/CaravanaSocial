@@ -163,8 +163,6 @@ const RegisterCompany = () => {
             error: postError.response.data,
           })
         );
-        console.log("GLOBAL", globalErrors?.CREATE_COMPANY?.error);
-        console.log("THEN", postError?.response?.data);
         if (postError?.response?.data.error === "Email in use") {
           Swal.fire({
             title:
