@@ -30,13 +30,17 @@ const createCompanyAccController = async (props) => {
       verificationCode: randomCode
     },
   });
+  const emailTemplateConValores = emailTemplate
+  .replace("${randomCode}", randomCode)
+  .replace("${newUserId}", newCompany.id);
 
-  const menssageRegister = {
-    from: emailUser,
-    to: email,
-    subject: `Confirmación de Registro: Verifica tu codigo ${randomCode} en http://localhost:5173/verification/${newCompany.id}`,
-    html: emailTemplate,
-  };
+const menssageRegister = {
+  from: emailUser,
+  to: email,
+  subject: `Confirmación de Registro`,
+  html: emailTemplateConValores,
+};
+
 
   if (created) {
     //CREAR LA RELACIÓN CON EL RUBRO
