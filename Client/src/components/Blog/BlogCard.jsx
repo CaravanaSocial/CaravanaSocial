@@ -18,7 +18,7 @@ export default function BlogCard(props) {
         style={{ width: "400px" }}
       >
         <img
-          src= 'https://images.ctfassets.net/hrltx12pl8hq/5KiKmVEsCQPMNrbOE6w0Ot/341c573752bf35cb969e21fcd279d3f9/hero-img_copy.jpg?fit=fill&w=600&h=400'
+          src= {post.image}
           alt="Blog image"
           className="w-full h-48 object-cover rounded-t-lg"
         />

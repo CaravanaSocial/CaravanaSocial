@@ -107,7 +107,7 @@ export default function PresetBlog(){
 
     return (
         <div>
-        <div className="bg-gray-200 min-h-screen flex justify-center items-center pt-9">
+        <div className="bg-white-200 h-full flex justify-center items-center pt-9 my-5">
       <div className="w-4/5 flex flex-col justify-center items-center">
         <h1 className='text-3xl mb-10' >Crear nuevo Post</h1>
         <div className="bg-white rounded-lg p-4 shadow-md text-center" style={{ width: "400px" }}>
@@ -147,9 +147,9 @@ export default function PresetBlog(){
       
       </div>
     </div>
-    <div className={style.editorContainer}>
+    <div className=''>
     {activeButton?.editor ? (
-      <ReactQuill className={style.editor} theme="snow" value={template} onChange={setTemplate} modules={modules} formats={formats} />
+      <ReactQuill className="min-h-[500px] mx-10 mb-10" theme="snow" value={template} onChange={setTemplate} modules={modules} formats={formats} />
     ) : null}
   </div>
   </div>
