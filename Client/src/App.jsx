@@ -82,9 +82,11 @@ function App() {
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/faq" element={<Faq />} />
 
-          <Route path="/verification/:id" element={<Verification />} />
-          <Route path="/password-recovery" element={<PasswordRecovery />} />
+          <Route path="/verification/:id/:code" element={<Verification/>}/>
+          <Route path="/password-recovery" element={<PasswordRecovery/>}/>
+
           <Route path="/*" element={<NotFound />} />
+
         </Routes>
         <Footer />
       </div>
