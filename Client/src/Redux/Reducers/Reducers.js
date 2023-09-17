@@ -50,6 +50,7 @@ import {
   OFFERS_BY_NAME,
   ENABLE_SPEECH,
   enableSpeech,
+  CHANGE_PASSWORD
 } from "../Actions/Actions";
 
 const initialState = {
@@ -409,6 +410,10 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         enableSpeech: action.payload,
       };
+    case CHANGE_PASSWORD:
+      return{
+        ...state
+      }
 
 
     default:

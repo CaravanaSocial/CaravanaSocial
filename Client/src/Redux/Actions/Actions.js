@@ -84,6 +84,8 @@ export const TRAINING_BY_NAME = "TRAINING_BY_NAME";
 export const OFFERS_BY_NAME = "OFFERS_BY_NAME";
 export const ENABLE_SPEECH = "ENABLE_SPEECH";
 
+export const CHANGE_PASSWORD = "CHANGE_PASSWORD"; 
+
 // const serverURL = "https://caravanaserver.onrender.com";
 const serverURL = "http://localhost:3001";
 
@@ -1150,5 +1152,21 @@ export const enableSpeech = (boolean) => {
     });
   };
 };
+
+
+export const changePassword = (id, passwordChange) => {
+  const endpoint = `http://localhost:3001/company/passUpdate/${id}`
+  return async function (dispatch) {
+    try {
+      const response = await axios.patch(endpoint, passwordChange)
+      const { data } = response
+      dispatch({
+        type: CHANGE_PASSWORD
+      })
+    } catch (error) {
+     return error 
+    }
+  }
+}
 
 

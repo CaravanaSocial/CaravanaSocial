@@ -28,6 +28,7 @@ import PresetBlog from "./components/Blog/PresetBlog.jsx";
 import BlogDetail from "./components/Blog/BlogDetail.jsx";
 import BlogHub from "./components/Blog/BlogHub.jsx";
 import Faq from "./Views/Faq/Faq.jsx";
+import PasswordChange from "./Views/UpdateProfile/PasswordChange.jsx";
 
 import Verification from "./Views/Verification/Verification.jsx"
 import PasswordRecovery from "./Views/PasswordRecovery/PasswordRecovery.jsx";
@@ -83,7 +84,7 @@ function App() {
 
           <Route path="/verification/:id" element={<Verification/>}/>
           <Route path="/password-recovery" element={<PasswordRecovery/>}/>
-
+          <Route path="/changePassUser/:id" element={<PasswordChange/>}/>
         </Routes>
         <Footer />
       </div>
