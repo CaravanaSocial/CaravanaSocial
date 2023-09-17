@@ -76,8 +76,8 @@ export const GET_Q_AND_A = "GET_Q_AND_A";
 export const DELETE_Q_AND_A = "DELETE_Q_AND_A";
 
 export const POST_BLOG = "POST_BLOG";
-export const GET_ALL_BLOGS = 'GET_ALL_BLOGS';
-export const GET_BLOGS_BY_ID = 'GET_BLOGS_BY_ID'
+export const GET_ALL_BLOGS = "GET_ALL_BLOGS";
+export const GET_BLOGS_BY_ID = "GET_BLOGS_BY_ID";
 
 export const FREELANCER_BY_NAME = "FREELANCER_BY_NAME";
 export const TRAINING_BY_NAME = "TRAINING_BY_NAME";
@@ -105,7 +105,7 @@ export const createUser = (user) => {
       });
       Swal.fire({
         title: "Registro Completado!",
-        text: "Bienvenido",
+        text: `hemos enviado un corro electronico a ${user.email} para confirmar su registro`,
         icon: "success",
         customClass: {
           popup: "holahola",
@@ -258,9 +258,9 @@ export const editAdmin = (id, admin) => {
     try {
       const response = await axios.patch(endpoint, admin);
       const { data } = response;
-      return data
+      return data;
     } catch (error) {
-      return error
+      return error;
     }
   };
 };
@@ -861,7 +861,7 @@ export function detailCompany(id) {
         payload: response,
       });
     } catch (error) {
-      return error
+      return error;
     }
   };
 }
@@ -1036,43 +1036,38 @@ export const deleteQAndA = (id) => {
 };
 
 export const postBlog = (info) => {
-
   return async function (dispatch) {
     try {
-      await axios.post(`${serverURL}/blogs/create`, info)
+      await axios.post(`${serverURL}/blogs/create`, info);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
-}
+  };
+};
 
 export const getAllBlogs = () => {
-  return async function (dispatch){
+  return async function (dispatch) {
     try {
-      const {data} = await axios.get(`${serverURL}/blogs/all`)
+      const { data } = await axios.get(`${serverURL}/blogs/all`);
       dispatch({
         type: GET_ALL_BLOGS,
-        payload: data
-      })
-    } catch (error) {
-      
-    }
-  }
-}
+        payload: data,
+      });
+    } catch (error) {}
+  };
+};
 
 export const getBlogsByID = (id) => {
-  return async function (dispatch){
+  return async function (dispatch) {
     try {
-      const {data} = await axios.get(`${serverURL}/blogs/${id}`)
+      const { data } = await axios.get(`${serverURL}/blogs/${id}`);
       dispatch({
         type: GET_BLOGS_BY_ID,
-        payload: data
-      })
-    } catch (error) {
-      
-    }
-  }
-}
+        payload: data,
+      });
+    } catch (error) {}
+  };
+};
 export const searchFreelancersByName = (name) => {
   return async function (dispatch) {
     try {
@@ -1123,11 +1118,12 @@ export const searchOffersByName = (name) => {
 export const emailVerify = (email) => {
   return async function (dispatch) {
     try {
-      const verifyEmail = (await axios.get(`${serverURL}/email/?email=${email}`)).data;
-      return verifyEmail
-
+      const verifyEmail = (
+        await axios.get(`${serverURL}/email/?email=${email}`)
+      ).data;
+      return verifyEmail;
     } catch (error) {
-      return error
+      return error;
     }
   };
 };
@@ -1140,5 +1136,3 @@ export const enableSpeech = (boolean) => {
     });
   };
 };
-
-
