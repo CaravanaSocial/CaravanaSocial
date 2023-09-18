@@ -18,6 +18,7 @@ const PasswordRecovery = () => {
   const loginButton = useRef(null);
   const submitButton = useRef(null);
   const dispatch = useDispatch();
+  const [firstView, setFirstView] = useState(true)
   const [randomCode, setRandomCode] = useState(0);
   const [acc, setAcc] = useState({});
   const [emailInput, setEmailInput] = useState();
@@ -25,6 +26,7 @@ const PasswordRecovery = () => {
   const navigate = useNavigate();
   const handleChange = (e) => {
     setEmailInput(e.target.value);
+    setFirstView(false)
   };
   useEffect(()=>{
     setSynth(window.speechSynthesis);
@@ -216,7 +218,7 @@ const PasswordRecovery = () => {
             onMouseLeave={() => {cancelVoice;}}
             className="text-red-600"
             style={{
-              visibility: !/^[\w-\.]+@([\w-]+\.)+[\w-]{3,4}$/.test(emailInput)
+              visibility: !firstView && !/^[\w-\.]+@([\w-]+\.)+[\w-]{3,4}$/.test(emailInput)
                 ? "visible"
                 : "hidden",
             }}
