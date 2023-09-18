@@ -38,7 +38,7 @@ const Verification = () => {
             verified: true,
           })
         ).then((postError) => {
-          if (postError?.name) {
+          if (!postError) {
             Swal.fire({
               title: "El mail se ha verificado correctamente.",
               text: `Por favor inicia sesión para continuar`,
