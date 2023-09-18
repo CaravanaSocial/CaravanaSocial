@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   editAdmin,
@@ -12,6 +12,8 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const PasswordRecovery = () => {
+  const speech = useSelector((state) => state.enableSpeech);
+  const [synth, setSynth] = useState(null);
   const globalErrors = useSelector((state) => state.errors);
   const loginButton = useRef(null);
   const submitButton = useRef(null);
@@ -24,6 +26,9 @@ const PasswordRecovery = () => {
   const handleChange = (e) => {
     setEmailInput(e.target.value);
   };
+  useEffect(()=>{
+    setSynth(window.speechSynthesis);
+  },[])
 
   const handleKeyPressVerify = (event) => {
     if (event.key === "Enter") {
@@ -165,18 +170,37 @@ const PasswordRecovery = () => {
       },
     });
   };
+  const speakText = (text) => {
+    if (speech === true && synth) {
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.volume = 1;
+      utterance.lang = "es-ES";
+      synth.speak(utterance);
+    }
+  };
+  const cancelVoice = () => {
+    if (synth) {
+      synth.cancel();
+    }
+  };
 
   const isSubmitDisabled = Object.keys(errors).length > 0;
   return (
     <div className="flex justify-center items-center h-screen">
       <div className="inline-block m-4 p-4 h-screen">
         <div className="justify-center text-center border-spacing-96 border-2 border-light-1 dark:border-light-1 rounded-3xl p-4 my-4">
-          <h1 className="text-2xl font-nunito font-bold dark:font-medium text-[30px] text-center border-b-2 border-light-1 dark:border-light-1 dark:text-gray-300">
+          <h1 className="text-2xl font-nunito font-bold dark:font-medium text-[30px] text-center border-b-2 border-light-1 dark:border-light-1 dark:text-gray-300"
+          onClick={() => speakText("Cambio de contraseña")}
+          onMouseLeave={() => {cancelVoice;}}
+          >
             Cambio de contraseña
           </h1>
           <br />
 
-          <h2 className="font-nunito font-bold dark:font-medium dark:text-gray-200">
+          <h2 className="font-nunito font-bold dark:font-medium dark:text-gray-200"
+          onClick={() => speakText("Ingresa tu email")}
+          onMouseLeave={() => {cancelVoice;}}
+          >
             Ingresa tu email
           </h2>
           <input
@@ -188,6 +212,8 @@ const PasswordRecovery = () => {
           />
 
           <p
+            onClick={() => speakText("Formato de email incorrecto")}
+            onMouseLeave={() => {cancelVoice;}}
             className="text-red-600"
             style={{
               visibility: !/^[\w-\.]+@([\w-]+\.)+[\w-]{3,4}$/.test(emailInput)
