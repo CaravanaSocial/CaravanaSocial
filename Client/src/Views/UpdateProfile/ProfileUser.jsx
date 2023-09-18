@@ -97,36 +97,36 @@ export default function ProfileUser() {
     if (name === "country") {
       setDataAcc({
         ...dataAcc,
-        location: { ...dataAcc.location, [name]: value },
+        location: { ...dataAcc?.location, [name]: value },
       });
       setErrors(
         validation({
           ...dataAcc,
-          location: { ...dataAcc.location, [name]: value },
+          location: { ...dataAcc?.location, [name]: value },
         })
       );
       dispatch(getState(value));
     } else if (name === "state") {
       setDataAcc({
         ...dataAcc,
-        location: { ...dataAcc.location, [name]: value },
+        location: { ...dataAcc?.location, [name]: value },
       });
       setErrors(
         validation({
           ...dataAcc,
-          location: { ...dataAcc.location, [name]: value },
+          location: { ...dataAcc?.location, [name]: value },
         })
       );
       dispatch(getCity(event.target.options[event.target.selectedIndex].id));
     } else if (name === "city") {
       setDataAcc({
         ...dataAcc,
-        location: { ...dataAcc.location, [name]: value },
+        location: { ...dataAcc?.location, [name]: value },
       });
       setErrors(
         validation({
           ...dataAcc,
-          location: { ...dataAcc.location, [name]: value },
+          location: { ...dataAcc?.location, [name]: value },
         })
       );
     } else {
@@ -169,7 +169,7 @@ export default function ProfileUser() {
 
   const handleDelCategory = (event) => {
     event.preventDefault();
-    const filteredCat = dataAcc.category.filter(
+    const filteredCat = dataAcc?.category?.filter(
       (cat) => cat !== event.target.value
     );
     setDataAcc({
@@ -205,7 +205,7 @@ export default function ProfileUser() {
               src={profilePicture}
             />
             <h2 className="font-vilaka font-bold text-[30px] max-lg:text-[50px] dark:font-light">
-              {account.name + " " + account.lastName}
+              {account?.name + " " + account?.lastName}
             </h2>
 
             {edit === true ? (
@@ -266,7 +266,7 @@ export default function ProfileUser() {
                   onChange={handleChange}
                 >
                   <option>Pais</option>
-                  {countries.map((c) => (
+                  {countries?.map((c) => (
                     <option key={c} value={c}>
                       {c}
                     </option>
@@ -281,7 +281,7 @@ export default function ProfileUser() {
                   onChange={handleChange}
                 >
                   <option>Estado/Provincia</option>
-                  {states.allStates?.map((c) => (
+                  {states?.allStates?.map((c) => (
                     <option key={c.name} id={c.id} value={c.name}>
                       {c.name}
                     </option>
@@ -338,7 +338,7 @@ export default function ProfileUser() {
                     Rubros seleccionados:{" "}
                   </h2>
                 ) : null}
-                {dataAcc.category?.map((cat) => {
+                {dataAcc?.category?.map((cat) => {
                   return (
                     <div key={cat}>
                       <button
@@ -390,7 +390,7 @@ export default function ProfileUser() {
                       type="text"
                       name="description"
                       placeholder="añadir descripcion"
-                      value={dataAcc.description}
+                      value={dataAcc?.description}
                       onChange={handleChange}
                       cols="28"
                       rows="8"
@@ -406,7 +406,7 @@ export default function ProfileUser() {
                       className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
                       type="text"
                       name="address"
-                      value={dataAcc.address}
+                      value={dataAcc?.address}
                       onChange={handleChange}
                     />
                     <p className="text-red-600">
@@ -446,9 +446,9 @@ export default function ProfileUser() {
               Capacitaciones en curso y completadas
             </h1>
 
-            {trainingsUser.length > 0 ? (
+            {trainingsUser?.length > 0 ? (
               <div className="flex flex-wrap justify-center">
-                {trainingsUser.map((t, i) => {
+                {trainingsUser?.map((t, i) => {
                   return (
                     <div key={i} className="flex justify-center">
                       <div className="text-center mx-1 my-4 max-lg:bg-light-0 dark:max-lg:bg-light-0 dark:max-lg:text-black  border-2 border-light-2 bg-light-1 dark:border-light-1 dark:bg-light-2 hover:scale-95 p-4 rounded-3xl w-[400px]">
