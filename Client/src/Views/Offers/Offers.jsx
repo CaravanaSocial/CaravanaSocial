@@ -53,7 +53,7 @@ export default function Offer() {
               name="country"
               onChange={handleChange}
             >
-              <option value="">Pais</option>
+              <option value="">Todos los paises</option>
               {countries?.map((c) => (
                 <option key={c} value={c}>
                   {c}
