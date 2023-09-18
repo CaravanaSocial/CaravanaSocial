@@ -20,8 +20,10 @@ const Faq = () => {
   };
 
   return (
+
     <div className="h-full flex   flex-col items-center ">
       {faqs?.map((x) => {
+
         return (
           <div key={x.id}>
             {" "}
