@@ -30,8 +30,9 @@ import BlogHub from "./components/Blog/BlogHub.jsx";
 import Faq from "./Views/Faq/Faq.jsx";
 import PasswordChange from "./Views/UpdateProfile/PasswordChange.jsx";
 
-import Verification from "./Views/Verification/Verification.jsx"
+import Verification from "./Views/Verification/Verification.jsx";
 import PasswordRecovery from "./Views/PasswordRecovery/PasswordRecovery.jsx";
+import NotFound from "./components/NotFound.jsx";
 
 function App() {
   const account =
@@ -82,9 +83,16 @@ function App() {
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/faq" element={<Faq />} />
 
+
           <Route path="/verification/:id" element={<Verification/>}/>
           <Route path="/password-recovery" element={<PasswordRecovery/>}/>
           <Route path=":name/changePassUser/:id" element={<PasswordChange/>}/>
+
+          <Route path="/verification/:id/:code" element={<Verification />} />
+          <Route path="/password-recovery" element={<PasswordRecovery />} />
+
+          <Route path="/*" element={<NotFound />} />
+
         </Routes>
         <Footer />
       </div>

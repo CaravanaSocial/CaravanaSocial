@@ -11,7 +11,10 @@ import {
   editUser,
   getTrainingsUser,
 } from "../../Redux/Actions/Actions";
+
 import { Link } from "react-router-dom";
+
+import NotFound from "../../components/NotFound";
 
 
 export default function ProfileUser() {
@@ -492,7 +495,9 @@ export default function ProfileUser() {
           </div>
         </div>
       ) : (
-        <div>Not found </div>
+        <div>
+          <NotFound />
+        </div>
       )}
     </div>
   );
