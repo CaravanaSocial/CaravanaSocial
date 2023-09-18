@@ -33,6 +33,7 @@ export default function RegisterUser() {
     CUD: "",
     category: [],
     email: "",
+    emailRep: "",
     password: "",
     passwordRep: "",
     certificates: "",
@@ -138,7 +139,7 @@ export default function RegisterUser() {
         location: userData.location,
         CUD: userData.CUD,
         category: userData.category,
-        email: userData.email,
+        email: userData.emailRep,
         password: userData.passwordRep,
         certificates: userData.certificates,
         freelancer: userData.freelancer,
@@ -348,11 +349,21 @@ export default function RegisterUser() {
             className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
             type="email"
             name="email"
-            placeholder="email"
+            placeholder="Email"
             value={userData.email}
             onChange={handleChange}
           />
           <h3 className="text-red-600">{errors.email ? errors.email : null}</h3>
+
+          <input
+            className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
+            type="email"
+            name="emailRep"
+            placeholder="Repite tu email"
+            value={userData.emailRep}
+            onChange={handleChange}
+          />
+          <h3 className="text-red-600">{errors.emailRep ? errors.emailRep : null}</h3>
 
           <h2 className="text-lg font-topmodern dark:text-gray-300">
             Contraseña
