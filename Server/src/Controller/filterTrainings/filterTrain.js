@@ -26,7 +26,7 @@ const filterTrain = async (info) => {
     if (offerFiltered) {
       return offerFiltered;
     } else {
-      throw new Error("No hay avisos en la base de datos");
+      throw new Error("No hay capacitaciones en la base de datos");
     }
   } catch (error) {}
 };

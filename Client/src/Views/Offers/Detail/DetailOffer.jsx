@@ -12,18 +12,20 @@ export default function DetailOffer() {
 
   React.useEffect(() => {
     dispatch(actions.getOfferByName(title));
+
+    return () => {
+      dispatch(clearVideos());
+    };
   }, []);
 
-
   const handleContact = () => {
-    if (offer.adminId === null){
+    if (offer.adminId === null) {
       window.location.href = `mailto:${offer.company.email}`;
     } else {
       window.location.href = `mailto:${"caravanasocial.dev@gmail.com"}`;
     }
   };
   const categories = offer?.areaTrainings?.map((x) => x.name).join(", ");
-
 
   return (
     <div className="h-full">
@@ -32,9 +34,12 @@ export default function DetailOffer() {
           <div className="max-w-4xl justify-center text-center border-2 border-light-1 rounded-3xl p-2 m-4">
             <div className="flex justify-around items-center">
               <img
-
                 className="w-52 max-lg:w-20 max-lg:h-20 rounded-full border-2 border-light-1"
-                src={offer?.company?.profilePicture ? offer?.company?.profilePicture : offer?.admin?.profilePicture}
+                src={
+                  offer?.company?.profilePicture
+                    ? offer?.company?.profilePicture
+                    : offer?.admin?.profilePicture
+                }
               />
 
               <div className="text-start">
@@ -80,7 +85,6 @@ export default function DetailOffer() {
       ) : (
         <div>{navigate("/login")}</div>
       )}
-
     </div>
   );
 }
