@@ -49,7 +49,7 @@ const Trainings = () => {
   };
 
   return (
-    <div className="m-4 p-4 h-full text-center justify-center flex flex-col">
+    <div className="m-4 p-4 h-full text-center items-center flex flex-col">
       {localStorage.length !== 0 ? (
         <>
           <div className="border-spacing-96 border-2 border-zinc-100 dark:border-zinc-800 rounded-3xl pt-2 shadow-md">
