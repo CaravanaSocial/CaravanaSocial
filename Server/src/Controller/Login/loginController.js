@@ -3,6 +3,7 @@ const bcrypt = require("bcryptjs");
 const {SIGNATURE} = process.env
 
 const loginController = async (acc, password) =>{
+    console.log("EMAILL:",acc.email);
     const validPassword = await bcrypt.compare(password, acc.password)
     if(!validPassword) {
         throw Error("Credenciales inválidas")

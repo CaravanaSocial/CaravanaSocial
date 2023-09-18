@@ -2,7 +2,8 @@ const {admin, training, offer} = require("../../db")
 const bcrypt = require("bcryptjs");
 
 const updateAdminController = async (props, id) =>{
-    const hashedPassword = props?.password ? await bcrypt.hash(props.password, saltRounds) : null
+    const {password} = props
+    const hashedPassword = props?.password ? await bcrypt.hash(props?.password, saltRounds) : null
     const updated = await admin.update(
         password ? {...props,password : hashedPassword}: props,{where:{id}})
     if(updated){

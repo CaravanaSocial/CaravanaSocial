@@ -105,7 +105,7 @@ export const createUser = (user) => {
       });
       Swal.fire({
         title: "Registro Completado!",
-        text: `hemos enviado un corro electronico a ${user.email} para confirmar su registro`,
+        text: `Hemos enviado un correo electronico a ${user.email} para confirmar su registro`,
         icon: "success",
         customClass: {
           popup: "holahola",
@@ -406,10 +406,11 @@ export const createCompany = (company) => {
       });
       Swal.fire({
         title: "Registro Completado!",
-        text: "Bienvenido",
+        text: `Hemos enviado un correo electronico a ${company.email} para confirmar su registro`,
         icon: "success",
         customClass: {
           popup: "holahola",
+          confirmButton: "bg-light-1",
         },
       });
       return false;
@@ -1131,11 +1132,11 @@ export const searchOffersByName = (name) => {
   };
 };
 
-export const emailVerify = (email) => {
+export const emailVerify = (email, code) => {
   return async function (dispatch) {
     try {
       const verifyEmail = (
-        await axios.get(`${serverURL}/email/?email=${email}`)
+        await axios.get(`${serverURL}/email/?email=${email}&code=${code}`)
       ).data;
       return verifyEmail;
     } catch (error) {

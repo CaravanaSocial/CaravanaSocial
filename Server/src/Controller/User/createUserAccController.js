@@ -19,7 +19,7 @@ const createUserAccController = async (props) => {
   const randomCode = Math.round(Math.random() * 999999);
   const saltRounds = 10;
   const hashedPassword = await bcrypt.hash(password, saltRounds);
-  const lowerCaseMail = props.email.toLowerCase()
+  const lowerCaseMail = props.email.toLowerCase();
   const defaultProfilePicture =
     "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Windows_10_Default_Profile_Picture.svg/2048px-Windows_10_Default_Profile_Picture.svg.png";
   const [newUser, created] = await user.findOrCreate({
