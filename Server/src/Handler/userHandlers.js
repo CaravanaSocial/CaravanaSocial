@@ -109,6 +109,7 @@ const updatePassUserHandler = async (req, res)=> {
     const { id } = req.params;
 
     const response = await updatePassUserController(id, oldPassword, newPassword)
+    console.log("Hola"+response);
     if(response){
       return res.status(200).send("Contraseña actualizada")
 

@@ -3,7 +3,7 @@ const { uploadImage } = require('../../Tools/imageCloudinary')
 
 const createSuccSto = async(body) =>{
     try {
-        const { name, image, testimony, facebook, linkedin, instagram, twitter } = body;
+        const { name, image, testimony, socialMedia } = body;
         if(!name || !image || !testimony)throw new Error("Falta informacion necesaria")
         // const realImage = uploadImage(image)
     console.log(image);
@@ -15,10 +15,7 @@ const createSuccSto = async(body) =>{
                 name,
                 image,
                 testimony,
-                facebook,
-                linkedin,
-                instagram,
-                twitter
+                socialMedia
             }
         })
         
