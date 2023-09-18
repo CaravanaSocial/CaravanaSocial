@@ -45,6 +45,8 @@ import {
 
   GET_ALL_BLOGS,
   GET_BLOGS_BY_ID,
+  POST_BLOG,
+
   FREELANCER_BY_NAME,
   TRAINING_BY_NAME,
   OFFERS_BY_NAME,
@@ -89,6 +91,7 @@ const initialState = {
 
   blogs:[],
   blog:[],
+  createdBlog:"",
 
   faqs: [],
   enableSpeech: false,
@@ -402,6 +405,12 @@ export default function rootReducer(state = initialState, action) {
           ...state,
           blog:action.payload
         }
+      
+      case POST_BLOG:
+        return{
+          ...state,
+          createdBlog:action.payload
+        }  
 
     case ENABLE_SPEECH:
       return {

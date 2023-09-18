@@ -1038,7 +1038,12 @@ export const deleteQAndA = (id) => {
 export const postBlog = (info) => {
   return async function (dispatch) {
     try {
-      await axios.post(`${serverURL}/blogs/create`, info);
+      const {data} = await axios.post(`${serverURL}/blogs/create`, info);
+      console.log(data.id)
+      dispatch({
+        type: POST_BLOG,
+        payload: data.id,
+      });
     } catch (error) {
       console.log(error);
     }
@@ -1068,6 +1073,17 @@ export const getBlogsByID = (id) => {
     } catch (error) {}
   };
 };
+
+export const deleteBlog = (id) => {
+  return async function (dispatch) {
+    try {
+      await axios.delete(`${serverURL}/blogs/delete/${id}`)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+
 export const searchFreelancersByName = (name) => {
   return async function (dispatch) {
     try {
