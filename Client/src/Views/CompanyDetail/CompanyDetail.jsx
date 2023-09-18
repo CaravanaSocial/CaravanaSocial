@@ -73,13 +73,15 @@ const CompanyDetail = () => {
               </h2>
               {companyIdRelacion ? (
                 <div className=" flex flex-wrap items-center justify-center ">
-                  {companyIdRelacion.map((t) => {
+                  {companyIdRelacion.map((t, i) => {
                     return (
-                      <div className=" m-1 border-2 border-light-1 hover:scale-95 bg-light-1 max-lg:bg-light-2 dark:bg-light-2 dark:max-lg:bg-light-1 p-4 rounded-3xl shadow-md h-full w-[300px]  justify-center">
+                      <div key={i} className=" m-1 border-2 border-light-1 hover:scale-95 bg-light-1 max-lg:bg-light-2 dark:bg-light-2 dark:max-lg:bg-light-1 p-4 rounded-3xl shadow-md h-full w-[300px]  justify-center">
                         <div className="font-nunito text-xl dark:max-lg:text-black dark:max-lg:font-bold">
-                          {t.name}
+                          <h2 className="text-xl font-nunito font-bold border-b-2 border-light-2 dark:border-light-1 mb-2">
+                            {t.name}
+                          </h2>
                           <div className="flex justify-center">
-                            <video
+                            <video className="border-2 border-gray-700 rounded-3xl h-36"
                               src={t.video[0]}
                               controls
                               width="200"
