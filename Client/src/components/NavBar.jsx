@@ -148,19 +148,6 @@ export default function NavBar() {
         </div>
       )}
 
-      <button
-        onClick={() => navigate("/faq")}
-        className="text-center block rounded-lg px-4 py-2 text-sm text-gray-500 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 hover:text-gray-700 dark:hover:text-gray-400"
-      >
-        Preguntas Frecuentes
-      </button>
-      <button
-        onClick={() => navigate("/blogs")}
-        className="text-center block rounded-lg px-4 py-2 text-sm text-gray-500 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 hover:text-gray-700 dark:hover:text-gray-400"
-      >
-        Blog
-      </button>
-
       <div className="relative">
         <div className="inline-flex items-center overflow-hidden rounded-md bg-gray-200 dark:bg-gray-800 p-0.5 hover:p-0 hover:border-2 hover:border-light-1">
           <button
