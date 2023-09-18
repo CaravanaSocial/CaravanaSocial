@@ -104,6 +104,7 @@ const PasswordRecovery = () => {
     return errors;
   };
   const changePasswordHandle = () => {
+    console.log("GOBAL ERROR"+globalErrors);
     if (Number(randomCode) === Number(inputs.code)) {
       if (acc.type === "company") {
         dispatch(
@@ -114,6 +115,7 @@ const PasswordRecovery = () => {
           if (!editError) {
             navigate("/login");
           }
+          console.log("EDIT ERROR"+editError);
           dispatch(
             setNewErrors({
               type: "PASSWORD_RECOVERY",
@@ -155,15 +157,7 @@ const PasswordRecovery = () => {
         });
       }
     }
-    Swal.fire({
-      title: "Se cambio la contraseña exitosamente",
 
-      icon: "success",
-      customClass: {
-        popup: "holahola",
-        confirmButton: "bg-light-1",
-      },
-    });
   };
 
   const isSubmitDisabled = Object.keys(errors).length > 0;

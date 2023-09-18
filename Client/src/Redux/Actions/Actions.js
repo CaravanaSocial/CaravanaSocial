@@ -444,8 +444,27 @@ export const editCompany = (id, company) => {
       dispatch({
         type: EDIT_COMPANY,
       });
+      Swal.fire({
+        title: "Se cambio la contraseña exitosamente",
+  
+        icon: "success",
+        customClass: {
+          popup: "holahola",
+          confirmButton: "bg-light-1",
+        },
+      });
       return false;
     } catch (error) {
+      console.log(error.response.data)
+      if(error.response.data.error === 'La contraseña es igual a la anterior'){
+        Swal.fire({
+          title: error.response.data.error,
+      
+          icon: "error",
+          customClass: {
+          popup: "",
+          }})
+      }
       dispatch({
         type: ERRORS,
         payload: { type: EDIT_COMPANY, payload: error.response.data },
@@ -1198,28 +1217,3 @@ export const changePassword = (id, passwordChange, typeOfCount) => {
     }
   }
 }
-
-// export const editTraining = (id, training) => {
-//   //---------- Endpoint to Dev server -- Descomentar para usar
-//   // const endpoint = `http://localhost:3001/trainings/update/${id}`;
-
-//   //---------- Endpoint to deployed server
-//   const endpoint = `${serverURL}/trainings/${id}`;
-//   return async (dispatch) => {
-//     try {
-//       const response = await axios.patch(endpoint, training);
-//       const { data } = response;
-//       Swal.fire({
-//         title: "Capacitacion Anadida!",
-
-//         icon: "success",
-//         customClass: {
-//           popup: "",
-//         },
-//       });
-//       return dispatch({ type: EDIT_TRAINING });
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-// };
