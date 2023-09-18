@@ -13,9 +13,7 @@ export default function DetailOffer() {
   React.useEffect(() => {
     dispatch(actions.getOfferByName(title));
 
-    return () => {
-      dispatch(clearVideos());
-    };
+    return () => dispatch(actions.clearVideos());
   }, []);
 
   const handleContact = () => {
