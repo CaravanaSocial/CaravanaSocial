@@ -84,8 +84,8 @@ export const TRAINING_BY_NAME = "TRAINING_BY_NAME";
 export const OFFERS_BY_NAME = "OFFERS_BY_NAME";
 export const ENABLE_SPEECH = "ENABLE_SPEECH";
 
-const serverURL = "https://caravanaserver.onrender.com";
-// const serverURL = "http://localhost:3001";
+// const serverURL = "https://caravanaserver.onrender.com";
+const serverURL = "http://localhost:3001";
 
 export const createUser = (user) => {
   //---------- Endpoint to Dev server -- Descomentar para usar
