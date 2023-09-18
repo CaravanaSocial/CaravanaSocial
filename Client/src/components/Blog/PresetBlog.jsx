@@ -109,7 +109,7 @@ export default function PresetBlog(){
         'Has creado con exito el Post!',
         'success'
       )
-      setTimeout(function ok(){navigate(`/blog/${created}`)}, 2000)
+      navigate('/blogs')
     }
 
     return (
