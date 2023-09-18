@@ -570,7 +570,7 @@ const ProfileCompany = () => {
             <div className="my-9 mr-4 border-2 rounded-3xl border-light-2 dark:border-light-1 dark:max-lg:border-none  max-lg:border-none">
               <div className="flex justify-between m-2">
                 <h1 className="text-3xl font-nunito font-bold px-2 dark:text-gray-300"
-                onClick={() => speakText("No hay capacitaciones creadas todavia")}
+                onClick={() => speakText("Mis ofertas de trabajo")}
                 onMouseLeave={() => {cancelVoice;}}
                 >
                   Mis ofertas de trabajo
