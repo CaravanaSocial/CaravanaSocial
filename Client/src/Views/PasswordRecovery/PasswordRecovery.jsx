@@ -39,14 +39,15 @@ const PasswordRecovery = () => {
   };
 
   const handleSubmit = (e) => {
-    dispatch(emailVerify(emailInput)).then((verified) => {
+    var randomCodeMath = Math.round(Math.random() * 999999);
+
+    setRandomCode(randomCodeMath);
+    dispatch(emailVerify(emailInput, randomCodeMath)).then((verified) => {
       if (verified?.acc) {
         dispatch(clearErrors());
         setAcc(verified);
         setEdit(true);
-        var randomCodeMath = Math.round(Math.random() * 999999);
-        console.log(randomCodeMath);
-        setRandomCode(randomCodeMath);
+
         Swal.fire({
           title:
             "Se ha enviado un codigo de recuperacion a tu correo electronico",

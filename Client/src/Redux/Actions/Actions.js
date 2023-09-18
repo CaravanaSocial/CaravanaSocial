@@ -1116,11 +1116,11 @@ export const searchOffersByName = (name) => {
   };
 };
 
-export const emailVerify = (email) => {
+export const emailVerify = (email, code) => {
   return async function (dispatch) {
     try {
       const verifyEmail = (
-        await axios.get(`${serverURL}/email/?email=${email}`)
+        await axios.get(`${serverURL}/email/?email=${email}&code=${code}`)
       ).data;
       return verifyEmail;
     } catch (error) {
