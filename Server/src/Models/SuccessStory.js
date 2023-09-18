@@ -20,21 +20,9 @@ module.exports = (sequelize) => {
             type: DataTypes.TEXT,
             allowNull: false
         },
-        facebook:{
-            type: DataTypes.TEXT,
-            allowNull: true
-        },
-        linkedin:{
-            type: DataTypes.TEXT,
-            allowNull: true
-        },
-        instagram:{
-            type: DataTypes.TEXT,
-            allowNull : true
-        },
-        twitter:{
-            type: DataTypes.TEXT,
+        socialMedia:{
+            type: DataTypes.ARRAY(DataTypes.STRING),
             allowNull:true
-        }
+            }
     })
 }

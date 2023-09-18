@@ -16,7 +16,7 @@ const Trainings = () => {
   const countries = useSelector((state) => state.countries);
   const category = useSelector((state) => state.categories);
   const dispatch = useDispatch();
-  const approvedTraininigs = trainingsFiltered.filter(
+  const approvedTraininigs = trainingsFiltered?.filter(
     (x) => x.approved === true
   );
   const [filter, setFilter] = useState({
@@ -25,7 +25,7 @@ const Trainings = () => {
   });
 
   useEffect(() => {
-    if (trainingsFiltered.length) {
+    if (trainingsFiltered?.length) {
       return;
     }
     dispatch(getTrainings());
@@ -34,6 +34,9 @@ const Trainings = () => {
   }, []);
 
   useEffect(() => {
+    dispatch(getTrainings());
+    dispatch(getCategories());
+    dispatch(getCountry());
     dispatch(filterTrainingBy(filter));
   }, [filter]);
 
@@ -46,7 +49,7 @@ const Trainings = () => {
   };
 
   return (
-    <div className="m-4 p-4 h-full text-center flex flex-col">
+    <div className="m-4 p-4 h-full text-center items-center flex flex-col">
       {localStorage.length !== 0 ? (
         <>
           <div className="border-spacing-96 border-2 border-zinc-100 dark:border-zinc-800 rounded-3xl pt-2 shadow-md">
@@ -56,8 +59,8 @@ const Trainings = () => {
               onChange={handleChange}
               name="country"
             >
-              <option value="Todos">Todos los Paises</option>
-              {countries.map((p) => {
+              <option value="">Todos los Paises</option>
+              {countries?.map((p) => {
                 return (
                   <option key={p} value={p}>
                     {p}
@@ -81,7 +84,7 @@ const Trainings = () => {
               })}
             </select>
           </div>
-          <h1 className="font-vilaka font-bold text-[50px]">Entrenamientos</h1>
+          <h1 className="font-vilaka font-bold text-[50px]">Capacitaciones</h1>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {approvedTraininigs?.map((training) => (
               <TrainingCard key={training.id} training={training} />

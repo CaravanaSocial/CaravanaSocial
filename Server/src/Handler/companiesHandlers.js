@@ -93,6 +93,7 @@ const updatePassCompanyHandler =  async (req, res)=> {
         const { id } = req.params;
         
         const response = await updatePassCompanyController(id, oldPassword, newPassword);
+        console.log("HOla"+ response)
         return res.status(200).send("Se ha cambiado exitosamente la contraseña")
 
     } catch (error) {
