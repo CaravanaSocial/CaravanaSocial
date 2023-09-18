@@ -92,10 +92,19 @@ const Verification = () => {
     }
   };
   return (
-    <div>
-      {/*  <input onChange={handleChange} type="number" /> */}
-      <button onClick={handleSubmit}>Verificar</button>
-      {/* <p style={{ visibility: error !== "" ? "visible" : "hidden"}}>{error}</p> */}
+    <div className="h-screen">
+      <div className="flex justify-center text-center">
+        <div className="mt-4">
+          <h1 className="text-4xl text-[50px] border-b-2 border-light-1 dark:border-light-1 dark:text-gray-300"
+          >Verificación</h1>
+          <p className="text-xl text-[50px] text-center dark:text-gray-300"
+          >Pulsa el botón para verificar tu cuenta y a continuacion podras iniciar sesión</p>
+          <br />
+          <button className="bg-light-1 p-2 rounded-3xl text-xl dark:text-black"
+            onClick={handleSubmit}
+          >Verificar</button>
+        </div>
+      </div>
     </div>
   );
 };
