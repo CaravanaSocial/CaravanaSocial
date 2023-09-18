@@ -65,7 +65,7 @@ const LandingPage = () => {
         <h1
           onClick={() => speakText("Conócenos")}
           onMouseLeave={() => {}}
-          className="font-vilaka xl:text-[50px]  text-[40px] font-bold dark:text-black"
+          className="font-nunito xl:text-[50px]  text-[40px] font-bold dark:text-black"
         >
           ¡Conócenos!
         </h1>

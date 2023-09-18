@@ -21,7 +21,9 @@ const Home = () => {
   const dispatch = useDispatch();
 
   const { trainings, offers, freelancers } = useSelector((state) => state);
+
   const approvedTraininigs = trainings?.filter(x=>x.approved===true)
+
 
   useEffect(() => {
     play("Página de inicio")
@@ -48,8 +50,6 @@ const Home = () => {
   };
 
   return (
-
-    
     <main
       name="asdasd"
       className="2xl:flex  2xl:flex-row xl:flex xl:flex-row  lg:flex lg:flex-col  text-center  flex-col flex  2xl:w-full 2xl:h-full"
@@ -101,7 +101,6 @@ const Home = () => {
           Ver Mas
         </button>
       </div>
-
     </main>
   );
 };

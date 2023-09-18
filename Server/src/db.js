@@ -14,7 +14,7 @@ const PrefixesModel = require("./Models/Prefixes");
 const SuccessModel = require("./Models/SuccessStory");
 const QuestionsModel = require("./Models/frequentQuestions");
 const CommentsModel = require("./Models/comments");
-const BlogModel = require("./Models/blog")
+const BlogModel = require("./Models/blog");
 
 // const sequelize = new Sequelize(SERVER_URL, {
 //   logging: false,
@@ -61,7 +61,7 @@ const {
   success,
   question,
   comment,
-  blog
+  blog,
 } = sequelize.models;
 
 //Relacion de empresas con capacitaciones

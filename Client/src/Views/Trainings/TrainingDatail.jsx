@@ -1,6 +1,10 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
-import { createComment, acceptTraining } from "../../Redux/Actions/Actions";
+import {
+  createComment,
+  acceptTraining,
+  clearVideos,
+} from "../../Redux/Actions/Actions";
 import { useParams, NavLink, useNavigate } from "react-router-dom";
 import { trainingDetail } from "../../Redux/Actions/Actions";
 
@@ -66,9 +70,9 @@ const DetailTrainings = () => {
   };
 
   useEffect(() => {
-    // Solo ejecuta el efecto si se ha añadido un comentario
     dispatch(trainingDetail(id));
-    // Restablece la variable de estado a false
+
+    return () => dispatch(clearVideos());
   }, [commentAdded, updateButton]);
 
   return (
@@ -78,7 +82,11 @@ const DetailTrainings = () => {
           <div className="flex flex-col items-center ">
             <img
               className="w-[300px] rounded-full"
-              src={detail?.company?.profilePicture ? detail?.company?.profilePicture : detail?.admin?.profilePicture}
+              src={
+                detail?.company?.profilePicture
+                  ? detail?.company?.profilePicture
+                  : detail?.admin?.profilePicture
+              }
               alt={detail?.company?.name}
             />
             <span className="font-vilaka font-bold text-[55px] hover:text-light-1">

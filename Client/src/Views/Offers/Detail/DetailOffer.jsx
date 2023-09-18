@@ -12,10 +12,12 @@ export default function DetailOffer() {
 
   React.useEffect(() => {
     dispatch(actions.getOfferByName(title));
+
+    return () => dispatch(actions.clearVideos());
   }, []);
 
   const handleContact = () => {
-    if (offer.adminId === null){
+    if (offer.adminId === null) {
       window.location.href = `mailto:${offer.company.email}`;
     } else {
       window.location.href = `mailto:${"caravanasocial.dev@gmail.com"}`;
@@ -31,7 +33,11 @@ export default function DetailOffer() {
             <div className="flex justify-around items-center">
               <img
                 className="w-52 max-lg:w-20 max-lg:h-20 rounded-full border-2 border-light-1"
-                src={offer?.company?.profilePicture ? offer?.company?.profilePicture : offer?.admin?.profilePicture}
+                src={
+                  offer?.company?.profilePicture
+                    ? offer?.company?.profilePicture
+                    : offer?.admin?.profilePicture
+                }
               />
 
               <div className="text-start">
