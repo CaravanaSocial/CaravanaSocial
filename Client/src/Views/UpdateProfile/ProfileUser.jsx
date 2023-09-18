@@ -11,6 +11,8 @@ import {
   editUser,
   getTrainingsUser,
 } from "../../Redux/Actions/Actions";
+import { Link } from "react-router-dom";
+
 
 export default function ProfileUser() {
   const account =
@@ -427,7 +429,16 @@ export default function ProfileUser() {
                   >
                     Cancelar
                   </button>
+
                 </section>
+                <div>
+                  <Link
+                    to={`changePassUser/${dataAcc.id}`}
+                    className="bg-light-2 font-nunito font-bold rounded-3xl px-2 py-1 border-2 border-transparent dark:text-zinc-900 hover:text-light-2 hover:scale-95 dark:bg-light-1"
+                  >
+                    Cambio de contraseña
+                  </Link>
+                </div>
               </div>
             ) : (
               <button

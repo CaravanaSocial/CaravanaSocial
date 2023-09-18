@@ -86,6 +86,9 @@ export const ENABLE_SPEECH = "ENABLE_SPEECH";
 
 export const CHANGE_PASSWORD = "CHANGE_PASSWORD"; 
 
+//---------------Provicional------------
+
+
 // const serverURL = "https://caravanaserver.onrender.com";
 const serverURL = "http://localhost:3001";
 
@@ -1140,17 +1143,81 @@ export const enableSpeech = (boolean) => {
 };
 
 
-export const changePassword = (id, passwordChange) => {
-  const endpoint = `http://localhost:3001/company/passUpdate/${id}`
+export const changePassword = (id, passwordChange, typeOfCount) => {
+  const {oldPassword, newPassword} = passwordChange
   return async function (dispatch) {
     try {
-      const response = await axios.patch(endpoint, passwordChange)
-      const { data } = response
-      dispatch({
-        type: CHANGE_PASSWORD
-      })
+      if(typeOfCount === "company"){
+        console.log("SOY UN USER")
+        console.log(oldPassword)
+        console.log(newPassword)
+        const endpoint = `http://localhost:3001/company/passUpdate/${id}`
+        const response = await axios.patch(endpoint, passwordChange)
+        const { data } = response
+        console.log(data)
+        Swal.fire({
+              title: "Contraseña actualizada!",
+          
+              icon: "success",
+              customClass: {
+              popup: "",
+              },
+          });
+        dispatch({
+          type: CHANGE_PASSWORD
+        })
+      }else if(typeOfCount === "user"){
+        const endpoint = `http://localhost:3001/user/passUpdate/${id}`
+        const response = await axios.patch(endpoint, passwordChange)
+        const { data } = response
+        console.log("hola" + data);
+        Swal.fire({
+          title: "Contraseña actualizada!",
+      
+          icon: "success",
+          customClass: {
+          popup: "",
+          },
+      });
+        dispatch({
+          type: CHANGE_PASSWORD
+        })
+      }
     } catch (error) {
+      Swal.fire({
+        title: "Algo Salio mal",
+    
+        icon: "error",
+        customClass: {
+        popup: "",
+        },
+    });
      return error 
     }
   }
 }
+
+// export const editTraining = (id, training) => {
+//   //---------- Endpoint to Dev server -- Descomentar para usar
+//   // const endpoint = `http://localhost:3001/trainings/update/${id}`;
+
+//   //---------- Endpoint to deployed server
+//   const endpoint = `${serverURL}/trainings/${id}`;
+//   return async (dispatch) => {
+//     try {
+//       const response = await axios.patch(endpoint, training);
+//       const { data } = response;
+//       Swal.fire({
+//         title: "Capacitacion Anadida!",
+
+//         icon: "success",
+//         customClass: {
+//           popup: "",
+//         },
+//       });
+//       return dispatch({ type: EDIT_TRAINING });
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   };
+// };

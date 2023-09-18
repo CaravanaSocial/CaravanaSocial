@@ -1,58 +1,88 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { changePassword }from "../../Redux/Actions/Actions"
-
-
+import { changePassword } from "../../Redux/Actions/Actions";
+import { useNavigate, useParams } from "react-router-dom";
 
 const PasswordChange = () => {
-    const [passwordChange, setPasswordChange] = useState({
-        oldPassword:"",
-        newPassword:""
-    })
-    console.log(localStorage);
-    const dispatch = useDispatch();
+  const { id } = useParams();
 
-    const handleChange = (event) => {
-        const name = event.target.name;
-        const value = event.target.value;
+  const [passwordChange, setPasswordChange] = useState({
+    oldPassword: "",
+    newPassword: "",
+  });
 
-        setPasswordChange({
-            ...PasswordChange,
-            [name]:value
-        })
+  const [passwordValidation, setPasswordValidation] = useState({
+    valid: false,
+    error: "",
+  });
+
+  const typeOfCount = localStorage.type;
+  const dispatch = useDispatch();
+  const navigate = useNavigate()
+
+  const handleChange = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+
+    setPasswordChange({
+      ...passwordChange,
+      [name]: value,
+    });
+
+    const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+    const isValid = regex.test(value);
+
+    if (isValid) {
+      setPasswordValidation({
+        valid: true,
+        error: "",
+      });
+    } else {
+      setPasswordValidation({
+        valid: false,
+        error:
+          "La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula y un número.",
+      });
     }
+  };
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        dispatch(changePassword())
-    }
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    dispatch(changePassword(id, passwordChange, typeOfCount));
+    navigate("/home")
+  };
 
-    return(
-        <div>
-            <h1>Cambio de Contraseña</h1>
-            <form onSubmit={handleSubmit}>
-                <label>Password/contraseña antigua: </label>
-                <input 
-                type="text"
-                name="oldPassword" 
-                value={passwordChange.oldPassword}
-                onChange={handleChange}
-                />
+  return (
+    <div>
+      <h1>Cambio de Contraseña</h1>
+      <form onSubmit={handleSubmit}>
+        <label>Password/contraseña antigua: </label>
+        <input
+          type="passwprd"
+          name="oldPassword"
+          value={passwordChange.oldPassword}
+          onChange={handleChange}
+        />
 
-                <br/>
-                <p>-------------------------------------------</p>
-                <label>Password/contraseña nueva</label>
-                <input 
-                type="text"
-                name="newPassword"
-                value={passwordChange.newPassword}
-                onChange={handleChange}
-                />
-                <button>Enviar</button>
-            </form>
-        </div>
-    )
-}
-
+        <br />
+        <p>-------------------------------------------</p>
+        <label>Password/contraseña nueva</label>
+        <input
+          type="password"
+          name="newPassword"
+          value={passwordChange.newPassword}
+          onChange={handleChange}
+        />
+        {passwordValidation.error && (
+          <div style={{ color: "red" }}>{passwordValidation.error}</div>
+        )}
+        <button disabled={!passwordValidation.valid}>Enviar</button>
+      </form>
+    </div>
+  );
+};
 
 export default PasswordChange;
+
+
+

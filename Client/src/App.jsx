@@ -84,7 +84,7 @@ function App() {
 
           <Route path="/verification/:id" element={<Verification/>}/>
           <Route path="/password-recovery" element={<PasswordRecovery/>}/>
-          <Route path="/changePassUser/:id" element={<PasswordChange/>}/>
+          <Route path=":name/changePassUser/:id" element={<PasswordChange/>}/>
         </Routes>
         <Footer />
       </div>

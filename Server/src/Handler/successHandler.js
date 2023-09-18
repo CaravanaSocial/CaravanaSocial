@@ -33,9 +33,9 @@ const getAllSuccessStories = async (req, res) => {
 
 const updateSuccessStories = async (req, res) => {
   try {
-    const {name, image, testimony, facebook, linkedin, instagram, twitter} = req.body;
+    const {name, image, testimony, socialMedia} = req.body;
     const { id } = req.params
-    const updatedStory = await changeStory(name, image, testimony, facebook, linkedin, instagram, twitter, id);
+    const updatedStory = await changeStory(name, image, testimony, socialMedia, id);
 
     if (!updatedStory)
       return res.status(400).send("No se ha podido actualizar");
