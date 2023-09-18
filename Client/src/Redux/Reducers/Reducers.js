@@ -42,7 +42,6 @@ import {
   GET_TRAININGS_BY_VALUE,
   CLEAR_FREELANCERS,
   GET_Q_AND_A,
-
   GET_ALL_BLOGS,
   GET_BLOGS_BY_ID,
   FREELANCER_BY_NAME,
@@ -79,18 +78,14 @@ const initialState = {
   comments: [],
   companyDetail: {},
   successCases: [],
-  imageChange: false,
   userDetail: {},
   trainingsUser: [],
   trainingsApproved: [],
   trainingsDeclined: [],
   trainingsNoCheck: [],
-  faqs:[],
-
-  blogs:[],
-  blog:[],
-
   faqs: [],
+  blogs: [],
+  blog: [],
   enableSpeech: false,
 };
 
@@ -236,6 +231,7 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         currentAccount: action.payload,
+        errors: {},
       };
     case LOGOUT:
       return {
@@ -330,6 +326,8 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         video: [],
+        offer: [],
+        trainingsDetail: {},
       };
 
     case ADD_USER_TRAINING:
@@ -390,25 +388,23 @@ export default function rootReducer(state = initialState, action) {
         offers: action.payload,
       };
 
+    case GET_ALL_BLOGS:
+      return {
+        ...state,
+        blogs: action.payload,
+      };
 
-      case GET_ALL_BLOGS:
-        return {
-          ...state,
-          blogs:action.payload
-        }
-
-      case GET_BLOGS_BY_ID:
-        return {
-          ...state,
-          blog:action.payload
-        }
+    case GET_BLOGS_BY_ID:
+      return {
+        ...state,
+        blog: action.payload,
+      };
 
     case ENABLE_SPEECH:
       return {
         ...state,
         enableSpeech: action.payload,
       };
-
 
     default:
       return { ...state };

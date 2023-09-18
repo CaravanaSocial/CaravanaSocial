@@ -57,7 +57,7 @@ const CompanyDetail = () => {
             </p>
             <p className="font-nunito font-bold flex flex-col justify-center text-center items-center text-[25px] dark:font-medium">
               <HiOutlineLocationMarker size={30} />
-              {detail?.location?.contry}, {detail?.location?.state},{" "}
+              {detail?.location?.country}, {detail?.location?.state},{" "}
               {detail?.location?.city}
             </p>
             <span className="font-nunito font-bold flex flex-col justify-center items-center dark:font-medium text-[25px] mb-9">
