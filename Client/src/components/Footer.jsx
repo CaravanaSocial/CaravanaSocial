@@ -1,4 +1,8 @@
+import {useNavigate} from "react-router-dom"
+
 function Footer() {
+  const navigate = useNavigate()
+
   return (
     <footer className="flex flex-col items-center bg-light-1 text-center text-white">
       <div className="container mt-10">
