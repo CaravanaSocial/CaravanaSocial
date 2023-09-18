@@ -225,7 +225,7 @@ const AdminDashboard = () => {
                         return (
                           <div key={i}>
                             <NavLink to={`/training/detail/${t.id}`}>
-                              {t.name}{" "}
+                              <TrainingCard training={t} />{" "}
                             </NavLink>
                           </div>
                         );

@@ -488,7 +488,7 @@ const ProfileCompany = () => {
                             </h2>
                             <div>
                               <video
-                                className="inline-block border-2 border-light-1 dark:border-light-1 rounded-3xl"
+                                className="inline-block border-2 border-gray-700 rounded-3xl h-36"
                                 src={t.video[0]}
                                 controls
                                 width="200"

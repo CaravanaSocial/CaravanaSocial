@@ -121,8 +121,10 @@ export default function NavBar() {
     location.pathname === "/register-user" ||
     location.pathname === "/register-company" ||
     location.pathname === "/login" ||
-    location.pathname === `/${account.name + account.lastName}` ||
-    location.pathname === "/profile-company"
+    location.pathname === `/${account?.name + account?.lastName}` ||
+    location.pathname === "/profile-company" ||
+    location.pathname === "/faq" ||
+    location.pathname === "/blogs"
   );
 
   return (

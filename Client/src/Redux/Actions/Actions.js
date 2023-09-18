@@ -580,6 +580,7 @@ export const getTrainingsByValue = (value) => {
   // const endpoint = `http://localhost:3001/trainings`;
 
   //---------- Endpoint to deployed server
+
   const endpoint = `${serverURL}/trainings/?option=${value}`;
   return async (dispatch) => {
     try {
