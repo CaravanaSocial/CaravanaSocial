@@ -72,9 +72,7 @@ const DetailTrainings = () => {
   useEffect(() => {
     dispatch(trainingDetail(id));
 
-    return () => {
-      dispatch(clearVideos());
-    };
+    return () => dispatch(clearVideos());
   }, [commentAdded, updateButton]);
 
   return (

@@ -122,7 +122,9 @@ export default function NavBar() {
     location.pathname === "/register-company" ||
     location.pathname === "/login" ||
     location.pathname === `/${account?.name + account?.lastName}` ||
-    location.pathname === "/profile-company"
+    location.pathname === "/profile-company" ||
+    location.pathname === "/faq" ||
+    location.pathname === "/blogs"
   );
 
   return (
