@@ -218,7 +218,7 @@ export const editUser = (id, user) => {
       dispatch({
         type: EDIT_USER,
       });
-      return data;
+      return false;
     } catch (error) {
       return error;
     }
@@ -587,7 +587,6 @@ export const getTrainingsByValue = (value) => {
       const response = await axios.get(endpoint);
       const { data } = response;
 
-
       return dispatch({ type: GET_TRAININGS_BY_VALUE, payload: data });
     } catch (error) {
       console.log(error);
@@ -665,7 +664,6 @@ export const acceptTraining = (id, answer) => {
   return async function (dispatch) {
     try {
       const response = await axios.patch(endpoint, answer);
-
     } catch (error) {
       console.log(error);
     }
@@ -995,7 +993,6 @@ export const createQAndA = (input) => {
     try {
       const response = (await axios.post(`${serverURL}/question/create`, input))
         .data;
-
     } catch (error) {
       console.log("cat", error.message);
     }
