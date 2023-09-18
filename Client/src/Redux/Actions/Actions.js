@@ -84,10 +84,9 @@ export const TRAINING_BY_NAME = "TRAINING_BY_NAME";
 export const OFFERS_BY_NAME = "OFFERS_BY_NAME";
 export const ENABLE_SPEECH = "ENABLE_SPEECH";
 
-export const CHANGE_PASSWORD = "CHANGE_PASSWORD"; 
+export const CHANGE_PASSWORD = "CHANGE_PASSWORD";
 
 //---------------Provicional------------
-
 
 // const serverURL = "https://caravanaserver.onrender.com";
 const serverURL = "http://localhost:3001";
@@ -651,7 +650,7 @@ export const editTraining = (id, training) => {
       const { data } = response;
       Swal.fire({
         title: "Capacitacion Anadida!",
-
+        text: `Necesitamos que el administrador revise y apruebe tu solicitud`,
         icon: "success",
         customClass: {
           popup: "",
@@ -1144,60 +1143,59 @@ export const enableSpeech = (boolean) => {
   };
 };
 
-
 export const changePassword = (id, passwordChange, typeOfCount) => {
-  const {oldPassword, newPassword} = passwordChange
+  const { oldPassword, newPassword } = passwordChange;
   return async function (dispatch) {
     try {
-      if(typeOfCount === "company"){
-        console.log("SOY UN USER")
-        console.log(oldPassword)
-        console.log(newPassword)
-        const endpoint = `http://localhost:3001/company/passUpdate/${id}`
-        const response = await axios.patch(endpoint, passwordChange)
-        const { data } = response
-        console.log(data)
+      if (typeOfCount === "company") {
+        console.log("SOY UN USER");
+        console.log(oldPassword);
+        console.log(newPassword);
+        const endpoint = `http://localhost:3001/company/passUpdate/${id}`;
+        const response = await axios.patch(endpoint, passwordChange);
+        const { data } = response;
+        console.log(data);
         Swal.fire({
-              title: "Contraseña actualizada!",
-          
-              icon: "success",
-              customClass: {
-              popup: "",
-              },
-          });
+          title: "Contraseña actualizada!",
+
+          icon: "success",
+          customClass: {
+            popup: "",
+          },
+        });
         dispatch({
-          type: CHANGE_PASSWORD
-        })
-      }else if(typeOfCount === "user"){
-        const endpoint = `http://localhost:3001/user/passUpdate/${id}`
-        const response = await axios.patch(endpoint, passwordChange)
-        const { data } = response
+          type: CHANGE_PASSWORD,
+        });
+      } else if (typeOfCount === "user") {
+        const endpoint = `http://localhost:3001/user/passUpdate/${id}`;
+        const response = await axios.patch(endpoint, passwordChange);
+        const { data } = response;
         console.log("hola" + data);
         Swal.fire({
           title: "Contraseña actualizada!",
-      
+
           icon: "success",
           customClass: {
-          popup: "",
+            popup: "",
           },
-      });
+        });
         dispatch({
-          type: CHANGE_PASSWORD
-        })
+          type: CHANGE_PASSWORD,
+        });
       }
     } catch (error) {
       Swal.fire({
         title: "Algo Salio mal",
-    
+
         icon: "error",
         customClass: {
-        popup: "",
+          popup: "",
         },
-    });
-     return error 
+      });
+      return error;
     }
-  }
-}
+  };
+};
 
 // export const editTraining = (id, training) => {
 //   //---------- Endpoint to Dev server -- Descomentar para usar
