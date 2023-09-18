@@ -223,8 +223,28 @@ export const editUser = (id, user) => {
       dispatch({
         type: EDIT_USER,
       });
-      return data;
+      Swal.fire({
+        title: "Se cambio la contraseña exitosamente",
+  
+        icon: "success",
+        customClass: {
+          popup: "holahola",
+          confirmButton: "bg-light-1",
+        },
+      });
+      return false;
     } catch (error) {
+      if(error.response.data.error === "La contraseña es igual a la anterior"){
+        Swal.fire({
+          title: error.response.data.error,
+    
+          icon: "error",
+          customClass: {
+            popup: "holahola",
+            confirmButton: "bg-light-1",
+          },
+        });
+      }
       return error;
     }
   };

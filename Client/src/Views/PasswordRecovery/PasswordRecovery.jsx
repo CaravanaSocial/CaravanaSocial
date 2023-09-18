@@ -145,7 +145,7 @@ const PasswordRecovery = () => {
             password: inputs.password2,
           })
         ).then((editError) => {
-          if ("name" in editError) {
+          if (!editError) {
             navigate("/login");
           }
           dispatch(
