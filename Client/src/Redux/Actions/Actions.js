@@ -218,7 +218,7 @@ export const editUser = (id, user) => {
       dispatch({
         type: EDIT_USER,
       });
-      return false;
+      return data;
     } catch (error) {
       return error;
     }
