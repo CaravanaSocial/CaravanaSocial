@@ -105,7 +105,7 @@ export const createUser = (user) => {
       });
       Swal.fire({
         title: "Registro Completado!",
-        text: `hemos enviado un corro electronico a ${user.email} para confirmar su registro`,
+        text: `Hemos enviado un correo electronico a ${user.email} para confirmar su registro`,
         icon: "success",
         customClass: {
           popup: "holahola",
@@ -406,7 +406,7 @@ export const createCompany = (company) => {
       });
       Swal.fire({
         title: "Registro Completado!",
-        text: `hemos enviado un corro electronico a ${company.email} para confirmar su registro`,
+        text: `Hemos enviado un correo electronico a ${company.email} para confirmar su registro`,
         icon: "success",
         customClass: {
           popup: "holahola",
