@@ -15,6 +15,7 @@ const emailTemplate = fs.readFileSync(
   "utf-8"
 );
 const createUserAccController = async (props) => {
+  console.log(props);
   const { password, email, category } = props;
   const randomCode = Math.round(Math.random() * 999999);
   const saltRounds = 10;
@@ -33,6 +34,7 @@ const createUserAccController = async (props) => {
       CUD: props.CUD,
       profilePicture: defaultProfilePicture,
       freelancer: props.freelancer,
+      certificates: props.certificates,
       description: props.description,
       address: props.address,
       password: hashedPassword,
