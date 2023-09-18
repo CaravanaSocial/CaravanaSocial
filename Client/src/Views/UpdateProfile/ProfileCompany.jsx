@@ -611,7 +611,10 @@ const ProfileCompany = () => {
                   </div>
                 ) : (
                   <div>
-                    <h1>No hay trabajos creados todavia.</h1>
+                    <h1
+                    onClick={() => speakText("No hay trabajos creados todavia")}
+                    onMouseLeave={() => {cancelVoice;}}
+                    >No hay trabajos creados todavia.</h1>
                   </div>
                 )}
               </div>
