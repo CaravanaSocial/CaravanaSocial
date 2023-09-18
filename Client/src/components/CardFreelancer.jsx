@@ -13,23 +13,25 @@ export default function CardFreelancer(props) {
   };
 
   return (
-    <div className="border-2   flex-grow flex-col border-light-1 hover:scale-95 bg-white p-4 rounded-3xl shadow-md  w-[230px] h-[400px] sm:h-full sm:w-[400px] flex justify-center">
+    <div className="border-2  flex-col border-light-1 hover:scale-95 dark:bg-light-1 bg-white p-4 rounded-3xl shadow-md  w-[230px] h-[400px] sm:h-full sm:w-[400px] flex justify-center">
       <img
-        className="h-[400px] rounded-[666px] "
+        className="h-[400px]  rounded-[666px] "
         src={props.freelancer.profilePicture}
       />
       <section>
-        <h1 className="font-topmodern text-[25px] sm:text-[30px]">
+        <h1 className="font-topmodern dark:text-black text-[25px] sm:text-[30px]">
           {props.freelancer.name}
         </h1>
 
-        <h3 className="font-topmodern">{props.freelancer.location.country}</h3>
-        <h4 className="font-vilaka  whitespace-normal text-center  font-bold text-[25px]">
+        <h3 className="font-topmodern dark:text-black">
+          {props.freelancer.location.country}
+        </h3>
+        <h4 className="font-vilaka dark:text-black  whitespace-normal text-center  font-bold text-[25px]">
           {props.freelancer.description}
         </h4>
         <button
           onClick={() => navigate(`/freelancer/${id}`)}
-          className="border-2 rounded-lg font-topmodern bg-light-1 hover:text-white p-1"
+          className="border-2 rounded-lg font-topmodern  bg-light-1  dark:text-black p-1 hover:scale-105 dark:border-black"
         >
           Ver Perfil
         </button>

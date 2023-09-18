@@ -13,8 +13,10 @@ const filterRoute = require("./filterRoute");
 const freelancerRoute = require("./freelancerRoute");
 const user_trainingRoute = require("./user_trainingRoute");
 const questionRoute = require("./questionRoute");
-const commentRouter = require("./commentRoute")
-const videoRoute = require("./videoRoute")
+const commentRouter = require("./commentRoute");
+const videoRoute = require("./videoRoute");
+const blogsRoute = require("./blogsRoute")
+const emailRoute = require("./emailRoute")
 
 const router = Router();
 
@@ -30,7 +32,9 @@ router.use("/user", userRoute);
 router.use("/freelancers", freelancerRoute);
 router.use("/user-training", user_trainingRoute);
 router.use("/question", questionRoute);
-router.use("/comments", commentRouter)
+router.use("/comments", commentRouter);
+router.use("/blogs", blogsRoute)
+router.use("/email", emailRoute)
 
 //------------Cloudinay(PRUEBA)--------------
 router.use("/image", imageRout);

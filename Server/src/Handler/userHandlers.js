@@ -10,6 +10,8 @@ const {getUsersByIdController} = require("../Controller/User/getUsersByIdControl
 const {getFreelancersController} = require("../Controller/User/getFreelancersController");
 const {deleteUserController} =require("../Controller/User/deleteUserController")
 const {restoreUserController} =require("../Controller/User/restoreUserController")
+const { getUserByNameController } = require("../Controller/User/getUserByNameController");
+const { updatePassUserController } = require("../Controller/User/updatePassUserController");
 
 const userSignUpHandler = async (req, res) => {
   try {
@@ -21,13 +23,16 @@ const userSignUpHandler = async (req, res) => {
       return res.status(400).json({ error: "Email in use" });
     return res.status(200).json({ ...userToken, type: "user" });
   } catch (error) {
+    console.log(error.message);
     res.status(500).json({ error: error.message });
   }
 };
 
 const getUsersHandler = async (req, res) => {
   try {
-    const users = await getUsersController();
+    const {value} = req.query
+    const users =  await getUsersController(value)
+ 
     res.status(200).json(users);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -86,6 +91,33 @@ const restoreUserHandler = async (req, res) => {
   }
 }
 
+const getUserByNameHandler = async(req, res) => {
+  try {
+    const { name } = req.query;
+
+    const response = await getUserByNameController(name)
+
+    return res.status(200).json(response);
+  } catch (error) {
+    return res.status(400).send(error.message)
+  }
+}
+
+const updatePassUserHandler = async (req, res)=> {
+  try {
+    const { oldPassword, newPassword } = req.body;
+    const { id } = req.params;
+
+    const response = await updatePassUserController(id, oldPassword, newPassword)
+    if(response){
+      return res.status(200).send("Contraseña actualizada")
+
+    }
+  } catch (error) {
+    return res.status(400).send(error.message)
+  }
+};
+
 module.exports = {
   userSignUpHandler,
   getUsersHandler,
@@ -93,7 +125,9 @@ module.exports = {
   getUsersByIdHandler,
   getFreelancersHandler,
   deleteUserHandler,
-  restoreUserHandler
+  restoreUserHandler,
+  getUserByNameHandler,
+  updatePassUserHandler
 };
 
 

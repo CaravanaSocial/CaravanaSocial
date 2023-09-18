@@ -20,7 +20,8 @@ const adminSignUpHandler = async (req, res)=>{
 
 const getAdminsHandler = async (req, res) =>{
     try {
-        const admins = await getAdminsController()
+        const {value} = req.query
+        const admins = await getAdminsController(value)
         res.status(200).json(admins)
     } catch (error) {
         res.status(500).json(error.message)

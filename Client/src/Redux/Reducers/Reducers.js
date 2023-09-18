@@ -39,20 +39,29 @@ import {
   CLEAR_VIDEOS,
   ADD_USER_TRAINING,
   USER_TRAINING,
-
   GET_TRAININGS_BY_VALUE,
-
   CLEAR_FREELANCERS,
-  GET_Q_AND_A
+  GET_Q_AND_A,
+
+  GET_ALL_BLOGS,
+  GET_BLOGS_BY_ID,
+  FREELANCER_BY_NAME,
+  TRAINING_BY_NAME,
+  OFFERS_BY_NAME,
+  ENABLE_SPEECH,
+  enableSpeech,
 } from "../Actions/Actions";
 
 const initialState = {
   offers: [],
   offer: [],
   companies: [],
+  companiesDelete: [],
   users: [],
+  usersDelete: [],
   currentAccount: {},
   admins: [],
+  adminsDeleted: [],
   countries: [],
   states: [],
   cities: [],
@@ -73,12 +82,16 @@ const initialState = {
   imageChange: false,
   userDetail: {},
   trainingsUser: [],
-
   trainingsApproved: [],
   trainingsDeclined: [],
   trainingsNoCheck: [],
-  faqs:[]
+  faqs:[],
 
+  blogs:[],
+  blog:[],
+
+  faqs: [],
+  enableSpeech: false,
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -90,10 +103,17 @@ export default function rootReducer(state = initialState, action) {
       };
 
     case GET_USERS:
-      return {
-        ...state,
-        users: action.payload,
-      };
+      if (action.payload.type === "deleted") {
+        return {
+          ...state,
+          usersDelete: action.payload.array,
+        };
+      } else if (action.payload.type === "online") {
+        return {
+          ...state,
+          users: action.payload.array,
+        };
+      }
 
     case GET_SUCCESCASES:
       return {
@@ -118,10 +138,17 @@ export default function rootReducer(state = initialState, action) {
       };
 
     case GET_ADMINS:
-      return {
-        ...state,
-        admins: action.payload,
-      };
+      if (action.payload.type === "deleted") {
+        return {
+          ...state,
+          adminsDeleted: action.payload.array,
+        };
+      } else if (action.payload.type === "online") {
+        return {
+          ...state,
+          admins: action.payload.array,
+        };
+      }
 
     case EDIT_ADMIN:
       return {
@@ -129,10 +156,17 @@ export default function rootReducer(state = initialState, action) {
       };
 
     case GET_COMPANIES:
-      return {
-        ...state,
-        companies: action.payload,
-      };
+      if (action.payload.type === "deleted") {
+        return {
+          ...state,
+          companiesDelete: action.payload.array,
+        };
+      } else if (action.payload.type === "online") {
+        return {
+          ...state,
+          companies: action.payload.array,
+        };
+      }
 
     case CREATE_COMPANY:
       return {
@@ -306,27 +340,25 @@ export default function rootReducer(state = initialState, action) {
     case USER_TRAINING:
       return {
         ...state,
-        trainingsUser: action.payload
-      }
+        trainingsUser: action.payload,
+      };
     case GET_TRAININGS_BY_VALUE:
-      console.log(action.payload)
-      if(action.payload[0].approved === true){
-        return{
+      if (action.payload[0].approved === true) {
+        return {
           ...state,
-          trainingsApproved: action.payload
-        }
-      }else if(action.payload[0].approved === false){
-        return{
+          trainingsApproved: action.payload,
+        };
+      } else if (action.payload[0].approved === false) {
+        return {
           ...state,
-          trainingsDeclined: action.payload
-        }
-      }else{
-        return{
+          trainingsDeclined: action.payload,
+        };
+      } else {
+        return {
           ...state,
-          trainingsNoCheck: action.payload
-        }
+          trainingsNoCheck: action.payload,
+        };
       }
-
 
     case CLEAR_FREELANCERS:
       return {
@@ -334,10 +366,49 @@ export default function rootReducer(state = initialState, action) {
         userDetail: {},
       };
     case GET_Q_AND_A:
-      return{
+      return {
         ...state,
-        faqs:action.payload
-      }
+        faqs: action.payload,
+      };
+
+    case FREELANCER_BY_NAME:
+      return {
+        ...state,
+        freelancers: action.payload,
+      };
+
+    case TRAINING_BY_NAME:
+      return {
+        ...state,
+        trainings: action.payload,
+        trainingsFiltered: action.payload,
+      };
+
+    case OFFERS_BY_NAME:
+      return {
+        ...state,
+        offers: action.payload,
+      };
+
+
+      case GET_ALL_BLOGS:
+        return {
+          ...state,
+          blogs:action.payload
+        }
+
+      case GET_BLOGS_BY_ID:
+        return {
+          ...state,
+          blog:action.payload
+        }
+
+    case ENABLE_SPEECH:
+      return {
+        ...state,
+        enableSpeech: action.payload,
+      };
+
 
     default:
       return { ...state };

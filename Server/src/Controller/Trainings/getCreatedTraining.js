@@ -1,5 +1,5 @@
 const { where } = require("sequelize");
-const { training, companies, areaTraining } = require("../../db");
+const { training, companies, areaTraining, admin } = require("../../db");
 const fs = require("fs");
 const path = require("path");
 const transporter = require("../../Tools/email");
@@ -15,9 +15,15 @@ const createdTrainingController = async (body, companyId) => {
   try {
     const { name, description, video, category } = body;
     const { id } = companyId;
+    var email;
+    const emailResponseCompany = await companies.findOne({ where: { id: id } });
+    const emailResponseAdmin = await admin.findOne({ where: { id: id } });
 
-    const emailResponse = await companies.findOne({ where: { id: id } });
-    const email = emailResponse.dataValues.email;
+    if(emailResponseCompany){
+      email = emailResponseCompany.dataValues.email;
+    }else if(emailResponseAdmin){
+      email = emailResponseAdmin.dataValues.email;
+    }
 
     const menssageRegister = {
       from: emailUser,
@@ -25,8 +31,7 @@ const createdTrainingController = async (body, companyId) => {
       subject: "Creacion de Capacitacion con Exíto",
       html: emailTemplate,
     };
-
-    // const imagenNice = uploadImage(video);
+      // const imagenNice = uploadImage(video);
 
     const createdTraining = await training.create(
       {
@@ -45,8 +50,10 @@ const createdTrainingController = async (body, companyId) => {
         await createdTraining.addAreaTraining(trainingCategory);
       }
     }
-
-    await createdTraining.setCompany(id);
+    const foundCompany = await companies.findOne({where:{id}}) 
+    if(foundCompany) await createdTraining.setCompany(id);
+    const foundAdmin = await admin.findOne({where:{id}})
+    if(foundAdmin) await createdTraining.setAdmin(id);
 
     transporter.sendMail(menssageRegister, (error, info) => {
       if (error) {

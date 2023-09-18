@@ -15,25 +15,32 @@ const emailTemplate = fs.readFileSync(
 
 const createCompanyAccController = async (props) => {
   const { password, email, category } = props;
+  const randomCode = Math.round(Math.random()*999999)
   const saltRounds = 10;
   const hashedPassword = await bcrypt.hash(password, saltRounds);
   const defaultProfilePicture =
     "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Windows_10_Default_Profile_Picture.svg/2048px-Windows_10_Default_Profile_Picture.svg.png";
   const [newCompany, created] = await companies.findOrCreate({
-    where: { email },
+    where: { email: email.toLowerCase() },
     defaults: {
       ...props,
+      email: email.toLowerCase(),
       password: hashedPassword,
       profilePicture: defaultProfilePicture,
+      verificationCode: randomCode
     },
   });
+  const emailTemplateConValores = emailTemplate
+  .replace("${randomCode}", randomCode)
+  .replace("${newUserId}", newCompany.id);
 
-  const menssageRegister = {
-    from: emailUser,
-    to: email,
-    subject: "Confirmación de Registro",
-    html: emailTemplate,
-  };
+const menssageRegister = {
+  from: emailUser,
+  to: email,
+  subject: `Confirmación de Registro`,
+  html: emailTemplateConValores,
+};
+
 
   if (created) {
     //CREAR LA RELACIÓN CON EL RUBRO

@@ -19,7 +19,11 @@ const aproveTrainingController = async (id, answer) => {
     include: [{ model: companies }],
   });
 
-  const email = trainingResponse.dataValues.company.email;
+
+  console.log("LLEGA??", trainingResponse.dataValues);
+
+  const email = trainingResponse?.dataValues?.company?.email ? trainingResponse?.dataValues?.company?.email : trainingResponse?.dataValues?.admin?.email;
+  console.log("EMAILLL: ",email);
 
   const trainingApproved = {
     from: emailUser,
