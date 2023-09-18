@@ -14,23 +14,23 @@ const PrefixesModel = require("./Models/Prefixes");
 const SuccessModel = require("./Models/SuccessStory");
 const QuestionsModel = require("./Models/frequentQuestions");
 const CommentsModel = require("./Models/comments");
-const BlogModel = require("./Models/blog")
+const BlogModel = require("./Models/blog");
 
-// const sequelize = new Sequelize(SERVER_URL, {
-//   logging: false,
-//   native: false,
-//   dialectOptions: {
-//     ssl: {
-//       require: true, // Requiere una conexión SSL/TLS
-//       rejectUnauthorized: false,
-//     },
-//   },
-// });
+const sequelize = new Sequelize(SERVER_URL, {
+  logging: false,
+  native: false,
+  dialectOptions: {
+    ssl: {
+      require: true, // Requiere una conexión SSL/TLS
+      rejectUnauthorized: false,
+    },
+  },
+});
 
-const sequelize = new Sequelize(
-  `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/caravanadb`,
-  { logging: false, native: false }
-);
+// const sequelize = new Sequelize(
+//   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/caravanadb`,
+//   { logging: false, native: false }
+// );
 
 CountryModel(sequelize);
 EmpresaModel(sequelize);
@@ -61,7 +61,7 @@ const {
   success,
   question,
   comment,
-  blog
+  blog,
 } = sequelize.models;
 
 //Relacion de empresas con capacitaciones
