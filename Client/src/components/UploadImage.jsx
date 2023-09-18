@@ -28,15 +28,19 @@ export default function UploadImage() {
   function uploadSingleImage(base64) {
     setLoading(true);
     axios
-      .post("http://localhost:3001/image/upload", { image: base64 })
+      .post("https://caravanaserver.onrender.com/image/upload", {
+        image: base64,
+      })
       .then((res) => {
         setUrl(res.data);
-        if(localStorage.type === "user"){
-          dispatch(editUser(localStorage.accId, { profilePicture: res.data }))
+        if (localStorage.type === "user") {
+          dispatch(editUser(localStorage.accId, { profilePicture: res.data }));
           localStorage.setItem("profilePicture", res.data);
           dispatch(imageChange());
         } else if (localStorage.type === "company") {
-          dispatch(editCompany(localStorage.accId, { profilePicture: res.data }))
+          dispatch(
+            editCompany(localStorage.accId, { profilePicture: res.data })
+          );
           localStorage.setItem("profilePicture", res.data);
           dispatch(imageChange());
         }
@@ -48,7 +52,9 @@ export default function UploadImage() {
   function uploadMultipleImages(images) {
     setLoading(true);
     axios
-      .post("http://localhost:3001/uploadMultipleImages", { images })
+      .post("https://caravanaserver.onrender.com/uploadMultipleImages", {
+        images,
+      })
       .then((res) => {
         setUrl(res.data);
         alert("Image uploaded Succesfully");
