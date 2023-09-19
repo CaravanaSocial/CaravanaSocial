@@ -36,7 +36,7 @@ export default function UploadImage() {
   function uploadSingleImage(base64) {
     setLoading(true);
     axios
-      .post("http://localhost:3001/image/upload", {
+      .post("https://caravanaserver.onrender.com/image/upload", {
         image: base64,
       })
       .then((res) => {

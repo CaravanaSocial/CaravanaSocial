@@ -72,7 +72,7 @@ export const ADD_USER_TRAINING = "ADD_USER_TRAINING";
 export const USER_TRAINING = "USER_TRAINING";
 
 export const GET_FREELANCERS = "GET_FREELANCERS";
-export const GET_FILTER_FREELANCERS = "GET_FILTER_FREELANCERS"
+export const GET_FILTER_FREELANCERS = "GET_FILTER_FREELANCERS";
 export const CLEAR_FREELANCERS = "CLEAR_FREELANCERS";
 export const FREELANCER_BY_NAME = "FREELANCER_BY_NAME";
 
@@ -91,8 +91,8 @@ export const CHANGE_PASSWORD = "CHANGE_PASSWORD";
 
 export const DELETE_COMMENT = "DELETE_COMMENT";
 
-// const serverURL = "https://caravanaserver.onrender.com";
-const serverURL = "http://localhost:3001";
+const serverURL = "https://caravanaserver.onrender.com";
+// const serverURL = "http://localhost:3001";
 
 export const createUser = (user) => {
   //---------- Endpoint to Dev server -- Descomentar para usar
@@ -217,12 +217,14 @@ export const getFilterFreelancers = (info) => {
 
   //---------- Endpoint to deployed server
   const endpoint = `${serverURL}/freelancers`;
-  const {country, category} = info
+  const { country, category } = info;
   return async (dispatch) => {
     try {
-      const response = await axios(`${endpoint}/?country=${country}&category=${category}`);
+      const response = await axios(
+        `${endpoint}/?country=${country}&category=${category}`
+      );
       const { data } = response;
-      console.log(data)
+      console.log(data);
 
       return dispatch({ type: GET_FILTER_FREELANCERS, payload: data });
     } catch (error) {
@@ -244,10 +246,10 @@ export const editUser = (id, user) => {
       dispatch({
         type: EDIT_USER,
       });
-      if(user?.password){
+      if (user?.password) {
         Swal.fire({
           title: "Se cambio la contraseña exitosamente",
-    
+
           icon: "success",
           customClass: {
             popup: "holahola",
@@ -257,10 +259,12 @@ export const editUser = (id, user) => {
       }
       return false;
     } catch (error) {
-      if(error.response.data.error === "La contraseña es igual a la anterior"){
+      if (
+        error.response.data.error === "La contraseña es igual a la anterior"
+      ) {
         Swal.fire({
           title: error.response.data.error,
-    
+
           icon: "error",
           customClass: {
             popup: "holahola",
@@ -487,28 +491,31 @@ export const editCompany = (id, company) => {
       dispatch({
         type: EDIT_COMPANY,
       });
-        if(company?.password){
-          Swal.fire({
-            title: "Se cambio la contraseña exitosamente",
-      
-            icon: "success",
-            customClass: {
-              popup: "holahola",
-              confirmButton: "bg-light-1",
-            },
-          });
-        }
+      if (company?.password) {
+        Swal.fire({
+          title: "Se cambio la contraseña exitosamente",
+
+          icon: "success",
+          customClass: {
+            popup: "holahola",
+            confirmButton: "bg-light-1",
+          },
+        });
+      }
       return false;
     } catch (error) {
-      console.log(error.response.data)
-      if(error.response.data.error === 'La contraseña es igual a la anterior'){
+      console.log(error.response.data);
+      if (
+        error.response.data.error === "La contraseña es igual a la anterior"
+      ) {
         Swal.fire({
           title: error.response.data.error,
-      
+
           icon: "error",
           customClass: {
-          popup: "",
-          }})
+            popup: "",
+          },
+        });
       }
       dispatch({
         type: ERRORS,
@@ -1110,8 +1117,8 @@ export const deleteQAndA = (id) => {
 export const postBlog = (info) => {
   return async function (dispatch) {
     try {
-      const {data} = await axios.post(`${serverURL}/blogs/create`, info);
-      console.log(data.id)
+      const { data } = await axios.post(`${serverURL}/blogs/create`, info);
+      console.log(data.id);
       dispatch({
         type: POST_BLOG,
         payload: data.id,
@@ -1149,12 +1156,12 @@ export const getBlogsByID = (id) => {
 export const deleteBlog = (id) => {
   return async function (dispatch) {
     try {
-      await axios.delete(`${serverURL}/blogs/delete/${id}`)
+      await axios.delete(`${serverURL}/blogs/delete/${id}`);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
-}
+  };
+};
 
 export const searchFreelancersByName = (name) => {
   return async function (dispatch) {
@@ -1233,7 +1240,7 @@ export const changePassword = (id, passwordChange, typeOfCount) => {
         console.log("SOY UN USER");
         console.log(oldPassword);
         console.log(newPassword);
-        const endpoint = `http://localhost:3001/company/passUpdate/${id}`;
+        const endpoint = `${serverURL}/company/passUpdate/${id}`;
         const response = await axios.patch(endpoint, passwordChange);
         const { data } = response;
         console.log(data);
@@ -1249,7 +1256,7 @@ export const changePassword = (id, passwordChange, typeOfCount) => {
           type: CHANGE_PASSWORD,
         });
       } else if (typeOfCount === "user") {
-        const endpoint = `http://localhost:3001/user/passUpdate/${id}`;
+        const endpoint = `${serverURL}/user/passUpdate/${id}`;
         const response = await axios.patch(endpoint, passwordChange);
         const { data } = response;
         console.log("hola" + data);
@@ -1278,7 +1285,6 @@ export const changePassword = (id, passwordChange, typeOfCount) => {
     }
   };
 };
-
 
 export const createSuccessCase = (successCase) => {
   const endpoint = `${serverURL}/success/create`;
@@ -1335,18 +1341,13 @@ export const createSuccessCase = (successCase) => {
 //   };
 // };
 
-
-export const deleteComment =(id)=>{
-  return async function(dispatch){
-   try {
-    const response =  await axios.delete("http://localhost:3001/comments/delete/" + id);
-    return dispatch({
-      type: DELETE_COMMENT
-    })
-   } catch (error) {
-    
-   }
-  }
-}
-
-
+export const deleteComment = (id) => {
+  return async function (dispatch) {
+    try {
+      const response = await axios.delete(`${serverURL}/comments/delete/${id}`);
+      return dispatch({
+        type: DELETE_COMMENT,
+      });
+    } catch (error) {}
+  };
+};
