@@ -3,14 +3,14 @@ import { useDispatch } from "react-redux";
 import {
   getCountry,
   getCategories,
-  getFreelancers,
+  getFilterFreelancers,
 } from "../../Redux/Actions/Actions";
 import { useEffect, useState } from "react";
 import CardFreelancer from "../../components/CardFreelancer";
 import { useNavigate } from "react-router-dom";
 
 const Freelancers = () => {
-  const freelancers = useSelector((state) => state.freelancers);
+  const freelancers = useSelector((state) => state.filteredFreelancers);
   const navigate = useNavigate();
   const countries = useSelector((state) => state.countries);
   const category = useSelector((state) => state.categories);
@@ -27,8 +27,8 @@ const Freelancers = () => {
   }, []);
 
   useEffect(() => {
-    dispatch(getFreelancers());
-  }, []);
+    dispatch(getFilterFreelancers(filter));
+  }, [filter]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -76,6 +76,7 @@ const Freelancers = () => {
           </div>
           <h1 className="font-vilaka font-bold text-[50px]">Freelancers</h1>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-20">
+            
             {freelancers?.map((freelancer) => (
               <CardFreelancer key={freelancer.id} freelancer={freelancer} />
             ))}
