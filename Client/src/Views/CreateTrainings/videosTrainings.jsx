@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { CloudinaryContext, Image, Transformation } from "cloudinary-react";
 import UploadVideo from "../../components/UploadVideo";
 import { useDispatch, useSelector } from "react-redux";
-import { editTraining } from "../../Redux/Actions/Actions";
+import { editTraining, clearVideos } from "../../Redux/Actions/Actions";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import NotFound from "../../components/NotFound";
@@ -24,13 +24,6 @@ export default function VideosTrainings() {
       ...video,
       [event.target.name]: event.target.value,
     });
-    setError(
-      Validation({
-        ...inputTrainings,
-        ...video,
-        [event.target.name]: event.target.value,
-      })
-    );
   };
 
   const handleSubmitVideo = () => {

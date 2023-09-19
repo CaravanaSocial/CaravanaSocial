@@ -33,6 +33,7 @@ export default function Offer() {
 
   useEffect(() => {
     dispatch(filterOffer(filter));
+    dispatch(getOffers());
   }, [filter]);
 
   const handleChange = (event) => {
