@@ -35,26 +35,27 @@ const EditQAndA = ({ question, answer, id }) => {
   };
 
   return (
-    <div className="">
+    <div className="flex justify-start items-center">
       <textarea
-        className="border-4"
+        className="p-1 dark:bg-zinc-700 border-2 border-zinc-300 dark:border-zinc-500 rounded-xl focus:outline-none focus:border-light-1 focus:ring-1 focus:ring-light-1 mr-2"
         onChange={handleChange}
         value={input.quest}
         name="quest"
+        cols={28}
+        rows={8}
       />
       <textarea
-        className="border-4"
+        className="p-1 dark:bg-zinc-700 border-2 border-zinc-300 dark:border-zinc-500 rounded-xl focus:outline-none focus:border-light-1 focus:ring-1 focus:ring-light-1 ml-2"
         onChange={handleChange}
         value={input.answer}
         name="answer"
+        cols={28}
+        rows={8}
       />
-      <br />
       <button
-        className="mx-5 hover:scale-105 rounded p-1 border-2"
+        className="ml-5 hover:scale-105 rounded-3xl p-2 bg-light-1 font-nunito"
         onClick={handleSubmit}
-      >
-        Guardar
-      </button>
+      >Guardar</button>
     </div>
   );
 };
