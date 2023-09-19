@@ -29,6 +29,7 @@ import {
   COMPANY_BUTTONS,
   TRAINING_FILTER,
   GET_FREELANCERS,
+  GET_FILTER_FREELANCERS,
   ADDVIDEO,
   IMAGECHANGE,
   TRAINING_DETAIL,
@@ -44,13 +45,19 @@ import {
   GET_Q_AND_A,
   GET_ALL_BLOGS,
   GET_BLOGS_BY_ID,
+  POST_BLOG,
+
   FREELANCER_BY_NAME,
   TRAINING_BY_NAME,
   OFFERS_BY_NAME,
   ENABLE_SPEECH,
   enableSpeech,
   CHANGE_PASSWORD,
+
   CREATE_SUCCESS_CASE,
+=======
+  DELETE_COMMENT,
+
 } from "../Actions/Actions";
 
 const initialState = {
@@ -74,6 +81,7 @@ const initialState = {
   trainingsFiltered: [],
   categories: [],
   freelancers: [],
+  filteredFreelancers: [],
   video: [],
   imageChange: false,
   trainingsDetail: {},
@@ -85,9 +93,10 @@ const initialState = {
   trainingsApproved: [],
   trainingsDeclined: [],
   trainingsNoCheck: [],
-  faqs: [],
-  blogs: [],
-  blog: [],
+  faqs:[],
+  blogs:[],
+  blog:[],
+  createdBlog:"",
   enableSpeech: false,
 };
 
@@ -127,6 +136,11 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         freelancers: action.payload,
+      };
+    case GET_FILTER_FREELANCERS:
+      return {
+        ...state,
+        filteredFreelancers: action.payload,
       };
 
     case CREATE_ADMIN:
@@ -396,11 +410,16 @@ export default function rootReducer(state = initialState, action) {
         blogs: action.payload,
       };
 
-    case GET_BLOGS_BY_ID:
-      return {
-        ...state,
-        blog: action.payload,
-      };
+      case GET_BLOGS_BY_ID:
+        return {
+          ...state,
+          blog:action.payload
+        }
+        case POST_BLOG:
+        return{
+          ...state,
+          createdBlog:action.payload
+        }  
 
     case ENABLE_SPEECH:
       return {
@@ -408,6 +427,7 @@ export default function rootReducer(state = initialState, action) {
         enableSpeech: action.payload,
       };
     case CHANGE_PASSWORD:
+
       return {
         ...state,
       };
@@ -416,6 +436,15 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         successCases: [...(state.successCases + action.payload)],
       };
+
+      return{
+        ...state
+      }
+    case DELETE_COMMENT:
+      return{
+        ...state
+      }  
+
 
     default:
       return { ...state };

@@ -9,6 +9,7 @@ export default function UploadImage() {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const [url, setUrl] = useState("");
+  const [uploadSuccess, setUploadSuccess] = useState(false);
 
   const convertBase64 = (file) => {
     return new Promise((resolve, reject) => {
@@ -23,6 +24,13 @@ export default function UploadImage() {
         reject(error);
       };
     });
+  };
+
+  const resetFileInput = () => {
+    const fileInput = document.getElementById("dropzone-file");
+    if (fileInput) {
+      fileInput.value = "";
+    }
   };
 
   function uploadSingleImage(base64) {
@@ -47,23 +55,20 @@ export default function UploadImage() {
           console.log(res.data);
           localStorage.setItem("caseImage", res.data);
         }
+        setUploadSuccess(true);
       })
       .then(() => setLoading(false))
-      .catch(console.log);
-  }
+      .catch((error) => {
+        console.error("Error al cargar la imagen:", error);
 
-  function uploadMultipleImages(images) {
-    setLoading(true);
-    axios
-      .post("https://caravanaserver.onrender.com/uploadMultipleImages", {
-        images,
-      })
-      .then((res) => {
-        setUrl(res.data);
-        alert("Image uploaded Succesfully");
-      })
-      .then(() => setLoading(false))
-      .catch(console.log);
+        if (error.response && error.response.status === 413) {
+          alert("La imagen es demasiado grande. Debe ser más pequeña.");
+        } else {
+          alert("Hubo un error al cargar la imagen.");
+        }
+
+        setUploadSuccess(false);
+      });
   }
 
   const uploadImage = async (event) => {
@@ -125,10 +130,16 @@ export default function UploadImage() {
       <div>
         {loading ? (
           <div className="flex items-center justify-center">
-            <img src={assets} />{" "}
+            <img src={assets} alt="Loading" />
           </div>
         ) : (
-          <UploadInput />
+          <div>
+            {uploadSuccess ? (
+              <p>La imagen se ha cargado correctamente.</p>
+            ) : (
+              <UploadInput />
+            )}
+          </div>
         )}
       </div>
     </div>

@@ -1,26 +1,30 @@
+const { where } = require("sequelize");
+const {Op} = require("sequelize")
 const { user, areaTraining } = require("../../db");
 
 const getFreelancerController = async (info) => {
   const { country, category } = info;
 
-  const filterOption = {};
+  const whereClause = {
+    freelancer: true,
+  };
 
   if (country) {
-    filterOption["where"] = {
-      [Op.and]: [{ "location.country": country }, { freelancer: true }],
-    };
-  } else {
-    filterOption["where"] = { freelancer: true };
+    whereClause["location.country"] = country;
   }
+
+  const includeOption = {
+    model: areaTraining,
+  };
 
   if (category) {
-    filterOption["include"] = {
-      model: areaTraining,
-      where: { name: category },
-    };
+    includeOption.where = { name: category };
   }
 
-  const freelancerFiltered = await user.findAll(filterOption);
+  const freelancerFiltered = await user.findAll({
+    where: whereClause,
+    include: [includeOption],
+  });
 
   return freelancerFiltered;
 };

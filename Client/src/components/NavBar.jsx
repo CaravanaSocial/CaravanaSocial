@@ -255,6 +255,11 @@ export default function NavBar() {
               >
                 Home
               </Link>
+              <Link className="text-center block rounded-lg px-4 py-2 text-sm text-gray-500 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 hover:text-gray-700 dark:hover:text-gray-400"
+                to="/blogs"
+                role="menuitem">
+              Noticias
+              </Link>
 
               {localStorage.type === "company" ? (
                 <>

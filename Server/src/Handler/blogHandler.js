@@ -56,9 +56,7 @@ const patchBlogHandler = async (req, res) => {
 const deleteBlogHandler = async (req, res) => {
     try {
         const { id } = req.params;
-
         const blogDelete = await deleteBlogController(id);
-
         return res.status(200).json(blogDelete);
     } catch (error) {
         return res.status(400).send(error.message)

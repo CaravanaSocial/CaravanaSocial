@@ -17,6 +17,8 @@ import UploadImage from "../../components/UploadImage";
 import NotFound from "../../components/NotFound";
 
 const ProfileCompany = () => {
+  const speech = useSelector((state) => state.enableSpeech);
+  const [synth, setSynth] = useState(null);
   const dispatch = useDispatch();
   const account =
     localStorage.length !== 0 ? JSON?.parse(localStorage?.account) : null;
@@ -66,6 +68,7 @@ const ProfileCompany = () => {
     dispatch(getOffers());
     dispatch(getTrainings());
     dispatch(getCountry());
+    setSynth(window.speechSynthesis);
   }, []);
 
   const handleEdit = () => {
@@ -193,6 +196,21 @@ const ProfileCompany = () => {
     setKey(key + 1);
   };
 
+  const speakText = (text) => {
+    if (speech === true && synth) {
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.volume = 1;
+      utterance.lang = "es-ES";
+      synth.speak(utterance);
+    }
+  };
+  const cancelVoice = () => {
+    if (synth) {
+      synth.cancel();
+    }
+  };
+
+
   return (
     <div className="h-full">
       {localStorage.length !== 0 && localStorage.type === "company" ? (
@@ -203,8 +221,11 @@ const ProfileCompany = () => {
               src={profilePicture}
               className="inline-block w-72 rounded-full border-2 border-light-1 dark:border-light-1 mb-2"
             />
-            <h2 className="font-vilaka font-bold text-[30px] max-lg:text-[50px] dark:font-light">
-              {input.nameCompany}
+            <h2 className="font-vilaka font-bold text-[30px] max-lg:text-[50px] dark:font-light"
+            onClick={() => speakText(input?.nameCompany)}
+            onMouseLeave={() => {cancelVoice;}}
+            >
+              {input?.nameCompany}
             </h2>
 
             {edit === true ? (
@@ -228,7 +249,10 @@ const ProfileCompany = () => {
                   </div>
                 ) : null}
 
-                <h2 className="font-nunito font-bold">Nombre</h2>
+                <h2 className="font-nunito font-bold"
+                onClick={() => speakText("Nombre")}
+                onMouseLeave={() => {cancelVoice;}}
+                >Nombre</h2>
                 <input
                   className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
                   onChange={handleChange}
@@ -244,7 +268,10 @@ const ProfileCompany = () => {
                   {error.name}
                 </p>
 
-                <h2 className="font-nunito font-bold">Apellido</h2>
+                <h2 className="font-nunito font-bold"
+                onClick={() => speakText("Apellido")}
+                onMouseLeave={() => {cancelVoice;}}
+                >Apellido</h2>
                 <input
                   className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
                   onChange={handleChange}
@@ -260,7 +287,10 @@ const ProfileCompany = () => {
                   {error.lastName}
                 </p>
 
-                <h2 className="font-nunito font-bold">Cargo</h2>
+                <h2 className="font-nunito font-bold"
+                onClick={() => speakText("Cargo")}
+                onMouseLeave={() => {cancelVoice;}}
+                >Cargo</h2>
                 <input
                   className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
                   onChange={handleChange}
@@ -276,7 +306,10 @@ const ProfileCompany = () => {
                   {error.position}
                 </p>
 
-                <h2 className="font-nunito font-bold">Nombre empresa</h2>
+                <h2 className="font-nunito font-bold"
+                onClick={() => speakText("Nombre empresa")}
+                onMouseLeave={() => {cancelVoice;}}
+                >Nombre empresa</h2>
                 <input
                   className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
                   onChange={handleChange}
@@ -294,7 +327,10 @@ const ProfileCompany = () => {
                   {error.nameCompany}
                 </p>
 
-                <h2 className="font-nunito font-bold">Localizacion</h2>
+                <h2 className="font-nunito font-bold"
+                onClick={() => speakText("Localizacion")}
+                onMouseLeave={() => {cancelVoice;}}
+                >Localizacion</h2>
                 <select
                   className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
                   onChange={handleLocation}
@@ -347,7 +383,10 @@ const ProfileCompany = () => {
                   {error.location}
                 </p>
 
-                <h2 className="font-nunito font-bold">Rubros</h2>
+                <h2 className="font-nunito font-bold"
+                onClick={() => speakText("Rubros")}
+                onMouseLeave={() => {cancelVoice;}}
+                >Rubros</h2>
                 <select
                   className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
                   onChange={handleCategory}
@@ -365,7 +404,10 @@ const ProfileCompany = () => {
                 <br />
 
                 {input?.category?.length ? (
-                  <h2 className="text-sm font-bold font-nunito dark:text-gray-300">
+                  <h2 className="text-sm font-bold font-nunito dark:text-gray-300"
+                  onClick={() => speakText("Rubros seleccionados")}
+                  onMouseLeave={() => {cancelVoice;}}
+                  >
                     Rubros seleccionados:{" "}
                   </h2>
                 ) : null}
@@ -390,7 +432,10 @@ const ProfileCompany = () => {
                   {error.category}
                 </p>
 
-                <h2 className="font-nunito font-bold">Teléfono</h2>
+                <h2 className="font-nunito font-bold"
+                onClick={() => speakText("Teléfono")}
+                onMouseLeave={() => {cancelVoice;}}
+                >Teléfono</h2>
                 <input
                   className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
                   onChange={handleChange}
@@ -406,7 +451,10 @@ const ProfileCompany = () => {
                   {error.phone}
                 </p>
 
-                <h2 className="font-nunito font-bold">Descripción</h2>
+                <h2 className="font-nunito font-bold"
+                onClick={() => speakText("Descripción")}
+                onMouseLeave={() => {cancelVoice;}}
+                >Descripción</h2>
 
                 <textarea
                   className="rounded-3xl px-2 py-1 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
@@ -465,7 +513,10 @@ const ProfileCompany = () => {
           <div className="block ">
             <div className="my-4 mr-4 border-2 rounded-2xl border-light-2 dark:border-light-1 dark:max-lg:border-none  max-lg:border-none">
               <div className="flex justify-between m-2">
-                <h1 className="text-3xl font-nunito font-bold   px-2 dark:text-gray-300">
+                <h1 className="text-3xl font-nunito font-bold   px-2 dark:text-gray-300"
+                onClick={() => speakText("Mis capacitaciones")}
+                onMouseLeave={() => {cancelVoice;}}
+                >
                   Mis capacitaciones
                 </h1>
 
@@ -507,7 +558,10 @@ const ProfileCompany = () => {
                   </div>
                 ) : (
                   <div>
-                    <h1>No hay capacitaciones creadas todavia.</h1>
+                    <h1
+                    onClick={() => speakText("No hay capacitaciones creadas todavia")}
+                    onMouseLeave={() => {cancelVoice;}}
+                    >No hay capacitaciones creadas todavia.</h1>
                   </div>
                 )}
               </div>
@@ -515,7 +569,10 @@ const ProfileCompany = () => {
 
             <div className="my-9 mr-4 border-2 rounded-3xl border-light-2 dark:border-light-1 dark:max-lg:border-none  max-lg:border-none">
               <div className="flex justify-between m-2">
-                <h1 className="text-3xl font-nunito font-bold px-2 dark:text-gray-300">
+                <h1 className="text-3xl font-nunito font-bold px-2 dark:text-gray-300"
+                onClick={() => speakText("Mis ofertas de trabajo")}
+                onMouseLeave={() => {cancelVoice;}}
+                >
                   Mis ofertas de trabajo
                 </h1>
 
@@ -554,7 +611,10 @@ const ProfileCompany = () => {
                   </div>
                 ) : (
                   <div>
-                    <h1>No hay trabajos creados todavia.</h1>
+                    <h1
+                    onClick={() => speakText("No hay trabajos creados todavia")}
+                    onMouseLeave={() => {cancelVoice;}}
+                    >No hay trabajos creados todavia.</h1>
                   </div>
                 )}
               </div>
