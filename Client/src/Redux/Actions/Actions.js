@@ -245,15 +245,17 @@ export const editUser = (id, user) => {
       dispatch({
         type: EDIT_USER,
       });
-      Swal.fire({
-        title: "Se cambio la contraseña exitosamente",
-  
-        icon: "success",
-        customClass: {
-          popup: "holahola",
-          confirmButton: "bg-light-1",
-        },
-      });
+      if(user?.password){
+        Swal.fire({
+          title: "Se cambio la contraseña exitosamente",
+    
+          icon: "success",
+          customClass: {
+            popup: "holahola",
+            confirmButton: "bg-light-1",
+          },
+        });
+      }
       return false;
     } catch (error) {
       if(error.response.data.error === "La contraseña es igual a la anterior"){
@@ -486,15 +488,17 @@ export const editCompany = (id, company) => {
       dispatch({
         type: EDIT_COMPANY,
       });
-      Swal.fire({
-        title: "Se cambio la contraseña exitosamente",
-  
-        icon: "success",
-        customClass: {
-          popup: "holahola",
-          confirmButton: "bg-light-1",
-        },
-      });
+        if(company?.password){
+          Swal.fire({
+            title: "Se cambio la contraseña exitosamente",
+      
+            icon: "success",
+            customClass: {
+              popup: "holahola",
+              confirmButton: "bg-light-1",
+            },
+          });
+        }
       return false;
     } catch (error) {
       console.log(error.response.data)
