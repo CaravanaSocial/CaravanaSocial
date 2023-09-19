@@ -21,6 +21,10 @@ const FreelancerDetail = () => {
   //No se sabe como van a venir los certificados xd. Si los renderizo se rompe.
   const certificates = userDetail?.certificates?.map((x) => x.name).join(", ");
 
+  const goBack =()=>{
+    navigate(-1)
+  }
+
   function calcularEdad() {
     const hoy = new Date();
     const fechaNac = new Date(userDetail?.birthDate);
@@ -51,12 +55,12 @@ const FreelancerDetail = () => {
                 src={userDetail?.profilePicture}
               />
 
-              <div className="text-start border-l-2 border-light-1 ml-2 pl-2">
-                <h2 className="text-2xl max-lg:text-xl">
+              <div className="text-start border-l-2 border-light-1 mx-2 pl-2">
+                <h2 className="text-3xl font-nunito font-bold max-lg:text-xl">
                   {userDetail?.name} {userDetail?.lastName}
                 </h2>
 
-                <h2 className="text-2xl max-lg:text-lg text-gray-700 dark:text-gray-400">
+                <h2 className="text-2xl  max-lg:text-lg text-gray-700 dark:text-gray-400">
                   {userDetail?.location?.country +
                     ", " +
                     userDetail?.location?.state +
@@ -74,7 +78,7 @@ const FreelancerDetail = () => {
 
             <div className="justify-center items-center">
               <div className="flex justify-center">
-                <h1 className="text-2xl max-lg:text-xl text-light-2 dark:text-light-1 mr-2">
+                <h1 className="text-2xl max-lg:text-xl font-bold font-nunito text-light-2 dark:text-light-1 mr-2">
                   Correo de contacto:
                 </h1>
                 <h1 className="text-xl max-lg:text-lg pt-0.5">
@@ -82,19 +86,23 @@ const FreelancerDetail = () => {
                 </h1>
               </div>
               <br />
-              <h1 className="text-2xl max-lg:text-xl text-light-2 dark:text-light-1">
+              <h1 className="text-2xl max-lg:text-xl font-bold font-nunito text-light-2 dark:text-light-1">
                 Rubros:
               </h1>
               <h2 className="text-xl max-lg:text-lg">{categories}</h2>
 
-              <h1 className="text-2xl max-lg:text-xl text-light-2 dark:text-light-1 mt-6">
+              <h1 className="text-2xl max-lg:text-xl font-bold font-nunito text-light-2 dark:text-light-1 mt-6">
                 Descripción:
               </h1>
               <h2 className="text-xl max-lg:text-lg">
                 {userDetail?.description}
               </h2>
             </div>
+            
+            <button className="bg-light-1 font-topmodern rounded-3xl py-1 px-2 my-3 border-2 border-transparent dark:text-zinc-900 hover:text-white hover:scale-95" onClick={goBack}>volver</button>
+            
           </div>
+          
         </div>
       ) : (
         <div>{navigate("/login")}</div>

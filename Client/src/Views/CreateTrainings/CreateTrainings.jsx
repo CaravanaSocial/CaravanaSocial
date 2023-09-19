@@ -11,6 +11,8 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import NotFound from "../../components/NotFound";
 
 export default function createTrainings() {
+  const speech = useSelector((state) => state.enableSpeech);
+  const [synth, setSynth] = useState(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const category = useSelector((state) => state.categories);
@@ -26,6 +28,7 @@ export default function createTrainings() {
 
   useEffect(() => {
     dispatch(getCategories());
+    setSynth(window.speechSynthesis);
   }, []);
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
@@ -118,18 +121,37 @@ export default function createTrainings() {
     }
   };
 
+  const speakText = (text) => {
+    if (speech === true && synth) {
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.volume = 1;
+      utterance.lang = "es-ES";
+      synth.speak(utterance);
+    }
+  };
+  const cancelVoice = () => {
+    if (synth) {
+      synth.cancel();
+    }
+  };
+
   return (
     <div className="h-full text-center">
       {localStorage.length !== 0 && localStorage.type !== "user" ? (
         <div className="inline-block m-4 p-4 text-center ">
           <div className="justify-center text-center border-2 border-lime-600 dark:border-lime-700 rounded-3xl p-4 m-4">
-            <h1 className="text-3xl mb-1 dark:text-gray-300">
+            <h1 className="text-3xl mb-1 dark:text-gray-300"
+            onClick={() => speakText("Crea una Capacitación")}
+            onMouseLeave={() => {cancelVoice;}}
+            >
               Crea una Capacitación
             </h1>
 
             <div className="border-t-2 border-lime-600 dark:border-lime-700" />
 
-            <h2 className="text-lg dark:text-gray-300">
+            <h2 className="text-lg dark:text-gray-300"
+            onClick={() => speakText("Nombre de la Capacitación")}
+            onMouseLeave={() => {cancelVoice;}}>
               Nombre de la Capacitación
             </h2>
             <input
@@ -150,7 +172,10 @@ export default function createTrainings() {
               onChange={handleCategory}
               name="category"
             >
-              <option value="default">rubro</option>
+              <option value="default"
+              onClick={() => speakText("rubro")}
+              onMouseLeave={() => {cancelVoice;}}
+              >rubro</option>
               {category?.map((c) => {
                 return (
                   <option key={c} value={c}>
@@ -161,7 +186,10 @@ export default function createTrainings() {
             </select>
             <br />
             {inputTrainings.category.length ? (
-              <h2 className="text-lg dark:text-gray-300">
+              <h2 className="text-lg dark:text-gray-300"
+              onClick={() => speakText("Rubros seleccionados")}
+              onMouseLeave={() => {cancelVoice;}}
+              >
                 Rubros seleccionados:{" "}
               </h2>
             ) : null}
@@ -179,7 +207,10 @@ export default function createTrainings() {
               );
             })}
 
-            <h2 className="text-lg dark:text-gray-300">Descripción</h2>
+            <h2 className="text-lg dark:text-gray-300"
+            onClick={() => speakText("Descripción")}
+            onMouseLeave={() => {cancelVoice;}}
+            >Descripción</h2>
             <textarea
               className="rounded-3xl px-2 py-1 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
               type="text"

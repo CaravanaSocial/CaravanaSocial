@@ -85,11 +85,11 @@ const LandingPage = () => {
       <section className=" w-full  h-[500px] m-auto flex flex-col mt-5 lg:items-center lg:justify-center ">
         {" "}
         <h2
-          onClick={() => speakText("Nuestra Filosofia")}
+          onClick={() => speakText("Nuestra Filosofía")}
           onMouseLeave={() => {}}
-          className="text-center font-vilaka xl:text-[70px] dark:text-white text-black text-[60px] font-bold dark:font-light cursor-default "
+          className="text-center font-nunito dark:text-white text-black text-[55px] font-bold dark:font-light cursor-default "
         >
-          Nuestra Filosofia
+          Nuestra filosofía
         </h2>
         <div className=" text-center mt-2 mb-5 lg:w-[600px] lg:h-[300px] lg:m-5 m-auto  w-[400px] h-[450px]  rounded ">
           <h1

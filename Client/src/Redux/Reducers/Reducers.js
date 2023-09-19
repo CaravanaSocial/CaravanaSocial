@@ -49,7 +49,8 @@ import {
   OFFERS_BY_NAME,
   ENABLE_SPEECH,
   enableSpeech,
-  CHANGE_PASSWORD
+  CHANGE_PASSWORD,
+  DELETE_COMMENT,
 } from "../Actions/Actions";
 
 const initialState = {
@@ -410,6 +411,10 @@ export default function rootReducer(state = initialState, action) {
       return{
         ...state
       }
+    case DELETE_COMMENT:
+      return{
+        ...state
+      }  
 
     default:
       return { ...state };

@@ -23,10 +23,10 @@ export default function CardFreelancer(props) {
           {props.freelancer.name}
         </h1>
 
-        <h3 className="font-topmodern dark:text-black">
+        <h3 className="font-nunito dark:text-black">
           {props.freelancer.location.country}
         </h3>
-        <h4 className="font-vilaka dark:text-black  whitespace-normal text-center  font-bold text-[25px]">
+        <h4 className="font-nunito dark:text-black  whitespace-normal text-center  font-bold text-[20px]">
           {props.freelancer.description}
         </h4>
         <button

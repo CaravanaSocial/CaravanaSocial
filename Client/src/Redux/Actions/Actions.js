@@ -86,6 +86,8 @@ export const ENABLE_SPEECH = "ENABLE_SPEECH";
 
 export const CHANGE_PASSWORD = "CHANGE_PASSWORD"; 
 
+export const DELETE_COMMENT = "DELETE_COMMENT";
+
 //---------------Provicional------------
 
 
@@ -1237,3 +1239,19 @@ export const changePassword = (id, passwordChange, typeOfCount) => {
     }
   }
 }
+
+
+export const deleteComment =(id)=>{
+  return async function(dispatch){
+   try {
+    const response =  await axios.delete("http://localhost:3001/comments/delete/" + id);
+    return dispatch({
+      type: DELETE_COMMENT
+    })
+   } catch (error) {
+    
+   }
+  }
+}
+
+
