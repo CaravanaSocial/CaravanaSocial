@@ -49,7 +49,7 @@ const Freelancers = () => {
               onChange={handleChange}
               name="country"
             >
-              <option value="Todos">Todos los Paises</option>
+              <option value="">Todos los Paises</option>
               {countries?.map((p) => {
                 return (
                   <option key={p} value={p}>
@@ -64,7 +64,7 @@ const Freelancers = () => {
               onChange={handleChange}
               name="category"
             >
-              <option value="default">Todos los Rubros</option>
+              <option value="">Todos los Rubros</option>
               {category?.map((c) => {
                 return (
                   <option key={c} value={c}>
