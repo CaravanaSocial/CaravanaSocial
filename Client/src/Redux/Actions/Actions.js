@@ -721,7 +721,7 @@ export const editTraining = (id, training) => {
       const response = await axios.patch(endpoint, training);
       const { data } = response;
       Swal.fire({
-        title: "Capacitacion Anadida!",
+        title: "Capacitacion Añadida!",
         text: `Necesitamos que el administrador revise y apruebe tu solicitud`,
         icon: "success",
         customClass: {
