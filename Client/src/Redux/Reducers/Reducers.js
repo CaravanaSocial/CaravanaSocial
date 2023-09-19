@@ -29,6 +29,7 @@ import {
   COMPANY_BUTTONS,
   TRAINING_FILTER,
   GET_FREELANCERS,
+  GET_FILTER_FREELANCERS,
   ADDVIDEO,
   IMAGECHANGE,
   TRAINING_DETAIL,
@@ -75,6 +76,7 @@ const initialState = {
   trainingsFiltered: [],
   categories: [],
   freelancers: [],
+  filteredFreelancers: [],
   video: [],
   imageChange: false,
   trainingsDetail: {},
@@ -129,6 +131,11 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         freelancers: action.payload,
+      };
+    case GET_FILTER_FREELANCERS:
+      return {
+        ...state,
+        filteredFreelancers: action.payload,
       };
 
     case CREATE_ADMIN:

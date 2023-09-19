@@ -9,7 +9,6 @@ export const RESTORE_USERS = "RESTORE_USERS";
 
 export const GET_SUCCESCASES = "GET_SUCCESCASES";
 
-export const GET_FREELANCERS = "GET_FREELANCERS";
 export const GET_USER_BY_ID = "GET_USER_BY_ID";
 
 export const CREATE_ADMIN = "CREATE_ADMIN";
@@ -71,7 +70,11 @@ export const ADD_USER_TRAINING = "ADD_USER_TRAINING";
 
 export const USER_TRAINING = "USER_TRAINING";
 
+export const GET_FREELANCERS = "GET_FREELANCERS";
+export const GET_FILTER_FREELANCERS = "GET_FILTER_FREELANCERS"
 export const CLEAR_FREELANCERS = "CLEAR_FREELANCERS";
+export const FREELANCER_BY_NAME = "FREELANCER_BY_NAME";
+
 export const GET_Q_AND_A = "GET_Q_AND_A";
 export const DELETE_Q_AND_A = "DELETE_Q_AND_A";
 
@@ -79,7 +82,6 @@ export const POST_BLOG = "POST_BLOG";
 export const GET_ALL_BLOGS = "GET_ALL_BLOGS";
 export const GET_BLOGS_BY_ID = "GET_BLOGS_BY_ID";
 
-export const FREELANCER_BY_NAME = "FREELANCER_BY_NAME";
 export const TRAINING_BY_NAME = "TRAINING_BY_NAME";
 export const OFFERS_BY_NAME = "OFFERS_BY_NAME";
 export const ENABLE_SPEECH = "ENABLE_SPEECH";
@@ -206,6 +208,25 @@ export const getFreelancers = () => {
       return dispatch({ type: GET_FREELANCERS, payload: data });
     } catch (error) {
       console.log(error);
+    }
+  };
+};
+export const getFilterFreelancers = (info) => {
+  //---------- Endpoint to Dev server -- Descomentar para usar
+  // const endpoint = `http://localhost:3001/user/freelancers`;
+
+  //---------- Endpoint to deployed server
+  const endpoint = `${serverURL}/freelancers`;
+  const {country, category} = info
+  return async (dispatch) => {
+    try {
+      const response = await axios(`${endpoint}/?country=${country}&category=${category}`);
+      const { data } = response;
+      console.log(data)
+
+      return dispatch({ type: GET_FILTER_FREELANCERS, payload: data });
+    } catch (error) {
+      alert(error.message);
     }
   };
 };
