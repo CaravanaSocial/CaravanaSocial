@@ -1,5 +1,5 @@
 const { Op } = require("sequelize");
-const { offer } = require("../../db");
+const { offer, companies, areaTraining, admin } = require("../../db");
 
 const getOfferByNameController = async (name) => {
   try {
@@ -14,7 +14,7 @@ const getOfferByNameController = async (name) => {
             {
               model: areaTraining,
               attributes: ["name"],
-  
+
               through: { attributes: [] },
             },
           ],
@@ -28,15 +28,19 @@ const getOfferByNameController = async (name) => {
           through: { attributes: [] },
         },
       ],
-      
+
       where: {
         title: {
           [Op.iLike]: `${name}%`,
         },
       },
     });
+    console.log(findOfferByName);
 
-    return findOfferByName;
+    if (findOfferByName.length > 0) {
+      return findOfferByName;
+    }
+    return [];
   } catch (error) {
     throw error;
   }
