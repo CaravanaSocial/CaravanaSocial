@@ -244,22 +244,13 @@ export default function NavBar() {
                 className="text-center block rounded-lg px-4 py-2 text-sm text-gray-500 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 hover:text-gray-700 dark:hover:text-gray-400"
                 to="/"
                 role="menuitem"
-              >
-                Landing
-              </Link>
+              >Landing</Link>
 
               <Link
                 className="text-center block rounded-lg px-4 py-2 text-sm text-gray-500 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 hover:text-gray-700 dark:hover:text-gray-400"
                 to="/home"
                 role="menuitem"
-              >
-                Home
-              </Link>
-              <Link className="text-center block rounded-lg px-4 py-2 text-sm text-gray-500 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 hover:text-gray-700 dark:hover:text-gray-400"
-                to="/blogs"
-                role="menuitem">
-              Noticias
-              </Link>
+              >Home</Link>
 
               {localStorage.type === "company" ? (
                 <>
@@ -267,17 +258,13 @@ export default function NavBar() {
                     className="text-center block rounded-lg px-4 py-2 text-sm text-gray-500 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 hover:text-gray-700 dark:hover:text-gray-400"
                     to="/create-trainings"
                     role="menuitem"
-                  >
-                    Crear Capacitacion
-                  </Link>
+                  >Crear Capacitacion</Link>
 
                   <Link
                     className="text-center block rounded-lg px-4 py-2 text-sm text-gray-500 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 hover:text-gray-700 dark:hover:text-gray-400"
                     to="/create-jobs"
                     role="menuitem"
-                  >
-                    Crear Avisos de Trabajo
-                  </Link>
+                  >Crear Avisos de Trabajo</Link>
                 </>
               ) : localStorage.type === "superAdmin" ? (
                 <>
@@ -285,25 +272,25 @@ export default function NavBar() {
                     className="text-center block rounded-lg px-4 py-2 text-sm text-gray-500 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 hover:text-gray-700 dark:hover:text-gray-400"
                     to="/create-trainings"
                     role="menuitem"
-                  >
-                    Crear Capacitacion
-                  </Link>
+                  >Crear Capacitacion</Link>
 
                   <Link
                     className="text-center block rounded-lg px-4 py-2 text-sm text-gray-500 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 hover:text-gray-700 dark:hover:text-gray-400"
                     to="/create-jobs"
                     role="menuitem"
-                  >
-                    Crear Avisos de Trabajo
+                  >Crear Avisos de Trabajo</Link>
+
+                  <Link className="text-center block rounded-lg px-4 py-2 text-sm text-gray-500 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 hover:text-gray-700 dark:hover:text-gray-400"
+                    to="/create-success"
+                    role="menuitem">
+                    Crear casos de éxito
                   </Link>
 
                   <Link
                     className="text-center block rounded-lg px-4 py-2 text-sm text-gray-500 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 hover:text-gray-700 dark:hover:text-gray-400"
                     to="/admin"
                     role="menuitem"
-                  >
-                    Panel de Admin
-                  </Link>
+                  >Panel de Admin</Link>
                 </>
               ) : null}
             </div>
@@ -346,7 +333,7 @@ export default function NavBar() {
                   className="relative inline-block w-10 mr-2 align-middle select-none"
                   onClick={handleSpeech}
                 >
-                  {speech === true ? (
+                  {speech === false ? (
                     <input
                       className="outline-none focus:outline-none right-4 duration-200 ease-in absolute block w-6 h-6 rounded-full bg-white border-4 border-gray-300 appearance-none cursor-pointer"
                       type="checkbox"
