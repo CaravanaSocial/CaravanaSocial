@@ -38,7 +38,7 @@ const updateCompanyHandler = async (req, res) =>{
         const updated = await updateCompanyController(req.body, id)
         return res.status(200).json(updated)
     } catch (error) {
-        return res.status(500).json(error.message)
+        return res.status(500).json( {error: error.message})
     }    
 }
 

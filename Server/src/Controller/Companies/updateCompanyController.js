@@ -6,6 +6,14 @@ const bcrypt = require("bcryptjs");
 const updateCompanyController = async (props, id) =>{
     const {password, category} = props
     const saltRounds = 10;
+    const foundCompany = await companies.findByPk(id)
+    const oldPassword = foundCompany.dataValues.password;
+    if(password){
+        const validPassword = await bcrypt.compare(password, oldPassword)
+        if(validPassword){
+            throw Error("La contraseña es igual a la anterior");
+        }
+    }
     const hashedPassword = props?.password ? await bcrypt.hash(props.password, saltRounds) : null
     const updated = await companies.update(
         password ? {...props,password : hashedPassword}: props,{
