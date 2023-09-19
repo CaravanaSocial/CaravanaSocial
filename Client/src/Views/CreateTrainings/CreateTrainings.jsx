@@ -15,7 +15,7 @@ export default function createTrainings() {
   const [synth, setSynth] = useState(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const category = useSelector((state) => state.categories);
+  const categories = useSelector((state) => state.categories);
   const addBtn = useRef(null);
   const [video, setVideo] = useState({ video: "" });
   const [error, setError] = useState({});
@@ -49,18 +49,50 @@ export default function createTrainings() {
     );
   };
 
+  // const handleCategory = (event) => {
+  //   const rep = inputTrainings.category.find(
+  //     (cat) => cat === event.target.value
+  //   );
+  //   if (event.target.value !== "default" && !rep) {
+  //     setInputTrainings({
+  //       ...inputTrainings,
+  //       category: [...inputTrainings.category, event.target.value],
+  //     });
+  //     event.target.value = "default";
+  //   }
+  // };
+
+  const validateInput = (inputData) => {
+    const errors = Validation(inputData);
+    setError(errors);
+  };
+
   const handleCategory = (event) => {
-    const rep = inputTrainings.category.find(
-      (cat) => cat === event.target.value
-    );
+    const rep = inputTrainings.category.find((cat) => cat === event.target.value);
     if (event.target.value !== "default" && !rep) {
       setInputTrainings({
         ...inputTrainings,
         category: [...inputTrainings.category, event.target.value],
       });
       event.target.value = "default";
+      validateInput({
+        ...inputTrainings,
+        category: [...inputTrainings.category, event.target.value],
+      });
     }
+    event.target.value = "default";
   };
+
+  // const handleDelCategory = (event) => {
+  //   event.preventDefault();
+  //   const filteredCat = inputTrainings.category.filter(
+  //     (cat) => cat !== event.target.value
+  //   );
+  //   setInputTrainings({
+  //     ...inputTrainings,
+  //     category: filteredCat,
+  //   });
+  // };
 
   const handleDelCategory = (event) => {
     event.preventDefault();
@@ -71,6 +103,7 @@ export default function createTrainings() {
       ...inputTrainings,
       category: filteredCat,
     });
+    validateInput({ ...inputTrainings, category: filteredCat });
   };
 
   const handleChangeVideo = (event) => {
@@ -105,10 +138,14 @@ export default function createTrainings() {
     });
   };
 
-  const disabled =
-    !inputTrainings.name ||
-    !inputTrainings.category ||
-    !inputTrainings.description;
+  // const disabled =
+  //   !inputTrainings.name ||
+  //   !inputTrainings.category ||
+  //   !inputTrainings.description;
+
+    const isSubmitDisabled =
+    Object.keys(error).length > 0 || inputTrainings.category.length === 0;
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -176,7 +213,7 @@ export default function createTrainings() {
               onClick={() => speakText("rubro")}
               onMouseLeave={() => {cancelVoice;}}
               >rubro</option>
-              {category?.map((c) => {
+              {categories?.map((c) => {
                 return (
                   <option key={c} value={c}>
                     {c}
@@ -206,6 +243,7 @@ export default function createTrainings() {
                 </div>
               );
             })}
+            <span className="text-red-600" style={{ visibility: error.category ? "visible" : "hidden" }}>{error.category} </span>
 
             <h2 className="text-lg dark:text-gray-300"
             onClick={() => speakText("Descripción")}
@@ -230,9 +268,15 @@ export default function createTrainings() {
               className="bg-light-1 font-topmodern rounded-3xl p-2 border-2 border-transparent dark:text-zinc-900 hover:text-white hover:scale-95"
               type="submit"
               onClick={handleSubmit}
-              disabled={disabled}
+              // disabled={disabled}
+              style={
+                isSubmitDisabled
+                  ? { opacity: "0.6", cursor: "not-allowed" }
+                  : null
+              }
+              disabled={isSubmitDisabled}
             >
-              Crear
+              Continuar
             </button>
           </div>
         </div>

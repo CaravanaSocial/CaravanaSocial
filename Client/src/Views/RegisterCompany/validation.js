@@ -48,8 +48,8 @@ export default function validation(input){
         error.phone ="Necesitamos un telefono para estar en contacto."
     }
 
-    if(!input.category){
-        error.category = "Ingrese el rubro de la capacitación."
+    if(!input.category.length){
+        error.category = "Ingrese el rubro en el que está especializado."
     }
 
     if(!input.location.country || !input.location.state ){

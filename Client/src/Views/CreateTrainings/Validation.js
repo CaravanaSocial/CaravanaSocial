@@ -4,18 +4,18 @@ export default function Validation (input){
     const regexUrl = /^(ftp|http|https):\/\/[^ "]+$/;
 
     if (input.name && !regexName.test(input.name)){
-        error.name = "El nombre no debe contener números"
+        error.name = "El nombre no debe contener números."
     } else if (!input.name) {
-        error.name = "Debe ingresar un nombre"
+        error.name = "Debe ingresar el nombre de la capacitación."
     }
 
     if (!input.description) {
-        error.description = "Debe ingresar una descripción de su trabajo"
+        error.description = "Debe ingresar una descripción de la capacitación."
     }
 
-    /* if(input.video && !regexUrl.test(input.video)) {
-        error.video = "Debe ser una url: (http/https/ftp)"
+    if(!input.category.length){
+        error.category = "Debe ingresar al menos un rubro."
     }
- */
+    
     return error;
 }
