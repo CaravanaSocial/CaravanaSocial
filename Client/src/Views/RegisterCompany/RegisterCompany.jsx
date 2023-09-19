@@ -22,7 +22,6 @@ const RegisterCompany = () => {
   const category = useSelector((state) => state.categories);
   const globalErrors = useSelector((state) => state.errors);
 
-  // <p>{globalErrors?.CREATE_COMPANY?.error}</p>;
 
   const [companyInput, setCompanyInput] = useState({
     name: "",
@@ -32,6 +31,7 @@ const RegisterCompany = () => {
     category: [],
     phone: "",
     email: "",
+    emailRep:"",
     password: "",
     passwordRep: "",
     description: "",
@@ -147,7 +147,7 @@ const RegisterCompany = () => {
         nameCompany: companyInput.nameCompany,
         category: companyInput.category,
         phone: state.code + " " + companyInput.phone,
-        email: companyInput.email,
+        email: companyInput.emailRep,
         password: companyInput.passwordRep,
         description: companyInput.description,
         location: companyInput.location,
@@ -188,7 +188,7 @@ const RegisterCompany = () => {
         <div className="border-t-2 border-light-1 dark:border-light-1" />
 
         <form onSubmit={handleSubmit}>
-          <h2 className="text-lg font-topmodern dark:text-gray-300">
+          <h2 className="text-lg font-nunito font-bold dark:text-gray-300">
             Nombre:{" "}
           </h2>
           <input
@@ -205,7 +205,7 @@ const RegisterCompany = () => {
             {error.name}
           </h3>
 
-          <h2 className="text-lg font-topmodern dark:text-gray-300">
+          <h2 className="text-lg font-nunito font-bold dark:text-gray-300">
             Apellido:{" "}
           </h2>
           <input
@@ -222,7 +222,7 @@ const RegisterCompany = () => {
             {error.lastName}
           </h3>
 
-          <h2 className="text-lg font-topmodern dark:text-gray-300">Cargo: </h2>
+          <h2 className="text-lg font-nunito font-bold dark:text-gray-300">Cargo: </h2>
           <input
             className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
             onChange={handleInputs}
@@ -237,7 +237,7 @@ const RegisterCompany = () => {
             {error.position}
           </h3>
 
-          <h2 className="text-lg font-topmodern dark:text-gray-300">
+          <h2 className="text-lg font-nunito font-bold dark:text-gray-300">
             Empresa:{" "}
           </h2>
           <input
@@ -345,7 +345,7 @@ const RegisterCompany = () => {
             {error.category}
           </h3>
 
-          <h2 className="text-lg font-topmodern dark:text-gray-300">
+          <h2 className="text-lg font-nunito font-bold dark:text-gray-300">
             Telefono:{" "}
           </h2>
           <span>{state?.code}</span>
@@ -364,22 +364,26 @@ const RegisterCompany = () => {
             {error.phone}
           </h3>
 
-          <h2 className="text-lg font-topmodern dark:text-gray-300">Email: </h2>
+          <h2 className="text-lg font-nunito font-bold dark:text-gray-300">Email: </h2>
           <input
             className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
             onChange={handleInputs}
             type="text"
-            placeholder="Email de la empresa..."
+            placeholder="Email de la empresa"
             name="email"
           />
-          <h3
-            className="text-red-600"
-            style={{ visibility: error.email ? "visible" : "hidden" }}
-          >
-            {error.email}
-          </h3>
+          <h3 className="text-red-600" style={{ visibility: error.email ? "visible" : "hidden" }}> {error.email} </h3>
 
-          <h2 className="text-lg font-topmodern dark:text-gray-300">
+          <input
+            className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
+            onChange={handleInputs}
+            type="text"
+            placeholder="Repite el email"
+            name="emailRep"
+          />
+          <h3 className="text-red-600" style={{ visibility: error.emailRep ? "visible" : "hidden" }}> {error.emailRep} </h3>
+
+          <h2 className="text-lg font-nunito font-bold dark:text-gray-300">
             Contraseña
           </h2>
           <input
@@ -410,7 +414,7 @@ const RegisterCompany = () => {
             {error.passwordRep}
           </h3>
 
-          <h2 className="text-lg font-topmodern dark:text-gray-300">
+          <h2 className="text-lg font-nunito font-bold dark:text-gray-300">
             Descripción
           </h2>
           <textarea
@@ -440,7 +444,7 @@ const RegisterCompany = () => {
             disabled={isSubmitDisabled}
             type="submit"
           >
-            Enviar
+            REGISTRARME
           </button>
           <h3
             className="text-red-600"

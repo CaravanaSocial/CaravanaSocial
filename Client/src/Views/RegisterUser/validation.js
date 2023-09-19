@@ -8,6 +8,9 @@ export default function validation(input) {
     if (!regexEmail.test(input.email)) {
         error.email = "Debe ingresar un Email valido!"
     }
+    if(input.emailRep !== input.email){
+        error.emailRep = "Los emails no coinciden"
+    }
     if (!regexPass.test(input.password)) {
         error.password = "La contraseña debe tener como mínimo 8 caracteres, una letra mayúscula, una letra minúscula y un número"
     }

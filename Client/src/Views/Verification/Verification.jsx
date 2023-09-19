@@ -11,14 +11,15 @@ import {
 import Swal from "sweetalert2";
 
 const Verification = () => {
+  const speech = useSelector((state) => state.enableSpeech);
+  const [synth, setSynth] = useState(null);
   const { id, code } = useParams();
   const { userDetail, companyDetail } = useSelector((state) => state);
 
   useEffect(() => {
     dispatch(getUserById(id));
     dispatch(detailCompany(id));
-    console.log(userDetail);
-    console.log(companyDetail);
+    setSynth(window.speechSynthesis);
   }, []);
 
   const [inputCode, setCode] = useState("");
@@ -91,13 +92,32 @@ const Verification = () => {
       setError("El código proporcionado es incorrecto");
     }
   };
+
+  const speakText = (text) => {
+    if (speech === true && synth) {
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.volume = 1;
+      utterance.lang = "es-ES";
+      synth.speak(utterance);
+    }
+  };
+  const cancelVoice = () => {
+    if (synth) {
+      synth.cancel();
+    }
+  };
+
   return (
     <div className="h-screen">
       <div className="flex justify-center text-center">
         <div className="mt-4">
           <h1 className="text-4xl text-[50px] border-b-2 border-light-1 dark:border-light-1 dark:text-gray-300"
+          onClick={() => speakText("Verificación")}
+          onMouseLeave={() => {cancelVoice;}}
           >Verificación</h1>
           <p className="text-xl text-[50px] text-center dark:text-gray-300"
+          onClick={() => speakText("Pulsa el botón para verificar tu cuenta y a continuacion podras iniciar sesión")}
+          onMouseLeave={() => {cancelVoice;}}
           >Pulsa el botón para verificar tu cuenta y a continuacion podras iniciar sesión</p>
           <br />
           <button className="bg-light-1 p-2 rounded-3xl text-xl dark:text-black"

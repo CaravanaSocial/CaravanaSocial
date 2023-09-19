@@ -33,6 +33,7 @@ export default function RegisterUser() {
     CUD: "",
     category: [],
     email: "",
+    emailRep: "",
     password: "",
     passwordRep: "",
     certificates: "",
@@ -138,7 +139,7 @@ export default function RegisterUser() {
         location: userData.location,
         CUD: userData.CUD,
         category: userData.category,
-        email: userData.email,
+        email: userData.emailRep,
         password: userData.passwordRep,
         certificates: userData.certificates,
         freelancer: userData.freelancer,
@@ -215,7 +216,7 @@ export default function RegisterUser() {
         <div className="border-t-2 border-light-1 dark:border-light-1" />
 
         <form onSubmit={handleSubmit}>
-          <h2 className="text-lg font-topmodern dark:text-gray-300">Nombre</h2>
+          <h2 className="text-lg font-nunito font-bold dark:text-gray-300">Nombre</h2>
           <input
             className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
             type="text"
@@ -226,7 +227,7 @@ export default function RegisterUser() {
           />
           <h3 className="text-red-600">{errors.name ? errors.name : null}</h3>
 
-          <h2 className="text-lg font-topmodern dark:text-gray-300">
+          <h2 className="text-lg font-nunito font-bold dark:text-gray-300">
             Apellido
           </h2>
           <input
@@ -241,7 +242,7 @@ export default function RegisterUser() {
             {errors.lastName ? errors.lastName : null}
           </h3>
 
-          <h2 className="text-lg font-topmodern dark:text-gray-300">
+          <h2 className="text-lg font-nunito font-bold dark:text-gray-300">
             Fecha de Nacimiento
           </h2>
           <input
@@ -255,7 +256,7 @@ export default function RegisterUser() {
             {errors.birthDate ? errors.birthDate : null}
           </h3>
 
-          <h2 className="text-lg font-topmodern dark:text-gray-300">País</h2>
+          <h2 className="text-lg font-nunito font-bold dark:text-gray-300">País</h2>
           <select
             className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
             onChange={handleChange}
@@ -272,7 +273,7 @@ export default function RegisterUser() {
             {errors.country ? errors.country : null}
           </h3>
 
-          <h2 className="text-lg font-topmodern dark:text-gray-300">
+          <h2 className="text-lg font-nunito font-bold dark:text-gray-300">
             Estado/Provincia
           </h2>
           <select
@@ -289,7 +290,7 @@ export default function RegisterUser() {
           </select>
           <h3 className="text-red-600">{errors.state ? errors.state : null}</h3>
 
-          <h2 className="text-lg font-topmodern dark:text-gray-300">Ciudad</h2>
+          <h2 className="text-lg font-nunito font-bold dark:text-gray-300">Ciudad</h2>
           <select
             className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
             onChange={handleChange}
@@ -304,8 +305,8 @@ export default function RegisterUser() {
           </select>
           <h3 className="text-red-600">{errors.city ? errors.city : null}</h3>
 
-          <h2 className="text-lg font-topmodern dark:text-gray-300">
-            Tenes Certificado Único de Discapacidad (CUD)?
+          <h2 className="text-lg font-nunito font-bold dark:text-gray-300">
+            ¿Tienes Certificado Único de Discapacidad (CUD)?
           </h2>
           <label>
             {" "}
@@ -328,7 +329,7 @@ export default function RegisterUser() {
 
           {checkboxCUD === "SI" ? (
             <section>
-              <h2 className="text-lg font-topmodern dark:text-gray-300">
+              <h2 className="text-lg font-nunito font-bold dark:text-gray-300">
                 Código CUD
               </h2>
               <input
@@ -343,18 +344,28 @@ export default function RegisterUser() {
             </section>
           ) : null}
 
-          <h2 className="text-lg font-topmodern dark:text-gray-300">Email</h2>
+          <h2 className="text-lg font-nunito font-bold dark:text-gray-300">Email</h2>
           <input
             className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
             type="email"
             name="email"
-            placeholder="email"
+            placeholder="Email"
             value={userData.email}
             onChange={handleChange}
           />
           <h3 className="text-red-600">{errors.email ? errors.email : null}</h3>
 
-          <h2 className="text-lg font-topmodern dark:text-gray-300">
+          <input
+            className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
+            type="email"
+            name="emailRep"
+            placeholder="Repite tu email"
+            value={userData.emailRep}
+            onChange={handleChange}
+          />
+          <h3 className="text-red-600">{errors.emailRep ? errors.emailRep : null}</h3>
+
+          <h2 className="text-lg font-nunito font-bold dark:text-gray-300">
             Contraseña
           </h2>
           <input
@@ -381,7 +392,7 @@ export default function RegisterUser() {
             {errors.passwordRep ? errors.passwordRep : null}
           </h3>
 
-          <h2 className="text-lg font-topmodern dark:text-gray-300">
+          <h2 className="text-lg font-nunito font-bold dark:text-gray-300">
             Tipo/s de Preferencia/s
           </h2>
           <select
@@ -400,7 +411,7 @@ export default function RegisterUser() {
           </select>
           <br />
           {userData.category.length ? (
-            <h2 className="text-lg font-topmodern dark:text-gray-300">
+            <h2 className="text-lg font-nunito font-bold dark:text-gray-300">
               Rubros seleccionados:{" "}
             </h2>
           ) : null}
@@ -424,7 +435,7 @@ export default function RegisterUser() {
             {errors.category}
           </h3>
 
-          <h2 className="text-lg font-topmodern dark:text-gray-300">
+          <h2 className="text-lg font-nunito font-bold dark:text-gray-300">
             Certificados (Opcional)
           </h2>
           <input
@@ -435,7 +446,7 @@ export default function RegisterUser() {
             onChange={handleChange}
           />
 
-          <h2 className="text-lg font-topmodern dark:text-gray-300">
+          <h2 className="text-lg font-nunito font-bold dark:text-gray-300">
             Sos Freelancer?
           </h2>
           <label>
@@ -459,7 +470,7 @@ export default function RegisterUser() {
 
           {checkboxFreelancer === "SI" ? (
             <section>
-              <h2 className="text-lg font-topmodern dark:text-gray-300">
+              <h2 className="text-lg font-nunito font-bold dark:text-gray-300">
                 Descripción de tu Emprendimiento
               </h2>
               <textarea
@@ -476,7 +487,7 @@ export default function RegisterUser() {
                 {errors.description ? errors.description : null}
               </h3>
 
-              <h2 className="text-lg font-topmodern dark:text-gray-300">
+              <h2 className="text-lg font-nunito font-bold dark:text-gray-300">
                 Dirección de su negocio{" "}
               </h2>
               <input

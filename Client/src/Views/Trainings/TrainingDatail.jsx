@@ -4,9 +4,11 @@ import {
   createComment,
   acceptTraining,
   clearVideos,
+  deleteComment,
 } from "../../Redux/Actions/Actions";
 import { useParams, NavLink, useNavigate } from "react-router-dom";
 import { trainingDetail } from "../../Redux/Actions/Actions";
+import {AiOutlineDelete} from "../../../node_modules/react-icons/ai"
 
 const DetailTrainings = () => {
   const play = (text) => {
@@ -14,7 +16,7 @@ const DetailTrainings = () => {
   };
 
   const navigate = useNavigate();
-
+  
   const enved = "https://www.youtube.com/embed/";
   const [comments, setComments] = useState({
     description: "",
@@ -22,14 +24,16 @@ const DetailTrainings = () => {
     imageUser: localStorage.profilePicture,
   });
 
+  
   const [commentAdded, setCommentAdded] = useState(false);
   const [updateButton, setUpdateButton] = useState(false);
-
+  
   const { id } = useParams();
-
+  
   const dispatch = useDispatch();
   const detail = useSelector((state) => state.trainingsDetail);
 
+  
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(createComment(detail.id, comments));
@@ -69,6 +73,12 @@ const DetailTrainings = () => {
     navigate(-1);
   };
 
+  const handleDeleteComment =(commId)=>{
+    dispatch(deleteComment(commId))
+    dispatch(trainingDetail(id))
+    setComments({ ...comments, description: "" });
+  }
+
   useEffect(() => {
     dispatch(trainingDetail(id));
 
@@ -79,7 +89,7 @@ const DetailTrainings = () => {
     <main className="h-full lg:flex lg:flex-row flex flex-col text-center ">
       {localStorage.length !== 0 ? (
         <>
-          <div className="flex flex-col items-center ">
+          <div className="flex flex-col items-center p-4">
             <img
               className="w-[300px] rounded-full"
               src={
@@ -203,6 +213,9 @@ const DetailTrainings = () => {
                       {comment?.description}
                     </p>
                   </div>
+                  {localStorage.type === "superAdmin" ? (
+                    <div className=""><button className="bg-red-600 p-1 rounded-3xl hover:bg-red-500" onClick={()=>handleDeleteComment(comment.id)}><AiOutlineDelete/></button></div>
+                  ) : null}
                 </div>
               );
             })}
