@@ -35,7 +35,6 @@ const getOfferByNameController = async (name) => {
         },
       },
     });
-
     return findOfferByName;
   } catch (error) {
     throw error;
