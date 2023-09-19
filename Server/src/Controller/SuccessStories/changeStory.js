@@ -14,10 +14,7 @@ const changeStory = async (name, image, testimony, facebook, linkedin, instagram
       name: name ? name : foundStory.name,
       image: image ? image : foundStory.image,
       testimony: testimony ? testimony : foundStory.testimony,
-      facebook: facebook ? facebook : foundStory.facebook,
-      linkedin: linkedin ? linkedin : foundStory.linkedin,
-      instagram : instagram ? instagram : foundStory.instagram,
-      twitter : twitter ? twitter : foundStory.twitter
+      socialMedia: socialMedia ? socialMedia :foundStory.socialMedia
     };
     await foundStory.update(newStory);
 

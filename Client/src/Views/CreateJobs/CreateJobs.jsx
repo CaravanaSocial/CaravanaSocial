@@ -6,6 +6,8 @@ import Validation from "./Validation";
 import NotFound from "../../components/NotFound";
 
 export default function createJobs() {
+  const speech = useSelector((state) => state.enableSpeech);
+  const [synth, setSynth] = useState(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const currentAccount = useSelector((state) => state.currentAccount);
@@ -21,6 +23,7 @@ export default function createJobs() {
   const { profilePicture } = localStorage;
   useEffect(() => {
     dispatch(getCategories());
+    setSynth(window.speechSynthesis);
   }, []);
 
   const handleChange = (event) => {
@@ -79,21 +82,39 @@ export default function createJobs() {
 
   const disabled =
     !inputJobs.title || !inputJobs.category || !inputJobs.description;
-
+    const speakText = (text) => {
+      if (speech === true && synth) {
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.volume = 1;
+        utterance.lang = "es-ES";
+        synth.speak(utterance);
+      }
+    };
+    const cancelVoice = () => {
+      if (synth) {
+        synth.cancel();
+      }
+    };
   return (
     <div className="bg-gray-loca00 h-full p-4">
       {localStorage.length !== 0 && localStorage.type !== "user" ? (
         <div className="flex">
           <div className="w-2/4 flex justify-end items-center">
             <div className="justify-center text-center border-2 border-lime-600 dark:border-lime-700 rounded-3xl p-4 m-4">
-              <h1 className="text-3xl mb-1 dark:text-gray-300">
+              <h1 className="text-3xl mb-1 dark:text-gray-300"
+              onClick={() => speakText("Crea un Aviso de Trabajo")}
+              onMouseLeave={() => {cancelVoice;}}
+              >
                 Crea un Aviso de Trabajo
               </h1>
 
               <div className="border-t-2 border-lime-600 dark:border-lime-700" />
 
               <br />
-              <h2 className="text-lg dark:text-gray-300">
+              <h2 className="text-lg dark:text-gray-300"
+              onClick={() => speakText("Nombre del Aviso de Trabajo")}
+              onMouseLeave={() => {cancelVoice;}}
+              >
                 Nombre del Aviso de Trabajo
               </h2>
               <input
@@ -109,13 +130,19 @@ export default function createJobs() {
                 <span className="text-red-600">{error.title}</span>
               )}
 
-              <h2 className="text-lg dark:text-gray-300">Categoria</h2>
+              <h2 className="text-lg dark:text-gray-300"
+              onClick={() => speakText("Categoria")}
+              onMouseLeave={() => {cancelVoice;}}
+              >Categoria</h2>
               <select
                 className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
                 onChange={handleCategory}
                 name="category"
               >
-                <option value="default">rubro</option>
+                <option value="default"
+                onClick={() => speakText("rubro")}
+                onMouseLeave={() => {cancelVoice;}}
+                >rubro</option>
                 {category?.map((c) => {
                   return (
                     <option key={c} value={c}>
@@ -126,7 +153,10 @@ export default function createJobs() {
               </select>
               <br />
               {inputJobs.category.length ? (
-                <h2 className="text-lg dark:text-gray-300">
+                <h2 className="text-lg dark:text-gray-300"
+                onClick={() => speakText("Rubros seleccionados")}
+                onMouseLeave={() => {cancelVoice;}}
+                >
                   Rubros seleccionados:{" "}
                 </h2>
               ) : null}
@@ -150,7 +180,10 @@ export default function createJobs() {
                 {error.category}
               </p>
 
-              <h2 className="text-lg dark:text-gray-300">Descripción</h2>
+              <h2 className="text-lg dark:text-gray-300"
+              onClick={() => speakText("Descripción")}
+              onMouseLeave={() => {cancelVoice;}}
+              >Descripción</h2>
               <textarea
                 className="rounded-3xl px-2 py-1 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-lime-600"
                 type="text"

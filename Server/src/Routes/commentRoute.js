@@ -6,6 +6,6 @@ const router = Router()
 
 router.post("/create/:id", postCommentsHandler)
 router.get("/", getCommentsHandler)
-router.delete("/update/:id", deleteCommentsHandler)
+router.delete("/delete/:id", deleteCommentsHandler)
 
 module.exports = router

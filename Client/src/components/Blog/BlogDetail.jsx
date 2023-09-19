@@ -18,7 +18,7 @@ export default function BlogDetail(){
 
     return (
         <div className="ql-snow">
-            <div className="ql-editor" dangerouslySetInnerHTML={{ __html: selector.template }} /> 
+            <div className="ql-editor" dangerouslySetInnerHTML={{ __html: selector?.template }} /> 
         </div>
     )
 } 

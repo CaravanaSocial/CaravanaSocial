@@ -11,14 +11,19 @@ import {
   editUser,
   getTrainingsUser,
 } from "../../Redux/Actions/Actions";
+
+import { Link } from "react-router-dom";
+
 import NotFound from "../../components/NotFound";
+
 
 export default function ProfileUser() {
   const account =
     localStorage.length !== 0 ? JSON?.parse(localStorage?.account) : null;
   const profilePicture =
     localStorage.length !== 0 ? localStorage.profilePicture : null;
-
+    const speech = useSelector((state) => state.enableSpeech);
+  const [synth, setSynth] = useState(null);
   const dispatch = useDispatch();
   const countries = useSelector((state) => state.countries);
   const states = useSelector((state) => state.states);
@@ -62,6 +67,7 @@ export default function ProfileUser() {
     dispatch(getCountry());
     dispatch(getCategories());
     dispatch(getTrainingsUser(localStorage.accId));
+    setSynth(window.speechSynthesis);
   }, [dataAcc]);
 
   const handleClick = (event) => {
@@ -194,6 +200,20 @@ export default function ProfileUser() {
     setKey(key + 1);
   };
 
+  const speakText = (text) => {
+    if (speech === true && synth) {
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.volume = 1;
+      utterance.lang = "es-ES";
+      synth.speak(utterance);
+    }
+  };
+  const cancelVoice = () => {
+    if (synth) {
+      synth.cancel();
+    }
+  };
+
   return (
     <div className=" flex h-full">
       {localStorage.length !== 0 && localStorage.type === "user" ? (
@@ -204,7 +224,10 @@ export default function ProfileUser() {
               className="inline-block w-72 rounded-full border-2 border-light-1 dark:border-light-1 mb-2"
               src={profilePicture}
             />
-            <h2 className="font-vilaka font-bold text-[30px] max-lg:text-[50px] dark:font-light">
+            <h2 className="font-vilaka font-bold text-[30px] max-lg:text-[50px] dark:font-light"
+            onClick={() => speakText(account?.name + " " + account?.lastName)}
+            onMouseLeave={() => {cancelVoice;}}
+            >
               {account?.name + " " + account?.lastName}
             </h2>
 
@@ -229,7 +252,10 @@ export default function ProfileUser() {
                   </div>
                 ) : null}
 
-                <h2 className="font-nunito font-bold dark:font-light">
+                <h2 className="font-nunito font-bold dark:font-light"
+                onClick={() => speakText("Nombre")}
+                onMouseLeave={() => {cancelVoice;}}
+                >
                   Nombre
                 </h2>
                 <input
@@ -243,7 +269,10 @@ export default function ProfileUser() {
                   {errors.name ? errors.name : null}
                 </p>
 
-                <h2 className="font-nunito font-bold dark:font-light">
+                <h2 className="font-nunito font-bold dark:font-light"
+                onClick={() => speakText("Apellido")}
+                onMouseLeave={() => {cancelVoice;}}
+                >
                   Apellido
                 </h2>
                 <input
@@ -257,7 +286,10 @@ export default function ProfileUser() {
                   {errors.lastName ? errors.lastName : null}
                 </p>
 
-                <h2 className="font-nunito font-bold dark:font-light">
+                <h2 className="font-nunito font-bold dark:font-light"
+                onClick={() => speakText("Localizacion")}
+                onMouseLeave={() => {cancelVoice;}}
+                >
                   Localizacion
                 </h2>
                 <select
@@ -306,7 +338,10 @@ export default function ProfileUser() {
                   {errors.city ? errors.city : null}
                 </p>
 
-                <h2 className="font-nunito font-bold dark:font-light">
+                <h2 className="font-nunito font-bold dark:font-light"
+                onClick={() => speakText("Codigo CUD")}
+                onMouseLeave={() => {cancelVoice;}}
+                >
                   Codigo CUD
                 </h2>
                 <input
@@ -316,7 +351,10 @@ export default function ProfileUser() {
                   placeholder="CUD..."
                 />
                 <br />
-                <h2 className="font-nunito font-bold dark:font-light">
+                <h2 className="font-nunito font-bold dark:font-light"
+                onClick={() => speakText("Rubros")}
+                onMouseLeave={() => {cancelVoice;}}
+                >
                   Rubros
                 </h2>
                 <select
@@ -334,7 +372,10 @@ export default function ProfileUser() {
                   })}
                 </select>
                 {dataAcc?.category?.length ? (
-                  <h2 className="text-sm font-bold font-nunito dark:text-gray-300">
+                  <h2 className="text-sm font-bold font-nunito dark:text-gray-300"
+                  onClick={() => speakText("Rubros seleccionados")}
+                  onMouseLeave={() => {cancelVoice;}}
+                  >
                     Rubros seleccionados:{" "}
                   </h2>
                 ) : null}
@@ -358,7 +399,10 @@ export default function ProfileUser() {
                   {errors.category}
                 </p>
 
-                <h2 className="font-nunito font-bold dark:font-light">
+                <h2 className="font-nunito font-bold dark:font-light"
+                onClick={() => speakText("Sos Freelancer?")}
+                onMouseLeave={() => {cancelVoice;}}
+                >
                   Sos Freelancer?
                 </h2>
                 <label className="font-bold dark:font-light">
@@ -428,7 +472,16 @@ export default function ProfileUser() {
                   >
                     Cancelar
                   </button>
+
                 </section>
+                <div>
+                  <Link
+                    to={`changePassUser/${dataAcc.id}`}
+                    className="bg-light-2 font-nunito font-bold rounded-3xl px-2 py-1 border-2 border-transparent dark:text-zinc-900 hover:text-light-2 hover:scale-95 dark:bg-light-1"
+                  >
+                    Cambio de contraseña
+                  </Link>
+                </div>
               </div>
             ) : (
               <button
