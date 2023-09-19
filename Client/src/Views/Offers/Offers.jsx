@@ -89,6 +89,12 @@ export default function Offer() {
 
           <h1 className="font-vilaka font-bold text-[50px]">Ofertas</h1>
           <div className="flex flex-wrap justify-center text-center">
+            {offers?.length === 0 && (
+              <div>
+                No hay capacitaciones disponibles para esta busqueda, país o
+                este rubro
+              </div>
+            )}
             {offers?.map((offer) => (
               <OfferCard key={offer.id} offer={offer} />
             ))}
