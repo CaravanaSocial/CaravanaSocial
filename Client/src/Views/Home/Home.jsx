@@ -7,16 +7,15 @@ import {
   getOffers,
   getTrainings,
 } from "../../Redux/Actions/Actions";
-import { useEffect } from "react";
+import { useEffect, useState} from "react";
 import TrainingCard from "../Trainings/CardTrainings";
 import OfferCard from "../../components/Offercard";
 import CardFreelancer from "../../components/CardFreelancer";
 import Slider from "../../components/Slider";
 
 const Home = () => {
-  const play = (text)=>{
-    speechSynthesis.speak( new SpeechSynthesisUtterance(text))
-  }
+  const speech = useSelector((state) => state.enableSpeech);
+  const [synth, setSynth] = useState(null);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -24,9 +23,7 @@ const Home = () => {
 
   const approvedTraininigs = trainings?.filter(x=>x.approved===true)
 
-
   useEffect(() => {
-    play("Página de inicio")
     if (localStorage.type === "company") {
       dispatch(companyButtons(true));
     } else {
@@ -35,6 +32,7 @@ const Home = () => {
     dispatch(getTrainings());
     dispatch(getOffers());
     dispatch(getFreelancers());
+    setSynth(window.speechSynthesis);
   }, [dispatch]);
 
   const handleCap = () => {
@@ -49,6 +47,20 @@ const Home = () => {
     navigate("/home-freelancers");
   };
 
+  const speakText = (text) => {
+    if (speech === true && synth) {
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.volume = 1;
+      utterance.lang = "es-ES";
+      synth.speak(utterance);
+    }
+  };
+  const cancelVoice = () => {
+    if (synth) {
+      synth.cancel();
+    }
+  };
+
   return (
     <main
       name="asdasd"
@@ -57,7 +69,9 @@ const Home = () => {
      
       <div className="  md:flex md:flex-col md:items-center w-full ">
         <section className=" flex flex-col items-center">
-          <h1 className="font-vilaka font-bold text-[50px]">Freelancers: </h1>
+          <h1 className="font-vilaka font-bold text-[50px]"
+          onClick={() => speakText("Freelancers")}
+          onMouseLeave={() => {cancelVoice;}}>Freelancers: </h1>
           <Slider>
             {freelancers?.map((item) => (
               <CardFreelancer key={item.id} freelancer={item} />
@@ -71,7 +85,10 @@ const Home = () => {
           Ver Mas
         </button>
         <section className=" flex flex-col items-center">
-          <h1 className="font-vilaka font-bold text-[50px]">
+          <h1 className="font-vilaka font-bold text-[50px]"
+          onClick={() => speakText("Capacitaciones")}
+          onMouseLeave={() => {cancelVoice;}}
+          >
             Capacitaciones:{" "}
           </h1>
           <Slider>
@@ -87,7 +104,9 @@ const Home = () => {
           Ver Mas
         </button>
         <section className=" flex flex-col items-center">
-          <h1 className="font-vilaka font-bold text-[50px]">Ofertas: </h1>
+          <h1 className="font-vilaka font-bold text-[50px]"
+          onClick={() => speakText("Ofertas")}
+          onMouseLeave={() => {cancelVoice;}}>Ofertas: </h1>
           <Slider>
             {offers?.map((item) => (
               <OfferCard key={item.id} offer={item} />

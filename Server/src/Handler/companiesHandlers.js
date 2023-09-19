@@ -38,7 +38,7 @@ const updateCompanyHandler = async (req, res) =>{
         const updated = await updateCompanyController(req.body, id)
         return res.status(200).json(updated)
     } catch (error) {
-        return res.status(500).json(error.message)
+        return res.status(500).json( {error: error.message})
     }    
 }
 
@@ -93,6 +93,7 @@ const updatePassCompanyHandler =  async (req, res)=> {
         const { id } = req.params;
         
         const response = await updatePassCompanyController(id, oldPassword, newPassword);
+        console.log("HOla"+ response)
         return res.status(200).send("Se ha cambiado exitosamente la contraseña")
 
     } catch (error) {

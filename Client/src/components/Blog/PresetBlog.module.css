@@ -1,9 +1,5 @@
-.editorContainer img {
-    display: inline;
-    margin: auto;
-}
-
 .editorContainer {
     display: inline;
     margin: auto;
+    min-height: 500px;
 }

@@ -7,9 +7,9 @@ export const EDIT_USER = "EDIT_USER";
 export const DELETE_USERS = "DELETE_USERS";
 export const RESTORE_USERS = "RESTORE_USERS";
 
-export const GET_SUCCESCASES = "GET_SUCCESCASES";
+export const CREATE_SUCCESS_CASE = "CREATE_SUCCESS_CASE";
+export const GET_SUCCESSCASES = "GET_SUCCESCASES";
 
-export const GET_FREELANCERS = "GET_FREELANCERS";
 export const GET_USER_BY_ID = "GET_USER_BY_ID";
 
 export const CREATE_ADMIN = "CREATE_ADMIN";
@@ -71,7 +71,11 @@ export const ADD_USER_TRAINING = "ADD_USER_TRAINING";
 
 export const USER_TRAINING = "USER_TRAINING";
 
+export const GET_FREELANCERS = "GET_FREELANCERS";
+export const GET_FILTER_FREELANCERS = "GET_FILTER_FREELANCERS";
 export const CLEAR_FREELANCERS = "CLEAR_FREELANCERS";
+export const FREELANCER_BY_NAME = "FREELANCER_BY_NAME";
+
 export const GET_Q_AND_A = "GET_Q_AND_A";
 export const DELETE_Q_AND_A = "DELETE_Q_AND_A";
 
@@ -79,10 +83,13 @@ export const POST_BLOG = "POST_BLOG";
 export const GET_ALL_BLOGS = "GET_ALL_BLOGS";
 export const GET_BLOGS_BY_ID = "GET_BLOGS_BY_ID";
 
-export const FREELANCER_BY_NAME = "FREELANCER_BY_NAME";
 export const TRAINING_BY_NAME = "TRAINING_BY_NAME";
 export const OFFERS_BY_NAME = "OFFERS_BY_NAME";
 export const ENABLE_SPEECH = "ENABLE_SPEECH";
+
+export const CHANGE_PASSWORD = "CHANGE_PASSWORD";
+
+export const DELETE_COMMENT = "DELETE_COMMENT";
 
 const serverURL = "https://caravanaserver.onrender.com";
 // const serverURL = "http://localhost:3001";
@@ -204,6 +211,27 @@ export const getFreelancers = () => {
     }
   };
 };
+export const getFilterFreelancers = (info) => {
+  //---------- Endpoint to Dev server -- Descomentar para usar
+  // const endpoint = `http://localhost:3001/user/freelancers`;
+
+  //---------- Endpoint to deployed server
+  const endpoint = `${serverURL}/freelancers`;
+  const { country, category } = info;
+  return async (dispatch) => {
+    try {
+      const response = await axios(
+        `${endpoint}/?country=${country}&category=${category}`
+      );
+      const { data } = response;
+      console.log(data);
+
+      return dispatch({ type: GET_FILTER_FREELANCERS, payload: data });
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+};
 
 export const editUser = (id, user) => {
   //---------- Endpoint to Dev server -- Descomentar para usar
@@ -218,8 +246,32 @@ export const editUser = (id, user) => {
       dispatch({
         type: EDIT_USER,
       });
-      return data;
+      if (user?.password) {
+        Swal.fire({
+          title: "Se cambio la contraseña exitosamente",
+
+          icon: "success",
+          customClass: {
+            popup: "holahola",
+            confirmButton: "bg-light-1",
+          },
+        });
+      }
+      return false;
     } catch (error) {
+      if (
+        error.response.data.error === "La contraseña es igual a la anterior"
+      ) {
+        Swal.fire({
+          title: error.response.data.error,
+
+          icon: "error",
+          customClass: {
+            popup: "holahola",
+            confirmButton: "bg-light-1",
+          },
+        });
+      }
       return error;
     }
   };
@@ -439,8 +491,32 @@ export const editCompany = (id, company) => {
       dispatch({
         type: EDIT_COMPANY,
       });
+      if (company?.password) {
+        Swal.fire({
+          title: "Se cambio la contraseña exitosamente",
+
+          icon: "success",
+          customClass: {
+            popup: "holahola",
+            confirmButton: "bg-light-1",
+          },
+        });
+      }
       return false;
     } catch (error) {
+      console.log(error.response.data);
+      if (
+        error.response.data.error === "La contraseña es igual a la anterior"
+      ) {
+        Swal.fire({
+          title: error.response.data.error,
+
+          icon: "error",
+          customClass: {
+            popup: "",
+          },
+        });
+      }
       dispatch({
         type: ERRORS,
         payload: { type: EDIT_COMPANY, payload: error.response.data },
@@ -646,7 +722,7 @@ export const editTraining = (id, training) => {
       const { data } = response;
       Swal.fire({
         title: "Capacitacion Anadida!",
-
+        text: `Necesitamos que el administrador revise y apruebe tu solicitud`,
         icon: "success",
         customClass: {
           popup: "",
@@ -870,7 +946,7 @@ export function detailCompany(id) {
 
 export const getSuccesCases = () => {
   //---------- Endpoint to Dev server -- Descomentar para usar
-  const endpoint = "http://localhost:3001/user/all";
+  const endpoint = "http://localhost:3001/success";
 
   //---------- Endpoint to deployed server
   // const endpoint = `${serverURL}/success`;
@@ -878,8 +954,9 @@ export const getSuccesCases = () => {
     try {
       const response = await axios(endpoint);
       const { data } = response;
+      console.log(data);
       return dispatch({
-        type: GET_SUCCESCASES,
+        type: GET_SUCCESSCASES,
         payload: data,
       });
     } catch (error) {
@@ -1040,7 +1117,12 @@ export const deleteQAndA = (id) => {
 export const postBlog = (info) => {
   return async function (dispatch) {
     try {
-      await axios.post(`${serverURL}/blogs/create`, info);
+      const { data } = await axios.post(`${serverURL}/blogs/create`, info);
+      console.log(data.id);
+      dispatch({
+        type: POST_BLOG,
+        payload: data.id,
+      });
     } catch (error) {
       console.log(error);
     }
@@ -1070,6 +1152,17 @@ export const getBlogsByID = (id) => {
     } catch (error) {}
   };
 };
+
+export const deleteBlog = (id) => {
+  return async function (dispatch) {
+    try {
+      await axios.delete(`${serverURL}/blogs/delete/${id}`);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
 export const searchFreelancersByName = (name) => {
   return async function (dispatch) {
     try {
@@ -1136,5 +1229,127 @@ export const enableSpeech = (boolean) => {
       type: ENABLE_SPEECH,
       payload: boolean,
     });
+  };
+};
+
+export const changePassword = (id, passwordChange, typeOfCount) => {
+  const { oldPassword, newPassword } = passwordChange;
+  return async function (dispatch) {
+    try {
+      if (typeOfCount === "company") {
+        console.log("SOY UN USER");
+        console.log(oldPassword);
+        console.log(newPassword);
+        const endpoint = `http://localhost:3001/company/passUpdate/${id}`;
+        const response = await axios.patch(endpoint, passwordChange);
+        const { data } = response;
+        console.log(data);
+        Swal.fire({
+          title: "Contraseña actualizada!",
+
+          icon: "success",
+          customClass: {
+            popup: "",
+          },
+        });
+        dispatch({
+          type: CHANGE_PASSWORD,
+        });
+      } else if (typeOfCount === "user") {
+        const endpoint = `http://localhost:3001/user/passUpdate/${id}`;
+        const response = await axios.patch(endpoint, passwordChange);
+        const { data } = response;
+        console.log("hola" + data);
+        Swal.fire({
+          title: "Contraseña actualizada!",
+
+          icon: "success",
+          customClass: {
+            popup: "",
+          },
+        });
+        dispatch({
+          type: CHANGE_PASSWORD,
+        });
+      }
+    } catch (error) {
+      Swal.fire({
+        title: "Algo Salio mal",
+
+        icon: "error",
+        customClass: {
+          popup: "",
+        },
+      });
+      return error;
+    }
+  };
+};
+
+export const createSuccessCase = (successCase) => {
+  const endpoint = `${serverURL}/success/create`;
+
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(endpoint, successCase);
+      const { data } = response;
+
+      dispatch({
+        type: CREATE_SUCCESS_CASE,
+        payload: data,
+      });
+      Swal.fire({
+        title: "Caso de exito agregado!",
+
+        icon: "success",
+        customClass: {
+          popup: "holahola",
+          confirmButton: "bg-light-1",
+        },
+      });
+
+      return false;
+    } catch (error) {
+      console.log(error);
+      return alert(error.response.data.message);
+    }
+  };
+};
+
+// export const editTraining = (id, training) => {
+//   //---------- Endpoint to Dev server -- Descomentar para usar
+//   // const endpoint = `http://localhost:3001/trainings/update/${id}`;
+
+//   //---------- Endpoint to deployed server
+//   const endpoint = `${serverURL}/trainings/${id}`;
+//   return async (dispatch) => {
+//     try {
+//       const response = await axios.patch(endpoint, training);
+//       const { data } = response;
+//       Swal.fire({
+//         title: "Capacitacion Anadida!",
+
+//         icon: "success",
+//         customClass: {
+//           popup: "",
+//         },
+//       });
+//       return dispatch({ type: EDIT_TRAINING });
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   };
+// };
+
+export const deleteComment = (id) => {
+  return async function (dispatch) {
+    try {
+      const response = await axios.delete(
+        "http://localhost:3001/comments/delete/" + id
+      );
+      return dispatch({
+        type: DELETE_COMMENT,
+      });
+    } catch (error) {}
   };
 };

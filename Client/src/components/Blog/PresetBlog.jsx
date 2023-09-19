@@ -1,11 +1,12 @@
 import React from 'react'
 import ReactQuill from 'react-quill';
-import style from './PresetBlog.module.css'
 import 'quill/dist/quill.snow.css';
 import { Quill } from 'react-quill';
 import { ImageActions } from '@xeger/quill-image-actions';
 import { ImageFormats } from '@xeger/quill-image-formats';
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux';
+import {useNavigate} from 'react-router-dom'
+import Swal from 'sweetalert2';
 import * as actions from '../../Redux/Actions/Actions'
 
 Quill.register('modules/imageActions', ImageActions);
@@ -50,7 +51,8 @@ const nombresMeses = ['Enero', 'Febrero', 'Marzo', 'Abril','Mayo', 'Junio', 'Jul
 export default function PresetBlog(){
 
     const dispatch = useDispatch()
-
+    const navigate = useNavigate();
+    const created = useSelector(state => state.createdBlog)
     const [template, setTemplate] = React.useState('');
 
     const [activeButton, setActiveButton] = React.useState({
@@ -98,17 +100,24 @@ export default function PresetBlog(){
             setPreviewCard ({...previewCard,[name]:value})
         }
     }
+    
 
     const handleSubmit = ()=>{
       dispatch(actions.postBlog({template, image, title, author, date}))
+      Swal.fire(
+        'Buen trabajo!',
+        'Has creado con exito el Post!',
+        'success'
+      )
+      navigate('/blogs')
     }
 
     return (
         <div>
-        <div className="bg-gray-200 min-h-screen flex justify-center items-center pt-9">
+        <div className="bg-white-200 h-full flex justify-center items-center pt-9 my-5">
       <div className="w-4/5 flex flex-col justify-center items-center">
         <h1 className='text-3xl mb-10' >Crear nuevo Post</h1>
-        <div className="bg-white rounded-lg p-4 shadow-md text-center" style={{ width: "400px" }}>
+        <div className="justify-center items-center border rounded-lg border-gray-400 shadow-md p-4 w-[400px]">
           {!activeButton?.previewEdit ? 
             <img src={previewImage!=='image'?URL.createObjectURL(previewImage):'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWHyZc-mwHF19kk-e89eFaKsc19552ElAuzOpV8Dwxhw&s'} alt="Blog image" className="w-full h-48 object-cover rounded-t-lg" />
            : null}
@@ -145,9 +154,9 @@ export default function PresetBlog(){
       
       </div>
     </div>
-    <div className={style.editorContainer}>
+    <div>
     {activeButton?.editor ? (
-      <ReactQuill className={style.editor} theme="snow" value={template} onChange={setTemplate} modules={modules} formats={formats} />
+      <ReactQuill className="mx-10 mb-10" theme="snow" value={template} onChange={setTemplate} modules={modules} formats={formats} />
     ) : null}
   </div>
   </div>

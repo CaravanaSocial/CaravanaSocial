@@ -33,6 +33,7 @@ const createUserAccController = async (props) => {
       CUD: props.CUD,
       profilePicture: defaultProfilePicture,
       freelancer: props.freelancer,
+      certificates: props.certificates,
       description: props.description,
       address: props.address,
       password: hashedPassword,
