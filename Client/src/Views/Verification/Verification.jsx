@@ -26,6 +26,7 @@ const Verification = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const handleChange = (e) => {
     e.preventDefault();
     setCode(e.target.value);
@@ -39,7 +40,7 @@ const Verification = () => {
             verified: true,
           })
         ).then((postError) => {
-          if ("name" in postError) {
+          if (!postError) {
             Swal.fire({
               title: "El mail se ha verificado correctamente.",
               text: `Por favor inicia sesión para continuar`,
@@ -111,18 +112,36 @@ const Verification = () => {
     <div className="h-screen">
       <div className="flex justify-center text-center">
         <div className="mt-4">
-          <h1 className="text-4xl text-[50px] border-b-2 border-light-1 dark:border-light-1 dark:text-gray-300"
-          onClick={() => speakText("Verificación")}
-          onMouseLeave={() => {cancelVoice;}}
-          >Verificación</h1>
-          <p className="text-xl text-[50px] text-center dark:text-gray-300"
-          onClick={() => speakText("Pulsa el botón para verificar tu cuenta y a continuacion podras iniciar sesión")}
-          onMouseLeave={() => {cancelVoice;}}
-          >Pulsa el botón para verificar tu cuenta y a continuacion podras iniciar sesión</p>
+          <h1
+            className="text-4xl text-[50px] border-b-2 border-light-1 dark:border-light-1 dark:text-gray-300"
+            onClick={() => speakText("Verificación")}
+            onMouseLeave={() => {
+              cancelVoice;
+            }}
+          >
+            Verificación
+          </h1>
+          <p
+            className="text-xl text-[50px] text-center dark:text-gray-300"
+            onClick={() =>
+              speakText(
+                "Pulsa el botón para verificar tu cuenta y a continuacion podras iniciar sesión"
+              )
+            }
+            onMouseLeave={() => {
+              cancelVoice;
+            }}
+          >
+            Pulsa el botón para verificar tu cuenta y a continuacion podras
+            iniciar sesión
+          </p>
           <br />
-          <button className="bg-light-1 p-2 rounded-3xl text-xl dark:text-black"
+          <button
+            className="bg-light-1 p-2 rounded-3xl text-xl dark:text-black"
             onClick={handleSubmit}
-          >Verificar</button>
+          >
+            Verificar
+          </button>
         </div>
       </div>
     </div>
