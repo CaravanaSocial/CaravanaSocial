@@ -74,7 +74,7 @@ const Trainings = () => {
               onChange={handleChange}
               name="category"
             >
-              <option value="default">Todos los Rubros</option>
+              <option value="">Todos los Rubros</option>
               {category?.map((c) => {
                 return (
                   <option key={c} value={c}>
@@ -85,6 +85,11 @@ const Trainings = () => {
             </select>
           </div>
           <h1 className="font-vilaka font-bold text-[50px]">Capacitaciones</h1>
+          {trainingsFiltered?.length === 0 && (
+            <div>
+              No hay capacitaciones disponibles para este país o este rubro
+            </div>
+          )}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {approvedTraininigs?.map((training) => (
               <TrainingCard key={training.id} training={training} />
