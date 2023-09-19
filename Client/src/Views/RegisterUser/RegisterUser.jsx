@@ -25,6 +25,7 @@ export default function RegisterUser() {
   const [checkboxCUD, setCheckboxCUD] = useState(null);
   const [checkboxFreelancer, setCheckboxFreelancer] = useState(null);
   const [errors, setErrors] = useState({});
+  const [certificate, setCertificate] = useState("");
   const [userData, setUserData] = useState({
     name: "",
     lastName: "",
@@ -36,7 +37,7 @@ export default function RegisterUser() {
     emailRep: "",
     password: "",
     passwordRep: "",
-    certificates: "",
+    certificates: [],
     freelancer: false,
     description: "",
     address: "",
@@ -115,6 +116,8 @@ export default function RegisterUser() {
           location: { ...userData.location, [name]: value },
         })
       );
+    } else if (name === "certificates") {
+      setCertificate(value);
     } else {
       setUserData({
         ...userData,
@@ -152,7 +155,10 @@ export default function RegisterUser() {
         dispatch(clearErrors());
       } else {
         dispatch(
-          setNewErrors({ type: "CREATE_USER", error: postError.response.data })
+          setNewErrors({
+            type: "CREATE_USER",
+            error: postError.response.data,
+          })
         );
         setCheckboxFreelancer(null);
         if (postError?.response?.data.error === "Email in use") {
@@ -202,6 +208,30 @@ export default function RegisterUser() {
     });
     validateInput({ ...userData, category: filteredCat });
   };
+
+  const handleCertificates = () => {
+    if (certificate) {
+      setUserData({
+        ...userData,
+        certificates: [...userData.certificates, certificate],
+      });
+    }
+    setCertificate("");
+  };
+
+  const handleDelete = (event) => {
+    event.preventDefault();
+    const filteredCer = userData?.certificates?.filter(
+      (cer) => cer !== event.target.value
+    );
+    setUserData({
+      ...userData,
+      certificates: filteredCer,
+    });
+  };
+
+  console.log(certificate);
+  console.log(userData);
 
   const isSubmitDisabled =
     Object.keys(errors).length > 0 || userData.category.length === 0;
@@ -442,9 +472,30 @@ export default function RegisterUser() {
             className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
             type="url"
             name="certificates"
-            value={userData.certificates}
+            value={certificate}
             onChange={handleChange}
           />
+          <button
+            className="align-middle bg-gray-300 dark:bg-gray-800 mx-2 px-2 pb-1 mb-1 dark:text-gray-300 rounded-3xl border-2 border-transparent hover:border-lime-600 dark:hover:border-lime-700"
+            type="button"
+            onClick={handleCertificates}
+          >
+            +
+          </button>
+
+          {userData?.certificates?.map((cer, i) => {
+            return (
+              <div key={i}>
+                <button
+                  className="bg-gray-300 dark:bg-gray-800 rounded-3xl px-2 py-1 m-1 dark:text-gray-300 hover:bg-red-500 dark:hover:bg-red-500"
+                  onClick={handleDelete}
+                  value={cer}
+                >
+                  {cer}
+                </button>
+              </div>
+            );
+          })}
 
           <h2 className="text-lg font-nunito font-bold dark:text-gray-300">
             Sos Freelancer?
@@ -508,6 +559,7 @@ export default function RegisterUser() {
           <button
             className="bg-light-1 font-topmodern rounded-3xl p-2 my-2 border-2 border-transparent dark:text-zinc-900 hover:text-white hover:scale-95"
             type="submit"
+            onClick={handleSubmit}
             style={
               isSubmitDisabled
                 ? { opacity: "0.6", cursor: "not-allowed" }
