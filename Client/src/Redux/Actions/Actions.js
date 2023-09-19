@@ -91,8 +91,9 @@ export const CHANGE_PASSWORD = "CHANGE_PASSWORD";
 
 export const DELETE_COMMENT = "DELETE_COMMENT";
 
-const serverURL = "https://caravanaserver.onrender.com";
+// const serverURL = "https://caravanaserver.onrender.com";
 // const serverURL = "http://localhost:3001";
+const serverURL = "https://testdeploy-n9yz.onrender.com/";
 
 export const createUser = (user) => {
   //---------- Endpoint to Dev server -- Descomentar para usar
@@ -570,6 +571,7 @@ export const deleteOffer = (id) => {
 };
 
 export const getOfferByName = (name) => {
+  console.log(name);
   const endpoint = `${serverURL}/offers/${name}`;
 
   return async (dispatch) => {
@@ -946,7 +948,7 @@ export function detailCompany(id) {
 
 export const getSuccesCases = () => {
   //---------- Endpoint to Dev server -- Descomentar para usar
-  const endpoint = "http://localhost:3001/success";
+  const endpoint = `${serverURL}/success`;
 
   //---------- Endpoint to deployed server
   // const endpoint = `${serverURL}/success`;
