@@ -13,22 +13,28 @@ const Faq = () => {
     dispatch(getQAndAs());
   }, [deleted]);
 
-  const handleSubmit = (id) => {
+  const handleDelete = (id) => {
     dispatch(deleteQAndA(id)).then(() => {
       setDeleted(!deleted);
     });
   };
 
-  return (
+  const handleEdit = (value) => {
+    if (edit === value){
+      setEdit(false);
+    } else {
+      setEdit(value)
+    }
+  }
 
-    <div className="h-full flex   flex-col items-center ">
+  return (
+    <div className="h-full flex flex-col items-center ">
       {faqs?.map((x) => {
 
         return (
-          <div key={x.id}>
-            {" "}
+          <div className="w-full" key={x.id}>
             <div
-              className="border-2 border-light-1 justify-between items-center rounded p-2 flex mt-2  "
+              className="border-2 dark:bg-zinc-700 border-zinc-300 dark:border-zinc-500 bg-gray-200 justify-between items-center rounded-xl p-2 flex my-2"
               key={x.id}
             >
               {
@@ -42,14 +48,14 @@ const Faq = () => {
               {localStorage?.type === "superAdmin" ? (
                 <div>
                   <button
-                    onClick={() => setEdit(!edit)}
-                    className="mx-5 hover:scale-105 rounded p-1 border-2"
+                    onClick={() => handleEdit(x.id)}
+                    className="mx-5 hover:scale-105 rounded-3xl p-2 bg-light-1 font-nunito"
                   >
                     Editar
                   </button>
                   <button
-                    className="mx-5 p-1 bg-red-300 font-nunito hover:scale-105 rounded border-2"
-                    onClick={() => handleSubmit(x.id)}
+                    className="mx-5 my-2 hover:scale-105 rounded-3xl p-2 bg-red-300 font-nunito"
+                    onClick={() => handleDelete(x.id)}
                   >
                     Eliminar
                   </button>
@@ -58,8 +64,8 @@ const Faq = () => {
             </div>
             <div>
               {" "}
-              {edit === true ? (
-                <div className="">
+              {edit === x.id ? (
+                <div>
                   <EditQAndA
                     question={x.question}
                     answer={x.answer}

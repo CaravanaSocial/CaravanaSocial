@@ -22,12 +22,12 @@ const QAndA = () => {
     dispatch(createQAndA(input));
   };
   return (
-    <div className="ml-2">
+    <div className="mx-2 text-center">
       <br />
       <label className="font-nunito text-[25px]">Pregunta</label>
       <br />
       <textarea
-        className=" border-2 rounded focus:outline-none focus:border-light-1 focus:ring-1 focus:ring-light-1 "
+        className="p-1 dark:bg-zinc-700 border-2 border-zinc-300 dark:border-zinc-500 rounded-xl focus:outline-none focus:border-light-1 focus:ring-1 focus:ring-light-1"
         onChange={handleChange}
         name="quest"
         cols={28}
@@ -39,13 +39,13 @@ const QAndA = () => {
       <textarea
         cols={28}
         rows={8}
-        className=" border-2 rounded focus:outline-none focus:border-light-1 focus:ring-1 focus:ring-light-1 "
+        className="p-1 dark:bg-zinc-700 border-2 border-zinc-300 dark:border-zinc-500 rounded-xl focus:outline-none focus:border-light-1 focus:ring-1 focus:ring-light-1 "
         onChange={handleChange}
         name="answer"
       />
       <br />
       <button
-        className="font-nunito text-[15px] border-2 bg-light-1 hover:scale-105 rounded p-2 "
+        className="font-nunito dark:border-light-2 dark:text-black text-[15px] border-2 bg-light-1 hover:scale-105 rounded-3xl p-2 mt-2"
         onClick={handleSubmit}
       >
         Publicar pregunta

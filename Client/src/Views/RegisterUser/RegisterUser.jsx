@@ -165,7 +165,6 @@ export default function RegisterUser() {
           Swal.fire({
             title:
               "Correo electronico ya se encuentra en uso, por favor selecciona otro",
-
             icon: "error",
             customClass: {
               popup: "",
