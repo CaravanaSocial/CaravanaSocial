@@ -245,7 +245,9 @@ export default function RegisterUser() {
         <div className="border-t-2 border-light-1 dark:border-light-1" />
 
         <form onSubmit={handleSubmit}>
-          <h2 className="text-lg font-nunito font-bold dark:text-gray-300">Nombre</h2>
+          <h2 className="text-lg font-nunito font-bold dark:text-gray-300">
+            Nombre
+          </h2>
           <input
             className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
             type="text"
@@ -285,7 +287,9 @@ export default function RegisterUser() {
             {errors.birthDate ? errors.birthDate : null}
           </h3>
 
-          <h2 className="text-lg font-nunito font-bold dark:text-gray-300">País</h2>
+          <h2 className="text-lg font-nunito font-bold dark:text-gray-300">
+            País
+          </h2>
           <select
             className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
             onChange={handleChange}
@@ -319,7 +323,9 @@ export default function RegisterUser() {
           </select>
           <h3 className="text-red-600">{errors.state ? errors.state : null}</h3>
 
-          <h2 className="text-lg font-nunito font-bold dark:text-gray-300">Ciudad</h2>
+          <h2 className="text-lg font-nunito font-bold dark:text-gray-300">
+            Ciudad
+          </h2>
           <select
             className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
             onChange={handleChange}
@@ -373,7 +379,9 @@ export default function RegisterUser() {
             </section>
           ) : null}
 
-          <h2 className="text-lg font-nunito font-bold dark:text-gray-300">Email</h2>
+          <h2 className="text-lg font-nunito font-bold dark:text-gray-300">
+            Email
+          </h2>
           <input
             className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
             type="email"
@@ -389,10 +397,13 @@ export default function RegisterUser() {
             type="email"
             name="emailRep"
             placeholder="Repite tu email"
+            onpaste="return false"
             value={userData.emailRep}
             onChange={handleChange}
           />
-          <h3 className="text-red-600">{errors.emailRep ? errors.emailRep : null}</h3>
+          <h3 className="text-red-600">
+            {errors.emailRep ? errors.emailRep : null}
+          </h3>
 
           <h2 className="text-lg font-nunito font-bold dark:text-gray-300">
             Contraseña

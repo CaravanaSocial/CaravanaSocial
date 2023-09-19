@@ -124,7 +124,8 @@ export default function NavBar() {
     location.pathname === `/${account?.name + account?.lastName}` ||
     location.pathname === "/profile-company" ||
     location.pathname === "/faq" ||
-    location.pathname === "/blogs"
+    location.pathname === "/blogs" ||
+    location.pathname.startsWith("/blogs/")
   );
 
   return (
@@ -244,13 +245,17 @@ export default function NavBar() {
                 className="text-center block rounded-lg px-4 py-2 text-sm text-gray-500 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 hover:text-gray-700 dark:hover:text-gray-400"
                 to="/"
                 role="menuitem"
-              >Landing</Link>
+              >
+                Landing
+              </Link>
 
               <Link
                 className="text-center block rounded-lg px-4 py-2 text-sm text-gray-500 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 hover:text-gray-700 dark:hover:text-gray-400"
                 to="/home"
                 role="menuitem"
-              >Home</Link>
+              >
+                Home
+              </Link>
 
               {localStorage.type === "company" ? (
                 <>
@@ -258,13 +263,17 @@ export default function NavBar() {
                     className="text-center block rounded-lg px-4 py-2 text-sm text-gray-500 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 hover:text-gray-700 dark:hover:text-gray-400"
                     to="/create-trainings"
                     role="menuitem"
-                  >Crear Capacitacion</Link>
+                  >
+                    Crear Capacitacion
+                  </Link>
 
                   <Link
                     className="text-center block rounded-lg px-4 py-2 text-sm text-gray-500 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 hover:text-gray-700 dark:hover:text-gray-400"
                     to="/create-jobs"
                     role="menuitem"
-                  >Crear Avisos de Trabajo</Link>
+                  >
+                    Crear Avisos de Trabajo
+                  </Link>
                 </>
               ) : localStorage.type === "superAdmin" ? (
                 <>
@@ -272,17 +281,23 @@ export default function NavBar() {
                     className="text-center block rounded-lg px-4 py-2 text-sm text-gray-500 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 hover:text-gray-700 dark:hover:text-gray-400"
                     to="/create-trainings"
                     role="menuitem"
-                  >Crear Capacitacion</Link>
+                  >
+                    Crear Capacitacion
+                  </Link>
 
                   <Link
                     className="text-center block rounded-lg px-4 py-2 text-sm text-gray-500 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 hover:text-gray-700 dark:hover:text-gray-400"
                     to="/create-jobs"
                     role="menuitem"
-                  >Crear Avisos de Trabajo</Link>
+                  >
+                    Crear Avisos de Trabajo
+                  </Link>
 
-                  <Link className="text-center block rounded-lg px-4 py-2 text-sm text-gray-500 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 hover:text-gray-700 dark:hover:text-gray-400"
+                  <Link
+                    className="text-center block rounded-lg px-4 py-2 text-sm text-gray-500 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 hover:text-gray-700 dark:hover:text-gray-400"
                     to="/create-success"
-                    role="menuitem">
+                    role="menuitem"
+                  >
                     Crear casos de éxito
                   </Link>
 
@@ -290,7 +305,9 @@ export default function NavBar() {
                     className="text-center block rounded-lg px-4 py-2 text-sm text-gray-500 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 hover:text-gray-700 dark:hover:text-gray-400"
                     to="/admin"
                     role="menuitem"
-                  >Panel de Admin</Link>
+                  >
+                    Panel de Admin
+                  </Link>
                 </>
               ) : null}
             </div>
