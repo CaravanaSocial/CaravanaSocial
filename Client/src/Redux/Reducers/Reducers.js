@@ -46,18 +46,14 @@ import {
   GET_ALL_BLOGS,
   GET_BLOGS_BY_ID,
   POST_BLOG,
-
   FREELANCER_BY_NAME,
   TRAINING_BY_NAME,
   OFFERS_BY_NAME,
   ENABLE_SPEECH,
   enableSpeech,
   CHANGE_PASSWORD,
-
   CREATE_SUCCESS_CASE,
-=======
   DELETE_COMMENT,
-
 } from "../Actions/Actions";
 
 const initialState = {
@@ -93,10 +89,10 @@ const initialState = {
   trainingsApproved: [],
   trainingsDeclined: [],
   trainingsNoCheck: [],
-  faqs:[],
-  blogs:[],
-  blog:[],
-  createdBlog:"",
+  faqs: [],
+  blogs: [],
+  blog: [],
+  createdBlog: "",
   enableSpeech: false,
 };
 
@@ -410,16 +406,16 @@ export default function rootReducer(state = initialState, action) {
         blogs: action.payload,
       };
 
-      case GET_BLOGS_BY_ID:
-        return {
-          ...state,
-          blog:action.payload
-        }
-        case POST_BLOG:
-        return{
-          ...state,
-          createdBlog:action.payload
-        }  
+    case GET_BLOGS_BY_ID:
+      return {
+        ...state,
+        blog: action.payload,
+      };
+    case POST_BLOG:
+      return {
+        ...state,
+        createdBlog: action.payload,
+      };
 
     case ENABLE_SPEECH:
       return {
@@ -427,7 +423,6 @@ export default function rootReducer(state = initialState, action) {
         enableSpeech: action.payload,
       };
     case CHANGE_PASSWORD:
-
       return {
         ...state,
       };
@@ -437,14 +432,13 @@ export default function rootReducer(state = initialState, action) {
         successCases: [...(state.successCases + action.payload)],
       };
 
-      return{
-        ...state
-      }
+      return {
+        ...state,
+      };
     case DELETE_COMMENT:
-      return{
-        ...state
-      }  
-
+      return {
+        ...state,
+      };
 
     default:
       return { ...state };
