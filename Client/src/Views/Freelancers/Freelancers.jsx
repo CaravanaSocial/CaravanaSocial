@@ -75,11 +75,15 @@ const Freelancers = () => {
             </select>
           </div>
           <h1 className="font-vilaka font-bold text-[50px]">Freelancers</h1>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-20">
-            
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-20 ">
             {freelancers?.map((freelancer) => (
               <CardFreelancer key={freelancer.id} freelancer={freelancer} />
             ))}
+            {freelancers?.length === 0 && (
+              <div>
+                No hay freelancers disponibles para este país o este rubro
+              </div>
+            )}
           </div>
         </>
       ) : (

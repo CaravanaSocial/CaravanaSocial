@@ -11,7 +11,6 @@ const TrainingCard = ({ training }) => {
   const handleSubmit = () => {
     dispatch(trainingDetail(training.id));
     navigate(`/training/detail/${training.id}`);
-    dispatch(adduser({ userId: localStorage.accId, trainingId: training.id }));
   };
 
   return (
@@ -31,7 +30,7 @@ const TrainingCard = ({ training }) => {
         className="border-2 rounded-lg font-topmodern  bg-light-1  dark:text-black p-1 hover:scale-105 dark:border-black w-[100px] m-auto"
         onClick={handleSubmit}
       >
-        Unirse
+        Ver mas
       </button>
     </div>
   );
