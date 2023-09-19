@@ -7,7 +7,9 @@ import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import NotFound from "../../components/NotFound";
 
+
 export default function VideosTrainings() {
+  
   const dispatch = useDispatch();
   const [video, setVideo] = useState({ video: "" });
   const [error, setError] = useState({});
@@ -24,13 +26,7 @@ export default function VideosTrainings() {
       ...video,
       [event.target.name]: event.target.value,
     });
-    setError(
-      Validation({
-        ...inputTrainings,
-        ...video,
-        [event.target.name]: event.target.value,
-      })
-    );
+   
   };
 
   const handleSubmitVideo = () => {
@@ -39,6 +35,7 @@ export default function VideosTrainings() {
         ...inputTrainings,
         video: [...inputTrainings.video, video.video],
       });
+      
     }
     setVideo({ video: "" });
   };
@@ -53,6 +50,12 @@ export default function VideosTrainings() {
       video: filteredCat,
     });
   };
+
+  const goBack =()=>{
+    navigate(-1)
+  }
+
+  
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -106,12 +109,15 @@ export default function VideosTrainings() {
                 <UploadVideo />
               </div>
             </CloudinaryContext>
+            <button className="bg-zinc-300 font-topmodern rounded-3xl p-1 mt-2 mx-1 border-2 border-transparent dark:text-zinc-900 hover:text-light-1 hover:scale-95" 
+              onClick={goBack}>Volver</button>
 
             <button
-              className="bg-light-1 font-topmodern rounded-3xl p-2 mt-2 border-2 border-transparent dark:text-zinc-900 hover:text-white hover:scale-95"
+              className="bg-light-1 font-topmodern rounded-3xl p-1 mt-2 border-2 mx-1 border-transparent dark:text-zinc-900 hover:text-white hover:scale-95"
               onClick={(e) => handleClick(e)}
+             
             >
-              SUBMIT
+              Crear
             </button>
           </div>
         </div>
