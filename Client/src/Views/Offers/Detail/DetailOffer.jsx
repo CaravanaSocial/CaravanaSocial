@@ -67,11 +67,8 @@ export default function DetailOffer() {
               <div className="border-t-2 border-light-1 dark:border-light-1 my-4" />
 
               <div className="flex justify-center items-center">
-                <button className="bg-light-1 text-black px-2 py-2 mr-1 rounded-3xl">
-                  Aplicar
-                </button>
                 <button
-                  className="bg-light-1 text-black px-2 py-2 ml-1 rounded-3xl"
+                  className="bg-light-1 text-black px-2 py-2 rounded-3xl"
                   onClick={handleContact}
                 >
                   Contactar

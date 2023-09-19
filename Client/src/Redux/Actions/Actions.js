@@ -570,6 +570,7 @@ export const deleteOffer = (id) => {
 };
 
 export const getOfferByName = (name) => {
+  console.log(name);
   const endpoint = `${serverURL}/offers/${name}`;
 
   return async (dispatch) => {
@@ -721,7 +722,7 @@ export const editTraining = (id, training) => {
       const response = await axios.patch(endpoint, training);
       const { data } = response;
       Swal.fire({
-        title: "Capacitacion Anadida!",
+        title: "Capacitacion Añadida!",
         text: `Necesitamos que el administrador revise y apruebe tu solicitud`,
         icon: "success",
         customClass: {
@@ -946,7 +947,7 @@ export function detailCompany(id) {
 
 export const getSuccesCases = () => {
   //---------- Endpoint to Dev server -- Descomentar para usar
-  const endpoint = "http://localhost:3001/success";
+  const endpoint = `${serverURL}/success`;
 
   //---------- Endpoint to deployed server
   // const endpoint = `${serverURL}/success`;

@@ -22,7 +22,6 @@ const RegisterCompany = () => {
   const category = useSelector((state) => state.categories);
   const globalErrors = useSelector((state) => state.errors);
 
-
   const [companyInput, setCompanyInput] = useState({
     name: "",
     lastName: "",
@@ -31,7 +30,7 @@ const RegisterCompany = () => {
     category: [],
     phone: "",
     email: "",
-    emailRep:"",
+    emailRep: "",
     password: "",
     passwordRep: "",
     description: "",
@@ -222,7 +221,9 @@ const RegisterCompany = () => {
             {error.lastName}
           </h3>
 
-          <h2 className="text-lg font-nunito font-bold dark:text-gray-300">Cargo: </h2>
+          <h2 className="text-lg font-nunito font-bold dark:text-gray-300">
+            Cargo:{" "}
+          </h2>
           <input
             className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
             onChange={handleInputs}
@@ -364,7 +365,9 @@ const RegisterCompany = () => {
             {error.phone}
           </h3>
 
-          <h2 className="text-lg font-nunito font-bold dark:text-gray-300">Email: </h2>
+          <h2 className="text-lg font-nunito font-bold dark:text-gray-300">
+            Email:{" "}
+          </h2>
           <input
             className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
             onChange={handleInputs}
@@ -372,7 +375,13 @@ const RegisterCompany = () => {
             placeholder="Email de la empresa"
             name="email"
           />
-          <h3 className="text-red-600" style={{ visibility: error.email ? "visible" : "hidden" }}> {error.email} </h3>
+          <h3
+            className="text-red-600"
+            style={{ visibility: error.email ? "visible" : "hidden" }}
+          >
+            {" "}
+            {error.email}{" "}
+          </h3>
 
           <input
             className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
@@ -380,8 +389,15 @@ const RegisterCompany = () => {
             type="text"
             placeholder="Repite el email"
             name="emailRep"
+            onpaste="return false"
           />
-          <h3 className="text-red-600" style={{ visibility: error.emailRep ? "visible" : "hidden" }}> {error.emailRep} </h3>
+          <h3
+            className="text-red-600"
+            style={{ visibility: error.emailRep ? "visible" : "hidden" }}
+          >
+            {" "}
+            {error.emailRep}{" "}
+          </h3>
 
           <h2 className="text-lg font-nunito font-bold dark:text-gray-300">
             Contraseña
