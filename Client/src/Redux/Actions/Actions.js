@@ -7,7 +7,8 @@ export const EDIT_USER = "EDIT_USER";
 export const DELETE_USERS = "DELETE_USERS";
 export const RESTORE_USERS = "RESTORE_USERS";
 
-export const GET_SUCCESCASES = "GET_SUCCESCASES";
+export const CREATE_SUCCESS_CASE = "CREATE_SUCCESS_CASE";
+export const GET_SUCCESSCASES = "GET_SUCCESCASES";
 
 export const GET_FREELANCERS = "GET_FREELANCERS";
 export const GET_USER_BY_ID = "GET_USER_BY_ID";
@@ -84,10 +85,9 @@ export const TRAINING_BY_NAME = "TRAINING_BY_NAME";
 export const OFFERS_BY_NAME = "OFFERS_BY_NAME";
 export const ENABLE_SPEECH = "ENABLE_SPEECH";
 
-export const CHANGE_PASSWORD = "CHANGE_PASSWORD"; 
+export const CHANGE_PASSWORD = "CHANGE_PASSWORD";
 
 //---------------Provicional------------
-
 
 // const serverURL = "https://caravanaserver.onrender.com";
 const serverURL = "http://localhost:3001";
@@ -875,7 +875,7 @@ export function detailCompany(id) {
 
 export const getSuccesCases = () => {
   //---------- Endpoint to Dev server -- Descomentar para usar
-  const endpoint = "http://localhost:3001/user/all";
+  const endpoint = "http://localhost:3001/success";
 
   //---------- Endpoint to deployed server
   // const endpoint = `${serverURL}/success`;
@@ -883,8 +883,9 @@ export const getSuccesCases = () => {
     try {
       const response = await axios(endpoint);
       const { data } = response;
+      console.log(data);
       return dispatch({
-        type: GET_SUCCESCASES,
+        type: GET_SUCCESSCASES,
         payload: data,
       });
     } catch (error) {
@@ -1144,60 +1145,89 @@ export const enableSpeech = (boolean) => {
   };
 };
 
-
 export const changePassword = (id, passwordChange, typeOfCount) => {
-  const {oldPassword, newPassword} = passwordChange
+  const { oldPassword, newPassword } = passwordChange;
   return async function (dispatch) {
     try {
-      if(typeOfCount === "company"){
-        console.log("SOY UN USER")
-        console.log(oldPassword)
-        console.log(newPassword)
-        const endpoint = `http://localhost:3001/company/passUpdate/${id}`
-        const response = await axios.patch(endpoint, passwordChange)
-        const { data } = response
-        console.log(data)
+      if (typeOfCount === "company") {
+        console.log("SOY UN USER");
+        console.log(oldPassword);
+        console.log(newPassword);
+        const endpoint = `http://localhost:3001/company/passUpdate/${id}`;
+        const response = await axios.patch(endpoint, passwordChange);
+        const { data } = response;
+        console.log(data);
         Swal.fire({
-              title: "Contraseña actualizada!",
-          
-              icon: "success",
-              customClass: {
-              popup: "",
-              },
-          });
+          title: "Contraseña actualizada!",
+
+          icon: "success",
+          customClass: {
+            popup: "",
+          },
+        });
         dispatch({
-          type: CHANGE_PASSWORD
-        })
-      }else if(typeOfCount === "user"){
-        const endpoint = `http://localhost:3001/user/passUpdate/${id}`
-        const response = await axios.patch(endpoint, passwordChange)
-        const { data } = response
+          type: CHANGE_PASSWORD,
+        });
+      } else if (typeOfCount === "user") {
+        const endpoint = `http://localhost:3001/user/passUpdate/${id}`;
+        const response = await axios.patch(endpoint, passwordChange);
+        const { data } = response;
         console.log("hola" + data);
         Swal.fire({
           title: "Contraseña actualizada!",
-      
+
           icon: "success",
           customClass: {
-          popup: "",
+            popup: "",
           },
-      });
+        });
         dispatch({
-          type: CHANGE_PASSWORD
-        })
+          type: CHANGE_PASSWORD,
+        });
       }
     } catch (error) {
       Swal.fire({
         title: "Algo Salio mal",
-    
+
         icon: "error",
         customClass: {
-        popup: "",
+          popup: "",
         },
-    });
-     return error 
+      });
+      return error;
     }
-  }
-}
+  };
+};
+
+export const createSuccessCase = (successCase) => {
+  const endpoint = `${serverURL}/success/create`;
+
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(endpoint, successCase);
+      const { data } = response;
+
+      dispatch({
+        type: CREATE_SUCCESS_CASE,
+        payload: data,
+      });
+      Swal.fire({
+        title: "Caso de exito agregado!",
+
+        icon: "success",
+        customClass: {
+          popup: "holahola",
+          confirmButton: "bg-light-1",
+        },
+      });
+
+      return false;
+    } catch (error) {
+      console.log(error);
+      return alert(error.response.data.message);
+    }
+  };
+};
 
 // export const editTraining = (id, training) => {
 //   //---------- Endpoint to Dev server -- Descomentar para usar

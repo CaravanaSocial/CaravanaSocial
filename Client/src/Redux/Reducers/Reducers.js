@@ -34,7 +34,7 @@ import {
   TRAINING_DETAIL,
   COMMENTS_POST,
   COMPANY_DETAIL,
-  GET_SUCCESCASES,
+  GET_SUCCESSCASES,
   GET_USER_BY_ID,
   CLEAR_VIDEOS,
   ADD_USER_TRAINING,
@@ -49,7 +49,8 @@ import {
   OFFERS_BY_NAME,
   ENABLE_SPEECH,
   enableSpeech,
-  CHANGE_PASSWORD
+  CHANGE_PASSWORD,
+  CREATE_SUCCESS_CASE,
 } from "../Actions/Actions";
 
 const initialState = {
@@ -111,7 +112,7 @@ export default function rootReducer(state = initialState, action) {
         };
       }
 
-    case GET_SUCCESCASES:
+    case GET_SUCCESSCASES:
       return {
         ...state,
         successCases: action.payload,
@@ -407,9 +408,14 @@ export default function rootReducer(state = initialState, action) {
         enableSpeech: action.payload,
       };
     case CHANGE_PASSWORD:
-      return{
-        ...state
-      }
+      return {
+        ...state,
+      };
+    case CREATE_SUCCESS_CASE:
+      return {
+        ...state,
+        successCases: [...(state.successCases + action.payload)],
+      };
 
     default:
       return { ...state };

@@ -28,7 +28,7 @@ export default function UploadImage() {
   function uploadSingleImage(base64) {
     setLoading(true);
     axios
-      .post("https://caravanaserver.onrender.com/image/upload", {
+      .post("http://localhost:3001/image/upload", {
         image: base64,
       })
       .then((res) => {
@@ -43,6 +43,9 @@ export default function UploadImage() {
           );
           localStorage.setItem("profilePicture", res.data);
           dispatch(imageChange());
+        } else if (localStorage.type === "superAdmin") {
+          console.log(res.data);
+          localStorage.setItem("caseImage", res.data);
         }
       })
       .then(() => setLoading(false))
@@ -85,7 +88,7 @@ export default function UploadImage() {
       <div className="flex items-center justify-center w-full">
         <label
           htmlFor="dropzone-file"
-          className="flex flex-col items-center justify-center w-full h-64 border-2 border-lime-600 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-lime-700 dark:hover:border-gray-500 dark:hover:bg-gray-600"
+          className="flex flex-col items-center justify-center w-full h-64 border-2 border-light-1 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-lime-700 dark:hover:border-gray-500 dark:hover:bg-gray-600"
         >
           <div className="flex flex-col items-center justify-center pt-5 pb-6">
             <svg

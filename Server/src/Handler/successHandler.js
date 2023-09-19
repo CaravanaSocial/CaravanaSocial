@@ -7,15 +7,15 @@ const { delSuc } = require("../Controller/SuccessStories/delSuc");
 
 const createSuccessStories = async (req, res) => {
   try {
-    const newSuccessStories = await createSuccSto(req.body);
+    const created = await createSuccSto(req.body);
 
-    if (newSuccessStories) {
+    if (created) {
       return res.status(200).send("Caso de exito creado correctamente");
     } else {
-      return res.status(400).send("Caso de exito ya existente");
+      return res.status(400).json({ message: error.message });
     }
   } catch (error) {
-    return res.status(400).send(error.message);
+    return res.status(400).json({ message: error.message });
   }
 };
 
@@ -33,9 +33,15 @@ const getAllSuccessStories = async (req, res) => {
 
 const updateSuccessStories = async (req, res) => {
   try {
-    const {name, image, testimony, socialMedia} = req.body;
-    const { id } = req.params
-    const updatedStory = await changeStory(name, image, testimony, socialMedia, id);
+    const { name, image, testimony, socialMedia } = req.body;
+    const { id } = req.params;
+    const updatedStory = await changeStory(
+      name,
+      image,
+      testimony,
+      socialMedia,
+      id
+    );
 
     if (!updatedStory)
       return res.status(400).send("No se ha podido actualizar");
