@@ -1240,7 +1240,7 @@ export const changePassword = (id, passwordChange, typeOfCount) => {
         console.log("SOY UN USER");
         console.log(oldPassword);
         console.log(newPassword);
-        const endpoint = `http://localhost:3001/company/passUpdate/${id}`;
+        const endpoint = `${serverURL}/company/passUpdate/${id}`;
         const response = await axios.patch(endpoint, passwordChange);
         const { data } = response;
         console.log(data);
@@ -1256,7 +1256,7 @@ export const changePassword = (id, passwordChange, typeOfCount) => {
           type: CHANGE_PASSWORD,
         });
       } else if (typeOfCount === "user") {
-        const endpoint = `http://localhost:3001/user/passUpdate/${id}`;
+        const endpoint = `${serverURL}/user/passUpdate/${id}`;
         const response = await axios.patch(endpoint, passwordChange);
         const { data } = response;
         console.log("hola" + data);
@@ -1344,9 +1344,7 @@ export const createSuccessCase = (successCase) => {
 export const deleteComment = (id) => {
   return async function (dispatch) {
     try {
-      const response = await axios.delete(
-        "http://localhost:3001/comments/delete/" + id
-      );
+      const response = await axios.delete(`${serverURL}/comments/delete/${id}`);
       return dispatch({
         type: DELETE_COMMENT,
       });
