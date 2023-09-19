@@ -7,7 +7,8 @@ export const EDIT_USER = "EDIT_USER";
 export const DELETE_USERS = "DELETE_USERS";
 export const RESTORE_USERS = "RESTORE_USERS";
 
-export const GET_SUCCESCASES = "GET_SUCCESCASES";
+export const CREATE_SUCCESS_CASE = "CREATE_SUCCESS_CASE";
+export const GET_SUCCESSCASES = "GET_SUCCESCASES";
 
 export const GET_USER_BY_ID = "GET_USER_BY_ID";
 
@@ -89,8 +90,6 @@ export const ENABLE_SPEECH = "ENABLE_SPEECH";
 export const CHANGE_PASSWORD = "CHANGE_PASSWORD";
 
 export const DELETE_COMMENT = "DELETE_COMMENT";
-
-//---------------Provicional------------
 
 // const serverURL = "https://caravanaserver.onrender.com";
 const serverURL = "http://localhost:3001";
@@ -940,7 +939,7 @@ export function detailCompany(id) {
 
 export const getSuccesCases = () => {
   //---------- Endpoint to Dev server -- Descomentar para usar
-  const endpoint = "http://localhost:3001/user/all";
+  const endpoint = "http://localhost:3001/success";
 
   //---------- Endpoint to deployed server
   // const endpoint = `${serverURL}/success`;
@@ -948,8 +947,9 @@ export const getSuccesCases = () => {
     try {
       const response = await axios(endpoint);
       const { data } = response;
+      console.log(data);
       return dispatch({
-        type: GET_SUCCESCASES,
+        type: GET_SUCCESSCASES,
         payload: data,
       });
     } catch (error) {
@@ -1278,6 +1278,62 @@ export const changePassword = (id, passwordChange, typeOfCount) => {
     }
   };
 };
+
+
+export const createSuccessCase = (successCase) => {
+  const endpoint = `${serverURL}/success/create`;
+
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(endpoint, successCase);
+      const { data } = response;
+
+      dispatch({
+        type: CREATE_SUCCESS_CASE,
+        payload: data,
+      });
+      Swal.fire({
+        title: "Caso de exito agregado!",
+
+        icon: "success",
+        customClass: {
+          popup: "holahola",
+          confirmButton: "bg-light-1",
+        },
+      });
+
+      return false;
+    } catch (error) {
+      console.log(error);
+      return alert(error.response.data.message);
+    }
+  };
+};
+
+// export const editTraining = (id, training) => {
+//   //---------- Endpoint to Dev server -- Descomentar para usar
+//   // const endpoint = `http://localhost:3001/trainings/update/${id}`;
+
+//   //---------- Endpoint to deployed server
+//   const endpoint = `${serverURL}/trainings/${id}`;
+//   return async (dispatch) => {
+//     try {
+//       const response = await axios.patch(endpoint, training);
+//       const { data } = response;
+//       Swal.fire({
+//         title: "Capacitacion Anadida!",
+
+//         icon: "success",
+//         customClass: {
+//           popup: "",
+//         },
+//       });
+//       return dispatch({ type: EDIT_TRAINING });
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   };
+// };
 
 
 export const deleteComment =(id)=>{
