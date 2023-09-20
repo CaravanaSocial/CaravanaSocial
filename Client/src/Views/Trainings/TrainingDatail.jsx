@@ -10,7 +10,10 @@ import {
 } from "../../Redux/Actions/Actions";
 import { useParams, NavLink, useNavigate } from "react-router-dom";
 import { trainingDetail } from "../../Redux/Actions/Actions";
-import { AiOutlineDelete, AiOutlineArrowLeft } from "../../../node_modules/react-icons/ai";
+import {
+  AiOutlineDelete,
+  AiOutlineArrowLeft,
+} from "../../../node_modules/react-icons/ai";
 
 const DetailTrainings = () => {
   const play = (text) => {
@@ -38,7 +41,7 @@ const DetailTrainings = () => {
   const sameOferr =
     localStorage.type === "user" &&
     trainingsUser?.find((same) => same.id === id);
-  const [trues, SetTrues] = useState(false);
+  const [trues, setTrues] = useState(false);
 
   const conditional =
     localStorage.type === "admin" ||
@@ -47,12 +50,12 @@ const DetailTrainings = () => {
     sameOferr;
 
   const handleSubmit = (event) => {
-    event.preventDefault();
+    setCommentAdded(!commentAdded);
+    setComments({ ...comments, description: "" });
     dispatch(createComment(detail.id, comments));
+
     setCommentAdded(!commentAdded);
     dispatch(trainingDetail(id));
-    setComments({ ...comments, description: "" });
-
     return;
   };
 
@@ -87,12 +90,14 @@ const DetailTrainings = () => {
 
   const handleAdd = () => {
     dispatch(adduser({ userId: localStorage.accId, trainingId: id }));
-    SetTrues(!trues);
+
+    setTrues(!trues);
+    dispatch(trainingDetail(id));
   };
 
-  const goBack =()=>{
-    navigate(-1)
-  }
+  const goBack = () => {
+    navigate(-1);
+  };
 
   const handleDeleteComment = (commId) => {
     dispatch(deleteComment(commId));
@@ -112,7 +117,12 @@ const DetailTrainings = () => {
       {localStorage.length !== 0 ? (
         <>
           <div className="flex flex-col items-center p-4">
-          <button onClick={goBack}className="pb-3 pt-1 m-0 self-start" ><AiOutlineArrowLeft className="bg-light-1 dark:bg-light-2 rounded-full p-1"size={30}/></button>
+            <button onClick={goBack} className="pb-3 pt-1 m-0 self-start">
+              <AiOutlineArrowLeft
+                className="bg-light-1 dark:bg-light-2 rounded-full p-1"
+                size={30}
+              />
+            </button>
             <img
               className="w-[300px] rounded-full"
               src={
@@ -174,7 +184,15 @@ const DetailTrainings = () => {
             >
               {detail?.description}
             </p>
-            {!sameOferr && <button className=" mt-3 rounded-3xl font-nunito font-bold  bg-green-600 px-3 dark:font-light dark:text-white p-1 hover:bg-green-800 dark:hover:bg-green-500 dark:hover:text-black dark:hover:font-bold dark:bg-green-800 hover:text-white hover:font-light"> Unirse</button>}
+            {!sameOferr && (
+              <button
+                onClick={handleAdd}
+                className=" mt-3 rounded-3xl font-nunito font-bold  bg-green-600 px-3 dark:font-light dark:text-white p-1 hover:bg-green-800 dark:hover:bg-green-500 dark:hover:text-black dark:hover:font-bold dark:bg-green-800 hover:text-white hover:font-light"
+              >
+                {" "}
+                Unirse
+              </button>
+            )}
             {conditional &&
               detail?.video?.map((video, index) => {
                 return (
