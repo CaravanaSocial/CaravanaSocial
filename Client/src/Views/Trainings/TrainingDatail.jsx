@@ -110,7 +110,7 @@ const DetailTrainings = () => {
     dispatch(getTrainingsUser(localStorage.accId));
 
     return () => dispatch(clearVideos());
-  }, [commentAdded, updateButton, trues]);
+  }, [commentAdded, trues]);
 
   return (
     <main className="h-full lg:flex lg:flex-row flex flex-col text-center ">
