@@ -16,8 +16,8 @@ const SuccessCard = ({
       <div>
         <img
           src={image}
-          alt="hiasd"
-          className="w-[700px] h-[500px] rounded "
+          alt=""
+          className="max-w-[500px] max-h-[500px] border-2 border-light-2 rounded-full"
         ></img>
       </div>
       <div className="w-[300px] ">
