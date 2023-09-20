@@ -17,6 +17,10 @@ export default function DetailOffer() {
     return () => dispatch(actions.clearVideos());
   }, []);
 
+  const goBack =()=>{
+    navigate(-1)
+  }
+
   const handleContact = () => {
     if (offer[0]?.adminId === null) {
       window.location.href = `mailto:${offer[0]?.company.email}`;
@@ -78,6 +82,7 @@ export default function DetailOffer() {
                 </button>
               </div>
             </div>
+            <button className="bg-light-1 font-topmodern rounded-3xl py-1 px-2 my-3 border-2 border-transparent dark:text-zinc-900 hover:text-white hover:scale-95" onClick={goBack}>volver</button>
           </div>
         </div>
       ) : (

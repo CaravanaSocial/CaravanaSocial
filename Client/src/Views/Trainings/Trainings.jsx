@@ -9,6 +9,7 @@ import {
 } from "../../Redux/Actions/Actions";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import {AiOutlineArrowLeft} from "../../../node_modules/react-icons/ai"
 
 const Trainings = () => {
   const navigate = useNavigate();
@@ -33,6 +34,10 @@ const Trainings = () => {
     dispatch(getCountry());
   }, []);
 
+  const goBack=()=>{
+    navigate(-1)
+  }
+
   useEffect(() => {
     dispatch(getTrainings());
     dispatch(getCategories());
@@ -52,8 +57,11 @@ const Trainings = () => {
     <div className="m-4 p-4 h-full text-center items-center flex flex-col">
       {localStorage.length !== 0 ? (
         <>
-          <div className="border-spacing-96 border-2 border-zinc-100 dark:border-zinc-800 rounded-3xl pt-2 shadow-md">
-            <span className="font-topmodern">Filtrar por : </span>
+         <div className="self-start">
+          <button onClick={goBack}className="pb-3 pt-1 m-0 self-start" ><AiOutlineArrowLeft className="bg-light-1 dark:bg-light-1 rounded-full p-1"size={30}/></button>
+        </div>
+          <div className="border-spacing-96 border-2 border-zinc-100 dark:border-zinc-800 rounded-3xl pt-2 px-3 shadow-md">
+            <span className="font-nunito font-bold">Filtrar por : </span>
             <select
               className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
               onChange={handleChange}
@@ -68,7 +76,7 @@ const Trainings = () => {
                 );
               })}
             </select>
-            <span className="font-topmodern"> Filtrar por :</span>
+            <span className="font-nunito font-bold"> Filtrar por :</span>
             <select
               className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
               onChange={handleChange}

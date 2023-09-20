@@ -65,7 +65,7 @@ const PasswordChange = () => {
           >Tu contraseña actual</h2>
 
           <input className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
-            type="passwprd"
+            type="password"
             name="oldPassword"
             value={passwordChange.oldPassword}
             onChange={handleChange}
