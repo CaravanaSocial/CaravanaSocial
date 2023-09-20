@@ -89,11 +89,10 @@ const DetailTrainings = () => {
   };
 
   const handleAdd = () => {
-    setTrues(!trues);
     dispatch(adduser({ userId: localStorage.accId, trainingId: id }));
 
     setTrues(!trues);
-    dispatch(trainingDetail(id));
+
     return;
   };
 
