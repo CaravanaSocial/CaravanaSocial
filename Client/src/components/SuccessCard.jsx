@@ -12,7 +12,7 @@ const SuccessCard = ({
   facebook,
 }) => {
   return (
-    <main className=" md:flex md:flex-row items-center p-2 flex flex-col justify-center gap-11 ">
+    <main className=" md:flex md:flex-row items-center text-center p-2 flex flex-col justify-center gap-11 ">
       <div>
         <img
           src={image}
