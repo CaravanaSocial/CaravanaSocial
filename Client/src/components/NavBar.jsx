@@ -367,19 +367,19 @@ export default function NavBar() {
                       className="outline-none focus:outline-none right-4 duration-200 ease-in absolute block w-6 h-6 rounded-full bg-white border-4 border-gray-300 appearance-none cursor-pointer"
                       type="checkbox"
                       name="toggle"
-                      id="toggle"
+                      id="toggleSpeech"
                     />
                   ) : (
                     <input
                       className="bg-gray-500 outline-none focus:outline-none right-0 duration-200 ease-in absolute block w-6 h-6 rounded-full border-4 border-gray-300 appearance-none cursor-pointer"
                       type="checkbox"
                       name="toggle"
-                      id="toggle"
+                      id="toggleSpeech"
                     />
                   )}
                   <label
                     className="block h-6 overflow-hidden bg-gray-400 rounded-full cursor-pointer"
-                    htmlFor="toggle"
+                    htmlFor="toggleSpeech"
                   ></label>
                 </div>
               </div>
