@@ -4,7 +4,9 @@ import { changePassword } from "../../Redux/Actions/Actions";
 import { useNavigate, useParams } from "react-router-dom";
 
 const PasswordChange = () => {
-  const { id } = useParams();
+  const id = localStorage.accId;
+
+  console.log(id);
 
   const [passwordChange, setPasswordChange] = useState({
     oldPassword: "",
@@ -18,7 +20,7 @@ const PasswordChange = () => {
 
   const typeOfCount = localStorage.type;
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleChange = (event) => {
     const name = event.target.name;
@@ -49,7 +51,7 @@ const PasswordChange = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(changePassword(id, passwordChange, typeOfCount));
-    navigate("/home")
+    navigate("/home");
   };
 
   return (
@@ -83,6 +85,3 @@ const PasswordChange = () => {
 };
 
 export default PasswordChange;
-
-
-
