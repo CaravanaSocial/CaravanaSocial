@@ -9,6 +9,7 @@ export default function DetailOffer() {
   const dispatch = useDispatch();
   const offer = useSelector((state) => state.offer);
   const navigate = useNavigate();
+  console.log("esta es ofer", offer);
 
   React.useEffect(() => {
     dispatch(actions.getOfferByName(title));
@@ -17,13 +18,13 @@ export default function DetailOffer() {
   }, []);
 
   const handleContact = () => {
-    if (offer.adminId === null) {
-      window.location.href = `mailto:${offer.company.email}`;
+    if (offer[0]?.adminId === null) {
+      window.location.href = `mailto:${offer[0]?.company.email}`;
     } else {
       window.location.href = `mailto:${"caravanasocial.dev@gmail.com"}`;
     }
   };
-  const categories = offer?.areaTrainings?.map((x) => x.name).join(", ");
+  const categories = offer[0]?.areaTrainings?.map((x) => x.name).join(", ");
 
   return (
     <div className="h-full">
@@ -34,19 +35,19 @@ export default function DetailOffer() {
               <img
                 className="w-52 max-lg:w-20 max-lg:h-20 rounded-full border-2 border-light-1"
                 src={
-                  offer?.company?.profilePicture
-                    ? offer?.company?.profilePicture
-                    : offer?.admin?.profilePicture
+                  offer[0]?.company?.profilePicture
+                    ? offer[0]?.company?.profilePicture
+                    : offer[0]?.admin?.profilePicture
                 }
               />
 
               <div className="text-start">
                 <h2 className="text-2xl max-lg:text-xl">
-                  {offer?.company?.nameCompany}
+                  {offer[0]?.company?.nameCompany}
                 </h2>
 
                 <h2 className="text-2xl max-lg:text-lg text-gray-700 dark:text-gray-400">
-                  {offer?.title}
+                  {offer[0]?.title}
                 </h2>
               </div>
             </div>
@@ -62,16 +63,15 @@ export default function DetailOffer() {
               <h1 className="text-2xl max-lg:text-xl text-light-2 dark:text-light-1 mt-6">
                 Descripción:
               </h1>
-              <h2 className="text-xl max-lg:text-lg">{offer?.description}</h2>
+              <h2 className="text-xl max-lg:text-lg">
+                {offer[0]?.description}
+              </h2>
 
               <div className="border-t-2 border-light-1 dark:border-light-1 my-4" />
 
               <div className="flex justify-center items-center">
-                <button className="bg-light-1 text-black px-2 py-2 mr-1 rounded-3xl">
-                  Aplicar
-                </button>
                 <button
-                  className="bg-light-1 text-black px-2 py-2 ml-1 rounded-3xl"
+                  className="bg-light-1 text-black px-2 py-2 rounded-3xl"
                   onClick={handleContact}
                 >
                   Contactar

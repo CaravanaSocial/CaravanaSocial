@@ -11,7 +11,6 @@ const TrainingCard = ({ training }) => {
   const handleSubmit = () => {
     dispatch(trainingDetail(training.id));
     navigate(`/training/detail/${training.id}`);
-    dispatch(adduser({ userId: localStorage.accId, trainingId: training.id }));
   };
 
   return (
@@ -24,14 +23,14 @@ const TrainingCard = ({ training }) => {
       </p>
       <img
         className="h-[400px] rounded"
-        src="https://www.shutterstock.com/shutterstock/photos/525553219/display_1500/stock-vector-play-video-vector-icon-525553219.jpg"
+        src={training?.company?.profilePicture}
       />
 
       <button
         className="border-2 rounded-lg font-topmodern  bg-light-1  dark:text-black p-1 hover:scale-105 dark:border-black w-[100px] m-auto"
         onClick={handleSubmit}
       >
-        Unirse
+        Ver mas
       </button>
     </div>
   );

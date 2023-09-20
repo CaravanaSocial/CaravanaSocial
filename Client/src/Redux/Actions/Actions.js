@@ -570,12 +570,14 @@ export const deleteOffer = (id) => {
 };
 
 export const getOfferByName = (name) => {
-  const endpoint = `${serverURL}/offers/${name}`;
+  console.log(name);
+  const endpoint = `${serverURL}/offers/by?name=${name}`;
 
   return async (dispatch) => {
     try {
       const response = await axios(endpoint);
       const { data } = response;
+      console.log("esta es la data mamaguevo", data);
       return dispatch({ type: GET_OFFERS_BYNAME, payload: data });
     } catch (error) {
       console.log(error);
@@ -721,7 +723,7 @@ export const editTraining = (id, training) => {
       const response = await axios.patch(endpoint, training);
       const { data } = response;
       Swal.fire({
-        title: "Capacitacion Anadida!",
+        title: "Capacitacion Añadida!",
         text: `Necesitamos que el administrador revise y apruebe tu solicitud`,
         icon: "success",
         customClass: {
@@ -946,7 +948,7 @@ export function detailCompany(id) {
 
 export const getSuccesCases = () => {
   //---------- Endpoint to Dev server -- Descomentar para usar
-  const endpoint = "http://localhost:3001/success";
+  const endpoint = `${serverURL}/success`;
 
   //---------- Endpoint to deployed server
   // const endpoint = `${serverURL}/success`;
@@ -980,6 +982,7 @@ export function trainingDetail(id) {
     const endpoint = `${serverURL}/trainings/${id}`;
     try {
       const { data } = await axios.get(endpoint);
+
       return dispatch({
         type: TRAINING_DETAIL,
         payload: data[0],
@@ -1234,10 +1237,10 @@ export const enableSpeech = (boolean) => {
 
 export const changePassword = (id, passwordChange, typeOfCount) => {
   const { oldPassword, newPassword } = passwordChange;
+  console.log("holaaaa");
   return async function (dispatch) {
     try {
       if (typeOfCount === "company") {
-        console.log("SOY UN USER");
         console.log(oldPassword);
         console.log(newPassword);
         const endpoint = `${serverURL}/company/passUpdate/${id}`;
@@ -1256,6 +1259,7 @@ export const changePassword = (id, passwordChange, typeOfCount) => {
           type: CHANGE_PASSWORD,
         });
       } else if (typeOfCount === "user") {
+        console.log("Funciona");
         const endpoint = `${serverURL}/user/passUpdate/${id}`;
         const response = await axios.patch(endpoint, passwordChange);
         const { data } = response;
@@ -1273,6 +1277,7 @@ export const changePassword = (id, passwordChange, typeOfCount) => {
         });
       }
     } catch (error) {
+      console.log("catch" + error.response.data.error);
       Swal.fire({
         title: "Algo Salio mal",
 

@@ -124,7 +124,8 @@ export default function NavBar() {
     location.pathname === `/${account?.name + account?.lastName}` ||
     location.pathname === "/profile-company" ||
     location.pathname === "/faq" ||
-    location.pathname === "/blogs"
+    location.pathname === "/blogs" ||
+    location.pathname.startsWith("/blogs/")
   );
 
   return (
@@ -255,11 +256,6 @@ export default function NavBar() {
               >
                 Home
               </Link>
-              <Link className="text-center block rounded-lg px-4 py-2 text-sm text-gray-500 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 hover:text-gray-700 dark:hover:text-gray-400"
-                to="/blogs"
-                role="menuitem">
-              Noticias
-              </Link>
 
               {localStorage.type === "company" ? (
                 <>
@@ -295,6 +291,14 @@ export default function NavBar() {
                     role="menuitem"
                   >
                     Crear Avisos de Trabajo
+                  </Link>
+
+                  <Link
+                    className="text-center block rounded-lg px-4 py-2 text-sm text-gray-500 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 hover:text-gray-700 dark:hover:text-gray-400"
+                    to="/create-success"
+                    role="menuitem"
+                  >
+                    Crear casos de éxito
                   </Link>
 
                   <Link
@@ -346,7 +350,7 @@ export default function NavBar() {
                   className="relative inline-block w-10 mr-2 align-middle select-none"
                   onClick={handleSpeech}
                 >
-                  {speech === true ? (
+                  {speech === false ? (
                     <input
                       className="outline-none focus:outline-none right-4 duration-200 ease-in absolute block w-6 h-6 rounded-full bg-white border-4 border-gray-300 appearance-none cursor-pointer"
                       type="checkbox"

@@ -1,8 +1,9 @@
+const { Op } = require("sequelize");
 const { training, companies, areaTraining } = require("../../db");
-const { getAll } = require("../Trainings/getAll");
+// const { getAll } = require("../Trainings/getAll");
 
 const filterTrain = async (info) => {
-  const { country, category } = info;
+  const { country, category, name} = info;
 
   const filterOptions = [];
   try {
@@ -19,7 +20,13 @@ const filterTrain = async (info) => {
       filterOptions.push({ model: areaTraining });
     }
 
+
     const offerFiltered = await training.findAll({
+      where:{
+        name: {
+          [Op.iLike]: `${name}%`
+        }
+      },
       include: filterOptions,
     });
 

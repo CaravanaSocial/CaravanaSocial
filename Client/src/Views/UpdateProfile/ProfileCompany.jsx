@@ -15,6 +15,7 @@ import validation from "../RegisterCompany/validation";
 import { NavLink } from "react-router-dom";
 import UploadImage from "../../components/UploadImage";
 import NotFound from "../../components/NotFound";
+import { Link } from "react-router-dom";
 
 const ProfileCompany = () => {
   const speech = useSelector((state) => state.enableSpeech);
@@ -507,9 +508,17 @@ const ProfileCompany = () => {
               >
                 Editar perfil
               </button>
+              
             )}
+              <div>
+                  <Link
+                    to={`changePassUser/${input.id}`}
+                    className="bg-light-2 font-nunito font-bold rounded-3xl px-2 py-1 border-2 border-transparent dark:text-zinc-900 hover:text-light-2 hover:scale-95 dark:bg-light-1"
+                  >
+                    Cambio de contraseña
+                  </Link>
+              </div>
           </div>
-
           <div className="block ">
             <div className="my-4 mr-4 border-2 rounded-2xl border-light-2 dark:border-light-1 dark:max-lg:border-none  max-lg:border-none">
               <div className="flex justify-between m-2">
