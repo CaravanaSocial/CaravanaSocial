@@ -17,6 +17,9 @@ export default function OfferCard({ offer }) {
           <h2>{c}</h2>
         ))}
       </div>
+      <div>
+        <img src={offer?.company?.profilePicture} alt="" />
+      </div>
       <Link
         className="border-2 rounded-lg font-topmodern  bg-light-1  dark:text-black p-1 hover:scale-105 dark:border-black w-[100px] m-auto"
         to={`/home-offers/${offer?.title}`}

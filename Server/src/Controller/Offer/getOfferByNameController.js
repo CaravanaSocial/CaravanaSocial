@@ -36,7 +36,6 @@ const getOfferByNameController = async (name) => {
       },
     });
     console.log(findOfferByName);
-
     if (findOfferByName.length > 0) {
       return findOfferByName;
     }
