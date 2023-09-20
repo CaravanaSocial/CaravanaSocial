@@ -92,7 +92,7 @@ export const CHANGE_PASSWORD = "CHANGE_PASSWORD";
 export const DELETE_COMMENT = "DELETE_COMMENT";
 
 const serverURL = "https://caravanaserver.onrender.com";
-// const serverURL = "http://localhost:3001";
+/* const serverURL = "http://localhost:3001"; */
 
 export const createUser = (user) => {
   //---------- Endpoint to Dev server -- Descomentar para usar
@@ -287,13 +287,11 @@ export const createAdmin = (admin) => {
     try {
       const response = await axios.post(endpoint, admin);
       const { data } = response;
-      return dispatch({
-        type: CREATE_ADMIN,
-      });
+      
     } catch (error) {
       dispatch({
         type: ERRORS,
-        payload: { type: CREATE_ADMIN, payload: error.response.data },
+        payload: { type: CREATE_ADMIN, payload: error.response.data.error },
       });
       return error;
     }
@@ -598,8 +596,8 @@ export const getOffers = () => {
   };
 };
 
-export const filterOffer = (data) => {
-  const { country, companyName, category } = data;
+export const filterOffer = (info) => {
+  const { country, companyName, category } = info;
 
   //---------- Endpoint to Dev server -- Descomentar para usar
   // const endpoint = `http://localhost:3001/offers?country=${country}&companyName=${companyName}&category=${category}`;
@@ -899,6 +897,8 @@ export function filterTrainingBy(data) {
           `${serverURL}/filter?country=${country}&category=${category}`
         )
       ).data;
+
+      console.log(response);
 
       dispatch({
         payload: response,

@@ -9,7 +9,7 @@ import TrainingCard from "../Trainings/CardTrainings";
 import Faq from "../../Views/Faq/Faq.jsx";
 import NotFound from "../../components/NotFound";
 import validation from "../../components/AdminViews/validations.js";
-import PresetBlog from "../../components/Blog/PresetBlog";
+import Swal from "sweetalert2";
 import {
   deleteUsers,
   getUsers,
@@ -189,10 +189,18 @@ const AdminDashboard = () => {
     ).then((postError) => {
       if (!postError) {
         dispatch(clearErrors());
-        alert("Admin creado exitosamente!");
+        Swal.fire(
+          'Listo!',
+          'Has creado un nuevo administrador!',
+          'success'
+        )
+        setInputAdmin({...inputAdmin, 
+        name: "",
+        email: "",
+        password: "",})
       } else {
         dispatch(
-          setNewErrors({ type: "CREATE_ADMIN", error: postError.response.data })
+          setNewErrors({ type: "CREATE_ADMIN", error: postError?.response?.data })
         );
       }
     });
@@ -657,30 +665,31 @@ const AdminDashboard = () => {
                         Crear admin
                       </h1>
                       <h2>Nombre</h2>
-                      <div>
-                        <input
-                          className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
-                          type="text"
-                          name="name"
-                          placeholder="Nombre..."
-                          onChange={handleChangeAdmin}
-                        />
-                      </div>
+
+                      <input
+                        className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
+                        type="text"
+                        name="name"
+                        value={inputAdmin.name}
+                        placeholder="Nombre..."
+                        onChange={handleChangeAdmin}
+                      />
                       
                       <h3 className="text-red-600">
                         {errors.name ? errors.name : null}
                       </h3>
 
                       <h2>Email</h2>
-                      <div>
-                        <input
-                          className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
-                          type="email"
-                          name="email"
-                          placeholder="Email..."
-                          onChange={handleChangeAdmin}
-                        />
-                      </div>
+
+                      <input
+                        className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
+                        type="email"
+                        name="email"
+                        value={inputAdmin.email}
+                        placeholder="Email..."
+                        onChange={handleChangeAdmin}
+                      />
+                      
                       <h3 className="text-red-600">
                         {errors.email ? errors.email : null}
                       </h3>
@@ -692,6 +701,7 @@ const AdminDashboard = () => {
                           onChange={handleChangeAdmin}
                           type="password"
                           id="password1"
+                          value={inputAdmin.password}
                           placeholder="Contraseña..."
                           name="password"/>
 
@@ -701,6 +711,7 @@ const AdminDashboard = () => {
                           <CgEye/>
                         </button>
                       </div>
+
                       <h3 className="text-red-600">
                         {errors.password ? errors.password : null}
                       </h3>
