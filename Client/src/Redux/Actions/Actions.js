@@ -287,13 +287,11 @@ export const createAdmin = (admin) => {
     try {
       const response = await axios.post(endpoint, admin);
       const { data } = response;
-      return dispatch({
-        type: CREATE_ADMIN,
-      });
+      
     } catch (error) {
       dispatch({
         type: ERRORS,
-        payload: { type: CREATE_ADMIN, payload: error.response.data },
+        payload: { type: CREATE_ADMIN, payload: error.response.data.error },
       });
       return error;
     }
