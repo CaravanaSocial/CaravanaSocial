@@ -432,9 +432,6 @@ export default function rootReducer(state = initialState, action) {
         successCases: [...(state.successCases + action.payload)],
       };
 
-      return {
-        ...state,
-      };
     case DELETE_COMMENT:
       return {
         ...state,

@@ -571,12 +571,13 @@ export const deleteOffer = (id) => {
 
 export const getOfferByName = (name) => {
   console.log(name);
-  const endpoint = `${serverURL}/offers/by?${name}`;
+  const endpoint = `${serverURL}/offers/by?name=${name}`;
 
   return async (dispatch) => {
     try {
       const response = await axios(endpoint);
       const { data } = response;
+      console.log("esta es la data mamaguevo", data);
       return dispatch({ type: GET_OFFERS_BYNAME, payload: data });
     } catch (error) {
       console.log(error);
