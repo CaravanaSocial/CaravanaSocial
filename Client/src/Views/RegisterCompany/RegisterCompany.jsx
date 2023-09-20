@@ -12,6 +12,7 @@ import {
   clearErrors,
 } from "../../Redux/Actions/Actions";
 import Swal from "sweetalert2";
+import { CgEye } from "react-icons/cg";
 
 const RegisterCompany = () => {
   const navigate = useNavigate();
@@ -177,6 +178,29 @@ const RegisterCompany = () => {
     });
   };
 
+  const password1 = "password1";
+  const password2 = "password2";
+
+  const handlePass1 = () => {
+    const view = document.getElementById(password1);
+
+    if (view.type === "password"){
+      view.type = "text";
+    } else {
+      view.type = "password";
+    }
+  }
+
+  const handlePass2 = () => {
+    const view = document.getElementById(password2);
+
+    if (view.type === "password"){
+      view.type = "text";
+    } else {
+      view.type = "password";
+    }
+  }
+
   return (
     <div className="flex justify-center">
       <div className="justify-center text-center border-2 border-light-1 dark:border-light-1 rounded-3xl p-4 m-4">
@@ -184,7 +208,7 @@ const RegisterCompany = () => {
           Registrarme como empresa
         </h1>
 
-        <div className="border-t-2 border-light-1 dark:border-light-1" />
+        <div className="border-t-2 border-light-1 dark:border-light-1"/>
 
         <form onSubmit={handleSubmit}>
           <h2 className="text-lg font-nunito font-bold dark:text-gray-300">
@@ -389,7 +413,7 @@ const RegisterCompany = () => {
             type="text"
             placeholder="Repite el email"
             name="emailRep"
-            onpaste="return false"
+            onPaste="return false"
           />
           <h3
             className="text-red-600"
@@ -402,27 +426,42 @@ const RegisterCompany = () => {
           <h2 className="text-lg font-nunito font-bold dark:text-gray-300">
             Contraseña
           </h2>
-          <input
-            className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
+
+          <div className="flex justify-center text-center">
+            <input className="h-8 rounded-3xl px-2 mt-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
             onChange={handleInputs}
             type="password"
+            id="password1"
             placeholder="Contraseña..."
             name="password"
-          />
-          <br />
+            value={companyInput.password}/>
+            <button className="absolute z-50 flex items-center justify-center ml-40 mt-4"
+              type="button"
+              onClick={handlePass1}>
+              <CgEye/>
+            </button>
+          </div>
+          
           <h3
             className="text-red-600"
             style={{ visibility: error.password ? "visible" : "hidden" }}
           >
             {error.password}
           </h3>
-          <input
-            className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
-            onChange={handleInputs}
-            type="password"
-            placeholder="Repite la Contraseña..."
-            name="passwordRep"
-          />
+          <div className="flex justify-center text-center">
+            <input className="h-8 rounded-3xl px-2 mt-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
+              onChange={handleInputs}
+              type="password"
+              id="password2"
+              placeholder="Contraseña..."
+              name="passwordRep"
+              value={companyInput.passwordRep}/>
+            <button className="absolute z-50 flex items-center justify-center ml-40 mt-4"
+              type="button"
+              onClick={handlePass2}>
+              <CgEye/>
+            </button>
+          </div>
           <h3
             className="text-red-600"
             style={{ visibility: error.passwordRep ? "visible" : "hidden" }}

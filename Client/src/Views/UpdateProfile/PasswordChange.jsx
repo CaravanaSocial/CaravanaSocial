@@ -2,15 +2,15 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { changePassword } from "../../Redux/Actions/Actions";
 import { useNavigate, useParams } from "react-router-dom";
+import { CgEye } from "react-icons/cg";
 
 const PasswordChange = () => {
   const id = localStorage.accId;
 
-  console.log(id);
-
   const [passwordChange, setPasswordChange] = useState({
     oldPassword: "",
     newPassword: "",
+    newPassword2: "",
   });
 
   const [passwordValidation, setPasswordValidation] = useState({
@@ -34,11 +34,16 @@ const PasswordChange = () => {
     const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
     const isValid = regex.test(value);
 
-    if (isValid) {
+    if (isValid){
       setPasswordValidation({
         valid: true,
         error: "",
       });
+    } else if (passwordChange.newPassword !== passwordChange.newPassword2) {
+      setPasswordValidation({
+        valid: false,
+        error: "Las contraseñas deben coincidir."
+      })
     } else {
       setPasswordValidation({
         valid: false,
@@ -54,6 +59,40 @@ const PasswordChange = () => {
     navigate("/home");
   };
 
+  const password1 = "password1";
+  const password2 = "password2";
+  const password3 = "password3";
+
+  const handlePass1 = () => {
+    const view = document.getElementById(password1);
+
+    if (view.type === "password"){
+      view.type = "text";
+    } else {
+      view.type = "password";
+    }
+  }
+
+  const handlePass2 = () => {
+    const view = document.getElementById(password2);
+
+    if (view.type === "password"){
+      view.type = "text";
+    } else {
+      view.type = "password";
+    }
+  }
+
+  const handlePass3 = () => {
+    const view = document.getElementById(password3);
+
+    if (view.type === "password"){
+      view.type = "text";
+    } else {
+      view.type = "password";
+    }
+  }
+
   return (
     <div className="flex justify-center items-center h-screen">
       <div className="justify-center border-spacing-96 border-2 border-light-1 dark:border-light-1 rounded-3xl p-4 my-4">
@@ -64,23 +103,57 @@ const PasswordChange = () => {
           <h2 className="text-lg font-nunito font-bold dark:text-gray-300"
           >Tu contraseña actual</h2>
 
-          <input className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
-            type="password"
-            name="oldPassword"
-            value={passwordChange.oldPassword}
-            onChange={handleChange}
-            placeholder="Actual..."
-          />
+          <div className="flex justify-center text-center">
+            <input className="h-8 rounded-3xl px-2 mt-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
+              value={passwordChange.oldPassword}
+              onChange={handleChange}
+              type="password"
+              id="password1"
+              placeholder="Contraseña..."
+              name="oldPassword"/>
+
+            <button className="absolute z-50 flex items-center justify-center ml-40 mt-4"
+              type="button"
+              onClick={handlePass1}>
+              <CgEye/>
+            </button>
+          </div>
 
           <h2 className="text-lg font-nunito font-bold dark:text-gray-300"
           >Tu nueva contraseña</h2>
-          <input className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
-            type="password"
-            name="newPassword"
-            value={passwordChange.newPassword}
-            onChange={handleChange}
-            placeholder="Nueva..."
-          />
+
+          <div className="flex justify-center text-center">
+            <input className="h-8 rounded-3xl px-2 mt-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
+              value={passwordChange.newPassword}
+              onChange={handleChange}
+              type="password"
+              id="password2"
+              placeholder="Contraseña..."
+              name="newPassword"/>
+
+            <button className="absolute z-50 flex items-center justify-center ml-40 mt-4"
+              type="button"
+              onClick={handlePass2}>
+              <CgEye/>
+            </button>
+          </div>
+          
+          <div className="flex justify-center text-center">
+            <input className="h-8 rounded-3xl px-2 mt-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
+              value={passwordChange.newPassword2}
+              onChange={handleChange}
+              type="password"
+              id="password3"
+              placeholder="Repite contraseña..."
+              name="newPassword2"/>
+
+            <button className="absolute z-50 flex items-center justify-center ml-40 mt-4"
+              type="button"
+              onClick={handlePass3}>
+              <CgEye/>
+            </button>
+          </div>
+
           {passwordValidation.error && (
             <p style={{ color: "red" }}>{passwordValidation.error}</p>
           )}

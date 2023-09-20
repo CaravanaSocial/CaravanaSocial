@@ -10,6 +10,7 @@ import {
 } from "../../Redux/Actions/Actions";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { CgEye } from "react-icons/cg";
 
 const PasswordRecovery = () => {
   const speech = useSelector((state) => state.enableSpeech);
@@ -87,6 +88,7 @@ const PasswordRecovery = () => {
     password1: "",
     password2: "",
   });
+
   const handleInputsChange = (e) => {
     setInputs({
       ...inputs,
@@ -99,6 +101,7 @@ const PasswordRecovery = () => {
       })
     );
   };
+
   const inputValidation = (i) => {
     const regexPass = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
     const errors = {};
@@ -122,7 +125,6 @@ const PasswordRecovery = () => {
           if (!editError) {
             navigate("/login");
           }
-          console.log("EDIT ERROR"+editError);
           dispatch(
             setNewErrors({
               type: "PASSWORD_RECOVERY",
@@ -179,8 +181,33 @@ const PasswordRecovery = () => {
       synth.cancel();
     }
   };
-
+  
   const isSubmitDisabled = Object.keys(errors).length > 0;
+
+  const password1 = "password1";
+  const password2 = "password2";
+
+  const handlePass1 = () => {
+    const view = document.getElementById(password1);
+
+    if (view.type === "password"){
+      view.type = "text";
+    } else {
+      view.type = "password";
+    }
+  }
+
+  const handlePass2 = () => {
+    const view = document.getElementById(password2);
+
+    if (view.type === "password"){
+      view.type = "text";
+    } else {
+      view.type = "password";
+    }
+  }
+  
+
   return (
     <div className="flex justify-center items-center h-screen">
       <div className="inline-block m-4 p-4 h-screen">
@@ -260,14 +287,22 @@ const PasswordRecovery = () => {
                 {" "}
                 Ingrese su nueva contraseña{" "}
               </h2>
-              <input
-                className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
-                type="password"
-                onChange={handleInputsChange}
-                name="password1"
-                placeholder="Nueva contraseña..."
-                onKeyDown={handleKeyPressSubmit}
-              />
+
+              <div className="flex justify-center text-center">
+                <input className="h-8 rounded-3xl px-2 mt-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
+                  onChange={handleInputsChange}
+                  onKeyDown={handleKeyPressSubmit}
+                  type="password"
+                  id="password1"
+                  placeholder="Nueva contraseña..."
+                  name="password1"/>
+
+                <button className="absolute z-50 flex items-center justify-center ml-40 mt-4"
+                  type="button"
+                  onClick={handlePass1}>
+                  <CgEye/>
+                </button>
+                </div>
               <p
                 style={{ visibility: errors.password1 ? "visible" : "hidden" }}
               >
@@ -278,20 +313,29 @@ const PasswordRecovery = () => {
                 {" "}
                 Ingrese su nueva contraseña nuevamente{" "}
               </h2>
-              <input
-                className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
-                type="password"
-                onChange={handleInputsChange}
-                name="password2"
-                placeholder="Repite tu contraseña..."
-                onKeyDown={handleKeyPressSubmit}
-              />
+
+              <div className="flex justify-center text-center">
+                <input className="h-8 rounded-3xl px-2 mt-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
+                  onKeyDown={handleKeyPressSubmit}
+                  onChange={handleInputsChange}
+                  type="password"
+                  id="password2"
+                  placeholder="Repite tu contraseña..."
+                  name="password2"/>
+
+                <button className="absolute z-50 flex items-center justify-center ml-40 mt-4"
+                  type="button"
+                  onClick={handlePass2}>
+                  <CgEye/>
+                </button>
+              </div>
+
               <p
                 style={{ visibility: errors.password2 ? "visible" : "hidden" }}
               >
                 {errors.password2}
               </p>
-
+              <br />
               <button
                 className="bg-light-1 font-nunito font-bold rounded-3xl p-2 mb-2 border-2 border-transparent dark:text-zinc-900 hover:text-white hover:scale-95"
                 style={
