@@ -233,6 +233,11 @@ export default function ProfileUser() {
 
             {edit === true ? (
               <div>
+                <Link to={`changePassUser/${dataAcc.id}`}>
+                  <button className="bg-light-2 font-nunito font-bold text-sm dark:bg-light-1 rounded-3xl px-2 py-1 dark:text-black mb-2 border-2 border-transparent hover:border-light-2 dark:hover:border-light-1 dark:font-light"
+                  >Cambio de Contraseña</button>
+                </Link>
+                <br />
                 <button
                   className="bg-light-2 font-nunito font-bold text-sm dark:bg-light-1 rounded-3xl px-2 py-1 dark:text-black mb-2 border-2 border-transparent hover:border-light-2 dark:hover:border-light-1 dark:font-light"
                   onClick={handleImage}
@@ -474,14 +479,6 @@ export default function ProfileUser() {
                   </button>
 
                 </section>
-                <div>
-                  <Link
-                    to={`changePassUser/${dataAcc.id}`}
-                    className="bg-light-2 font-nunito font-bold rounded-3xl px-2 py-1 border-2 border-transparent dark:text-zinc-900 hover:text-light-2 hover:scale-95 dark:bg-light-1"
-                  >
-                    Cambio de contraseña
-                  </Link>
-                </div>
               </div>
             ) : (
               <button
