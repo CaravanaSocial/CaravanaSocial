@@ -67,11 +67,12 @@ const Home = () => {
       className="2xl:flex  2xl:flex-row xl:flex xl:flex-row  lg:flex lg:flex-col  text-center  flex-col flex  2xl:w-full 2xl:h-full"
     >
      
-      <div className="  md:flex md:flex-col md:items-center w-full ">
+      <div className=" md:flex md:flex-col md:items-center w-full ">
+        <div >
         <section className=" flex flex-col items-center">
-          <h1 className="font-vilaka font-bold text-[50px]"
+          <h1 className="font-vilaka font-bold tracking-widest text-[50px]"
           onClick={() => speakText("Freelancers")}
-          onMouseLeave={() => {cancelVoice;}}>Freelancers: </h1>
+          onMouseLeave={() => {cancelVoice;}}>Freelancers </h1>
           <Slider>
             {freelancers?.map((item) => (
               <CardFreelancer key={item.id} freelancer={item} />
@@ -80,16 +81,18 @@ const Home = () => {
         </section>
         <button
           onClick={() => handleFrelancer()}
-          className="font-topmodern border-2 my-5  hover:bg-light-1  border-light-1 rounded-3xl p-1 "
+          className="font-nunito border-2 my-5 px-3 hover:bg-light-1 font-bold border-light-1 rounded-3xl p-1 dark:hover:text-black"
         >
-          Ver Mas
+          Ver más...
         </button>
+        </div>
+        <div>
         <section className=" flex flex-col items-center">
-          <h1 className="font-vilaka font-bold text-[50px]"
+          <h1 className="font-vilaka font-bold tracking-widest text-[50px]"
           onClick={() => speakText("Capacitaciones")}
           onMouseLeave={() => {cancelVoice;}}
           >
-            Capacitaciones:{" "}
+            Capacitaciones{" "}
           </h1>
           <Slider>
             {approvedTraininigs?.map((item) => (
@@ -99,14 +102,16 @@ const Home = () => {
         </section>
         <button
           onClick={() => handleCap()}
-          className="font-topmodern border-2 my-5  hover:bg-light-1  border-light-1 rounded-3xl p-1"
+          className="font-nunito border-2 my-5 px-3 hover:bg-light-1 font-bold dark:hover:text-black border-light-1 rounded-3xl p-1"
         >
-          Ver Mas
+          Ver más...
         </button>
+        </div>
+        <div>
         <section className=" flex flex-col items-center">
-          <h1 className="font-vilaka font-bold text-[50px]"
+          <h1 className="font-vilaka font-bold tracking-widest text-[50px]"
           onClick={() => speakText("Ofertas")}
-          onMouseLeave={() => {cancelVoice;}}>Ofertas: </h1>
+          onMouseLeave={() => {cancelVoice;}}>Ofertas </h1>
           <Slider>
             {offers?.map((item) => (
               <OfferCard key={item.id} offer={item} />
@@ -115,10 +120,11 @@ const Home = () => {
         </section>
         <button
           onClick={() => handleOffer()}
-          className="font-topmodern border-2 my-5  hover:bg-light-1  border-light-1 rounded-3xl p-1 "
+          className="font-nunito border-2 my-5 px-3 hover:bg-light-1 font-bold dark:hover:text-black border-light-1 rounded-3xl p-1 "
         >
-          Ver Mas
+          Ver más...
         </button>
+        </div>
       </div>
     </main>
   );

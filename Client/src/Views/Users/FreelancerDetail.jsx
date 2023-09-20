@@ -51,7 +51,8 @@ const FreelancerDetail = () => {
           <div className="max-w-4xl justify-center text-center border-2 border-light-1 rounded-3xl p-2 m-4">
             <div className="flex justify-around items-center">
               <img
-                className="w-52 max-lg:w-20 max-lg:h-20 rounded-full border-2 border-light-1"
+              className="h-[200px] w-[200px] object-cover object-center rounded-full  "
+                // className="w-52 max-lg:w-20 max-lg:h-20 rounded-full border-2 border-light-1"
                 src={userDetail?.profilePicture}
               />
 

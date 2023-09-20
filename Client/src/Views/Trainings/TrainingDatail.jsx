@@ -170,11 +170,11 @@ const DetailTrainings = () => {
             </h1>
             <p
               onClick={() => play(detail?.description)}
-              className="font-nunito font-bold"
+              className="font-nunito font-bold dark:font-light"
             >
               {detail?.description}
             </p>
-            {!sameOferr && <button onClick={handleAdd}> Unirse</button>}
+            {!sameOferr && <button className=" mt-3 rounded-3xl font-nunito font-bold  bg-green-600 px-3 dark:font-light dark:text-white p-1 hover:bg-green-800 dark:hover:bg-green-500 dark:hover:text-black dark:hover:font-bold dark:bg-green-800 hover:text-white hover:font-light"> Unirse</button>}
             {conditional &&
               detail?.video?.map((video, index) => {
                 return (
@@ -227,7 +227,7 @@ const DetailTrainings = () => {
                   <div>
                     {" "}
                     <img
-                      className="w-[60px] m-auto rounded-full "
+                      className="h-[60px] w-[60px] object-cover object-center rounded-full "
                       src={comment?.imageUser}
                       alt={comment?.userName}
                     />
@@ -235,7 +235,7 @@ const DetailTrainings = () => {
 
                   <div className=" mx-4 w-[500px] flex">
                     {" "}
-                    <p className="font-nunito font-bold text-[20px]">
+                    <p className="font-nunito font-bold dark:font-light text-[25px]">
                       {comment?.userName}
                     </p>
                   </div>
