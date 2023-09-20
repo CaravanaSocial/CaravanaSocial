@@ -13,13 +13,13 @@ export default function CardFreelancer(props) {
   };
 
   return (
-    <div className="border-2  flex-col border-light-1 hover:scale-95 dark:bg-light-1 bg-white p-4 rounded-3xl shadow-md  w-[230px] h-[400px] sm:h-full sm:w-[400px] flex justify-center">
+    <div className="flex-col  bg-light-1 hover:bg-light-2 dark:hover:bg-light-1 dark:bg-light-2  p-4 rounded-3xl shadow-md  w-[230px] h-[400px] sm:h-full sm:w-[400px] flex justify-center">
       <img
-        className="h-[400px]  rounded-[666px] "
+        className="h-[380px] w-[450px] object-cover object-center rounded-full "
         src={props.freelancer.profilePicture}
       />
       <section>
-        <h1 className="font-topmodern dark:text-black text-[25px] sm:text-[30px]">
+        <h1 className="font-nunito font-bold dark:text-black text-[25px] sm:text-[30px]">
           {props.freelancer.name}
         </h1>
 
@@ -31,9 +31,9 @@ export default function CardFreelancer(props) {
         </h4>
         <button
           onClick={() => navigate(`/freelancer/${id}`)}
-          className="border-2 rounded-lg font-topmodern  bg-light-1  dark:text-black p-1 hover:scale-105 dark:border-black"
+          className=" mt-2 rounded-3xl font-nunito font-bold  bg-zinc-300 px-3 dark:font-light dark:text-white p-1 hover:scale-105 dark:bg-zinc-800 "
         >
-          Ver Perfil
+          Ver perfil
         </button>
       </section>
     </div>
