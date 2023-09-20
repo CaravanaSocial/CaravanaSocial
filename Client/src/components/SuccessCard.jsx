@@ -17,7 +17,7 @@ const SuccessCard = ({
         <img
           src={image}
           alt=""
-          className="max-w-[500px] max-h-[500px] border-2 border-light-2 rounded-full"
+          className="max-w-[500px] max-h-[500px] border-2 border-light-2 rounded-full max-lg:w-[370px] max-lg:h-[370px]"
         ></img>
       </div>
       <div className="w-[300px] ">

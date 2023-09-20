@@ -5,14 +5,15 @@ import {
   getOffers,
 } from "../../Redux/Actions/Actions";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, NavLink } from "react-router-dom";
+import { useParams, NavLink, useNavigate } from "react-router-dom";
 import { HiOutlineMail } from "react-icons/hi";
-import { AiOutlinePhone } from "react-icons/ai";
+import { AiOutlinePhone, AiOutlineArrowLeft } from "react-icons/ai";
 import { HiOutlineLocationMarker } from "react-icons/hi";
 import NotFound from "../../components/NotFound";
 
 const CompanyDetail = () => {
   const { id } = useParams();
+  const navigate = useNavigate()
   const dispatch = useDispatch();
   const detail = useSelector((state) => state.companyDetail);
   const trainings = useSelector((state) => state.trainings);
@@ -27,15 +28,21 @@ const CompanyDetail = () => {
     dispatch(getTrainings());
   }, []);
 
+  const goBack=()=>{
+    navigate(-1)
+  }
+
   return (
     <main className="flex h-full ">
       {localStorage.length !== 0 ? (
         <div className=" flex justify-center max-lg:flex-col max-lg:bg-light-1 max-lg:items-center dark:max-lg:bg-light-2">
-          <div className=" w-[400px] pl-3 pr-3 bg-light-1 dark:bg-light-2">
+          
+          <div className=" flex flex-col w-[400px] pl-3 pr-3 bg-light-1 dark:bg-light-2 items-center justify-start">
+          <button onClick={goBack}className="pb-3 pt-1 m-0 self-start" ><AiOutlineArrowLeft className="bg-light-2 dark:bg-light-1 rounded-full p-1"size={30}/></button>
             {" "}
             <img
               src={detail?.profilePicture}
-              className="w-[300px] mt-2 mx-2 max-lg:m-auto rounded-full"
+              className="w-[300px] mt-2 mx-2 px-2 max-lg:m-auto rounded-full"
             />
             <h1 className="font-vilaka max-lg:text-center font-bold text-[60px]">
               {detail?.nameCompany}
@@ -43,7 +50,7 @@ const CompanyDetail = () => {
             <p className="font-nunito font-semibold text-[25px] dark:font-medium">
               {detail?.description}
             </p>
-            <p className="font-nunito p-5 font-bold dark:text-black border-b-2 text-center border-light-1 text-[17px]  dark:bg-light-1 rounded-3xl">
+            <p className="font-nunito p-5 font-bold dark:text-black  text-center bg-light-2 text-[17px]  dark:bg-light-1 rounded-3xl">
               Rubros de capacitación:
               {detail?.areaTrainings?.map((a) => {
                 return (

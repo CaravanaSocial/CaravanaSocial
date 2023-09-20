@@ -10,6 +10,7 @@ import {
 } from "../../Redux/Actions/Actions";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import {AiOutlineArrowLeft} from "../../../node_modules/react-icons/ai"
 
 export default function Offer() {
   const navigate = useNavigate();
@@ -36,6 +37,10 @@ export default function Offer() {
     dispatch(getOffers());
   }, [filter]);
 
+  const goBack=()=>{
+    navigate(-1)
+  }
+
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFilter({
@@ -45,10 +50,14 @@ export default function Offer() {
   };
 
   return (
-    <div className="h-full text-center m-4 p-4 flex flex-col">
+    <div className="  first-letter:m-4 p-4 h-full items-center text-center flex flex-col ">
       {localStorage.length !== 0 ? (
         <>
-          <div className="border-2 justify-center text-center border-zinc-100 dark:border-zinc-800 rounded-3xl py-2 shadow-md">
+        <div className="self-start">
+        <button onClick={goBack}className="pb-3 pt-1 m-0 self-start" ><AiOutlineArrowLeft className="bg-light-1 dark:bg-light-1 rounded-full p-1"size={30}/></button>
+        </div>
+          <div className="border-2 justify-center text-center border-zinc-100 dark:border-zinc-800 rounded-3xl py-2 px-3 shadow-md">
+          <span className="font-nunito font-bold">Filtrar por : </span>
             <select
               className="rounded-3xl px-2 mx-1 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
               name="country"
@@ -61,6 +70,7 @@ export default function Offer() {
                 </option>
               ))}
             </select>
+            <span className="font-nunito font-bold">Filtrar por : </span>
             <select
               className="rounded-3xl px-2 mx-1 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
               name="companyName"
@@ -73,6 +83,7 @@ export default function Offer() {
                 </option>
               ))}
             </select>
+            <span className="font-nunito font-bold">Filtrar por : </span>
             <select
               className="rounded-3xl px-2 mx-1 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
               name="category"

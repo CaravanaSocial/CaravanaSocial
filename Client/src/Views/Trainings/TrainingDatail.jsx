@@ -10,7 +10,7 @@ import {
 } from "../../Redux/Actions/Actions";
 import { useParams, NavLink, useNavigate } from "react-router-dom";
 import { trainingDetail } from "../../Redux/Actions/Actions";
-import { AiOutlineDelete } from "../../../node_modules/react-icons/ai";
+import { AiOutlineDelete, AiOutlineArrowLeft } from "../../../node_modules/react-icons/ai";
 
 const DetailTrainings = () => {
   const play = (text) => {
@@ -90,6 +90,10 @@ const DetailTrainings = () => {
     SetTrues(!trues);
   };
 
+  const goBack =()=>{
+    navigate(-1)
+  }
+
   const handleDeleteComment = (commId) => {
     dispatch(deleteComment(commId));
     dispatch(trainingDetail(id));
@@ -108,6 +112,7 @@ const DetailTrainings = () => {
       {localStorage.length !== 0 ? (
         <>
           <div className="flex flex-col items-center p-4">
+          <button onClick={goBack}className="pb-3 pt-1 m-0 self-start" ><AiOutlineArrowLeft className="bg-light-1 dark:bg-light-2 rounded-full p-1"size={30}/></button>
             <img
               className="w-[300px] rounded-full"
               src={
