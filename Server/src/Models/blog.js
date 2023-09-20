@@ -23,11 +23,19 @@ module.exports = (sequelize) => {
         template: {
             type: DataTypes.TEXT,
             defaultValue: null,
-            allowNull: false
+            allowNull: true
         },
         date:{
             type: DataTypes.STRING,
             allowNull: false
+        },
+        type:{
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        urlData:{
+            type: DataTypes.STRING,
+            allowNull: true
         }
-    });
+    },{timestamps: false});
 };

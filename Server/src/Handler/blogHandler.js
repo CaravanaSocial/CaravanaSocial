@@ -7,10 +7,10 @@ const { deleteBlogController } = require("../Controller/Blog/deleteBlogControlle
 
 const postBlogHandler = async(req, res) => {
     try {
-        const {id, author, title, image, template, date} = req.body;
+       
+        const createdBlog = await postBlogController(req.body);
         
-        const createdBlog = await postBlogController(id, author, title, image, template, date);
-    
+        
         return res.status(200).json(createdBlog)
     } catch (error) {
         return res.status(400).send(error.message)

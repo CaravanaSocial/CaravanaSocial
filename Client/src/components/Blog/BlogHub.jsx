@@ -13,13 +13,13 @@ export default function BlogHub(){
     React.useEffect(()=>{
         dispatch(actions.getAllBlogs())
     },[])
-
     
     return (
-        <div className="flex flex-wrap justify-center gap-6 my-10">
-            {selector?.map((post, index) => {
+        <div className="flex flex-wrap justify-center gap-6 py-10 h-screen">
+            {selector?.length!== 0?
+            selector?.map((post, index) => {
                 return <BlogCard key={index} post={post}/>
-            })}
+            }):<h1>No hay Post publicados aun</h1>}
         </div>
     )
 } 
