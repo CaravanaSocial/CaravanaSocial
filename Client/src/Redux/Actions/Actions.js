@@ -17,6 +17,7 @@ export const GET_ADMINS = "GET_ADMINS";
 export const EDIT_ADMIN = "EDIT_ADMIN";
 export const DELETE_ADMINS = "DELETE_ADMINS";
 export const RESTORE_ADMINS = "RESTORE_ADMINS";
+export const GET_ADMIN_BY_ID = "GET_ADMIN_BY_ID";
 
 export const GET_COMPANIES = "GET_COMPANIES";
 export const CREATE_COMPANY = "CREATE_COMPANY";
@@ -1349,3 +1350,18 @@ export const deleteComment = (id) => {
     } catch (error) {}
   };
 };
+
+export const getAdminById= (id) => {
+  return async function (dispatch){
+    try {
+      const response = (await axios.get(`${serverURL}/admin/${id}`)).data
+      dispatch({
+        type : GET_ADMIN_BY_ID,
+        payload: response
+      })
+      return false 
+    } catch (error) {
+      return error
+    }
+  }
+}

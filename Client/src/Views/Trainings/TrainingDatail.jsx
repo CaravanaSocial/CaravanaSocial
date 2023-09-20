@@ -136,7 +136,7 @@ const DetailTrainings = () => {
             <span className="font-vilaka font-bold text-[55px] hover:text-light-1">
               {detail?.company?.nameCompany}
             </span>
-            <NavLink to={`/company/${detail?.companyId}`}>
+            <NavLink to={`/company/${detail?.companyId ? detail?.companyId : detail?.adminId}`}>
               <button className="bg-light-1 font-nunito rounded-3xl font-bold px-2 py-1 border-2 border-transparent dark:text-zinc-900 hover:text-light-2 hover:scale-95 dark:bg-light-2">
                 Ver detalle de la empresa
               </button>
