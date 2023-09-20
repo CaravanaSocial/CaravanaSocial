@@ -570,7 +570,7 @@ export const deleteOffer = (id) => {
 };
 
 export const getOfferByName = (name) => {
-  console.log(name);
+  console.log("holasdasdasda", name);
   const endpoint = `${serverURL}/offers/by?name=${name}`;
 
   return async (dispatch) => {
