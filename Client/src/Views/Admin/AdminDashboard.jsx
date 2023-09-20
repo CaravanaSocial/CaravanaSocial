@@ -9,7 +9,9 @@ import TrainingCard from "../Trainings/CardTrainings";
 import Faq from "../../Views/Faq/Faq.jsx";
 import NotFound from "../../components/NotFound";
 import validation from "../../components/AdminViews/validations.js";
-import { deleteUsers,
+import PresetBlog from "../../components/Blog/PresetBlog";
+import {
+  deleteUsers,
   getUsers,
   restoreUsers,
   deleteCompanies,
@@ -20,12 +22,14 @@ import { deleteUsers,
   restoreAdmins,
   createAdmin,
   clearErrors,
-  setNewErrors } from "../../Redux/Actions/Actions";
+  setNewErrors,
+} from "../../Redux/Actions/Actions";
 
 const AdminDashboard = () => {
   initTE({ Datepicker, Input, Tab }, { allowReinits: true });
   const dispatch = useDispatch();
-  const { trainingsApproved, trainingsDeclined, trainingsNoCheck } = useSelector((state) => state);
+  const { trainingsApproved, trainingsDeclined, trainingsNoCheck } =
+    useSelector((state) => state);
   const usersDelete = useSelector((state) => state.usersDelete);
   const users = useSelector((state) => state.users);
   const { companies, companiesDelete } = useSelector((state) => state);
@@ -47,7 +51,7 @@ const AdminDashboard = () => {
     createKey: "R*7fE2$9cH@6DpT",
   });
   const [errors, setErrors] = useState({});
-  
+
   useEffect(() => {
     dispatch(getTrainingsByValue(approved));
     dispatch(getTrainingsByValue(declined));
@@ -69,29 +73,29 @@ const AdminDashboard = () => {
   const create = "crear";
 
   const handleTrainingView = (value) => {
-    if (trainingView === value){
+    if (trainingView === value) {
       setTraingView(false);
     } else {
       setTraingView(value);
     }
-    dispatch(getTrainingsByValue(value))
-  }
+    dispatch(getTrainingsByValue(value));
+  };
 
   const handleUsersView = (value) => {
-    if (userView === value){
-      setUserView(false)
+    if (userView === value) {
+      setUserView(false);
     } else {
-      setUserView(value)
+      setUserView(value);
     }
     dispatch(getUsers(value));
-  }
+  };
 
   const handleDeletedUsers = (e, id) => {
     e.preventDefault();
     dispatch(deleteUsers(id)).then(() => {
       dispatch(getUsers());
       dispatch(getUsers(deleted));
-    })
+    });
     setUpdated(!updated);
   };
 
@@ -100,25 +104,25 @@ const AdminDashboard = () => {
     dispatch(restoreUsers(id)).then(() => {
       dispatch(getUsers());
       dispatch(getUsers(deleted));
-    })
+    });
     setUpdated(!updated);
   };
 
   const handleCompanyView = (value) => {
-    if (companieView === value){
-      setCompanieView(false)
+    if (companieView === value) {
+      setCompanieView(false);
     } else {
-      setCompanieView(value)
+      setCompanieView(value);
     }
     dispatch(getCompanies(value));
-  }
+  };
 
   const handleDeletedComanies = (e, id) => {
     e.preventDefault();
     dispatch(deleteCompanies(id)).then(() => {
       dispatch(getCompanies());
       dispatch(getCompanies(deleted));
-    })
+    });
     setUpdated(!updated);
   };
 
@@ -127,25 +131,25 @@ const AdminDashboard = () => {
     dispatch(restoreCompanies(id)).then(() => {
       dispatch(getCompanies());
       dispatch(getCompanies(deleted));
-    })
+    });
     setUpdated(!updated);
   };
 
   const handleAdminView = (value) => {
-    if (adminView === value){
-      setAdminView(false)
+    if (adminView === value) {
+      setAdminView(false);
     } else {
-      setAdminView(value)
+      setAdminView(value);
     }
     dispatch(getAdmins(value));
-  }
+  };
 
   const handleDeletedAdmins = (e, id) => {
     e.preventDefault();
     dispatch(deletedAdmins(id)).then(() => {
       dispatch(getAdmins());
       dispatch(getAdmins(deleted));
-    })
+    });
     setUpdated(!updated);
   };
 
@@ -154,7 +158,7 @@ const AdminDashboard = () => {
     dispatch(restoreAdmins(id)).then(() => {
       dispatch(getAdmins());
       dispatch(getAdmins(deleted));
-    })
+    });
     setUpdated(!updated);
   };
 
@@ -303,17 +307,23 @@ const AdminDashboard = () => {
                 <button
                   className="border-b-2 border-light-1 dark:text-neutral-400 font-topmodern p-2 text-[25px]"
                   onClick={() => handleTrainingView(approved)}
-                >Capacitaciones aprobadas</button>
+                >
+                  Capacitaciones aprobadas
+                </button>
                 <br />
                 <button
                   className="border-b-2 border-light-1 dark:text-neutral-400 font-topmodern p-2 text-[25px]"
                   onClick={() => handleTrainingView(declined)}
-                >Capacitaciones rechazadas</button>
+                >
+                  Capacitaciones rechazadas
+                </button>
                 <br />
                 <button
                   className="border-b-2 border-light-1 dark:text-neutral-400 font-topmodern p-2 text-[25px]"
                   onClick={() => handleTrainingView(noCheck)}
-                >Capacitaciones pendientes</button>
+                >
+                  Capacitaciones pendientes
+                </button>
               </div>
 
               <div
@@ -331,12 +341,18 @@ const AdminDashboard = () => {
                 role="tabpanel"
                 aria-labelledby="tabs-usuarios-tab"
               >
-                <button className="border-b-2 border-light-1 dark:text-neutral-400 font-topmodern p-2 text-[25px]"
+                <button
+                  className="border-b-2 border-light-1 dark:text-neutral-400 font-topmodern p-2 text-[25px]"
                   onClick={() => handleUsersView(online)}
-                >Usuarios Activos</button>
-                <button className="border-b-2 border-light-1 dark:text-neutral-400 font-topmodern p-2 text-[25px]"
+                >
+                  Usuarios Activos
+                </button>
+                <button
+                  className="border-b-2 border-light-1 dark:text-neutral-400 font-topmodern p-2 text-[25px]"
                   onClick={() => handleUsersView(deleted)}
-                >Usuarios Bloqueados</button>
+                >
+                  Usuarios Bloqueados
+                </button>
               </div>
 
               <div
@@ -345,12 +361,18 @@ const AdminDashboard = () => {
                 role="tabpanel"
                 aria-labelledby="tabs-empresas-tab"
               >
-                <button className="border-b-2 border-light-1 dark:text-neutral-400 font-topmodern p-2 text-[25px]"
+                <button
+                  className="border-b-2 border-light-1 dark:text-neutral-400 font-topmodern p-2 text-[25px]"
                   onClick={() => handleCompanyView(online)}
-                >Empresas Activos</button>
-                <button className="border-b-2 border-light-1 dark:text-neutral-400 font-topmodern p-2 text-[25px]"
+                >
+                  Empresas Activos
+                </button>
+                <button
+                  className="border-b-2 border-light-1 dark:text-neutral-400 font-topmodern p-2 text-[25px]"
                   onClick={() => handleCompanyView(deleted)}
-                >Empresas Bloqueados</button>
+                >
+                  Empresas Bloqueados
+                </button>
               </div>
 
               <div
@@ -359,16 +381,25 @@ const AdminDashboard = () => {
                 role="tabpanel"
                 aria-labelledby="tabs-admins-tab"
               >
-                <button className="border-b-2 border-light-1 dark:text-neutral-400 font-topmodern p-2 text-[25px]"
+                <button
+                  className="border-b-2 border-light-1 dark:text-neutral-400 font-topmodern p-2 text-[25px]"
                   onClick={() => handleAdminView(online)}
-                >Admins Activos</button>
+                >
+                  Admins Activos
+                </button>
                 <br />
-                <button className="border-b-2 border-light-1 dark:text-neutral-400 font-topmodern p-2 text-[25px]"
+                <button
+                  className="border-b-2 border-light-1 dark:text-neutral-400 font-topmodern p-2 text-[25px]"
                   onClick={() => handleAdminView(deleted)}
-                >Admins Bloqueados</button>
-                <button className="border-b-2 border-light-1 dark:text-neutral-400 font-topmodern p-2 text-[25px]"
+                >
+                  Admins Bloqueados
+                </button>
+                <button
+                  className="border-b-2 border-light-1 dark:text-neutral-400 font-topmodern p-2 text-[25px]"
                   onClick={() => handleAdminView(create)}
-                >Crear Admin</button>
+                >
+                  Crear Admin
+                </button>
               </div>
               <div
                 className="hidden opacity-0 transition-opacity duration-150 ease-linear data-[te-tab-active]:block"
@@ -384,66 +415,72 @@ const AdminDashboard = () => {
                 <div>
                   {trainingView === approved ? (
                     <div>
-                      <h1 className="mb-5 text-4xl font-vilaka font-bold text-[50px] text-center border-b-2 border-light-1 dark:border-light-2 rounded-sm dark:text-gray-300"
-                      >Capacitaciones aprobadas</h1>
-                    {trainingsApproved?.length !== 0 ? (
-                      <div className="flex flex-wrap text-center justify-center">
-                      {trainingsApproved?.map((t, i) => {
-                        return (
-                          <div className="m-2" key={i}>
-                            <NavLink to={`/training/detail/${t.id}`}>
-                              <TrainingCard training={t} />{" "}
-                            </NavLink>
-                          </div>
-                        );
-                      })}
-                      </div>
-                    ) : (
-                      <h1 className="text-2xl text-center dark:text-gray-300"
-                      >No hay capacitaciones aprobadas</h1>
-                    )}
+                      <h1 className="mb-5 text-4xl font-vilaka font-bold text-[50px] text-center border-b-2 border-light-1 dark:border-light-2 rounded-sm dark:text-gray-300">
+                        Capacitaciones aprobadas
+                      </h1>
+                      {trainingsApproved?.length !== 0 ? (
+                        <div className="flex flex-wrap text-center justify-center">
+                          {trainingsApproved?.map((t, i) => {
+                            return (
+                              <div className="m-2" key={i}>
+                                <NavLink to={`/training/detail/${t.id}`}>
+                                  <TrainingCard training={t} />{" "}
+                                </NavLink>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      ) : (
+                        <h1 className="text-2xl text-center dark:text-gray-300">
+                          No hay capacitaciones aprobadas
+                        </h1>
+                      )}
                     </div>
                   ) : trainingView === declined ? (
                     <div>
-                      <h1 className="mb-5 text-4xl font-vilaka font-bold text-[50px] text-center border-b-2 border-light-1 dark:border-light-2 rounded-sm dark:text-gray-300"
-                      >Capacitaciones rechazadas</h1>
-                    {trainingsDeclined?.length !== 0 ? (
-                      <div className="flex flex-wrap text-center justify-center">
-                      {trainingsDeclined?.map((t, i) => {
-                        return (
-                          <div className="m-2" key={i}>
-                            <NavLink to={`/training/detail/${t.id}`}>
-                              <TrainingCard training={t} />{" "}
-                            </NavLink>
-                          </div>
-                        );
-                      })}
-                      </div>
-                    ) : (
-                      <h1 className="text-2xl text-center dark:text-gray-300"
-                      >No hay capacitaciones rechazadas</h1>
-                    )}
+                      <h1 className="mb-5 text-4xl font-vilaka font-bold text-[50px] text-center border-b-2 border-light-1 dark:border-light-2 rounded-sm dark:text-gray-300">
+                        Capacitaciones rechazadas
+                      </h1>
+                      {trainingsDeclined?.length !== 0 ? (
+                        <div className="flex flex-wrap text-center justify-center">
+                          {trainingsDeclined?.map((t, i) => {
+                            return (
+                              <div className="m-2" key={i}>
+                                <NavLink to={`/training/detail/${t.id}`}>
+                                  <TrainingCard training={t} />{" "}
+                                </NavLink>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      ) : (
+                        <h1 className="text-2xl text-center dark:text-gray-300">
+                          No hay capacitaciones rechazadas
+                        </h1>
+                      )}
                     </div>
                   ) : trainingView === noCheck ? (
                     <div>
-                      <h1 className="mb-5 text-4xl font-vilaka font-bold text-[50px] text-center border-b-2 border-light-1 dark:border-light-2 rounded-sm dark:text-gray-300"
-                      >Capacitaciones pendientes</h1>
-                    {trainingsNoCheck?.length !== 0 ? (
-                      <div className="flex flex-wrap text-center justify-center">
-                      {trainingsNoCheck?.map((t, i) => {
-                        return (
-                          <div className="m-2" key={i}>
-                            <NavLink to={`/training/detail/${t.id}`}>
-                              <TrainingCard training={t} />{" "}
-                            </NavLink>
-                          </div>
-                        );
-                      })}
-                      </div>
-                    ) : (
-                      <h1 className="text-2xl text-center dark:text-gray-300"
-                      >No hay capacitaciones pendientes</h1>
-                    )}
+                      <h1 className="mb-5 text-4xl font-vilaka font-bold text-[50px] text-center border-b-2 border-light-1 dark:border-light-2 rounded-sm dark:text-gray-300">
+                        Capacitaciones pendientes
+                      </h1>
+                      {trainingsNoCheck?.length !== 0 ? (
+                        <div className="flex flex-wrap text-center justify-center">
+                          {trainingsNoCheck?.map((t, i) => {
+                            return (
+                              <div className="m-2" key={i}>
+                                <NavLink to={`/training/detail/${t.id}`}>
+                                  <TrainingCard training={t} />{" "}
+                                </NavLink>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      ) : (
+                        <h1 className="text-2xl text-center dark:text-gray-300">
+                          No hay capacitaciones pendientes
+                        </h1>
+                      )}
                     </div>
                   ) : null}
                 </div>
@@ -455,44 +492,56 @@ const AdminDashboard = () => {
                 <div>
                   {userView === online ? (
                     <div>
-                      <h1 className="mb-5 text-4xl font-vilaka font-bold text-[50px] text-center border-b-2 border-light-1 dark:border-light-2 rounded-sm dark:text-gray-300"
-                      >Usuarios activos</h1>
+                      <h1 className="mb-5 text-4xl font-vilaka font-bold text-[50px] text-center border-b-2 border-light-1 dark:border-light-2 rounded-sm dark:text-gray-300">
+                        Usuarios activos
+                      </h1>
                       <div className="flex flex-col justify-center">
                         {users?.map((u) => (
-                          <div className="flex justify-between w-[450px] border-2 dark:bg-zinc-700 border-zinc-300 dark:border-zinc-500 bg-gray-200 items-center rounded-xl p-2 my-2"
-                            key={u.id}>
+                          <div
+                            className="flex justify-between w-[450px] border-2 dark:bg-zinc-700 border-zinc-300 dark:border-zinc-500 bg-gray-200 items-center rounded-xl p-2 my-2"
+                            key={u.id}
+                          >
                             <div>
-                              <h2 className="font-nunito border-b-2 border-light-1"
-                              >{u.name} {u.lastName}</h2>
-                              <h2 className="font-nunito"
-                              >{u.email}</h2>
+                              <h2 className="font-nunito border-b-2 border-light-1">
+                                {u.name} {u.lastName}
+                              </h2>
+                              <h2 className="font-nunito">{u.email}</h2>
                             </div>
-                            <button className="my-2 mx-5 hover:scale-105 rounded-3xl p-2 bg-red-300 dark:text-black dark:bg-red-700 border-2 border-red-400 font-nunito"
+                            <button
+                              className="my-2 mx-5 hover:scale-105 rounded-3xl p-2 bg-red-300 dark:text-black dark:bg-red-700 border-2 border-red-400 font-nunito"
                               onClick={(e) => handleDeletedUsers(e, u.id)}
-                            >Bloquear</button>
+                            >
+                              Bloquear
+                            </button>
                           </div>
-                      ))}
+                        ))}
                       </div>
                     </div>
                   ) : userView === deleted ? (
                     <div>
-                      <h1 className="mb-5 text-4xl font-vilaka font-bold text-[50px] text-center border-b-2 border-light-1 dark:border-light-2 rounded-sm dark:text-gray-300"
-                      >Usuarios bloqueados</h1>
+                      <h1 className="mb-5 text-4xl font-vilaka font-bold text-[50px] text-center border-b-2 border-light-1 dark:border-light-2 rounded-sm dark:text-gray-300">
+                        Usuarios bloqueados
+                      </h1>
                       <div className="flex flex-col justify-center">
-                      {usersDelete?.map((u) => (
-                        <div className="flex justify-between w-[450px] border-2 dark:bg-zinc-700 border-zinc-300 dark:border-zinc-500 bg-gray-200 items-center rounded-xl p-2 my-2"
-                          key={u.id}>
-                          <div>
-                            <h2 className="font-nunito border-b-2 border-light-1"
-                            >{u.name} {u.lastName}</h2>
-                            <h2 className="font-nunito"
-                            >{u.email}</h2>
+                        {usersDelete?.map((u) => (
+                          <div
+                            className="flex justify-between w-[450px] border-2 dark:bg-zinc-700 border-zinc-300 dark:border-zinc-500 bg-gray-200 items-center rounded-xl p-2 my-2"
+                            key={u.id}
+                          >
+                            <div>
+                              <h2 className="font-nunito border-b-2 border-light-1">
+                                {u.name} {u.lastName}
+                              </h2>
+                              <h2 className="font-nunito">{u.email}</h2>
+                            </div>
+                            <button
+                              className="my-2 mx-5 hover:scale-105 rounded-3xl p-2 border-2 border-green-400 dark:text-black dark:bg-green-500 bg-green-300 font-nunito"
+                              onClick={(e) => handleRestoredUsers(e, u.id)}
+                            >
+                              Restablecer
+                            </button>
                           </div>
-                          <button className="my-2 mx-5 hover:scale-105 rounded-3xl p-2 border-2 border-green-400 dark:text-black dark:bg-green-500 bg-green-300 font-nunito"
-                            onClick={(e) => handleRestoredUsers(e, u.id)}
-                          >Restablecer</button>
-                        </div>
-                      ))}
+                        ))}
                       </div>
                     </div>
                   ) : null}
@@ -501,44 +550,56 @@ const AdminDashboard = () => {
                 <div>
                   {companieView === online ? (
                     <div>
-                      <h1 className="mb-5 text-4xl font-vilaka font-bold text-[50px] text-center border-b-2 border-light-1 dark:border-light-2 rounded-sm dark:text-gray-300"
-                      >Empresas activas</h1>
+                      <h1 className="mb-5 text-4xl font-vilaka font-bold text-[50px] text-center border-b-2 border-light-1 dark:border-light-2 rounded-sm dark:text-gray-300">
+                        Empresas activas
+                      </h1>
                       <div className="flex flex-col justify-center">
                         {companies?.map((u) => (
-                          <div className="flex justify-between w-[450px] border-2 dark:bg-zinc-700 border-zinc-300 dark:border-zinc-500 bg-gray-200 items-center rounded-xl p-2 my-2"
-                            key={u.id}>
+                          <div
+                            className="flex justify-between w-[450px] border-2 dark:bg-zinc-700 border-zinc-300 dark:border-zinc-500 bg-gray-200 items-center rounded-xl p-2 my-2"
+                            key={u.id}
+                          >
                             <div>
-                              <h2 className="font-nunito border-b-2 border-light-1"
-                              >{u.name} {u.lastName}</h2>
-                              <h2 className="font-nunito"
-                              >{u.email}</h2>
+                              <h2 className="font-nunito border-b-2 border-light-1">
+                                {u.name} {u.lastName}
+                              </h2>
+                              <h2 className="font-nunito">{u.email}</h2>
                             </div>
-                            <button className="my-2 mx-5 hover:scale-105 rounded-3xl p-2 bg-red-300 dark:text-black dark:bg-red-700 border-2 border-red-400 font-nunito"
+                            <button
+                              className="my-2 mx-5 hover:scale-105 rounded-3xl p-2 bg-red-300 dark:text-black dark:bg-red-700 border-2 border-red-400 font-nunito"
                               onClick={(e) => handleDeletedComanies(e, u.id)}
-                            >Bloquear</button>
+                            >
+                              Bloquear
+                            </button>
                           </div>
-                      ))}
+                        ))}
                       </div>
                     </div>
                   ) : companieView === deleted ? (
                     <div>
-                      <h1 className="mb-5 text-4xl font-vilaka font-bold text-[50px] text-center border-b-2 border-light-1 dark:border-light-2 rounded-sm dark:text-gray-300"
-                      >Empresas bloqueadas</h1>
+                      <h1 className="mb-5 text-4xl font-vilaka font-bold text-[50px] text-center border-b-2 border-light-1 dark:border-light-2 rounded-sm dark:text-gray-300">
+                        Empresas bloqueadas
+                      </h1>
                       <div className="flex flex-col justify-center">
-                      {companiesDelete?.map((u) => (
-                        <div className="flex justify-between w-[450px] border-2 dark:bg-zinc-700 border-zinc-300 dark:border-zinc-500 bg-gray-200 items-center rounded-xl p-2 my-2"
-                          key={u.id}>
-                          <div>
-                            <h2 className="font-nunito border-b-2 border-light-1"
-                            >{u.name} {u.lastName}</h2>
-                            <h2 className="font-nunito"
-                            >{u.email}</h2>
+                        {companiesDelete?.map((u) => (
+                          <div
+                            className="flex justify-between w-[450px] border-2 dark:bg-zinc-700 border-zinc-300 dark:border-zinc-500 bg-gray-200 items-center rounded-xl p-2 my-2"
+                            key={u.id}
+                          >
+                            <div>
+                              <h2 className="font-nunito border-b-2 border-light-1">
+                                {u.name} {u.lastName}
+                              </h2>
+                              <h2 className="font-nunito">{u.email}</h2>
+                            </div>
+                            <button
+                              className="my-2 mx-5 hover:scale-105 rounded-3xl p-2 border-2 border-green-400 dark:text-black dark:bg-green-500 bg-green-300 font-nunito"
+                              onClick={(e) => handleRestoredCompanies(e, u.id)}
+                            >
+                              Restablecer
+                            </button>
                           </div>
-                          <button className="my-2 mx-5 hover:scale-105 rounded-3xl p-2 border-2 border-green-400 dark:text-black dark:bg-green-500 bg-green-300 font-nunito"
-                            onClick={(e) => handleRestoredCompanies(e, u.id)}
-                          >Restablecer</button>
-                        </div>
-                      ))}
+                        ))}
                       </div>
                     </div>
                   ) : null}
@@ -547,72 +608,123 @@ const AdminDashboard = () => {
                 <div>
                   {adminView === online ? (
                     <div>
-                      <h1 className="mb-5 text-4xl font-vilaka font-bold text-[50px] text-center border-b-2 border-light-1 dark:border-light-2 rounded-sm dark:text-gray-300"
-                      >Admins activos</h1>
+                      <h1 className="mb-5 text-4xl font-vilaka font-bold text-[50px] text-center border-b-2 border-light-1 dark:border-light-2 rounded-sm dark:text-gray-300">
+                        Admins activos
+                      </h1>
                       <div className="flex flex-col justify-center">
                         {admins?.map((u) => (
-                          <div className="flex justify-between w-[450px] border-2 dark:bg-zinc-700 border-zinc-300 dark:border-zinc-500 bg-gray-200 items-center rounded-xl p-2 my-2"
-                            key={u.id}>
+                          <div
+                            className="flex justify-between w-[450px] border-2 dark:bg-zinc-700 border-zinc-300 dark:border-zinc-500 bg-gray-200 items-center rounded-xl p-2 my-2"
+                            key={u.id}
+                          >
                             <div>
-                              <h2 className="font-nunito border-b-2 border-light-1"
-                              >{u.name} {u.lastName}</h2>
-                              <h2 className="font-nunito"
-                              >{u.email}</h2>
+                              <h2 className="font-nunito border-b-2 border-light-1">
+                                {u.name} {u.lastName}
+                              </h2>
+                              <h2 className="font-nunito">{u.email}</h2>
                             </div>
-                            <button className="my-2 mx-5 hover:scale-105 rounded-3xl p-2 bg-red-300 dark:text-black dark:bg-red-700 border-2 border-red-400 font-nunito"
+                            <button
+                              className="my-2 mx-5 hover:scale-105 rounded-3xl p-2 bg-red-300 dark:text-black dark:bg-red-700 border-2 border-red-400 font-nunito"
                               onClick={(e) => handleDeletedAdmins(e, u.id)}
-                            >Bloquear</button>
+                            >
+                              Bloquear
+                            </button>
                           </div>
-                      ))}
+                        ))}
                       </div>
                     </div>
                   ) : adminView === deleted ? (
                     <div>
-                      <h1 className="mb-5 text-4xl font-vilaka font-bold text-[50px] text-center border-b-2 border-light-1 dark:border-light-2 rounded-sm dark:text-gray-300"
-                      >Admins bloqueados</h1>
+                      <h1 className="mb-5 text-4xl font-vilaka font-bold text-[50px] text-center border-b-2 border-light-1 dark:border-light-2 rounded-sm dark:text-gray-300">
+                        Admins bloqueados
+                      </h1>
                       <div className="flex flex-col justify-center">
-                      {adminsDeleted?.map((u) => (
-                        <div className="flex justify-between w-[450px] border-2 dark:bg-zinc-700 border-zinc-300 dark:border-zinc-500 bg-gray-200 items-center rounded-xl p-2 my-2"
-                          key={u.id}>
-                          <div>
-                            <h2 className="font-nunito border-b-2 border-light-1"
-                            >{u.name} {u.lastName}</h2>
-                            <h2 className="font-nunito"
-                            >{u.email}</h2>
+                        {adminsDeleted?.map((u) => (
+                          <div
+                            className="flex justify-between w-[450px] border-2 dark:bg-zinc-700 border-zinc-300 dark:border-zinc-500 bg-gray-200 items-center rounded-xl p-2 my-2"
+                            key={u.id}
+                          >
+                            <div>
+                              <h2 className="font-nunito border-b-2 border-light-1">
+                                {u.name} {u.lastName}
+                              </h2>
+                              <h2 className="font-nunito">{u.email}</h2>
+                            </div>
+                            <button
+                              className="my-2 mx-5 hover:scale-105 rounded-3xl p-2 border-2 border-green-400 dark:text-black dark:bg-green-500 bg-green-300 font-nunito"
+                              onClick={(e) => handleRestoredAdmins(e, u.id)}
+                            >
+                              Restablecer
+                            </button>
                           </div>
-                          <button className="my-2 mx-5 hover:scale-105 rounded-3xl p-2 border-2 border-green-400 dark:text-black dark:bg-green-500 bg-green-300 font-nunito"
-                            onClick={(e) => handleRestoredAdmins(e, u.id)}
-                          >Restablecer</button>
-                        </div>
-                      ))}
+                        ))}
                       </div>
                     </div>
                   ) : adminView === create ? (
                     <div className="flex flex-col text-center justify-center border-2 border-light-1 p-5 rounded-3xl">
-                      <h1 className="mb-5 text-4xl font-vilaka font-bold text-[50px] text-center border-b-2 border-light-1 dark:border-light-2 rounded-sm dark:text-gray-300"
-                      >Crear admin</h1>
+                      <h1 className="mb-5 text-4xl font-vilaka font-bold text-[50px] text-center border-b-2 border-light-1 dark:border-light-2 rounded-sm dark:text-gray-300">
+                        Crear admin
+                      </h1>
                       <h2>Nombre</h2>
-                      <input className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
-                        type="text" name="name" placeholder="Nombre..." onChange={handleChangeAdmin} />
-                      <h3 className="text-red-600">{errors.name ? errors.name : null}</h3>
-                      
+                      <input
+                        className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
+                        type="text"
+                        name="name"
+                        placeholder="Nombre..."
+                        onChange={handleChangeAdmin}
+                      />
+                      <h3 className="text-red-600">
+                        {errors.name ? errors.name : null}
+                      </h3>
+
                       <h2>Email</h2>
-                      <input className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
-                        type="email" name="email" placeholder="Email..." onChange={handleChangeAdmin} />
-                      <h3 className="text-red-600">{errors.email ? errors.email : null}</h3>
-                      
+                      <input
+                        className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
+                        type="email"
+                        name="email"
+                        placeholder="Email..."
+                        onChange={handleChangeAdmin}
+                      />
+                      <h3 className="text-red-600">
+                        {errors.email ? errors.email : null}
+                      </h3>
+
                       <h2>Contraseña</h2>
-                      <input className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
-                        type="password" name="password" placeholder="Contraseña..." onChange={handleChangeAdmin} />
-                      <h3 className="text-red-600">{errors.password ? errors.password : null}</h3>
-                      <h3 className="text-red-600" style={{visibility: globalErrors?.CREATE_ADMIN?.error ? "visible" : "hidden"}}
-                      >{globalErrors?.CREATE_ADMIN?.error}</h3>
+                      <input
+                        className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
+                        type="password"
+                        name="password"
+                        placeholder="Contraseña..."
+                        onChange={handleChangeAdmin}
+                      />
+                      <h3 className="text-red-600">
+                        {errors.password ? errors.password : null}
+                      </h3>
+                      <h3
+                        className="text-red-600"
+                        style={{
+                          visibility: globalErrors?.CREATE_ADMIN?.error
+                            ? "visible"
+                            : "hidden",
+                        }}
+                      >
+                        {globalErrors?.CREATE_ADMIN?.error}
+                      </h3>
                       <div>
-                        <button className="bg-light-1 font-nunito font-bold rounded-3xl w-16 p-2 mb-2 border-2 border-transparent dark:text-zinc-900 hover:text-white hover:scale-95"
-                        onClick={handleCreateAdmin}>Crear</button>
+                        <button
+                          className="bg-light-1 font-nunito font-bold rounded-3xl w-16 p-2 mb-2 border-2 border-transparent dark:text-zinc-900 hover:text-white hover:scale-95"
+                          onClick={handleCreateAdmin}
+                        >
+                          Crear
+                        </button>
                       </div>
                     </div>
                   ) : null}
+                  <div></div>
+                </div>
+              ) : activeTab === "blogs" ? (
+                <div className="h-full w-full">
+                  <PresetBlog />
                 </div>
               ) : null}
             </div>
