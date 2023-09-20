@@ -167,8 +167,8 @@ export default function PresetBlog() {
   };
 
   return (
-    <div className="flex max-lg:flex-col mx-5 my-5">
-      <div className="bg-white-200 h-full flex justify-center items-center mb-5">
+    <div className="flex max-lg:flex-col mx-5 my-5 h-full">
+      <div className="bg-white-200 flex justify-center items-center mb-5">
         <div className="flex flex-col justify-center items-center">
           <h1 className="text-3xl mb-10">Crear tarjeta de post</h1>
           <div className="justify-center items-center border rounded-lg border-gray-400 shadow-md p-4 w-[400px]">

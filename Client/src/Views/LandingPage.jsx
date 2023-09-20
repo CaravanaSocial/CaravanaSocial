@@ -35,8 +35,8 @@ const LandingPage = () => {
   };
 
   return (
-    <main className=" relative">
-      <section className="w-full  2xl:h-[300px] relative ">
+    <main className="items-center" >
+      <section className="w-full  2xl:h-[300px]  ">
         <h1
           onClick={() => speakText("Bienvenidos a Caravana Social")}
           onMouseLeave={() => {
@@ -61,7 +61,7 @@ const LandingPage = () => {
       {/* SECCION INTRO */}
 
       {/* SECCION CONOCENOS*/}
-      <section className="w-full border-2 bg-light-1  p-2 pb-16 text-center  ">
+      <section className="w-full  bg-light-1  p-2 pb-16 text-center ">
         <h1
           onClick={() => speakText("Conócenos")}
           onMouseLeave={() => {}}
@@ -111,11 +111,11 @@ const LandingPage = () => {
       {/* SECCION NUESTRA FILOSOFIA */}
 
       {/* SECCION CASOS DE EXITO */}
-      <section className="w-full bg-light-1 border-2 ">
+      <section className="w-full bg-light-1  ">
         <h1
           onClick={() => speakText("Dale un vistazo a nuestros casos de exito")}
           onMouseLeave={() => {}}
-          className="font-vilaka  text-[50px] text-center font-bold dark:font-light"
+          className="font-vilaka max-lg:mx-2 max-lg:text-[40px] text-[50px] text-center font-bold dark:text-black"
         >
           ¡Dale un vistazo a nuestros casos de exito!
         </h1>

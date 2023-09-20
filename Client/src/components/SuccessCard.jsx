@@ -12,29 +12,29 @@ const SuccessCard = ({
   facebook,
 }) => {
   return (
-    <main className=" md:flex md:flex-row items-center p-2 flex flex-col justify-center gap-11 ">
+    <main className=" md:flex md:flex-row items-center text-center p-2 flex flex-col justify-center gap-11 ">
       <div>
         <img
           src={image}
-          alt="hiasd"
-          className="w-[700px] h-[500px] rounded "
+          alt=""
+          className="max-w-[500px] max-h-[500px] border-2 border-light-2 rounded-full max-lg:w-[370px] max-lg:h-[370px]"
         ></img>
       </div>
       <div className="w-[300px] ">
-        <h1 className="font-vilaka text-center text-[50px] font-bold">
+        <h1 className="font-vilaka text-center text-[50px] font-bold dark:text-black">
           {name}
         </h1>
-        <h1 className="font-topmodern text-[20px]">{history}</h1>
+        <h1 className="font-topmodern text-[20px] dark:text-black">{history}</h1>
         {webpage ? (
           <Link target="_blank" to={webpage}>
-            <span className=" hover:text-white flex">
-              <AiOutlineLink size={20} />
-              <h2>Pagina Web </h2>: {webpage}
+            <span className=" hover:text-white flex dark:text-black">
+              <AiOutlineLink size={20} className="dark:text-black"/>
+              <h2 className="dark:text-black">Pagina Web </h2>: {webpage}
             </span>
             <br />
           </Link>
         ) : null}
-        <div className="flex gap-5 justify-center">
+        <div className="flex gap-5 justify-center dark:text-black">
           {facebook ? (
             <Link target="_blank" to={facebook}>
               <FaFacebook size={30} />
