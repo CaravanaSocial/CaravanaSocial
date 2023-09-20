@@ -571,7 +571,7 @@ export const deleteOffer = (id) => {
 
 export const getOfferByName = (name) => {
   console.log(name);
-  const endpoint = `${serverURL}/offers/${name}`;
+  const endpoint = `${serverURL}/offers/by?${name}`;
 
   return async (dispatch) => {
     try {
@@ -1276,7 +1276,7 @@ export const changePassword = (id, passwordChange, typeOfCount) => {
         });
       }
     } catch (error) {
-      console.log("catch"+ error.response.data.error);
+      console.log("catch" + error.response.data.error);
       Swal.fire({
         title: "Algo Salio mal",
 
