@@ -54,6 +54,7 @@ export default function Offer() {
     <div className="  first-letter:m-4 p-4 h-full items-center text-center flex flex-col ">
       {localStorage.length !== 0 ? (
         <>
+
           <div className="self-start">
             <button onClick={goBack} className="pb-3 pt-1 m-0 self-start">
               <AiOutlineArrowLeft
@@ -76,7 +77,7 @@ export default function Offer() {
                 </option>
               ))}
             </select>
-            <span className="font-nunito font-bold">Filtrar por : </span>
+            <span className="font-nunito font-bold dark:font-light">Filtrar por : </span>
             <select
               className="rounded-3xl px-2 mx-1 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
               name="companyName"
@@ -89,7 +90,7 @@ export default function Offer() {
                 </option>
               ))}
             </select>
-            <span className="font-nunito font-bold">Filtrar por : </span>
+            <span className="font-nunito font-bold dark:font-light">Filtrar por : </span>
             <select
               className="rounded-3xl px-2 mx-1 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
               name="category"
@@ -104,7 +105,7 @@ export default function Offer() {
             </select>
           </div>
 
-          <h1 className="font-vilaka font-bold text-[50px]">Ofertas</h1>
+          <h1 className="font-vilaka font-bold text-[50px] tracking-widest">Ofertas</h1>
           <div className="flex flex-wrap justify-center text-center">
             {offers?.length === 0 && (
               <div>

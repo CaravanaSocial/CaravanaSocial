@@ -21,7 +21,7 @@ const Slider = ({ children }) => {
       <MdChevronLeft
         className="opacity-50 hidden sm:block cursor-pointer hover:opacity-100"
         onClick={slideLeft}
-        size={150}
+        size={100}
       />
       <div
         ref={sliderRef}
@@ -32,7 +32,7 @@ const Slider = ({ children }) => {
       <MdChevronRight
         className="opacity-50 hidden sm:block cursor-pointer hover:opacity-100"
         onClick={slideRight}
-        size={150}
+        size={100}
       />
     </div>
   );
