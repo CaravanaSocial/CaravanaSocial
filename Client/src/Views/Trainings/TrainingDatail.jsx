@@ -94,6 +94,7 @@ const DetailTrainings = () => {
 
     setTrues(!trues);
     dispatch(trainingDetail(id));
+    return;
   };
 
   const goBack = () => {
