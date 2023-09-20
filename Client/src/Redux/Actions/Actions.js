@@ -91,8 +91,8 @@ export const CHANGE_PASSWORD = "CHANGE_PASSWORD";
 
 export const DELETE_COMMENT = "DELETE_COMMENT";
 
-const serverURL = "https://caravanaserver.onrender.com";
-// const serverURL = "http://localhost:3001";
+// const serverURL = "https://caravanaserver.onrender.com";
+const serverURL = "http://localhost:3001";
 
 export const createUser = (user) => {
   //---------- Endpoint to Dev server -- Descomentar para usar
@@ -981,6 +981,7 @@ export function trainingDetail(id) {
     const endpoint = `${serverURL}/trainings/${id}`;
     try {
       const { data } = await axios.get(endpoint);
+
       return dispatch({
         type: TRAINING_DETAIL,
         payload: data[0],
@@ -1235,10 +1236,10 @@ export const enableSpeech = (boolean) => {
 
 export const changePassword = (id, passwordChange, typeOfCount) => {
   const { oldPassword, newPassword } = passwordChange;
+  console.log("holaaaa");
   return async function (dispatch) {
     try {
       if (typeOfCount === "company") {
-        console.log("SOY UN USER");
         console.log(oldPassword);
         console.log(newPassword);
         const endpoint = `${serverURL}/company/passUpdate/${id}`;
@@ -1257,6 +1258,7 @@ export const changePassword = (id, passwordChange, typeOfCount) => {
           type: CHANGE_PASSWORD,
         });
       } else if (typeOfCount === "user") {
+        console.log("Funciona");
         const endpoint = `${serverURL}/user/passUpdate/${id}`;
         const response = await axios.patch(endpoint, passwordChange);
         const { data } = response;
@@ -1274,6 +1276,7 @@ export const changePassword = (id, passwordChange, typeOfCount) => {
         });
       }
     } catch (error) {
+      console.log("catch"+ error.response.data.error);
       Swal.fire({
         title: "Algo Salio mal",
 

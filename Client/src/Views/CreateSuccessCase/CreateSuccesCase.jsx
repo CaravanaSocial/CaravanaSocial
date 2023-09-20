@@ -4,6 +4,7 @@ import NotFound from "../../components/NotFound.jsx";
 import { useDispatch } from "react-redux";
 import { createSuccessCase } from "../../Redux/Actions/Actions.js";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const CreateSuccesCase = () => {
   const dispatch = useDispatch();
@@ -18,6 +19,8 @@ const CreateSuccesCase = () => {
     fb: null,
     ig: null,
   });
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     form.image = localStorage.caseImage;
@@ -41,6 +44,7 @@ const CreateSuccesCase = () => {
 
   const handleSubmit = () => {
     dispatch(createSuccessCase(form));
+    navigate("/");
   };
 
   return (
