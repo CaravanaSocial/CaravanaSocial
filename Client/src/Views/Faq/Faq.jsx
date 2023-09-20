@@ -28,7 +28,7 @@ const Faq = () => {
   }
 
   return (
-    <div className="h-full flex flex-col items-center ">
+    <div className="h-full flex flex-col items-center mx-5 my-4">
       {faqs?.map((x) => {
 
         return (

@@ -44,7 +44,7 @@ const SliderLanding = () => {
   };
 
   return (
-    <div className="w-full max-w-screen-xl mb-8  mx-auto mt-8">
+    <div className="w-full max-w-screen-xl mb-8  mx-auto mt-8 dark:text-black">
       <Slider {...settings}>
         {successCases?.map((caso) => (
           <div key={caso.id}>

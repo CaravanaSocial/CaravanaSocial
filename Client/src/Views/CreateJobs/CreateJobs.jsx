@@ -96,10 +96,10 @@ export default function createJobs() {
       }
     };
   return (
-    <div className="bg-gray-loca00 h-full p-4">
+    <div className="h-full p-4 flex justify-center text-center">
       {localStorage.length !== 0 && localStorage.type !== "user" ? (
-        <div className="flex">
-          <div className="w-2/4 flex justify-end items-center">
+        <div className="flex max-lg:flex-col text-center justify-center">
+          <div className="flex justify-center text-center">
             <div className="justify-center text-center border-2 border-lime-600 dark:border-lime-700 rounded-3xl p-4 m-4">
               <h1 className="text-3xl mb-1 dark:text-gray-300"
               onClick={() => speakText("Crea un Aviso de Trabajo")}
@@ -209,8 +209,8 @@ export default function createJobs() {
               </button>
             </div>
           </div>
-          <div className="w-2/4 flex justify-center items-center">
-            <div className="w-2/4 flex flex-col justify-end items-center">
+          <div className="flex justify-center text-center">
+            <div className="">
               <h1 className="mb-4">PREVIEW</h1>
               <div
                 className="bg-white rounded-lg p-4 shadow-md text-center"

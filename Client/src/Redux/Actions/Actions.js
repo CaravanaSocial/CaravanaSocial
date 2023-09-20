@@ -92,7 +92,7 @@ export const CHANGE_PASSWORD = "CHANGE_PASSWORD";
 export const DELETE_COMMENT = "DELETE_COMMENT";
 
 const serverURL = "https://caravanaserver.onrender.com";
-// const serverURL = "http://localhost:3001";
+/* const serverURL = "http://localhost:3001"; */
 
 export const createUser = (user) => {
   //---------- Endpoint to Dev server -- Descomentar para usar
@@ -1236,17 +1236,12 @@ export const enableSpeech = (boolean) => {
 };
 
 export const changePassword = (id, passwordChange, typeOfCount) => {
-  const { oldPassword, newPassword } = passwordChange;
-  console.log("holaaaa");
   return async function (dispatch) {
     try {
       if (typeOfCount === "company") {
-        console.log(oldPassword);
-        console.log(newPassword);
         const endpoint = `${serverURL}/company/passUpdate/${id}`;
         const response = await axios.patch(endpoint, passwordChange);
         const { data } = response;
-        console.log(data);
         Swal.fire({
           title: "Contraseña actualizada!",
 
@@ -1259,11 +1254,9 @@ export const changePassword = (id, passwordChange, typeOfCount) => {
           type: CHANGE_PASSWORD,
         });
       } else if (typeOfCount === "user") {
-        console.log("Funciona");
         const endpoint = `${serverURL}/user/passUpdate/${id}`;
         const response = await axios.patch(endpoint, passwordChange);
         const { data } = response;
-        console.log("hola" + data);
         Swal.fire({
           title: "Contraseña actualizada!",
 
