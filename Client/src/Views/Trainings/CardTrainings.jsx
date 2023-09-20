@@ -22,7 +22,7 @@ const TrainingCard = ({ training }) => {
         {training.description}
       </p>
       <div className="text-center justify-center flex">
-        <img className="h-[300px] rounded" src={training?.company?.profilePicture} alt="" />
+        <img className="h-[300px] rounded-full" src={training?.company?.profilePicture} alt="" />
       </div>
 
       <button
