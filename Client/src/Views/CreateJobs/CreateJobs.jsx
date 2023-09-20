@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { createOffer, getCategories } from "../../Redux/Actions/Actions";
+import { createOffer, getCategories, getOffers } from "../../Redux/Actions/Actions";
 import Validation from "./Validation";
 import NotFound from "../../components/NotFound";
 
@@ -42,7 +42,9 @@ export default function createJobs() {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (Object.keys(error).length === 0) {
-      dispatch(createOffer(inputJobs));
+      dispatch(createOffer(inputJobs)).then(()=>{
+        dispatch(getOffers())
+      });
       navigate("/home-offers");
     }
   };

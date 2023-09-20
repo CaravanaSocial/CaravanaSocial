@@ -95,9 +95,11 @@ const DetailTrainings = () => {
   }
 
   const handleDeleteComment = (commId) => {
-    dispatch(deleteComment(commId));
-    dispatch(trainingDetail(id));
+    dispatch(deleteComment(commId)).then(()=>{
+      dispatch(trainingDetail(id));
     setComments({ ...comments, description: "" });
+    })
+    
   };
 
   useEffect(() => {

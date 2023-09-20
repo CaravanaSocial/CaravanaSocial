@@ -168,7 +168,7 @@ export default function PresetBlog() {
 
   return (
     <div className="flex max-lg:flex-col mx-5 my-5 h-full">
-      <div className="bg-white-200 flex justify-center items-center mb-5">
+      <div className="bg-white-200 flex justify-center items-center lg:items-start mb-5">
         <div className="flex flex-col justify-center items-center">
           <h1 className="text-3xl mb-10">Crear tarjeta de post</h1>
           <div className="justify-center items-center border rounded-lg border-gray-400 shadow-md p-4 w-[400px]">
@@ -320,7 +320,7 @@ export default function PresetBlog() {
             <div className="flex justify-center">
               
               {urlData.facebook ? (
-                <FacebookEmbed url={urlData.facebook} />
+                <FacebookEmbed className='w-[470px] max-lg:w-[340px]' url={urlData.facebook} />
               ) : (
                 <h1>No hay URL seleccionada</h1>
               )}
@@ -328,7 +328,7 @@ export default function PresetBlog() {
           ) : selection === "instagram" ?(
           <div className="flex justify-center">
             {urlData.instagram ? (
-                <InstagramEmbed url={urlData.instagram} />
+                <InstagramEmbed className='w-[470px] h-[631px] max-lg:w-[340px] max-lg:h-[483px]' url={urlData.instagram} />
               ) : (
                 <h1>No hay URL seleccionada</h1>
               )}
