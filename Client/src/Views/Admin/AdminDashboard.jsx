@@ -24,6 +24,7 @@ import {
   clearErrors,
   setNewErrors,
 } from "../../Redux/Actions/Actions";
+import { CgEye } from "react-icons/cg";
 
 const AdminDashboard = () => {
   initTE({ Datepicker, Input, Tab }, { allowReinits: true });
@@ -204,6 +205,18 @@ const AdminDashboard = () => {
       }
     });
   };
+
+  const password1 = "password1"
+
+  const handlePass1 = () => {
+    const view = document.getElementById(password1);
+
+    if (view.type === "password"){
+      view.type = "text";
+    } else {
+      view.type = "password";
+    }
+  }
 
   return (
     <main className="h-full flex flex-col">
@@ -652,6 +665,7 @@ const AdminDashboard = () => {
                         Crear admin
                       </h1>
                       <h2>Nombre</h2>
+
                       <input
                         className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
                         type="text"
@@ -660,11 +674,13 @@ const AdminDashboard = () => {
                         placeholder="Nombre..."
                         onChange={handleChangeAdmin}
                       />
+                      
                       <h3 className="text-red-600">
                         {errors.name ? errors.name : null}
                       </h3>
 
                       <h2>Email</h2>
+
                       <input
                         className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
                         type="email"
@@ -673,19 +689,29 @@ const AdminDashboard = () => {
                         placeholder="Email..."
                         onChange={handleChangeAdmin}
                       />
+                      
                       <h3 className="text-red-600">
                         {errors.email ? errors.email : null}
                       </h3>
 
                       <h2>Contraseña</h2>
-                      <input
-                        className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
-                        type="password"
-                        name="password"
-                        value={inputAdmin.password}
-                        placeholder="Contraseña..."
-                        onChange={handleChangeAdmin}
-                      />
+
+                      <div className="flex justify-center text-center">
+                        <input className="h-8 rounded-3xl px-2 mt-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
+                          onChange={handleChangeAdmin}
+                          type="password"
+                          id="password1"
+                          value={inputAdmin.password}
+                          placeholder="Contraseña..."
+                          name="password"/>
+
+                        <button className="absolute z-50 flex items-center justify-center ml-40 mt-4"
+                          type="button"
+                          onClick={handlePass1}>
+                          <CgEye/>
+                        </button>
+                      </div>
+
                       <h3 className="text-red-600">
                         {errors.password ? errors.password : null}
                       </h3>
@@ -699,7 +725,9 @@ const AdminDashboard = () => {
                       >
                         {globalErrors?.CREATE_ADMIN?.error}
                       </h3>
+                      
                       <div>
+                        <br />
                         <button
                           className="bg-light-1 font-nunito font-bold rounded-3xl w-16 p-2 mb-2 border-2 border-transparent dark:text-zinc-900 hover:text-white hover:scale-95"
                           onClick={handleCreateAdmin}
