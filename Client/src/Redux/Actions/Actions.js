@@ -577,14 +577,13 @@ export const getOfferByName = (name) => {
     try {
       const response = await axios(endpoint);
       const { data } = response;
-      console.log("esta es la data mamaguevo", data);
+      
       return dispatch({ type: GET_OFFERS_BYNAME, payload: data });
     } catch (error) {
       console.log(error);
     }
   };
-};
-
+}; 
 export const getOffers = () => {
   const endpoint = `${serverURL}/offers/`;
 
@@ -1121,7 +1120,6 @@ export const postBlog = (info) => {
   return async function (dispatch) {
     try {
       const { data } = await axios.post(`${serverURL}/blogs/create`, info);
-      console.log(data.id);
       dispatch({
         type: POST_BLOG,
         payload: data.id,
@@ -1237,16 +1235,12 @@ export const enableSpeech = (boolean) => {
 
 export const changePassword = (id, passwordChange, typeOfCount) => {
   const { oldPassword, newPassword } = passwordChange;
-  console.log("holaaaa");
   return async function (dispatch) {
     try {
       if (typeOfCount === "company") {
-        console.log(oldPassword);
-        console.log(newPassword);
         const endpoint = `${serverURL}/company/passUpdate/${id}`;
         const response = await axios.patch(endpoint, passwordChange);
         const { data } = response;
-        console.log(data);
         Swal.fire({
           title: "Contraseña actualizada!",
 
@@ -1259,11 +1253,10 @@ export const changePassword = (id, passwordChange, typeOfCount) => {
           type: CHANGE_PASSWORD,
         });
       } else if (typeOfCount === "user") {
-        console.log("Funciona");
         const endpoint = `${serverURL}/user/passUpdate/${id}`;
         const response = await axios.patch(endpoint, passwordChange);
         const { data } = response;
-        console.log("hola" + data);
+
         Swal.fire({
           title: "Contraseña actualizada!",
 

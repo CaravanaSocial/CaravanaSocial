@@ -110,8 +110,6 @@ export default function PresetBlog() {
     twitter: "",
   });
 
-  console.log(urlData)
-
   const { image, title, author, date } = previewCard;
 
   const hanldeActiveButton = (event) => {
