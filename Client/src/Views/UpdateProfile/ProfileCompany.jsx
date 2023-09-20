@@ -231,6 +231,11 @@ const ProfileCompany = () => {
 
             {edit === true ? (
               <div>
+                <Link to={`changePassUser/${input.id}`}>
+                  <button className="bg-light-1 font-nunito font-bold text-sm dark:bg-gray-800 rounded-3xl px-2 py-1 dark:text-gray-300 mb-2 border-2 border-transparent hover:border-light-2 dark:hover:border-light-1 dark:font-light"
+                  >Cambio de Contraseña</button>
+                </Link>
+                <br />
                 <button
                   className="bg-light-1 font-nunito font-bold text-sm dark:bg-gray-800 rounded-3xl px-2 py-1 dark:text-gray-300 mb-2 border-2 border-transparent hover:border-light-2 dark:hover:border-light-1 dark:font-light"
                   onClick={handleImage}
@@ -510,14 +515,6 @@ const ProfileCompany = () => {
               </button>
               
             )}
-              <div>
-                  <Link
-                    to={`changePassUser/${input.id}`}
-                    className="bg-light-2 font-nunito font-bold rounded-3xl px-2 py-1 border-2 border-transparent dark:text-zinc-900 hover:text-light-2 hover:scale-95 dark:bg-light-1"
-                  >
-                    Cambio de contraseña
-                  </Link>
-              </div>
           </div>
           <div className="block ">
             <div className="my-4 mr-4 border-2 rounded-2xl border-light-2 dark:border-light-1 dark:max-lg:border-none  max-lg:border-none">

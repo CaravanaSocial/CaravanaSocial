@@ -55,31 +55,42 @@ const PasswordChange = () => {
   };
 
   return (
-    <div>
-      <h1>Cambio de Contraseña</h1>
-      <form onSubmit={handleSubmit}>
-        <label>Password/contraseña antigua: </label>
-        <input
-          type="passwprd"
-          name="oldPassword"
-          value={passwordChange.oldPassword}
-          onChange={handleChange}
-        />
+    <div className="flex justify-center items-center h-screen">
+      <div className="justify-center border-spacing-96 border-2 border-light-1 dark:border-light-1 rounded-3xl p-4 my-4">
+        <h1 className="text-2xl font-nunito font-bold dark:font-medium text-[30px] text-center border-b-2 border-light-1 dark:border-light-1 dark:text-gray-300"
+        >Cambio de contraseña</h1>
 
-        <br />
-        <p>-------------------------------------------</p>
-        <label>Password/contraseña nueva</label>
-        <input
-          type="password"
-          name="newPassword"
-          value={passwordChange.newPassword}
-          onChange={handleChange}
-        />
-        {passwordValidation.error && (
-          <div style={{ color: "red" }}>{passwordValidation.error}</div>
-        )}
-        <button disabled={!passwordValidation.valid}>Enviar</button>
-      </form>
+        <form className="text-center mt-5" onSubmit={handleSubmit}>
+          <h2 className="text-lg font-nunito font-bold dark:text-gray-300"
+          >Tu contraseña actual</h2>
+
+          <input className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
+            type="passwprd"
+            name="oldPassword"
+            value={passwordChange.oldPassword}
+            onChange={handleChange}
+            placeholder="Actual..."
+          />
+
+          <h2 className="text-lg font-nunito font-bold dark:text-gray-300"
+          >Tu nueva contraseña</h2>
+          <input className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
+            type="password"
+            name="newPassword"
+            value={passwordChange.newPassword}
+            onChange={handleChange}
+            placeholder="Nueva..."
+          />
+          {passwordValidation.error && (
+            <p style={{ color: "red" }}>{passwordValidation.error}</p>
+          )}
+          <br />
+          <button className="bg-light-1 font-nunito font-bold rounded-3xl p-2 mb-2 border-2 border-transparent dark:text-zinc-900 hover:text-white hover:scale-95"
+            disabled={!passwordValidation.valid}
+          >Enviar</button>
+        </form>
+      </div>
+      
     </div>
   );
 };

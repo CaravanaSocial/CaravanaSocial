@@ -14,17 +14,16 @@ const TrainingCard = ({ training }) => {
   };
 
   return (
-    <div className="border-2 flex-col border-light-1 dark:bg-light-1 hover:scale-95 bg-white p-4 rounded-3xl shadow-md  w-[230px] h-[400px] sm:h-full sm:w-[400px] flex justify-center">
+    <div className="border-2 flex-col border-light-1 dark:bg-light-1 hover:scale-95 bg-white p-4 rounded-3xl shadow-md  w-[230px] h-[400px] sm:h-full sm:w-[400px] flex justify-center text-center">
       <h2 className="text-[25px] font-topmodern whitespace-normal ">
         {training.name}
       </h2>
       <p className="font-nunito whitespace-normal text-center font-bold text-[16px]">
         {training.description}
       </p>
-      <img
-        className="h-[400px] rounded"
-        src={training?.company?.profilePicture}
-      />
+      <div className="text-center justify-center flex">
+        <img className="h-[300px] rounded-full" src={training?.company?.profilePicture} alt="" />
+      </div>
 
       <button
         className="border-2 rounded-lg font-topmodern  bg-light-1  dark:text-black p-1 hover:scale-105 dark:border-black w-[100px] m-auto"

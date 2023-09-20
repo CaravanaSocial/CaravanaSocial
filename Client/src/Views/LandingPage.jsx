@@ -115,7 +115,7 @@ const LandingPage = () => {
         <h1
           onClick={() => speakText("Dale un vistazo a nuestros casos de exito")}
           onMouseLeave={() => {}}
-          className="font-vilaka  text-[50px] text-center font-bold dark:font-light"
+          className="font-vilaka  text-[50px] text-center font-bold dark:text-black"
         >
           ¡Dale un vistazo a nuestros casos de exito!
         </h1>
