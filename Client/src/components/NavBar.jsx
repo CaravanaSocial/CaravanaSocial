@@ -74,11 +74,7 @@ export default function NavBar() {
 
   const handleSubmit = () => {
     if (location.pathname === "/home-freelancers") {
-      if (input === "") {
-        dispatch(getFreelancers());
-      } else {
         dispatch(searchFreelancersByName(input));
-      }
     }
 
     if (location.pathname === "/home-trainings") {

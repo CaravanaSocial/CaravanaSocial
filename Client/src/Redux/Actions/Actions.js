@@ -92,7 +92,7 @@ export const CHANGE_PASSWORD = "CHANGE_PASSWORD";
 export const DELETE_COMMENT = "DELETE_COMMENT";
 
 const serverURL = "https://caravanaserver.onrender.com";
-/* const serverURL = "http://localhost:3001"; */
+// const serverURL = "http://localhost:3001";
 
 export const createUser = (user) => {
   //---------- Endpoint to Dev server -- Descomentar para usar
@@ -570,21 +570,20 @@ export const deleteOffer = (id) => {
 };
 
 export const getOfferByName = (name) => {
-  console.log("holasdasdasda", name);
+  console.log(name);
   const endpoint = `${serverURL}/offers/by?name=${name}`;
 
   return async (dispatch) => {
     try {
       const response = await axios(endpoint);
       const { data } = response;
-      console.log("esta es la data mamaguevo", data);
+      
       return dispatch({ type: GET_OFFERS_BYNAME, payload: data });
     } catch (error) {
       console.log(error);
     }
   };
-};
-
+}; 
 export const getOffers = () => {
   const endpoint = `${serverURL}/offers/`;
 
@@ -1121,7 +1120,6 @@ export const postBlog = (info) => {
   return async function (dispatch) {
     try {
       const { data } = await axios.post(`${serverURL}/blogs/create`, info);
-      console.log(data.id);
       dispatch({
         type: POST_BLOG,
         payload: data.id,
@@ -1236,6 +1234,7 @@ export const enableSpeech = (boolean) => {
 };
 
 export const changePassword = (id, passwordChange, typeOfCount) => {
+  const { oldPassword, newPassword } = passwordChange;
   return async function (dispatch) {
     try {
       if (typeOfCount === "company") {
@@ -1257,6 +1256,7 @@ export const changePassword = (id, passwordChange, typeOfCount) => {
         const endpoint = `${serverURL}/user/passUpdate/${id}`;
         const response = await axios.patch(endpoint, passwordChange);
         const { data } = response;
+
         Swal.fire({
           title: "Contraseña actualizada!",
 
