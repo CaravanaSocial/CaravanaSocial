@@ -22,8 +22,7 @@ const TrainingCard = ({ training }) => {
         {training.description}
       </p>
       <img
-        className="h-[400px] rounded"
-        src={training?.company?.profilePicture}
+        src={training?.company?.profilePicture} alt=""
       />
 
       <button
