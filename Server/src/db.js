@@ -16,21 +16,21 @@ const QuestionsModel = require("./Models/frequentQuestions");
 const CommentsModel = require("./Models/comments");
 const BlogModel = require("./Models/blog");
 
-// const sequelize = new Sequelize(SERVER_URL, {
-//   logging: false,
-//   native: false,
-//   dialectOptions: {
-//     ssl: {
-//       require: true, // Requiere una conexión SSL/TLS
-//       rejectUnauthorized: false,
-//     },
-//   },
-// });
+const sequelize = new Sequelize(SERVER_URL, {
+  logging: false,
+  native: false,
+  dialectOptions: {
+    ssl: {
+      require: true, // Requiere una conexión SSL/TLS
+      rejectUnauthorized: false,
+    },
+  },
+});
 
-const sequelize = new Sequelize(
-  `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/caravanadb`,
-  { logging: false, native: false }
-);
+// const sequelize = new Sequelize(
+//   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/caravanadb`,
+//   { logging: false, native: false }
+// );
 
 CountryModel(sequelize);
 EmpresaModel(sequelize);
