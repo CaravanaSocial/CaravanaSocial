@@ -17,8 +17,8 @@ export default function OfferCard({ offer }) {
           <h2>{c}</h2>
         ))}
       </div>
-      <div className="text-center justify-center flex">
-        <img className="h-[350px] w-[450px] object-cover object-center rounded-full  " src={offer?.company?.profilePicture} alt="" />
+      <div className="text-center justify-center flex">{console.log("ADMINN OFEERF",offer?.admin)}
+        <img className="h-[350px] w-[450px] object-cover object-center rounded-full  " src={offer?.company?.profilePicture ? offer?.company?.profilePicture: offer?.admin?.profilePicture} alt="" />
       </div>
       <div>
       <Link

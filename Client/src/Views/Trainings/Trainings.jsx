@@ -56,6 +56,7 @@ const Trainings = () => {
     <div className="m-4 p-4 h-full text-center items-center flex flex-col">
       {localStorage.length !== 0 ? (
         <>
+        {console.log(approvedTraininigs)}
           <div className="self-start">
             <button onClick={goBack} className="pb-3 pt-1 m-0 self-start">
               <AiOutlineArrowLeft

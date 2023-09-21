@@ -1,4 +1,4 @@
-const { training, companies, areaTraining , comment} = require('../../db');
+const { training, companies, areaTraining , comment, admin} = require('../../db');
 
 const getAll = async (option) => {
     try {
@@ -17,6 +17,9 @@ const getAll = async (option) => {
           },
            {
             model: comment
+          },
+          {
+            model: admin
           } 
         ]
       })
