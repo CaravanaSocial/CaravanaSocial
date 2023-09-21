@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { createQAndA, getQAndAs } from "../../Redux/Actions/Actions";
-import { Swal } from "sweetalert2";
+import Swal from "sweetalert2";
 
 const QAndA = () => {
   const [input, setInput] = useState({
@@ -22,10 +22,6 @@ const QAndA = () => {
 
     dispatch(createQAndA(input)).then(() => {
       dispatch(getQAndAs());
-      setInput({
-        quest: "",
-        answer: "",
-      });
     });
     Swal.fire({
       title: "La pregunta y respuesta se ha publicado con éxito",
@@ -36,6 +32,10 @@ const QAndA = () => {
         confirmButton: "bg-light-1",
       },
     });
+    setInput({
+      quest: "",
+      answer: "",
+    });
   };
   return (
     <div className="mx-2 text-center">
@@ -43,6 +43,7 @@ const QAndA = () => {
       <label className="font-nunito text-[25px]">Pregunta</label>
       <br />
       <textarea
+        value={input.quest}
         className="p-1 dark:bg-zinc-700 border-2 border-zinc-300 dark:border-zinc-500 rounded-xl focus:outline-none focus:border-light-1 focus:ring-1 focus:ring-light-1"
         onChange={handleChange}
         name="quest"
@@ -53,6 +54,7 @@ const QAndA = () => {
       <label className="font-nunito text-[25px]">Respuesta</label>
       <br />
       <textarea
+        value={input.answer}
         cols={28}
         rows={8}
         className="p-1 dark:bg-zinc-700 border-2 border-zinc-300 dark:border-zinc-500 rounded-xl focus:outline-none focus:border-light-1 focus:ring-1 focus:ring-light-1 "
