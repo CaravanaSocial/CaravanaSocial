@@ -30,7 +30,7 @@ const sequelize = new Sequelize(SERVER_URL, {
 // const sequelize = new Sequelize(
 //   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/caravanadb`,
 //   { logging: false, native: false }
-// ); 
+// );
 
 CountryModel(sequelize);
 EmpresaModel(sequelize);
