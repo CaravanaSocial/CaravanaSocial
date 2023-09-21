@@ -64,7 +64,7 @@ const Home = () => {
   return (
     <main
       name="asdasd"
-      className="2xl:flex bg-white ] md:w-full  2xl:flex-row xl:flex xl:flex-row items-center  lg:flex lg:flex-col  text-center  flex-col flex  2xl:w-full 2xl:h-full"
+      className="2xl:flex bg-white dark:bg-zinc-800 md:w-full  2xl:flex-row xl:flex xl:flex-row items-center  lg:flex lg:flex-col  text-center  flex-col flex  2xl:w-full 2xl:h-full"
     >
       <div className=" md:flex md:flex-col md:items-center w-full ">
         <div>

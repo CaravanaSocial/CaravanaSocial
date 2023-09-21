@@ -178,7 +178,7 @@ export default function NavBar() {
                 <div className="flex items-center justify-between m-2 p-2 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg">
                   {localStorage.type === "user" ? (
                     <div className="text-gray-500 flex justify-center text-sm dark:text-gray-300">
-                      <CgProfile className="w-[25px] h-[25px] text-gray-400 mx-1 hover:text-light-1" />
+                      <CgProfile className="w-[25px] h-[25px] text-gray-400 mx-1 ml-2 hover:text-light-1" />
 
                       <Link to="/profile-user" />
 
@@ -190,7 +190,7 @@ export default function NavBar() {
                     </div>
                   ) : localStorage.type === "company" ? (
                     <div className="text-gray-500 flex justify-center text-sm dark:text-gray-300">
-                      <CgProfile className="w-[25px] h-[25px] text-gray-400 mx-1 hover:text-light-1" />
+                      <CgProfile className="w-[25px] h-[25px] text-gray-400 mx-1 ml-2 hover:text-light-1" />
                       <Link to="/profile-company">
                         <h1 className="pt-0.5 hover:text-light-1">
                           {account.nameCompany}
@@ -199,7 +199,7 @@ export default function NavBar() {
                     </div>
                   ) : localStorage.type === "superAdmin" ? (
                     <div className="text-gray-500 flex justify-center text-sm dark:text-gray-300">
-                      <CgProfile className="w-[25px] h-[25px] text-gray-400 mx-1 hover:text-light-1" />
+                      <CgProfile className="w-[25px] h-[25px] text-gray-400 mx-1 ml-2 hover:text-light-1" />
                       <Link to="/admin">
                         <h1 className="pt-0.5 hover:text-light-1">
                           {account.name}
@@ -208,7 +208,7 @@ export default function NavBar() {
                     </div>
                   ) : localStorage.type === "admin" ? (
                     <div className="text-gray-500 flex justify-center text-sm dark:text-gray-300">
-                      <CgProfile className="w-[25px] h-[25px] text-gray-400 mx-1 hover:text-light-1" />
+                      <CgProfile className="w-[25px] h-[25px] text-gray-400 mx-1 ml-2 hover:text-light-1" />
                       <Link to="/admin">
                         <h1 className="pt-0.5 hover:text-light-1">
                           {account.name}
