@@ -18,22 +18,43 @@ export default function BlogDetail(){
     },[])
 
     return (
-        <div className="h-screen pt-10">
+        <div className="min-h-screen max-w-screen pt-10 mb-5">
         {selector?.type === "editor"?(
+            <div>
+                <div className="flex justify-center mb-5">
+                    <h1 className="text-2xl">{selector?.title}</h1>
+                </div>
             <div className="ql-snow">
                 <div className="ql-editor" dangerouslySetInnerHTML={{ __html: selector?.template }} /> 
             </div>
+            </div>
         ):selector?.type === "twitter"?(
-            <div className="flex justify-center">
-                <TwitterEmbed url={selector.urlData}/>
+            <div className="flex-col justify-center">
+                <div className="flex justify-center mb-5">
+                    <h1 className="text-2xl">{selector?.title}</h1>
+                </div>
+                <div className="flex justify-center">
+                <TwitterEmbed className='w-[600px] max-lg:w-[340px] mb-5' url={selector.urlData}/>
+                </div>
             </div>
         ):selector?.type === "instagram"?(
-            <div className="flex justify-center">
-                <InstagramEmbed url={selector.urlData}/>
+            <div className="flex-col justify-center">
+                <div className="flex justify-center mb-5">
+                    <h1 className="text-2xl">{selector?.title}</h1>
+                </div>
+                <div className="flex justify-center">
+                <InstagramEmbed className='w-[600px] max-lg:w-[340px] mb-5' url={selector.urlData}/>
+                </div>
             </div>
         ):selector?.type === "facebook"?(
-            <div className="flex justify-center">
-                <FacebookEmbed url={selector.urlData}/>
+            <div className="flex-col justify-center">
+                <div className="flex justify-center mb-5">
+                    <h1 className="text-2xl">{selector?.title}</h1>
+                </div>
+                <div className="flex justify-center">
+                    <FacebookEmbed className='w-[600px] max-lg:w-[340px] mb-5' url={selector.urlData}/>
+                </div>
+                
             </div>
         ):null}
         

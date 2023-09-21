@@ -10,7 +10,7 @@ import {
 } from "../../Redux/Actions/Actions";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {AiOutlineArrowLeft} from "../../../node_modules/react-icons/ai"
+import { AiOutlineArrowLeft } from "../../../node_modules/react-icons/ai";
 
 export default function Offer() {
   const navigate = useNavigate();
@@ -25,21 +25,24 @@ export default function Offer() {
     category: "",
   });
 
+
   useEffect(() => {
-    dispatch(getOffers());
     dispatch(getCountry());
     dispatch(getCompanies());
     dispatch(getCategories());
-  }, [dispatch]);
+  }, []);
+
+  useEffect(()=> {
+    dispatch(getOffers());
+  },[])
 
   useEffect(() => {
     dispatch(filterOffer(filter));
-    dispatch(getOffers());
   }, [filter]);
 
-  const goBack=()=>{
-    navigate(-1)
-  }
+  const goBack = () => {
+    navigate(-1);
+  };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -53,6 +56,7 @@ export default function Offer() {
     <div className=" p-4 h-full items-center text-center flex flex-col ">
       {localStorage.length !== 0 ? (
         <>
+
         <div className="self-start">
         <button onClick={goBack}className="pb-3 pt-1 m-0 self-start" ><AiOutlineArrowLeft className="bg-light-1 dark:bg-light-1 rounded-full p-1 dark:text-black"size={30}/></button>
         </div>

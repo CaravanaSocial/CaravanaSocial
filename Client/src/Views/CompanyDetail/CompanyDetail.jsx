@@ -3,6 +3,7 @@ import {
   detailCompany,
   getTrainings,
   getOffers,
+  getAdminById
 } from "../../Redux/Actions/Actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, NavLink, useNavigate } from "react-router-dom";
@@ -10,19 +11,32 @@ import { HiOutlineMail } from "react-icons/hi";
 import { AiOutlinePhone, AiOutlineArrowLeft } from "react-icons/ai";
 import { HiOutlineLocationMarker } from "react-icons/hi";
 import NotFound from "../../components/NotFound";
+import logo from "../../assets/images/logo.png"
 
 const CompanyDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate()
   const dispatch = useDispatch();
-  const detail = useSelector((state) => state.companyDetail);
+  const companyDetail = useSelector((state) => state.companyDetail);
   const trainings = useSelector((state) => state.trainings);
   const offers = useSelector((state) => state.offers);
+  const adminDetail = useSelector((state)=>state.admin) 
 
-  const companyIdRelacion = trainings.filter((x) => x.companyId === id);
-  const companyIdRelOffer = offers.filter((x) => x.companyId === id);
+  const companyIdRelacion = companyDetail?.name ? trainings.filter((x) => x.companyId === id) : trainings.filter((x) => x.adminId === id)
+  const companyIdRelOffer = companyDetail?.name ? offers.filter((x) => x.companyId === id) : offers.filter((x) => x.adminId === id)
 
+  const caravana = {
+    title : "Caravana Social",
+    description : "Capacitamos a personas con discapacidad, en situación abnegada y en recuperación de consumos problemáticos y ayudamos a las Organizaciones a integrarlas. La educación es el puente que une posibilidades y habilidades.",
+    location: {
+      country: "Argentina",
+      state: "Buenos aires",
+    },
+    email:"caravanasocial.dev@gmail.com",
+    phone: "+54 1234-9876"
+  }
   useEffect(() => {
+    dispatch(getAdminById(id))
     dispatch(detailCompany(id));
     dispatch(getOffers());
     dispatch(getTrainings());
@@ -41,18 +55,23 @@ const CompanyDetail = () => {
           <button onClick={goBack}className="pb-3 pt-1 m-0 self-start" ><AiOutlineArrowLeft className="bg-light-2 dark:bg-light-1 rounded-full p-1"size={30}/></button>
             {" "}
             <img
-              src={detail?.profilePicture}
               className="h-[350px] w-[400px] object-cover object-center rounded-full  md:h-[280px] md:w-[300px] sm:h-[280px] sm:w-[400px] "
+              src={companyDetail?.profilePicture ? companyDetail?.profilePicture : logo}
+            
             />
             <h1 className="font-vilaka max-lg:text-center font-bold text-[60px]">
-              {detail?.nameCompany}
+              {companyDetail?.nameCompany ?companyDetail?.nameCompany :caravana?.title}
             </h1>
+
             <p className="font-nunito font-semibold text-center text-[25px] dark:font-medium">
-              {detail?.description}
+              
+              {companyDetail?.description ?  companyDetail?.description : caravana?.description}
+
             </p>
-            <p className="font-nunito p-5 font-bold dark:text-black  text-center bg-light-2 text-[17px]  dark:bg-light-1 rounded-3xl">
+            {
+              companyDetail?.areaTrainings ? <p className="font-nunito p-5 font-bold dark:text-black  text-center bg-light-2 text-[17px]  dark:bg-light-1 rounded-3xl">
               Rubros de capacitación:
-              {detail?.areaTrainings?.map((a) => {
+              {companyDetail?.areaTrainings?.map((a) => {
                 return (
                   <div>
                     <h1 className="font-nunito  text-white dark:text-black font-medium dark:font-bold text-[22px]">
@@ -61,17 +80,30 @@ const CompanyDetail = () => {
                   </div>
                 );
               })}
-            </p>
-            <p className="font-nunito font-bold flex flex-col justify-center text-center items-center text-[25px] dark:font-medium">
+            </p> : null
+            }
+            {
+              companyDetail?.location?.country ? <p className="font-nunito font-bold flex flex-col justify-center text-center items-center text-[25px] dark:font-medium">
               <HiOutlineLocationMarker size={30} />
-              {detail?.location?.country}, {detail?.location?.state},{" "}
-              {detail?.location?.city}
+              {companyDetail?.location?.country}, {companyDetail?.location?.state},{" "}
+              {companyDetail?.location?.city}
+            </p> : <p className="font-nunito font-bold flex flex-col justify-center text-center items-center text-[25px] dark:font-medium">
+              <HiOutlineLocationMarker size={30} />
+              {caravana?.location?.country}, {caravana?.location?.state}
             </p>
-            <span className="font-nunito font-bold flex flex-col justify-center items-center dark:font-medium text-[25px] mb-9">
-              <HiOutlineMail size={30} /> {detail?.email}
+            }
+            {
+            companyDetail?.phone ? <span className="font-nunito font-bold flex flex-col justify-center items-center dark:font-medium text-[25px] mb-9">
+              <HiOutlineMail size={30} /> {companyDetail?.email}
               <AiOutlinePhone size={30} />
-              {detail?.phone}
+              {companyDetail?.phone}
+            </span> :
+             <span className="font-nunito font-bold flex flex-col justify-center items-center dark:font-medium text-[25px] mb-9">
+              <HiOutlineMail size={30} /> {caravana?.email}
+              <AiOutlinePhone size={30} />
+              {caravana?.phone}
             </span>
+            }
           </div>
           <div className=" text-center w-full  ">
             <div>

@@ -17,6 +17,7 @@ export const GET_ADMINS = "GET_ADMINS";
 export const EDIT_ADMIN = "EDIT_ADMIN";
 export const DELETE_ADMINS = "DELETE_ADMINS";
 export const RESTORE_ADMINS = "RESTORE_ADMINS";
+export const GET_ADMIN_BY_ID = "GET_ADMIN_BY_ID";
 
 export const GET_COMPANIES = "GET_COMPANIES";
 export const CREATE_COMPANY = "CREATE_COMPANY";
@@ -91,8 +92,10 @@ export const CHANGE_PASSWORD = "CHANGE_PASSWORD";
 
 export const DELETE_COMMENT = "DELETE_COMMENT";
 
-const serverURL = "https://caravanaserver.onrender.com";
-/* const serverURL = "http://localhost:3001"; */
+// const serverURL = "https://caravanaserver.onrender.com";
+// const serverURL = "http://localhost:3001";
+
+const serverURL = "https://caravanaserver-qkv5.onrender.com";
 
 export const createUser = (user) => {
   //---------- Endpoint to Dev server -- Descomentar para usar
@@ -287,13 +290,10 @@ export const createAdmin = (admin) => {
     try {
       const response = await axios.post(endpoint, admin);
       const { data } = response;
-      return dispatch({
-        type: CREATE_ADMIN,
-      });
     } catch (error) {
       dispatch({
         type: ERRORS,
-        payload: { type: CREATE_ADMIN, payload: error.response.data },
+        payload: { type: CREATE_ADMIN, payload: error.response.data.error },
       });
       return error;
     }
@@ -577,14 +577,13 @@ export const getOfferByName = (name) => {
     try {
       const response = await axios(endpoint);
       const { data } = response;
-      console.log("esta es la data mamaguevo", data);
+
       return dispatch({ type: GET_OFFERS_BYNAME, payload: data });
     } catch (error) {
       console.log(error);
     }
   };
 };
-
 export const getOffers = () => {
   const endpoint = `${serverURL}/offers/`;
 
@@ -599,8 +598,8 @@ export const getOffers = () => {
   };
 };
 
-export const filterOffer = (data) => {
-  const { country, companyName, category } = data;
+export const filterOffer = (info) => {
+  const { country, companyName, category } = info;
 
   //---------- Endpoint to Dev server -- Descomentar para usar
   // const endpoint = `http://localhost:3001/offers?country=${country}&companyName=${companyName}&category=${category}`;
@@ -901,6 +900,8 @@ export function filterTrainingBy(data) {
         )
       ).data;
 
+      console.log(response);
+
       dispatch({
         payload: response,
         type: TRAINING_FILTER,
@@ -1121,7 +1122,6 @@ export const postBlog = (info) => {
   return async function (dispatch) {
     try {
       const { data } = await axios.post(`${serverURL}/blogs/create`, info);
-      console.log(data.id);
       dispatch({
         type: POST_BLOG,
         payload: data.id,
@@ -1236,6 +1236,7 @@ export const enableSpeech = (boolean) => {
 };
 
 export const changePassword = (id, passwordChange, typeOfCount) => {
+  const { oldPassword, newPassword } = passwordChange;
   return async function (dispatch) {
     try {
       if (typeOfCount === "company") {
@@ -1257,6 +1258,7 @@ export const changePassword = (id, passwordChange, typeOfCount) => {
         const endpoint = `${serverURL}/user/passUpdate/${id}`;
         const response = await axios.patch(endpoint, passwordChange);
         const { data } = response;
+
         Swal.fire({
           title: "Contraseña actualizada!",
 
@@ -1271,15 +1273,30 @@ export const changePassword = (id, passwordChange, typeOfCount) => {
       }
     } catch (error) {
       console.log("catch" + error.response.data.error);
-      Swal.fire({
-        title: "Algo Salio mal",
+      if (error === error.response.data.error) {
+        console.log("catch 1" + error.response.data.error);
+        Swal.fire({
+          title: error.response.data.error,
 
-        icon: "error",
-        customClass: {
-          popup: "",
-        },
-      });
-      return error;
+          icon: "error",
+          customClass: {
+            popup: "",
+          },
+        });
+        return error;
+      } else {
+        console.log("catch 2" + error.response.data.error);
+
+        Swal.fire({
+          title: "La contraseña anterior no es la misma",
+
+          icon: "error",
+          customClass: {
+            popup: "",
+          },
+        });
+        return error;
+      }
     }
   };
 };
@@ -1347,5 +1364,20 @@ export const deleteComment = (id) => {
         type: DELETE_COMMENT,
       });
     } catch (error) {}
+  };
+};
+
+export const getAdminById = (id) => {
+  return async function (dispatch) {
+    try {
+      const response = (await axios.get(`${serverURL}/admin/${id}`)).data;
+      dispatch({
+        type: GET_ADMIN_BY_ID,
+        payload: response,
+      });
+      return false;
+    } catch (error) {
+      return error;
+    }
   };
 };

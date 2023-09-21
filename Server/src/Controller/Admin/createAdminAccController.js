@@ -8,7 +8,7 @@ const createAdminAccController = async (props) =>{
     const {password, email, createKey, name} = props
     const saltRounds = 10
     const hashedPassword = await bcrypt.hash(password, saltRounds)
-    const defaultProfilePicture = "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Windows_10_Default_Profile_Picture.svg/2048px-Windows_10_Default_Profile_Picture.svg.png"
+    const defaultProfilePicture = "https://res.cloudinary.com/da785kmjd/image/upload/v1695009407/unnamed_fum3we.png"
     if(createKey === CREATE_KEY){
         const [newAdmin, created] = await admin.findOrCreate({
             where: {email},

@@ -37,8 +37,8 @@ const getTrainingByName = async (req, res) => {
     const getTraining = await getTrainingOnDb(name);
     if (getTraining.length === 0)
       return res
-        .status(400)
-        .json({ error: "No se encontro ninguna capacitacion con ese nombre" });
+        .status(200)
+        .json(getTraining);
 
     return res.status(200).json(getTraining);
   } catch (error) {
