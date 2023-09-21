@@ -76,34 +76,34 @@ function Footer() {
       <div className="mb-5 flex-col md:flex md:flex-row container flex justify-center text-center">
         <button
           onClick={() => navigate("/faq")}
-          className="text-sm text-neutral-800 p-2 mr-2 hover:bg-gray-400 rounded-3xl"
+          className="text-sm text-neutral-800 p-2 mr-2 hover:bg-light-2 rounded-3xl"
         >
           Preguntas Frecuentes
         </button>
 
         <button
           onClick={() => navigate("/blogs")}
-          className="text-sm text-neutral-800 p-2 ml-2 hover:bg-gray-400 rounded-3xl"
+          className="text-sm text-neutral-800 p-2 ml-2 hover:bg-light-2 rounded-3xl"
         >
           Blog
         </button>
         <button
           onClick={() => navigate("/terms")}
-          className="text-sm text-neutral-800 p-2 ml-2 hover:bg-gray-400 rounded-3xl"
+          className="text-sm text-neutral-800 p-2 ml-2 hover:bg-light-2 rounded-3xl"
         >
           Terminos y condiciones
         </button>
 
         <button
           onClick={() => navigate("/about")}
-          className="text-sm text-neutral-800 p-2 ml-2 hover:bg-gray-400 rounded-3xl"
+          className="text-sm text-neutral-800 p-2 ml-2 hover:bg-light-2 rounded-3xl"
         >
           Acerca de Nosotros
         </button>
 
         <button
           onClick={() => navigate("/developers")}
-          className="text-sm text-neutral-800 p-2 ml-2 hover:bg-gray-400 rounded-3xl"
+          className="text-sm text-neutral-800 p-2 ml-2 hover:bg-light-2 rounded-3xl"
         >
           Equipo de Desarrollo
         </button>

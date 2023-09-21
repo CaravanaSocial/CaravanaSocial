@@ -18,7 +18,7 @@ export default function BlogCard(props) {
     })
   }
   return (
-    <div className="hover:shadow-lg hover:scale-105 transition-transform duration-300 ease-in-out">
+    <div className="hover:shadow-lg hover:scale-105 transition-transform duration-300 ease-in-out h-96">
       <div className="relative">
 
         {/* Codigo de produccion*/}

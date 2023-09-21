@@ -15,7 +15,7 @@ export default function BlogHub(){
     },[])
     
     return (
-        <div className="flex flex-wrap justify-center gap-6 py-10 h-full mb-15">
+        <div className="flex flex-wrap justify-center gap-6 py-10 h-screen mb-15">
             {selector?.length!== 0?
             selector?.map((post, index) => {
                 return <BlogCard key={index} post={post}/>
