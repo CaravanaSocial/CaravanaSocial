@@ -20,17 +20,16 @@ const Faq = () => {
   };
 
   const handleEdit = (value) => {
-    if (edit === value){
+    if (edit === value) {
       setEdit(false);
     } else {
-      setEdit(value)
+      setEdit(value);
     }
-  }
+  };
 
   return (
     <div className="h-full flex flex-col items-center mx-5 my-4">
       {faqs?.map((x) => {
-
         return (
           <div className="w-full" key={x.id}>
             <div

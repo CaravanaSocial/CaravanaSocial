@@ -23,7 +23,6 @@ const Home = () => {
 
   const approvedTraininigs = trainings?.filter((x) => x.approved === true);
 
-  console.log("ASDASDASDASDAS", trainings);
 
   useEffect(() => {
     if (localStorage.type === "company") {

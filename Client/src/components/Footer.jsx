@@ -1,7 +1,7 @@
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 
 function Footer() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   return (
     <footer className="flex flex-col items-center bg-light-1 text-center text-white">
@@ -57,7 +57,10 @@ function Footer() {
               <path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z" />
             </svg>
           </a>
-          <a href="https://github.com/CaravanaSocial" className="text-neutral-800">
+          <a
+            href="https://github.com/CaravanaSocial"
+            className="text-neutral-800"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-4 w-4"
@@ -74,16 +77,36 @@ function Footer() {
         <button
           onClick={() => navigate("/faq")}
           className="text-sm text-neutral-800 p-2 mr-2 hover:bg-gray-400 rounded-3xl"
-        >Preguntas Frecuentes</button>
+        >
+          Preguntas Frecuentes
+        </button>
 
         <button
           onClick={() => navigate("/blogs")}
           className="text-sm text-neutral-800 p-2 ml-2 hover:bg-gray-400 rounded-3xl"
-        >Blog</button>
+        >
+          Blog
+        </button>
         <button
           onClick={() => navigate("/terms")}
           className="text-sm text-neutral-800 p-2 ml-2 hover:bg-gray-400 rounded-3xl"
-        >Terminos y condiciones</button>
+        >
+          Terminos y condiciones
+        </button>
+
+        <button
+          onClick={() => navigate("/about")}
+          className="text-sm text-neutral-800 p-2 ml-2 hover:bg-gray-400 rounded-3xl"
+        >
+          Acerca de Nosotros
+        </button>
+
+        <button
+          onClick={() => navigate("/developers")}
+          className="text-sm text-neutral-800 p-2 ml-2 hover:bg-gray-400 rounded-3xl"
+        >
+          Equipo de Desarrollo
+        </button>
       </div>
     </footer>
   );
