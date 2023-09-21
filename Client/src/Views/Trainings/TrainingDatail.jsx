@@ -93,7 +93,9 @@ const DetailTrainings = () => {
     dispatch(adduser({ userId: localStorage.accId, trainingId: id }))
     .then(() => {
       setTrues(!trues);
+      setTrues(!trues);
     })
+    
 
     
     Swal.fire({
