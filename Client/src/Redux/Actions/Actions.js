@@ -92,7 +92,7 @@ export const CHANGE_PASSWORD = "CHANGE_PASSWORD";
 export const DELETE_COMMENT = "DELETE_COMMENT";
 
 const serverURL = "https://caravanaserver.onrender.com";
-/* const serverURL = "http://localhost:3001"; */
+//  const serverURL = "http://localhost:3001";
 
 export const createUser = (user) => {
   //---------- Endpoint to Dev server -- Descomentar para usar
@@ -1271,18 +1271,33 @@ export const changePassword = (id, passwordChange, typeOfCount) => {
       }
     } catch (error) {
       console.log("catch" + error.response.data.error);
-      Swal.fire({
-        title: "Algo Salio mal",
+      if(error === error.response.data.error){
+        console.log("catch 1" + error.response.data.error);
+        Swal.fire({
+          title: error.response.data.error,
+  
+          icon: "error",
+          customClass: {
+            popup: "",
+          },
+        });
+        return error;
+      }else{
+        console.log("catch 2" + error.response.data.error);
 
-        icon: "error",
-        customClass: {
-          popup: "",
-        },
-      });
-      return error;
-    }
-  };
-};
+        Swal.fire({
+          title: "La contraseña anterior no es la misma",
+  
+          icon: "error",
+          customClass: {
+            popup: "",
+          },
+        });
+        return error;
+        }
+      };
+    };
+  }
 
 export const createSuccessCase = (successCase) => {
   const endpoint = `${serverURL}/success/create`;
