@@ -6,7 +6,7 @@ const getTrainingOnDb = async (name) => {
         const findByName = await training.findAll({
             where:{
                 name:{
-                    [Op.iLike]: `${name}%`
+                    [Op.iLike]: `%${name}%`
                 }
             },
             include:[
@@ -30,6 +30,7 @@ const getTrainingOnDb = async (name) => {
               ]
         })
     
+        console.log(findByName);
         return findByName
     } catch (error) {
         throw error
