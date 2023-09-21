@@ -36,6 +36,7 @@ export default function NavBar() {
     } else {
       document.documentElement.classList.remove("dark");
     }
+    return setInput("");
   }, [theme]);
 
   const handleThemeSwitch = () => {
@@ -78,6 +79,7 @@ export default function NavBar() {
     }
 
     if (location.pathname === "/home-trainings") {
+      console.log(input)
       if (input === "") {
         dispatch(getTrainings());
       } else {
