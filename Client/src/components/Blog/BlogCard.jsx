@@ -25,7 +25,7 @@ export default function BlogCard(props) {
         {/* Codigo de produccion*/}
 
         {localStorage.type==="admin" || localStorage.type==="superAdmin"
-        ?<button onClick={deleteHandler} className="absolute top-0 right-0 p-2 text-red-600 bg-white rounded-full hover:bg-red-100 hover:text-red-800 transition duration-300 ease-in-out z-10">
+        ?<button onClick={deleteHandler} className="absolute top-0 right-0 p-2 text-red-600 bg-white rounded-full hover:bg-red-100 hover:text-red-800 transition duration-300 ease-in-out z-5">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6"
