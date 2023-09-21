@@ -22,7 +22,7 @@ const TrainingCard = ({ training }) => {
         {training.description}
       </p>
       <div className="text-center justify-center flex">
-        <img className="h-[380px] w-[450px] object-cover object-center rounded-full " src={training?.company?.profilePicture} alt="" />
+        <img className="h-[380px] w-[450px] object-cover object-center rounded-full " src={training?.company?.profilePicture ? training?.company?.profilePicture : training?.admin?.profilePicture} alt="" />
       </div>
       <div>
 
