@@ -124,6 +124,7 @@ export default function NavBar() {
     location.pathname === "/faq" ||
     location.pathname === "/blogs" ||
     location.pathname === '/blog-create' ||
+    location.pathname === '/terms' ||
     location.pathname.startsWith("/blogs/")
   );
 

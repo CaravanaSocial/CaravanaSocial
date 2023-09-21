@@ -29,6 +29,7 @@ import BlogDetail from "./components/Blog/BlogDetail.jsx";
 import BlogHub from "./components/Blog/BlogHub.jsx";
 import Faq from "./Views/Faq/Faq.jsx";
 import PasswordChange from "./Views/UpdateProfile/PasswordChange.jsx";
+import TerminosYCondiciones from "./Views/Terms/TerminosYCondiciones.jsx";
 
 import Verification from "./Views/Verification/Verification.jsx";
 import PasswordRecovery from "./Views/PasswordRecovery/PasswordRecovery.jsx";
@@ -66,6 +67,7 @@ function App() {
           <Route path="/blog-create" element={<PresetBlog />} />
           <Route path="/blogs" element={<BlogHub />} />
           <Route path="/blog/:id" element={<BlogDetail />} />
+          <Route path='/terms' element={<TerminosYCondiciones/>}/>
 
           <Route
             path={

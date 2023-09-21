@@ -80,6 +80,10 @@ function Footer() {
           onClick={() => navigate("/blogs")}
           className="text-sm text-neutral-800 p-2 ml-2 hover:bg-gray-400 rounded-3xl"
         >Blog</button>
+        <button
+          onClick={() => navigate("/terms")}
+          className="text-sm text-neutral-800 p-2 ml-2 hover:bg-gray-400 rounded-3xl"
+        >Terminos y condiciones</button>
       </div>
     </footer>
   );
