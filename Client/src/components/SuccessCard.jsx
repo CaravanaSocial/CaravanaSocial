@@ -15,22 +15,28 @@ const SuccessCard = ({
     <main className=" md:flex md:flex-row items-center text-center p-2 flex flex-col justify-center gap-11 ">
       <div>
         <img
+          width={600}
           src={image}
           alt=""
-          className="max-w-[500px] max-h-[500px] border-2 border-light-2 rounded-full max-lg:w-[370px] max-lg:h-[370px]"
+          className=" mb-10 border-2 border-light-2 rounded "
         ></img>
       </div>
-      <div className="w-[300px] ">
+      <div className="w-[300px]  ">
         <h1 className="font-vilaka text-center text-[50px] font-bold dark:text-black">
           {name}
         </h1>
-        <h1 className="font-topmodern text-[20px] dark:text-black">{history}</h1>
+        <h1 className="font-topmodern text-[20px] text-center dark:text-black">
+          {history}
+        </h1>
         {webpage ? (
           <Link target="_blank" to={webpage}>
-            <span className=" hover:text-white flex dark:text-black">
-              <AiOutlineLink size={20} className="dark:text-black"/>
-              <h2 className="dark:text-black">Pagina Web </h2>: {webpage}
+            <span>
+              <AiOutlineLink size={20} className="dark:text-black m-auto" />
+              <h2 className="dark:text-black">Pagina Web: </h2>
             </span>
+            <h2 className=" text-center hover:text-white flex dark:text-black">
+              {webpage}
+            </h2>
             <br />
           </Link>
         ) : null}

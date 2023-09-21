@@ -23,6 +23,7 @@ const Home = () => {
 
   const approvedTraininigs = trainings?.filter((x) => x.approved === true);
 
+
   useEffect(() => {
     if (localStorage.type === "company") {
       dispatch(companyButtons(true));

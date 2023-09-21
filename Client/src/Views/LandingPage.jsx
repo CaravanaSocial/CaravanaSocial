@@ -9,6 +9,8 @@ import { getSuccesCases } from "../Redux/Actions/Actions";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 
+const video2 = "https://www.youtube.com/embed/Ysl6IijwSq0";
+
 const LandingPage = () => {
   const speech = useSelector((state) => state.enableSpeech);
   const dispatch = useDispatch();
@@ -35,7 +37,7 @@ const LandingPage = () => {
   };
 
   return (
-    <main className="items-center" >
+    <main className="items-center">
       <section className="w-full  2xl:h-[300px]  ">
         <h1
           onClick={() => speakText("Bienvenidos a Caravana Social")}
@@ -69,13 +71,10 @@ const LandingPage = () => {
         >
           ¡Conócenos!
         </h1>
-        <video
-          muted
-          controls
-          className="h-[500px] rounded  w-[1000px] object-cover m-auto"
-        >
-          <source src={video1} type="video/mp4" />
-        </video>
+        <iframe
+          src="https://www.youtube.com/embed/Ysl6IijwSq0"
+          className="h-[250px] lg:h-[500px] rounded lg:w-[1000px] md:w-[700px] md:h-[300px] m-auto w-[400px]     "
+        ></iframe>
       </section>
 
       {/* SECCION CONOCENOS*/}
