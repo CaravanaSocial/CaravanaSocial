@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { createQAndA } from "../../Redux/Actions/Actions";
+import { createQAndA, getQAndAs } from "../../Redux/Actions/Actions";
+import { Swal } from "sweetalert2";
 
 const QAndA = () => {
   const [input, setInput] = useState({
@@ -19,7 +20,22 @@ const QAndA = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    dispatch(createQAndA(input));
+    dispatch(createQAndA(input)).then(() => {
+      dispatch(getQAndAs());
+      setInput({
+        quest: "",
+        answer: "",
+      });
+    });
+    Swal.fire({
+      title: "La pregunta y respuesta se ha publicado con éxito",
+
+      icon: "success",
+      customClass: {
+        popup: "holahola",
+        confirmButton: "bg-light-1",
+      },
+    });
   };
   return (
     <div className="mx-2 text-center">
