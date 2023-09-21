@@ -3,14 +3,15 @@ const { user } = require("../../db");
 const { updateUserController } = require("../User/updateUserController");
 
 const updatePassUserController = async (id, oldPassword, newPassword) => {
-    
+    if(oldPassword === newPassword ){
+      throw Error("No puede ser la misma contraseña")
+    }
     const foundUser = await user.findByPk(id);
     const hashedPassword = foundUser.dataValues.password;
-    console.log(foundUser);
+
     const saltRounds = 10;
     const newPasswordHash = await bcrypt.hash(newPassword, saltRounds);
-    console.log(oldPassword)
-    console.log(hashedPassword)
+
 
     const validPassword = await bcrypt.compare(oldPassword, hashedPassword)
     if(!validPassword){
