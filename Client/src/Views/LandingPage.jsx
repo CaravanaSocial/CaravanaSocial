@@ -37,7 +37,7 @@ const LandingPage = () => {
   };
 
   return (
-    <main className="items-center">
+    <main className="items-center h-full md:w-full w-[740px]">
       <section className="w-full  2xl:h-[300px]  ">
         <h1
           onClick={() => speakText("Bienvenidos a Caravana Social")}
@@ -73,7 +73,7 @@ const LandingPage = () => {
         </h1>
         <iframe
           src="https://www.youtube.com/embed/Ysl6IijwSq0"
-          className="h-[250px] lg:h-[500px] rounded lg:w-[1000px] md:w-[700px] md:h-[300px] m-auto w-[400px]     "
+          className="h-[250px] lg:h-[600px] rounded xl:w-[1200px] lg:w-[1100px] md:w-[700px] md:h-[500px] m-auto w-[380px]     "
         ></iframe>
       </section>
 
@@ -125,7 +125,7 @@ const LandingPage = () => {
 
       {/* SECCION UNETE */}
 
-      <section className="w-full text-center  lg:gap-x-20 md:flex md:justify-center   ">
+      <section className="w-full  text-center items-center justify-center flex flex-col  lg:gap-x-20 md:flex md:flex-row md:justify-center   ">
         <Link
           to="/register-company"
           className="text-[30px] dark:text-white w-[400px] m-auto text-black  px-5 py-5  flex flex-col items-center font-nunito font-bold   "

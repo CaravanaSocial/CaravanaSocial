@@ -36,7 +36,7 @@ export default function UploadImage() {
   function uploadSingleImage(base64) {
     setLoading(true);
     axios
-      .post("https://caravanaserver-qkv5.onrender.com/image/upload", {
+      .post("https://caravanaserver-qkv5.onrender.com", {
         image: base64,
       })
       .then((res) => {

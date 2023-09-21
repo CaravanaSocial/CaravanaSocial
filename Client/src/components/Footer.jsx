@@ -4,7 +4,7 @@ function Footer() {
   const navigate = useNavigate();
 
   return (
-    <footer className="flex flex-col items-center bg-light-1 text-center text-white">
+    <footer className="flex flex-col items-center md:w-full w-[740px] bg-light-1 text-center text-white">
       <div className="container mt-10">
         <div className="flex justify-center mb-5">
           <a href="#!" className="mr-9 text-neutral-800">
@@ -73,7 +73,7 @@ function Footer() {
         </div>
       </div>
 
-      <div className="mb-5 container flex justify-center text-center">
+      <div className="mb-5 flex-col md:flex md:flex-row container flex justify-center text-center">
         <button
           onClick={() => navigate("/faq")}
           className="text-sm text-neutral-800 p-2 mr-2 hover:bg-gray-400 rounded-3xl"
