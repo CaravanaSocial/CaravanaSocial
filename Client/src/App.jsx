@@ -48,7 +48,7 @@ function App() {
   }, [location]);
 
   return (
-    <div className="flex  w-full flex-col h-full">
+    <div className="flex w-full flex-col h-[1000px]">
       <NavBar />
       <div className="flex-grow  flex-col">
         <Routes>

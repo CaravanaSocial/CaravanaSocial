@@ -4,7 +4,7 @@ function Footer() {
   const navigate = useNavigate();
 
   return (
-    <footer className="flex flex-col items-center md:w-full w-full bg-light-1 text-center text-white">
+    <footer className="flex flex-col items-center md:w-full w-full bg-light-1 text-center text-white mt-auto">
       <div className="container mt-10">
         <div className="flex justify-center mb-5">
           <a href="#!" className="mr-9 text-neutral-800">
