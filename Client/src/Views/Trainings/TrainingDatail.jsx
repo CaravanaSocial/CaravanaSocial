@@ -90,9 +90,12 @@ const DetailTrainings = () => {
   };
 
   const handleAdd = () => {
-    dispatch(adduser({ userId: localStorage.accId, trainingId: id }));
+    dispatch(adduser({ userId: localStorage.accId, trainingId: id }))
+    .then(() => {
+      setTrues(!trues);
+    })
 
-    setTrues(!trues);
+    
     Swal.fire({
       title: "Te has unido correctamente!",
       icon: "success",
