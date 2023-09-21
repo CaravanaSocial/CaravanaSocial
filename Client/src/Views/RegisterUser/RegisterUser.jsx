@@ -12,6 +12,7 @@ import {
 } from "../../Redux/Actions/Actions";
 import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
+import { CgEye } from "react-icons/cg";
 
 export default function RegisterUser() {
   const category = useSelector((state) => state.categories);
@@ -229,11 +230,31 @@ export default function RegisterUser() {
     });
   };
 
-  console.log(certificate);
-  console.log(userData);
-
   const isSubmitDisabled =
     Object.keys(errors).length > 0 || userData.category.length === 0;
+
+    const password1 = "password1";
+    const password2 = "password2";
+  
+    const handlePass1 = () => {
+      const view = document.getElementById(password1);
+  
+      if (view.type === "password"){
+        view.type = "text";
+      } else {
+        view.type = "password";
+      }
+    }
+  
+    const handlePass2 = () => {
+      const view = document.getElementById(password2);
+  
+      if (view.type === "password"){
+        view.type = "text";
+      } else {
+        view.type = "password";
+      }
+    }
 
   return (
     <div className="flex justify-center">
@@ -408,26 +429,42 @@ export default function RegisterUser() {
           <h2 className="text-lg font-nunito font-bold dark:text-gray-300">
             Contraseña
           </h2>
-          <input
-            className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
-            type="password"
-            name="password"
-            placeholder="contraseña"
-            value={userData.password}
-            onChange={handleChange}
-          />
+
+          <div className="flex justify-center text-center">
+            <input className="h-8 rounded-3xl px-2 mt-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
+              value={userData.password}
+              onChange={handleChange}
+              type="password"
+              id="password1"
+              placeholder="Contraseña..."
+              name="password"/>
+
+            <button className="absolute z-50 flex items-center justify-center ml-40 mt-4"
+              type="button"
+              onClick={handlePass1}>
+              <CgEye/>
+            </button>
+          </div>
+
           <h3 className="text-red-600">
             {errors.password ? errors.password : null}
           </h3>
 
-          <input
-            className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
-            type="password"
-            name="passwordRep"
-            placeholder="repetir contraseña"
-            value={userData.passwordRep}
-            onChange={handleChange}
-          />
+          <div className="flex justify-center text-center">
+            <input className="h-8 rounded-3xl px-2 mt-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
+              value={userData.passwordRep}
+              onChange={handleChange}
+              type="password"
+              id="password2"
+              placeholder="Contraseña..."
+              name="passwordRep"/>
+
+            <button className="absolute z-50 flex items-center justify-center ml-40 mt-4"
+              type="button"
+              onClick={handlePass2}>
+              <CgEye/>
+            </button>
+          </div>
           <h3 className="text-red-600">
             {errors.passwordRep ? errors.passwordRep : null}
           </h3>

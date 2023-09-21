@@ -138,6 +138,11 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         filteredFreelancers: action.payload,
       };
+      case FREELANCER_BY_NAME:
+      return {
+        ...state,
+        filteredFreelancers: action.payload,
+      };
 
     case CREATE_ADMIN:
       return {
@@ -381,11 +386,7 @@ export default function rootReducer(state = initialState, action) {
         faqs: action.payload,
       };
 
-    case FREELANCER_BY_NAME:
-      return {
-        ...state,
-        freelancers: action.payload,
-      };
+    
 
     case TRAINING_BY_NAME:
       return {

@@ -9,7 +9,7 @@ import {
 } from "../../Redux/Actions/Actions";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {AiOutlineArrowLeft} from "../../../node_modules/react-icons/ai"
+import { AiOutlineArrowLeft } from "../../../node_modules/react-icons/ai";
 
 const Trainings = () => {
   const navigate = useNavigate();
@@ -34,12 +34,11 @@ const Trainings = () => {
     dispatch(getCountry());
   }, []);
 
-  const goBack=()=>{
-    navigate(-1)
-  }
+  const goBack = () => {
+    navigate(-1);
+  };
 
   useEffect(() => {
-    dispatch(getTrainings());
     dispatch(getCategories());
     dispatch(getCountry());
     dispatch(filterTrainingBy(filter));
@@ -57,6 +56,7 @@ const Trainings = () => {
     <div className="m-4 p-4 h-full text-center items-center flex flex-col">
       {localStorage.length !== 0 ? (
         <>
+
          <div className="self-start">
           <button onClick={goBack}className="pb-3 pt-1 m-0 self-start" ><AiOutlineArrowLeft className="bg-light-1 dark:bg-light-1 rounded-full p-1 dark:text-black"size={30}/></button>
         </div>
@@ -76,7 +76,9 @@ const Trainings = () => {
                 );
               })}
             </select>
+
             <span className="font-nunito font-bold dark:font-light max-lg:hidden mr-1"> Filtrar por :</span>
+
             <select
               className="rounded-3xl px-2 mb-2 bg-zinc-300 text-zinc-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
               onChange={handleChange}
@@ -92,7 +94,9 @@ const Trainings = () => {
               })}
             </select>
           </div>
-          <h1 className="font-vilaka font-bold text-[50px] tracking-widest">Capacitaciones</h1>
+          <h1 className="font-vilaka font-bold text-[50px] tracking-widest">
+            Capacitaciones
+          </h1>
           {trainingsFiltered?.length === 0 && (
             <div>
               No hay capacitaciones disponibles para este país o este rubro
