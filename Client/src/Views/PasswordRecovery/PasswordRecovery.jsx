@@ -213,8 +213,8 @@ const PasswordRecovery = () => {
   
 
   return (
-    <div className="flex justify-center items-center h-screen">
-      <div className="inline-block m-4 p-4 h-screen">
+    <div className="flex justify-center items-center h-full">
+      <div className="inline-block m-4 p-4 h-full">
         <div className="justify-center text-center border-spacing-96 border-2 border-light-1 dark:border-light-1 rounded-3xl p-4 my-4">
           <h1 className="text-2xl font-nunito font-bold dark:font-medium text-[30px] text-center border-b-2 border-light-1 dark:border-light-1 dark:text-gray-300"
           onClick={() => speakText("Cambio de contraseña")}

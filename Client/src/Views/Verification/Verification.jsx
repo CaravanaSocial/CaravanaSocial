@@ -109,7 +109,7 @@ const Verification = () => {
   };
 
   return (
-    <div className="h-screen">
+    <div className="h-full">
       <div className="flex justify-center text-center">
         <div className="mt-4">
           <h1

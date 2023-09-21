@@ -80,9 +80,9 @@ export default function Login() {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen">
+    <div className="flex justify-center items-center h-full">
       {" "}
-      <div className="inline-block m-4  p-4 h-screen">
+      <div className="inline-block m-4  p-4 h-full">
         <section>
           <h1
             onClick={() => speakText("Caravana Social")}
