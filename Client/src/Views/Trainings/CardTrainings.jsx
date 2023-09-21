@@ -14,15 +14,17 @@ const TrainingCard = ({ training }) => {
   };
 
   return (
-    <div className="flex-col  bg-light-1 hover:bg-light-2 dark:hover:bg-light-1 dark:bg-light-2  p-4 rounded-3xl shadow-md  w-[230px] h-[400px] sm:h-full sm:w-[400px] flex justify-center">
+    <div className="flex-col  bg-light-1 hover:bg-light-2 dark:hover:bg-light-1 dark:bg-light-2 p-4 rounded-3xl shadow-md  w-[230px] h-[400px] flex justify-center sm:h-full items-center sm:w-[300px]  md:w-[300px] md:h-full ">
       <h2 className="text-[25px] font-nunito font-bold  text-black whitespace-normal ">
         {training.name}
       </h2>
-      <p className="font-nunito whitespace-normal text-center font-bold text-[16px] mb-4 dark:text-black">
+      <p className="font-nunito h-[40px] w-[250px] truncate text-center font-bold text-[16px] mb-4 dark:text-black">
         {training.description}
       </p>
       <div className="text-center justify-center flex">
-        <img className="h-[380px] w-[450px] object-cover object-center rounded-full " src={training?.company?.profilePicture ? training?.company?.profilePicture : training?.admin?.profilePicture} alt="" />
+
+        <img className="h-[380px] w-[450px] object-cover object-center rounded-full  md:h-[280px] md:w-[300px] sm:h-[280px] sm:w-[400px] " src={training?.company?.profilePicture ? training?.company?.profilePicture : training?.admin?.profilePicture} alt="" />
+
       </div>
       <div>
 
