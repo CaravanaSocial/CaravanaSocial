@@ -11,6 +11,8 @@ import {
   getCategories,
 } from "../../Redux/Actions/Actions";
 import { useDispatch, useSelector } from "react-redux";
+import Swal from "sweetalert2";
+import { CgEye } from "react-icons/cg";
 
 export default function RegisterUser() {
   const category = useSelector((state) => state.categories);
@@ -24,6 +26,7 @@ export default function RegisterUser() {
   const [checkboxCUD, setCheckboxCUD] = useState(null);
   const [checkboxFreelancer, setCheckboxFreelancer] = useState(null);
   const [errors, setErrors] = useState({});
+  const [certificate, setCertificate] = useState("");
   const [userData, setUserData] = useState({
     name: "",
     lastName: "",
@@ -32,9 +35,10 @@ export default function RegisterUser() {
     CUD: "",
     category: [],
     email: "",
+    emailRep: "",
     password: "",
     passwordRep: "",
-    certificates: "",
+    certificates: [],
     freelancer: false,
     description: "",
     address: "",
@@ -43,7 +47,8 @@ export default function RegisterUser() {
   useEffect(() => {
     dispatch(getCountry());
     dispatch(getCategories());
-  }, []);
+    return () => dispatch(clearErrors());
+  }, [dispatch]);
 
   const handleCheckboxCUDChange = (checkbox) => {
     setCheckboxCUD(checkbox);
@@ -112,6 +117,8 @@ export default function RegisterUser() {
           location: { ...userData.location, [name]: value },
         })
       );
+    } else if (name === "certificates") {
+      setCertificate(value);
     } else {
       setUserData({
         ...userData,
@@ -136,7 +143,7 @@ export default function RegisterUser() {
         location: userData.location,
         CUD: userData.CUD,
         category: userData.category,
-        email: userData.email,
+        email: userData.emailRep,
         password: userData.passwordRep,
         certificates: userData.certificates,
         freelancer: userData.freelancer,
@@ -149,8 +156,22 @@ export default function RegisterUser() {
         dispatch(clearErrors());
       } else {
         dispatch(
-          setNewErrors({ type: "CREATE_USER", error: postError.response.data })
+          setNewErrors({
+            type: "CREATE_USER",
+            error: postError.response.data,
+          })
         );
+        setCheckboxFreelancer(null);
+        if (postError?.response?.data.error === "Email in use") {
+          Swal.fire({
+            title:
+              "Correo electronico ya se encuentra en uso, por favor selecciona otro",
+            icon: "error",
+            customClass: {
+              popup: "",
+            },
+          });
+        }
       }
     });
   };
@@ -188,7 +209,52 @@ export default function RegisterUser() {
     validateInput({ ...userData, category: filteredCat });
   };
 
-  const isSubmitDisabled = Object.keys(errors).length > 0;
+  const handleCertificates = () => {
+    if (certificate) {
+      setUserData({
+        ...userData,
+        certificates: [...userData.certificates, certificate],
+      });
+    }
+    setCertificate("");
+  };
+
+  const handleDelete = (event) => {
+    event.preventDefault();
+    const filteredCer = userData?.certificates?.filter(
+      (cer) => cer !== event.target.value
+    );
+    setUserData({
+      ...userData,
+      certificates: filteredCer,
+    });
+  };
+
+  const isSubmitDisabled =
+    Object.keys(errors).length > 0 || userData.category.length === 0;
+
+    const password1 = "password1";
+    const password2 = "password2";
+  
+    const handlePass1 = () => {
+      const view = document.getElementById(password1);
+  
+      if (view.type === "password"){
+        view.type = "text";
+      } else {
+        view.type = "password";
+      }
+    }
+  
+    const handlePass2 = () => {
+      const view = document.getElementById(password2);
+  
+      if (view.type === "password"){
+        view.type = "text";
+      } else {
+        view.type = "password";
+      }
+    }
 
   return (
     <div className="flex justify-center">
@@ -200,7 +266,9 @@ export default function RegisterUser() {
         <div className="border-t-2 border-light-1 dark:border-light-1" />
 
         <form onSubmit={handleSubmit}>
-          <h2 className="text-lg font-topmodern dark:text-gray-300">Nombre</h2>
+          <h2 className="text-lg font-nunito font-bold dark:text-gray-300">
+            Nombre
+          </h2>
           <input
             className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
             type="text"
@@ -211,7 +279,7 @@ export default function RegisterUser() {
           />
           <h3 className="text-red-600">{errors.name ? errors.name : null}</h3>
 
-          <h2 className="text-lg font-topmodern dark:text-gray-300">
+          <h2 className="text-lg font-nunito font-bold dark:text-gray-300">
             Apellido
           </h2>
           <input
@@ -226,7 +294,7 @@ export default function RegisterUser() {
             {errors.lastName ? errors.lastName : null}
           </h3>
 
-          <h2 className="text-lg font-topmodern dark:text-gray-300">
+          <h2 className="text-lg font-nunito font-bold dark:text-gray-300">
             Fecha de Nacimiento
           </h2>
           <input
@@ -240,7 +308,9 @@ export default function RegisterUser() {
             {errors.birthDate ? errors.birthDate : null}
           </h3>
 
-          <h2 className="text-lg font-topmodern dark:text-gray-300">País</h2>
+          <h2 className="text-lg font-nunito font-bold dark:text-gray-300">
+            País
+          </h2>
           <select
             className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
             onChange={handleChange}
@@ -257,7 +327,7 @@ export default function RegisterUser() {
             {errors.country ? errors.country : null}
           </h3>
 
-          <h2 className="text-lg font-topmodern dark:text-gray-300">
+          <h2 className="text-lg font-nunito font-bold dark:text-gray-300">
             Estado/Provincia
           </h2>
           <select
@@ -274,7 +344,9 @@ export default function RegisterUser() {
           </select>
           <h3 className="text-red-600">{errors.state ? errors.state : null}</h3>
 
-          <h2 className="text-lg font-topmodern dark:text-gray-300">Ciudad</h2>
+          <h2 className="text-lg font-nunito font-bold dark:text-gray-300">
+            Ciudad
+          </h2>
           <select
             className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
             onChange={handleChange}
@@ -289,8 +361,8 @@ export default function RegisterUser() {
           </select>
           <h3 className="text-red-600">{errors.city ? errors.city : null}</h3>
 
-          <h2 className="text-lg font-topmodern dark:text-gray-300">
-            Tenes Certificado Único de Discapacidad (CUD)?
+          <h2 className="text-lg font-nunito font-bold dark:text-gray-300">
+            ¿Tienes Certificado Único de Discapacidad (CUD)?
           </h2>
           <label>
             {" "}
@@ -313,7 +385,7 @@ export default function RegisterUser() {
 
           {checkboxCUD === "SI" ? (
             <section>
-              <h2 className="text-lg font-topmodern dark:text-gray-300">
+              <h2 className="text-lg font-nunito font-bold dark:text-gray-300">
                 Código CUD
               </h2>
               <input
@@ -328,45 +400,76 @@ export default function RegisterUser() {
             </section>
           ) : null}
 
-          <h2 className="text-lg font-topmodern dark:text-gray-300">Email</h2>
+          <h2 className="text-lg font-nunito font-bold dark:text-gray-300">
+            Email
+          </h2>
           <input
             className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
             type="email"
             name="email"
-            placeholder="email"
+            placeholder="Email"
             value={userData.email}
             onChange={handleChange}
           />
           <h3 className="text-red-600">{errors.email ? errors.email : null}</h3>
 
-          <h2 className="text-lg font-topmodern dark:text-gray-300">
-            Contraseña
-          </h2>
           <input
             className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
-            type="password"
-            name="password"
-            placeholder="contraseña"
-            value={userData.password}
+            type="email"
+            name="emailRep"
+            placeholder="Repite tu email"
+            onpaste="return false"
+            value={userData.emailRep}
             onChange={handleChange}
           />
+          <h3 className="text-red-600">
+            {errors.emailRep ? errors.emailRep : null}
+          </h3>
+
+          <h2 className="text-lg font-nunito font-bold dark:text-gray-300">
+            Contraseña
+          </h2>
+
+          <div className="flex justify-center text-center">
+            <input className="h-8 rounded-3xl px-2 mt-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
+              value={userData.password}
+              onChange={handleChange}
+              type="password"
+              id="password1"
+              placeholder="Contraseña..."
+              name="password"/>
+
+            <button className="absolute z-50 flex items-center justify-center ml-40 mt-4"
+              type="button"
+              onClick={handlePass1}>
+              <CgEye/>
+            </button>
+          </div>
+
           <h3 className="text-red-600">
             {errors.password ? errors.password : null}
           </h3>
 
-          <input
-            className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
-            type="password"
-            name="passwordRep"
-            placeholder="repetir contraseña"
-            value={userData.passwordRep}
-            onChange={handleChange}
-          />
+          <div className="flex justify-center text-center">
+            <input className="h-8 rounded-3xl px-2 mt-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
+              value={userData.passwordRep}
+              onChange={handleChange}
+              type="password"
+              id="password2"
+              placeholder="Contraseña..."
+              name="passwordRep"/>
+
+            <button className="absolute z-50 flex items-center justify-center ml-40 mt-4"
+              type="button"
+              onClick={handlePass2}>
+              <CgEye/>
+            </button>
+          </div>
           <h3 className="text-red-600">
             {errors.passwordRep ? errors.passwordRep : null}
           </h3>
 
-          <h2 className="text-lg font-topmodern dark:text-gray-300">
+          <h2 className="text-lg font-nunito font-bold dark:text-gray-300">
             Tipo/s de Preferencia/s
           </h2>
           <select
@@ -385,7 +488,7 @@ export default function RegisterUser() {
           </select>
           <br />
           {userData.category.length ? (
-            <h2 className="text-lg font-topmodern dark:text-gray-300">
+            <h2 className="text-lg font-nunito font-bold dark:text-gray-300">
               Rubros seleccionados:{" "}
             </h2>
           ) : null}
@@ -409,18 +512,39 @@ export default function RegisterUser() {
             {errors.category}
           </h3>
 
-          <h2 className="text-lg font-topmodern dark:text-gray-300">
+          <h2 className="text-lg font-nunito font-bold dark:text-gray-300">
             Certificados (Opcional)
           </h2>
           <input
             className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
             type="url"
             name="certificates"
-            value={userData.certificates}
+            value={certificate}
             onChange={handleChange}
           />
+          <button
+            className="align-middle bg-gray-300 dark:bg-gray-800 mx-2 px-2 pb-1 mb-1 dark:text-gray-300 rounded-3xl border-2 border-transparent hover:border-lime-600 dark:hover:border-lime-700"
+            type="button"
+            onClick={handleCertificates}
+          >
+            +
+          </button>
 
-          <h2 className="text-lg font-topmodern dark:text-gray-300">
+          {userData?.certificates?.map((cer, i) => {
+            return (
+              <div key={i}>
+                <button
+                  className="bg-gray-300 dark:bg-gray-800 rounded-3xl px-2 py-1 m-1 dark:text-gray-300 hover:bg-red-500 dark:hover:bg-red-500"
+                  onClick={handleDelete}
+                  value={cer}
+                >
+                  {cer}
+                </button>
+              </div>
+            );
+          })}
+
+          <h2 className="text-lg font-nunito font-bold dark:text-gray-300">
             Sos Freelancer?
           </h2>
           <label>
@@ -444,7 +568,7 @@ export default function RegisterUser() {
 
           {checkboxFreelancer === "SI" ? (
             <section>
-              <h2 className="text-lg font-topmodern dark:text-gray-300">
+              <h2 className="text-lg font-nunito font-bold dark:text-gray-300">
                 Descripción de tu Emprendimiento
               </h2>
               <textarea
@@ -461,7 +585,7 @@ export default function RegisterUser() {
                 {errors.description ? errors.description : null}
               </h3>
 
-              <h2 className="text-lg font-topmodern dark:text-gray-300">
+              <h2 className="text-lg font-nunito font-bold dark:text-gray-300">
                 Dirección de su negocio{" "}
               </h2>
               <input
@@ -482,6 +606,12 @@ export default function RegisterUser() {
           <button
             className="bg-light-1 font-topmodern rounded-3xl p-2 my-2 border-2 border-transparent dark:text-zinc-900 hover:text-white hover:scale-95"
             type="submit"
+            onClick={handleSubmit}
+            style={
+              isSubmitDisabled
+                ? { opacity: "0.6", cursor: "not-allowed" }
+                : null
+            }
             disabled={isSubmitDisabled}
           >
             REGISTRARME
@@ -498,12 +628,12 @@ export default function RegisterUser() {
           <h3
             className="text-red-600"
             style={{
-              visibility: globalErrors?.CREATE_USER?.errors
+              visibility: globalErrors?.CREATE_USER?.error
                 ? "visible"
                 : "hidden",
             }}
           >
-            {globalErrors?.CREATE_USER?.errors}
+            {globalErrors?.CREATE_USER?.error}
           </h3>
         </form>
       </div>

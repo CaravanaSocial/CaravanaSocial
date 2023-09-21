@@ -37,8 +37,8 @@ const getTrainingByName = async (req, res) => {
     const getTraining = await getTrainingOnDb(name);
     if (getTraining.length === 0)
       return res
-        .status(400)
-        .json({ error: "No se encontro ninguna capacitacion con ese nombre" });
+        .status(200)
+        .json(getTraining);
 
     return res.status(200).json(getTraining);
   } catch (error) {
@@ -90,10 +90,12 @@ const getTrainingByIdHandler = async (req, res) => {
 
 const aproveTrainingHandler =  async ( req, res) => {
   try {
+    console.log("ENTRA EL HANDLERRRR de aprove");
     const { id } =  req.params;
     const { answer } = req.body;
 
-    const response = await aproveTrainingController(id, answer); 
+    const response = await aproveTrainingController(id, answer);
+    console.log("SALE DE APROVETRAININGCONTROLLER");
     return res.status(200).json(response)
 
   } catch (error) {

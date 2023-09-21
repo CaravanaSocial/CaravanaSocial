@@ -13,6 +13,8 @@ const adminSignUpHandler = async (req, res)=>{
 
         res.status(200).json({...adminToken, type:"admin"})
     } catch (error) {
+        console.log(error)
+        console.log('Hello')
         if(error.message=== "Validation Error") return res.status(400).json({error: "Used account"})
         res.status(500).json(error.message)
     }
@@ -20,7 +22,8 @@ const adminSignUpHandler = async (req, res)=>{
 
 const getAdminsHandler = async (req, res) =>{
     try {
-        const admins = await getAdminsController()
+        const {value} = req.query
+        const admins = await getAdminsController(value)
         res.status(200).json(admins)
     } catch (error) {
         res.status(500).json(error.message)

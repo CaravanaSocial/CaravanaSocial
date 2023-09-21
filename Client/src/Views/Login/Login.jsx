@@ -1,13 +1,23 @@
-import React, {useRef} from "react";
+import React, { useEffect, useRef } from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { login, clearErrors, setNewErrors } from "../../Redux/Actions/Actions";
+import { login, clearErrors, setNewErrors, logOut, companyButtons} from "../../Redux/Actions/Actions";
 import { useDispatch, useSelector } from "react-redux";
 import validation from "./validation";
 import { GoogleLogin } from "@react-oauth/google";
 import jwt_decode from "jwt-decode";
 
+import Swal from "sweetalert2";
+
+
 export default function Login() {
+  useEffect(() => {
+    dispatch(logOut());
+    dispatch(companyButtons(false));
+    setSynth(window.speechSynthesis);
+  }, []);
+  const speech = useSelector((state) => state.enableSpeech);
+  const [synth, setSynth] = useState(null);
   const loginButton = useRef(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -20,9 +30,9 @@ export default function Login() {
 
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
-        loginButton.current.click();
+      loginButton.current.click();
     }
-}
+  };
 
   const handleChange = (event) => {
     setUserData({
@@ -35,6 +45,17 @@ export default function Login() {
     event.preventDefault();
     dispatch(login(userData)).then((postError) => {
       if (!postError) {
+        Swal.fire({
+          title: "Inicio de sesión exitoso!",
+          text: "Bienvenido",
+          icon: "success",
+          customClass: {
+            popup: "inicioSesion",
+          },
+          iconColor: "#a7b698",
+          confirmButtonColor: "#a7b698",
+        });
+
         navigate("/home");
         dispatch(clearErrors());
       } else {
@@ -44,23 +65,50 @@ export default function Login() {
       }
     });
   };
+  const speakText = (text) => {
+    if (speech === true && synth) {
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.volume = 1;
+      utterance.lang = "es-ES";
+      synth.speak(utterance);
+    }
+  };
+  const cancelVoice = () => {
+    if (synth) {
+      synth.cancel();
+    }
+  };
 
   return (
     <div className="flex justify-center items-center h-screen">
       {" "}
       <div className="inline-block m-4  p-4 h-screen">
         <section>
-          <h1 className="text-4xl font-vilaka font-bold text-[50px] text-center  border-b-2 border-light-1 dark:border-light-1 rounded-sm dark:text-gray-300">
+          <h1
+            onClick={() => speakText("Caravana Social")}
+            onMouseLeave={() => {cancelVoice;}}
+            name="title"
+            className="text-4xl tracking-widest font-vilaka font-bold text-[50px] text-center  border-b-2 border-light-1 dark:border-light-1 rounded-sm dark:text-gray-300"
+          >
             Caravana Social
           </h1>
-          <p className=" font-nunito font-bold dark:font-medium text-[20px] dark:text-gray-300">
+          <p
+          onClick={() => speakText("Te invitamos a formar parte de la re-evolución inclusiva.")}
+          onMouseLeave={() => {cancelVoice;}}
+          
+            className=" font-nunito font-bold dark:font-medium text-[20px] dark:text-gray-300"
+          >
             Te invitamos a formar parte de la re-evolución inclusiva.
           </p>
         </section>
 
         <section className="text-center items-center">
           <div className="justify-center border-spacing-96 border-2 border-light-1 dark:border-light-1 rounded-3xl p-4 my-4">
-            <h1 className="text-2xl font-nunito font-bold dark:font-medium text-[30px] text-center border-b-2 border-light-1 dark:border-light-1 dark:text-gray-300">
+            <h1
+              onClick={() => speakText("Inicio de Sesión")}
+              onMouseLeave={() => {cancelVoice;}}
+              className="text-2xl font-nunito font-bold dark:font-medium text-[30px] text-center border-b-2 border-light-1 dark:border-light-1 dark:text-gray-300"
+            >
               Inicio de Sesión
             </h1>
 
@@ -84,7 +132,7 @@ export default function Login() {
               onKeyDown={handleKeyPress}
             />
             <br />
-            {globalErrors.LOGIN?.error ? (
+            {globalErrors?.LOGIN?.error ? (
               <text className="text-red-500">{globalErrors.LOGIN.error}</text>
             ) : null}
             <br />
@@ -93,7 +141,9 @@ export default function Login() {
               onClick={handleSubmit}
               type="submit"
               ref={loginButton}
-            >Iniciar Sesión</button>
+            >
+              Iniciar Sesión
+            </button>
             <br />
             <div className="mt-1 w-[223px] inline-block">
               <GoogleLogin
@@ -106,6 +156,7 @@ export default function Login() {
                       email: CredentialResponseDecoded.email,
                       google: true,
                     })
+                    
                   ).then((postError) => {
                     if (postError) {
                       dispatch(
@@ -115,6 +166,16 @@ export default function Login() {
                         })
                       );
                     } else {
+                      Swal.fire({
+                        title: "Inicio de sesión exitoso!",
+                        text: "Bienvenido",
+                        icon: "success",
+                        customClass: {
+                          popup: "inicioSesion",
+                        },
+                        iconColor: "#a7b698",
+                        confirmButtonColor: "#a7b698",
+                      });
                       navigate("/home");
                     }
                   });
@@ -126,12 +187,19 @@ export default function Login() {
             </div>
             <br />
 
-            {/* <Link to="/">
-              <button className="bg-gray-300 font-topmodern dark:bg-gray-800 rounded-3xl p-2 my-2 dark:text-gray-300 border-2 border-transparent hover:border-light-1 dark:hover:border-light-1">
+            <Link to="/password-recovery">
+              <button className="bg-gray-300 font-topmodern dark:bg-gray-800 rounded-3xl p-2 my-2 dark:text-gray-300 border-2 border-transparent hover:border-light-1 dark:hover:border-light-1"
+              onClick={() => speakText("Has olvidado tu contraseña?")}
+              onMouseLeave={() => {cancelVoice;}}
+              >
                 Has olvidado tu contraseña?
               </button>
-            </Link> */}
-            <h4 className="border-t-2 font-nunito font-bold dark:font-medium border-light-1 dark:border-light-1 dark:text-gray-200">
+            </Link>
+            <h4 
+            className="border-t-2 font-nunito font-bold dark:font-medium border-light-1 dark:border-light-1 dark:text-gray-200"
+            onClick={() => speakText("¿Aún no tienes cuenta? Registrate")}
+            onMouseLeave={() => {cancelVoice;}}
+            >
               ¿Aún no tienes cuenta? Registrate
             </h4>
             {/* <h4 className="dark:text-gray-200 font-nunito  font-bold dark:font-medium">Registrate</h4> */}

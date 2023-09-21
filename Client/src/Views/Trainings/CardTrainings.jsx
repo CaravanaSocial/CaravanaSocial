@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { adduser, trainingDetail } from "../../Redux/Actions/Actions";
 import { useNavigate } from "react-router-dom";
@@ -8,33 +8,33 @@ const TrainingCard = ({ training }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  console.log("trainings", training);
-
   const handleSubmit = () => {
     dispatch(trainingDetail(training.id));
     navigate(`/training/detail/${training.id}`);
-    dispatch(adduser({ userId: localStorage.accId, trainingId: training.id }));
   };
 
   return (
-    <div className="border-2 flex-col border-light-1 hover:scale-95 bg-white p-4 rounded-3xl shadow-md  w-[230px] h-[400px] sm:h-full sm:w-[400px] flex justify-center">
-      <h2 className="text-[25px] font-topmodern whitespace-normal ">
+    <div className="flex-col  bg-light-1 hover:bg-light-2 dark:hover:bg-light-1 dark:bg-light-2 p-4 rounded-3xl shadow-md  w-[230px] h-[400px] flex justify-center sm:h-full items-center sm:w-[300px]  md:w-[300px] md:h-full ">
+      <h2 className="text-[25px] font-nunito font-bold  text-black whitespace-normal ">
         {training.name}
       </h2>
-      <p className="font-vilaka whitespace-normal text-center font-bold text-[25px]">
+      <p className="font-nunito h-[40px] w-[250px] truncate text-center font-bold text-[16px] mb-4 dark:text-black">
         {training.description}
       </p>
-      <img
-        className="h-[400px] rounded"
-        src="https://www.shutterstock.com/shutterstock/photos/525553219/display_1500/stock-vector-play-video-vector-icon-525553219.jpg"
-      />
+      <div className="text-center justify-center flex">
+
+        <img className="h-[380px] w-[450px] object-cover object-center rounded-full  md:h-[280px] md:w-[300px] sm:h-[280px] sm:w-[400px] " src={training?.company?.profilePicture ? training?.company?.profilePicture : training?.admin?.profilePicture} alt="" />
+
+      </div>
+      <div>
 
       <button
-        className="border-2 rounded-lg font-topmodern bg-light-1 hover:text-white p-1 w-[100px] self-center"
+       className=" mt-3 rounded-3xl font-nunito font-bold  bg-zinc-300 px-3 dark:font-light dark:text-white p-1 hover:scale-105 dark:bg-zinc-800 "
         onClick={handleSubmit}
       >
-        Unirse
+        Ver más
       </button>
+      </div>
     </div>
   );
 };

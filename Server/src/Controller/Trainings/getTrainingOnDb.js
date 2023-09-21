@@ -1,4 +1,4 @@
-const { training, companies, areaTraining, comment } = require('../../db');
+const { training, companies, areaTraining, comment, admin } = require('../../db');
 const { Op } = require('sequelize')
 
 const getTrainingOnDb = async (name) => {
@@ -6,7 +6,7 @@ const getTrainingOnDb = async (name) => {
         const findByName = await training.findAll({
             where:{
                 name:{
-                    [Op.iLike]: `${name}%`
+                    [Op.iLike]: `%${name}%`
                 }
             },
             include:[
@@ -23,10 +23,14 @@ const getTrainingOnDb = async (name) => {
                 },
                 {
                   model: comment
-                }
+                },
+                {
+                  model: admin
+                },
               ]
         })
     
+        console.log(findByName);
         return findByName
     } catch (error) {
         throw error

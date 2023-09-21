@@ -2,11 +2,18 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import SuccessCard from "./SuccessCard.jsx";
+import { useEffect } from "react";
+import { getSuccesCases } from "../Redux/Actions/Actions.js";
 
 const SliderLanding = () => {
-  const succesCases = useSelector((state) => state.succesCases);
+  const dispatch = useDispatch();
+  const successCases = useSelector((state) => state.successCases);
+
+  useEffect(() => {
+    dispatch(getSuccesCases());
+  }, []);
 
   const CustomNextArrow = (props) => (
     <div
@@ -37,14 +44,21 @@ const SliderLanding = () => {
   };
 
   return (
-    <div className="w-full max-w-screen-xl mb-8  mx-auto mt-8">
+    <div className="w-full max-w-screen-xl mb-8  mx-auto mt-8 dark:text-black">
       <Slider {...settings}>
-        <div>
-          <SuccessCard />
-        </div>
-        <div>
-          <SuccessCard />
-        </div>
+        {successCases?.map((caso) => (
+          <div key={caso.id}>
+            <SuccessCard
+              key={caso.id}
+              image={caso.image}
+              history={caso.history}
+              name={caso.name}
+              webpage={caso.webpage}
+              instagram={caso.ig}
+              facebook={caso.fb}
+            />
+          </div>
+        ))}
       </Slider>
     </div>
   );

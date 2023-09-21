@@ -7,10 +7,10 @@ const { deleteBlogController } = require("../Controller/Blog/deleteBlogControlle
 
 const postBlogHandler = async(req, res) => {
     try {
-        const {id, author, title, image, template, date} = req.body;
-    
-        const createdBlog = await postBlogController(id, author, title, image, template, date);
-    
+       
+        const createdBlog = await postBlogController(req.body);
+        
+        
         return res.status(200).json(createdBlog)
     } catch (error) {
         return res.status(400).send(error.message)
@@ -56,9 +56,7 @@ const patchBlogHandler = async (req, res) => {
 const deleteBlogHandler = async (req, res) => {
     try {
         const { id } = req.params;
-
         const blogDelete = await deleteBlogController(id);
-
         return res.status(200).json(blogDelete);
     } catch (error) {
         return res.status(400).send(error.message)

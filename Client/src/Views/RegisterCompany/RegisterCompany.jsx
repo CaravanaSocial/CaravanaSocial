@@ -11,6 +11,8 @@ import {
   setNewErrors,
   clearErrors,
 } from "../../Redux/Actions/Actions";
+import Swal from "sweetalert2";
+import { CgEye } from "react-icons/cg";
 
 const RegisterCompany = () => {
   const navigate = useNavigate();
@@ -29,6 +31,7 @@ const RegisterCompany = () => {
     category: [],
     phone: "",
     email: "",
+    emailRep: "",
     password: "",
     passwordRep: "",
     description: "",
@@ -130,7 +133,8 @@ const RegisterCompany = () => {
     }
   };
 
-  const isSubmitDisabled = Object.keys(error).length > 0;
+  const isSubmitDisabled =
+    Object.keys(error).length > 0 || companyInput.category.length === 0;
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -143,26 +147,13 @@ const RegisterCompany = () => {
         nameCompany: companyInput.nameCompany,
         category: companyInput.category,
         phone: state.code + " " + companyInput.phone,
-        email: companyInput.email,
+        email: companyInput.emailRep,
         password: companyInput.passwordRep,
         description: companyInput.description,
         location: companyInput.location,
       })
     ).then((postError) => {
       if (!postError) {
-        setCompanyInput({
-          name: "",
-          lastName: "",
-          position: "",
-          nameCompany: "",
-          category: [],
-          phone: "",
-          email: "",
-          password: "",
-          passwordRep: "",
-          description: "",
-          location: { country: "", state: "", city: "" },
-        });
         navigate("/login");
         dispatch(clearErrors());
       } else {
@@ -172,9 +163,43 @@ const RegisterCompany = () => {
             error: postError.response.data,
           })
         );
+        if (postError?.response?.data.error === "Email in use") {
+          Swal.fire({
+            title:
+              "Correo electronico ya se encuentra en uso, por favor selecciona otro",
+
+            icon: "error",
+            customClass: {
+              popup: "",
+            },
+          });
+        }
       }
     });
   };
+
+  const password1 = "password1";
+  const password2 = "password2";
+
+  const handlePass1 = () => {
+    const view = document.getElementById(password1);
+
+    if (view.type === "password"){
+      view.type = "text";
+    } else {
+      view.type = "password";
+    }
+  }
+
+  const handlePass2 = () => {
+    const view = document.getElementById(password2);
+
+    if (view.type === "password"){
+      view.type = "text";
+    } else {
+      view.type = "password";
+    }
+  }
 
   return (
     <div className="flex justify-center">
@@ -183,10 +208,10 @@ const RegisterCompany = () => {
           Registrarme como empresa
         </h1>
 
-        <div className="border-t-2 border-light-1 dark:border-light-1" />
+        <div className="border-t-2 border-light-1 dark:border-light-1"/>
 
         <form onSubmit={handleSubmit}>
-          <h2 className="text-lg font-topmodern dark:text-gray-300">
+          <h2 className="text-lg font-nunito font-bold dark:text-gray-300">
             Nombre:{" "}
           </h2>
           <input
@@ -203,7 +228,7 @@ const RegisterCompany = () => {
             {error.name}
           </h3>
 
-          <h2 className="text-lg font-topmodern dark:text-gray-300">
+          <h2 className="text-lg font-nunito font-bold dark:text-gray-300">
             Apellido:{" "}
           </h2>
           <input
@@ -220,7 +245,9 @@ const RegisterCompany = () => {
             {error.lastName}
           </h3>
 
-          <h2 className="text-lg font-topmodern dark:text-gray-300">Cargo: </h2>
+          <h2 className="text-lg font-nunito font-bold dark:text-gray-300">
+            Cargo:{" "}
+          </h2>
           <input
             className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
             onChange={handleInputs}
@@ -235,7 +262,7 @@ const RegisterCompany = () => {
             {error.position}
           </h3>
 
-          <h2 className="text-lg font-topmodern dark:text-gray-300">
+          <h2 className="text-lg font-nunito font-bold dark:text-gray-300">
             Empresa:{" "}
           </h2>
           <input
@@ -343,7 +370,7 @@ const RegisterCompany = () => {
             {error.category}
           </h3>
 
-          <h2 className="text-lg font-topmodern dark:text-gray-300">
+          <h2 className="text-lg font-nunito font-bold dark:text-gray-300">
             Telefono:{" "}
           </h2>
           <span>{state?.code}</span>
@@ -362,45 +389,79 @@ const RegisterCompany = () => {
             {error.phone}
           </h3>
 
-          <h2 className="text-lg font-topmodern dark:text-gray-300">Email: </h2>
+          <h2 className="text-lg font-nunito font-bold dark:text-gray-300">
+            Email:{" "}
+          </h2>
           <input
             className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
             onChange={handleInputs}
             type="text"
-            placeholder="Email de la empresa..."
+            placeholder="Email de la empresa"
             name="email"
           />
           <h3
             className="text-red-600"
             style={{ visibility: error.email ? "visible" : "hidden" }}
           >
-            {error.email}
+            {" "}
+            {error.email}{" "}
           </h3>
 
-          <h2 className="text-lg font-topmodern dark:text-gray-300">
-            Contraseña
-          </h2>
           <input
             className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
             onChange={handleInputs}
+            type="text"
+            placeholder="Repite el email"
+            name="emailRep"
+            onPaste="return false"
+          />
+          <h3
+            className="text-red-600"
+            style={{ visibility: error.emailRep ? "visible" : "hidden" }}
+          >
+            {" "}
+            {error.emailRep}{" "}
+          </h3>
+
+          <h2 className="text-lg font-nunito font-bold dark:text-gray-300">
+            Contraseña
+          </h2>
+
+          <div className="flex justify-center text-center">
+            <input className="h-8 rounded-3xl px-2 mt-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
+            onChange={handleInputs}
             type="password"
+            id="password1"
             placeholder="Contraseña..."
             name="password"
-          />
-          <br />
+            value={companyInput.password}/>
+            <button className="absolute z-50 flex items-center justify-center ml-40 mt-4"
+              type="button"
+              onClick={handlePass1}>
+              <CgEye/>
+            </button>
+          </div>
+          
           <h3
             className="text-red-600"
             style={{ visibility: error.password ? "visible" : "hidden" }}
           >
             {error.password}
           </h3>
-          <input
-            className="h-8 rounded-3xl px-2 my-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
-            onChange={handleInputs}
-            type="password"
-            placeholder="Repite la Contraseña..."
-            name="passwordRep"
-          />
+          <div className="flex justify-center text-center">
+            <input className="h-8 rounded-3xl px-2 mt-2 bg-gray-300 dark:bg-gray-800 text-zinc-800 dark:text-gray-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-light-1"
+              onChange={handleInputs}
+              type="password"
+              id="password2"
+              placeholder="Contraseña..."
+              name="passwordRep"
+              value={companyInput.passwordRep}/>
+            <button className="absolute z-50 flex items-center justify-center ml-40 mt-4"
+              type="button"
+              onClick={handlePass2}>
+              <CgEye/>
+            </button>
+          </div>
           <h3
             className="text-red-600"
             style={{ visibility: error.passwordRep ? "visible" : "hidden" }}
@@ -408,7 +469,7 @@ const RegisterCompany = () => {
             {error.passwordRep}
           </h3>
 
-          <h2 className="text-lg font-topmodern dark:text-gray-300">
+          <h2 className="text-lg font-nunito font-bold dark:text-gray-300">
             Descripción
           </h2>
           <textarea
@@ -438,8 +499,18 @@ const RegisterCompany = () => {
             disabled={isSubmitDisabled}
             type="submit"
           >
-            Enviar
+            REGISTRARME
           </button>
+          <h3
+            className="text-red-600"
+            style={{
+              visibility: globalErrors?.CREATE_COMPANY?.error
+                ? "visible"
+                : "hidden",
+            }}
+          >
+            {globalErrors?.CREATE_COMPANY?.error}
+          </h3>
         </form>
 
         <NavLink to="/register-user">
@@ -447,16 +518,6 @@ const RegisterCompany = () => {
             Registrarme como Usuario
           </button>
         </NavLink>
-        <p
-          className="text-red-600"
-          style={{
-            visibility: globalErrors?.CREATE_COMPANY?.error
-              ? "visible"
-              : "hidden",
-          }}
-        >
-          {globalErrors?.CREATE_COMPANY?.error}
-        </p>
       </div>
     </div>
   );

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { createQAndA } from "../../Redux/Actions/Actions";
-import { NavLink } from "react-router-dom";
 
 const QAndA = () => {
   const [input, setInput] = useState({
@@ -19,19 +18,40 @@ const QAndA = () => {
   };
   const handleSubmit = (event) => {
     event.preventDefault();
+
     dispatch(createQAndA(input));
   };
   return (
-    <div>
+    <div className="mx-2 text-center">
       <br />
-      <label>Pregunta</label>
-      <input className="border-4" onChange={handleChange} name="quest" />
+      <label className="font-nunito text-[25px]">Pregunta</label>
       <br />
-      <label>Respuesta</label>
-      <textarea className="border-4" onChange={handleChange} name="answer" />
-      <button onClick={handleSubmit}>Publicar pregunta</button>
+      <textarea
+        className="p-1 dark:bg-zinc-700 border-2 border-zinc-300 dark:border-zinc-500 rounded-xl focus:outline-none focus:border-light-1 focus:ring-1 focus:ring-light-1"
+        onChange={handleChange}
+        name="quest"
+        cols={28}
+        rows={8}
+      />
       <br />
-      <NavLink to="/faq">Editar</NavLink>
+      <label className="font-nunito text-[25px]">Respuesta</label>
+      <br />
+      <textarea
+        cols={28}
+        rows={8}
+        className="p-1 dark:bg-zinc-700 border-2 border-zinc-300 dark:border-zinc-500 rounded-xl focus:outline-none focus:border-light-1 focus:ring-1 focus:ring-light-1 "
+        onChange={handleChange}
+        name="answer"
+      />
+      <br />
+      <button
+        className="font-nunito dark:border-light-2 dark:text-black text-[15px] border-2 bg-light-1 hover:scale-105 rounded-3xl p-2 mt-2"
+        onClick={handleSubmit}
+      >
+        Publicar pregunta
+      </button>
+      <br />
+      <br />
     </div>
   );
 };

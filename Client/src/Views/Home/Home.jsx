@@ -7,17 +7,20 @@ import {
   getOffers,
   getTrainings,
 } from "../../Redux/Actions/Actions";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import TrainingCard from "../Trainings/CardTrainings";
 import OfferCard from "../../components/Offercard";
 import CardFreelancer from "../../components/CardFreelancer";
 import Slider from "../../components/Slider";
 
 const Home = () => {
+  const speech = useSelector((state) => state.enableSpeech);
+  const [synth, setSynth] = useState(null);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const { trainings, offers, freelancers } = useSelector((state) => state);
+
   const approvedTraininigs = trainings?.filter((x) => x.approved === true);
 
   useEffect(() => {
@@ -29,6 +32,7 @@ const Home = () => {
     dispatch(getTrainings());
     dispatch(getOffers());
     dispatch(getFreelancers());
+    setSynth(window.speechSynthesis);
   }, [dispatch]);
 
   const handleCap = () => {
@@ -43,59 +47,98 @@ const Home = () => {
     navigate("/home-freelancers");
   };
 
+  const speakText = (text) => {
+    if (speech === true && synth) {
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.volume = 1;
+      utterance.lang = "es-ES";
+      synth.speak(utterance);
+    }
+  };
+  const cancelVoice = () => {
+    if (synth) {
+      synth.cancel();
+    }
+  };
+
   return (
     <main
       name="asdasd"
       className="2xl:flex  2xl:flex-row xl:flex xl:flex-row  lg:flex lg:flex-col  text-center  flex-col flex  2xl:w-full 2xl:h-full"
     >
-      <div className=" border-r-2  2xl:w-[300px] xl:w-[300px] w-full">
-        <h1 className=" sm:h-[300px] h-[150px] w-[300px] "></h1>
-      </div>
-      <div className="  md:flex md:flex-col md:items-center w-full ">
-        <section className=" flex flex-col items-center">
-          <h1 className="font-vilaka font-bold text-[50px]">Freelancers: </h1>
-          <Slider>
-            {freelancers?.map((item) => (
-              <CardFreelancer key={item.id} freelancer={item} />
-            ))}
-          </Slider>
-        </section>
-        <button
-          onClick={() => handleFrelancer()}
-          className="font-topmodern border-2 my-5  hover:text-light-1  border-light-1 rounded p-1 "
-        >
-          Ver Mas
-        </button>
-        <section className=" flex flex-col items-center">
-          <h1 className="font-vilaka font-bold text-[50px]">
-            Capacitaciones:{" "}
-          </h1>
-          <Slider>
-            {approvedTraininigs?.map((item) => (
-              <TrainingCard key={item.id} training={item} />
-            ))}
-          </Slider>
-        </section>
-        <button
-          onClick={() => handleCap()}
-          className="font-topmodern border-2 my-5  hover:text-light-1 items-end  border-light-1 rounded p-1 "
-        >
-          Ver Mas
-        </button>
-        <section className=" flex flex-col items-center">
-          <h1 className="font-vilaka font-bold text-[50px]">Ofertas: </h1>
-          <Slider>
-            {offers?.map((item) => (
-              <OfferCard key={item.id} offer={item} />
-            ))}
-          </Slider>
-        </section>
-        <button
-          onClick={() => handleOffer()}
-          className="font-topmodern border-2 my-5  hover:text-light-1  border-light-1 rounded p-1 "
-        >
-          Ver Mas
-        </button>
+      <div className=" md:flex md:flex-col md:items-center w-full ">
+        <div>
+          <section className=" flex flex-col items-center ">
+            <h1
+              className="font-vilaka font-bold tracking-widest text-[50px]"
+              onClick={() => speakText("Freelancers")}
+              onMouseLeave={() => {
+                cancelVoice;
+              }}
+            >
+              Freelancers{" "}
+            </h1>
+            <Slider>
+              {freelancers?.map((item) => (
+                <CardFreelancer key={item.id} freelancer={item} />
+              ))}
+            </Slider>
+          </section>
+          <button
+            onClick={() => handleFrelancer()}
+            className="font-nunito border-2 my-5 px-3 hover:bg-light-1 font-bold border-light-1 rounded-3xl p-1 dark:hover:text-black"
+          >
+            Ver más...
+          </button>
+        </div>
+        <div>
+          <section className=" flex flex-col items-center">
+            <h1
+              className="font-vilaka font-bold tracking-widest text-[50px]"
+              onClick={() => speakText("Capacitaciones")}
+              onMouseLeave={() => {
+                cancelVoice;
+              }}
+            >
+              Capacitaciones{" "}
+            </h1>
+            <Slider>
+              {approvedTraininigs?.map((item) => (
+                <TrainingCard key={item.id} training={item} />
+              ))}
+            </Slider>
+          </section>
+          <button
+            onClick={() => handleCap()}
+            className="font-nunito border-2 my-5 px-3 hover:bg-light-1 font-bold dark:hover:text-black border-light-1 rounded-3xl p-1"
+          >
+            Ver más...
+          </button>
+        </div>
+        <div>
+          <section className=" flex flex-col items-center">
+            <h1
+              className="font-vilaka font-bold tracking-widest text-[50px]"
+              onClick={() => speakText("Ofertas")}
+              onMouseLeave={() => {
+                cancelVoice;
+              }}
+            >
+              Ofertas{" "}
+            </h1>
+            <Slider>
+              {offers?.map((item) => (
+                <OfferCard key={item.id} offer={item} />
+              ))}
+            </Slider>
+          </section>
+          <button
+            onClick={() => handleOffer()}
+            className="font-nunito border-2 my-5 px-3 hover:bg-light-1 font-bold dark:hover:text-black border-light-1 rounded-3xl p-1 "
+          >
+            Ver más...
+          </button>
+        </div>
       </div>
     </main>
   );

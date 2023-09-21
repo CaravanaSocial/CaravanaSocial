@@ -9,6 +9,7 @@ export default function UploadImage() {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const [url, setUrl] = useState("");
+  const [uploadSuccess, setUploadSuccess] = useState(false);
 
   const convertBase64 = (file) => {
     return new Promise((resolve, reject) => {
@@ -25,10 +26,17 @@ export default function UploadImage() {
     });
   };
 
+  const resetFileInput = () => {
+    const fileInput = document.getElementById("dropzone-file");
+    if (fileInput) {
+      fileInput.value = "";
+    }
+  };
+
   function uploadSingleImage(base64) {
     setLoading(true);
     axios
-      .post("https://caravanaserver.onrender.com/image/upload", {
+      .post("https://caravanaserver-qkv5.onrender.com/image/upload", {
         image: base64,
       })
       .then((res) => {
@@ -43,24 +51,24 @@ export default function UploadImage() {
           );
           localStorage.setItem("profilePicture", res.data);
           dispatch(imageChange());
+        } else if (localStorage.type === "superAdmin") {
+          console.log(res.data);
+          localStorage.setItem("caseImage", res.data);
         }
+        setUploadSuccess(true);
       })
       .then(() => setLoading(false))
-      .catch(console.log);
-  }
+      .catch((error) => {
+        console.error("Error al cargar la imagen:", error);
 
-  function uploadMultipleImages(images) {
-    setLoading(true);
-    axios
-      .post("https://caravanaserver.onrender.com/uploadMultipleImages", {
-        images,
-      })
-      .then((res) => {
-        setUrl(res.data);
-        alert("Image uploaded Succesfully");
-      })
-      .then(() => setLoading(false))
-      .catch(console.log);
+        if (error.response && error.response.status === 413) {
+          alert("La imagen es demasiado grande. Debe ser más pequeña.");
+        } else {
+          alert("Hubo un error al cargar la imagen.");
+        }
+
+        setUploadSuccess(false);
+      });
   }
 
   const uploadImage = async (event) => {
@@ -85,7 +93,7 @@ export default function UploadImage() {
       <div className="flex items-center justify-center w-full">
         <label
           htmlFor="dropzone-file"
-          className="flex flex-col items-center justify-center w-full h-64 border-2 border-lime-600 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-lime-700 dark:hover:border-gray-500 dark:hover:bg-gray-600"
+          className="flex flex-col items-center justify-center w-full h-64 border-2 border-light-1 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-lime-700 dark:hover:border-gray-500 dark:hover:bg-gray-600"
         >
           <div className="flex flex-col items-center justify-center pt-5 pb-6">
             <svg
@@ -122,10 +130,16 @@ export default function UploadImage() {
       <div>
         {loading ? (
           <div className="flex items-center justify-center">
-            <img src={assets} />{" "}
+            <img src={assets} alt="Loading" />
           </div>
         ) : (
-          <UploadInput />
+          <div>
+            {uploadSuccess ? (
+              <p>La imagen se ha cargado correctamente.</p>
+            ) : (
+              <UploadInput />
+            )}
+          </div>
         )}
       </div>
     </div>

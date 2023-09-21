@@ -26,7 +26,7 @@ const getCompaniesController = async (value) =>{
                 deletedCompanies[i].password=0
             } return deletedCompanies
         }
-    }else if(value==="online"){
+    }else if(value!=="deleted"){
         const gotCompanies = await companies.findAll({
             include: [
                 {
@@ -47,7 +47,7 @@ const getCompaniesController = async (value) =>{
             } return gotCompanies
         }
     }
-    throw Error("There is no companies")
+    return []
 }
 
 module.exports = {

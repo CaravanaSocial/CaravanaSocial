@@ -1,15 +1,19 @@
 export default function validation(input){
    let error ={}
-   const regexEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+   const regexEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{3,4}$/;
    const regexPass = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
 
 
-   if (!regexEmail.test(input.email)){
-    error.email = "Debe ingresar un Email valido!"   
+    if (!regexEmail.test(input.email)){
+        error.email = "Debe ingresar un Email valido!"   
+    }
+    
+    if(input.emailRep !== input.email){
+        error.emailRep = "Los emails no coinciden."
     }
 
     if(!regexPass.test(input.password)){
-     error.password = "La contraseña debe tener como mínimo 8 caracteres, una letra mayúscula, una letra minúscula y un número."
+       error.password = "La contraseña debe tener como mínimo 8 caracteres, una letra mayúscula, una letra minúscula y un número."
     }
 
     if(input.passwordRep !== input.password){
@@ -44,22 +48,13 @@ export default function validation(input){
         error.phone ="Necesitamos un telefono para estar en contacto."
     }
 
-    if(!input.category){
-        error.category = "Ingrese el rubro de la capacitación."
+    if(!input.category.length){
+        error.category = "Ingrese el rubro en el que está especializado."
     }
-
-    // if(typeof(input.telefono) !== Number){
-    //     error.telefono ="El numero de telefono debe ser valido"
-    // }
-
-    // if(input.paises === []){
-    //     error.paises ="Seleccione un pais."
-    // }
 
     if(!input.location.country || !input.location.state ){
         error.location = "Rellene los tres campos"
     }
-
 
     return error;
 }

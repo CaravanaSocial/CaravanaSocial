@@ -2,26 +2,35 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export default function OfferCard({ offer }) {
+
   
   return (
-    <div className="border-2  flex-col border-light-1 hover:scale-95 bg-white p-4 rounded-3xl shadow-md  w-[230px] h-[400px] sm:h-full sm:w-[400px] flex justify-center">
-      <h2 className=" font-topmodern whitespace-normal text-[25px]">
+
+    <div className="m-2  flex-col bg-light-1 dark:bg-light-2 hover:bg-light-2   p-4 rounded-3xl shadow-md w-[310px] h-[full] flex justify-center dark:hover:bg-light-1 items-center">
+      <h2 className=" font-nunito font-bold dark:text-black whitespace-normal text-[25px]">
         {offer?.title}
+
       </h2>
-      <p className="font-vilaka whitespace-normal text-center font-bold text-[25px]">
+      <p className="font-nunito font-bold  w-[250px] h-[40px] truncate dark:text-black text-center text-[16px] mb-4">
         {offer.description}
       </p>
+      
       <div>
         {offer?.category?.map((c) => (
           <h2>{c}</h2>
         ))}
       </div>
+      <div className="text-center justify-center flex">
+        <img className="h-[280px] w-[400px] object-cover object-center rounded-full  md:h-[290px] md:w-[380px] sm:h-[290px] sm:w-[400px] "  src={offer?.company?.profilePicture ? offer?.company?.profilePicture: offer?.admin?.profilePicture} alt="" />
+      </div>
+      <div>
       <Link
-        className="border-2 rounded-lg font-topmodern bg-light-1 hover:text-white w-[100px] self-center p-1"
         to={`/home-offers/${offer?.title}`}
-      >
+      ><button className=" mt-3 rounded-3xl font-nunito   font-bold  bg-zinc-300 px-3 dark:font-light dark:text-white p-1 hover:scale-105 dark:bg-zinc-800 ">
         Ver oferta
-      </Link>
+      </button></Link>
+      </div>
+
     </div>
   );
 }

@@ -3,39 +3,48 @@ import { Link } from "react-router-dom";
 import { FaFacebook } from "react-icons/fa";
 import { BsInstagram } from "react-icons/bs";
 
-const SuccessCard = (props) => {
+const SuccessCard = ({
+  image,
+  history,
+  name,
+  webpage,
+  instagram,
+  facebook,
+}) => {
   return (
-    <main className=" md:flex md:flex-row items-center p-2 flex flex-col justify-center gap-11 ">
+    <main className=" md:flex md:flex-row items-center text-center p-2 flex flex-col justify-center gap-11 ">
       <div>
         <img
-          className="w-[700px] h-[500px] rounded "
-          src="https://images.unsplash.com/photo-1609220136736-443140cffec6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+          src={image}
+          alt=""
+          className="max-w-[500px] max-h-[500px] border-2 border-light-2 rounded-full max-lg:w-[370px] max-lg:h-[370px]"
         ></img>
       </div>
       <div className="w-[300px] ">
-        <h1 className="font-vilaka text-center text-[50px] font-bold">
-          Alejandro
+        <h1 className="font-vilaka text-center text-[50px] font-bold dark:text-black">
+          {name}
         </h1>
-        <h1 className="font-topmodern text-[20px]">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nobis veniam
-          eveniet, dolores, perferendis adipisci eligendi fuga corporis
-          perspiciatis assumenda nesciunt, quam quaerat autem error quis commodi
-          molestiae provident laborum excepturi.
-        </h1>
-        <Link>
-          <span className=" hover:text-white flex">
-            <AiOutlineLink size={20} />
-            <h2>Pagina Web </h2>: www.google.com
-          </span>
-          <br />
-        </Link>
-        <div className="flex gap-5 justify-center">
-          <Link>
-            <FaFacebook size={30} />
+        <h1 className="font-topmodern text-[20px] dark:text-black">{history}</h1>
+        {webpage ? (
+          <Link target="_blank" to={webpage}>
+            <span className=" hover:text-white flex dark:text-black">
+              <AiOutlineLink size={20} className="dark:text-black"/>
+              <h2 className="dark:text-black">Pagina Web </h2>: {webpage}
+            </span>
+            <br />
           </Link>
-          <Link>
-            <BsInstagram size={30} />
-          </Link>
+        ) : null}
+        <div className="flex gap-5 justify-center dark:text-black">
+          {facebook ? (
+            <Link target="_blank" to={facebook}>
+              <FaFacebook size={30} />
+            </Link>
+          ) : null}
+          {instagram ? (
+            <Link target="_blank" to={instagram}>
+              <BsInstagram size={30} />
+            </Link>
+          ) : null}
         </div>
       </div>
     </main>

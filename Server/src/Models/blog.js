@@ -17,17 +17,25 @@ module.exports = (sequelize) => {
             allowNull: false,
         },
         image: {
-            type: DataTypes.STRING, 
+            type: DataTypes.TEXT, 
             allowNull: false,
         },
         template: {
             type: DataTypes.TEXT,
             defaultValue: null,
-            allowNull: false
+            allowNull: true
         },
         date:{
             type: DataTypes.STRING,
             allowNull: false
+        },
+        type:{
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        urlData:{
+            type: DataTypes.STRING,
+            allowNull: true
         }
-    });
+    },{timestamps: false});
 };

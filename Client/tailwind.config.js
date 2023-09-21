@@ -10,11 +10,14 @@ export default {
         vilaka: ["Vilaka", "Serif"],
         topmodern: ["TopModern"],
         montserrat: ["Montserrat"],
-        nunito: ["Nunito"]
+        nunito: ["Nunito"],
         poppins: ["Poppins"],
       },
       backgroundColor: {
         "light-1": "#a7b698",
+      },
+      screens:{
+       'sm' : '200px'
       },
       colors: {
         "light-0": "#f2f2f2",

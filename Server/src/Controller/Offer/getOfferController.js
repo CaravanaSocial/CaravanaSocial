@@ -1,4 +1,4 @@
-const { offer, areaTraining, companies } = require("../../db");
+const { offer, areaTraining, companies, admin} = require("../../db");
 const { Op } = require("sequelize");
 
 const getOfferController = async (info) => {
@@ -6,10 +6,18 @@ const getOfferController = async (info) => {
 
   var filterOptions = [];
 
-  if(companyName){
-    filterOptions.push({model:companies, where:{nameCompany:{[Op.iLike]: `%${companyName}%`}}})
-  }else{
-    filterOptions.push({model:companies})
+  if (companyName) {
+    filterOptions.push({
+      model: companies,
+      where: { nameCompany: { [Op.iLike]: `%${companyName}%` } },
+    });
+    filterOptions.push({
+      model: admin,
+      where: { nameCompany: { [Op.iLike]: `%${companyName}%` } },
+    })
+  } else {
+    filterOptions.push({ model: companies })
+    filterOptions.push({ model: admin })
   }
 
   if (country) {
@@ -17,6 +25,10 @@ const getOfferController = async (info) => {
       model: companies,
       where: { "location.country": country },
     });
+    filterOptions.push({
+      model: admin,
+      where: { "location.country": country },
+    })
   }
 
   if (category) {

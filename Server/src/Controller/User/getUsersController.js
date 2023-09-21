@@ -22,7 +22,7 @@ const getUsersController = async (value) =>{
                     ]
                 })
                 return usersDeleted
-     }else if(value === "online"){
+     }else if(value!=="deleted"){
         const users = await user.findAll({
             include: [
                 {
@@ -42,7 +42,7 @@ const getUsersController = async (value) =>{
             }
         return users;
      }
-    }throw Error("There is no users")
+    }return []
     
 }
 

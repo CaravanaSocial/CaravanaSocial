@@ -1,10 +1,22 @@
 const {companies} = require("../../db")
 const {areaTraining, training, offer} = require("../../db")
+const bcrypt = require("bcryptjs");
 
 
 const updateCompanyController = async (props, id) =>{
-    const {category} = props
-    const updated = await companies.update(props,{
+    const {password, category} = props
+    const saltRounds = 10;
+    const foundCompany = await companies.findByPk(id)
+    const oldPassword = foundCompany.dataValues.password;
+    if(password){
+        const validPassword = await bcrypt.compare(password, oldPassword)
+        if(validPassword){
+            throw Error("La contraseña es igual a la anterior");
+        }
+    }
+    const hashedPassword = props?.password ? await bcrypt.hash(props.password, saltRounds) : null
+    const updated = await companies.update(
+        password ? {...props,password : hashedPassword}: props,{
         where : {id}
     })
     //Eliminar y volver a relacionar con el rubro.
