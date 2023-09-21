@@ -16,6 +16,9 @@ export default {
       backgroundColor: {
         "light-1": "#a7b698",
       },
+      screens:{
+       'sm' : '200px'
+      },
       colors: {
         "light-0": "#f2f2f2",
         "light-1": "#a7b698",

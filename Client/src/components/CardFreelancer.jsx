@@ -13,20 +13,20 @@ export default function CardFreelancer(props) {
   };
 
   return (
-    <div className="flex-col  bg-light-1 hover:bg-light-2 dark:hover:bg-light-1 dark:bg-light-2  p-4 rounded-3xl shadow-md  w-[230px] h-[400px] sm:h-full sm:w-[400px] flex justify-center">
+    <div className="flex-col  bg-light-1 hover:bg-light-2 dark:hover:bg-light-1 dark:bg-light-2 p-4 rounded-3xl shadow-md  w-[230px] h-[400px] flex justify-center sm:h-full items-center sm:w-[300px]  md:w-[300px] md:h-full ">
       <img
-        className="h-[380px] w-[450px] object-cover object-center rounded-full "
+        className="h-[380px] w-[450px] object-cover object-center rounded-full  md:h-[280px] md:w-[300px] sm:h-[280px] sm:w-[400px] "
         src={props.freelancer.profilePicture}
       />
       <section>
-        <h1 className="font-nunito font-bold dark:text-black text-[25px] sm:text-[30px]">
+        <h1 className="font-nunito font-bold dark:text-black text-[25px] sm:text-[30px] max-lg:text-[20px]">
           {props.freelancer.name}
         </h1>
 
-        <h3 className="font-nunito dark:text-black">
+        <h3 className="font-nunito dark:text-black max-lg:text-[18px]">
           {props.freelancer.location.country}
         </h3>
-        <h4 className="font-nunito dark:text-black  whitespace-normal text-center  font-bold text-[20px]">
+        <h4 className="font-nunito dark:text-black  h-[40px] w-[250px] truncate text-center max-lg:text-[16px] font-bold text-[20px]">
           {props.freelancer.description}
         </h4>
         <button

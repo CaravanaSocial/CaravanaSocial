@@ -25,7 +25,7 @@ const Slider = ({ children }) => {
       />
       <div
         ref={sliderRef}
-        className="  pl-2 2xl:w-[1280px] xl:w-[850px] lg:w-[850px] sm:w-[430px] w-[250px] grid h-[440px] sm:h-[620px] overflow-x-scroll scroll-smooth whitespace-nowrap scrollbar scrollbar-hide"
+        className="  pl-2 2xl:w-[1280px] xl:w-[850px] lg:w-[850px] sm:w-[430px] sm:h-[500px] w-[250px] grid h-[440px]  overflow-x-scroll scroll-smooth whitespace-nowrap scrollbar scrollbar-hide"
       >
         <div className=" flex space-x-8">{children}</div>
       </div>

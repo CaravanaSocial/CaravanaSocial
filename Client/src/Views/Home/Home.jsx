@@ -68,8 +68,8 @@ const Home = () => {
     >
      
       <div className=" md:flex md:flex-col md:items-center w-full ">
-        <div >
-        <section className=" flex flex-col items-center">
+        <div>
+        <section className=" flex flex-col items-center ">
           <h1 className="font-vilaka font-bold tracking-widest text-[50px]"
           onClick={() => speakText("Freelancers")}
           onMouseLeave={() => {cancelVoice;}}>Freelancers </h1>
