@@ -48,9 +48,9 @@ function App() {
   }, [location]);
 
   return (
-    <div className="flex flex-col h-screen">
+    <div className="flex  w-full flex-col h-full">
       <NavBar />
-      <div className="flex-grow flex-col">
+      <div className="flex-grow  flex-col">
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<Login />} />
