@@ -81,11 +81,11 @@ export default function VideosTrainings() {
             />
 
             <button
-              className="align-middle bg-gray-300 dark:bg-gray-800 mx-2 px-2 pb-1 mb-1 dark:text-gray-300 rounded-3xl border-2 border-transparent hover:border-lime-600 dark:hover:border-lime-700"
+              className="align-middle bg-green-500 dark:bg-green-800 mx-2 px-2 pb-1 mb-1 dark:text-white rounded-3xl border-2 border-transparent hover:bg-green-800 dark:hover:bg-green-500"
               type="submit"
               onClick={handleSubmitVideo}
             >
-              +
+              Agregar
             </button>
             <br />
             {error.video && <span className="text-red-600">{error.video}</span>}

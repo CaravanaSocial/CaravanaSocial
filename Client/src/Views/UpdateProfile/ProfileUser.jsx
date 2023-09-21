@@ -221,7 +221,7 @@ export default function ProfileUser() {
           <div className="block text-center p-4   bg-light-1 dark:bg-light-2">
             <img
               key={key}
-              className="inline-block w-72 rounded-full border-2 border-light-1 dark:border-light-1 mb-2"
+              className="inline-block w-72 object-cover object-center rounded-full border-2 border-light-1 dark:border-light-1 mb-2"
               src={profilePicture}
             />
             <h2 className="font-vilaka font-bold text-[30px] max-lg:text-[50px] dark:font-light"

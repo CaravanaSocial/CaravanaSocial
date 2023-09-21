@@ -42,12 +42,12 @@ const CompanyDetail = () => {
             {" "}
             <img
               src={detail?.profilePicture}
-              className="w-[300px] mt-2 mx-2 px-2 max-lg:m-auto rounded-full"
+              className="h-[350px] w-[400px] object-cover object-center rounded-full  md:h-[280px] md:w-[300px] sm:h-[280px] sm:w-[400px] "
             />
             <h1 className="font-vilaka max-lg:text-center font-bold text-[60px]">
               {detail?.nameCompany}
             </h1>
-            <p className="font-nunito font-semibold text-[25px] dark:font-medium">
+            <p className="font-nunito font-semibold text-center text-[25px] dark:font-medium">
               {detail?.description}
             </p>
             <p className="font-nunito p-5 font-bold dark:text-black  text-center bg-light-2 text-[17px]  dark:bg-light-1 rounded-3xl">

@@ -166,6 +166,10 @@ const PasswordRecovery = () => {
     }
 
   };
+
+  const goBack=()=>{
+    navigate(-1)
+  }
   const speakText = (text) => {
     if (speech === true && synth) {
       const utterance = new SpeechSynthesisUtterance(text);
@@ -230,8 +234,9 @@ const PasswordRecovery = () => {
             {globalErrors?.EMAIL_VERIFICATION}
           </p>
 
+          <button className="bg-gray-300 font-nunito font-bold rounded-3xl p-2 mb-2 border-2 border-transparent dark:text-zinc-900 hover:text-light-2 hover:scale-95 mx-2" onClick={goBack}>Cancelar</button>
           <button
-            className="bg-light-1 font-nunito font-bold rounded-3xl p-2 mb-2 border-2 border-transparent dark:text-zinc-900 hover:text-white hover:scale-95"
+            className="bg-light-1 font-nunito font-bold rounded-3xl p-2 mb-2 border-2 border-transparent dark:text-zinc-900 hover:text-white hover:scale-95 dark:hover:text-white mx-2"
             onClick={() => handleSubmit()}
             ref={loginButton}
           >
@@ -252,7 +257,7 @@ const PasswordRecovery = () => {
                 placeholder="Codigo..."
                 onKeyDown={handleKeyPressSubmit}
               />
-              <p style={{ visibility: errors.code ? "visible" : "hidden" }}>
+              <p  className="text-red-600" style={{ visibility: errors.code ? "visible" : "hidden" }}>
                 {errors.code}
               </p>
 
@@ -268,7 +273,7 @@ const PasswordRecovery = () => {
                 placeholder="Nueva contraseña..."
                 onKeyDown={handleKeyPressSubmit}
               />
-              <p
+              <p  className="text-red-600"
                 style={{ visibility: errors.password1 ? "visible" : "hidden" }}
               >
                 {errors.password1}
@@ -286,12 +291,12 @@ const PasswordRecovery = () => {
                 placeholder="Repite tu contraseña..."
                 onKeyDown={handleKeyPressSubmit}
               />
-              <p
+              <p  className="text-red-600"
                 style={{ visibility: errors.password2 ? "visible" : "hidden" }}
               >
                 {errors.password2}
               </p>
-
+              
               <button
                 className="bg-light-1 font-nunito font-bold rounded-3xl p-2 mb-2 border-2 border-transparent dark:text-zinc-900 hover:text-white hover:scale-95"
                 style={
@@ -308,7 +313,7 @@ const PasswordRecovery = () => {
             </div>
           ) : null}
 
-          <p
+          <p  className="text-red-600"
             style={{
               visibility: globalErrors?.PASSWORD_RECOVERY?.error
                 ? "visible"

@@ -47,6 +47,9 @@ const PasswordChange = () => {
       });
     }
   };
+  const goBack =()=>{
+    navigate(-1)
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -82,12 +85,14 @@ const PasswordChange = () => {
             placeholder="Nueva..."
           />
           {passwordValidation.error && (
-            <p style={{ color: "red" }}>{passwordValidation.error}</p>
+            <p  className="text-red-600">{passwordValidation.error}</p>
           )}
           <br />
-          <button className="bg-light-1 font-nunito font-bold rounded-3xl p-2 mb-2 border-2 border-transparent dark:text-zinc-900 hover:text-white hover:scale-95"
+          <button className="bg-gray-300 font-nunito font-bold rounded-3xl p-2 mb-2 border-2 border-transparent dark:text-zinc-900 hover:text-light-2 hover:scale-95 mx-2" onClick={goBack}>Cancelar</button>
+          <button className="mx-2 cursor-pointer bg-light-1 font-nunito font-bold rounded-3xl p-2 mb-2 border-2 border-transparent dark:text-zinc-900 hover:text-white hover:scale-95 dark:hover:text-white"
             disabled={!passwordValidation.valid}
           >Enviar</button>
+          
         </form>
       </div>
       

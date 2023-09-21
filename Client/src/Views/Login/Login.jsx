@@ -88,7 +88,7 @@ export default function Login() {
             onClick={() => speakText("Caravana Social")}
             onMouseLeave={() => {cancelVoice;}}
             name="title"
-            className="text-4xl font-vilaka font-bold text-[50px] text-center  border-b-2 border-light-1 dark:border-light-1 rounded-sm dark:text-gray-300"
+            className="text-4xl tracking-widest font-vilaka font-bold text-[50px] text-center  border-b-2 border-light-1 dark:border-light-1 rounded-sm dark:text-gray-300"
           >
             Caravana Social
           </h1>
