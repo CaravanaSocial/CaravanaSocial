@@ -144,9 +144,12 @@ export default function PresetBlog() {
   };
 
   const handleSubmit = () => {
-    dispatch(actions.postBlog({ template, image, title, author, date, selection, urlData}));
-    Swal.fire("Buen trabajo!", "Has creado con exito el Post!", "success");
-    navigate("/blogs");
+    dispatch(actions.postBlog({ template, image, title, author, date, selection, urlData})).then(()=>{
+      dispatch(actions.getAllBlogs())
+      Swal.fire("Buen trabajo!", "Has creado con exito el Post!", "success");
+      navigate("/blogs");
+    });
+    
   };
 
   const handleMenu = () => {

@@ -17,15 +17,14 @@ export default function BlogCard(props) {
       dispatch(actions.getAllBlogs())
     })
   }
-
   return (
-    <div>
+    <div className="hover:shadow-lg hover:scale-105 transition-transform duration-300 ease-in-out">
       <div className="relative">
 
         {/* Codigo de produccion*/}
 
         {localStorage.type==="admin" || localStorage.type==="superAdmin"
-        ?<button onClick={deleteHandler} className="absolute top-0 right-0 p-2 text-red-600 bg-white rounded-full hover:bg-red-100 hover:text-red-800 transition duration-300 ease-in-out z-5">
+        ?<button onClick={deleteHandler} className="absolute top-0 right-0 p-2 text-red-600 bg-white rounded-full hover:bg-red-100 hover:text-red-800 transition duration-300 ease-in-out z-8">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6"
@@ -46,11 +45,11 @@ export default function BlogCard(props) {
 
         <div
           onClick={clickHandler}
-          className="bg-white rounded-lg p-4 shadow-md text-center hover:bg-gray-200 hover:shadow-lg hover:scale-105 transition-transform duration-300 ease-in-out"
+          className="bg-white rounded-lg p-4 shadow-md text-center"
           style={{ width: "400px" }}
         >
           <img
-            src={post.image}
+            src={post.image!=='image'?post.image:'https://static.vecteezy.com/system/resources/previews/004/141/669/non_2x/no-photo-or-blank-image-icon-loading-images-or-missing-image-mark-image-not-available-or-image-coming-soon-sign-simple-nature-silhouette-in-frame-isolated-illustration-vector.jpg'}
             alt="Blog image"
             className="w-full h-48 object-cover rounded-t-lg"
           />
