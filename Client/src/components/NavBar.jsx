@@ -131,7 +131,7 @@ export default function NavBar() {
   );
 
   return (
-    <div className="flex items-center justify-between bg-white md:w-full w-[740px] dark:bg-zinc-900 border-b-[1px] border-b-gray-300 dark:border-b-gray-700 p-2">
+    <div className="flex items-center justify-between bg-white md:w-full w-full dark:bg-zinc-900 border-b-[1px] border-b-gray-300 dark:border-b-gray-700 p-2">
       <Link to="/">
         <img className="w-[60px] h-[60px]" src={logo}></img>
       </Link>
