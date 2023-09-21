@@ -34,6 +34,8 @@ import TerminosYCondiciones from "./Views/Terms/TerminosYCondiciones.jsx";
 import Verification from "./Views/Verification/Verification.jsx";
 import PasswordRecovery from "./Views/PasswordRecovery/PasswordRecovery.jsx";
 import NotFound from "./components/NotFound.jsx";
+import AcercaDeNosotros from "./Views/About/AboutUs.jsx";
+import Index from "./Views/Developers/Developers.jsx";
 
 function App() {
   const account =
@@ -67,7 +69,7 @@ function App() {
           <Route path="/blog-create" element={<PresetBlog />} />
           <Route path="/blogs" element={<BlogHub />} />
           <Route path="/blog/:id" element={<BlogDetail />} />
-          <Route path='/terms' element={<TerminosYCondiciones/>}/>
+          <Route path="/terms" element={<TerminosYCondiciones />} />
 
           <Route
             path={
@@ -85,16 +87,16 @@ function App() {
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/faq" element={<Faq />} />
 
-
-          <Route path="/verification/:id" element={<Verification/>}/>
-          <Route path="/password-recovery" element={<PasswordRecovery/>}/>
-          <Route path=":name/changePassUser/:id" element={<PasswordChange/>}/>
+          <Route path="/verification/:id" element={<Verification />} />
+          <Route path="/password-recovery" element={<PasswordRecovery />} />
+          <Route path=":name/changePassUser/:id" element={<PasswordChange />} />
 
           <Route path="/verification/:id/:code" element={<Verification />} />
           <Route path="/password-recovery" element={<PasswordRecovery />} />
 
           <Route path="/*" element={<NotFound />} />
-
+          <Route path="/about" element={<AcercaDeNosotros />} />
+          <Route path="/developers" element={<Index />} />
         </Routes>
         <Footer />
       </div>

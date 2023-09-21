@@ -75,11 +75,11 @@ export default function NavBar() {
 
   const handleSubmit = () => {
     if (location.pathname === "/home-freelancers") {
-        dispatch(searchFreelancersByName(input));
+      dispatch(searchFreelancersByName(input));
     }
 
     if (location.pathname === "/home-trainings") {
-      console.log(input)
+      console.log(input);
       if (input === "") {
         dispatch(getTrainings());
       } else {
@@ -123,9 +123,11 @@ export default function NavBar() {
     location.pathname === "/profile-company" ||
     location.pathname === "/faq" ||
     location.pathname === "/blogs" ||
-    location.pathname === '/blog-create' ||
-    location.pathname === '/terms' ||
-    location.pathname.startsWith("/blogs/")
+    location.pathname === "/blog-create" ||
+    location.pathname === "/terms" ||
+    location.pathname.startsWith("/blogs/") ||
+    location.pathname === "/about" ||
+    location.pathname === "/developers"
   );
 
   return (
@@ -281,7 +283,9 @@ export default function NavBar() {
                     className="text-center block rounded-lg px-4 py-2 text-sm text-gray-500 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 hover:text-gray-700 dark:hover:text-gray-400"
                     to="/blog-create"
                     role="menuitem"
-                  >Panel de Blog</Link>
+                  >
+                    Panel de Blog
+                  </Link>
                 </>
               ) : localStorage.type === "superAdmin" ? (
                 <>
