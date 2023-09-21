@@ -1,11 +1,11 @@
 const { Op } = require("sequelize");
-const { training, companies, areaTraining } = require("../../db");
+const { training, companies, areaTraining, admin } = require("../../db");
 // const { getAll } = require("../Trainings/getAll");
 
 const filterTrain = async (info) => {
   const { country, category } = info;
 
-  const filterOptions = [];
+  const filterOptions = [{ model: companies }, { model: admin }];
 
   try {
     if (country) {
@@ -15,21 +15,15 @@ const filterTrain = async (info) => {
       });
     }
 
-    
-
     if (category) {
       filterOptions.push({ model: areaTraining, where: { name: category } });
     } else {
       filterOptions.push({ model: areaTraining });
     }
 
-
-
     const offerFiltered = await training.findAll({
-      
       include: filterOptions,
     });
-
 
     if (offerFiltered) {
       return offerFiltered;
@@ -39,7 +33,6 @@ const filterTrain = async (info) => {
   } catch (error) {}
 };
 
-module.exports ={
-  filterTrain
-}
-
+module.exports = {
+  filterTrain,
+};
