@@ -2,7 +2,7 @@ import React from "react";
 
 function AcercaDeNosotros() {
   return (
-    <div className="h-screen px-6 flex justify-center align-middle flex-col">
+    <div className="h-full px-6 flex justify-center flex-col">
       <h2 className="text-2xl font-bold mb-4 flex justify-center">
         Sobre Nosotros
       </h2>
@@ -42,6 +42,9 @@ function AcercaDeNosotros() {
         ustedes genios. A Daniela Aza que quita las inexistentes “capacidades
         diferentes” de las personas con discapacidad para empoderarlas y
         educarnos con paciencia y Alegría. Gracias a todos.
+      </p>
+      <p className="text-gray-700 dark:text-gray-300 mt-4">
+      Este sitio fue hecho con amor y Alegría teniendo en cuenta la mayor cantidad de accesibilidades posibles, si crees que podemos hacerlo mejor, por favor contáctanos.
       </p>
       <p className="text-gray-700 dark:text-gray-300 mt-4">
         Súbanse a la caravana que necesitamos manos.
