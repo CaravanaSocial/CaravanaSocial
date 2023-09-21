@@ -18,7 +18,7 @@ export default function BlogDetail(){
     },[])
 
     return (
-        <div className="min-h-screen max-w-screen pt-10 mb-5">
+        <div className="min-h-full max-w-full pt-10 mb-5">
         {selector?.type === "editor"?(
             <div>
                 <div className="flex justify-center mb-5">
