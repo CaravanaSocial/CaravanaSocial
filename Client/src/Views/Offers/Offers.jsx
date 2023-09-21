@@ -25,14 +25,16 @@ export default function Offer() {
     category: "",
   });
 
-  console.log("ESTADO GLOBAL", offers);
 
   useEffect(() => {
-    dispatch(getOffers());
     dispatch(getCountry());
     dispatch(getCompanies());
     dispatch(getCategories());
-  }, [dispatch]);
+  }, []);
+
+  useEffect(()=> {
+    dispatch(getOffers());
+  },[])
 
   useEffect(() => {
     dispatch(filterOffer(filter));
