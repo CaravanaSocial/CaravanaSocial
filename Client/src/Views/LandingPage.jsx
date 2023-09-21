@@ -73,7 +73,7 @@ const LandingPage = () => {
         </h1>
         <iframe
           src="https://www.youtube.com/embed/Ysl6IijwSq0"
-          className="h-[500px] rounded  w-[1000px] object-cover m-auto"
+          className="h-[250px] lg:h-[500px] rounded lg:w-[1000px] md:w-[700px] md:h-[300px] m-auto w-[400px]     "
         ></iframe>
       </section>
 
