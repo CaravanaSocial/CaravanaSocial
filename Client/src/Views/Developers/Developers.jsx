@@ -2,7 +2,7 @@ import micaela from "../../assets/images/micaela.jpg";
 import cesar from "../../assets/images/cesar.jpg";
 import enzo from "../../assets/images/enzo.jpg";
 import jeferson from "../../assets/images/jeferson.jpg";
-import andrei from "../../assets/images/andrei.jpg";
+import andrei from "../../assets/images/Andrei.jpeg";
 import ken from "../../assets/images/ken.jpg";
 import juan from "../../assets/images/juan.jpg";
 import alejandro from "../../assets/images/alejandro.jpg";
