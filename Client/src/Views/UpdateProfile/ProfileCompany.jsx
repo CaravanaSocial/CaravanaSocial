@@ -573,7 +573,7 @@ const ProfileCompany = () => {
               </div>
             </div>
 
-            <div className="my-9 mr-4 border-2 rounded-3xl border-light-2 dark:border-light-1 dark:max-lg:border-none  max-lg:border-none">
+            <div className="my-9 mr-4 border-2 rounded-2xl border-light-2 dark:border-light-1 dark:max-lg:border-none  max-lg:border-none">
               <div className="flex justify-between m-2">
                 <h1 className="text-3xl font-nunito font-bold px-2 dark:text-gray-300"
                 onClick={() => speakText("Mis ofertas de trabajo")}
@@ -602,7 +602,7 @@ const ProfileCompany = () => {
                             <h2 className="text-l font-nunito font-bold text-light-2 dark:text-light-1">
                               Descripcion:
                             </h2>
-                            <h3 className="text-xl font-nunito font-bold">
+                            <h3 className="text-xl font-nunito h-[40px] truncate font-bold">
                               {o.description}
                             </h3>
                             <NavLink to={`/home-offers/${o.title}`}>

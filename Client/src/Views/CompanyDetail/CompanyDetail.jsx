@@ -55,14 +55,18 @@ const CompanyDetail = () => {
           <button onClick={goBack}className="pb-3 pt-1 m-0 self-start" ><AiOutlineArrowLeft className="bg-light-2 dark:bg-light-1 rounded-full p-1"size={30}/></button>
             {" "}
             <img
+              className="h-[350px] w-[400px] object-cover object-center rounded-full  md:h-[280px] md:w-[300px] sm:h-[280px] sm:w-[400px] "
               src={companyDetail?.profilePicture ? companyDetail?.profilePicture : logo}
-              className="w-[300px] mt-2 mx-2 px-2 max-lg:m-auto rounded-full"
+            
             />
             <h1 className="font-vilaka max-lg:text-center font-bold text-[60px]">
               {companyDetail?.nameCompany ?companyDetail?.nameCompany :caravana?.title}
             </h1>
-            <p className="font-nunito font-semibold text-[25px] dark:font-medium">
+
+            <p className="font-nunito font-semibold text-center text-[25px] dark:font-medium">
+              
               {companyDetail?.description ?  companyDetail?.description : caravana?.description}
+
             </p>
             {
               companyDetail?.areaTrainings ? <p className="font-nunito p-5 font-bold dark:text-black  text-center bg-light-2 text-[17px]  dark:bg-light-1 rounded-3xl">
