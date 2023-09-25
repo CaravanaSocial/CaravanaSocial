@@ -93,9 +93,9 @@ export const CHANGE_PASSWORD = "CHANGE_PASSWORD";
 export const DELETE_COMMENT = "DELETE_COMMENT";
 
 // const serverURL = "https://caravanaserver.onrender.com";
-const serverURL = "http://localhost:3001";
+/* const serverURL = "http://localhost:3001"; */
 
-/* const serverURL = "https://caravanaserver-qkv5.onrender.com"; */
+const serverURL = "https://caravanaserver-qkv5.onrender.com";
 
 export const createUser = (user) => {
   //---------- Endpoint to Dev server -- Descomentar para usar
