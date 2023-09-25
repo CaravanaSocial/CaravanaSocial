@@ -25,8 +25,6 @@ const Trainings = () => {
     category: "",
   });
 
-  console.log("ASDASDASDASDAS", trainingsFiltered);
-
   useEffect(() => {
     if (trainingsFiltered?.length) {
       return;

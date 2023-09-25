@@ -26,8 +26,6 @@ const CreateSuccesCase = () => {
     form.image = localStorage.caseImage;
   }, [bandera]);
 
-  console.log(form);
-
   const handleChange = (event) => {
     setForm({ ...form, [event.target.name]: event.target.value });
     setBandera(!bandera);

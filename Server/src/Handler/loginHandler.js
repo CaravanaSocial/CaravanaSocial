@@ -12,7 +12,7 @@ const loginHandler = async (req, res) =>{
             //-----------------------------------------------------------------
             const adminAcc = await getAdminAccController(email.toLowerCase())
             if(adminAcc){
-                let accTokenType = await loginGoogleController(adminAcc)
+                let accTokenType = adminAcc.superAdmin===true ? await loginGoogleController(adminAcc, "superAdmin") : await loginGoogleController(adminAcc,"admin")
                 if(accTokenType.acc.activate!==false){
                     if(accTokenType.acc.superAdmin===true){
                         return res.status(200).json({...accTokenType, type:"superAdmin"})    
@@ -23,7 +23,7 @@ const loginHandler = async (req, res) =>{
             //-----------------------------------------------------------------
             const companyAcc = await getCompanyAccController(email.toLowerCase())
             if(companyAcc){
-                let accTokenType = await loginGoogleController(companyAcc)
+                let accTokenType = await loginGoogleController(companyAcc, "company")
                 if(accTokenType.acc.activate!==false){
                     return res.status(200).json({...accTokenType, type:"company"})
                 }return res.status(400).json({error: "Usuario bloqueado"})
@@ -31,7 +31,7 @@ const loginHandler = async (req, res) =>{
             //-----------------------------------------------------------------
             const userAcc = await getUserAccController(email.toLowerCase())
             if(userAcc){
-                let accTokenType = await loginGoogleController(userAcc)
+                let accTokenType = await loginGoogleController(userAcc, "user")
                 if(accTokenType.acc.activate!==false){
                     return res.status(200).json({...accTokenType, type:"user"})
                 }return res.status(400).json({error: "Usuario bloqueado"})
@@ -41,7 +41,7 @@ const loginHandler = async (req, res) =>{
 
         const adminAcc = await getAdminAccController(email.toLowerCase())
         if(adminAcc){
-            let accTokenType = await loginController(adminAcc, password)
+            let accTokenType = await loginController(adminAcc, password, "admin")
             if(accTokenType.acc.activate!==false){
                 if(accTokenType.acc.superAdmin===true){
                     return res.status(200).json({...accTokenType, type:"superAdmin"})    
@@ -51,14 +51,14 @@ const loginHandler = async (req, res) =>{
         }
         const companyAcc = await getCompanyAccController(email.toLowerCase())
         if(companyAcc){
-            let accTokenType = await loginController(companyAcc, password)
+            let accTokenType = await loginController(companyAcc, password, "company")
             if(accTokenType.acc.activate!==false){
                 return res.status(200).json({...accTokenType, type:"company"})
             }return res.status(400).json({error: "Usuario bloqueado"})
         }
         const userAcc = await getUserAccController(email.toLowerCase())
         if(userAcc){
-            let accTokenType = await loginController(userAcc, password)
+            let accTokenType = await loginController(userAcc, password, "user")
             if(accTokenType.acc.activate!==false){
                 return res.status(200).json({...accTokenType, type:"user"})
             }return res.status(400).json({error: "Usuario bloqueado"})

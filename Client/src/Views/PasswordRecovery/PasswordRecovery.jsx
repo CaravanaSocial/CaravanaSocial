@@ -114,7 +114,6 @@ const PasswordRecovery = () => {
     return errors;
   };
   const changePasswordHandle = () => {
-    console.log("GOBAL ERROR"+globalErrors);
     if (Number(randomCode) === Number(inputs.code)) {
       if (acc.type === "company") {
         dispatch(
