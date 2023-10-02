@@ -36,15 +36,20 @@ import PasswordRecovery from "./Views/PasswordRecovery/PasswordRecovery.jsx";
 import NotFound from "./components/NotFound.jsx";
 import AcercaDeNosotros from "./Views/About/AboutUs.jsx";
 import Index from "./Views/Developers/Developers.jsx";
+import jwtDecode from 'jwt-decode';
+
 
 function App() {
   const account =
     localStorage.length !== 0 ? JSON.parse(localStorage.account) : "notFound";
-
   const location = useLocation();
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    const decodedToken = localStorage?.authorization ? jwtDecode(localStorage.authorization) : localStorage.clear()
+    if(localStorage?.type && (localStorage.type !== decodedToken.type)){
+      localStorage.setItem("type",decodedToken.type)
+    }
   }, [location]);
 
   return (

@@ -52,7 +52,6 @@ export default function UploadImage() {
           localStorage.setItem("profilePicture", res.data);
           dispatch(imageChange());
         } else if (localStorage.type === "superAdmin") {
-          console.log(res.data);
           localStorage.setItem("caseImage", res.data);
         }
         setUploadSuccess(true);

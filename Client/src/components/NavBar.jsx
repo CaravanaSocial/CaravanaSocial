@@ -79,7 +79,6 @@ export default function NavBar() {
     }
 
     if (location.pathname === "/home-trainings") {
-      console.log(input);
       if (input === "") {
         dispatch(getTrainings());
       } else {

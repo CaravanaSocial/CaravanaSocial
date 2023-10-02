@@ -93,7 +93,7 @@ export const CHANGE_PASSWORD = "CHANGE_PASSWORD";
 export const DELETE_COMMENT = "DELETE_COMMENT";
 
 // const serverURL = "https://caravanaserver.onrender.com";
-// const serverURL = "http://localhost:3001";
+/* const serverURL = "http://localhost:3001"; */
 
 const serverURL = "https://caravanaserver-qkv5.onrender.com";
 
@@ -227,7 +227,6 @@ export const getFilterFreelancers = (info) => {
         `${endpoint}/?country=${country}&category=${category}`
       );
       const { data } = response;
-      console.log(data);
 
       return dispatch({ type: GET_FILTER_FREELANCERS, payload: data });
     } catch (error) {
@@ -570,7 +569,6 @@ export const deleteOffer = (id) => {
 };
 
 export const getOfferByName = (name) => {
-  console.log(name);
   const endpoint = `${serverURL}/offers/by?name=${name}`;
 
   return async (dispatch) => {
@@ -855,7 +853,7 @@ export const getCategories = () => {
         payload: response,
       });
     } catch (error) {
-      console.log("cat", error.message);
+      console.log("getCategories", error.message);
     }
   };
 };
@@ -1016,7 +1014,7 @@ export const getUserById = (id) => {
         payload: response,
       });
     } catch (error) {
-      console.log("cat", error.message);
+      console.log("getUserById", error.message);
     }
   };
 };
@@ -1040,7 +1038,7 @@ export const adduser = (idObject) => {
         payload: response,
       });
     } catch (error) {
-      console.log("cat", error.message);
+      console.log("adduser", error.message);
     }
   };
 };
@@ -1056,7 +1054,7 @@ export const getTrainingsUser = (id) => {
         payload: response,
       });
     } catch (error) {
-      console.log("cat", error.message);
+      console.log("getTrainingsUser", error.message);
     }
   };
 };
@@ -1075,7 +1073,7 @@ export const createQAndA = (input) => {
       const response = (await axios.post(`${serverURL}/question/create`, input))
         .data;
     } catch (error) {
-      console.log("cat", error.message);
+      console.log("createQAndA", error.message);
     }
   };
 };
@@ -1089,7 +1087,7 @@ export const getQAndAs = () => {
         payload: response,
       });
     } catch (error) {
-      console.log("cat", error.message);
+      console.log("getQAndAs", error.message);
     }
   };
 };
@@ -1101,7 +1099,7 @@ export const updateQAndA = (id, input) => {
         await axios.patch(`${serverURL}/question/update/${id}`, input)
       ).data;
     } catch (error) {
-      console.log("cat", error.message);
+      console.log("updateQAndA", error.message);
     }
   };
 };
@@ -1113,7 +1111,7 @@ export const deleteQAndA = (id) => {
         await axios.delete(`${serverURL}/question/delete/${id}`)
       ).data;
     } catch (error) {
-      console.log("cat", error.message);
+      console.log("deleteQAndA", error.message);
     }
   };
 };
@@ -1272,9 +1270,7 @@ export const changePassword = (id, passwordChange, typeOfCount) => {
         });
       }
     } catch (error) {
-      console.log("catch" + error.response.data.error);
       if (error === error.response.data.error) {
-        console.log("catch 1" + error.response.data.error);
         Swal.fire({
           title: error.response.data.error,
 
@@ -1285,7 +1281,6 @@ export const changePassword = (id, passwordChange, typeOfCount) => {
         });
         return error;
       } else {
-        console.log("catch 2" + error.response.data.error);
 
         Swal.fire({
           title: "La contraseña anterior no es la misma",

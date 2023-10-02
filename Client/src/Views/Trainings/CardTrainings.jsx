@@ -5,7 +5,6 @@ import { adduser, trainingDetail } from "../../Redux/Actions/Actions";
 import { useNavigate } from "react-router-dom";
 
 const TrainingCard = ({ training }) => {
-  console.log("este es el trainininin", training);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 

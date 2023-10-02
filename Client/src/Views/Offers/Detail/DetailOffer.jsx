@@ -9,7 +9,6 @@ export default function DetailOffer() {
   const dispatch = useDispatch();
   const offer = useSelector((state) => state.offer);
   const navigate = useNavigate();
-  console.log("esta es ofer", offer);
 
   React.useEffect(() => {
     dispatch(actions.getOfferByName(title));
